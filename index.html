@@ -1,7 +1,117 @@
-<!DOCTYPE html>
+<!DOCTYPE html >
 <html>
-<body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
+
+
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+<link href="flori.css" rel="stylesheet" type="text/css" />
+
+<meta name="robots" content="index" />
+<meta name="robots" content="follow" />
+
+<meta name="description" content="Willkommen auf meiner Homepage">
+
+<meta name="Keywords" content=" " />
+
+<title>Florian Ingerl - Qualifizierte Nachhilfe in Mathe, Englisch, Französisch und mehr</title>
+<script>
+var menus = [0,1,2,3,4,5];
+var selectedMenu = 0;
+
+function menuClicked(n){
+alert("Menu was clicked!");
+}
+
+function deselectMenu(n){
+
+}
+
+function onPageLoad(){
+alert("Body was loaded!");
+}
+
+</script>
+</head>
+
+
+<body onload="onPageLoad()" style="width:1000px">
+
+<div class="header">
+	<a onclick="menuErnaehrungClicked()">
+		<img src="Bilder/logo.png" alt="logo"/>
+	</a>
+</div>
+   
+<div class="menu">
+<ul>
+<li><a onclick="menuClicked(0)">Mathe</a></li>
+<li><a onclick="menuClicked(1)">Englisch</a></li>
+ <li> <a onclick="menuClicked(2)">Französisch</a> </li>
+ <li> <a onclick="menuClicked(3)">Mathe Uni</a> </li>
+ <li> <a onclick="menuClicked(4)">Über mich</a> </li>
+ <li> <a onclick="menuClicked(5)">Preise</a> </li>
+ <li> <a onclick="menuClicked(5)">Kontakt</a> </li>
+ <li> <a onclick="menuClicked(6)">Impressum</a> </li>
+</div>
+  
+<div class="main">
+  <div id="matheuni" style="display:none">
+	<img src="Bilder/matheuni.png" alt="Bild"/>
+  </div>
+
+  <div id="franzoesisch" style="display:none">
+	  <h1>Französisch</h1>
+	  
+	</div>
+		<div id="kontakt" style="display:none">
+	  <h1>Kontakt</h1>
+        <p>&nbsp;</p>
+        <h2><strong><br />
+          Florian Ingerl<br />
+          <br />
+          Rainerstr. 6a<br />
+          <br />
+          82178 Puchheim<br />
+          <br />
+          Telefon: 089 - 8005674<br />
+          <br />
+      Email: <a href="mailto:imelflorianingerl@gmail.com">imelflorianingerl@gmail.com</a><br />
+        
+      <br /> Internet:  </h2>
+     
+      
+        
+      
+
+        <h2><strong><br />     
+
+      
+        
+      
+
+      </h2>
+     
+      
+        
+      
+
+      <h2><strong>Termine nach Vereinbarung</strong></h2></strong>
+	  
+	  </div>
+	</div>
+</div>
+
+
+
+
+
+
+
 </body>
+
+
+
 </html>
