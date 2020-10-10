@@ -16,13 +16,20 @@
 
 <meta name="Keywords" content=" " />
 
-<title>Florian Ingerl - Qualifizierte Nachhilfe in Mathe, Englisch, Französisch und mehr</title>
+<title>Florian Ingerl - Qualifizierte Nachhilfe in Mathe, Englisch, Französisch und weiteren Fächern</title>
 <script>
-var menus = [0,1,2,3,4,5];
+var menus = [0,1,2,3,4];
+var menuNames = ["nachhilfe", "uebermich", "preise", "kontakt", "impressum"];
 var selectedMenu = 0;
 
 function menuClicked(n){
 alert("Menu was clicked!");
+var id = menuNames[selectedMenu];
+document.getElementById(id).style.display = "none";
+selectedMenu = n;
+id = menuNames[selectedMenu];
+document.getElementById(id).style.display = "block";
+
 }
 
 function deselectMenu(n){
@@ -40,47 +47,78 @@ alert("Body was loaded!");
 <body onload="onPageLoad()" style="width:1000px">
 
 <div class="header">
-	<a onclick="menuErnaehrungClicked()">
+	<a onclick="menuClicked(0)">
 		<img src="Bilder/logo.png" alt="logo"/>
 	</a>
 </div>
    
 <div class="menu">
 <ul>
-<li><a onclick="menuClicked(0)">Mathe</a></li>
-<li><a onclick="menuClicked(1)">Englisch</a></li>
- <li> <a onclick="menuClicked(2)">Französisch</a> </li>
- <li> <a onclick="menuClicked(3)">Mathe Uni</a> </li>
- <li> <a onclick="menuClicked(4)">Über mich</a> </li>
- <li> <a onclick="menuClicked(5)">Preise</a> </li>
- <li> <a onclick="menuClicked(5)">Kontakt</a> </li>
- <li> <a onclick="menuClicked(6)">Impressum</a> </li>
+ <li> <a onclick="menuClicked(0)">Nachhilfe</a> </li>
+ <li> <a onclick="menuClicked(1)">Über mich</a> </li>
+ <li> <a onclick="menuClicked(2)">Preise</a> </li>
+ <li> <a onclick="menuClicked(3)">Kontakt</a> </li>
+ <li> <a onclick="menuClicked(4)">Impressum</a> </li>
 </div>
   
 <div class="main">
-  <div id="matheuni" style="display:none">
-	<img src="Bilder/matheuni.png" alt="Bild"/>
-  </div>
 
-  <div id="franzoesisch" style="display:none">
-	  <h1>Französisch</h1>
-	  
-	</div>
-		<div id="kontakt" style="display:none">
-	  <h1>Kontakt</h1>
+<div id="nachhilfe" style="display:block">
+<h1>Nachhilfe</h1>
+<p>
+Ich gebe besonders gern Nachhilfe in Mathe, Englisch und Französisch. In Mathe und Physik habe ich ein Lehramtstudium hinter mir.
+Die anderen Fächer hatte ich in meiner eigenen Schulzeit besonders gern und habe dort jede Menge Bücher, weil meine Tante und mein Onkel das
+am Gymnasium unterrichtet haben. <br/>
+</p>
+</div>
+
+<div id="uebermich" style="display:none">
+<h1>Über mich</h1>
+<p> Ich bin selber 1er-Abiturient und hatte Spaß an der Schule. Besonders in Mathe, Englisch, Französisch und Physik hatte ich
+besonders Freude, sodass ich jetzt auch in diesen Fächern Nachhilfe gebe. <br/>
+Ansonsten bin ich schon 27 Jahre alt und habe ein Masterstudium in Mathe mit Nebenfach Informatik und ein Lehramtstudium
+für Gymnasium in Mathe und Physik hinter mir. Danach habe ich ein halbes Jahr am Gymnasium Gröbenzell und 3 Wochen am Gymnasium
+Olching als Aushilfslehrkraft gearbeitet. <br/>
+</p>
+</div>
+
+<div id="preise" style="display:none">
+<h1>Preise</h1>
+<p>Ich verlange 20 Euro pro 60 Minuten. Andere Zahlungsmodelle sind Verhandlungssache.</p>
+</div>
+
+<div id="kontakt" style="display:none">
+
+<form action="https://getform.io/f/bddcb2ba-fb16-4fa3-baf2-aabd7227b87a" method="POST">
+
+
+<p>Name:</p>
+  <input type="text" name="name">
+  <p>E-Mail:</p>
+  <input type="email" name="email">
+  <p>Nachricht:</p>
+  <textarea name="message" cols="40" rows="10"></textarea>
+  <button type="submit">Nachricht abschicken</button>
+
+</form>
+        
+</div>
+
+		<div id="impressum" style="display:none">
+	  <h1>Impressum</h1>
         <p>&nbsp;</p>
         <h2><strong><br />
           Florian Ingerl<br />
           <br />
-          Rainerstr. 6a<br />
+          Walchenseestraße 6<br />
           <br />
-          82178 Puchheim<br />
+          82194 Gröbenzell<br />
           <br />
-          Telefon: 089 - 8005674<br />
+          Telefon: 08142/4607515<br />
           <br />
       Email: <a href="mailto:imelflorianingerl@gmail.com">imelflorianingerl@gmail.com</a><br />
         
-      <br /> Internet:  </h2>
+      <br /> Internet: https://florianingerl.github.io/ </h2>
      
       
         
@@ -95,14 +133,12 @@ alert("Body was loaded!");
       </h2>
      
       
-        
-      
-
+       
       <h2><strong>Termine nach Vereinbarung</strong></h2></strong>
 	  
-	  </div>
-	</div>
-</div>
+	  </div> <!-- end dif impressum-->
+	</div> <!-- end dif main-->
+
 
 
 
