@@ -25,9 +25,11 @@ var selectedMenu = 0;
 function menuClicked(n){
 var id = menuNames[selectedMenu];
 document.getElementById(id).style.display = "none";
+document.getElementsByTagName("li")[selectedMenu].className = "";
 selectedMenu = n;
 id = menuNames[selectedMenu];
 document.getElementById(id).style.display = "block";
+document.getElementsByTagName("li")[selectedMenu].className = "active";
 
 }
 
@@ -82,7 +84,7 @@ Im anderen Fall würde die Nachhilfe online über Skype stattfinden.</p>
 Ein voll beschriebenes Whiteboard würde dann ungefähr so aussehen: <a href="Pdfs/Beispielwhiteboard.pdf">Beispiel-Whiteboard</a> 
 Das heißt, wir würden zusammen Aufgaben durchgehen und das mithilfe von deinem Vorlesungsskript begründen.</p>
 
-<p>Von Vorteil ist es, wenn du ein Stift-Tablet hast, sodass du bequem was schreiben kannst.
+<p>Von Vorteil aber nicht notwendig ist es, wenn du ein Stift-Tablet hast, sodass du bequem was schreiben kannst.
 Ich selbst habe eines, was ich an meinen Laptop anschließe. Das Produkt ist ein <a href="https://www.wacom.com/de-de/products/pen-tablets/one-by-wacom">Wacom-Stift-Tablet</a>.
 Ich habe damals 40 Euro dafür gezahlt.</p>
 
@@ -106,6 +108,7 @@ Olching als Aushilfslehrkraft gearbeitet. <br/>
 </div>
 
 <div id="kontakt" style="display:none">
+<h1>Kontakt</h1>
 
 <form action="https://getform.io/f/bddcb2ba-fb16-4fa3-baf2-aabd7227b87a" method="POST">
 
