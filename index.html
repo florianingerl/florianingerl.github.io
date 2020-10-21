@@ -17,57 +17,33 @@
 <meta name="Keywords" content="Nachhilfe, Mathe, Physik, Informatik, Englisch, Französisch" />
 
 <title>Florian Ingerl - Qualifizierte Nachhilfe in Mathe, Physik, Informatik, Englisch, Französisch und weiteren Fächern</title>
-<script>
-var menus = [0,1,2,3,4,5];
-var menuNames = ["nachhilfe", "matheuni", "infouni", "onlinenachhilfe", "uebermich", "preise", "kontakt", "impressum"];
-var selectedMenu = 0;
 
-function menuClicked(n){
-var id = menuNames[selectedMenu];
-document.getElementById(id).style.display = "none";
-document.getElementsByTagName("li")[selectedMenu].className = "";
-selectedMenu = n;
-id = menuNames[selectedMenu];
-document.getElementById(id).style.display = "block";
-document.getElementsByTagName("li")[selectedMenu].className = "active";
-
-}
-
-function deselectMenu(n){
-
-}
-
-function onPageLoad(){
-menuClicked(0);
-}
-
-</script>
 </head>
 
 
-<body onload="onPageLoad()" style="width:1000px">
+<body style="width:1000px">
 
 <div class="header">
-	<a onclick="menuClicked(0)">
+	<a href="?p=0">
 		<img src="Bilder/logo.png" alt="logo"/>
 	</a>
 </div>
    
 <div class="menu">
 <ul>
- <li> <a onclick="menuClicked(0)">Nachhilfe</a> </li>
- <li> <a onclick="menuClicked(1)">Mathe-Nachhilfe für die Uni</a></li>
- <li> <a onclick="menuClicked(2)">Informatik-Nachhilfe für die Uni</a></li>
- <li> <a onclick="menuClicked(3)">Online-Nachhilfe</a> </li>
- <li> <a onclick="menuClicked(4)">Über mich</a> </li>
- <li> <a onclick="menuClicked(5)">Preise, Anfahrt und Absagen</a> </li>
- <li> <a onclick="menuClicked(6)">Kontakt</a> </li>
- <li> <a onclick="menuClicked(7)">Impressum</a> </li>
+ <li> <a href="?p=0">Nachhilfe</a> </li>
+ <li> <a href="?p=1">Mathe-Nachhilfe für die Uni</a></li>
+ <li> <a href="?p=2">Informatik-Nachhilfe für die Uni</a></li>
+ <li> <a href="?p=3">Online-Nachhilfe</a> </li>
+ <li> <a href="?p=4">Über mich</a> </li>
+ <li> <a href="?p=5">Preise, Anfahrt und Absagen</a> </li>
+ <li> <a href="?p=6">Kontakt</a> </li>
+ <li> <a href="?p=7">Impressum</a> </li>
 </div>
   
 <div class="main">
 
-<div id="nachhilfe" style="display:block">
+<div id="nachhilfe" style="display:none">
 <h1>Nachhilfe</h1>
 <p>
 <p>Ich gebe besonders gern Nachhilfe in Mathe, Physik, Informatik, Englisch und Französisch.</p>
@@ -99,6 +75,8 @@ Ich habe damals 40 Euro dafür gezahlt.</p>
 </div>
 
 <div id="infouni" style="display:none">
+
+<h1>Informatik-Nachhilfe für die Uni</h1>
 <p>
 Besonders gern helfe ich auch in Informatik. Ich habe selber nämlich Mathe mit Nebenfach Informatik im Master studiert und habe ein
 Jahr Berufserfahrung als Softwareentwickler.
@@ -192,7 +170,7 @@ Oder sage, ob ich dich anrufen soll und wenn ja wann und unter welcher Nummer. I
           <br />
       Email: <a href="mailto:imelflorianingerl@gmail.com">imelflorianingerl@gmail.com</a><br />
         
-      <br /> Internet: https://florianingerl.github.io/ </h2>
+      <br /> Internet: https://florianingerl.github.io </h2>
         
     
 	  
@@ -208,6 +186,45 @@ Oder sage, ob ich dich anrufen soll und wenn ja wann und unter welcher Nummer. I
 
 </body>
 
+<script>
+var menuNames = ["nachhilfe", "matheuni", "infouni", "onlinenachhilfe", "uebermich", "preise", "kontakt", "impressum"];
 
+function getParameterByName(name, url = window.location.href) {
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
+function getSelectedMenuFromQueryString(){
+
+var p = getParameterByName("p");
+var i = 0;
+if( p == null ) { i = 0; }
+else { i = parseInt(p); }
+
+return i;
+}
+
+function onPageLoad(){
+var i = getSelectedMenuFromQueryString();
+selectMenu(i);
+}
+
+function selectMenu(i){
+
+id = menuNames[i];
+document.getElementById(id).style.display = "block";
+document.getElementsByTagName("li")[i].className = "active";
+
+}
+
+window.addEventListener('load', function () {
+  onPageLoad();
+});
+
+</script>
 
 </html>
