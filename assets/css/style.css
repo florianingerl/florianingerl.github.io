@@ -383,14 +383,14 @@ h1, h2, h3, h4, h5, h6 {
 #hero {
   width: 100%;
   height: 80vh;
-  background: url("../img/mywindow2.jpg") top center;
+  background: url("../img/MathePhysikInfoNachhilfeFlyer.PNG") top center; 
   background-size: cover;
   position: relative;
 }
 
 #hero:before {
   content: "";
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0);
   position: absolute;
   bottom: 0;
   top: 0;
@@ -413,7 +413,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 48px;
   font-weight: 700;
   line-height: 56px;
-  color: #fff;
+  color: black;
   font-family: "Poppins", sans-serif;
 }
 
