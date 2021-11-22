@@ -9,10 +9,10 @@ var questions = [
 	},
 
 	{
-		question: "Welches Getreide weicht hier gerade für die Sprossenzucht ein?",
-		imageUrl: "assets/img/rawfood/weizeneinweichen.JPG",
+		question: "Wie heißt dieses Gemüse?",
+		imageUrl: "assets/img/rawfood/kohlrabi.jpg",
 		type: "multiple choice",
-		options: ["Gründe Linsen", "Beluga Linsen", "Weizen"],
+		options: ["Wirsing", "Kartoffel", "Kohlrabi"],
 		correct: 2
 	},
 
@@ -22,6 +22,14 @@ var questions = [
 		type: "multiple choice",
 		options: ["Sprossenturm", "Sprossengläser mit Abtropfgestell", "Schüssel und Teller zum Abdecken", "Backofen"],
 		correct: 3
+	},
+	
+	{
+		question: "Was eignet sich zur Wasseraufbereitung?",
+		imageUrl: "assets/img/rawfood/wasserwirbler.png",
+		type: "multiple choice",
+		options: ["Wasserwirbler", "Sirup"],
+		correct: 0
 	}
 
 ];
