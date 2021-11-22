@@ -1,0 +1,72 @@
+h1 {
+  text-align: center;
+  padding: 20px;
+}
+
+.sectionContainer form {
+  width: 100%;
+  margin: 20px auto;
+}
+
+.sectionContainer form div {
+  margin-top: 15px;
+}
+
+.sectionContainer form .textQuest span {
+  line-height: 30px;
+}
+
+.sectionContainer form .optionQuest {
+  display: block;
+}
+
+.sectionContainer form .quastLable {
+  font-weight: bold;
+}
+
+.sectionContainer form .optionQuest .optionQuestOptionSection {
+  display: flex;
+}
+
+@media only screen and (max-width: 600px) {
+  .sectionContainer form .optionQuest .optionQuestOptionSection{
+    margin: 10px 0;
+  }
+}
+
+/*.sectionContainer form .optionQuest .optionQuestOptionSection .optionQuestimg{
+}*/
+
+@media only screen and (max-width: 600px) {
+  .sectionContainer form .optionQuest .optionQuestOptionSection .optionQuestimg {
+    width: 100px;
+    padding: 15px;
+  }
+}
+
+.sectionContainer form div span input {
+  color: rgb(0, 0, 0);
+  margin: 0 5px;
+  font-size: 16px;
+}
+
+@media only screen and (max-width: 600px) {
+  .sectionContainer form div span input {
+    width: 90px;
+  }
+}
+
+.sectionContainer .buttonContainer {
+  display: flex;
+}
+
+.sectionContainer button {
+  width: 30%;
+  background-color: rgb(0, 255, 34);
+  padding: 10px 0px;
+  border: none;
+  margin: auto;
+  display: block;
+  margin-top: 10px;
+  font-size: 16px;
+}
