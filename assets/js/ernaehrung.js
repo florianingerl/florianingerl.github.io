@@ -31,6 +31,14 @@ var questions = [
 		options: ["Wasserwirbler", "Sirup"],
 		correct: 0
 	}
+	,
+	{
+		question: "In welcher Form sollte man Getreide nach dem Rohkost-Guru Dr.Schnitzer am besten essen?",
+		imageUrl: "assets/img/rawfood/weizensprossen.jpg",
+		type: "multiple choice",
+		options: ["als Getreidebrei oder als Keimlinge", "Brot", "Nudeln"],
+		correct: 0
+	}
 
 ];
 
