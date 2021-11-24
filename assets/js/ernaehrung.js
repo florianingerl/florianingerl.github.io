@@ -23,7 +23,7 @@ var questions = [
 		options: ["Sprossenturm", "Sprossengläser mit Abtropfgestell", "Schüssel und Teller zum Abdecken", "Backofen"],
 		correct: 3
 	},
-	
+
 	{
 		question: "Was eignet sich zur Wasseraufbereitung?",
 		imageUrl: "assets/img/rawfood/wasserwirbler.png",
@@ -38,6 +38,13 @@ var questions = [
 		type: "multiple choice",
 		options: ["als Getreidebrei oder als Keimlinge", "Brot", "Nudeln"],
 		correct: 0
+	},
+	{
+		question: "Warum fügt ein Rohköstler seinem morgendlichen Getreidebrei Hanfsprossen hinzu?",
+		imageUrl: "assets/img/rawfood/hanfsprossen.jpg",
+		tpye: "multiple choice",
+		options: ["wegen der berauschenden Wirkung", "wegen dem vielen Fett und dem würzigen Geschmack"],
+		correct: 1
 	}
 
 ];
@@ -46,7 +53,7 @@ var q = 0;
 
 function createQuestion() {
 	var c = document.getElementById("rohkost");
-	while(c.firstChild){
+	while (c.firstChild) {
 		c.removeChild(c.firstChild);
 	}
 	var s = document.createElement("p");
@@ -55,7 +62,7 @@ function createQuestion() {
 	s = document.createElement("img");
 	s.src = questions[q].imageUrl;
 	s.alt = "Can't display this image";
-	s.style ="width: 300px";
+	s.style = "width: 300px";
 	c.appendChild(s);
 
 	s = document.createElement("div");
@@ -94,27 +101,29 @@ function createQuestion() {
 	b.appendChild(document.createTextNode("Lösung zeigen"));
 	s.appendChild(b);
 
-	b = document.createElement("button");
-	b.id = "nextButton";
-	b.onclick = nextButtonClicked;
-	b.appendChild(document.createTextNode("Nächste Aufgabe"));
-	c.appendChild(b);
+	if (q != questions.length - 1) {
+		b = document.createElement("button");
+		b.id = "nextButton";
+		b.onclick = nextButtonClicked;
+		b.appendChild(document.createTextNode("Nächste Aufgabe"));
+		c.appendChild(b);
+	}
 }
 
-function nextButtonClicked(){
+function nextButtonClicked() {
 	q++;
 	createQuestion();
 }
 
 function solveButtonClicked() {
 	console.log("The solve button was clicked!");
-	
+
 	console.log("The check button was clicked!");
 	var inputFields = document.getElementById('optionQuestOptions').getElementsByTagName('input');
 	for (var index = 0; index < inputFields.length; ++index) {
 		var element = inputFields[index];
 		if (element.value || element.checked) {
-			
+
 			if (element.type == "radio" || element.type == "checkbox") {
 				element.parentElement.style.backgroundColor = "white";
 				element.checked = index == questions[q].correct;
