@@ -141,18 +141,18 @@ function checkButtonClicked() {
 			if (element.type == "text") {
 				element.style.backgroundColor = "white";
 				if (element.value == questions[q].correct) {
-					element.style.backgroundColor = "green";
+					element.style.backgroundColor = "#7bf27b";
 				} else {
-					element.style.backgroundColor = "red";
+					element.style.backgroundColor = "#fc5c5c";
 				}
 			} else if (element.type == "radio" || element.type == "checkbox") {
 				element.parentElement.style.backgroundColor = "white";
 
 				if (element.checked) {
 					if (index == questions[q].correct) {
-						element.parentElement.style.backgroundColor = "green";
+						element.parentElement.style.backgroundColor = "#7bf27b";
 					} else {
-						element.parentElement.style.backgroundColor = "red";
+						element.parentElement.style.backgroundColor = "#fc5c5c";
 					}
 				}
 
