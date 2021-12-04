@@ -60,7 +60,7 @@ var questions = [
 		correct: 1
 	},
 	{
-		question: "Sprossen aus Leinsamen sind wertvoll, weil sie viel Fett enthalten. </br> Wie schmecken wohl Leinsamensprossen?",
+		question: "Sprossen aus Leinsamen sind wertvoll, weil sie viel Fett enthalten. Wie schmecken wohl Leinsamensprossen?",
 		imageUrl: "assets/img/rawfood/leinsamensprossen.jpg",
 		type: "multiple choice",
 		options: ["scharf", "wie Schokolade"],
