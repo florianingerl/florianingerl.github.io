@@ -45,6 +45,12 @@ var questions = [
 		tpye: "multiple choice",
 		options: ["wegen der berauschenden Wirkung", "wegen dem vielen Fett und dem würzigen Geschmack"],
 		correct: 1
+	},
+	{
+		question: "Wie heißt dieses Gemüse?",
+		imageUrl: "assets/img/rawfood/rotkohl.jpg",
+		type: "eingabe",
+		correct: ["Blaukraut", "Rotkohl"]
 	}
 
 ];
@@ -70,19 +76,32 @@ function createQuestion() {
 
 	s.class = "optionQuestOptions";
 	s.id = s.class;
-	for (var i = 0; i < questions[q].options.length; i++) {
+	if (questions[q].type == "multiple choice") {
+		for (var i = 0; i < questions[q].options.length; i++) {
+			var s1 = document.createElement("div");
+			s.appendChild(s1);
+			var s2 = document.createElement("input");
+			s2.type = "checkbox";
+			s2.id = "vehicle" + i;
+			s2.name = s2.id;
+			s2.value = "Bike";
+			s1.appendChild(s2);
+			var s3 = document.createElement("label");
+			s3.for = s2.id;
+			s3.appendChild(document.createTextNode(questions[q].options[i]));
+			s1.appendChild(s3);
+		}
+	}
+	else if (questions[q].type == "eingabe") {
 		var s1 = document.createElement("div");
+		s1.class = "textQuest";
 		s.appendChild(s1);
 		var s2 = document.createElement("input");
-		s2.type = "checkbox";
-		s2.id = "vehicle" + i;
-		s2.name = s2.id;
-		s2.value = "Bike";
+		s2.id = "theinputfield";
+		s2.type = "text";
+		s2.name = "1";
 		s1.appendChild(s2);
-		var s3 = document.createElement("label");
-		s3.for = s2.id;
-		s3.appendChild(document.createTextNode(questions[q].options[i]));
-		s1.appendChild(s3);
+
 	}
 
 	s = document.createElement("div");
@@ -119,51 +138,77 @@ function solveButtonClicked() {
 	console.log("The solve button was clicked!");
 
 	console.log("The check button was clicked!");
-	var inputFields = document.getElementById('optionQuestOptions').getElementsByTagName('input');
-	for (var index = 0; index < inputFields.length; ++index) {
-		var element = inputFields[index];
-		if (element.value || element.checked) {
+	if (questions[q].type == "multiple choice") {
+		var inputFields = document.getElementById('optionQuestOptions').getElementsByTagName('input');
+		for (var index = 0; index < inputFields.length; ++index) {
+			var element = inputFields[index];
+			if (element.value || element.checked) {
 
-			if (element.type == "radio" || element.type == "checkbox") {
-				element.parentElement.style.backgroundColor = "white";
-				element.checked = index == questions[q].correct;
+				if (element.type == "radio" || element.type == "checkbox") {
+					element.parentElement.style.backgroundColor = "white";
+					element.checked = index == questions[q].correct;
+				}
 			}
 		}
+	}
+	else if (questions[q].type == "eingabe") {
+		var element = document.getElementById("theinputfield");
+		element.type.backgroundColor = "white";
+		element.value = questions[q].correct[0];
 	}
 }
 
 function checkButtonClicked() {
 	console.log("The check button was clicked!");
-	var inputFields = document.getElementById('optionQuestOptions').getElementsByTagName('input');
-	for (var index = 0; index < inputFields.length; ++index) {
-		var element = inputFields[index];
-		if (element.value || element.checked) {
-			if (element.type == "text") {
-				element.style.backgroundColor = "white";
-				if (element.value == questions[q].correct) {
-					element.style.backgroundColor = "#7bf27b";
-				} else {
-					element.style.backgroundColor = "#fc5c5c";
-				}
-			} else if (element.type == "radio" || element.type == "checkbox") {
-				element.parentElement.style.backgroundColor = "white";
-
-				if (element.checked) {
-					if (index == questions[q].correct) {
-						element.parentElement.style.backgroundColor = "#7bf27b";
+	if (questions[q].type == "multiple choice") {
+		var inputFields = document.getElementById('optionQuestOptions').getElementsByTagName('input');
+		for (var index = 0; index < inputFields.length; ++index) {
+			var element = inputFields[index];
+			if (element.value || element.checked) {
+				if (element.type == "text") {
+					element.style.backgroundColor = "white";
+					if (element.value == questions[q].correct) {
+						element.style.backgroundColor = "#7bf27b";
 					} else {
-						element.parentElement.style.backgroundColor = "#fc5c5c";
+						element.style.backgroundColor = "#fc5c5c";
 					}
-				}
+				} else if (element.type == "radio" || element.type == "checkbox") {
+					element.parentElement.style.backgroundColor = "white";
 
+					if (element.checked) {
+						if (index == questions[q].correct) {
+							element.parentElement.style.backgroundColor = "#7bf27b";
+						} else {
+							element.parentElement.style.backgroundColor = "#fc5c5c";
+						}
+					}
+
+				}
 			}
 		}
 	}
+	else if (questions[q].type == "eingabe") {
+		var element = document.getElementById("theinputfield");
+
+		element.style.backgroundColor = "white";
+
+
+		if (contains(questions[q].correct, element.value)) {
+			element.style.backgroundColor = "#7bf27b";
+		} else {
+			element.style.backgroundColor = "#fc5c5c";
+		}
+
+	}
 }
 
-
+function contains(a, value) {
+	for (var i = 0; i < a.length; ++i) {
+		if (a[i] == value) {
+			return true;
+		}
+	}
+	return false;
+}
 
 createQuestion();
-
-
-;
