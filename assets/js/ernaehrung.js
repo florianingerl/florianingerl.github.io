@@ -12,16 +12,16 @@ var questions = [
 		question: "Wie heißt dieses Gemüse?",
 		imageUrl: "assets/img/rawfood/kohlrabi.jpg",
 		type: "multiple choice",
-		options: ["Wirsing", "Kartoffel", "Kohlrabi"],
-		correct: 2
+		options: ["Kartoffel", "Kohlrabi"],
+		correct: 1
 	},
 
 	{
 		question: "Welches Gerät eignet sich nicht! zur Sprossenzucht?",
 		imageUrl: "assets/img/rawfood/sprossengläser.png",
 		type: "multiple choice",
-		options: ["Sprossenturm", "Sprossengläser mit Abtropfgestell", "Schüssel und Teller zum Abdecken", "Backofen"],
-		correct: 3
+		options: ["Sprossenturm", "Sprossengläser mit Abtropfgestell", "Backofen"],
+		correct: 2
 	},
 
 	{
@@ -42,16 +42,31 @@ var questions = [
 	{
 		question: "Warum fügt ein Rohköstler seinem morgendlichen Getreidebrei Hanfsprossen hinzu?",
 		imageUrl: "assets/img/rawfood/hanfsprossen.jpg",
-		tpye: "multiple choice",
+		type: "multiple choice",
 		options: ["wegen der berauschenden Wirkung", "wegen dem vielen Fett und dem würzigen Geschmack"],
 		correct: 1
 	},
 	{
-		question: "Wie heißt dieses Gemüse?",
+		question: "Wie heißt dieses Gemüse? Gebe die richtige Antwort in das Textfeld ein!",
 		imageUrl: "assets/img/rawfood/rotkohl.jpg",
 		type: "eingabe",
 		correct: ["Blaukraut", "Rotkohl"]
+	},
+	{
+		question: "Wie schmeckt roote Beete?",
+		imageUrl: "assets/img/rawfood/rooteBeete1.jpg",
+		type: "multiple choice",
+		options: ["bitter", "süß"],
+		correct: 1
+	},
+	{
+		question: "Sprossen aus Leinsamen sind wertvoll, weil sie viel Fett enthalten. </br> Wie schmecken wohl Leinsamensprossen?",
+		imageUrl: "assets/img/rawfood/leinsamensprossen.jpg",
+		type: "multiple choice",
+		options: ["scharf", "wie Schokolade"],
+		correct: 1
 	}
+	
 
 ];
 
