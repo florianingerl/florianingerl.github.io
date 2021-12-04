@@ -39,8 +39,15 @@ var questions = [
 		options: ["als Getreidebrei oder als Keimlinge", "Brot", "Nudeln"],
 		correct: 0
 	},
+	{ question: "Welche Zutat gehört nicht! in einen Frischkornbrei?",
+	type: "multiple choice",
+	imageUrl: "assets/img/rawfood/frischkornbrei.jpg",
+	options: ["Roggen", "Haselnüsse", "Apfel", "Marmelade", "Leinsamen"],
+	correct: 3
+		
+	},
 	{
-		question: "Warum fügt ein Rohköstler seinem morgendlichen Getreidebrei Hanfsprossen hinzu?",
+		question: "Warum fügt ein Rohköstler seinem Getreidebrei Hanfsprossen hinzu?",
 		imageUrl: "assets/img/rawfood/hanfsprossen.jpg",
 		type: "multiple choice",
 		options: ["wegen der berauschenden Wirkung", "wegen dem vielen Fett und dem würzigen Geschmack"],
