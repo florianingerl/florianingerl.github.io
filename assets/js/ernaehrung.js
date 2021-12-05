@@ -81,7 +81,7 @@ var questions = [
 		correct: 0
 	},
 	{
-		question: "Die Bagavhad-Gita (Bibel der Hindus) teilt Lebensmittel in sattvische, rajasische und tamasische Lebensmittel ein. Rajasische Lebensmittel erzeugen im Übermaß konsumiert Ruhelosigkeit und Schmerz und sind meistens sehr! scharf, süß oder salzig. Welches Gemüse ist nicht! rajasisch?",
+		question: "Die Bagavhad-Gita (Bibel der Hindus) teilt Lebensmittel in sattvische, rajasische und tamasische Lebensmittel ein. Rajasische Lebensmittel erzeugen im Übermaß konsumiert Ruhelosigkeit und sind meistens sehr! scharf, süß oder salzig. Welches Gemüse ist nicht! rajasisch?",
 		imageUrl: "assets/img/rawfood/zwiebeln.jpg",
 		type: "multiple choice",
 		options: ["Zwiebel", "Radiesschen", "Gurke" ,"Chili"],
