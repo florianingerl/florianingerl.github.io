@@ -1,0 +1,91 @@
+body {
+	font-size: 15px;
+}
+
+.logo {
+	color:green;
+	font-size: 60px;
+	float: left;
+}
+
+.logo a a:visited a:hover a:link a:active {
+	text-decoration: none;
+	color: green;
+}
+
+#header {
+	position:fixed;
+	width: 100%;
+	top:0px;
+	left:0px;
+	border: solid 1px red;
+	margin: 10px;
+	font-size: 30px;
+}
+
+.logo a:visited {
+	color: green;
+text-decoration:none;
+}
+
+.logo a:link {
+	color:green;
+text-decoration:none;
+}
+
+.logo a:hover {
+	color:green;
+	text-decoration:none;
+}
+
+#nav {
+	
+}
+
+.menuitem {
+	display: inline;
+	float: left;
+	background-color: black;
+	color: white;
+	border-color: white;
+	padding: 15px;
+}
+
+.submenu {
+	display: none;
+}
+
+.menuitem:hover .submenu {
+	display: block;
+}
+
+.submenuitem {
+	display: block;
+}
+
+.submenuitem a a:hover a:link a:active a:visited {
+	text-decoration: none;
+	color:white;
+	
+}
+
+.sectionmargintop {
+	padding-top: 80px;
+}
+
+.heroimage {
+	width: 100%;
+	border: solid 10px black;
+}
+
+.smalldiv {
+	border: solid 3px red;
+	width: 50%;
+	height: 300px;
+	position: relative;
+}
+
+.absp {
+	position:absolute;
+	
+}
