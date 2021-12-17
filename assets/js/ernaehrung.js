@@ -93,6 +93,13 @@ var questions = [
 		type: "multiple choice",
 		options: ["Mungobohnen", "Tiefkühl-Pizza", "Dosen-Ravioli" ],
 		correct: 0
+	},
+	{
+		question: "Welche Zutat gehört nicht in einen Frischkornbrei?",
+		imageUrl: "assets/img/rawfood/frischkornbrei.jpg",
+		type: "multiple choice",
+		options: ["Wasser", "Dinkel", "Milch", "Sonnenblumenkerne", "Himbeeren" ],
+		correct: 2
 	}
 
 
