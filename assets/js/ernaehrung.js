@@ -17,14 +17,6 @@ var questions = [
 	},
 
 	{
-		question: "Welches Gerät eignet sich nicht! zur Sprossenzucht?",
-		imageUrl: "assets/img/rawfood/sprossengläser.png",
-		type: "multiple choice",
-		options: ["Sprossenturm", "Sprossengläser mit Abtropfgestell", "Backofen"],
-		correct: 2
-	},
-
-	{
 		question: "Was eignet sich zur Wasseraufbereitung?",
 		imageUrl: "assets/img/rawfood/wasserwirbler.png",
 		type: "multiple choice",
@@ -100,6 +92,22 @@ var questions = [
 		type: "multiple choice",
 		options: ["Wasser", "Dinkel", "Milch", "Sonnenblumenkerne", "Himbeeren" ],
 		correct: 2
+	},
+	
+	{
+		question: "Wie heißt dieser Salat?",
+		imageUrl: "assets/img/rawfood/endivien.jpg",
+		type: "multiple choice",
+		options: ["Zuckerhut", "Kopfsalat", "Chicoree", "Endiviensalat" ],
+		correct: 3
+	},
+	
+	{
+		question: "Wie schmeckt Endiviensalat?",
+		imageUrl: "assets/img/rawfood/endivien.jpg",
+		type: "multiple choice",
+		options: ["süß", "bitter", "scharf" ],
+		correct: 1
 	}
 
 
