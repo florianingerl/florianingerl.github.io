@@ -108,6 +108,14 @@ var questions = [
 		type: "multiple choice",
 		options: ["süß", "bitter", "scharf" ],
 		correct: 1
+	},
+	
+	{
+		question: "Warum werdem Rohköstler satt?",
+		imageUrl: "assets/img/rawfood/kichererbsensprossen.jpg",
+		type: "multiple choice",
+		options: ["Weil sie tonnenweise Salat essen", "Weil sie Sprossen aus Getreide und Hülsenfrüchten essen" ],
+		correct: 1
 	}
 
 
