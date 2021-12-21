@@ -1,5 +1,6 @@
 body {
 	font-size: 15px;
+	padding-top: 72px;
 }
 
 .logo {
@@ -8,7 +9,7 @@ body {
 	float: left;
 }
 
-.logo a a:visited a:hover a:link a:active {
+.logo a , a:visited, a:hover, a:link, a:active {
 	text-decoration: none;
 	color: green;
 }
@@ -23,20 +24,7 @@ body {
 	font-size: 30px;
 }
 
-.logo a:visited {
-	color: green;
-text-decoration:none;
-}
 
-.logo a:link {
-	color:green;
-text-decoration:none;
-}
-
-.logo a:hover {
-	color:green;
-	text-decoration:none;
-}
 
 #nav {
 	
@@ -63,14 +51,14 @@ text-decoration:none;
 	display: block;
 }
 
-.submenuitem a a:hover a:link a:active a:visited {
+.submenuitem a , a:hover, a:link, a:active, a:visited {
 	text-decoration: none;
 	color:white;
 	
 }
 
 .sectionmargintop {
-	padding-top: 80px;
+	padding-top: 0px;
 }
 
 .heroimage {
