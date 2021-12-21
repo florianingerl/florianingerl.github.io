@@ -116,6 +116,22 @@ var questions = [
 		type: "multiple choice",
 		options: ["Weil sie tonnenweise Salat essen", "Weil sie Sprossen aus Getreide und Hülsenfrüchten essen" ],
 		correct: 1
+	},
+	
+	{
+		question: "Welche Zutat braucht man nicht für einen gesunden, stattmachenden Salat?",
+		imageUrl: "assets/img/rawfood/zuckerhutsalatmitsüßlupinen.JPG",
+		type: "multiple choice",
+		options: ["Olivenöl", "Süßlupinen", "Zuckerhut", "Karotte", "Essig"],
+		correct: 4
+	},
+	
+	{
+		question: "Woran erkennt man laut dem Rohkost-Guru und Zahnarzt Dr. Schnitzer am eindeutigsten, dass der Mensch ein Fruchtesser (Samen, Wurzelknollen, Blattschösslinge) ist?",
+		imageUrl: "assets/img/rawfood/johannschnitzer.gif",
+		type: "multiple choice",
+		options: ["an der Länge seines Darms", "an seinem Gebiss", "an der chemischen Zusammensetzung der Magensäure" ],
+		correct: 1
 	}
 
 
