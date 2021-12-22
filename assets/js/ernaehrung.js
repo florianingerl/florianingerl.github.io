@@ -122,7 +122,7 @@ var questions = [
 		question: "Welche Zutat braucht man nicht für einen gesunden, stattmachenden Salat?",
 		imageUrl: "assets/img/rawfood/zuckerhutsalatmitsüßlupinen.JPG",
 		type: "multiple choice",
-		options: ["Olivenöl", "Süßlupinen", "Zuckerhut", "Karotte", "Essig"],
+		options: ["Olivenöl", "Süßlupinen", "Zuckerhut", "Karotte", "Essig", "Weizen"],
 		correct: 4
 	},
 	
@@ -209,10 +209,53 @@ function createQuestion() {
 		b.appendChild(document.createTextNode("Nächste Aufgabe"));
 		c.appendChild(b);
 	}
+	
+	
 }
+
+function createPengion(){
+	var nav = document.createElement("nav");
+	c.appendChild(nav);
+	var ul = document.createElement("ul");
+	ul.classList.add("pagination");
+	nav.appendChild(ul);
+	var li = document.createElement("li");
+		li.classList.add("page-item");
+		var a = document.createElement("a");
+		a.classList.add("page-link");
+		a.appendChild(document.createTextNode("Vorherige Aufgabe"));
+		a.onclick = previousButtonClicked;
+		li.appendChild(a);
+		ul.appendChild(li);
+	for(var i=q/7; i < q/7 + 7 && i < questions.length; ++i){
+		li = document.createElement("li");
+		li.classList.add("page-item");
+		a = document.createElement("a");
+		a.classList.add("page-link");
+		a.appendChild(document.createTextNode("" + (i+1)));
+		li.appendChild(a);
+		ul.appendChild(li);
+	}
+	
+	li = document.createElement("li");
+		li.classList.add("page-item");
+		a = document.createElement("a");
+		a.classList.add("page-link");
+		a.appendChild(document.createTextNode("Nächste Aufgabe"));
+		a.onclick = nextButtonClicked;
+		li.appendChild(a);
+		ul.appendChild(li);
+}
+
+
 
 function nextButtonClicked() {
 	q++;
+	createQuestion();
+}
+
+function previousButtonClicked() {
+	q--;
 	createQuestion();
 }
 
