@@ -46,10 +46,11 @@ var questions = [
 		correct: 1
 	},
 	{
-		question: "Wie heißt dieses Gemüse? Gebe die richtige Antwort in das Textfeld ein!",
+		question: "Wie heißt dieses Gemüse?",
 		imageUrl: "assets/img/rawfood/rotkohl.jpg",
-		type: "eingabe",
-		correct: ["Blaukraut", "Rotkohl"]
+		type: "multiple choice",
+		options: ["Rotkohl", "Weißkohl", "Grünkohl"],
+		correct: 0
 	},
 	{
 		question: "Wie schmeckt roote Beete?",
@@ -132,7 +133,17 @@ var questions = [
 		type: "multiple choice",
 		options: ["an der Länge seines Darms", "an seinem Gebiss", "an der chemischen Zusammensetzung der Magensäure" ],
 		correct: 1
+	},
+	
+	
+	{
+		question: "Wie heißt dieses Gemüse?",
+		imageUrl: "assets/img/rawfood/weißkohl.jpg",
+		type: "multiple choice",
+		options: ["Rotkohl", "Weißkohl", "Grünkohl" ],
+		correct: 1
 	}
+	
 
 
 ];
