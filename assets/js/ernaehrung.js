@@ -140,8 +140,15 @@ var questions = [
 		question: "Wie heißt dieses Gemüse?",
 		imageUrl: "assets/img/rawfood/weißkohl.jpg",
 		type: "multiple choice",
-		options: ["Rotkohl", "Weißkohl", "Grünkohl" ],
+		options: ["Rotkohl", "Weißkohl" ],
 		correct: 1
+	},
+	{
+		question: "Welche Zutat ist nicht in diesem Salat?",
+		imageUrl: "assets/img/rawfood/weißkohlsalat.jpg",
+		type: "multiple choice",
+		options: ["Weißkohl", "Weizen", "Roote Beete", "Salz", "Süßlupinen", "Olivenöl" ],
+		correct: 3
 	}
 	
 
