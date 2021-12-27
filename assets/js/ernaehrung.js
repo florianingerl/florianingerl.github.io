@@ -31,7 +31,7 @@ var questions = [
 		options: ["als Getreidebrei oder als Keimlinge", "Brot", "Nudeln"],
 		correct: 0
 	},
-	{ question: "Welche Zutat gehört nicht! in einen Frischkornbrei?",
+	{ question: "Welche Zutat gehört nicht in einen Frischkornbrei?",
 	type: "multiple choice",
 	imageUrl: "assets/img/rawfood/frischkornbrei.jpg",
 	options: ["Roggen", "Haselnüsse", "Apfel", "Marmelade", "Leinsamen"],
@@ -56,7 +56,7 @@ var questions = [
 		question: "Wie schmeckt roote Beete?",
 		imageUrl: "assets/img/rawfood/rooteBeete1.jpg",
 		type: "multiple choice",
-		options: ["bitter", "süß"],
+		options: ["bitter", "süß", "scharf"],
 		correct: 1
 	},
 	{
@@ -74,7 +74,7 @@ var questions = [
 		correct: 0
 	},
 	{
-		question: "Die Bagavhad-Gita (Bibel der Hindus) teilt Lebensmittel in sattvische, rajasische und tamasische Lebensmittel ein. Rajasische Lebensmittel erzeugen im Übermaß konsumiert Ruhelosigkeit und sind meistens sehr! scharf, süß oder salzig. Welches Gemüse ist nicht! rajasisch?",
+		question: "Die Bagavhad-Gita (Bibel der Hindus) teilt Lebensmittel in sattvische, rajasische und tamasische Lebensmittel ein. Rajasische Lebensmittel erzeugen im Übermaß konsumiert Ruhelosigkeit und sind meistens sehr scharf, süß oder salzig. Welches Gemüse ist nicht rajasisch?",
 		imageUrl: "assets/img/rawfood/zwiebeln.jpg",
 		type: "multiple choice",
 		options: ["Zwiebel", "Radiesschen", "Gurke" ,"Chili"],
@@ -120,11 +120,11 @@ var questions = [
 	},
 	
 	{
-		question: "Welche Zutat braucht man nicht für einen gesunden, stattmachenden Salat?",
+		question: "Welche Zutat ist nicht in diesem Salat?",
 		imageUrl: "assets/img/rawfood/zuckerhutsalatmitsüßlupinen.JPG",
 		type: "multiple choice",
-		options: ["Olivenöl", "Süßlupinen", "Zuckerhut", "Karotte", "Essig", "Weizen"],
-		correct: 4
+		options: [ "Süßlupinen", "Zuckerhut", "Karotte", "Tomate", "Weizen"],
+		correct: 2
 	},
 	
 	{
@@ -147,7 +147,14 @@ var questions = [
 		question: "Welche Zutat ist nicht in diesem Salat?",
 		imageUrl: "assets/img/rawfood/weißkohlsalat.jpg",
 		type: "multiple choice",
-		options: ["Weißkohl", "Weizen", "Roote Beete", "Salz", "Süßlupinen", "Olivenöl" ],
+		options: ["Weißkohl", "Weizen", "Roote Beete", "Karotte", "Süßlupinen" ],
+		correct: 3
+	},
+	{
+		question: "Welche Zutat ist nicht in diesem Salat?",
+		imageUrl: "assets/img/rawfood/rotkohlsalat.jpg",
+		type: "multiple choice",
+		options: ["Gerste","Rotkohl","Linsen","Gurke","Rote Beete" ],
 		correct: 3
 	}
 	
