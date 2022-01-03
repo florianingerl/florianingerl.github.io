@@ -73,20 +73,7 @@ var questions = [
 		options: ["scharf", "bitter", "süß"],
 		correct: 0
 	},
-	{
-		question: "Die Bagavhad-Gita (Bibel der Hindus) teilt Lebensmittel in sattvische, rajasische und tamasische Lebensmittel ein. Rajasische Lebensmittel erzeugen im Übermaß konsumiert Ruhelosigkeit und sind meistens sehr scharf, süß oder salzig. Welches Gemüse ist nicht rajasisch?",
-		imageUrl: "assets/img/rawfood/zwiebeln.jpg",
-		type: "multiple choice",
-		options: ["Zwiebel", "Radiesschen", "Gurke" ,"Chili"],
-		correct: 2
-	},
-	{
-		question: "Die Bagavad-Gita teilt Lebensmittel in sattvische, rajasische und tamasische ein. Sattvische erzeugen Harmonie und erheitern den Geist, sind voller Lebenskraft und schmecken meistens kräftig und mild. Welche Speisen sind sattvisch?",
-		imageUrl: "assets/img/rawfood/mungobohnen.jpg",
-		type: "multiple choice",
-		options: ["Mungobohnen", "Tiefkühl-Pizza", "Dosen-Ravioli" ],
-		correct: 0
-	},
+	
 	{
 		question: "Welche Zutat gehört nicht in einen Frischkornbrei?",
 		imageUrl: "assets/img/rawfood/frischkornbrei.jpg",
@@ -119,13 +106,7 @@ var questions = [
 		correct: 1
 	},
 	
-	{
-		question: "Welche Zutat ist nicht in diesem Salat?",
-		imageUrl: "assets/img/rawfood/zuckerhutsalatmitsüßlupinen.JPG",
-		type: "multiple choice",
-		options: [ "Süßlupinen", "Zuckerhut", "Karotte", "Tomate", "Weizen"],
-		correct: 2
-	},
+
 	
 	{
 		question: "Woran erkennt man laut dem Rohkost-Guru und Zahnarzt Dr. Schnitzer am eindeutigsten, dass der Mensch ein Fruchtesser (Samen, Wurzelknollen, Blattschösslinge) ist?",
@@ -152,7 +133,7 @@ var questions = [
 	},
 	{
 		question: "Welche Zutat ist nicht in diesem Salat?",
-		imageUrl: "assets/img/rawfood/rotkohlsalat.jpg",
+		imageUrl: "assets/img/rawfood/rotkohlsalat.JPG",
 		type: "multiple choice",
 		options: ["Gerste","Rotkohl","Linsen","Gurke","Rote Beete" ],
 		correct: 3
