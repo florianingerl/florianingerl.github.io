@@ -363,6 +363,19 @@ function setImageToFullScreen(imageUrl) {
 }
 
 
-
+function init(){
+	var fullPage = document.getElementById("fullpage");
+	document.addEventListener('keydown', function(e){
+	  if(e.keyCode == 27 ){
+		  console.log("Escape was pressed!");
+		  fullPage.style.display = 'none';
+	  }
+  });
+}
 
 createQuestion();
+init();
+
+
+
+ 
