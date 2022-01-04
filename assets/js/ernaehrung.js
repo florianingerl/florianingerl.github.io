@@ -31,12 +31,13 @@ var questions = [
 		options: ["als Getreidebrei oder als Keimlinge", "Brot", "Nudeln"],
 		correct: 0
 	},
-	{ question: "Welche Zutat gehört nicht in einen Frischkornbrei?",
-	type: "multiple choice",
-	imageUrl: "assets/img/rawfood/frischkornbrei.jpg",
-	options: ["Roggen", "Haselnüsse", "Apfel", "Marmelade", "Leinsamen"],
-	correct: 3
-		
+	{
+		question: "Welche Zutat gehört nicht in einen Frischkornbrei?",
+		type: "multiple choice",
+		imageUrl: "assets/img/rawfood/frischkornbrei.jpg",
+		options: ["Roggen", "Haselnüsse", "Apfel", "Marmelade", "Leinsamen"],
+		correct: 3
+
 	},
 	{
 		question: "Warum fügt ein Rohköstler seinem Getreidebrei Hanfsprossen hinzu?",
@@ -73,72 +74,72 @@ var questions = [
 		options: ["scharf", "bitter", "süß"],
 		correct: 0
 	},
-	
+
 	{
 		question: "Welche Zutat gehört nicht in einen Frischkornbrei?",
 		imageUrl: "assets/img/rawfood/frischkornbrei.jpg",
 		type: "multiple choice",
-		options: ["Wasser", "Dinkel", "Milch", "Sonnenblumenkerne", "Himbeeren" ],
+		options: ["Wasser", "Dinkel", "Milch", "Sonnenblumenkerne", "Himbeeren"],
 		correct: 2
 	},
-	
+
 	{
 		question: "Wie heißt dieser Salat?",
 		imageUrl: "assets/img/rawfood/endivien.jpg",
 		type: "multiple choice",
-		options: ["Zuckerhut", "Kopfsalat", "Chicoree", "Endiviensalat" ],
+		options: ["Zuckerhut", "Kopfsalat", "Chicoree", "Endiviensalat"],
 		correct: 3
 	},
-	
+
 	{
 		question: "Wie schmeckt Endiviensalat?",
 		imageUrl: "assets/img/rawfood/endivien.jpg",
 		type: "multiple choice",
-		options: ["süß", "bitter", "scharf" ],
+		options: ["süß", "bitter", "scharf"],
 		correct: 1
 	},
-	
+
 	{
 		question: "Warum werdem Rohköstler satt?",
 		imageUrl: "assets/img/rawfood/kichererbsensalat.jpg",
 		type: "multiple choice",
-		options: ["Weil sie tonnenweise Salat essen", "Weil sie Sprossen aus Getreide und Hülsenfrüchten essen" ],
+		options: ["Weil sie tonnenweise Salat essen", "Weil sie Sprossen aus Getreide und Hülsenfrüchten essen"],
 		correct: 1
 	},
-	
 
-	
+
+
 	{
 		question: "Woran erkennt man laut dem Rohkost-Guru und Zahnarzt Dr. Schnitzer am eindeutigsten, dass der Mensch ein Fruchtesser (Samen, Wurzelknollen, Blattschösslinge) ist?",
 		imageUrl: "assets/img/rawfood/johannschnitzer.gif",
 		type: "multiple choice",
-		options: ["an der Länge seines Darms", "an seinem Gebiss", "an der chemischen Zusammensetzung der Magensäure" ],
+		options: ["an der Länge seines Darms", "an seinem Gebiss", "an der chemischen Zusammensetzung der Magensäure"],
 		correct: 1
 	},
-	
-	
+
+
 	{
 		question: "Wie heißt dieses Gemüse?",
 		imageUrl: "assets/img/rawfood/weißkohl.jpg",
 		type: "multiple choice",
-		options: ["Rotkohl", "Weißkohl" ],
+		options: ["Rotkohl", "Weißkohl"],
 		correct: 1
 	},
 	{
 		question: "Welche Zutat ist nicht in diesem Salat?",
 		imageUrl: "assets/img/rawfood/weißkohlsalat.jpg",
 		type: "multiple choice",
-		options: ["Weißkohl", "Weizen", "Roote Beete", "Karotte", "Süßlupinen" ],
+		options: ["Weißkohl", "Weizen", "Roote Beete", "Karotte", "Süßlupinen"],
 		correct: 3
 	},
 	{
 		question: "Welche Zutat ist nicht in diesem Salat?",
 		imageUrl: "assets/img/rawfood/rotkohlsalat.JPG",
 		type: "multiple choice",
-		options: ["Gerste","Rotkohl","Linsen","Gurke","Rote Beete" ],
+		options: ["Gerste", "Rotkohl", "Linsen", "Gurke", "Rote Beete"],
 		correct: 3
 	}
-	
+
 
 
 ];
@@ -157,6 +158,14 @@ function createQuestion() {
 	s.src = questions[q].imageUrl;
 	s.alt = "Can't display this image";
 	s.style = "width: 300px";
+	s.onclick = function() {
+		console.log("The function was called!");
+
+		var fullPage = document.getElementById('fullpage');
+
+		fullPage.style.backgroundImage = 'url(' + questions[q].imageUrl + ')';
+		fullPage.style.display = 'block';
+	};
 	c.appendChild(s);
 
 	s = document.createElement("div");
@@ -215,42 +224,42 @@ function createQuestion() {
 		b.appendChild(document.createTextNode("Nächste Aufgabe"));
 		c.appendChild(b);
 	}
-	
-	
+
+
 }
 
-function createPengion(){
+function createPengion() {
 	var nav = document.createElement("nav");
 	c.appendChild(nav);
 	var ul = document.createElement("ul");
 	ul.classList.add("pagination");
 	nav.appendChild(ul);
 	var li = document.createElement("li");
-		li.classList.add("page-item");
-		var a = document.createElement("a");
-		a.classList.add("page-link");
-		a.appendChild(document.createTextNode("Vorherige Aufgabe"));
-		a.onclick = previousButtonClicked;
-		li.appendChild(a);
-		ul.appendChild(li);
-	for(var i=q/7; i < q/7 + 7 && i < questions.length; ++i){
+	li.classList.add("page-item");
+	var a = document.createElement("a");
+	a.classList.add("page-link");
+	a.appendChild(document.createTextNode("Vorherige Aufgabe"));
+	a.onclick = previousButtonClicked;
+	li.appendChild(a);
+	ul.appendChild(li);
+	for (var i = q / 7; i < q / 7 + 7 && i < questions.length; ++i) {
 		li = document.createElement("li");
 		li.classList.add("page-item");
 		a = document.createElement("a");
 		a.classList.add("page-link");
-		a.appendChild(document.createTextNode("" + (i+1)));
+		a.appendChild(document.createTextNode("" + (i + 1)));
 		li.appendChild(a);
 		ul.appendChild(li);
 	}
-	
+
 	li = document.createElement("li");
-		li.classList.add("page-item");
-		a = document.createElement("a");
-		a.classList.add("page-link");
-		a.appendChild(document.createTextNode("Nächste Aufgabe"));
-		a.onclick = nextButtonClicked;
-		li.appendChild(a);
-		ul.appendChild(li);
+	li.classList.add("page-item");
+	a = document.createElement("a");
+	a.classList.add("page-link");
+	a.appendChild(document.createTextNode("Nächste Aufgabe"));
+	a.onclick = nextButtonClicked;
+	li.appendChild(a);
+	ul.appendChild(li);
 }
 
 
@@ -341,5 +350,19 @@ function contains(a, value) {
 	}
 	return false;
 }
+
+
+function setImageToFullScreen(imageUrl) {
+
+	console.log("Function setImageToFullScreenCalled!");
+	var fullPage = document.getElementById('fullpage');
+
+	fullPage.style.backgroundImage = 'url(' + imageUrl + ')';
+	fullPage.style.display = 'block';
+
+}
+
+
+
 
 createQuestion();
