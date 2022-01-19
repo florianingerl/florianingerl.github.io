@@ -145,6 +145,13 @@ var questions = [
 		type: "multiple choice",
 		options: ["The Rolling Stones - I can't get no satisfaction", "Mozart - Symphonie 40"],
 		correct: 1
+	},
+	{
+		question: "Welche Zutat ist nicht in diesem Salat?",
+		imageUrl: "assets/img/rawfood/knollenselleriesalat.jpg",
+		type: "multiple choice",
+		options: ["Knollensellerie", "Bockshornklee", "Tomate", "Weizen", "Karotte"],
+		correct: 2
 	}
 
 
