@@ -138,6 +138,13 @@ var questions = [
 		type: "multiple choice",
 		options: ["Gerste", "Rotkohl", "Linsen", "Gurke", "Rote Beete"],
 		correct: 3
+	},
+	{
+		question: "Wasser macht verschiedene Kristalle, je nachdem wie man es vorher behandelt? Mit welcher Musik wurde dieses Wasser bespielt?",
+		imageUrl: "assets/img/rawfood/mozartsymphonie40.png",
+		type: "multiple choice",
+		options: ["The Rolling Stones - I can't get no satisfaction", "Mozart - Symphonie 40"],
+		correct: 1
 	}
 
 
@@ -363,14 +370,14 @@ function setImageToFullScreen(imageUrl) {
 }
 
 
-function init(){
+function init() {
 	var fullPage = document.getElementById("fullpage");
-	document.addEventListener('keydown', function(e){
-	  if(e.keyCode == 27 ){
-		  console.log("Escape was pressed!");
-		  fullPage.style.display = 'none';
-	  }
-  });
+	document.addEventListener('keydown', function(e) {
+		if (e.keyCode == 27) {
+			console.log("Escape was pressed!");
+			fullPage.style.display = 'none';
+		}
+	});
 }
 
 createQuestion();
@@ -378,4 +385,4 @@ init();
 
 
 
- 
+
