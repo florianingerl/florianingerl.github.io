@@ -53,6 +53,15 @@ var questions = [
 		options: ["Rotkohl", "Weißkohl", "Grünkohl"],
 		correct: 0
 	},
+	
+	{
+		question: "Wie heißt dieses Gemüse?",
+		imageUrl: "assets/img/rawfood/knollensellerie.jpg",
+		type: "multiple choice",
+		options: ["Knollensellerie", "Radiesschen"],
+		correct: 0
+	},
+	
 	{
 		question: "Wie schmeckt roote Beete?",
 		imageUrl: "assets/img/rawfood/rooteBeete1.jpg",
