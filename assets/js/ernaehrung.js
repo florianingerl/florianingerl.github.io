@@ -135,6 +135,13 @@ var questions = [
 		correct: 1
 	},
 	{
+		question: "Wie heißt dieses Gemüse?",
+		imageUrl: "assets/img/rawfood/steckrübe.jpg",
+		type: "multiple choice",
+		options: ["Gelbe Rübe", "Rote Rübe", "Steckrübe"],
+		correct: 2
+	},
+	{
 		question: "Welche Zutat ist nicht in diesem Salat?",
 		imageUrl: "assets/img/rawfood/weißkohlsalat.jpg",
 		type: "multiple choice",
@@ -161,6 +168,13 @@ var questions = [
 		type: "multiple choice",
 		options: ["Knollensellerie", "Bockshornklee", "Tomate", "Weizen", "Karotte"],
 		correct: 2
+	},
+	{
+		question: "Welche Zutat ist nicht in diesem Salat?",
+		imageUrl: "assets/img/rawfood/steckrübensalat.jpg",
+		type: "multiple choice",
+		options: ["Süßlupinen", "Karotte", "Steckrübe", "Radiesschen", "Weizen"],
+		correct: 3
 	}
 
 
