@@ -173,7 +173,7 @@ var questions = [
 		question: "Welche Zutat ist nicht in diesem Salat?",
 		imageUrl: "assets/img/rawfood/steckrübensalat.jpg",
 		type: "multiple choice",
-		options: ["Süßlupinen", "Karotte", "Steckrübe", "Radiesschen", "Weizen"],
+		options: ["Süßlupinen", "Karotte", "Steckrübe", "Petersilie", "Weizen"],
 		correct: 3
 	},
 	{
