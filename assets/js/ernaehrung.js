@@ -175,6 +175,13 @@ var questions = [
 		type: "multiple choice",
 		options: ["Süßlupinen", "Karotte", "Steckrübe", "Radiesschen", "Weizen"],
 		correct: 3
+	},
+	{
+		question: "Welche Zutat ist nicht in diesem Getreidebrei?",
+		imageUrl: "assets/img/rawfood/weizenbrei.jpg",
+		type: "multiple choice",
+		options: ["Weizen", "Hanf", "Erdbeeren", "Braunhirse", "Sonnenblumenkerne"],
+		correct: 2
 	}
 
 
