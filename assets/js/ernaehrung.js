@@ -182,6 +182,13 @@ var questions = [
 		type: "multiple choice",
 		options: ["Weizen", "Hanf", "Erdbeeren", "Braunhirse", "Sonnenblumenkerne"],
 		correct: 2
+	},
+	{
+		question: "Wo kann man keimfähiges Getreide, Hülsenfrüchte und Ölsaaten online bestellen?",
+		imageUrl: "assets/img/rawfood/demeterhofschwab.png",
+		type: "multiple choice",
+		options: ["Demeterhof Schwab", "Wiesenhof"],
+		correct: 0
 	}
 
 
