@@ -178,9 +178,9 @@ var questions = [
 	},
 	{
 		question: "Welche Zutat ist nicht in diesem Getreidebrei?",
-		imageUrl: "assets/img/rawfood/weizenbrei.jpg",
+		imageUrl: "assets/img/rawfood/roggenbrei.jpg",
 		type: "multiple choice",
-		options: ["Weizen", "Hanf", "Erdbeeren", "Braunhirse", "Sonnenblumenkerne"],
+		options: ["Roggen", "Hanf", "Erdbeeren", "Braunhirse", "Sonnenblumenkerne"],
 		correct: 2
 	},
 	{
@@ -189,6 +189,13 @@ var questions = [
 		type: "multiple choice",
 		options: ["Demeterhof Schwab", "Wiesenhof"],
 		correct: 0
+	},
+	{
+		question: "Welche Zutat ist nicht in diesem Salat?",
+		imageUrl: "assets/img/rawfood/salatmitspeisewicke.jpg",
+		type: "multiple choice",
+		options: ["Blaukraut", "Roggen", "Pastinake", "Speisewicke", "Basilikum"],
+		correct: 4
 	}
 
 
