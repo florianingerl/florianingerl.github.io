@@ -148,6 +148,15 @@ var questions = [
 		options: ["Weißkohl", "Weizen", "Roote Beete", "Karotte", "Süßlupinen"],
 		correct: 3
 	},
+	
+	{
+		question: "Sollte man zu einer Mahlzeit auch was trinken? Welche Aussage ist richtig?",
+		imageUrl: "assets/img/rawfood/verredeleau2.png",
+		type: "multiple choice",
+		options: ["Nein, weil man Geld sparen kann, wenn man im Restaurant nichts zu Trinken bestellt.", "Nein, weil es die Magensäure verdünnt.", "Ja, weil Säfte und Energie-Drinks gut für die Zähne sind."],
+		correct: 1
+	},
+	
 	{
 		question: "Welche Zutat ist nicht in diesem Salat?",
 		imageUrl: "assets/img/rawfood/rotkohlsalat.JPG",
