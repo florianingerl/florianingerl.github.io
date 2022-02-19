@@ -205,6 +205,21 @@ var questions = [
 		type: "multiple choice",
 		options: ["Blaukraut", "Roggen", "Pastinake", "Speisewicke", "Basilikum"],
 		correct: 4
+	},
+	
+	{
+		question: "Welche Zutat ist nicht in diesem Salat?",
+		imageUrl: "assets/img/rawfood/salatmitmungobohnen.jpg",
+		type: "multiple choice",
+		options: ["Knollensellerie", "Karotte", "Mungobohnen", "Weizen", "Paprika"],
+		correct: 4
+	},
+	{
+		question: "Welche Zutat ist nicht in diesem Getreidebrei?",
+		imageUrl: "assets/img/rawfood/breimitkuerbis.jpg",
+		type: "multiple choice",
+		options: ["Roggen", "Hanf", "Kürbiskerne", "Braunhirse", "Banane"],
+		correct: 4
 	}
 
 
