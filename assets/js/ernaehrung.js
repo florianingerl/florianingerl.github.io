@@ -293,18 +293,13 @@ function createQuestion() {
 	b.appendChild(document.createTextNode("Aufgabe überprüfen"));
 	s.appendChild(b);
 
-	b = document.createElement("button");
-	b.id = "solveButton";
-	b.onclick = solveButtonClicked;
-	b.appendChild(document.createTextNode("Lösung zeigen"));
-	s.appendChild(b);
 
 	if (q != questions.length - 1) {
 		b = document.createElement("button");
 		b.id = "nextButton";
 		b.onclick = nextButtonClicked;
 		b.appendChild(document.createTextNode("Nächste Aufgabe"));
-		c.appendChild(b);
+		s.appendChild(b);
 	}
 
 
