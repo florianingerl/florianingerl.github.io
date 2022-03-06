@@ -21,6 +21,31 @@
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 
+<script>
+	function menuClicked(s) {
+		console.log("The menu was clicked!");
+
+		var s1 = document.getElementById("reiki");
+		var s2 = document.getElementById("rohkost");
+		var s3 = document.getElementById("kontakt");
+
+		s1.style.display = "none";
+		s2.style.display = "none";
+		s3.style.display = "none";
+
+		if (s == 1) {
+			s1.style.display = "block";
+		} else if (s == 2) {
+			s2.style.display = "block";
+		} else if (s == 3) {
+			s3.style.display = "block";
+		}
+
+		return false;
+
+	}
+</script>
+
 <title>Reiki, Rohkost und Yoga bei Flori</title>
 </head>
 
@@ -28,6 +53,8 @@
 .leftpicture {
 	width: 30%;
 	float: left;
+	margin-right: 5px;
+	height: 2000px;
 }
 </style>
 
@@ -37,36 +64,63 @@
 			style="width: 100%;"></img>
 	</div>
 
-	<div class="maincontent">
-		<h1>Nimm dir Zeit für diesen Moment</h1>
+	<div style="width: 65%; float: left;">
+		<h1 style="color: green;" margin-bottom: 10px;" >- Nimm dir Zeit für diesen Moment -</h1>
 
 		<ul class="nav justify-content-center">
 			<li class="nav-item"><a class="nav-link active"
-				aria-current="page" href="reiki.html">Reiki</a></li>
+				aria-current="page" onclick="menuClicked(1)">Reiki</a></li>
 			<li class="nav-item"><a class="nav-link"
-				href="rohkost.html">Rohkost</a></li>
-			
-			
-			<li class="nav-item"><a class="nav-link" href="kontakt.html">Kontakt</a></li>
+				onclick="menuClicked(2)">Rohkost</a></li>
+
+
+			<li class="nav-item"><a class="nav-link"
+				onclick="menuClicked(3)">Kontakt</a></li>
 		</ul>
+
+
+
+		<div id="reiki">
+
+			<img src="assets/img/reiki/liegeandme3.jpg"
+				alt="Can't display image!" style="width: 300px; float: right;"></img>
+
+			<p>Reiki bedeutet universelle Lebensenergie. Sie kann wieder in
+				Fluss kommen, wenn man in einer Reiki-Sitzung an verschieden
+				Körperteilen die Hände auflegt. Das kann zu ganz unterschiedlichen
+				Wahrnehmungen führen, weshalb du mit deiner ganzen Aufmerksamkeit im
+				Fühlen dabei sein solltest.</p>
+
+			<p>Reiki kann sowohl dem Körper (z.B. bei Kopf- oder
+				Rückenschmerzen) als auch der Psyche (z.B. bei ständiger
+				Ruhelosigkeit) Heilung verschaffen.</p>
+			</p>
+
+			<p>Eine Behandlung dauert ungefähr 45-60 min und kostet 35 Euro.</p>
+
+		</div>
+
+		<div id="rohkost" style="display: none;"></div>
+
+
+		<div id="kontakt" style="display: none;">
+			<div class="address">
+				<i class="bi bi-geo-alt"></i>
+				<h4>Adresse:</h4>
+				<p>Florian Ingerl</p>
+				<p>Walchenseestraße 6</p>
+				<p>82194 Gröbenzell</p>
+				<a href= "mailto:imelflorianingerl@gmail.com">imelflorianingerl@gmail.com</a>
+			</div>
+
+		</div>
+
 
 	</div>
 
-	<img src="assets/img/reiki/liegeandme3.jpg" alt="Can't display image!"
-		style="width: 300px; float: right;"></img>
-	
-	<p>Reiki bedeutet universelle Lebensenergie. Sie kann wieder in
-		Fluss kommen, wenn man in einer Reiki-Sitzung an verschieden
-		Körperteilen die Hände auflegt. Das kann zu ganz unterschiedlichen
-		Wahrnehmungen führen, weshalb du mit deiner ganzen Aufmerksamkeit im
-		Fühlen dabei sein solltest.</p>
+	<div id="fullpage" onclick="this.style.display='none';"></div>
 
-	<p>Reiki kann sowohl dem Körper (z.B. bei Kopf-oder
-		Rückenschmerzen) als auch der Psyche (z.B. bei ständiger
-		Ruhelosigkeit) Heilung verschaffen.</p>
-	</p>
-
-	<p>Eine Behandlung dauert ungefähr 45-60 min und kostet 35 Euro.</p>
+	<script src="assets/js/ernaehrung.js"></script>
 </body>
 
 </html>
