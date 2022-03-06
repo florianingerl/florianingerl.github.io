@@ -12,7 +12,7 @@ var questionscs = [
 		question: "In welcher Situation bist du bewusster?",
 		imageUrl: "assets/img/cs/schwerkraft.jpg",
 		type: "multiple choice",
-		options: ["Wenn du die Schwerkraft gerade fühlen kannst.", "Wenn du gerade wünschst, dass dieser Moment vorbeigeht und der nächste Moment bald kommt, wenn es was zu Essen gibt."],
+		options: ["Wenn du die Schwerkraft gerade fühlen kannst.", "Wenn du dir der globalen Probleme bewusst bist."],
 		correct: 0
 	}
 
@@ -25,18 +25,28 @@ function createQuestion1() {
 	while (c.firstChild) {
 		c.removeChild(c.firstChild);
 	}
-	var s = document.createElement("p");
-	s.appendChild(document.createTextNode(questionscs[q1].question));
-	c.appendChild(s);
-	s = document.createElement("img");
+	c.style = "height: 300px";
+	var d = document.createElement("div");
+	d.style = "float: left; width: 25%; height: 100%;";
+	c.appendChild(d);
+	
+	var s = document.createElement("img");
 	s.src = questionscs[q1].imageUrl;
 	s.alt = "Can't display this image";
-	s.style = "width: 300px";
+	s.style = "width: 100%";
+	d.appendChild(s);
 	
-	c.appendChild(s);
+	var d2 = document.createElement("div");
+	d2.style="height: 100%; width:70%; position: relative; float: left; margin-left: 5px;";
+	c.appendChild(d2);
+	
+	s = document.createElement("p");
+	s.appendChild(document.createTextNode(questionscs[q1].question));
+	d2.appendChild(s);
+	
 
 	s = document.createElement("div");
-	c.appendChild(s);
+	d2.appendChild(s);
 
 	s.class = "optionQuestOptions";
 	s.id = s.class + "1";
@@ -70,7 +80,8 @@ function createQuestion1() {
 
 	s = document.createElement("div");
 	s.class = "buttonContainer";
-	c.appendChild(s);
+	s.style = "margin-top: 10px";
+	d2.appendChild(s);
 
 	var b = document.createElement("button");
 	b.id = "checkButton1";
@@ -78,18 +89,12 @@ function createQuestion1() {
 	b.appendChild(document.createTextNode("Aufgabe überprüfen"));
 	s.appendChild(b);
 
-	b = document.createElement("button");
-	b.id = "solveButton1";
-	b.onclick = solveButtonClicked1;
-	b.appendChild(document.createTextNode("Lösung zeigen"));
-	s.appendChild(b);
-
 	if (q1 != questionscs.length - 1) {
 		b = document.createElement("button");
 		b.id = "nextButton1";
 		b.onclick = nextButtonClicked1;
 		b.appendChild(document.createTextNode("Nächste Aufgabe"));
-		c.appendChild(b);
+		s.appendChild(b);
 	}
 
 
