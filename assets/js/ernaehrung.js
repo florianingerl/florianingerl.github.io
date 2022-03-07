@@ -233,13 +233,12 @@ function createQuestion() {
 	while (c.firstChild) {
 		c.removeChild(c.firstChild);
 	}
-	var s = document.createElement("p");
-	s.appendChild(document.createTextNode(questions[q].question));
-	c.appendChild(s);
-	s = document.createElement("img");
+	c.style = "display: flex; orientation: column; height: 300px;";
+	
+	var s = document.createElement("img");
 	s.src = questions[q].imageUrl;
 	s.alt = "Can't display this image";
-	s.style = "width: 300px";
+	s.style = "border-radius: 2px; margin-right: 5px; flex-grow: 1; width: 50%; flex-basis: 30%; align-self: flex-start;";
 	s.onclick = function() {
 		console.log("The function was called!");
 
@@ -248,6 +247,15 @@ function createQuestion() {
 		fullPage.style.backgroundImage = 'url(' + questions[q].imageUrl + ')';
 		fullPage.style.display = 'block';
 	};
+	c.appendChild(s);
+	
+	var c2 = document.createElement("div");
+	c2.style = "flex-grow: 3; flex-basis: 65%;";
+	c.appendChild(c2);
+	c = c2;
+	
+	var s = document.createElement("p");
+	s.appendChild(document.createTextNode(questions[q].question));
 	c.appendChild(s);
 
 	s = document.createElement("div");
@@ -284,11 +292,12 @@ function createQuestion() {
 	}
 
 	s = document.createElement("div");
-	s.class = "buttonContainer";
+	s.style = "display: flex; orientation: column;";
 	c.appendChild(s);
 
 	var b = document.createElement("button");
 	b.id = "checkButton";
+	b.style = "margin: 5px;"
 	b.onclick = checkButtonClicked;
 	b.appendChild(document.createTextNode("Aufgabe überprüfen"));
 	s.appendChild(b);
@@ -297,6 +306,7 @@ function createQuestion() {
 	if (q != questions.length - 1) {
 		b = document.createElement("button");
 		b.id = "nextButton";
+		b.style = "margin: 5px;"
 		b.onclick = nextButtonClicked;
 		b.appendChild(document.createTextNode("Nächste Aufgabe"));
 		s.appendChild(b);

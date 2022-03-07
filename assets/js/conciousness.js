@@ -25,9 +25,9 @@ function createQuestion1() {
 	while (c.firstChild) {
 		c.removeChild(c.firstChild);
 	}
-	c.style = "height: 300px";
+	c.style = "height: 300px; display: flex;";
 	var d = document.createElement("div");
-	d.style = "float: left; width: 25%; height: 100%;";
+	d.style = "flex-grow: 1; flex-basis: 30%;";
 	c.appendChild(d);
 	
 	var s = document.createElement("img");
@@ -37,7 +37,7 @@ function createQuestion1() {
 	d.appendChild(s);
 	
 	var d2 = document.createElement("div");
-	d2.style="height: 100%; width:70%; position: relative; float: left; margin-left: 5px;";
+	d2.style="flex-grow: 4; flex-basis: 65%; position: relative; margin-left: 5px;";
 	c.appendChild(d2);
 	
 	s = document.createElement("p");
@@ -79,12 +79,12 @@ function createQuestion1() {
 	}
 
 	s = document.createElement("div");
-	s.class = "buttonContainer";
-	s.style = "margin-top: 10px";
+	s.style = "margin-top: 10px; display: flex; orientation: column; justify-content: flex-start; ";
 	d2.appendChild(s);
 
 	var b = document.createElement("button");
 	b.id = "checkButton1";
+	b.style = "margin: 2px;";
 	b.onclick = checkButtonClicked1;
 	b.appendChild(document.createTextNode("Aufgabe überprüfen"));
 	s.appendChild(b);
@@ -92,6 +92,7 @@ function createQuestion1() {
 	if (q1 != questionscs.length - 1) {
 		b = document.createElement("button");
 		b.id = "nextButton1";
+		b.style = "margin: 2px;";
 		b.onclick = nextButtonClicked1;
 		b.appendChild(document.createTextNode("Nächste Aufgabe"));
 		s.appendChild(b);
