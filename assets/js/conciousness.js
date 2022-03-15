@@ -14,6 +14,14 @@ var questionscs = [
 		type: "multiple choice",
 		options: ["Wenn du die Schwerkraft gerade fühlen kannst.", "Wenn du dir der globalen Probleme bewusst bist."],
 		correct: 0
+	},
+	
+	{
+		question: "Was ist wichtiger?",
+		imageUrl: "assets/img/cs/wald.jpg",
+		type: "multiple choice",
+		options: ["Die neuesten Neuigkeiten aus der Welt zu kennen.", "Wenn du dir der Stille und des Raumes um dich herum jetzt bewusst bist."],
+		correct: 1
 	}
 
 ];
