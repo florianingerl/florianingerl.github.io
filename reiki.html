@@ -21,6 +21,12 @@
 <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 
+<style type="text/css">
+.my-active {
+font-weight: bold;
+}
+</style>
+
 <script>
 	function menuClicked(s) {
 		console.log("The menu was clicked!");
@@ -40,6 +46,12 @@
 		} else if (s == 3) {
 			s3.style.display = "block";
 		}
+		
+		var lis = document.getElementsByTagName("li");
+		for(var i=0; i < lis.length; ++i){
+			lis[i].classList.remove("my-active");
+		}
+		lis[s-1].classList.add("my-active");
 
 		return false;
 
@@ -53,9 +65,9 @@
 .leftpicture {
 	width: 30%;
 	left: 0;
-	top: 0;
-	height: 100%;
+	top: 0; height : 100%;
 	position: fixed;
+	height: 100%;
 }
 </style>
 
@@ -69,6 +81,23 @@
 		<h1 style="color: green;"margin-bottom: 10px;" >- Nimm dir Zeit
 			für diesen Moment -</h1>
 
+		<nav class="navbar navbar-expand-sm navbar-light bg-light">
+
+
+			<ul class="navbar-nav" style="justify-content: space-between">
+				<li class="nav-item my-active"><a class="nav-link"
+					onclick="menuClicked(1)">Reiki</a></li>
+				<li class="nav-item"><a class="nav-link"
+					onclick="menuClicked(2)">Rohkost</a></li>
+
+				<li class="nav-item"><a class="nav-link"
+					onclick="menuClicked(3)">Kontakt</a></li>
+			</ul>
+
+
+		</nav>
+
+<!-- 
 		<ul class="nav justify-content-center">
 			<li class="nav-item"><a class="nav-link active"
 				aria-current="page" onclick="menuClicked(1)">Reiki</a></li>
@@ -78,7 +107,7 @@
 
 			<li class="nav-item"><a class="nav-link"
 				onclick="menuClicked(3)">Kontakt</a></li>
-		</ul>
+		</ul> -->
 
 
 
@@ -109,10 +138,14 @@
 
 		<div id="kontakt" style="display: none;">
 
-			<p><img src="assets/img/reiki/agnihotra.jpg" alt="Can't display image" style="width: 200px; float: right"></img>Bitte benutze dieses Kontaktformular, um mich zu kontaktieren.
-				Und schreibe, wo du herkommst, was du beruflich machst und was du
-				dir von einer Reiki-Behandlung erhoffst.</p>
-				
+			<p>
+				<img src="assets/img/reiki/agnihotra.jpg" alt="Can't display image"
+					style="width: 200px; float: right"></img>Bitte benutze dieses
+				Kontaktformular, um mich zu kontaktieren. Und schreibe, wo du
+				herkommst, was du in deiner Freizeit gerne zur Entspannung machst und was du dir von einer
+				Reiki-Behandlung erhoffst.
+			</p>
+
 
 			<form
 				action="https://getform.io/f/bddcb2ba-fb16-4fa3-baf2-aabd7227b87a"
