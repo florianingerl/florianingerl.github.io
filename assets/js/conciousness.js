@@ -22,6 +22,14 @@ var questionscs = [
 		type: "multiple choice",
 		options: ["Die neuesten Neuigkeiten aus der Welt zu kennen.", "Dir der Stille und des Raumes um dich herum jetzt bewusst bist zu sein."],
 		correct: 1
+	},
+	
+	{
+		question: "Was kann ein bewusster Mensch?",
+		imageUrl: "assets/img/cs/wald.jpg",
+		type: "multiple choice",
+		options: ["Die Zukunft vorhersagen.", "Das Hier und Jetzt akzeptieren."],
+		correct: 1
 	}
 
 ];
