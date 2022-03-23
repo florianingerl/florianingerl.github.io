@@ -24,13 +24,7 @@ var questionscs = [
 		correct: 1
 	},
 	
-	{
-		question: "Was kann ein bewusster Mensch?",
-		imageUrl: "assets/img/cs/wald.jpg",
-		type: "multiple choice",
-		options: ["Die Zukunft vorhersagen.", "Das Hier und Jetzt akzeptieren."],
-		correct: 1
-	},
+	
 	{
 		question: "Was ist ein Tor zum gegenwärtigen Moment?",
 		imageUrl: "assets/img/cs/amsel.jpg",
