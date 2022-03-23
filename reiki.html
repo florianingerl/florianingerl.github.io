@@ -30,28 +30,17 @@ font-weight: bold;
 <script>
 	function menuClicked(s) {
 		console.log("The menu was clicked!");
-
-		var s1 = document.getElementById("reiki");
-		var s2 = document.getElementById("rohkostcontainer");
-		var s3 = document.getElementById("kontakt");
-
-		s1.style.display = "none";
-		s2.style.display = "none";
-		s3.style.display = "none";
-
-		if (s == 1) {
-			s1.style.display = "block";
-		} else if (s == 2) {
-			s2.style.display = "block";
-		} else if (s == 3) {
-			s3.style.display = "block";
+		var ids = ["reiki", "rohkostcontainer", "bewusstseincontainer", "kontakt"];
+		for(var i=0; i < ids.length; ++i){
+			document.getElementById(ids[i]).style.display = "none";
 		}
+		document.getElementById(ids[s]).style.display = "block";
 		
 		var lis = document.getElementsByTagName("li");
 		for(var i=0; i < lis.length; ++i){
 			lis[i].classList.remove("my-active");
 		}
-		lis[s-1].classList.add("my-active");
+		lis[s].classList.add("my-active");
 
 		return false;
 
@@ -86,9 +75,11 @@ font-weight: bold;
 
 			<ul class="navbar-nav" style="justify-content: space-between">
 				<li class="nav-item my-active"><a class="nav-link"
-					onclick="menuClicked(1)">Reiki</a></li>
+					onclick="menuClicked(0)">Reiki</a></li>
 				<li class="nav-item"><a class="nav-link"
-					onclick="menuClicked(2)">Rohkost</a></li>
+					onclick="menuClicked(1)">Rohkost</a></li>
+				<li class="nav-item"><a class="nav-link"
+					onclick="menuClicked(2)">Bewusstsein</a></li>	
 
 				<li class="nav-item"><a class="nav-link"
 					onclick="menuClicked(3)">Kontakt</a></li>
@@ -133,6 +124,10 @@ font-weight: bold;
 
 		<div id="rohkostcontainer" style="display: none;">
 			<div id="rohkost"></div>
+		</div>
+		
+		<div id="bewusstseincontainer" style="display: none;">
+			<div id="conciousness"></div>
 		</div>
 
 
@@ -180,6 +175,7 @@ font-weight: bold;
 	<div id="fullpage" onclick="this.style.display='none';"></div>
 
 	<script src="assets/js/ernaehrung.js"></script>
+	<script src="assets/js/conciousness.js"></script>
 </body>
 
 </html>
