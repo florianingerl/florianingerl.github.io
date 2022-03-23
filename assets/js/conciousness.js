@@ -30,6 +30,13 @@ var questionscs = [
 		type: "multiple choice",
 		options: ["Die Zukunft vorhersagen.", "Das Hier und Jetzt akzeptieren."],
 		correct: 1
+	},
+	{
+		question: "Was ist ein Tor zum gegenwärtigen Moment?",
+		imageUrl: "assets/img/cs/amsel.jpg",
+		type: "multiple choice",
+		options: ["Der Gedanke an die nächste Mahlzeit.", "Den Geräuschen und der Stille um dich herum zu lauschen."],
+		correct: 1
 	}
 
 ];
