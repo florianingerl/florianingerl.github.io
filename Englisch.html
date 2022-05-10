@@ -1,0 +1,154 @@
+<html>
+<head>
+<title>Englisch-Übungsseite</title>
+
+<script>
+function showSolution() {
+	var ul = document.getElementsByTagName("ul")[0];
+	ul.classList.remove("solution-hidden");
+}
+
+var ids = [["gerund", "emphasis"]];
+
+function menuClicked(i, j){
+	for(var k = 0; k < ids.length; ++k){
+		for(var k2 = 0; k2 < ids[k].length; ++k2){
+			document.getElementById(ids[k][k2]).style.display = "none";
+		}
+	}
+	
+	document.getElementById(ids[i][j]).style.display = "block";
+	
+}
+
+</script>
+
+<style>
+.exercise-list {
+list-style-type: decimal;
+}
+
+.solution-hidden li p:last-child {
+visibility: hidden;
+}
+
+.exercise-list li p:last-child {
+color: green;
+}
+
+.navbar {
+position: fixed;
+width: 200px;
+border-right: solid 2px red;
+height: 100%;
+}
+
+.navbar ul {
+list-style-type: none;
+background-color: gray;
+margin: 0;
+padding: 0;
+}
+
+.navbar ul li {
+border-bottom: solid 2px red;
+color: red;
+padding: 6px;
+
+}
+ .navbar ul li ul {
+ position:relative;	
+ left: 20%;
+ width: 80%;
+ background-color: green;
+ list-style-type: none;
+ margin:0;
+ padding: 0;
+ }
+ 
+ .navbar ul li ul li a {
+ display: block;
+ text-decoration: none;
+ color: black;
+ }
+ 
+
+</style>
+
+</head>
+
+<body>
+
+<div class="navbar">
+<ul>
+<li>Englisch
+	<ul>
+		<li><a onclick="menuClicked(0,0)">Gerund</a></li>
+		<li><a onclick="menuClicked(0,1)">Emphasis</a></li>
+	</ul>
+</li>
+<li>Französisch</li>
+<li>Informatik</li>
+</ul>
+</div>
+
+
+<div id="main" style="margin-left: 210px;">
+<div id="gerund">
+<h1>Exercise with gerund</h1>
+<p>Make one sentence out of two.</p>
+
+<p><span style="font-weight: bold;">Example:</span>Timo earns a lot of money in his job. He is proud of it.</p>
+<p>Timo is proud of earning a lot of money in his job.</p>
+
+<div>
+<ul class="exercise-list solution-hidden">
+<li><p>Marvin is German. He is proud of it<p>
+<p>Marvin is proud of being German.</p>
+</li>
+<li>
+<p>Kevin hasn't got any money to pay his bills. He is sorry for it.</p>
+<p>Kevin is sorry for not having any money to pay his bills.</p>
+</li>
+<li>
+<p>Hermes hast lost his wife. He is angry about it.</p>
+<p>Hermes is angry about having lost his wife.</p>
+</li>
+
+<li>
+<p>Anton might loose his job. He is worried about it.</p>
+<p>Anton is worried about loosing his job.</p>
+</li>
+
+<li>
+<p>Mrs Rich might get robbed. She is afraid of it.</p>
+<p>Mrs Rich is afraid of getting robbed.</p>
+</li>
+
+<li>
+<p>Tina can't play cards. She is bad at it.</p>
+<p>Tina is bad at playing cards.</p>
+</li>
+
+<li>
+<p>Gustav hasn't bought his mother a birthday present. He is not sorry for it.</p>
+<p>Gustav isn't sorry for not having bought his mother a birthday present.</p> 
+</li>
+
+</ul>
+
+<button onclick="showSolution()">Show solution</button>
+
+
+</div>
+</div>
+
+<div id="emphasis" style="display: none;">
+<h1>Exercise with emphasis</h1>
+</div>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<html>
+<head>
+<title>Test Fullscreen</title>
+
+<style>
+#fullpage {
+	display: none;
+	position: fixed;
+	z-index: 9999;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background-size: contain;
+	background-repeat: no-repeat no-repeat;
+	background-position: center center;
+	background-color: black;
+}
+</style>
+
+
+
+</head>
+
+<body>
+	<div class="container">
+		<h1>Photo Gallery</h1>
+		<div class="gallery">
+			<img id="myimg" src="assets/img/rawfood/weißkohlsalat.jpg"
+				alt="Can't display image" style="height: 400px;"></img>
+		</div>
+	</div>
+	<div id="fullpage" onclick="this.style.display='none';"></div>
+
+
+	<script>
+var img = document.getElementById("myimg");
+var fullPage = document.getElementById('fullpage');
+
+
+  img.addEventListener('click', function() {
+    fullPage.style.backgroundImage = 'url(' + img.src + ')';
+    fullPage.style.display = 'block';
+  });
+  
+  document.addEventListener('keydown', function(e){
+	  if(e.keyCode == 27 ){
+		  console.log("Escape was pressed!");
+		  fullPage.style.display = 'none';
+	  }
+  });
+
+
+</script>
+</html>
