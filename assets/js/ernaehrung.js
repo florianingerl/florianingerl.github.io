@@ -220,6 +220,13 @@ var questions = [
 		type: "multiple choice",
 		options: ["Roggen", "Hanf", "Kürbiskerne", "Braunhirse", "Banane"],
 		correct: 4
+	},
+		{
+		question: "Welche Zutat ist nicht in diesem Salat?",
+		imageUrl: "assets/img/rawfood/blumenkohlsalat.jpg",
+		type: "multiple choice",
+		options: ["Süßkartoffel", "Blumenkohl", "Sojabohnen", "Löwenzahn", "Weizen"],
+		correct: 3
 	}
 
 
