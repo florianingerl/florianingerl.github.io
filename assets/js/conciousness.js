@@ -21,26 +21,32 @@ var questionscs = [
 
 	{
 		question: "In welcher Situation bist du bewusster?",
+		questionFranc: "Dans quelle situation est-ce que tu es plus conscient?",
 		imageUrl: "assets/img/cs/schwerkraft.jpg",
 		type: "multiple choice",
 		options: ["Wenn du die Schwerkraft gerade fühlen kannst.", "Wenn du dir der globalen Probleme bewusst bist."],
+		optionsFranc: ["Quand tu peux sentir la pesanteur en ce moment", "Quand tu es conscient des problèmes globales"],
 		correct: 0
 	},
 	
 	{
 		question: "Was ist wichtiger?",
+		questionFranc: "Qu'est-ce qui est plus important?",
 		imageUrl: "assets/img/cs/wald.jpg",
 		type: "multiple choice",
 		options: ["Die neuesten Neuigkeiten aus der Welt zu kennen.", "Dir der Stille und des Raumes um dich herum jetzt bewusst bist zu sein."],
+		optionsFranc: ["Connaitre les plus nouvelles nouvelles des journaux", "Etre conscient de l'espace et de la silence autour de vous"],
 		correct: 1
 	},
 	
 	
 	{
 		question: "Was ist ein Tor zum gegenwärtigen Moment?",
+		questionFranc: "Quelle est une porte pour entrer dans ce moment?",
 		imageUrl: "assets/img/cs/amsel.jpg",
 		type: "multiple choice",
 		options: ["Der Gedanke an die nächste Mahlzeit.", "Den Geräuschen und der Stille um dich herum zu lauschen."],
+		optionsFranc: ["La pensée au prochain repas", "Ecouter le bruit et la silence autour de vous"],
 		correct: 1
 	}
 
