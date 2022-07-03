@@ -1,41 +1,53 @@
+var langue = "deutsch";
+
+
 var questions = [
 	{
 		question: "Wie heißt dieses Gemüse?",
+		questionFranc : "Comment cet légume s'appelle-t-il?",
 		imageUrl: "assets/img/rawfood/rooteBeete1.jpg",
 		type: "multiple choice",
 		options: ["Tomate", "Roote Beete"],
+		optionsFranc : ["tomate", "betterave rouge"],
 		correct: 1
 
 	},
 
 	{
 		question: "Wie heißt dieses Gemüse?",
+		questionFranc : "Comment cet légume s'appelle-t-il?",
 		imageUrl: "assets/img/rawfood/kohlrabi.jpg",
 		type: "multiple choice",
 		options: ["Kartoffel", "Kohlrabi"],
+		optionsFranc : ["pomme de terre", "chou-rave"],
 		correct: 1
 	},
 
 	{
 		question: "Was eignet sich zur Wasseraufbereitung?",
+		questionFranc : "Quel instrument est utile pour améliorer la qualité de l'eau?",
 		imageUrl: "assets/img/rawfood/wasserwirbler.png",
 		type: "multiple choice",
 		options: ["Wasserwirbler", "Sirup"],
+		optionsFranc: ["Un tourbillon d'eau", "sirop"],
 		correct: 0
 	}
 	,
 	{
-		question: "In welcher Form sollte man Getreide nach dem Rohkost-Guru Dr.Schnitzer am besten essen?",
+		question: "Sous quelle forme est-ce qu'on dois manger les céréales selon le guru d'alimentation vivante Dr. Schnitzer?",
 		imageUrl: "assets/img/rawfood/weizensprossen.jpg",
 		type: "multiple choice",
 		options: ["als Getreidebrei oder als Keimlinge", "Brot", "Nudeln"],
+		optionsFranc: ["purée ou graines germés", "pain", "nouilles"],
 		correct: 0
 	},
 	{
 		question: "Welche Zutat gehört nicht in einen Frischkornbrei?",
+		questionFranc: "Quel ingrédient ne se trouve pas dans un purée de céréales?",
 		type: "multiple choice",
 		imageUrl: "assets/img/rawfood/frischkornbrei.jpg",
 		options: ["Roggen", "Haselnüsse", "Apfel", "Marmelade", "Leinsamen"],
+		optionsFranc: ["seigle","noisette", "pomme", "confiture","graine de line"],
 		correct: 3
 
 	},
@@ -109,7 +121,7 @@ var questions = [
 	},
 
 	{
-		question: "Warum werdem Rohköstler satt?",
+		question: "Warum werden Rohköstler satt?",
 		imageUrl: "assets/img/rawfood/kichererbsensalat.jpg",
 		type: "multiple choice",
 		options: ["Weil sie tonnenweise Salat essen", "Weil sie Sprossen aus Getreide und Hülsenfrüchten essen"],
