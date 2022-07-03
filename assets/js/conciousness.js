@@ -1,9 +1,20 @@
+var deutsch=0;
+var franz = 1;
+var engl = 2;
+
+var lang = deutsch;
+if(window.location.pathname.endsWith("franz.html")){
+	lang = franz;
+}
+
 var questionscs = [
 	{
 		question: "In welcher Situation bist du bewusster?",
+		questionFranc: "Dans quelle situation est-ce que tu es plus conscient?",
 		imageUrl: "assets/img/cs/atem.jpg",
 		type: "multiple choice",
 		options: ["Wenn du gerade deinen eigenen Atem fühlen kannst.", "Wenn du weißt, dass dein Gegenüber gerade unrecht hat."],
+		optionsFranc: ["Si tu peux en ce moment sentir ta propre respiration", "Si tu sais, que les autres ont tort"],
 		correct: 0
 
 	},
@@ -58,7 +69,12 @@ function createQuestion1() {
 	c.appendChild(d2);
 	
 	s = document.createElement("p");
+	if(lang == deutsch){
 	s.appendChild(document.createTextNode(questionscs[q1].question));
+	}
+	else if(lang == franz){
+	s.appendChild(document.createTextNode(questionscs[q1].questionFranc));	
+	}
 	d2.appendChild(s);
 	
 
@@ -79,7 +95,12 @@ function createQuestion1() {
 			s1.appendChild(s2);
 			var s3 = document.createElement("label");
 			s3.for = s2.id;
+			if(lang == deutsch){
 			s3.appendChild(document.createTextNode(questionscs[q1].options[i]));
+			}
+			else if(lang == franz){
+			s3.appendChild(document.createTextNode(questionscs[q1].optionsFranc[i]));	
+			}
 			s1.appendChild(s3);
 		}
 	}
@@ -103,7 +124,12 @@ function createQuestion1() {
 	b.id = "checkButton1";
 	b.style = "margin: 2px;";
 	b.onclick = checkButtonClicked1;
+	if(lang == deutsch){
 	b.appendChild(document.createTextNode("Aufgabe überprüfen"));
+	}
+	else if(lang == franz){
+		b.appendChild(document.createTextNode("Valider"));
+	}
 	s.appendChild(b);
 
 	if (q1 != questionscs.length - 1) {
@@ -111,7 +137,12 @@ function createQuestion1() {
 		b.id = "nextButton1";
 		b.style = "margin: 2px;";
 		b.onclick = nextButtonClicked1;
+		if(lang == deutsch){
 		b.appendChild(document.createTextNode("Nächste Aufgabe"));
+		}
+		else if(lang == franz){
+			b.appendChild(document.createTextNode("Suivante"));
+		}
 		s.appendChild(b);
 	}
 

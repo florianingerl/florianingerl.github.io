@@ -1,4 +1,12 @@
-var langue = "deutsch";
+var de = 0;
+var fr = 1;
+var en = 2;
+
+var langue = de;
+console.log(window.location);
+if(window.location.pathname.endsWith("franz.html")){
+	langue = fr;
+}
 
 
 var questions = [
@@ -34,7 +42,8 @@ var questions = [
 	}
 	,
 	{
-		question: "Sous quelle forme est-ce qu'on dois manger les céréales selon le guru d'alimentation vivante Dr. Schnitzer?",
+		question:"In welcher Form sollte man Getreide laut dem Rohkost-Guru Dr. Schnitzer am besten essen?",
+		questionFranc: "Sous quelle forme est-ce qu'on dois manger les céréales selon le guru d'alimentation vivante Dr. Schnitzer?",
 		imageUrl: "assets/img/rawfood/weizensprossen.jpg",
 		type: "multiple choice",
 		options: ["als Getreidebrei oder als Keimlinge", "Brot", "Nudeln"],
@@ -274,7 +283,11 @@ function createQuestion() {
 	c = c2;
 	
 	var s = document.createElement("p");
-	s.appendChild(document.createTextNode(questions[q].question));
+	var qT = questions[q].question;
+	if(langue == fr){
+		qT = questions[q].questionFranc;
+	}
+	s.appendChild(document.createTextNode(qT));
 	c.appendChild(s);
 
 	s = document.createElement("div");
@@ -294,7 +307,12 @@ function createQuestion() {
 			s1.appendChild(s2);
 			var s3 = document.createElement("label");
 			s3.for = s2.id;
+			if(langue == de){
 			s3.appendChild(document.createTextNode(questions[q].options[i]));
+			}
+			else if(langue == fr){
+			s3.appendChild(document.createTextNode(questions[q].optionsFranc[i]));
+			}
 			s1.appendChild(s3);
 		}
 	}
@@ -318,7 +336,12 @@ function createQuestion() {
 	b.id = "checkButton";
 	b.style = "margin: 5px;"
 	b.onclick = checkButtonClicked;
+	if(langue == de){
 	b.appendChild(document.createTextNode("Aufgabe überprüfen"));
+	}
+	else if(langue == fr){
+		b.appendChild(document.createTextNode("Valider"));
+	}
 	s.appendChild(b);
 
 
@@ -327,7 +350,12 @@ function createQuestion() {
 		b.id = "nextButton";
 		b.style = "margin: 5px;"
 		b.onclick = nextButtonClicked;
+		if(langue == de){
 		b.appendChild(document.createTextNode("Nächste Aufgabe"));
+		}
+		else if(langue == fr){
+		b.appendChild(document.createTextNode("Suivante"));	
+		}
 		s.appendChild(b);
 	}
 
