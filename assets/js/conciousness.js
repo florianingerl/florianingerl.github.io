@@ -48,6 +48,16 @@ var questionscs = [
 		options: ["Der Gedanke an die nächste Mahlzeit.", "Den Geräuschen und der Stille um dich herum zu lauschen."],
 		optionsFranc: ["La pensée au prochain repas", "Ecouter le bruit et la silence autour de vous"],
 		correct: 1
+	},
+	
+	{
+		question: "Du bist unzufrieden in deiner Arbeit. Welcher der folgenden 4 Optionen ist nicht gut?",
+		questionFranc: "Tu n'est pas heureux avec ton travail. Quel option parmi les quatre suivants n'est pas bon?",
+		imageUrl: "assets/img/cs/guterpfusch.jpg",
+		type: "multiple choice",
+		options: ["Situation verändern", "Situation komplett akzeptieren", "Situation trotz innerer Widerstände aushalten", "Arbeit kündigen und gehen"],
+		optionsFranc: ["Changer la situation", "Accepter la situation completement", "Rester dans la situation et se plaindre", "S'enfuir de la situation"],
+		correct: 2
 	}
 
 ];
