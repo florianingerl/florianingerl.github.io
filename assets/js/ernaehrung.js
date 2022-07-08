@@ -12,7 +12,7 @@ if(window.location.pathname.endsWith("franz.html")){
 var questions = [
 	{
 		question: "Wie heißt dieses Gemüse?",
-		questionFranc : "Comment cet légume s'appelle-t-il?",
+		questionFranc : "Comment s'appelle ce légume?",
 		imageUrl: "assets/img/rawfood/rooteBeete1.jpg",
 		type: "multiple choice",
 		options: ["Tomate", "Roote Beete"],
@@ -23,7 +23,7 @@ var questions = [
 
 	{
 		question: "Wie heißt dieses Gemüse?",
-		questionFranc : "Comment cet légume s'appelle-t-il?",
+		questionFranc : "Comment s'appelle ce légume?",
 		imageUrl: "assets/img/rawfood/kohlrabi.jpg",
 		type: "multiple choice",
 		options: ["Kartoffel", "Kohlrabi"],
@@ -43,7 +43,7 @@ var questions = [
 	,
 	{
 		question:"In welcher Form sollte man Getreide laut dem Rohkost-Guru Dr. Schnitzer am besten essen?",
-		questionFranc: "Sous quelle forme est-ce qu'on dois manger les céréales selon le guru d'alimentation vivante Dr. Schnitzer?",
+		questionFranc: "Sous quelle forme est-ce qu'on dois manger les céréales selon le guru d'alimentation cure Dr. Schnitzer?",
 		imageUrl: "assets/img/rawfood/weizensprossen.jpg",
 		type: "multiple choice",
 		options: ["als Getreidebrei oder als Keimlinge", "Brot", "Nudeln"],
