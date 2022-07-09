@@ -119,12 +119,8 @@ h1, h2, h3, h4, h5, h6 {
   z-index: 997;
   padding: 15px 0;
   box-shadow: 0px 0 18px rgba(55, 66, 59, 0.08);
-  height: 17vh;
 }
 
-html {
-  scroll-padding-top: 17vh; /* height of sticky header */
-}
 
 #header .logo {
   font-size: 30px;
@@ -394,11 +390,6 @@ html {
   position: relative;
 }
 
-#hero:before {
-  content: "";
-  background: rgba(0, 0, 0, 0);
-  height: 17vh;
-}
 
 #hero .container {
   
