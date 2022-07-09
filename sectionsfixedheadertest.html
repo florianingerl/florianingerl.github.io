@@ -1,7 +1,9 @@
 <html>
 <head>
 <title>Fixed header and sections test</title>
-</head>
+
+<link rel="stylesheet" href="scrollstyle.css">
+
 <style>
 
 #navbar {
@@ -22,12 +24,6 @@ a {
 text-decoration: none;
 }
 
-
-
-html {
-  scroll-padding-top: 40px; /* height of sticky header */
-}
-
 p {
 font-size: 30px;
 }
@@ -40,8 +36,10 @@ box-sizing: border-box;
 
 </style>
 
+</head>
+
 <body>
-<div style="height: 40px">
+<div id="behindheader" style="visibility:hidden;">
 The text here doesn't matter because it is hidden behind the header
 </div>
 
@@ -79,6 +77,26 @@ The text here doesn't matter because it is hidden behind the header
 </section>
 
 
+<script>
+let nav = document.querySelector("#navbar");
+let width = nav.offsetWidth;
+let height = nav.offsetHeight;
+
+console.log( width );
+console.log( height );
+console.log ( {width, height} );
+
+let bh = document.querySelector("#behindheader");
+bh.style.height = height +"px";
+console.log("Everything worked fine!");
+
+var style = document.createElement('style');
+style.innerHTML = "html { scroll-padding-top: " + height +"px; }";
+document.head.appendChild(style);
+
+console.log("This also worked fine!");
+
+</script>
 </body>
 
 </html>
