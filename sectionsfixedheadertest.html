@@ -1,0 +1,84 @@
+<html>
+<head>
+<title>Fixed header and sections test</title>
+</head>
+<style>
+
+#navbar {
+background-color: black;
+color: white;
+height: 40px;
+display: flex;
+flex-direction: row;
+justify-content: space-around;
+position: fixed;
+top: 0;
+list-style-type: none;
+width: 100%;
+align-items: center;
+}
+
+a {
+text-decoration: none;
+}
+
+
+
+html {
+  scroll-padding-top: 40px; /* height of sticky header */
+}
+
+p {
+font-size: 30px;
+}
+
+* {
+padding: 0;
+margin: 0;
+box-sizing: border-box;
+}
+
+</style>
+
+<body>
+<div style="height: 40px">
+The text here doesn't matter because it is hidden behind the header
+</div>
+
+<ul id="navbar">
+<li><a href="#section1">Section1</a></li>
+<li><a href="#section2">Section2</a></li>
+<li><a href="#section3">Section3</a></li>
+</ul>
+</div>
+
+<section id="section1">
+<div style="background-color:red; height: 1000px;">
+<p>Section 1</p>
+<p>May I ask why there is no text in section 1?</p>
+<p>May I ask why there is no text in section 1?</p>
+<p>May I ask why there is no text in section 1?</p>
+<p>May I ask why there is no text in section 1?</p>
+<p>May I ask why there is no text in section 1?</p>
+</div>
+
+</section>
+
+<section id="section2">
+<div style="background-color:blue; height: 1000px;">
+<p>This is section 2</p>
+</div>
+
+</section>
+
+<section id="section3">
+<div style="background-color:yellow; height: 1000px;">
+<p>This is section 3</p>
+</div>
+
+</section>
+
+
+</body>
+
+</html>
