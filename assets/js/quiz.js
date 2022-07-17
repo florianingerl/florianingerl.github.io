@@ -96,9 +96,10 @@ Quiz.prototype.createQuestion = function() {
 	var b = document.createElement("button");
 	b.id = "checkButton";
 	b.style = "margin: 5px;";
-	b.quiz = this;
-	b.onclick = function(){
-		this.quiz.checkButtonClicked();
+	//If you use a function flechee, this refers to the context englobant
+	//dont la fonction a ete definie
+	b.onclick = () => {
+		this.checkButtonClicked();
 	}
 	
 	if(this.langue == de){
@@ -114,9 +115,9 @@ Quiz.prototype.createQuestion = function() {
 		b = document.createElement("button");
 		b.id = "nextButton";
 		b.style = "margin: 5px;";
-		b.quiz = this;
-		b.onclick = function(){
-			this.quiz.nextButtonClicked();
+	
+		b.onclick = () => {
+			this.nextButtonClicked();
 		}
 		
 		if(this.langue == de){
@@ -134,8 +135,6 @@ Quiz.prototype.createQuestion = function() {
 
 Quiz.prototype.nextButtonClicked = function() {
 	this.q++;
-	console.log("What is the this object here?");
-	console.log(this);
 	this.createQuestion();
 }
 
