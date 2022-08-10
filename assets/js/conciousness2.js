@@ -56,8 +56,8 @@ let questionscs = [
 		questionFranc: "Qu'est-ce une émotion?",
 		imageUrl: "assets/img/cs/fragezeichen.jpg",
 		type: "multiple choice",
-		options: ["Etwas, was man mit Tabletten betäuben kann", "Etwas, wovon man sich mithilfe des Fernsehers und der Nachrichten ablenken kann", "Alte Gefühle, die damals nicht bewusst verarbeitet wurden, im Körper jetzt noch feststecken und getriggert werden können", "Sowas wie Liebe"],
-		optionsFranc: ["Quelque chose qu'on peut supprimer en prenant des comprimés", "Quelque chose dont on peut se distraire avec l'aide de la télé et des nouvelles", "Vieux sentiments qui n'ont pas été traîts consciement, qui habite toujours dans le corps et peut être basculé", "Quelque chose comme l'amour"],
+		options: ["Etwas, was man mit Tabletten betäuben kann", "Etwas, wovon man sich mithilfe der Nachrichten ablenken kann", "Alte Gefühle, die damals nicht bewusst verarbeitet wurden, im Körper jetzt noch feststecken und getriggert werden können", "Sowas wie Liebe"],
+		optionsFranc: ["Quelque chose qu'on peut supprimer en prenant des comprimés", "Quelque chose dont on peut se distraire avec l'aide des nouvelles", "Vieux sentiments qui n'ont pas été traîts consciemment, qui habite toujours dans le corps et qui peut être basculé", "Quelque chose comme l'amour"],
 		correct: 2
 	},
 	
@@ -69,28 +69,7 @@ let questionscs = [
 		options: ["Mit dem Verstand", "mit dem Körper", "mit den Ratschlägen deiner Eltern", "mit den Ratschlägen des Staates"],
 		optionsFranc: ["Avec la tête", "avec le corps", "avec les conseils de tes parents", "avec les conseils du gouvernement"],
 		correct: 1
-	},
-	
-	{
-		question: "Was ist Satanismus?",
-		questionFranc: "Qu'est-ce que le santanisme?",
-		imageUrl: "assets/img/cs/fragezeichen.jpg",
-		type: "multiple choice",
-		options: ["Wenn alles um 180 Grad verdreht ist", "Wenn nicht alle die Maske ständig aufhaben"],
-		optionsFranc: ["Quand tout est tourné par 180 degrées", "quand tout le monde ne porte pas toujours le masque"],
-		correct: 0
-	},
-	
-	{
-		question: "Warum können viele Menschen ab dem Hals nichts mehr fühlen?",
-		questionFranc: "Qu'est-ce que le santanisme?",
-		imageUrl: "assets/img/cs/fragezeichen.jpg",
-		type: "multiple choice",
-		options: ["Weil das System funktionsfähige Arbeiter braucht", "Weil der Verstand ohne Gefühle alles viel besser alleine steuern kann", "nie gelernt", "weil die Emotionen darüber liegen"],
-		optionsFranc: ["Quand tout est tourné par 180 degrées", "quand tout le monde ne porte pas toujours le masque"],
-		correct: 2
 	}
-	
 
 ];
 
