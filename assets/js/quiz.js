@@ -22,7 +22,7 @@ Quiz.prototype.createQuestion = function() {
 	while (c.firstChild) {
 		c.removeChild(c.firstChild);
 	}
-	c.style = "display: flex; orientation: column; height: 300px;";
+	c.style = "display: flex; orientation: column;";
 	
 	var s = document.createElement("img");
 	s.src = this.questions[this.q].imageUrl;
