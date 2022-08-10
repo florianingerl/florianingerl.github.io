@@ -44,12 +44,53 @@ let questionscs = [
 	{
 		question: "Du bist unzufrieden in deiner Arbeit. Welcher der folgenden 4 Optionen ist nicht gut?",
 		questionFranc: "Tu n'est pas heureux avec ton travail. Quelle option parmi les quatre suivantes n'est pas bonne?",
-		imageUrl: "assets/img/cs/guterpfusch.jpg",
+		imageUrl: "assets/img/cs/fragezeichen.jpg",
 		type: "multiple choice",
 		options: ["Situation verändern", "Situation komplett akzeptieren", "Situation trotz innerer Widerstände aushalten", "Arbeit kündigen und gehen"],
 		optionsFranc: ["Changer la situation", "Accepter la situation complètement", "Rester dans la situation et se plaindre", "Fuir la situation"],
 		correct: 2
+	},
+	
+	{
+		question: "Was ist eine Emotion?",
+		questionFranc: "Qu'est-ce une émotion?",
+		imageUrl: "assets/img/cs/fragezeichen.jpg",
+		type: "multiple choice",
+		options: ["Etwas, was man mit Tabletten betäuben kann", "Etwas, wovon man sich mithilfe des Fernsehers und der Nachrichten ablenken kann", "Alte Gefühle, die damals nicht bewusst verarbeitet wurden, im Körper jetzt noch feststecken und getriggert werden können", "Sowas wie Liebe"],
+		optionsFranc: ["Quelque chose qu'on peut supprimer en prenant des comprimés", "Quelque chose dont on peut se distraire avec l'aide de la télé et des nouvelles", "Vieux sentiments qui n'ont pas été traîts consciement, qui habite toujours dans le corps et peut être basculé", "Quelque chose comme l'amour"],
+		correct: 2
+	},
+	
+	{
+		question: "Womit kann man Gefühle fühlen?",
+		questionFranc: "Avec quel instrument est-ce qu'on peut sentir des sentiments?",
+		imageUrl: "assets/img/cs/fragezeichen.jpg",
+		type: "multiple choice",
+		options: ["Mit dem Verstand", "mit dem Körper", "mit den Ratschlägen deiner Eltern", "mit den Ratschlägen des Staates"],
+		optionsFranc: ["Avec la tête", "avec le corps", "avec les conseils de tes parents", "avec les conseils du gouvernement"],
+		correct: 1
+	},
+	
+	{
+		question: "Was ist Satanismus?",
+		questionFranc: "Qu'est-ce que le santanisme?",
+		imageUrl: "assets/img/cs/fragezeichen.jpg",
+		type: "multiple choice",
+		options: ["Wenn alles um 180 Grad verdreht ist", "Wenn nicht alle die Maske ständig aufhaben"],
+		optionsFranc: ["Quand tout est tourné par 180 degrées", "quand tout le monde ne porte pas toujours le masque"],
+		correct: 0
+	},
+	
+	{
+		question: "Warum können viele Menschen ab dem Hals nichts mehr fühlen?",
+		questionFranc: "Qu'est-ce que le santanisme?",
+		imageUrl: "assets/img/cs/fragezeichen.jpg",
+		type: "multiple choice",
+		options: ["Weil das System funktionsfähige Arbeiter braucht", "Weil der Verstand ohne Gefühle alles viel besser alleine steuern kann", "nie gelernt", "weil die Emotionen darüber liegen"],
+		optionsFranc: ["Quand tout est tourné par 180 degrées", "quand tout le monde ne porte pas toujours le masque"],
+		correct: 2
 	}
+	
 
 ];
 
