@@ -69,6 +69,35 @@ let questionscs = [
 		options: ["Mit dem Verstand", "mit dem Körper", "mit den Ratschlägen deiner Eltern", "mit den Ratschlägen des Staates"],
 		optionsFranc: ["Avec la tête", "avec le corps", "avec les conseils de tes parents", "avec les conseils du gouvernement"],
 		correct: 1
+	},
+	{
+		question: "Warum ist es wichtig Gefühle wahrzunehmen?",
+		questionFranc: "Pourquoi est-ce que c'est important de s'apercevoir de ses sentiments?", 
+		imageUrl: "assets/img/cs/fragezeichen.jpg",
+		type: "multiple choice",
+		options: ["Weil sie uns ins Hier und Jetzt bringen", "Weil sie uns von unserer Pflicht ablenken"],
+		optionsFranc: ["Parce qu'ils nous amènent dans l'ici et maintenant", "parce qu'ils nous distraient de notre travail"],
+		correct: 0
+	},
+	
+	{
+		question: "Wer bist du?",
+		questionFranc: "Qui es-tu?", 
+		imageUrl: "assets/img/cs/fragezeichen.jpg",
+		type: "multiple choice",
+		options: ["Die Stimme im Kopf", "Der Körper", "Eine Geschichte", "Der gegenwärtige Moment"],
+		optionsFranc: ["La voix dans la tête", "Le corps", "Une histoire", "Le moment présent"],
+		correct: 3
+	},
+	
+	{
+		question: "Wenn jemand das feine Fühlen lernen will, womit sollte er anfangen?",
+		questionFranc: "Où commencer quand on veut apprendre à sentir?", 
+		imageUrl: "assets/img/cs/fragezeichen.jpg",
+		type: "multiple choice",
+		options: ["Softdrinks", "Geschlechtsverkehr", "Alkohol", "dem eigenen Atem", "Zigaretten", "laute Musik"],
+		optionsFranc: ["boire quelque chose avec beaucoup du sucre", "sex", "de l'alcool", "sa propre respiration", "les cigarettes", "de la musqiue forte"],
+		correct: 3
 	}
 
 ];
