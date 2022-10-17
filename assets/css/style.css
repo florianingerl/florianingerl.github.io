@@ -1,8 +1,21 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
+
+@font-face {
+  font-family: 'fuzzybubbles';
+  src: url('./Open_Sans/OpenSans-VariableFont_wdth\,wght.ttf');
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url('./Raleway/Raleway-VariableFont_wght.ttf');
+}
+
+
+
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: "fuzzybubbles", sans-serif;
   color: #444444;
  
 }
