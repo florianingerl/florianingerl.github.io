@@ -1,0 +1,27 @@
+<html>
+
+<head>
+    <title>Lückentext-Test</title>
+</head>
+
+<script src="assets/js/lueckentext.js"></script>
+
+<script>
+
+    window.onload = () => { 
+        let lt = new Lueckentext("demo", "französisch/lückentexte/test.txt");
+         lt.loadFile(); 
+    };
+
+</script>
+
+<body>
+
+    <h1>Remplis les trous!</h1>
+    <div id="demo">
+
+    </div>
+
+</body>
+
+</html>
