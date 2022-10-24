@@ -8,6 +8,14 @@ let questionslesmaths = [
 
 	},
 	{
+		question: "Quelle phrase est incorrecte?",
+		imageUrl: "assets/img/lesmaths/comparison2.png",
+		type: "multiple choice",
+		options: ["y ( igrek ) est moins grand ou égale de 13", "y est inférieur ou égale à 13", "y est plus petit ou aussi grand que 13"],
+		correct: 0
+
+	},
+	{
 		question: "Qu'est-ce la racine carré de neuf?",
 		imageUrl: "assets/img/lesmaths/racinecarredeneuf.png",
 		type: "multiple choice",
