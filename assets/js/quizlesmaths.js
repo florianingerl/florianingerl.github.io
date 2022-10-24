@@ -1,5 +1,13 @@
 let questionslesmaths = [
 	{
+		question: "Quelle comparison n'est pas correcte?",
+		imageUrl: "assets/img/lesmaths/comparison.png",
+		type: "multiple choice",
+		options: ["5 est plus grand que 3", "3 est plus petit que 5", "5 est supérieur à 3", "3 est inférieur à 5", "5 est moins grand que 3", "3 est moins grand que 5"],
+		correct: 4
+
+	},
+	{
 		question: "Qu'est-ce la racine carré de neuf?",
 		imageUrl: "assets/img/lesmaths/racinecarredeneuf.png",
 		type: "multiple choice",
