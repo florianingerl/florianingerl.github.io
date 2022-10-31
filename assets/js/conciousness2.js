@@ -98,7 +98,18 @@ let questionscs = [
 		options: ["Softdrinks", "Geschlechtsverkehr", "Alkohol", "dem eigenen Atem", "Zigaretten", "laute Musik"],
 		optionsFranc: ["boire quelque chose avec beaucoup du sucre", "sex", "de l'alcool", "sa propre respiration", "les cigarettes", "de la musqiue forte"],
 		correct: 3
+	},
+
+	{
+		question: "Womit muss man bezahlen, wenn irgendwo (meistens beim Staat oder beim Arzt) etwas scheinbar kostenlos ist?",
+		questionFranc: "Comment faut-il payer quand même quand il semble qu'on peut recevoir quelque part (par exemple de l'état ou du médecin) quelque chose pour gratuite ?", 
+		imageUrl: "assets/img/cs/fragezeichen.jpg",
+		type: "multiple choice",
+		options: ["Mit seiner Freiheit", "Mit seiner Gesundheit", "Mit seiner Zeit", "Mit seiner Fähigkeit selber zu Fühlen und zu Denken", "Mit allem 4"],
+		optionsFranc: ["Avec ton liberté", "Avec ta santé", "Avec ton temps", "Avec ton talent de sentir et réfléchir toi-même", "Tous les 4 options sont correctes"],
+		correct: 4
 	}
+
 
 ];
 
