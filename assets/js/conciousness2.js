@@ -108,6 +108,42 @@ let questionscs = [
 		options: ["Mit seiner Freiheit", "Mit seiner Gesundheit", "Mit seiner Zeit", "Mit seiner Fähigkeit selber zu Fühlen und zu Denken", "Mit allem 4"],
 		optionsFranc: ["Avec ton liberté", "Avec ta santé", "Avec ton temps", "Avec ton talent de sentir et réfléchir toi-même", "Tous les 4 options sont correctes"],
 		correct: 4
+	},
+	{
+		question: "Was bedeutet es meistens, wenn jemand die Stimme in seinem Kopf nicht hören kann?",
+		questionFranc: "Qu'est-ce que ca veut dire quand quelqu'un ne peut pas entendre la voix dans sa tête?", 
+		imageUrl: "assets/img/cs/fragezeichen.jpg",
+		type: "multiple choice",
+		options: ["Dass es keine Stimme in seinem Kopf gibt", "Dass er die Stimme im Kopf ist (d.h. komplett mit ihr identifiziert)"],
+		optionsFranc: ["Qu'il n'y a pas de voix dans sa tête", "Qu'il est la voix ( complètement identifié avec la voix)"],
+		correct: 1
+	},
+	{
+		question: "Welche der folgenden Eigenschaften ist männlich (Die anderen Eigenschaften sind alle weiblich)?",
+		questionFranc: "Qu'est-ce que ca veut dire quand quelqu'un ne peut pas entendre la voix dans sa tête?", 
+		imageUrl: "assets/img/cs/fragezeichen.jpg",
+		type: "multiple choice",
+		options: ["Geduld", "Verletzlichkeit", "Entschlusskraft", "Nährboden gebend", "Verbindungen schaffend"],
+		optionsFranc: ["Qu'il n'y a pas de voix dans sa tête", "Qu'il est la voix ( complètement identifié avec la voix)"],
+		correct: 2
+	},
+	{
+		question: "Welche der folgenden Eigenschaften ist weiblich (Die anderen Eigenschaften sind männlich)?",
+		questionFranc: "Qu'est-ce que ca veut dire quand quelqu'un ne peut pas entendre la voix dans sa tête?", 
+		imageUrl: "assets/img/cs/fragezeichen.jpg",
+		type: "multiple choice",
+		options: [ "Schaffenskraft", "Entschlusskraft", "Geduld", "Zielgerichtetheit", "Fokussierung"],
+		optionsFranc: ["Qu'il n'y a pas de voix dans sa tête", "Qu'il est la voix ( complètement identifié avec la voix)"],
+		correct: 2
+	},
+	{
+		question: "Welches Gefühl gehört nicht zu den 6 Primärgefühlen, die alle Säugetiere kennen?",
+		questionFranc: "Quel sentiment n'appartient pas aux 6 sentiment primaires que tous les mammifères connaissent?", 
+		imageUrl: "assets/img/cs/fragezeichen.jpg",
+		type: "multiple choice",
+		options: [ "Angst", "Freude", "Wut", "Ekel", "Überraschung", "Nervosität", "Trauer"],
+		optionsFranc: [ "peur", "joie", "colère", "nausée", "surprise", "nervosité", "tristesse"],
+		correct: 5
 	}
 
 
