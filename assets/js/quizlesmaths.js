@@ -86,6 +86,35 @@ let questionslesmaths = [
 		type: "multiple choice",
 		options: ["Un nombre premier est toujours impair", "2 est un nombre premier parce qu'il est divisible juste par lui-même et 1", "quatre-vingt-dix-sept est un nombre premier"],
 		correct: 0
+	},
+	{
+		question: "Qu'est-ce la contraposition de \"Si je mange quelque chose, j'ai faim.\"?",
+		imageUrl: "assets/img/lesmaths/contraposition.png",
+		type: "multiple choice",
+		options: ["Si je ne mange rien, je n'ai pas faim.", "Si je n'ai pas faim, je ne mange rien."],
+		correct: 1
+	},
+
+	{
+		question: "Qu'est-ce la contraposition de \"S'il pleut, je reste à la maison.\"?",
+		imageUrl: "assets/img/lesmaths/contraposition.png",
+		type: "multiple choice",
+		options: ["S'il ne pleut pas, je ne reste pas à la maison", "Si je ne reste pas à la maison, il ne pleut pas."],
+		correct: 1
+	},
+	{
+		question: "Qu'est-ce la négation (pas le contraire!) de \"Tous les profs sont bêtes\"?",
+		imageUrl: "assets/img/lesmaths/negation.png",
+		type: "multiple choice",
+		options: ["Tous les profs sont intélligents!", "Il y au moins un prof qui est intélligent"],
+		correct: 1
+	},
+	{
+		question: "Qu'est-ce la négation (pas le contraire!) de \"Il existe un prof qui est intélligent\"?",
+		imageUrl: "assets/img/lesmaths/negation.png",
+		type: "multiple choice",
+		options: ["Il existe un prof qui est stupide!", "Tous les profs sont stupides"],
+		correct: 1
 	}
 
 
