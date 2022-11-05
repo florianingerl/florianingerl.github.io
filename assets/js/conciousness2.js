@@ -144,6 +144,15 @@ let questionscs = [
 		options: [ "Angst", "Freude", "Wut", "Ekel", "Überraschung", "Nervosität", "Trauer"],
 		optionsFranc: [ "peur", "joie", "colère", "nausée", "surprise", "nervosité", "tristesse"],
 		correct: 5
+	},
+	{
+		question: "Was kann man tun, um klarer zwischen seinen eigenen Gedanken und Emotionen und denen anderer unterscheiden zu können?",
+		questionFranc: "Qu'est qu'on peut faire pour être capable de distinguer plus clairement entre ses propres pensées et émotions et celles des autres? ", 
+		imageUrl: "assets/img/cs/fragezeichen.jpg",
+		type: "multiple choice",
+		options: [ "Fernseher verschrotten", "Zeitung nicht lesen", "Von zuhause ausziehen", "Alle 3 Optionen sind richig"],
+		optionsFranc: [ "n'avoir pas de télé", "ne lire pas les nouvellles", "avoir son propre appartement", "Toutes les trois options sont correctes"],
+		correct: 3
 	}
 
 
