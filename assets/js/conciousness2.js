@@ -153,6 +153,15 @@ let questionscs = [
 		options: [ "Fernseher verschrotten", "Zeitung nicht lesen", "Von zuhause ausziehen", "Alle 3 Optionen sind richig"],
 		optionsFranc: [ "n'avoir pas de télé", "ne lire pas les nouvellles", "avoir son propre appartement", "Toutes les trois options sont correctes"],
 		correct: 3
+	},
+	{
+		question: "Welches Buch solltest du eher lesen, wenn du ein selbstbestimmtes Leben führen willst?",
+		questionFranc: "Qu'est qu'on peut faire pour être capable de distinguer plus clairement entre ses propres pensées et émotions et celles des autres? ", 
+		imageUrl: "assets/img/cs/powerofnow.png",
+		type: "multiple choice",
+		options: [ "Eckhart Tolle - The power of Now", "Klaus Schwab - Coronna und der Great Reset", "Kochrezepte Andrenochrom"],
+		optionsFranc: [ "Eckhart Tolle - Le pouvoir du moment présent", "Klaus Schwab - Coronna et le Great Reset"],
+		correct: 0
 	}
 
 
