@@ -162,7 +162,17 @@ let questionscs = [
 		options: [ "Eckhart Tolle - The power of Now", "Klaus Schwab - Coronna und der Great Reset", "Kochrezepte Andrenochrom"],
 		optionsFranc: [ "Eckhart Tolle - Le pouvoir du moment présent", "Klaus Schwab - Coronna et le Great Reset"],
 		correct: 0
-	}
+	},
+	{
+		question: "Welches Buch solltest du eher nicht lesen, wenn du Männlich und Weiblich in dir in Harmonie bringen willst?",
+		questionFranc: "Quel livre ne liriez-vous pas si vous vouliez mener le masculine et le feminine en toi en harmonie? ", 
+		imageUrl: "assets/img/cs/eisenhans.png",
+		type: "multiple choice",
+		options: [ "Barry Long - Sexuelle Liebe auf göttliche Weise", "David Deida - Der Weg des wahren Mannes", "Von Gender Mainstreaming zur Akzeptanz sexueller Vielfalt", "Robert Bly - Eisenhans, ein Buch für Männer"],
+		optionsFranc:  [ "Barry Long - Sexuelle Liebe auf göttliche Weise", "David Deida - Der Weg des wahren Mannes", "Von Gender Mainstreaming zur Akzeptanz sexueller Vielfalt", "Robert Bly - Eisenhans, ein Buch für Männer"],
+		correct: 2
+	},
+	
 
 
 ];
