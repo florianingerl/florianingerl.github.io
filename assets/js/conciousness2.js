@@ -180,8 +180,36 @@ let questionscs = [
 		options: [ "An dem Ton deiner Stimme", "deinem Atem", "der Schwerkraft", "deinem Gesichtsausdruck", "alle 4 Optionen sind richtig"],
 		optionsFranc:  [ "de ta voix", "de ta respiration", "de la pesanteur", "de l'expression sur ton visage", "toutes les 4 options sont correctes"],
 		correct: 4
-	}
+	},
+	{
+		question: "Woran bemerkst du, dass es deinem Gegenüber gut geht?",
+		questionFranc: "De quoi est-ce que tu te rends compte que ton interlocuteur va bien?", 
+		imageUrl: "assets/img/cs/fragezeichen.jpg",
+		type: "multiple choice",
+		options: [ "Kannst du nur bemerken, nachdem du dich selbst fühlen kannst", "dem Ton seiner Stimme", "seinem Gesichtsausdruck", "seiner Körperhaltung", "seinem Atem", "alle 5 Optionen sind richtig"],
+		optionsFranc:  [ "Tu ne peux que le remarquer apres avoir senti toi-même","de sa voix", "de l'expression sur son visage", "de sa tenue", "toutes les 5 options sont correctes"],
+		correct: 4
+	},
+
+	{
+		question: "Was bewirkt es, mehr Aufmerksamkeit auf die Ausatmung zu lenken?",
+		questionFranc: "Was bewirkt es, mehr Aufmerksamkeit auf die Ausatmung zu lenken?", 
+		imageUrl: "assets/img/cs/fragezeichen.jpg",
+		type: "multiple choice",
+		options: [ "mehr Entspannung", "Langeweile","Man verliert den Verstand dabei"],
+		optionsFranc:  [ "mehr Entspannung", "Langeweile"],
+		correct: 0
+	},
 	
+	{
+		question: "Was bewirkt es, mehr Aufmerksamkeit auf die Einatmung zu lenken?",
+		questionFranc: "Was bewirkt es, mehr Aufmerksamkeit auf die Einatmung zu lenken?", 
+		imageUrl: "assets/img/cs/fragezeichen.jpg",
+		type: "multiple choice",
+		options: [ "mehr Wachheit", "Langeweile", "Verlust von Bewusstein"],
+		optionsFranc:  [ "mehr Wachheit", "Langeweile", "Verlust von Bewusstein"],
+		correct: 0
+	},
 
 
 ];
