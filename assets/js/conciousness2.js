@@ -211,6 +211,16 @@ let questionscs = [
 		correct: 0
 	},
 
+	{
+		question: "Wo ist dein größter Feind?",
+		questionFranc: "Où est ton plus grand enemie?", 
+		imageUrl: "assets/img/cs/fragezeichen.jpg",
+		type: "multiple choice",
+		options: [ "zwischen deinen Ohren (wenn unbeobachtet)", "dein Chef", "deine Schwester", "dein Bruder", "dein Vater", "deine Mutter"],
+		optionsFranc:  [ "entre tes oreilles (si non surveilé)", "ton patron", "ta soeur", "ton frère", "ton père", "ta mère"],
+		correct: 0
+	}
+
 
 ];
 
