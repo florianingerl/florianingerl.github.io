@@ -237,6 +237,13 @@ let questions = [
 		type: "multiple choice",
 		options: ["Süßkartoffel", "Blumenkohl", "Sojabohnen", "Löwenzahn", "Weizen"],
 		correct: 3
+	},
+	{
+		question: "Welche Zutat ist nicht in diesem Salat?",
+		imageUrl: "assets/img/rawfood/brokolisalat.jpg",
+		type: "multiple choice",
+		options: ["Süßlupinen", "Brokoli", "Karotte", "Löwenzahn", "Weizen"],
+		correct: 3
 	}
 
 ];
