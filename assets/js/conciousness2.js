@@ -172,6 +172,15 @@ let questionscs = [
 		optionsFranc:  [ "Barry Long - Sexuelle Liebe auf göttliche Weise", "David Deida - Der Weg des wahren Mannes", "Von Gender Mainstreaming zur Akzeptanz sexueller Vielfalt", "Robert Bly - Eisenhans, ein Buch für Männer"],
 		correct: 2
 	},
+	{
+		question: "Woran bemerkst du, ob es dir selbst gut geht?",
+		questionFranc: "De quoi est-ce que tu te rends compte que tu vas bien?", 
+		imageUrl: "assets/img/cs/fragezeichen.jpg",
+		type: "multiple choice",
+		options: [ "An dem Ton deiner Stimme", "deinem Atem", "der Schwerkraft", "deinem Gesichtsausdruck", "alle 4 Optionen sind richtig"],
+		optionsFranc:  [ "de ta voix", "de ta respiration", "de la pesanteur", "de l'expression sur ton visage", "toutes les 4 options sont correctes"],
+		correct: 4
+	}
 	
 
 
