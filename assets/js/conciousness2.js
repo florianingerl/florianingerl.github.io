@@ -219,6 +219,15 @@ let questionscs = [
 		options: [ "zwischen deinen Ohren (wenn unbeobachtet)", "dein Chef", "deine Schwester", "dein Bruder", "dein Vater", "deine Mutter"],
 		optionsFranc:  [ "entre tes oreilles (si non surveilé)", "ton patron", "ta soeur", "ton frère", "ton père", "ta mère"],
 		correct: 0
+	},
+	{
+		question: "Was bedeutet Manifestieren?",
+		questionFranc: "Qu'est-ce que la manifestation veut dire?", 
+		imageUrl: "assets/img/cs/fragezeichen.jpg",
+		type: "multiple choice",
+		options: [ "Wahrnehmen und schätzen der guten Dinge, die jetzt hier sind", "sich etwas wünschen, was jetzt nicht da ist"],
+		optionsFranc:  [ "se rendre compte des bonnes chose qui sont là ici et maintenant", "souhaiter quelque chose qui n'est pas là ici et maintenant"],
+		correct: 0
 	}
 
 
