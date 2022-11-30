@@ -228,6 +228,15 @@ let questionscs = [
 		options: [ "Wahrnehmen und schätzen der guten Dinge, die jetzt hier sind", "sich etwas wünschen, was jetzt nicht da ist"],
 		optionsFranc:  [ "se rendre compte des bonnes chose qui sont là ici et maintenant", "souhaiter quelque chose qui n'est pas là ici et maintenant"],
 		correct: 0
+	},
+	{
+		question: "Was macht die Stimme im Kopf, wenn du ihr zuhörst?",
+		questionFranc: "Quoi la voix dans la tête fait-elle quand tu l'écoutes?", 
+		imageUrl: "assets/img/cs/fragezeichen.jpg",
+		type: "multiple choice",
+		options: [ "Die Stimme verstummt, weil sie das Bewusstsein nicht aushält", "Sie sagt mir nichts mehr, also mach ich lieber den Fernseher an."],
+		optionsFranc:  [ "Elle se taise parce qu'elle ne peut pas supporter la conscience", "Elle ne me parle plus, donc j'allume la télé."],
+		correct: 0
 	}
 
 
