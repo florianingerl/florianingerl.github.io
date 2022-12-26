@@ -18,6 +18,9 @@
 
 
 	<!-- Vendor CSS Files -->
+	<link rel="stylesheet" href="chessboardjs-1.0.0/css/chessboard-1.0.0.css">
+	<script src="chessboardjs-1.0.0/jquery-3.6.3/jquery-3.6.3.js"></script>
+	<script src="chessboardjs-1.0.0/js/chessboard-1.0.0.js"></script>
 	<link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
 	<link href="assets/vendor/aos/aos.css" rel="stylesheet">
 	<link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -85,6 +88,7 @@
 
 							<li><a href="#ernaehrung">Ernährung</a></li>
 							<li><a href="#bewusstsein">Bewusstsein</a></li>
+							<li><a href="#schach">Schach</a></li>
 							<li><a href="#websitenundflyer">Websiten und Flyer</a></li>
 
 							<!--  <li><a href="#yoga">Yoga</a></li> -->
@@ -519,17 +523,19 @@
 
 
 				<div class="row">
-					<div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
+					<div class="col-lg-6 order-2 order-lg-2" data-aos="fade-left" data-aos-delay="100">
 						<img src="assets/img/franzoesisch.png" class="img-fluid" alt="">
 					</div>
-					<div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
+					<div class="col-lg-6 pt-4 pt-lg-0 order-1 order-lg-1 content">
 						<p>Tu ne peux rien dire en fran&ccedil;ais apart que "Bonjour" ? Je
 							peux t'aider! Das soll heißen: Ich kann dir helfen, wenn du auf
 							Französisch nichts anderes außer "Bonjour" sagen kannst.</p>
 
 						<p>Dans un cours particulier, on pourrait faire: Grammaire,
 							production écrite, compréhension orale, compréhension d'un texte
-							ou conversation. Des exemples: <a href="Pdfs/Französisch/Nachhilfe Französisch Tobias 29.11.2022.pdf">1</a>,<a href="Pdfs/Französisch/DirekteUndIndirektePronomenUndEn.pdf">2</a></p>
+							ou conversation. Des exemples: <a
+								href="Pdfs/Französisch/Nachhilfe Französisch Tobias 29.11.2022.pdf">1</a>,<a
+								href="Pdfs/Französisch/DirekteUndIndirektePronomenUndEn.pdf">2</a></p>
 
 					</div>
 				</div>
@@ -547,14 +553,15 @@
 
 
 				<div class="row">
-					<div class="col-lg-8 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
+					<div class="col-lg-8 order-2 order-lg-2" data-aos="fade-left" data-aos-delay="100">
 						<div id="quizlesmaths"></div>
 					</div>
-					<div class="col-lg-4 pt-4 pt-lg-0 order-2 order-lg-1 content">
+					<div class="col-lg-4 pt-4 pt-lg-0 order-1 order-lg-1 content">
 						<p>Apprendre les maths en francais te fera le plus grand bien.
 							Essaye le quiz à droite pour le comprendre.
 						</p>
-						<p>Exemples des cours de maths en francais: <a href="Pdfs/Ana1Franz/Soutien Edwin 2.8.2022.pdf">1</a></p>
+						<p>Exemples des cours de maths en francais: <a
+								href="Pdfs/Ana1Franz/Soutien Edwin 2.8.2022.pdf">1</a></p>
 
 					</div>
 				</div>
@@ -573,10 +580,10 @@
 
 
 				<div class="row">
-					<div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
+					<div class="col-lg-6 order-2 order-lg-2" data-aos="fade-left" data-aos-delay="100">
 						<img src="assets/img/FlyerConditionalSentences.jpg" class="img-fluid" alt="">
 					</div>
-					<div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
+					<div class="col-lg-6 pt-4 pt-lg-0 order-1 order-lg-1 content">
 						<p>You've got the nose full of English? Sag das nicht! Sag
 							wenn schon "I'm fed up with English" und komm zum Üben in die
 							Nachhilfe.</p>
@@ -598,10 +605,10 @@
 
 
 				<div class="row">
-					<div class="col-lg-8 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
+					<div class="col-lg-8 order-2 order-lg-2" data-aos="fade-left" data-aos-delay="100">
 						<div id="quizmathenanglais"></div>
 					</div>
-					<div class="col-lg-4 pt-4 pt-lg-0 order-2 order-lg-1 content">
+					<div class="col-lg-4 pt-4 pt-lg-0 order-1 order-lg-1 content">
 						<p>Learning math in English will give you joy. Just try the quiz on the right hand side.
 						</p>
 
@@ -647,10 +654,10 @@
 
 
 				<div class="row">
-					<div class="col-lg-8 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
+					<div class="col-lg-8 order-2 order-lg-2" data-aos="fade-left" data-aos-delay="100">
 						<div id="rohkost"></div>
 					</div>
-					<div class="col-lg-3 pt-4 pt-lg-0 order-2 order-lg-1 content">
+					<div class="col-lg-3 pt-4 pt-lg-0 order-1 order-lg-1 content">
 						<p>Meine Nachhilfeschüler werden oft und ganz plötzlich krank,
 							meistens 5 min vor einer geplanten Nachhilfestunde. Deswegen ist
 							hier rechts ein Quiz zur gesunden Ernährung.</p>
@@ -670,12 +677,33 @@
 
 
 				<div class="row">
-					<div class="col-lg-8 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
+					<div class="col-lg-8 order-2 order-lg-2" data-aos="fade-left" data-aos-delay="100">
 						<div id="conciousness"></div>
 					</div>
-					<div class="col-lg-4 pt-4 pt-lg-0 order-2 order-lg-1 content">
+					<div class="col-lg-4 pt-4 pt-lg-0 order-1 order-lg-1 content">
 						<p>Eigentlich sollte Bewusstsein ein Hauptfach in der Schule
 							sein. Im Quiz rechts sind ein paar Fragen zum Thema.</p>
+					</div>
+				</div>
+
+			</div>
+		</section>
+
+		<section id="schach" class="about">
+			<div class="container" data-aos="fade-up">
+				<div class="section-title">
+
+					<p>Schach</p>
+				</div>
+
+
+				<div class="row">
+					<div class="col-lg-8 order-2 order-lg-2" data-aos="fade-left" data-aos-delay="100">
+						<div id="devinetteEchec"></div>
+					</div>
+					<div class="col-lg-4 pt-4 pt-lg-0 order-1 order-lg-1 content">
+						<p>Schach ist gut für räumliches Vorstellungsvermögen. Die Aufgaben rechts stammen aus einer
+							Zeit, als ich noch Schachunterricht an der Grundschule gegeben habe.</p>
 					</div>
 				</div>
 
@@ -777,10 +805,11 @@
 							27 Euro.</p>
 
 						<p>Anfahrtskosten für die Nachhilfe bei dir zuhause: 10 Euro</p>
-						
+
 
 						<h3>Terminvereinbarung, Bezahlung und Stornobedingungen</h3>
-						Einen ersten Termin vereinbare ich nur über E-Mail, weitere auch über Skype. Der Prozess der Terminvereinbarung ist wie folgt:
+						Einen ersten Termin vereinbare ich nur über E-Mail, weitere auch über Skype. Der Prozess der
+						Terminvereinbarung ist wie folgt:
 						<ol>
 							<li>Du schickst mir deine Aufgaben und dein zugehöriges Theorie-Skript</li>
 							<li>Wenn ich mich mit diesen Aufgaben auskenne, gebe ich
@@ -793,7 +822,7 @@
 							<li>Du sagst zu oder machst zeitnahe andere
 								Terminvorschläge</li>
 						</ol>
-						<p>!!!Achtung!!!  !!!Stornobedingungen!!! Wenn du oder deine
+						<p>!!!Achtung!!! !!!Stornobedingungen!!! Wenn du oder deine
 							für die Nachhilfe-notwendige Technik nicht 10 min nach Beginn
 							des Termins da seid oder der Termin irgendwann vorher abgesagt
 							wird, ist das Geld trotzdem fällig und wird nicht zurückerstattet.</p>
@@ -1144,7 +1173,10 @@
 	<script src="assets/js/quizlesmaths.js"></script>
 	<script src="assets/js/quizmathenanglais.js"></script>
 	<script src="assets/js/scrollsections.js"></script>
+	<script src="chessboardjs-1.0.0/js/devinetteechec.js"></script>
 	<script src="https://apps.elfsight.com/p/platform.js" defer></script>
+
+
 	<!-- <script>
 		window.addEventListener("load", (evt) => {
 			console.log("The onload event happened!");
