@@ -11,13 +11,13 @@ var devinettes = [
       },
       {
         question: "Est-ce que le cavalier peut rattraper le pion noir?",
-        position: { a2: 'bK',  a8: 'wK', e4: 'wN', g2: 'bP'},
-        solution: [ {source:'e4',target:'c3'}, {source:'a2',target:'a1'}, {source:'c3',target:'e2'}] 
+        position: { d1: 'bK',  a8: 'wK', b6: 'wN', b2: 'bP'},
+        solution: [ {source:'b6',target:'a4'}, {source:'b2',target:'b1', isQueening: true}, {source:'a4',target:'c3'}, {source:'d1',target:'e1'}, {source:'c3',target:'b1'}] 
       },
       {
         question: "Est-ce que le cavalier peut rattraper le pion noir?",
-        position: { a2: 'bK',  a8: 'wK', e4: 'wN', g2: 'bP'},
-        solution: [ {source:'e4',target:'c3'}, {source:'a2',target:'a1'}, {source:'c3',target:'e2'}] 
+        position: { c8: 'bK',  a7: 'wK', b8: 'wN', h4: 'bP'},
+        solution: [ {source:'b8',target:'c6'}, {source:'h4',target:'h3'}, {source:'c6',target:'e7'}, {source:'c8',target:'c7'}, {source:'e7',target:'f5'}, {source:'h3',target:'h2'},{source:'f5',target:'g3'}, {source:'c7',target:'d6'}, {source:'a7',target:'b6'}, {source:'d6',target:'e5'}, {source:'b6',target:'c5'}, {source:'e5',target:'f4'}, {source:'g3',target:'h1'},{source:'f4',target:'f3'}, {source:'c5',target:'d4'}, {source:'f3',target:'g2'},{source:'d4',target:'e3'},{source:'g2',target:'h1'},{source:'e3',target:'f2'}] 
       }
 ];
 
