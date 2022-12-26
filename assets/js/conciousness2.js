@@ -37,7 +37,7 @@ let questionscs = [
 		imageUrl: "assets/img/cs/amsel.jpg",
 		type: "multiple choice",
 		options: ["Der Gedanke an die nächste Mahlzeit.", "Den Geräuschen und der Stille um dich herum zu lauschen."],
-		optionsFranc: ["La pensée au prochain repas", "Ecouter le bruit et la silence autour de vous"],
+		optionsFranc: ["La pensée au prochain repas", "Écouter les bruits et la silence autour de vous"],
 		correct: 1
 	},
 	
