@@ -88,7 +88,7 @@ class DevinetteEchec {
                 pFeedback.style = "color:red;";
                 pFeedback.innerHTML = "Falscher Zug! Versuche einen anderen."; 
                 if(this.langue == fr){
-                    pFeedback.innerHTML = "Coup faux! Essaye un autre coup!";
+                    pFeedback.innerHTML = "Mauvais coup! Essaye un autre coup!";
                 }
                 else if(this.langue == en){
                     pFeedback.innerHTML = "Wrong move! Try another move!";
@@ -102,7 +102,7 @@ class DevinetteEchec {
                 if(this.devinettes[this.i].j == l){
                     pFeedback.innerHTML = "Gratulation! Du hast diese Aufgabe gelöst!";
                     if( this.langue == fr ){
-                        pFeedback.innerHTML = "Felicitations! Tu as résoudu la devinette!";
+                        pFeedback.innerHTML = "Felicitations! Tu as résolu la devinette!";
                     }
                     else if( this.langue == en){
                         pFeedback.innerHTML = "Congratulations! You have solved the problem!";
@@ -131,7 +131,7 @@ class DevinetteEchec {
                         p.style = "color:green";
                         p.innerHTML = "Du hast alle Aufgaben gelöst!";
                         if(this.langue == fr){
-                            p.innerHTML = "Tu as résoudu toutes les devinettes!";
+                            p.innerHTML = "Tu as résolu toutes les devinettes!";
                         }
                         else if(this.langue == en){
                             p.innerHTML = "You have solved all the exercices!";
@@ -141,7 +141,7 @@ class DevinetteEchec {
                 } else {
                     pFeedback.innerHTML = "Richtiger Zug! Finde jetzt die richtige Fortsetzung";
                     if(this.langue == fr){
-                        pFeedback.innerHTML = "Coup correct! Trouve la bonne continuation maintenant!";
+                        pFeedback.innerHTML = "Bon coup! Trouve comment continuer maintenant!";
                     }
                     else if(this.langue == en){
                         pFeedback.innerHTML = "Correct move! Find the right continuation now!";
