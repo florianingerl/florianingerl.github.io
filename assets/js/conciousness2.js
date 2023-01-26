@@ -85,7 +85,7 @@ let questionscs = [
 		questionFranc: "Qui es-tu?", 
 		imageUrl: "assets/img/cs/fragezeichen.jpg",
 		type: "multiple choice",
-		options: ["Die Stimme im Kopf", "Der Körper", "Eine Geschichte", "Der gegenwärtige Moment"],
+		options: ["Die Stimme im Kopf", "Der Körper", "Eine Geschichte oder ein Lebenslauf", "Der gegenwärtige Moment"],
 		optionsFranc: ["La voix dans la tête", "Le corps", "Une histoire", "Le moment présent"],
 		correct: 3
 	},
@@ -119,24 +119,6 @@ let questionscs = [
 		correct: 1
 	},
 	{
-		question: "Welche der folgenden Eigenschaften ist männlich (Die anderen Eigenschaften sind alle weiblich)?",
-		questionFranc: "Qu'est-ce que ca veut dire quand quelqu'un ne peut pas entendre la voix dans sa tête?", 
-		imageUrl: "assets/img/cs/fragezeichen.jpg",
-		type: "multiple choice",
-		options: ["Geduld", "Verletzlichkeit", "Entschlusskraft", "Nährboden gebend", "Verbindungen schaffend"],
-		optionsFranc: ["Qu'il n'y a pas de voix dans sa tête", "Qu'il est la voix ( complètement identifié avec la voix)"],
-		correct: 2
-	},
-	{
-		question: "Welche der folgenden Eigenschaften ist weiblich (Die anderen Eigenschaften sind männlich)?",
-		questionFranc: "Qu'est-ce que ca veut dire quand quelqu'un ne peut pas entendre la voix dans sa tête?", 
-		imageUrl: "assets/img/cs/fragezeichen.jpg",
-		type: "multiple choice",
-		options: [ "Schaffenskraft", "Entschlusskraft", "Geduld", "Zielgerichtetheit", "Fokussierung"],
-		optionsFranc: ["Qu'il n'y a pas de voix dans sa tête", "Qu'il est la voix ( complètement identifié avec la voix)"],
-		correct: 2
-	},
-	{
 		question: "Welches Gefühl gehört nicht zu den 6 Primärgefühlen, die alle Säugetiere kennen?",
 		questionFranc: "Quel sentiment n'appartient pas aux 6 sentiment primaires que tous les mammifères connaissent?", 
 		imageUrl: "assets/img/cs/fragezeichen.jpg",
@@ -163,15 +145,7 @@ let questionscs = [
 		optionsFranc: [ "Eckhart Tolle - Le pouvoir du moment présent", "Klaus Schwab - Coronna et le Great Reset"],
 		correct: 0
 	},
-	{
-		question: "Welches Buch solltest du eher nicht lesen, wenn du Männlich und Weiblich in dir in Harmonie bringen willst?",
-		questionFranc: "Quel livre ne liriez-vous pas si vous vouliez mener le masculine et le feminine en toi en harmonie? ", 
-		imageUrl: "assets/img/cs/eisenhans.png",
-		type: "multiple choice",
-		options: [ "Barry Long - Sexuelle Liebe auf göttliche Weise", "David Deida - Der Weg des wahren Mannes", "Von Gender Mainstreaming zur Akzeptanz sexueller Vielfalt", "Robert Bly - Eisenhans, ein Buch für Männer"],
-		optionsFranc:  [ "Barry Long - Sexuelle Liebe auf göttliche Weise", "David Deida - Der Weg des wahren Mannes", "Von Gender Mainstreaming zur Akzeptanz sexueller Vielfalt", "Robert Bly - Eisenhans, ein Buch für Männer"],
-		correct: 2
-	},
+
 	{
 		question: "Woran bemerkst du, ob es dir selbst gut geht?",
 		questionFranc: "De quoi est-ce que tu te rends compte que tu vas bien?", 
