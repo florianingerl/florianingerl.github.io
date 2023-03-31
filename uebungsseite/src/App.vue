@@ -1,6 +1,9 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
-  <RegexExercise />
+
+  <RegexExercise v-for="exercise in exercises" v-bind:key="exercise.id" :exercise="exercise" />
+     
+
   <HelloWorld msg="Welcome to Your Vue.js App"/>
 </template>
 
@@ -12,16 +15,22 @@ export default {
   name: 'App',
   components: {
     HelloWorld, RegexExercise
+  },
+  data(){
+    return {
+      exercises : []
+    }
+  },
+
+  mounted() {
+    console.log("Mounted!!!");
+
+    fetch("regexexercises.json")
+      .then((response) => response.json())
+      .then((data) => { console.log(data); this.exercises = data; console.log("Length of exercises" + this.exercises.length); } );
   }
 
-  /*computed: {
-    exercises(){
-      fetch("./public/regexexercises.json")
-      .then((response) => response.json())
-      .then((data) => { console.log(data); return data; } );
 
-    }
-  }*/
   
 }
 </script>
