@@ -82,6 +82,10 @@ textarea {
     height: 50px;
 }
 
+input {
+  width: 75%;
+}
+
 .correct {
   color: green;
 }
