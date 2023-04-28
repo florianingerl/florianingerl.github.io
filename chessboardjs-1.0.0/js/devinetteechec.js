@@ -56,6 +56,7 @@ class DevinetteEchec {
         
         let question = document.createElement("p");
         question.innerHTML = this.devinettes[this.i].question;
+        question.innerHTML += " Ziehe die Figur mit gedrückter Maustaste."
         if(this.langue == fr){
             question.innerHTML = this.devinettes[this.i].questionFranz;
         }
