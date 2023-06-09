@@ -1,3 +1,0 @@
-Je suis neé en {Allemangne}.
-C'est un {pays} qui se trouve à {droite} de la {France}.
-
