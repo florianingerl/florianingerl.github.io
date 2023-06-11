@@ -3,7 +3,14 @@
     <div v-if="i == questions.length">
         Gratulation! Du hast alle Fragen des Quiz beantwortet!
     </div>
-    <button v-if="i < questions.length-1" @click="nextExerciseClicked">Nächste Aufgabe</button>
+    <ul class="pagination">
+  <li class="page-item"><button class="page-link" @click="jumpBackwardClicked">Springe rückwärts</button></li>
+  <li class="page-item"><button class="page-link" @click="previousExerciseClicked">Vorige Aufgabe</button></li>
+  <li v-for="q in displayedQuestions" class="page-item" :class="{active : q == i}" :key="q"><button class="page-link" @click="i=q;">{{q}}</button></li>
+  <li class="page-item"><button class="page-link" @click="nextExerciseClicked">Nächste Aufgabe</button></li>
+  <li class="page-item"><button class="page-link" @click="jumpForwardClicked">Springe vorwärts</button></li>
+</ul>
+    
 </template>
 
 <script>
@@ -32,7 +39,37 @@ export default {
      nextExerciseClicked(){
         this.i++;
         console.log(this.i);
+     },
+     previousExerciseClicked(){
+        this.i--;
+        console.log(this.i);
+     },
+     jumpForwardClicked(){
+        if(this.i + 5 < this.questions.length)
+          this.i+=5;
+        else
+          this.i = this.questions.length - 1;
+     },
+     jumpBackwardClicked(){
+        if(this.i - 5 >= 0)
+          this.i -=5;
+        else
+          this.i = 0;
      }
+  },
+  computed : {
+      displayedQuestions(){
+         let a = [];
+         let j = Math.floor(this.i/5);
+         j=j*5;
+         let k = 0;
+         while(k < 5 && j < this.questions.length ){
+           a.push(j);
+           ++j;
+           ++k;
+         }
+         return a;
+      }
   },
   mounted() {
     console.log('Vue Questions Component mounted');
