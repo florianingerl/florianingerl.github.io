@@ -212,6 +212,14 @@ export default {
 		correct: 2
 	},
 	{
+		question: "Warum essen Rohköstler Rohkost?",
+		imageUrl: "assets/img/rawfood/rohkost.png",
+		type: "multiple choice",
+		options: [{ option : "um gesund und leistungsfähig zu sein", correct: true }, { option : "Wegen ihrer Allergien vertragen sie gute, normale Ernährung nicht. Sie bräuchten viel Geld und Zeit, um ihre Allergien von einem guten Medizyniker behandeln zu lassen", correct: false }],
+		correct: 2
+	},
+
+	{
 		question: "Welche Zutat ist nicht in diesem Salat?",
 		imageUrl: "assets/img/rawfood/steckrübensalat.jpg",
 		type: "multiple choice",
@@ -219,7 +227,7 @@ export default {
 		correct: 3
 	},
     {
-		question: "Warum schwitzen Rohköstler nachts nicht?",
+		question: "Warum schwitzen Rohköstler nachts (und auch sonst) nicht?",
 		imageUrl: "assets/img/rawfood/schwitzen.png",
 		type: "multiple choice",
 		options: [{ option : "Weil bei ihnen die Ausscheidung von Giftstoffen über die Haut nicht funktioniert", correct: false }, { option : "Weil in Getreidebrei, Gemüse, Sprossen und Wildkräutern keine Gifte zum Ausscheiden über die Haut drin sind", correct: true },
@@ -246,6 +254,14 @@ export default {
 		imageUrl: "assets/img/rawfood/salatmitspeisewicke.jpg",
 		type: "multiple choice",
 		options: [{ option : "Blaukraut", correct: false }, { option : "Roggen", correct: false }, { option : "Pastinake", correct: false }, { option : "Speisewicke", correct: false }, { option : "Basilikum", correct: true }],
+		correct: 4
+	},
+
+	{
+		question: "Warum essen bestimmte Rohköstler kein Obst?",
+		imageUrl: "assets/img/rawfood/zahnarzt.png",
+		type: "multiple choice",
+		options: [{ option : "Weil sie sich das Geld und die Zeit für das Obst und den anschließenden Gang zum Zahnarzt, um die Zähne dort noch weiter zu zerstören, sparen wollen", correct: true }, { option : "Weil sie sind wissen, was gut und teuer ist", correct: false }],
 		correct: 4
 	},
 	
