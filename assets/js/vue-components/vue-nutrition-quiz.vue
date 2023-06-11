@@ -222,7 +222,8 @@ export default {
 		question: "Warum schwitzen Rohköstler nachts nicht?",
 		imageUrl: "assets/img/rawfood/schwitzen.png",
 		type: "multiple choice",
-		options: [{ option : "Weil bei ihnen die Ausscheidung von Giftstoffen über die Haut nicht funktioniert", correct: false }, { option : "Weil in Getreidebrei, Gemüse, Sprossen und Wildkräutern keine Gifte zum Ausscheiden über die Haut drin sind", correct: true }],
+		options: [{ option : "Weil bei ihnen die Ausscheidung von Giftstoffen über die Haut nicht funktioniert", correct: false }, { option : "Weil in Getreidebrei, Gemüse, Sprossen und Wildkräutern keine Gifte zum Ausscheiden über die Haut drin sind", correct: true },
+		{ option: "Weil sie so wenig trinken, dass ihr Körper keine Flüssigkeit mehr hergeben kann.", correct: false }],
 		correct: 3
 	},
 
