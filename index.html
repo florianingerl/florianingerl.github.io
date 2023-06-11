@@ -28,6 +28,8 @@
 	<link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
 	<link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
+
+
 	<!-- Template Main CSS File -->
 	<link href="assets/css/style.css" rel="stylesheet">
 	<style>
@@ -35,6 +37,8 @@
 			background: url("assets/img/PendelFlyerNeu3.png") top center;
 		}
 	</style>
+
+	
 
 </head>
 
@@ -643,10 +647,15 @@
 					<p>Ernährung</p>
 				</div>
 
+				
+
 
 				<div class="row">
 					<div class="col-lg-8 order-2 order-lg-2" data-aos="fade-left" data-aos-delay="100">
-						<div id="rohkost"></div>
+						<!-- <div id="rohkost"></div> -->
+						<div id="nutritionquiz">
+							<vue-nutrition-quiz></vue-nutrition-quiz>
+						  </div>
 					</div>
 					<div class="col-lg-3 pt-4 pt-lg-0 order-1 order-lg-1 content">
 						<p>Meine Nachhilfeschüler werden oft und ganz plötzlich krank,
@@ -657,7 +666,10 @@
 
 			</div>
 		</section>
-<!--
+
+
+
+		<!--
 		<section id="reiki" class="about">
 
 
@@ -870,7 +882,8 @@
 								schnellstmöglich und machst im letzteren Fall zeitnahe andere Terminvorschläge</li>
 						</ol>
 						<p><span style="font-weight: bold">!!!Achtung!!! !!!Stornobedingungen!!!</span>
-							Bei Terminabsage (irgendwann vorher), technischen Problemen (z.B. länger als 15 min instabiles
+							Bei Terminabsage (irgendwann vorher), technischen Problemen (z.B. länger als 15 min
+							instabiles
 							Internet) oder bei
 							mehr als 10 Minuten Verspätung deinerseits gilt Fälligkeit des Honorars und keine weitere
 							Wartezeit meinerseits - unabhängig von der Dauer des gebuchten Termins.
@@ -1157,7 +1170,8 @@
 
 							</li>
 							<li>
-								<a href="https://www.someren.de/">Lex von Someren</a> bietet Tanzevents, Konzerte und Seminare an
+								<a href="https://www.someren.de/">Lex von Someren</a> bietet Tanzevents, Konzerte und
+								Seminare an
 							</li>
 						</ol>
 
@@ -1310,6 +1324,10 @@
 	<script src="assets/js/scrollsections.js"></script>
 	<script src="chessboardjs-1.0.0/js/devinetteechec.js"></script>
 	<script src="https://apps.elfsight.com/p/platform.js" defer></script>
+
+	<script src="https://unpkg.com/vue@latest"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue3-sfc-loader"></script>
+	<script src="assets/js/vue-app.js"></script>
 
 
 	<!-- <script>
