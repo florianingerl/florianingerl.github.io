@@ -218,6 +218,14 @@ export default {
 		options: [{ option : "Süßlupinen", correct: false }, { option : "Karotte", correct: false }, { option : "Steckrübe", correct: false }, { option : "Petersilie", correct: true }, { option : "Weizen", correct: false }],
 		correct: 3
 	},
+    {
+		question: "Warum schwitzen Rohköstler nachts nicht?",
+		imageUrl: "assets/img/rawfood/schwitzen.png",
+		type: "multiple choice",
+		options: [{ option : "Weil bei ihnen die Ausscheidung von Giftstoffen über die Haut nicht funktioniert", correct: false }, { option : "Weil in Getreidebrei, Gemüse, Sprossen und Wildkräutern keine Gifte zum Ausscheiden über die Haut drin sind", correct: true }],
+		correct: 3
+	},
+
 	{
 		question: "Welche Zutat ist nicht in diesem Getreidebrei?",
 		imageUrl: "assets/img/rawfood/roggenbrei.jpg",
