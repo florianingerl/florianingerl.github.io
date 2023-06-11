@@ -1330,6 +1330,13 @@
 	<script src="https://cdn.jsdelivr.net/npm/vue3-sfc-loader"></script>
 	<script src="assets/js/vue-app.js"></script>
 
+	<script>
+		var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+		var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+		  return new bootstrap.Tooltip(tooltipTriggerEl)
+		})
+		</script>
+
 
 	<!-- <script>
 		window.addEventListener("load", (evt) => {
