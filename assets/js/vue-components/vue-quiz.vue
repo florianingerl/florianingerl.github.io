@@ -4,11 +4,11 @@
         Gratulation! Du hast alle Fragen des Quiz beantwortet!
     </div>
     <ul class="pagination">
-  <li class="page-item"><button class="page-link" @click="jumpBackwardClicked">Springe rückwärts</button></li>
-  <li class="page-item"><button class="page-link" @click="previousExerciseClicked">Vorige Aufgabe</button></li>
+  <li class="page-item"><button class="page-link" @click="jumpBackwardClicked" data-bs-toggle="tooltip" title="Gehe 5 Aufgaben zurück"><i class="fa fa-fast-backward" aria-hidden="true"></i></button></li>
+  <li class="page-item"><button class="page-link" @click="previousExerciseClicked" data-bs-toggle="tooltip" title="Vorige Aufgabe"><i class="fa fa-backward" aria-hidden="true"></i></button></li>
   <li v-for="q in displayedQuestions" class="page-item" :class="{active : q == i}" :key="q"><button class="page-link" @click="i=q;">{{q}}</button></li>
-  <li class="page-item"><button class="page-link" @click="nextExerciseClicked">Nächste Aufgabe</button></li>
-  <li class="page-item"><button class="page-link" @click="jumpForwardClicked">Springe vorwärts</button></li>
+  <li class="page-item"><button class="page-link" @click="nextExerciseClicked" data-bs-toggle="tooltip" title="Nächste Aufgabe"><i class="fa fa-forward" aria-hidden="true"></i></button></li>
+  <li class="page-item"><button class="page-link" @click="jumpForwardClicked" data-bs-toggle="tooltip" title="Gehe 5 Aufgaben weiter"><i class="fa fa-fast-forward" aria-hidden="true"></i></button></li>
 </ul>
     
 </template>
