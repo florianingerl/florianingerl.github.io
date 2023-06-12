@@ -263,7 +263,13 @@ export default {
 		options: [{ option : "Weil sie mehr als 500 Euro im Monat Zwangsgebühren an die Krankenkasse zahlen müssen", correct: false }, { option : "Weil Krankheit durch falsche, artfremde Ernährung und medizynische Behandlung entsteht und Rohköstler aus Zeit-und Kostengründen auf beides verzichten.", correct: true }, { option : "Weil sie Glück haben, dass der mörderische Fuchsbandwurm im Löwenzahn sie noch nicht umgebracht hat.", correct: false }],
 		correct: 4
 	},
-
+	{
+		question: "Wie heißt diese essbare Wildpflanze?",
+		imageUrl: "assets/img/rawfood/breitwegerich.png",
+		type: "multiple choice",
+		options: [{ option : "Löwenzahn", correct: false }, { option : "Spitzwegerich", correct: true }, { option : "Breitwegerich", correct: true }, { option: "Gänseblümchen", correct : false }],
+		correct: 4
+	},
 
 	{
 		question: "Warum essen bestimmte Rohköstler kein Obst?",
