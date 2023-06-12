@@ -256,6 +256,14 @@ export default {
 		options: [{ option : "Blaukraut", correct: false }, { option : "Roggen", correct: false }, { option : "Pastinake", correct: false }, { option : "Speisewicke", correct: false }, { option : "Basilikum", correct: true }],
 		correct: 4
 	},
+	{
+		question: "Warum sind Rohköstler 365 Tage 24 h im Jahr gesund und leistungsfähig?",
+		imageUrl: "assets/img/rawfood/loewenzahn.png",
+		type: "multiple choice",
+		options: [{ option : "Weil sie mehr als 500 Euro im Monat Zwangsgebühren an die Krankenkasse zahlen müssen", correct: false }, { option : "Weil Krankheit durch falsche, artfremde Ernährung und medizynische Behandlung entsteht und Rohköstler aus Zeit-und Kostengründen auf beides verzichten.", correct: true }, { option : "Weil sie Glück haben, dass der mörderische Fuchsbandwurm im Löwenzahn sie noch nicht umgebracht hat.", correct: false }],
+		correct: 4
+	},
+
 
 	{
 		question: "Warum essen bestimmte Rohköstler kein Obst?",
