@@ -275,7 +275,7 @@ export default {
 		question: "Warum essen bestimmte Rohköstler kein Obst?",
 		imageUrl: "assets/img/rawfood/zahnarzt.png",
 		type: "multiple choice",
-		options: [{ option : "Weil sie sich das Geld und die Zeit für das Obst und den anschließenden Gang zum Zahnarzt, um die Zähne dort noch weiter zu zerstören, sparen wollen", correct: true }, { option : "Weil sie sind wissen, was gut und teuer ist", correct: false }],
+		options: [{ option : "Weil sie sich das Geld und die Zeit für das Obstessen und den anschließenden Gang zum Zahnmedizyniker sparen wollen", correct: true }, { option : "Weil sie sind wissen, was gut und teuer ist", correct: false }],
 		correct: 4
 	},
 	
