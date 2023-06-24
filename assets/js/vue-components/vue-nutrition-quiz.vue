@@ -306,6 +306,27 @@ export default {
 		type: "multiple choice",
 		options: [{ option : "Süßlupinen", correct: false }, { option : "Brokoli", correct: false }, { option : "Karotte", correct: false }, { option : "Löwenzahn", correct: true }, { option : "Weizen", correct: false }],
 		correct: 3
+	},
+	{
+		question: "Wie heißt diese essbare Wildpflanze?",
+		imageUrl: "assets/img/rawfood/giersch.png",
+		type: "multiple choice",
+		options: [{ option : "Gänseblümchen", correct: false }, { option : "Giersch", correct: true }, { option : "Löwenzahn", correct: false }, { option : "Gänsedistel", correct: false }],
+		correct: 3
+	},
+	{
+		question: "Wie viel spart ein Rohköstler pro Jahr an Strom, weil er keinen Kühlschrank benutzt?",
+		imageUrl: "assets/img/rawfood/kuelschrank.png",
+		type: "multiple choice",
+		options: [{ option : "80kWh = 40 Euro", correct: true }, { option : "Er zahlt mit seiner Gesundheit", correct: false }],
+		correct: 3
+	},
+	{
+		question: "Warum haben Rohköstler Zeit und Geld?",
+		imageUrl: "assets/img/rawfood/rohkost.png",
+		type: "multiple choice",
+		options: [{ option : "Weil bei ihnen die Zeit und das Geld für die Medizyniker-Besuche entfällt", correct: true }, { option : "Weil sie 60 Euro-Zwangs-GEZ-Gebühren alle 3 Monate zahlen müssen, ohne einen Radio-oder Fernseher zu besitzen", correct: false }, {option: "Weil das Zu-und Aufräumen von Salaten und Getreidebreien nur <5 min Zeit kostet", correct: true} ],
+		correct: 3
 	}
 
 ]
