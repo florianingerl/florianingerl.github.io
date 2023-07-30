@@ -162,7 +162,7 @@ let questionscs = [
 		type: "multiple choice",
 		options: [ "Kannst du nur bemerken, nachdem du dich selbst fühlen kannst", "dem Ton seiner Stimme", "seinem Gesichtsausdruck", "seiner Körperhaltung", "seinem Atem", "alle 5 Optionen sind richtig"],
 		optionsFranc:  [ "Tu ne peux que le remarquer apres avoir senti toi-même","de sa voix", "de l'expression sur son visage", "de sa tenue", "toutes les 5 options sont correctes"],
-		correct: 4
+		correct: 5
 	},
 
 	{
