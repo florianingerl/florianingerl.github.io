@@ -1,6 +1,6 @@
 <template>
 <div class="d-flex flex-row">
-<img :src="question.imageUrl" />
+<img :src="question.imageUrl" @click="imageClicked"/>
 <div>
 <p>
 {{ question.question }}
@@ -53,6 +53,13 @@ export default {
     showSolution(){
       this.validated = false;
       this.question.options.forEach( option => { option.checked = option.correct; });
+    },
+    imageClicked(){
+      console.log("The image was clicked!");
+      let fullPage = document.getElementById('fullpage');
+
+		  fullPage.style.backgroundImage = 'url(' + this.question.imageUrl + ')';
+		  fullPage.style.display = 'block';
     }
   },
   mounted() {
