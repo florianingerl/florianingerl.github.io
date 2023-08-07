@@ -1,11 +1,28 @@
 <html>
 <head>
     <title>Übungsseite</title>
+
+    <script src="chessboardjs-1.0.0/jquery-3.6.3/jquery-3.6.3.js"></script>
+<script>
+getTxt = function (){
+
+  $.ajax({
+    url:'uebung/franz/test.txt',
+    success: function (data){
+      console.log(data);
+    }
+  });
+}
+
+getTxt();
+</script>
 </head>
 
 <body>
     <div id="gaps">
-        <vue-gaps></vue-gaps>
+        <vue-gaps gapfile="uebung/franz/test.txt"></vue-gaps>
+
+        <vue-gaps gapfile="uebung/franz/test2.txt"></vue-gaps>
     </div>
 
 
