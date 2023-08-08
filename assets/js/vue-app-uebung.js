@@ -23,10 +23,51 @@ const options = {
   },
 };
 
+
+
+// 5. Create and mount the root instance.
+const VueConditionnel1 = Vue.defineAsyncComponent(() =>
+loadModule('assets/js/vue-components/french/conditionnel/vue-conditionnel1.vue', options));
+
 const app = createApp({
   components: {
     VueGaps : Vue.defineAsyncComponent(() =>
-    loadModule('assets/js/vue-components/vue-gaps.vue', options))
+    loadModule('assets/js/vue-components/vue-gaps.vue', options)),
+    VueNestedMenu : Vue.defineAsyncComponent(() =>
+    loadModule('assets/js/vue-components/vue-nested-menu.vue', options)),
+    VueNestedMenuTest : Vue.defineAsyncComponent(() =>
+    loadModule('assets/js/vue-components/vue-nested-menu-test.vue', options)),
+    VueConditionnel1
   
   },
-}).mount('#gaps');
+});
+
+// 1. Define route components.
+// These can be imported from other files
+const PC1 = { template: '<div>Konditionalsätze vom Typ 1</div>' };
+const PC2 = { template: '<div>Konditionalsätze vom Typ 2</div>' };
+const EMPH1 = { template: '<div>Emphasis 1</div>' };
+const EMPH2 = { template: '<div>Emphasis 2</div>'};
+
+// 2. Define some routes
+// Each route should map to a component.
+// We'll talk about nested routes later.
+const routes = [
+  { path: '/phraseconditionnel1', component: VueConditionnel1 },
+  { path: '/phraseconditionnel2', component: PC2 },
+  { path: '/emphasis1', component : EMPH1 },
+  { path: '/emphasis2', component : EMPH2 }
+];
+
+// 3. Create the router instance and pass the `routes` option
+// You can pass in additional options here, but let's
+// keep it simple for now.
+const router = VueRouter.createRouter({
+  // 4. Provide the history implementation to use. We are using the hash history for simplicity here.
+  history: VueRouter.createWebHashHistory(),
+  routes, // short for `routes: routes`
+})
+
+app.use(router);
+app.mount("#gaps");
+
