@@ -57,6 +57,13 @@ export default {
   },
   methods: {
      menuClicked(name){
+        //If aktuelles Menu has no children, it must be removed!
+        if( this.selectedMenus.length > 0 ){
+            let currentMenu = this.currentMenuItems.findIndex( e => e.name === this.selectedMenus[this.selectedMenus.length - 1]);
+            if(currentMenu != -1 ){
+                this.selectedMenus.pop();
+            }
+        }
         let cmi = this.currentMenuItems.find( e => e.name === name );
         this.selectedMenus.push(name);
         this.$router.push(cmi.path);
