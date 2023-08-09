@@ -1,12 +1,18 @@
 <template>
-<h1>Remplis les trous!</h1>
+<!-- <input class="frenchinput" type="text"><div>A lot of Sonderzeichen</div></input> -->
 <div>
+<p>
 <span v-for="gap in gaps" >
   {{ gap.text }} <input v-if="gap.gap!=''" :class="{ notcorrect: validated && gap.guess != gap.gap}" :class="{ correct: validated && gap.guess === gap.gap }" type="text" v-model="gap.guess">
 </span>
+</p>
+
+<p>
+<button @click="buttonValidateClicked">Valider ma solution</button>
+</p>
 
 </div>
-<button @click="buttonValidateClicked">Valider ma solution</button>
+
     
 </template>
 
@@ -17,11 +23,11 @@ export default {
   components: {
   
   },
-  props: ['gapfile'],
+  props: ['gapfile','gaptext'],
 
   mounted(){
      console.log("The setup function is executed!");
-     
+     if( this.gapfile ){
      var xhttp = new XMLHttpRequest();
      xhttp.onreadystatechange = () => {
      if (xhttp.readyState == 4 && xhttp.status == 200) {
@@ -32,26 +38,16 @@ export default {
 
         console.log("I can read the file!");
       console.log(data);
-      this.gaps = [];
-      let i = 0;
-      while (true){
-        let gap = {};
-        let j = data.indexOf("{",i);
-        if(j == -1){
-            break;
-        }
-        gap.text = data.substring(i,j);
-        i = data.indexOf("}",j);
-        gap.gap = data.substring(j+1,i);
-        i++;
-        gap.guess = "";
-        this.gaps.push(gap);
-      }
-      console.log(this.gaps);
+      this.parseGapText(data);
     }
 };
 xhttp.open("GET", this.gapfile, true);
 xhttp.send();
+
+     }
+     else if(this.gaptext){
+      this.parseGapText(this.gaptext);
+     }
 
   },
   setup(){
@@ -69,12 +65,36 @@ xhttp.send();
      buttonValidateClicked(){
         this.validated = true;
         console.log("The button validated was clicked!");
+     },
+     parseGapText(data){
+      this.gaps = [];
+      let i = 0;
+      while (true){
+        let gap = {};
+        let j = data.indexOf("{",i);
+        if(j == -1){
+            break;
+        }
+        gap.text = data.substring(i,j);
+        i = data.indexOf("}",j);
+        gap.gap = data.substring(j+1,i);
+        i++;
+        gap.guess = "";
+        this.gaps.push(gap);
+      }
+      console.log(this.gaps);
      }
   }
 }
 </script>
 
 <style scoped>
+
+div {
+  
+  background-color: white;
+  margin-bottom: 10px;
+}
 
 .correct {
     color: green;
@@ -84,6 +104,22 @@ xhttp.send();
 .notcorrect {
     color: red;
     border: 1px solid red
+}
+
+.frenchinput {
+  position: relative;
+}
+
+.frenchinput:hover div {
+  top: 200%;
+  display: inline;
+}
+
+.frenchinput div {
+   position: absolute;
+   display:none;
+   background-color: yellow;
+   color: black;
 }
 
 </style>

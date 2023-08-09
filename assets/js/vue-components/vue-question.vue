@@ -1,5 +1,5 @@
 <template>
-<div class="d-flex flex-row">
+<div id="topcontainer" class="d-flex flex-row">
 <img :src="question.imageUrl" @click="imageClicked"/>
 <div>
 <p>
@@ -96,5 +96,9 @@ export default {
 
 img {
   height: 200px;
+}
+
+#topcontainer {
+  margin-bottom: 15px;
 }
 </style>

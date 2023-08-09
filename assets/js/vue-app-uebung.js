@@ -29,6 +29,12 @@ const options = {
 const VueConditionnel1 = Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/french/conditionnel/vue-conditionnel1.vue', options));
 
+const VueAlimentation1 = Vue.defineAsyncComponent(() =>
+loadModule('assets/js/vue-components/french/alimentation/vue-alimentation1.vue', options));
+
+const VueAlimentation2 =  Vue.defineAsyncComponent(() =>
+loadModule('assets/js/vue-components/french/alimentation/vue-alimentation2.vue', options));
+
 const app = createApp({
   components: {
     VueGaps : Vue.defineAsyncComponent(() =>
@@ -37,7 +43,9 @@ const app = createApp({
     loadModule('assets/js/vue-components/vue-nested-menu.vue', options)),
     VueNestedMenuTest : Vue.defineAsyncComponent(() =>
     loadModule('assets/js/vue-components/vue-nested-menu-test.vue', options)),
-    VueConditionnel1
+    VueConditionnel1,
+    VueAlimentation1,
+    VueAlimentation2
   
   },
 });
@@ -56,7 +64,9 @@ const routes = [
   { path: '/phraseconditionnel1', component: VueConditionnel1 },
   { path: '/phraseconditionnel2', component: PC2 },
   { path: '/emphasis1', component : EMPH1 },
-  { path: '/emphasis2', component : EMPH2 }
+  { path: '/emphasis2', component : EMPH2 },
+  { path: '/alimentation1', component : VueAlimentation1 },
+  { path: '/alimentation2', component : VueAlimentation2 }
 ];
 
 // 3. Create the router instance and pass the `routes` option
