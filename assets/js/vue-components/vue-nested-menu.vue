@@ -43,7 +43,11 @@ export default {
       items: [
           { name: 'Französisch', path: '/french', children: [
             { name: 'Konditionalsätze 1', path: '/phraseconditionnel1' },
-            { name: 'Konditionalsätze 2', path: '/phraseconditionnel2' }
+            { name: 'Konditionalsätze 2', path: '/phraseconditionnel2' },
+            { name: 'Alimentation', children: [
+              { name: 'Alimentation1', path: '/alimentation1' },
+              { name: 'Alimentation2', path: '/alimentation2' }
+            ] }
           ]},
           { name: 'Englisch', path: '/english', children: [
             { name: 'Emphasis', path: '/emphasis', children: [
