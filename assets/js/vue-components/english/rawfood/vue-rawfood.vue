@@ -41,7 +41,7 @@ organisms and the subsequent administration of numerous remedies had a considera
 too, in bringing the tragedy to a head. My children died of the gradual emaciation and wasting
 away of all their organs caused by unnatural feeding and poisonous medicines.
 
-<VueExercise instruction="transform these sentences into passive">
+<VueExercise instruction="Transform these sentences into passive!">
 Example:
 <p>Unnatural nutrition caused the deaths of my children</p>
 <p>The deaths of my children was caused by unnatural nutrition.</p>
