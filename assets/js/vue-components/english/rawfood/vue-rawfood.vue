@@ -41,13 +41,17 @@ organisms and the subsequent administration of numerous remedies had a considera
 too, in bringing the tragedy to a head. My children died of the gradual emaciation and wasting
 away of all their organs caused by unnatural feeding and poisonous medicines.
 
-<h2>Exercise: Transform these sentences into passive</h2>
+<VueExercise instruction="transform these sentences into passive">
 Example:
 <p>Unnatural nutrition caused the deaths of my children</p>
 <p>The deaths of my children was caused by unnatural nutrition.</p>
 
-<p>Poisonous medicines killed my children.</p>
-<p>My children were killed by poisonous medicines.</p>
+<VueWholeSentence :sentences="[
+        { task: 'Poisonous medicines killed my children.', solution: 'My children were killed by poisonous medicines.', guess: '' },
+        { task: 'Unnatural feeding killed their organs.', solution: 'Their organs were killed by unnatural feeding.', guess: '' }
+       ]"/>
+</VueExercise>
+</VueExercise>
 
 I have been able to penetrate into the secrets of medical science and to observe its good and
 bad aspects all the more clearly, because I have not been inspired by the prospect of becoming a
@@ -55,13 +59,18 @@ doctor or of making any financial gains. My incentive has been in the first plac
 best for the recovery of the health of my beloved children, and later the ardent desire to
 perpetuate their memory by being useful to humanity.
 
-<h2>Exercise: Translate! </h2>
+<VueExercise instruction="Translate!">
 Example:
 <p>Ich spare Geld und Zeit, indem ich nicht zum Doktor gehe.</p>
 <p>I save money and time by not going to the doctor.</p>
 
-<p>Ich bin gut zu meinen Zähnen, indem ich kein Obst esse</p>
-<p>I am kind to my teeth by not eating fruits.</p>
+<VueWholeSentence :sentences="[
+        { task: 'Ich bin freundlich zu meinen Zähnen, indem ich kein Obst esse.', solution: 'I am kind to my teeth by not eating fruits.', guess: '' },
+        { task: 'Ich bleibe gesund, indem ich viel Wasser drinke.', solution: 'I stay healthy by drinking a lot of water.', guess: '' }
+       ]"/>
+</VueExercise>
+
+</VueExercise>
 
 
 </div>
