@@ -19,18 +19,17 @@ nature. The consumption of cooked food is the most terrible barbarism in the his
 mankind, a barbarism that no one seems to be aware of and to which everybody falls an
 unconscious victim. No matter how strange the idea may seem to some, it is the absolute truth
 with which we cannot but acquiesce.
-<h2>Exercise: Make one sentence out of the two</h2>
-Example: 
+<VueExercise instruction="Make one sentence out of the two!">
+Example:
 <p>Cooking food is the greatest barbarism. No one seems to be aware of this.</p>
 <p>Cooking food is the greatest barbarism that no one seems to be aware of.</p>
 
-<!-- to be good at something, to be bad at something, to care for something -->
-<VueGaps gaptext="
-<p>Going to the doctor is a risk. No one seems to be afraid of it.</p>
-<p>{Going to the doctor is a risk that no one seems to be aware of.}</p>
-<p>Ones health is a gift. No one seems to care for it. </p>
-<p>{Ones health is a gift that no one seems to care for}</p>
-{}" />
+<VueWholeSentence :sentences="[
+        { task: 'Going to the doctor is a risk. No one seems to be afraid of it.', solution: 'Going to the doctor is a risk that no one seems to be afraid of.', guess: '' },
+        { task: 'Ones health is a gift. No one seems to care for it.', solution: 'Ones health is a gift that no one seems to care for.', guess: '' }
+       ]"/>
+</VueExercise>
+
 
 This truth became evident to me when, after 18 years of careful study and investigation, I
 became convinced that the deaths of my 10-year-old son and 14-year-old daughter were caused

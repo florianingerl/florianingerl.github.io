@@ -8,24 +8,24 @@ Cette conception est révolutionnaire parce qu'elle est aux antipodes des modes 
 pensée habituels.
 Contrairement à la médecine officielle qui traite les symptômes, l’Hygiénisme part
 du principe de supprimer la cause pour faire disparaitre l'effet.
-<VueQuestion :question="question1" :hasNextButton="false" />
+<VueExercise><VueQuestion :question="question1" :hasNextButton="false" /></VueExercise>
 L’hygiénisme est donc un enseignement tiré directement de l’observation des Lois
 de la vie. En un mot, c'est un véritable art de vivre.
 L'Hygiénisme enseigne les principes de base pour tous, mais chacun doit doser
 chaque facteur de santé selon son propre pouvoir d'assimilation et devenir ainsi
 l'artisan de sa santé.
-<h2>Exercice: Remplis les trous avec tout,toute,tous,toutes ou chaque</h2>
+<VueExercise instruction="Remplis les trous avec tout,toute,tous,toutes ou chaque!">
 <VueGaps gaptext="{Tout} ce que je viens de lire me semble logique. {Chaque} phrase fait du sens.
 Dans {toute} ma vie, je n'ai jamais entendu parler de {tout} cela. {Toute} ma santé depend aussi
-de mon alimentation.{}" />
+de mon alimentation.{}" /> </VueExercise>
 
 L’école hygiéniste est simple. Elle redonne au corps son plein potentiel de
 guérison. On parlera d’homéostasie*. On ne contre pas, on accompagne. On
 permet aux mécanismes de régénération de faire leur travail en agissant sur
 l’équilibre du terrain.
-<h2>Exercice:Remplis les trous avec le gérondif des verbes répondre et lire</h2>
+<VueExercise instruction="Remplis les trous avec le gérondif des verbes répondre et lire!">
 <VueGaps gaptext="En {lisant} ce livre, je peux passer mon temps d'une manière utile. En {répondant} aux questions,
-j'arrive à ne pas tomber en sommeil.{}" /> 
+j'arrive à ne pas tomber en sommeil.{}" /> </VueExercise>
 C’est pour cela qu’un minimum de connaissances en physiologie vous sera
 nécessaire.
 *La loi de l’homéostasie dit que : « Tout système laissé à lui-même revient
@@ -37,12 +37,14 @@ régulateurs »
 <script>
 import VueGaps from "./../../vue-gaps.vue";
 import VueQuestion from "./../../vue-question.vue";
+import VueExercise from "./../../vue-exercise.vue";
 
 export default {
   
   components: {
      VueGaps,
-     VueQuestion
+     VueQuestion,
+     VueExercise
   },
 
   mounted(){
