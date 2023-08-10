@@ -17,7 +17,7 @@ export default {
   components: {
     
   },
-  props: [],
+  props: ['sentences'],
 
   mounted(){
      console.log("The setup function is executed!");
@@ -29,10 +29,6 @@ export default {
   
   data() {
     return {
-       sentences: [
-        { task: "Edwin likes fishing. He is good at it.", solution: "Edwin is good at fishing.", guess: "" },
-        { task: "Edwin likes climbing. He is good at it.", solution: "Edwin is good at climbing.", guess: "" }
-       ],
        validated: false
     };
   },
