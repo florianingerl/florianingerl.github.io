@@ -1,21 +1,21 @@
 <template>
 <div class="nice">
-<h2>Exercise: {{ instruction }}</h2>
-<VueGaps v-if="type=='gaps'" :gaptext="data" />
+<h2>Exercise</h2>
+<h4>{{instruction}}</h4>
+<slot> </slot>
 </div>
 
     
 </template>
 
 <script>
-import VueGaps from "./vue-gaps.vue";
 
 export default {
   name: "VueExercise",
   components: {
-    VueGaps
+    
   },
-  props: ['data','type', 'instruction'],
+  props: ['instruction'],
 
   mounted(){
      console.log("The setup function is executed!");
