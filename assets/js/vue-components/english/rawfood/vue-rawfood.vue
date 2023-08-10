@@ -3,16 +3,18 @@
 <h1>PART ONE</h1>
 <h2>How I Conceived the Idea of Raw-Eating</h2>
 
+<!--
 <VueExercise instruction="Make one sentence out of the two">
 <VueWholeSentence :sentences="[
         { task: 'Edwin likes fishing. He is good at it.', solution: 'Edwin is good at fishing.', guess: '' },
         { task: 'Edwin likes climbing. He is good at it.', solution: 'Edwin is good at climbing.', guess: '' }
        ]"/>
-</VueExercise>
+</VueExercise> -->
 
+<!--
 <VueExercise instruction="Fill in the gaps">
 <VueGaps gaptext="A nice {Lueckentext}" />
-</VueExercise>
+</VueExercise> -->
 Raw vegetable food should be the only nourishment taken by man. The habit of eating
 cooked food should be abandoned in this world once for all. This is the unerring demand of
 nature. The consumption of cooked food is the most terrible barbarism in the history of
