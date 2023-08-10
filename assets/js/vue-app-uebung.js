@@ -35,6 +35,12 @@ loadModule('assets/js/vue-components/french/alimentation/vue-alimentation1.vue',
 const VueAlimentation2 =  Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/french/alimentation/vue-alimentation2.vue', options));
 
+const VueRawFood =  Vue.defineAsyncComponent(() =>
+loadModule('assets/js/vue-components/english/rawfood/vue-rawfood.vue', options));
+
+const VueExercise =  Vue.defineAsyncComponent(() =>
+loadModule('assets/js/vue-components/vue-exercise.vue', options));
+
 const app = createApp({
   components: {
     VueGaps : Vue.defineAsyncComponent(() =>
@@ -45,7 +51,9 @@ const app = createApp({
     loadModule('assets/js/vue-components/vue-nested-menu-test.vue', options)),
     VueConditionnel1,
     VueAlimentation1,
-    VueAlimentation2
+    VueAlimentation2,
+    VueRawFood,
+    VueExercise
   
   },
 });
@@ -66,7 +74,8 @@ const routes = [
   { path: '/emphasis1', component : EMPH1 },
   { path: '/emphasis2', component : EMPH2 },
   { path: '/alimentation1', component : VueAlimentation1 },
-  { path: '/alimentation2', component : VueAlimentation2 }
+  { path: '/alimentation2', component : VueAlimentation2 },
+  { path: '/rawfood/:page', component: VueRawFood }
 ];
 
 // 3. Create the router instance and pass the `routes` option

@@ -90,12 +90,6 @@ xhttp.send();
 
 <style scoped>
 
-div {
-  
-  background-color: white;
-  margin-bottom: 10px;
-}
-
 .correct {
     color: green;
     border: 1px solid green
@@ -106,20 +100,5 @@ div {
     border: 1px solid red
 }
 
-.frenchinput {
-  position: relative;
-}
-
-.frenchinput:hover div {
-  top: 200%;
-  display: inline;
-}
-
-.frenchinput div {
-   position: absolute;
-   display:none;
-   background-color: yellow;
-   color: black;
-}
 
 </style>
