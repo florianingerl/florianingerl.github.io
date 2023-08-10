@@ -54,6 +54,10 @@ export default {
               { name: 'Emphasis 1', path: '/emphasis1' },
               { name: 'Emphasis 2', path: '/emphasis2' }
             ]},
+           { name: 'RawFood', path: '/rawfood', children: [
+              { name: 'Raw Food 1', path: '/rawfood/1/' },
+              { name: 'Raw Food 2', path: '/rawfood/2/' }
+            ]},
           ]},
           { name: 'Github', path: 'https://github.com' },
         ]
