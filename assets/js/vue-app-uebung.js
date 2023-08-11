@@ -69,6 +69,40 @@ const EMPH2 = { template: '<div>Emphasis 2</div>'};
 // Each route should map to a component.
 // We'll talk about nested routes later.
 const routes = [
+  {
+    name: 'English',
+    path: '/english',
+    children : [
+      {name: 'Raw food',
+       path: 'rawfood/:page',
+       component: VueRawFood }
+    ]
+  },
+  {
+    name: 'Francais',
+    path: '/french/:page',
+    children: [
+      {
+        name: 'Alimentation vivante',
+        path: 'alimentation',
+        component: VueAlimentation1
+      },
+    ],
+  },
+  {
+    name: 'Informatik',
+    path: '/informatik',
+    children: [
+      {
+        name: 'Regular expressions',
+        path: 'regex',
+      }
+    ],
+  }
+];
+
+/*
+const  routes = [
   { path: '/phraseconditionnel1', component: VueConditionnel1 },
   { path: '/phraseconditionnel2', component: PC2 },
   { path: '/emphasis1', component : EMPH1 },
@@ -76,7 +110,7 @@ const routes = [
   { path: '/alimentation1', component : VueAlimentation1 },
   { path: '/alimentation2', component : VueAlimentation2 },
   { path: '/rawfood/:page', component: VueRawFood }
-];
+]; */
 
 // 3. Create the router instance and pass the `routes` option
 // You can pass in additional options here, but let's
