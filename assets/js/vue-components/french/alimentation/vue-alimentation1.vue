@@ -1,6 +1,6 @@
 <template>
 <div v-if="$route.params.page == 1">
-<h1>Cours d'alimentation vivante 1</h1>
+
     Cette académie est le fruit d’expériences et de recherches personnelles. Son but
     est de vous transmettre des connaissances et mon vécu afin de vous aider à
     sillonner vers l’équilibre.
@@ -44,7 +44,6 @@ Mettons-nous toutes et tous au service de la vie.
 </div>
 
 <div v-if="$route.params.page == 2">
-<h1>Cours d'alimentation vivante 2</h1>
 <h3>Qu'est-ce que l'Hygiénisme ?</h3>
 L'hygiénisme est l'art de vivre en bonne santé par le respect des lois de
 la nature et par la bonne connaissance des aliments spécifiques à
@@ -85,6 +84,8 @@ régulateurs »
 
 </div>
 
+<button @click="nextPageClicked">Page suivante</button>
+
 </template>
 
 <script>
@@ -106,6 +107,22 @@ export default {
   },
   setup(){
    console.log("The setup function of VueConditionnel1  is executed!");
+  },
+  data(){
+   return {
+      numPages : 2
+   };
+  },
+  methods: {
+    nextPageClicked(){
+      
+      let page = parseInt(this.$route.params.page);
+      if(page == this.numPages){
+         alert("Il n'y a pas de page suivante");
+         return;
+      }
+      this.$router.push("/french/alimentation/" + (page+1) );
+    }
   }
 }
 </script>
