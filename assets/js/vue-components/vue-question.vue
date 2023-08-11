@@ -6,7 +6,7 @@
 {{ question.question }}
 </p>
 <div>
-<div v-for="option in question.options" :key="option" :class="{correct : validated && option.checked && option.correct}" :class="{notcorrect : validated && option.checked && !option.correct}">
+<div v-for="option in question.options" :key="option" :class="{correct : validated && option.checked && option.correct, notcorrect : validated && option.checked && !option.correct}">
 <input type="checkbox" v-model="option.checked"/>
 <label>{{option.option}}</label>
 </div>

@@ -2,7 +2,7 @@
 
 <div v-for="(sentence,index) in sentences2">
 <p>{{index+1}}.{{sentence.task}}</p>
-<p><input style="display:block;width:100%" v-model="sentence.guess" type="text" :class="{ correct: validated && sentence.guess == sentence.solution }"  :class="{ notcorrect: validated && sentence.guess != sentence.solution }"/></p>
+<p><input style="display:block;width:100%" v-model="sentence.guess" type="text" :class="{ correct: validated && sentence.guess == sentence.solution, notcorrect: validated && sentence.guess != sentence.solution }"/></p>
 </div>
 
 <button @click="validateSolutionClicked">Validate my answer</button>
