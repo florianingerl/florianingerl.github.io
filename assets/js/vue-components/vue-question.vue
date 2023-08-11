@@ -1,6 +1,6 @@
 <template>
 <div id="topcontainer" class="d-flex flex-row">
-<img :src="question.imageUrl" @click="imageClicked"/>
+<img v-if="question.imageUrl != undefined" :src="question.imageUrl" @click="imageClicked"/>
 <div>
 <p>
 {{ question.question }}
