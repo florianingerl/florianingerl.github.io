@@ -3,7 +3,7 @@
 <div>
 <p>
 <span v-for="gap in gaps" >
-  {{ gap.text }} <input v-if="gap.gap!=''" :class="{ notcorrect: validated && gap.guess != gap.gap}" :class="{ correct: validated && gap.guess === gap.gap }" type="text" v-model="gap.guess">
+  {{ gap.text }} <input v-if="gap.gap!=''" :class="{ notcorrect: validated && gap.guess != gap.gap, correct: validated && gap.guess === gap.gap }" type="text" v-model="gap.guess">
 </span>
 </p>
 
