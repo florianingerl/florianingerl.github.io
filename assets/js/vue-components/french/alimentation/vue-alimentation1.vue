@@ -121,7 +121,8 @@ export default {
          alert("Il n'y a pas de page suivante");
          return;
       }
-      this.$router.push("/french/alimentation/" + (page+1) );
+      this.$router.push({ ...this.$route, params: { page: page +1 } });
+      //this.$router.push("/french/alimentation/" + (page+1) );
     }
   }
 }
