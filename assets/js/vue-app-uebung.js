@@ -80,11 +80,11 @@ const routes = [
   },
   {
     name: 'Francais',
-    path: '/french/:page',
+    path: '/french',
     children: [
       {
         name: 'Alimentation vivante',
-        path: 'alimentation',
+        path: 'alimentation/:page',
         component: VueAlimentation1
       },
     ],
