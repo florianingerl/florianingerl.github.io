@@ -41,6 +41,12 @@ loadModule('assets/js/vue-components/english/rawfood/vue-rawfood.vue', options))
 const VueExercise =  Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/vue-exercise.vue', options));
 
+const VueRegexExercises =  Vue.defineAsyncComponent(() =>
+loadModule('assets/js/vue-components/informatik/vue-regex-exercises.vue', options));
+
+const VueRegexExercise =  Vue.defineAsyncComponent(() =>
+loadModule('assets/js/vue-components/informatik/vue-regex-exercise.vue', options));
+
 const app = createApp({
   components: {
     VueGaps : Vue.defineAsyncComponent(() =>
@@ -53,17 +59,12 @@ const app = createApp({
     VueAlimentation1,
     VueAlimentation2,
     VueRawFood,
-    VueExercise
+    VueExercise,
+    VueRegexExercise
   
   },
 });
 
-// 1. Define route components.
-// These can be imported from other files
-const PC1 = { template: '<div>Konditionalsätze vom Typ 1</div>' };
-const PC2 = { template: '<div>Konditionalsätze vom Typ 2</div>' };
-const EMPH1 = { template: '<div>Emphasis 1</div>' };
-const EMPH2 = { template: '<div>Emphasis 2</div>'};
 
 // 2. Define some routes
 // Each route should map to a component.
@@ -96,6 +97,7 @@ const routes = [
       {
         name: 'Regular expressions',
         path: 'regex',
+        component : VueRegexExercises
       }
     ],
   }
