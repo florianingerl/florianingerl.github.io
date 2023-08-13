@@ -151,6 +151,30 @@ Continuing to eat cooked food would be {the most stupid} (stupid) thing, that a 
 
 </Exercise>
 
+In the material world the smallest deviation from the details developed by an engineer for
+the smooth working of the mechanism of a factory, or a fault in the raw materials specified to
+ensure its normal productivity, results in a corresponding breakdown in the operation of the
+plant. In the same way, the slightest deterioration or alteration in the raw materials prescribed by nature to ensure the
+smooth operation of the complicated processes of the human organism causes disorders in the
+normal biological functions of our organs and these disorders appear in the form of diseases.
+
+<VueExercise><VueQuestion :question=" {
+		question: 'What does the author want to tell us?',
+		type: 'multiple choice',
+		options: [{option:'We don't have to pay attention to our nutrituion because there are doctors and dentists.', correct: false },
+     {option:'That human bodies function in a sense like machines and need their proper fuel to function correctly', correct: true }, 
+     ]
+	    }" :hasNextButton="false" /></VueExercise>
+
+The various methods employed by man in destroying or degenerating the fully-balanced
+raw materials prescribed by nature for the normal operation of his organism do not bear
+thinking. For that purpose, civilized man has invented demoniacal factories, ovens, furnaces and
+kitchens. Every degeneration in the quality of natural foodstuffs is followed by a corresponding
+degeneration in the human organism. Natural nutrition ensures the normal operation, of
+our organism, while unnatural nutrition is followed by an abnormal discharge of its
+functions. The multiplicity of illnesses is the result of the great diversity of degeneration in the
+constituents of natural foodstuffs.            
+
 
 
 </div>
