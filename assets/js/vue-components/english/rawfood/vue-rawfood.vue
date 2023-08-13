@@ -44,7 +44,7 @@ away of all their organs caused by unnatural feeding and poisonous medicines.
 <VueExercise instruction="Transform these sentences into passive!">
 Example:
 <p>Unnatural nutrition caused the deaths of my children</p>
-<p>The deaths of my children was caused by unnatural nutrition.</p>
+<p>The deaths of my children were caused by unnatural nutrition.</p>
 
 <VueWholeSentence :sentences="[
         { task: 'Poisonous medicines killed my children.', solution: 'My children were killed by poisonous medicines.', guess: '' },
@@ -81,7 +81,8 @@ questions with a critical mind and have always laid greater stress on their shor
 		question: 'What is true about the author?',
 		type: 'multiple choice',
 		options: [{option:'He has always trusted blindly, without thinking himself', correct: false },
-     {option:'He has always been critical.', correct: true }, 
+     {option:'He has always been critical.', correct: true },
+     {option:'He thinks that his children could have been saved with only the right dose of medicine', correct: false } 
      ]
 	    }" :hasNextButton="false" /></VueExercise>
 
