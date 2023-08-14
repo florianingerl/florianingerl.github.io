@@ -21,7 +21,7 @@
       <button @click="reset">Reset</button>
     </div>
     <br>
-    <textarea  v-model="editor">
+    <textarea style="height:200px;" v-model="editor">
         
     </textarea>
    
