@@ -161,7 +161,7 @@ normal biological functions of our organs and these disorders appear in the form
 <VueExercise><VueQuestion :question=" {
 		question: 'What does the author want to tell us?',
 		type: 'multiple choice',
-		options: [{option:'We don't have to pay attention to our nutrituion because there are doctors and dentists.', correct: false },
+		options: [{option:'We don\'t have to pay attention to our nutrituion because there are doctors and dentists.', correct: false },
      {option:'That human bodies function in a sense like machines and need their proper fuel to function correctly', correct: true }, 
      ]
 	    }" :hasNextButton="false" /></VueExercise>
@@ -173,7 +173,9 @@ kitchens. Every degeneration in the quality of natural foodstuffs is followed by
 degeneration in the human organism. Natural nutrition ensures the normal operation, of
 our organism, while unnatural nutrition is followed by an abnormal discharge of its
 functions. The multiplicity of illnesses is the result of the great diversity of degeneration in the
-constituents of natural foodstuffs.            
+constituents of natural foodstuffs.        
+
+Add some exercise with gerund!
 
 
 
