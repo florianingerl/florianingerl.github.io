@@ -3,13 +3,20 @@
 <div>
 <p>
 <span v-for="gap in gaps" >
-  {{ gap.text }} <input v-if="gap.gap!=''" :class="{ notcorrect: validated && gap.guess != gap.gap, correct: validated && gap.guess === gap.gap }" type="text" v-model="gap.guess">
+  {{ gap.text }} 
+  <div class="frenchinput"> 
+  <input v-if="gap.gap!=''" @focus="(e) => { gap.target = e.target; gap.hasFocus = true; }" @blur="if(!gap.mouseover)gap.hasFocus=false;" :class="{ notcorrect: validated && gap.guess != gap.gap, correct: validated && gap.guess === gap.gap }" type="text" v-model="gap.guess"> 
+  <div v-if="gap.hasFocus" :style="'left:'+(0)+'px;'" @mouseover="gap.mouseover=true" @mouseout="gap.mouseover=false">
+    <span v-for="symbol in frenchSymbols" @click="gap.guess+=symbol; gap.target.focus();">{{ symbol }}</span>
+  </div>
+  </div>
 </span>
 </p>
 
 <p>
 <button @click="buttonValidateClicked">Valider ma solution</button>
 </p>
+
 
 </div>
 
@@ -23,7 +30,16 @@ export default {
   components: {
   
   },
-  props: ['gapfile','gaptext'],
+  props: ['gapfile','gaptext','french'],
+
+  data() {
+    return {
+       //gaps : [{text: "Florian est le ", gap: "frère", guess:""}, {text: " de sa ", gap: "soeur", guess:""}, {text: " qui s'appelle ", gap: "Sonja", guess:""}],
+       gaps: [],
+       validated: false ,
+       frenchSymbols : ['é','è']
+    };
+  },
 
   mounted(){
      console.log("The setup function is executed!");
@@ -54,14 +70,20 @@ xhttp.send();
    console.log("The setup function is executed!");
   },
   
-  data() {
-    return {
-       //gaps : [{text: "Florian est le ", gap: "frère", guess:""}, {text: " de sa ", gap: "soeur", guess:""}, {text: " qui s'appelle ", gap: "Sonja", guess:""}],
-       gaps: [],
-       validated: false 
-    };
-  },
+  
   methods: {
+    textTyped(e){
+      console.log("Text was inserted!");
+      this.testGap.target = e.target;
+      console.log(e.target.selectionStart);
+    },
+     frenchSymbolClicked(e){
+        console.log("Event handler was clicked!");
+        this.testGap.guess = "Hallo Welt!";
+        e.stopPropagation();
+        return false;
+     },
+
      buttonValidateClicked(){
         this.validated = true;
         console.log("The button validated was clicked!");
@@ -98,6 +120,26 @@ xhttp.send();
 .notcorrect {
     color: red;
     border: 1px solid red
+}
+
+
+.frenchinput {
+  position: relative;
+  display: inline;
+}
+
+.frenchinput div span {
+  padding: 3px;
+  border: solid 1px black;
+}
+
+.frenchinput div {
+  position: absolute;
+  top: 103%;
+  background-color: orange;
+  border: solid 2px black;
+  z-index: 1;
+
 }
 
 
