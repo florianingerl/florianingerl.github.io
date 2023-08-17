@@ -6,7 +6,7 @@
   </p>
 
   <a v-for="item in currentMenuItems" :class="{ active: selectedMenus.length > 0 && item.name === selectedMenus[selectedMenus.length - 1].name }" @click="menuClicked(item)">{{item.name}}</a>
-
+  <button @click="logRoute">Log Route</button>
 </div>
 
 <!-- Page content -->
@@ -23,25 +23,27 @@ export default {
   components: {
   
   },
-
-
-  mounted(){
-    console.log("Mounted function of vue-nested-menu is executed!");
-    console.log(this.$router.options.routes);
-    this.items = this.$router.options.routes;
-
-  },
-  setup(){
-   console.log("The setup function is executed!");
-  },
-  
   data() {
     return {
       selectedMenus : [],
       items: []
     };
   },
+
+  mounted(){
+    console.log("Mounted function of vue-nested-menu is executed!");
+    console.log(this.$router.options.routes);
+    this.items = this.$router.options.routes;
+    console.log(this.$route);
+  },
+  setup(){
+   console.log("The setup function is executed!");
+  },
+  
   methods: {
+     logRoute(){
+      console.log(this.$route);
+     },
      menuClicked(menu){
         console.log(menu);
         //If aktuelles Menu has no children, it must be removed!
@@ -53,20 +55,32 @@ export default {
         }
         let cmi = this.currentMenuItems.find( e => e.name === menu.name );
         this.selectedMenus.push(menu);
+        this.routeToSelectedMenu();
+     },
+     routeToSelectedMenu(){
         let path="";
         this.selectedMenus.forEach( item => {
           path = path + "/" + item.path;
         });
-        path = path.replace("//","/");
+        
         path = path.replace(":page","1");
+        path = path.replace("//","/");
+
+        if(path==""){
+          path="/";
+        }
+        console.log(path);
         this.$router.push(path);
      },
      menuUpClicked(){
         this.selectedMenus.pop();
+        this.routeToSelectedMenu();
+
      },
      goBackToMenuClicked(menu){
         let i = this.selectedMenus.indexOf(menu);
         this.selectedMenus = this.selectedMenus.slice(0,i+1);
+        this.routeToSelectedMenu();
      }
   },
   computed: {
