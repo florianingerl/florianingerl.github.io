@@ -69,18 +69,7 @@ l'artisan de sa santé.
 Dans {toute} ma vie, je n'ai jamais entendu parler de {tout} cela. {Toute} ma santé depend aussi
 de mon alimentation.{}" /> </VueExercise>
 
-L’école hygiéniste est simple. Elle redonne au corps son plein potentiel de
-guérison. On parlera d’homéostasie*. On ne contre pas, on accompagne. On
-permet aux mécanismes de régénération de faire leur travail en agissant sur
-l’équilibre du terrain.
-<VueExercise instruction="Remplis les trous avec le gérondif des verbes répondre et lire!">
-<VueGaps gaptext="En {lisant} ce livre, je peux passer mon temps d'une manière utile. En {répondant} aux questions,
-j'arrive à ne pas tomber en sommeil.{}" /> </VueExercise>
-C’est pour cela qu’un minimum de connaissances en physiologie vous sera
-nécessaire.
-*La loi de l’homéostasie dit que : « Tout système laissé à lui-même revient
-spontanément à l’état d’équilibre en passant par des processus
-régulateurs »
+
 
 </div>
 
