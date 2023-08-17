@@ -85,17 +85,16 @@ export default {
   },
   computed: {
      currentMenuItems(){
-        let cMI = this.items;
-        for(let i=0; i < this.selectedMenus.length; ++i){
-            let c = cMI.find( e => e.name === this.selectedMenus[i].name );
-            if( c.children ){
-                cMI = c.children;
-            }
-            else{
-                return cMI;
-            }
+        let n = this.selectedMenus.length;
+        if(n == 0){
+          return this.items;
         }
-        return cMI;
+        if( this.selectedMenus[n - 1].children ){
+          return this.selectedMenus[n - 1].children;
+        }
+        else {
+          return this.selectedMenus[n - 2].children;
+        }
      }
   }
 }
