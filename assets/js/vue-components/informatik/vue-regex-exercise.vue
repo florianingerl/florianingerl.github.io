@@ -1,5 +1,6 @@
 <template>
 <div v-if="exercise != undefined" class="container">
+
 <h2>Exercise {{ exercise.id }}</h2>
     <p>
         {{ exercise.instruction }}
