@@ -6,9 +6,11 @@
   {{ gap.text }} 
   <div class="frenchinput"> 
   <input v-if="gap.gap!=''" @focus="(e) => { gap.target = e.target; gap.hasFocus = true; }" @blur="if(!gap.mouseover)gap.hasFocus=false;" :class="{ notcorrect: validated && gap.guess != gap.gap, correct: validated && gap.guess === gap.gap }" type="text" v-model="gap.guess"> 
-  <div v-if="gap.hasFocus" :style="'left:'+(0)+'px;'" @mouseover="gap.mouseover=true" @mouseout="gap.mouseover=false">
-    <span v-for="symbol in frenchSymbols" @click="gap.guess+=symbol; gap.target.focus();">{{ symbol }}</span>
+  <div v-if="gap.hasFocus" :style="'left:'+gap.target.selectionStart+'ch;'" @mouseover="gap.mouseover=true" @mouseout="gap.mouseover=false">
+    <span v-for="symbol in frenchSymbols" @click="insertSymbol(gap,symbol)" v-html="symbol"></span>
   </div>
+
+  
   </div>
 </span>
 </p>
@@ -37,7 +39,7 @@ export default {
        //gaps : [{text: "Florian est le ", gap: "frère", guess:""}, {text: " de sa ", gap: "soeur", guess:""}, {text: " qui s'appelle ", gap: "Sonja", guess:""}],
        gaps: [],
        validated: false ,
-       frenchSymbols : ['é','è']
+       frenchSymbols : ['é','è','\u00E7']
     };
   },
 
@@ -72,6 +74,15 @@ xhttp.send();
   
   
   methods: {
+    insertSymbol(gap, symbol){
+    let p = gap.target.selectionStart;
+    console.log(p);
+    gap.guess = gap.guess.substring(0,p) + symbol + gap.guess.substring(p);
+    gap.target.focus();
+    console.log("Setting selection!");
+    gap.target.setSelectionRange(p+1,p+1);
+  },
+
     textTyped(e){
       console.log("Text was inserted!");
       this.testGap.target = e.target;
