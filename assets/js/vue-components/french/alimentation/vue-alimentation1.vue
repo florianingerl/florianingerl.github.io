@@ -1,5 +1,6 @@
 <template>
 <div v-if="$route.params.page == 1">
+<h1>Formation à l'alimentation vivante - <span style="font-style:oblique">écrit par Crusine Académie</span> </h1>
 
     Cette académie est le fruit d’expériences et de recherches personnelles. Son but
     est de vous transmettre des connaissances et mon vécu afin de vous aider à
@@ -69,7 +70,26 @@ l'artisan de sa santé.
 Dans {toute} ma vie, je n'ai jamais entendu parler de {tout} cela. {Toute} ma santé depend aussi
 de mon alimentation.{}" /> </VueExercise>
 
+L’école hygiéniste est simple. Elle redonne au corps son plein potentiel de
+guérison. On parlera d’homéostasie*. On ne contre pas, on accompagne. On
+permet aux mécanismes de régénération de faire leur travail en agissant sur
+l’équilibre du terrain.
 
+<VueExercise instruction="Remplis les trous par à la, au, aux ou de la, du,des" >
+ <VueGaps gaptext="Je suis {à la} recherche d'une alimentation qui est bon pour ma santé.
+   Je ne peux plus faire attention {aux} conseils que mes parents m'ont donnés. {Du} sucre? Je n'en ai plus besoin!{}" />
+</VueExercise>
+
+C’est pour cela qu’un minimum de connaissances en physiologie vous sera
+nécessaire.
+La loi de l’homéostasie dit que : "Tout système laissé à lui-même revient
+spontanément à l’état d’équilibre en passant par des processus
+régulateurs"
+
+<VueExercise instruction="Remplis les trous par moi-même, soi-même, toi-même , etc.." >
+ <VueGaps gaptext="Je peux prendre soin de {moi-même}. Mon père peut prendre soin de {lui-même}.
+   Autant que ma mère peut prendre soin {d'elle-même}. Pour faire une conclusion, chaque-un peut prendre soin de {lui-même}." />
+</VueExercise>
 
 </div>
 
