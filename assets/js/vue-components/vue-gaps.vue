@@ -100,6 +100,9 @@ xhttp.send();
         console.log("The button validated was clicked!");
      },
      parseGapText(data){
+      if(!data.endsWith("}")){
+        data += "{}";
+      }
       this.gaps = [];
       let i = 0;
       while (true){
