@@ -6,7 +6,6 @@
   </p>
 
   <a v-for="item in currentMenuItems" :class="{ active: selectedMenus.length > 0 && item.name === selectedMenus[selectedMenus.length - 1].name }" @click="menuClicked(item)">{{item.name}}</a>
-  <button @click="logRoute">Log Route</button>
 </div>
 
 <!-- Page content -->
