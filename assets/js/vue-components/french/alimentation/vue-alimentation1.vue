@@ -93,6 +93,35 @@ régulateurs"
 
 </div>
 
+<div v-if="$route.params.page == 3">
+Les piliers de l’équilibre et de nos besoins fondamentaux sont :
+<ul>
+<li> le sommeil</li>
+<li> l’eau</li>
+<li> la nourriture</li>
+<li> le soleil</li>
+<li> les liens sociaux</li>
+<li> l’exercice physique</li>
+</ul>
+
+Il faudrait cerner son point faible et le travailler.
+En alimentation, il vous faut :
+<ol>
+<li>Des fruits et légumes de qualité (carburant et nutriments)</li>
+<li>Des feuilles vertes (nutriments et fibres)</li>
+<li>Une source grasse protéinée (noix, olive, fruit gras, oeuf, poisson, viande)</li>
+</ol>
+Le tout non dénaturé, c’est-à-dire cru, non assaisonné ou le moins possible et non
+transformé.
+
+<VueExercise instruction="Remplis les trous avec la correcte conjugation du verbe falloir et le correct pronom" >
+ <VueGaps gaptext="Il {me faut} de cerner mon point faible. À propos de mon père, il {lui faut} cerner son point faible.
+   Mais, je ne peux pas m'occuper de lui. Il {me faut} de m'occuper de moi-même." />
+</VueExercise>
+
+
+</div>
+
 <button @click="nextPageClicked">Page suivante</button>
 
 </template>
@@ -119,7 +148,7 @@ export default {
   },
   data(){
    return {
-      numPages : 2
+      numPages : 3
    };
   },
   methods: {
