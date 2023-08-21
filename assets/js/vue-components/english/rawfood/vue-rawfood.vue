@@ -30,7 +30,8 @@ Example:
 
 <VueWholeSentence :sentences="[
         { task: 'Going to the doctor is a risk. No one seems to be afraid of it.', solution: 'Going to the doctor is a risk that no one seems to be afraid of.', guess: '' },
-        { task: 'Ones health is a gift. No one seems to care for it.', solution: 'Ones health is a gift that no one seems to care for.', guess: '' }
+        { task: 'Ones health is a gift. No one seems to care for it.', solution: 'Ones health is a gift that no one seems to care for.', guess: '' },
+         { task: 'I hate the health insurance. I need to pay for it.', solution: 'I hate the health insurance that I need to pay for.', guess: '' }
        ]"/>
 </VueExercise>
 
@@ -177,7 +178,18 @@ our organism, while unnatural nutrition is followed by an abnormal discharge of 
 functions. The multiplicity of illnesses is the result of the great diversity of degeneration in the
 constituents of natural foodstuffs.        
 
-Add some exercise with gerund!
+<VueExercise instruction="Make one sentence out of the two! Use the gerund">
+Example:
+<p>So many people employed various methods to destroy food. The health insurance became more and more expensive.</p>
+<p>With so many people employing various methods to destroy food, the health insurance became more and more expensive.</p>
+
+<VueWholeSentence :sentences="[
+        { task: 'So many people didn\'t think. So this increase of the health insurance could happen.', solution: 'With so many people not thinking, this increase of the health insurance could happen.', guess: '' },
+        { task: 'The body doesn\'t get its proper nutrition. It doesn\'t function any more.', solution: 'With the body not getting its proper nutrition, it doesn\'t function any more.', guess: '' }
+       ]"/>
+</VueExercise>
+
+
 
 
 
