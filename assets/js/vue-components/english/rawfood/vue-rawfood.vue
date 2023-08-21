@@ -189,9 +189,26 @@ Example:
        ]"/>
 </VueExercise>
 
+Provided that all its needs are satisfied by the laws of nature, the human organism, which is
+the most perfect organism in the animal kingdom, can live in excellent health from a
+minimum of 150 years to a maximum of 200-250 years. Cooked foodstuffs force human
+organs to work in several times their normal capacity, tire them out prematurely, cause various
+illnesses and shorten man's life to a fraction of its normal span. In the present age of scientific
+advance, man could get rid of all the diseases by complete abstinence from cooked food and
+he could then devote his energies to the study of the problems of longevity only.
+Simultaneously, with natural nutrition, man must also make certain that the rest of his
+natural requirements are satisfied. These are clean air, early sleeping, early rising, physical
+labor, abstinence from artificial heating, cleanliness, and so forth.
 
+<VueExercise instruction="Make one sentence out of the two!">
+Example:
+<p>Illness is something expensive. Man could get rid of it.</p>
+<p>Illness is something expensive that man could get rid of.</p>
 
-
+<VueWholeSentence :sentences="[
+        { task: 'Cooking is a time-wasting activity. Man should no longer devote his energy to it.', solution: 'Cooking is a time-wasting activity that man should no longer devote energy to.', guess: '' }
+       ]"/>
+</VueExercise>
 
 </div>
 
