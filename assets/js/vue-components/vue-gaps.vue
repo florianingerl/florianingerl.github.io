@@ -17,6 +17,7 @@
 
 <p>
 <button @click="buttonValidateClicked">Valider ma solution</button>
+<button @click="showSolutionClicked">Montre-moi la solution</button>
 </p>
 
 
@@ -98,6 +99,13 @@ xhttp.send();
      buttonValidateClicked(){
         this.validated = true;
         console.log("The button validated was clicked!");
+     },
+     showSolutionClicked(){
+        this.validated = true;
+        this.gaps.forEach( gap => {
+          gap.guess = gap.gap;
+          
+        } );
      },
      parseGapText(data){
       if(!data.endsWith("}")){
