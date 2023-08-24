@@ -47,6 +47,9 @@ loadModule('assets/js/vue-components/informatik/vue-regex-exercises.vue', option
 const VueRegexExercise =  Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/informatik/vue-regex-exercise.vue', options));
 
+const VuePronomEn = Vue.defineAsyncComponent(() =>
+loadModule('assets/js/vue-components/french/grammaire/vue-pronom-en.vue', options));
+
 const app = createApp({
   components: {
     VueGaps : Vue.defineAsyncComponent(() =>
@@ -73,22 +76,45 @@ const routes = [
   {
     name: 'English',
     path: '/english',
-    children : [
-      {name: 'Raw food',
-       path: 'rawfood/:page',
-       component: VueRawFood }
-    ]
+    children: [ {name: 'Books', path: 'books', 
+  children: [
+    {name: 'Raw food',
+     path: 'rawfood/:page',
+     component: VueRawFood },
+    
+  ] }, {
+    name: 'Grammar',
+    path: 'grammar',
+    children: []
+  }]
+    
   },
   {
     name: 'Francais',
     path: '/french',
     children: [
-      {
-        name: 'Alimentation vivante',
-        path: 'alimentation/:page',
-        component: VueAlimentation1
+      {name: 'Livres',
+      path: 'livres',
+      children: [
+        {
+          name: 'Alimentation vivante',
+          path: 'alimentation/:page',
+          component: VueAlimentation1
+        },
+      ],
       },
-    ],
+      {name: 'Grammaire',
+       path: 'grammaire',
+       children: [
+        {
+          name: 'Pronom en',
+          path: 'en',
+          component: VuePronomEn
+        }
+       ]}
+
+    ]
+    
   },
   {
     name: 'Informatik',
