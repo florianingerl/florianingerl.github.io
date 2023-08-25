@@ -1,6 +1,7 @@
 <template>
 <div class="nice">
-<h2>Exercise</h2>
+<h2 v-if="lg==='fr'">Exercice</h2>
+<h2 v-else>Exercise</h2>
 <h4>{{instruction}}</h4>
 <slot> </slot>
 </div>
@@ -15,7 +16,7 @@ export default {
   components: {
     
   },
-  props: ['instruction'],
+  props: ['instruction','lg'],
 
   mounted(){
      console.log("The setup function is executed!");
