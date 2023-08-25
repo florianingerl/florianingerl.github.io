@@ -25,50 +25,25 @@ const options = {
 
 
 
-// 5. Create and mount the root instance.
-const VueConditionnel1 = Vue.defineAsyncComponent(() =>
-loadModule('assets/js/vue-components/french/conditionnel/vue-conditionnel1.vue', options));
+
+const app = createApp({
+  components: {
+    VueNestedMenu : Vue.defineAsyncComponent(() =>
+    loadModule('assets/js/vue-components/vue-nested-menu.vue', options))  
+  }
+});
 
 const VueAlimentation1 = Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/french/alimentation/vue-alimentation1.vue', options));
 
-const VueAlimentation2 =  Vue.defineAsyncComponent(() =>
-loadModule('assets/js/vue-components/french/alimentation/vue-alimentation2.vue', options));
-
 const VueRawFood =  Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/english/rawfood/vue-rawfood.vue', options));
-
-const VueExercise =  Vue.defineAsyncComponent(() =>
-loadModule('assets/js/vue-components/vue-exercise.vue', options));
 
 const VueRegexExercises =  Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/informatik/vue-regex-exercises.vue', options));
 
-const VueRegexExercise =  Vue.defineAsyncComponent(() =>
-loadModule('assets/js/vue-components/informatik/vue-regex-exercise.vue', options));
-
 const VuePronomEn = Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/french/grammaire/vue-pronom-en.vue', options));
-
-const app = createApp({
-  components: {
-    VueGaps : Vue.defineAsyncComponent(() =>
-    loadModule('assets/js/vue-components/vue-gaps.vue', options)),
-    VueNestedMenu : Vue.defineAsyncComponent(() =>
-    loadModule('assets/js/vue-components/vue-nested-menu.vue', options)),
-    VueNestedMenuTest : Vue.defineAsyncComponent(() =>
-    loadModule('assets/js/vue-components/vue-nested-menu-test.vue', options)),
-    VueConditionnel1,
-    VueAlimentation1,
-    VueAlimentation2,
-    VueRawFood,
-    VueExercise,
-    VueRegexExercise
-  
-  },
-});
-
-
 // 2. Define some routes
 // Each route should map to a component.
 // We'll talk about nested routes later.

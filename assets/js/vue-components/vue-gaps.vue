@@ -4,20 +4,23 @@
 <p>
 <span v-for="gap in gaps" >
   {{ gap.text }} 
-  <div class="frenchinput"> 
+  <div v-if="lg==='fr'" class="frenchinput"> 
   <input v-if="gap.gap!=''" @focus="(e) => { gap.target = e.target; gap.hasFocus = true; }" @blur="if(!gap.mouseover)gap.hasFocus=false;" :class="{ notcorrect: validated && gap.guess != gap.gap, correct: validated && gap.guess === gap.gap }" type="text" v-model="gap.guess"> 
   <div v-if="gap.hasFocus" :style="'left:'+gap.target.selectionStart+'ch;'" @mouseover="gap.mouseover=true" @mouseout="gap.mouseover=false">
     <span v-for="symbol in frenchSymbols" @click="insertSymbol(gap,symbol)" v-html="symbol"></span>
   </div>
-
-  
   </div>
+  <input v-else-if="gap.gap!=''" :class="{ notcorrect: validated && gap.guess != gap.gap, correct: validated && gap.guess === gap.gap }" type="text" v-model="gap.guess"> 
 </span>
 </p>
 
-<p>
+<p v-if="lg==='fr'">
 <button @click="buttonValidateClicked">Valider ma solution</button>
 <button @click="showSolutionClicked">Montre-moi la solution</button>
+</p>
+<p v-else>
+<button @click="buttonValidateClicked">Validate</button>
+<button @click="showSolutionClicked">Show me the solution</button>
 </p>
 
 
@@ -33,7 +36,7 @@ export default {
   components: {
   
   },
-  props: ['gapfile','gaptext','french'],
+  props: ['gapfile','gaptext','lg'],
 
   data() {
     return {

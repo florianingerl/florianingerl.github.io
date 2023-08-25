@@ -80,7 +80,7 @@ intoxicated by the exaggerated claims of progress made on behalf of medical scie
 fanciful tales of the fabulous benefits to be derived from medicines. I have approached these
 questions with a critical mind and have always laid greater stress on their shortcomings.
 
-<VueExercise><VueQuestion :question=" {
+<VueExercise><VueQuestion lg="en" :question=" {
 		question: 'What is true about the author?',
 		type: 'multiple choice',
 		options: [{option:'He has always trusted blindly, without thinking himself', correct: false },
@@ -104,7 +104,7 @@ degrees. Instead, so far as possible, I have devoted my time to the study of a g
 of science and to the examination of the multifarious sources of knowledge, from the fundamental
 and general principles of which I have been able to draw certain essential, vital conclusions.
 
-<VueExercise><VueQuestion :question=" {
+<VueExercise><VueQuestion lg="en" :question=" {
 		question: 'What is true about the author?',
 		type: 'multiple choice',
 		options: [{option:'He is jealous of all those doctors with their superb knowledge.', correct: false },
@@ -161,7 +161,7 @@ plant. In the same way, the slightest deterioration or alteration in the raw mat
 smooth operation of the complicated processes of the human organism causes disorders in the
 normal biological functions of our organs and these disorders appear in the form of diseases.
 
-<VueExercise><VueQuestion :question=" {
+<VueExercise><VueQuestion lg="en" :question=" {
 		question: 'What does the author want to tell us?',
 		type: 'multiple choice',
 		options: [{option:'We don\'t have to pay attention to our nutrituion because there are doctors and dentists.', correct: false },
@@ -206,7 +206,7 @@ Example:
 <p>Illness is something expensive that man could get rid of.</p>
 
 <VueWholeSentence :sentences="[
-        { task: 'Cooking is a time-wasting activity. Man should no longer devote his energy to it.', solution: 'Cooking is a time-wasting activity that man should no longer devote energy to.', guess: '' }
+        { task: 'Cooking is a time-wasting activity. Man should no longer devote his energy to it.', solution: 'Cooking is a time-wasting activity that man should no longer devote his energy to.', guess: '' }
        ]"/>
 </VueExercise>
 
