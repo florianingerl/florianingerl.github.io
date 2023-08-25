@@ -1,6 +1,27 @@
 <template>
+
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link" :class="{ active: livreVisible }" @click="livreVisible=true;">Livre</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" :class="{ active: !livreVisible }" @click="livreVisible=false;">Vocabulaire</a>
+  </li>
+  
+</ul>
 <div v-if="$route.params.page == 1">
 
+<div v-if="!livreVisible">
+<table>
+<tr><td>le vécu</td><td>D'après mon ~, je deviens trés malade si je mange de la viande.</td><td>C'est une expérience. On en a appris quelque chose.</td> </tr>
+<tr><td>l'équilibre (m)</td><td>Ni un mec qui dort trop ni un mec qui ne dort jamais, sont dans l'état de l'~.</td><td>Une balance est dans cet état si les deux cotés ont le même poids.</td></tr>
+<tr><td>l'abeille (f)</td><td>Maja est une ~. Son ami Willi l'est aussi.</td><td>C'est un insecte qui peut voler et qui est jaune et noir.</td></tr>
+<tr><td>la voie</td><td>Paramahansa Yogananda décrit la ~ du Yoga dans ses livres.</td><td>C'est un chemin qu'on peut suivre dans sa vie.</td></tr>
+<tr><td>l'écart (m)</td><td>Les ~ font partie du chemin.</td><td>Ce truc peut bloquer un chemin temporairement. Il faut rendre le chemin libre afin qu'on puisse passer.</td></tr>
+</table>
+</div>
+
+<div v-if="livreVisible">
 <h1>Formation à l'alimentation vivante - <span style="font-style:oblique">écrit par Crusine Académie</span> </h1>
 
     Cette académie est le fruit d’expériences et de recherches personnelles. Son but
@@ -45,7 +66,17 @@ je déciderai moi-même de suivre les conseils ou pas.{}" /> </VueExercise>
 Mettons-nous toutes et tous au service de la vie.
 </div>
 
+</div>
+
 <div v-if="$route.params.page == 2">
+
+<div v-if="!livreVisible">
+<table>
+<tr><td>la santé</td><td>On ne peut pas regagner sa ~ si on laisse traiter ses symptoms par un médecin.</td><td>On n'a plus cette chose si on est malade.</td></tr>
+</table>
+</div>
+
+<div v-if="livreVisible">
 <h3>Qu'est-ce que l'Hygiénisme ?</h3>
 L'hygiénisme est l'art de vivre en bonne santé par le respect des lois de
 la nature et par la bonne connaissance des aliments spécifiques à
@@ -93,8 +124,11 @@ régulateurs"
 </VueExercise>
 
 </div>
+</div>
 
 <div v-if="$route.params.page == 3">
+<div v-if="livreVisible">
+
 Les piliers de l’équilibre et de nos besoins fondamentaux sont :
 <ul>
 <li> le sommeil</li>
@@ -313,7 +347,7 @@ risquent au contraire de s’acidifier avec le citron. A doser selon votre const
 
 
 
-
+</div>
 </div>
 
 <div v-if="$route.params.page==4">
@@ -380,7 +414,8 @@ export default {
   },
   data(){
    return {
-      numPages : 4
+      numPages : 4,
+      livreVisible: true
    };
   },
   methods: {
@@ -400,6 +435,8 @@ export default {
 
 <style scoped>
 
-
+td {
+   width: 30%;
+}
 
 </style>
