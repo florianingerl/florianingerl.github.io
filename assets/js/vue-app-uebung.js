@@ -90,7 +90,7 @@ const routes = [
     
   },
   {
-    name: 'Francais',
+    name: 'Français',
     path: '/french',
     children: [
       {name: 'Livres',

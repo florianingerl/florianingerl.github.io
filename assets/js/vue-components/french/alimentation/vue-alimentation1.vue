@@ -27,7 +27,7 @@
     Cette académie est le fruit d’expériences et de recherches personnelles. Son but
     est de vous transmettre des connaissances et mon vécu afin de vous aider à
     sillonner vers l’équilibre.
-    <VueExercise instruction="Remplis les trous avec ce,cet ou cette">
+    <VueExercise lg="fr" instruction="Remplis les trous avec ce,cet ou cette">
     <VueGaps gaptext="Je ne comprends pas {cette} paragraph ci-dessus. {Cet} équilibre dont l'auteur parle, je n'y crois pas.
     {Cet} aide que l'auteur m'offre, je n'en veux pas parce que j'aurais besoin de lire {ce} livre pour apprendre {ces} connaissances
     dont il parle.{}" /> </VueExercise>
@@ -35,7 +35,7 @@ Je souhaite vous donner l’envie de trouver cette santé radieuse qui nous a é
 promise, que ce soit par la culture de la terre, par la passion des abeilles, ou par
 mes recettes de crusine. Nul doute que nos amies Joie et Santé sont là, en nous,
 alors laissons-les s’exprimer.
-<VueExercise instruction="Remplis les trous avec les corrects propositions à,de ou en ou rien du tout!">
+<VueExercise lg="fr" instruction="Remplis les trous avec les corrects propositions à,de ou en ou rien du tout!">
 <VueGaps gaptext="Maintenant, ca devient intéressant et j'ai envie {de} continuer {à} lire maintenant.
 Je donne {à} l'auteur un peu {de} conviance. J'ai conviance {en} lui. Je laisse moi simplement {} surprendre.
 Je m'attends {à} apprendre beaucoup {de} choses.{}" /> </VueExercise>
@@ -48,7 +48,7 @@ carburer à son optimum. Sachez, que l’alimentation vivante est un des facteur
 importants dans le processus de régénération, mais qu’il n’est pas le seul. Alors
 n’oubliez pas de dormir, de prendre l’air et le soleil, d’entretenir de bonnes relations
 et d’avoir une activité physique adaptée.
-<VueExercise instruction="Remplis les trous avec de la, du, des, de l' ou simplement de!">
+<VueExercise lg="fr" instruction="Remplis les trous avec de la, du, des, de l' ou simplement de!">
 <VueGaps gaptext="À partir de maintenant, je ferai {du} sport. Mais seulement assez {de} sport. Pas trop {d'} activité physique.
 Je respirai plus profondement à partir de maintenant pour me donner plus {de l'} air. À partir de maintenant,
 je me demeure souvent en dehors pour me donner {du} soleil. Je ne lirai que les livres qui me donnent
@@ -58,7 +58,7 @@ Ce qui importe, c’est d’être à l’écoute de son ressenti, de comprendre 
 processus en cours, et de prendre les meilleures décisions pour soi-même.
 Je suis une passionnée qui souhaite un monde joyeux et en bonne santé. Et
 vous ?
-<VueExercise instruction="Remplis les trous avec ce qui, ou ce que!">
+<VueExercise lg="fr" instruction="Remplis les trous avec ce qui, ou ce que!">
 <VueGaps gaptext="À partir de maintenant, je m'en fiche de {ce que} les prof à l'école et mes parents disent à propros de ma santé
 et je vais faire attention à {ce que} mon propre corps me dit. {Ce qui} me donne des conseils, je l'écouterai bien sûr mais
 je déciderai moi-même de suivre les conseils ou pas.{}" /> </VueExercise>
@@ -85,7 +85,7 @@ Cette conception est révolutionnaire parce qu'elle est aux antipodes des modes 
 pensée habituels.
 Contrairement à la médecine officielle qui traite les symptômes, l’Hygiénisme part
 du principe de supprimer la cause pour faire disparaitre l'effet.
-<VueExercise><VueQuestion :question=" {
+<VueExercise lg="fr"><VueQuestion :question=" {
 		question: 'Qu\'est-ce que l\'hygiénisme?',
 		type: 'multiple choice',
 		options: [{option:'L\'art de suivre les conseils du médecin', correct: false },
@@ -97,7 +97,7 @@ de la vie. En un mot, c'est un véritable art de vivre.
 L'Hygiénisme enseigne les principes de base pour tous, mais chacun doit doser
 chaque facteur de santé selon son propre pouvoir d'assimilation et devenir ainsi
 l'artisan de sa santé.
-<VueExercise instruction="Remplis les trous avec tout,toute,tous,toutes ou chaque!">
+<VueExercise lg="fr" instruction="Remplis les trous avec tout,toute,tous,toutes ou chaque!">
 <VueGaps gaptext="{Tout} ce que je viens de lire me semble logique. {Chaque} phrase fait du sens.
 Dans {toute} ma vie, je n'ai jamais entendu parler de {tout} cela. {Toute} ma santé depend aussi
 de mon alimentation.{}" /> </VueExercise>
@@ -107,7 +107,7 @@ guérison. On parlera d’homéostasie*. On ne contre pas, on accompagne. On
 permet aux mécanismes de régénération de faire leur travail en agissant sur
 l’équilibre du terrain.
 
-<VueExercise instruction="Remplis les trous par à la, au, aux ou de la, du,des" >
+<VueExercise lg="fr" instruction="Remplis les trous par à la, au, aux ou de la, du,des" >
  <VueGaps gaptext="Je suis {à la} recherche d'une alimentation qui est bon pour ma santé.
    Je ne peux plus faire attention {aux} conseils que mes parents m'ont donnés. {Du} sucre? Je n'en ai plus besoin!{}" />
 </VueExercise>
@@ -118,7 +118,7 @@ La loi de l’homéostasie dit que : "Tout système laissé à lui-même revient
 spontanément à l’état d’équilibre en passant par des processus
 régulateurs"
 
-<VueExercise instruction="Remplis les trous par moi-même, soi-même, toi-même , etc.." >
+<VueExercise lg="fr" instruction="Remplis les trous par moi-même, soi-même, toi-même , etc.." >
  <VueGaps gaptext="Je peux prendre soin de {moi-même}. Mon père peut prendre soin de {lui-même}.
    Autant que ma mère peut prendre soin {d'elle-même}. Pour faire une conclusion, chaque-un peut prendre soin de {soi-même}." />
 </VueExercise>
@@ -158,13 +158,13 @@ En alimentation, il vous faut :
 Le tout non dénaturé, c’est-à-dire cru, non assaisonné ou le moins possible et non
 transformé.
 
-<VueExercise instruction="Remplis les trous avec la correcte conjugation du verbe falloir et le correct pronom" >
+<VueExercise lg="fr" instruction="Remplis les trous avec la correcte conjugation du verbe falloir et le correct pronom" >
  <VueGaps gaptext="Il {me faut} de cerner mon point faible. À propos de mon père, il {lui faut} cerner son point faible.
    Mais, je ne peux pas m'occuper de lui. Il {me faut} de m'occuper de moi-même." />
 </VueExercise>
 
 À chacun de trouver son équilibre.
-<VueExercise instruction="Traduis ces phrases">
+<VueExercise lg="fr" instruction="Traduis ces phrases">
 <ol>
 <li>Jeder braucht gute Beziehungen.</li>
 <li>Sei es jedem selbst überlassen, was er essen will!</li>
@@ -191,7 +191,7 @@ le reste notre corps s’occupe de tout.</p>
 Tout comme notre voiture , notre corps a besoin de décrassages réguliers.
 Veuillez à ce que vos émonctoires fonctionnent correctement.</p>
 
-<VueExercise instruction="Reliez les mots et les explications!">
+<VueExercise lg="fr" instruction="Reliez les mots et les explications!">
 <p>
 mettre en oeuvre - aliment - souci - detoxiner
 </p>
@@ -223,7 +223,7 @@ tout du moins pas aussi rapidement que vous l’auriez souhaité. Ne jamais
 désespérer, ayez la foi.
 </p>
 
-<VueExercise instruction="Traduis les phrases!">
+<VueExercise lg="fr" instruction="Traduis les phrases!">
 <ol>
 <li>Was für den einen jetzt gut ist, ist für den anderen schlecht.</li>
 <li>Was der oder die sagt, kann aus verschiedenen Gründen falsch sein.</li>
@@ -243,7 +243,7 @@ système immunitaire enclenchée lors de l’absorption d’aliments cuits. Le s
 immunitaire répond a ce qu’il considère être une attaque et s’affaiblit inutilement.
 Fort de ce constat, veillez à équilibrer le ratio cuit/cru.
 
-<VueExercise instruction="Formez des questions!">
+<VueExercise lg="fr" instruction="Formez des questions!">
 <p>Exemple:</p>
 <p>Il faut manger tout cru. -> Est-ce qu'il faut manger tout cru?</p>
 
@@ -270,7 +270,7 @@ frais à plus de 50% vous êtes déjà presque parfait !
 Il ne faut pas sous-estimer le plaisir de la table ou la convivialité pour perdurer sur
 le chemin de l’alimentation santé.
 
-<VueExercise instruction="Traduis les phrases suivantes!">
+<VueExercise lg="fr" instruction="Traduis les phrases suivantes!">
 <ol>
 <li>Man darf mit ihm auf keinen Fall darüber sprechen.</li>
 <li>Man darf auf keinen Fall Alkohol tringen.</li>
@@ -293,7 +293,7 @@ du travail vos repas seront prêts en un tour de main. Pensez à toujours avoir 
 fruits à croquer en stock et des bananes mûres. L’utilisation de boites hermétiques
 vous facilitera la tâche afin de disposer d’un choix tout prêt d’ingrédients déjà triés.
 
-<VueExercise instruction="Décrivez les mots suivants!">
+<VueExercise lg="fr" instruction="Décrivez les mots suivants!">
 <p>quotidien - légume - repos</p>
 <VueHideShow>
 <ul>
@@ -315,7 +315,7 @@ religion, le plaisir des papilles vaut quelque fois le coup de se laisser tenter
 Les agrumes se marient bien avec les gras.
 Et rien de mieux que d’être à l’écoute de vos sensations.
 
-<VueExercise instruction="Remplis les trous avec la correcte conjugation du verbe aller, valoir, se marier et entendre">
+<VueExercise lg="fr" instruction="Remplis les trous avec la correcte conjugation du verbe aller, valoir, se marier et entendre">
 <VueGaps gaptext="Je ne {m'entends} pas avec ma mére. Elle ment toujours. Ca ne {vaut} pas la peine de lui expliquer l'alimentation saine. Elle ne veut que que je {me marie} avec une femme quelquonque et produire 100 enfants. Moi et elle, ca ne {va} plus ensemble.">
 
 </VueGaps>
@@ -333,7 +333,7 @@ bonne mine.
 - Hydrate les cellules.
 - Aide à retrouver une bonne haleine.
 
-<VueExercise instruction="Remplis les trous avec la bonne proposition à ou de ou les pronoms y et en!">
+<VueExercise lg="fr" instruction="Remplis les trous avec la bonne proposition à ou de ou les pronoms y et en!">
 <VueGaps gaptext="Manger trop ne m'aide pas {à} résoudre les problèmes de maths. Je n'{en} peut pas bénéfiquer. Ne manger rien me permets au moins {de} gagner du contrôle sur les sens.">
 
 </VueGaps>
@@ -344,7 +344,7 @@ Cela ne marche que si vous pressez un citron, mais pas avec les jus en bouteille
 Le citron est généralement alcalinisant, mais, les personnes « neuro-arthritiques »
 risquent au contraire de s’acidifier avec le citron. A doser selon votre constitution…
 
-<VueExercise instruction="Traduis les phrases! Utilisez la bonne négation!">
+<VueExercise lg="fr" instruction="Traduis les phrases! Utilisez la bonne négation!">
 <VueWholeSentences :sentences="[{task: 'Ich esse nur roh.', solution: 'Je ne mange que cru.'},
                                  {task: 'Ich esse nichts gekocht.', solution: 'Je ne mange rien cuit.' },
                                  {task: 'Ich koche nie!', solution: 'Je ne cuire jamais.' },
@@ -364,6 +364,7 @@ risquent au contraire de s’acidifier avec le citron. A doser selon votre const
 <div v-if="!livreVisible">
 <table>
 <tr><td>l'huile</td><td>Jeter de l'~ sur le feu, c'est rendre une situation émotionelle encore plus pire.</td><td>Cela ne manque jamais dans une salade. Un vélo en a également besoin.</td></tr>
+<tr><td>le noix</td><td>Est-ce que tu connais un ~ noix qui est rouge?</td><td>Ils sont très gras. On a besoin d'un outil pour les ouvrir. Ils appartiennent sans doute à la nourriture propre à l'espèce humaine.</td>
 </table>
 </div>
 
@@ -386,7 +387,7 @@ persil, épices.
 -Les groupes 4 & 5 sont des éléments ajoutés en fonction de l'humeur ou de la
 salade.
 
-<VueExercise instruction="Quelle est la couleur des fruits et légumes suivants?">
+<VueExercise lg="fr" instruction="Quelle est la couleur des fruits et légumes suivants?">
 <p>tomate - noix de macadamia - graines de potiron - avocat - citron</p>
 <VueHideShow>
 <p>Une tomate est rouge. Une noix de macadamia est blanche. Les graines de potiron sont verts. Un avocat est vert. Un citron est jaune.</p>
@@ -397,6 +398,21 @@ Ingrédients supplémentaires, mais sans s'y limiter :
 une cuillère à soupe de moutarde à l'ancienne maison.
 une cuillère à soupe de levure alimentaire en flocons (ajoute une saveur de
 fromage).
+
+<VueExercise lg="fr">
+<VueQuestion :question="{
+		question: 'Qu\'est-ce qui n\'est pas un outil pour manger?',
+		type: 'multiple choice',
+		options: [{option:'Une cuillère', correct: false },
+     {option:'Une fourchette', correct: false }, 
+     {option: 'Un marteau', correct: true },
+     {option: 'Un couteau', correct: false }
+     ]
+	    }" :hasNextButton="false" >
+
+</VueQuestion>
+
+</VueExercise>
 
 </div>
 </div>
