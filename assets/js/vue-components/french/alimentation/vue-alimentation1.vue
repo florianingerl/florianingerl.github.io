@@ -127,6 +127,15 @@ régulateurs"
 </div>
 
 <div v-if="$route.params.page == 3">
+<div v-if="!livreVisible">
+<table>
+<tr><td>le sommeil</td> <td>La nuit est le temps du ~.</td> <td>Si tu es fatigué, tu n'en as eu pas assez.</td></tr>
+<tr><td>cerner</td><td></td><td>faire quelques efforts mentales pour mieux comprendre un problème ou une situation</td></tr>
+<tr><td>faible</td><td>Si je ne bois pas assez, je suis un peu ~.</td><td>C'est le contraire de fort</td></tr>
+</table>
+
+</div>
+
 <div v-if="livreVisible">
 
 Les piliers de l’équilibre et de nos besoins fondamentaux sont :
@@ -351,6 +360,14 @@ risquent au contraire de s’acidifier avec le citron. A doser selon votre const
 </div>
 
 <div v-if="$route.params.page==4">
+
+<div v-if="!livreVisible">
+<table>
+<tr><td>l'huile</td><td>Jeter de l'~ sur le feu, c'est rendre une situation émotionelle encore plus pire.</td><td>Cela ne manque jamais dans une salade. Un vélo en a également besoin.</td></tr>
+</table>
+</div>
+
+<div v-if="livreVisible">
 <h2>Les indispensables sauces et accompagnements</h2>
 
 Huiles / Graisses (1) - Huile d'olive, huile de lin, huile de noix de coco, beurre de
@@ -381,7 +398,7 @@ une cuillère à soupe de moutarde à l'ancienne maison.
 une cuillère à soupe de levure alimentaire en flocons (ajoute une saveur de
 fromage).
 
-
+</div>
 </div>
 
 <button @click="nextPageClicked">Page suivante</button>
