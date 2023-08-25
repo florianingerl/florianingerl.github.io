@@ -14,7 +14,19 @@
 
 </div>
 
-<div class="d-flex flex-row">
+<div v-if="lg==='en'" class="d-flex flex-row">
+<button @click="validate">Validate</button>
+<button @click="showSolution">Show solution</button>
+<button v-if="hasNextButton">Next exercise</button>
+</div>
+
+<div v-else-if="lg==='fr'" class="d-flex flex-row">
+<button @click="validate">Valider</button>
+<button @click="showSolution">Montre-moi la solution</button>
+<button v-if="hasNextButton">Prochain exercice</button>
+</div>
+
+<div v-else class="d-flex flex-row">
 <button @click="validate">Aufgabe überprüfen</button>
 <button @click="showSolution">Lösung anzeigen</button>
 <button v-if="hasNextButton">Nächste Aufgabe</button>
@@ -32,7 +44,7 @@ export default {
      console.log("The setup function is executed!");
      
   },
-  props: ['question', 'hasNextButton'],
+  props: ['question', 'hasNextButton', 'lg'],
   
   data() {
     return {

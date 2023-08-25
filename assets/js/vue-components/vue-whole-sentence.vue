@@ -5,8 +5,14 @@
 <p><input style="display:block;width:100%" v-model="sentence.guess" type="text" :class="{ correct: validated && sentence.guess == sentence.solution, notcorrect: validated && sentence.guess != sentence.solution }"/></p>
 </div>
 
+<p v-if="lg==='fr'">
+<button @click="validateSolutionClicked">Valider</button>
+<button @click="showSolutionClicked">Montre-moi la solution!</button>
+</p>
+<p v-else>
 <button @click="validateSolutionClicked">Validate my answer</button>
 <button @click="showSolutionClicked">Show solution</button>
+</p>
 
     
 </template>
@@ -18,7 +24,7 @@ export default {
   components: {
     
   },
-  props: ['sentences'],
+  props: ['sentences', 'lg'],
 
   mounted(){
      console.log("The setup function is executed!");
