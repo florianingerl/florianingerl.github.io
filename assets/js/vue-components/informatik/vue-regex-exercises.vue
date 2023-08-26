@@ -3,12 +3,15 @@
 <div>
 <p>
 Regular expressions can be used to find and replace text that match a certain pattern.
+<h3>Matching digits</h3>
 For example, you can write "\d" to search for a digit. So the search for "\d" in the string
 "Hallo123goodby45" would find 5 things.
+<h3>Repetitions</h3>
 By searching for "\d+", you can search for a sequence of at least one digit. So the search for
 "\d+" in "Hallo123goodby45" would find 2 things, i.e. "123" and "45".
 </p>
 <p>
+<h3>Using groups in the replace string</h3>
 Whatever was found/matched by the regular expression can then be replaced.
 You can use parantheses in the search string to capture parts of the match in a group.
 You can then use $1,$2,$3 to refer to group 1,2,3 and so on in the replace string.<br>
@@ -27,10 +30,45 @@ To achieve this, you would search for "([a-zA-Z]+) was born in (\d+)" and replac
 <img style="width:80%;"src="uebung/informatik/regexIllustration.png"></img>
 </p>
 
+</div>
 
+  <RegexExercise :exercise="{ instruction: 'Please swap the arguments of the addEdge function. For example g.addEdge(3,4) should become g.addEdge(4,3)',
+   editor: 'g.addEdge(3,4)\ng.addEge(100,3)\ng.addEdge(56,3)', find: '(\\d+),(\\d+)', replaceby: '$2,$1' }">
+
+  </RegexExercise>
+
+<div>
+<h3>Match any character</h3>
+"." matches any character except the newline-character. So ".*" would match anything until the end of this line. If you write "(.*)" it matches everything until the end of this line
+and capture the result in a group to be used in the replace string.
+<h3>Match spaces</h3>
+"\s" matches any space-character including spaces and tabs. This is frequently used. So "\s+" would match at least one space character.
+</div>
+
+<RegexExercise :exercise="{ instruction: 'Replace each point by a html list entry, for example -le sommeil should be replaced by <li>le sommeil</li>. Possible whitespace characters after the - should be removed!',
+ editor: '- le sommeil\n- l’eau\n- la nourriture\n- le soleil\n- les liens sociaux\n- l’exercice physique',
+ find: '-\\s*(.*)',
+ replaceby: '<li>$1</li>' }" > </RegexExercise>
+
+<RegexExercise :exercise="{instruction:'Replace each point by a html list entry, for example 1. Des fruits should be  replaced by <li>Des fruits</li>. Please also get rid of useless whitespace.',
+editor: '1. Des fruits et légumes de qualité (carburant et nutriments)\n2. Des feuilles vertes (nutriments et fibres)\n3. Une source grasse protéinée (noix, olive, fruit gras, oeuf, poisson, viande)',
+find: '\d+\.\s*(.*)',
+replaceby: '<li>$1</li>' }" ></RegexExercise>
+
+<div>
+<h3>Backreferences</h3>
+With "\n" , you can match whatever the n-th group captured. E.g. "\1" matches whatever the first group captured.
+E.g. "(i|s)=\1+5" would match "i=i+5" and it would match "s=s+5" but would not match "s=i+5".
+
+<h3>Escape special characters</h3>
+Certain characters have a special meaning in Regular Expressions like +,*,.,| and so on.
+If you want to match these and not have them interpreted as metacharacters of the Regular Expressions, you need to escape them, i.e.
+write "\." if you want to match "." and write "\+" if you want to match a "+".
 
 </div>
-  <RegexExercise v-for="exercise in exercises" :exercise="exercise" />
+
+ <RegexExercise :exercise="{ instruction: 'Try to use the +=, *=, -= operators whereever possible. For example i=i+5 should become i+=5', 
+ editor: 'let i=7;\ni=i+5;\ni=i*78;\nlet s=5;\ns=s-1;\n', find: '(i|s)\\s*=\\s*(\\1)\\s*(\\+|\\*|\\-)\\s*(\\d+)', replaceby: '$1$3=$4' }" ></RegexExercise>
 </template>
 
 <script>
