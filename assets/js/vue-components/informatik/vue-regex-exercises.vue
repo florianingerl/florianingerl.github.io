@@ -69,7 +69,16 @@ write "\." if you want to match "." and write "\+" if you want to match a "+".
 
  <RegexExercise :exercise="{ instruction: 'Try to use the +=, *=, -= operators whereever possible. For example i=i+5 should become i+=5', 
  editor: 'let i=7;\ni=i+5;\ni=i*78;\nlet s=5;\ns=s-1;\n', find: '(i|s)\\s*=\\s*(\\1)\\s*(\\+|\\*|\\-)\\s*(\\d+)', replaceby: '$1$3=$4' }" ></RegexExercise>
+
+
+<h3>Negative look-behind</h3>
+<!-- With "(?<!regex1)regex2" you can match anything that matches regex2 but is not proceded by anything matching regex1.
+E.g. "(?<!a)b" would find the "b" in "ccccb" but would not find the b in "ccccab" because it was proceded by an a.
+-->
+
 </template>
+
+
 
 <script>
 import RegexExercise from './vue-regex-exercise.vue';
