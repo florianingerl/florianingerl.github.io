@@ -414,6 +414,149 @@ fromage).
 
 </VueExercise>
 
+<p>
+Conseils:
+<ol>
+<li>Ajouter de l'eau lorsque cela est possible dans la plupart des préparations
+afin de mettre moins ou pas d'huile. Si vous utilisez des avocats, assurez-vous
+qu’ils soient mûrs et ajouter-les comme dernier ingrédient, si vous les
+mettez en premier, cela peut affecter le goût et la texture.</li>
+<li> Toujours ajouter les acides (3) en dernier pour avoir des sauces plus
+épaisses et crémeuses.</li>
+</ol>
+
+
+<VueExercise instruction="Traduis les phrases suivantes!">
+<ul>
+<li>Ölivenöl ist sehr fett. Fügen Sie es als erstes dem Salat hinzu.</li>
+<li>Zwiebeln sind sehr scharf. Füge Sie als zweites dem Salat hinzu.</li>
+<li>Bevor Sie Tomaten kaufen, versichern Sie sich, dass diese reif sind.</li>
+</ol>
+<VueHideShow>
+<ol>
+<li>L'huile d'olive est très gras. Ajoutez-le en premier à la salade!</li>
+<li>Des oignons sont très piquants. Ajoutez-les en deuxième à la salade!</li> 
+<li>Avant d'acheter des tomates, assurez-vous qu'ils soient mûres.</li>
+</ul>
+</VueHideShow>
+</VueExercise>
+
+<ul>
+<li>L'utilisation d'un mixeur vous aidera à obtenir une texture crémeuse, mais si
+vous n'en avez pas un bocal fera l’affaire. Il suffit d'ajouter vos ingrédients, de
+mettre le couvercle et de bien secouer.</li>
+<li>Les vinaigrettes crémeuses colleront mieux aux salades et éviteront une
+flaque dans le fond de l’assiette.</li>
+<li>Trempez les fruits secs oléagineux facilite la digestion par la suppression des
+inhibiteurs d’enzymes. De plus, vous obtiendrez des mélanges plus lisses et
+onctueux.</li>
+
+</ul>
+
+<VueExercise instruction="Traduis les phrases suivantes!">
+<ol>
+<li>Eine Gabel ist nützlich zum Essen. Wenn Sie keine haben, tun es Ihre Hände auch.</li>
+<li>Klopapier ist praktisch. Wenn Sie im Wald sind und keines haben, tun es ein paar Blätter von den Bäumen auch.</li>
+</ol>
+<VueHideShow>
+<ol>
+<li>Une fourchette est utile pour manger. Si vous n'en avez pas, vos mains feront l'affaire.</li>
+<li>Le papier-toilette est pratique. Si vous êtes dans la foret et si vous n'en aves pas, quelques feuilles des arbres feront l'affaire. </li>
+</ol>
+</VueHideShow>
+</VueExercise>
+
+<ul>
+<li>L'ajout d'un peu de moutarde aide à ce que l’émulsion soit plus stable.</li>
+<li>Le rapport pour une vinaigrette à l’huile est généralement de 3 parts d’huile
+pour 1 part de vinaigre ou de jus de citron, mais c’est à vous de juger ce qui
+vous convient le mieux.</li>
+<li>Pour faire une vinaigrette rapide, combinez un demi-avocat avec une tasse
+de vinaigrette déjà prête. Mélangez jusqu'à consistance lisse.</li>
+</ul>
+
+<VueExercise instruction="Remplis les trous avec la conjugation correcte du verbe!">
+<VueGaps lg="fr" gaptext="Ne mangez rien du tout afin que votre repas {soit} (être) rapide. Préparez le repas vite afin que vous {puissiez} (pouvoir) faire autre chose après.">
+
+</VueGaps>
+</VueExercise>
+
+</p>
+
+<p>
+<h3>Comment conserver et assaisonner vos salades ?</h3>
+<li> Lors de l'achat de vos salades, une tête plus lourde indique la fraîcheur.
+Regardez la base de la salade, elle ne doit pas être brune sinon cela signifie
+que ça fait longtemps qu’elle a été coupée.
+</li>
+<li>Il est important de bien sécher votre salade et investir dans une essoreuse
+me semble indispensable. Une fois séchée vous pourrez la conserver, soit
+emballée dans un torchon propre soit dans une boite hermétique. Prenez soin
+de mettre du Sopalin qui permettra de réguler l’humidité. Une salade reste
+impeccable 5 jours dans votre frigo.</li>
+<li>Les salades à feuilles doivent toujours être préparées si possible à la dernière
+minute.</li>
+
+<VueExercise instruction="Trouve les contraires des adjectives suivants!">
+Exemple: lourd <-> léger
+<p>bon - dispensable - dernier - nouveau</p>
+<VueHideShow>
+<p>bon <-> mauvais, dispensable <-> indispensable, dernier <-> premier , nouveau <-> vieux </p>
+</VueHideShow>
+</VueExercise>
+
+<ul>
+<li>Les feuillages tels que la roquette poivrée ou la chicorée amère donneront du
+caractère à vos salades.</li>
+<li>Les feuillages tendres comme la mâche, la laitue ou les jeunes pousses, sont
+à traiter avec plus de délicatesse, avec du jus de citron par exemple.</li>
+<li>Romaine et autres laitues croquantes ont une affinité pour les vinaigrettes
+crémeuses.</li>
+</ul>
+
+<VueExercise instruction="Trouve au moins 5 adjectives à être placé devant le nom!">
+<VueHideShow>
+nouveau, jeune, vieux, bon, mauvais
+</VueHideShow>
+</VueExercise>
+
+</p>
+
+<p>
+<h6>Exemples de sauces salade :</h6>
+Voici quelques exemples de combinaisons qui peuvent être faites au blender, mais
+ne vous limitez pas !
+<ul>
+<li>Base: eau, graines de tournesol, moutarde, quinton, jus de citron ou vinaigre
+de cidre, curcuma, gingembre.</li>
+<li>Sauce thaïe : beurre d'amande, tamari ou quinton, jus de citron vert, tamarin,
+gingembre, ail.</li>
+<li>Sauce sucrée : chair et eau de coco jeune, jus de citron, ail et dattes .
+Sauce italienne : eau de quinton, noix de macadamia, vinaigre de cidre, ail,
+basilic et origan.</li>
+<li>Béchamel : Cajou trempées, levure maltée, HE de poivre noir, jus de citron.
+Vinaigrette aux tomates séchées : noix de cajou, jus de pamplemousse et
+tomates séchées au soleil.</li>
+<li>Crutschup : poivron, tomates séchées, dattes, vinaigre de cidre, piment</li>
+<li>Avoca’sauce : avocat , jus de citron et herbes fraiches.</li>
+<li>Chutney: Abricots secs, jus d’orange, citron confit, gigembre, sel rose</li>
+</ul>
+
+<VueExercise instruction="Pour tous les aliments suivants, dites s'ils sont surtout gras, sucré ou piquant">
+Exemple: Les noix sont surtout gras.
+<p>beurre d'amande - avocat - datte  - gigembre</p>
+<VueHideShow>
+<p>gras - beurre d'amande, avocat</p>
+<p>sucré - datte</p>
+<p>piquant - gigembre</p>
+</VueHideShow>
+
+</VueExercise>
+</p>
+
+
+
+
 </div>
 </div>
 
