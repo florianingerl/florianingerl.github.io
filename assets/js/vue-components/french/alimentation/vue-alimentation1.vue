@@ -516,7 +516,7 @@ crémeuses.</li>
 
 <VueExercise instruction="Trouve au moins 5 adjectives à être placé devant le nom!">
 <VueHideShow>
-nouveau, jeune, vieux, bon, mauvais
+nouveau, jeune, vieux, bon, mauvais, petit, grand, joli, gros
 </VueHideShow>
 </VueExercise>
 
@@ -560,6 +560,10 @@ Exemple: Les noix sont surtout gras.
 </div>
 </div>
 
+<div v-if="$route.params.page==5">
+
+</div>
+
 <button @click="nextPageClicked">Page suivante</button>
 
 </template>
@@ -590,7 +594,7 @@ export default {
   },
   data(){
    return {
-      numPages : 4,
+      numPages : 5,
       livreVisible: true
    };
   },
