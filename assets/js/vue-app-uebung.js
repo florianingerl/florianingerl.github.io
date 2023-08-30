@@ -36,6 +36,9 @@ const app = createApp({
 const VueAlimentation1 = Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/french/alimentation/vue-alimentation1.vue', options));
 
+const VueBhagavadGita = Vue.defineAsyncComponent(() =>
+loadModule('assets/js/vue-components/french/alimentation/vue-bagavad-gita.vue', options));
+
 const VueRawFood =  Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/english/rawfood/vue-rawfood.vue', options));
 
@@ -76,6 +79,11 @@ const routes = [
           path: 'alimentation/:page',
           component: VueAlimentation1
         },
+        {
+          name: "Bhagavad Gita",
+          path: 'bhagavadgita/:page',
+          component: VueBhagavadGita
+        }
       ],
       },
       {name: 'Grammaire',
