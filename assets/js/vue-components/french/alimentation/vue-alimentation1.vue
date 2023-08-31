@@ -17,7 +17,6 @@
 <tr><td>l'équilibre (m)</td><td>Ni un mec qui dort trop ni un mec qui ne dort jamais, sont dans l'état de l'~.</td><td>Une balance est dans cet état si les deux cotés ont le même poids.</td></tr>
 <tr><td>l'abeille (f)</td><td>Maja est une ~. Son ami Willi l'est aussi.</td><td>C'est un insecte qui peut voler et qui est jaune et noir.</td></tr>
 <tr><td>la voie</td><td>Paramahansa Yogananda décrit la ~ du Yoga dans ses livres.</td><td>C'est un chemin qu'on peut suivre dans sa vie.</td></tr>
-<tr><td>l'écart (m)</td><td>Les ~ font partie du chemin.</td><td>Ce truc peut bloquer un chemin temporairement. Il faut rendre le chemin libre afin qu'on puisse passer.</td></tr>
 </table>
 </div>
 
@@ -35,7 +34,7 @@ Je souhaite vous donner l’envie de trouver cette santé radieuse qui nous a é
 promise, que ce soit par la culture de la terre, par la passion des abeilles, ou par
 mes recettes de crusine. Nul doute que nos amies Joie et Santé sont là, en nous,
 alors laissons-les s’exprimer.
-<VueExercise lg="fr" instruction="Remplis les trous avec les corrects propositions à,de ou en ou rien du tout!">
+<VueExercise lg="fr" instruction="Remplis les trous avec les bonnes propositions à,de ou en ou rien du tout!">
 <VueGaps lg="fr" gaptext="Maintenant, ca devient intéressant et j'ai envie {de} continuer {à} lire maintenant.
 Je donne {à} l'auteur un peu {de} conviance. J'ai conviance {en} lui. Je laisse moi simplement {} surprendre.
 Je m'attends {à} apprendre beaucoup {de} choses.{}" /> </VueExercise>
@@ -58,9 +57,9 @@ Ce qui importe, c’est d’être à l’écoute de son ressenti, de comprendre 
 processus en cours, et de prendre les meilleures décisions pour soi-même.
 Je suis une passionnée qui souhaite un monde joyeux et en bonne santé. Et
 vous ?
-<VueExercise lg="fr" instruction="Remplis les trous avec ce qui, ou ce que!">
+<VueExercise lg="fr" instruction="Remplis les trous avec ce qui, ou ce que ou celui qui!">
 <VueGaps lg="fr" gaptext="À partir de maintenant, je m'en fiche de {ce que} les prof à l'école et mes parents disent à propros de ma santé
-et je vais faire attention à {ce que} mon propre corps me dit. {Ce qui} me donne des conseils, je l'écouterai bien sûr mais
+et je vais faire attention à {ce que} mon propre corps me dit. {Celui qui} me donne des conseils, je l'écouterai bien sûr mais
 je déciderai moi-même de suivre les conseils ou pas.{}" /> </VueExercise>
 
 Mettons-nous toutes et tous au service de la vie.
@@ -98,7 +97,7 @@ L'Hygiénisme enseigne les principes de base pour tous, mais chacun doit doser
 chaque facteur de santé selon son propre pouvoir d'assimilation et devenir ainsi
 l'artisan de sa santé.
 <VueExercise lg="fr" instruction="Remplis les trous avec tout,toute,tous,toutes ou chaque!">
-<VueGaps lg="fr" gaptext="{Tout} ce que je viens de lire me semble logique. {Chaque} phrase fait du sens.
+<VueGaps lg="fr" gaptext="{Tout} ce que je viens de lire me semble logique. {Chaque} phrase a du sens.
 Dans {toute} ma vie, je n'ai jamais entendu parler de {tout} cela. {Toute} ma santé depend aussi
 de mon alimentation.{}" /> </VueExercise>
 
@@ -118,9 +117,9 @@ La loi de l’homéostasie dit que : "Tout système laissé à lui-même revient
 spontanément à l’état d’équilibre en passant par des processus
 régulateurs"
 
-<VueExercise lg="fr" instruction="Remplis les trous par moi-même, soi-même, toi-même , etc.." >
+<VueExercise lg="fr" instruction="Remplis les trous par moi-même, soi-même, toi-même ,lui-même ou elle-même !" >
  <VueGaps lg="fr" gaptext="Je peux prendre soin de {moi-même}. Mon père peut prendre soin de {lui-même}.
-   Autant que ma mère peut prendre soin {d'elle-même}. Pour faire une conclusion, chaque-un peut prendre soin de {soi-même}." />
+   Autant que ma mère peut prendre soin d'{elle-même}. En conclusion, chacun peut prendre soin de {soi-même}." />
 </VueExercise>
 
 </div>
@@ -158,13 +157,8 @@ En alimentation, il vous faut :
 Le tout non dénaturé, c’est-à-dire cru, non assaisonné ou le moins possible et non
 transformé.
 
-<VueExercise lg="fr" instruction="Remplis les trous avec la correcte conjugation du verbe falloir et le correct pronom" >
- <VueGaps lg="fr" gaptext="Il {me faut} de cerner mon point faible. À propos de mon père, il {lui faut} de cerner son point faible.
-   Mais, je ne peux pas m'occuper de lui. Il {me faut} de m'occuper de moi-même." />
-</VueExercise>
-
 À chacun de trouver son équilibre.
-<VueExercise lg="fr" instruction="Traduis ces phrases">
+<VueExercise lg="fr" instruction="Traduis ces phrases!">
 <ol>
 <li>Jeder braucht gute Beziehungen.</li>
 <li>Sei es jedem selbst überlassen, was er essen will!</li>
@@ -173,7 +167,7 @@ transformé.
 <VueHideShow lg="fr">
 <ol>
 <li>Tout le monde a besoin des bonnes relations.</li>
-<li>À chaqun de manger ce qu'il veut.</li>
+<li>À chaqun de manger ce qu'il veut!</li>
 </ol>
 </VueHideShow>
 </VueExercise>
@@ -315,7 +309,7 @@ religion, le plaisir des papilles vaut quelque fois le coup de se laisser tenter
 Les agrumes se marient bien avec les gras.
 Et rien de mieux que d’être à l’écoute de vos sensations.
 
-<VueExercise lg="fr" instruction="Remplis les trous avec la correcte conjugation du verbe aller, valoir, se marier et entendre">
+<VueExercise lg="fr" instruction="Remplis les trous avec la bonne conjugaison du verbe aller, valoir, se marier et entendre">
 <VueGaps lg="fr" gaptext="Je ne {m'entends} pas avec ma mére. Elle ment toujours. Ca ne {vaut} pas la peine de lui expliquer l'alimentation saine. Elle ne veut que que je {me marie} avec une femme quelquonque et produire 100 enfants. Moi et elle, ca ne {va} plus ensemble.">
 
 </VueGaps>
@@ -475,7 +469,7 @@ vous convient le mieux.</li>
 de vinaigrette déjà prête. Mélangez jusqu'à consistance lisse.</li>
 </ul>
 
-<VueExercise instruction="Remplis les trous avec la conjugation correcte du verbe!">
+<VueExercise instruction="Remplis les trous avec la conjugaison correcte du verbe!">
 <VueGaps lg="fr" gaptext="Ne mangez rien du tout afin que votre repas {soit} (être) rapide. Préparez le repas vite afin que vous {puissiez} (pouvoir) faire autre chose après.">
 
 </VueGaps>
