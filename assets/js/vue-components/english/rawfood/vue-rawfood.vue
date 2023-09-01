@@ -210,6 +210,57 @@ Example:
        ]"/>
 </VueExercise>
 
+<h4>Direct and Indirect Nutritional Diseases</h4>
+Nutritional diseases are divided into two main categories: direct and indirect
+ailments. Direct nutritional diseases are those that are caused by a superabundance of certain
+nutritional constituents or a deficiency of others. Fire and animal foodstuffs have the effect of
+concentrating and increasing the proteins and the fats in the diet, while at the same time
+eliminating substances of high nutritive value. Science has so far been able to recognize only a
+negligible number of these substances, which have been named vitamins and without which
+life cannot exist. Among the direct nutritional diseases are to be placed all chronic disorders
+and deficiency diseases. The diseases develop with extreme slowness and secrecy. So long as the
+disease has not entered its final stages and the organs have not stopped working, the individual
+regards himself as healthy. In the event of partial and mixed vitamin deficiencies, the disease
+does not appear by the symptoms particular to avitaminosis, that are described in
+textbooks; rather it makes its appearance by complaints which are not easy to explain.
+
+<VueExercise instruction="Fill in the gaps by it's or its">
+<VueGaps gaptext="{It's} noon and I am eating my lunch. {Its} taste is good. {It's} made of lentils, beetroot, cellery root and barley. 
+So I have just named all of {its} ingredients."></VueGaps>
+</VueExercise>
+
+<h3>Raw Eating</h3>
+Indirect digestive ailments are the infectious diseases. In the human organism there
+live usually a large variety of microbes which in normal circumstances render useful
+service to the organism and which are subject to the control of specialized (differentiated)
+human cells, to whose commands they compliantly submit. But through faulty nutrition the
+degenerated and emaciated cells are so weakened that by the Law of Survival those
+microbes get the upper hand, set themselves free from the control of those cells, rebel against
+their masters, become pathogenic and cause the infectious diseases so well-known to us.
+Sometimes the invading army of assailing microbes, which would have met with irresistible
+opposition in a healthy organism and would have been destroyed at once, do not meet with
+such opposition in an emaciated organism and causes its specific infection.
+
+<VueExercise instruction="Practice the use of conditional sentences of type 3!">
+<h4>Example:</h4>
+I cooked the food. My children died. -> </br>
+If I hadn't cooked the food, my children wouldn't have died.
+
+<ol>
+<li>I didn't read this book. I acquired an indirect digestive aliment.</li>
+<li>I was not able to read English texts. I was not able to read this book.</li>
+<li>My cells weren't obedient. So they refused my orders.</li>
+</ol>
+
+<VueHideShow>
+<ol>
+<li>If I had read this book, I wouldn't have acquired an indirect digestive aliment.</li>
+<li>If I had been able to read English texts, I would have been able to read this book.</li>
+<li>If my cells had been obedient, they wouldn't have refused my orders.</li>
+</ol>
+</VueHideShow>
+</VueExercise>
+
 </div>
 
 <button @click="nextPageClicked">Next page</button>
@@ -220,6 +271,7 @@ import VueGaps from "./../../vue-gaps.vue";
 import VueQuestion from "./../../vue-question.vue";
 import VueExercise from "./../../vue-exercise.vue";
 import VueWholeSentence from "./../../vue-whole-sentence.vue";
+import VueHideShow from "./../../vue-hideshow.vue";
 
 export default {
   
@@ -227,7 +279,8 @@ export default {
      VueGaps,
      VueQuestion,
      VueExercise,
-     VueWholeSentence
+     VueWholeSentence,
+     VueHideShow
   },
 
   mounted(){
