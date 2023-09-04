@@ -261,6 +261,23 @@ If I hadn't cooked the food, my children wouldn't have died.
 </VueHideShow>
 </VueExercise>
 
+In the second volume of my Armenian book, I have devoted considerable space to the
+problem of infectious diseases, for the examination of which I have analyzed certain portions
+of the first volume of the treatise on "Pathological Anatomy and the Pathogenesis of Human
+Diseases" by the eminent Soviet scientist I.V. Davydovsky, published in 1956. By means of
+numerous convincing facts, the author proves that it is not the microbes themselves that are
+guilty of causing infectious diseases, but the poor condition of the body, the decline in its
+power of immunity. But unfortunately, like all food addicts,* Davydovsky, too, is unable to
+explain how we can restore that immunity or, better still, prevent its decline.
+
+<VueExercise instruction="Use the simple past or present perfect!">
+<VueGaps gaptext="I {have read}(read) this book, so now I know everything. Yesterday, someone
+{told} (tell) me something interesting, but I {didn't listen} (not listen) because I only {tought} (think) about the book.
+ ">
+
+</VueGaps>
+</VueExercise>
+
 </div>
 
 <button @click="nextPageClicked">Next page</button>
