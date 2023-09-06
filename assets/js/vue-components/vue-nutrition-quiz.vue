@@ -52,44 +52,59 @@ export default {
 	{
 		question: "Was eignet sich zur Wasseraufbereitung?",
 		questionFr : "Quel instrument est utile pour améliorer la qualité de l'eau?",
+		questionEn : "Which instrument is useful to improve the quality of water?",
 		imageUrl: "assets/img/rawfood/wasserwirbler.png",
 		type: "multiple choice",
 		options: [{ option : "Wasserwirbler", correct: true }, { option : "Sirup", correct: false }],
-		optionsFr: ["Un tourbillon d'eau", "sirop"],
+		optionsFr: [{ option : "un tourbillon d'eau", correct: true }, { option : "sirop", correct: false }],
+		optionsEn: [{ option : "un tourbillon d'eau", correct: true }, { option : "sirop", correct: false }],
 		correct: 0
 	}
 	,
 	{
 		question:"In welcher Form sollte man Getreide laut dem Rohkost-Guru Dr. Schnitzer am besten essen?",
-		questionFranc: "Sous quelle forme est-ce qu'on dois manger les céréales selon le guru d'alimentation cure Dr. Schnitzer?",
+		questionFranc: "Sous quelle forme est-ce qu'on dois manger les céréales selon le guru d'alimentation crue Dr. Schnitzer?",
+		questionEn: "Under which form should you eat grain according to the Raw Food-Guru Dr.Schnitzer?",
 		imageUrl: "assets/img/rawfood/weizensprossen.jpg",
 		type: "multiple choice",
 		options: [{ option : "als Getreidebrei oder als Keimlinge", correct: true }, { option : "Brot", correct: false }, { option : "Nudeln", correct: false }],
-		optionsFranc: ["purée ou graines germés", "pain", "nouilles"],
+		optionsFr: [{ option : "purée ou graines germés", correct: true }, { option : "pain", correct: false }, { option : "nouilles", correct: false }],
+		optionsEn: [{ option : "as sprouts", correct: true }, { option : "bread", correct: false }, { option : "pasta", correct: false }],
 		correct: 0
 	},
 	{
 		question: "Welche Zutat gehört nicht in einen Frischkornbrei?",
-		questionFranc: "Quel ingrédient ne se trouve pas dans un purée de céréales?",
+		questionFr: "Quel ingrédient ne se trouve pas dans un purée de céréales?",
+		questionEn: "Which ingredient doesn't belong to a porridge of grains?",
 		type: "multiple choice",
 		imageUrl: "assets/img/rawfood/frischkornbrei.jpg",
 		options: [{ option : "Roggen", correct: false }, { option : "Haselnüsse", correct: false }, { option : "Apfel", correct: false }, { option : "Marmelade", correct: true }, { option : "Leinsamen", correct: false }],
-		optionsFranc: ["seigle","noisette", "pomme", "confiture","graine de line"],
+		optionsFr: ["seigle","noisette", "pomme", "confiture","graine de line"],
+		optionsFr:  [{ option : "seigle", correct: false }, { option : "noisette", correct: false }, { option : "pomme", correct: false }, { option : "confiture", correct: true }, { option : "graine de lin", correct: false }],
+		optionsEn:  [{ option : "rye", correct: false }, { option : "hazelnuts", correct: false }, { option : "apple", correct: false }, { option : "marmelade", correct: true }, { option : "linseeds", correct: false }],
 		correct: 3
 
 	},
 	{
 		question: "Warum fügt ein Rohköstler seinem Getreidebrei Hanfsprossen hinzu?",
+		questionFr: "Pourquoi un crusinier ajoute-t-il des pousses de chanvre à son purée de céréales? ",
+		questionEn: "Why does a raw fooder add hempsprouts to his porridge of grains?",
 		imageUrl: "assets/img/rawfood/hanfsprossen.jpg",
 		type: "multiple choice",
 		options: [{ option : "wegen der berauschenden Wirkung", correct: false }, { option : "wegen dem vielen Fett und dem würzigen Geschmack", correct: true }],
+		optionsEn: [{ option : "wegen der berauschenden Wirkung", correct: false }, { option : "wegen dem vielen Fett und dem würzigen Geschmack", correct: true }],
+		optionsFr: [{ option : "wegen der berauschenden Wirkung", correct: false }, { option : "wegen dem vielen Fett und dem würzigen Geschmack", correct: true }],
 		correct: 1
 	},
 	{
 		question: "Wie heißt dieses Gemüse?",
+		question: "Comment est-ce qu'on appelle ce légume?",
+		questionEn: "What is the name of this vegetable?",
 		imageUrl: "assets/img/rawfood/rotkohl.jpg",
 		type: "multiple choice",
 		options: [{ option : "Rotkohl", correct: true }, { option : "Weißkohl", correct: false }, { option : "Grünkohl", correct: false }],
+		optionsFr: [{ option : "Rotkohl", correct: true }, { option : "Weißkohl", correct: false }, { option : "Grünkohl", correct: false }],
+		optionsEn: [{ option : "Rotkohl", correct: true }, { option : "Weißkohl", correct: false }, { option : "Grünkohl", correct: false }],
 		correct: 0
 	},
 	
