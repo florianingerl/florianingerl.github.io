@@ -30,6 +30,7 @@
 
 	<!-- Template Main CSS File -->
 	<link href="assets/css/style.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 	<style>
 		.correctimage {
@@ -518,7 +519,10 @@
 
 				<div class="row">
 					<div class="col-lg-8 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
-						<div id="rohkost"></div>
+						<div id="nutritionquiz">
+							
+							<vue-nutrition-quiz lg="fr"></vue-nutrition-quiz>
+						  </div>
 					</div>
 					<div class="col-lg-3 pt-4 pt-lg-0 order-2 order-lg-1 content">
 						<p>Mes élèves deviennent souvent et soudainement malades, dans la plupart des cas 5 minutes
@@ -959,6 +963,18 @@
 	<script src="assets/js/conciousness2.js"></script>
 	<script src="assets/js/scrollsections.js"></script>
 	<script src="chessboardjs-1.0.0/js/devinetteechec.js"></script>
+
+
+	<script src="https://unpkg.com/vue@latest"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue3-sfc-loader"></script>
+	<script src="assets/js/vue-app.js"></script>
+
+	<script>
+		var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+		var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+		  return new bootstrap.Tooltip(tooltipTriggerEl)
+		})
+		</script>
 
 </body>
 
