@@ -2,16 +2,32 @@
 <div id="topcontainer" class="d-flex flex-row">
 <img v-if="question.imageUrl != undefined" :src="question.imageUrl" @click="imageClicked"/>
 <div>
-<p>
+<p v-if="lg==='de'">
 {{ question.question }}
 </p>
-<div>
+<p v-else-if="lg==='en'">
+{{ question.questionEn }}
+</p>
+<p v-else-if="lg==='fr'">
+{{ question.questionFr }}
+</p>
+<div v-if="lg==='de'">
 <div v-for="option in question.options" :key="option" :class="{correct : validated && option.checked && option.correct, notcorrect : validated && option.checked && !option.correct}">
 <input type="checkbox" v-model="option.checked"/>
 <label>{{option.option}}</label>
 </div>
-
-
+</div>
+<div v-if="lg==='en'">
+<div v-for="option in question.optionsEn" :key="option" :class="{correct : validated && option.checked && option.correct, notcorrect : validated && option.checked && !option.correct}">
+<input type="checkbox" v-model="option.checked"/>
+<label>{{option.option}}</label>
+</div>
+</div>
+<div v-if="lg==='fr'">
+<div v-for="option in question.optionsFr" :key="option" :class="{correct : validated && option.checked && option.correct, notcorrect : validated && option.checked && !option.correct}">
+<input type="checkbox" v-model="option.checked"/>
+<label>{{option.option}}</label>
+</div>
 </div>
 
 <div v-if="lg==='en'" class="d-flex flex-row">
@@ -58,6 +74,17 @@ export default {
     }
   },
   methods: {
+    getOptionsForLg(question){
+      if(lg === 'de'){
+        return question.options;
+      }
+      else if(lg === 'en'){
+        return question.optionsEn;
+      }
+      else if(lg === 'fr'){
+        return question.optionsFr;
+      }
+    },
     validate(){
       console.log("The validate button was clicked!");
       this.validated = true;

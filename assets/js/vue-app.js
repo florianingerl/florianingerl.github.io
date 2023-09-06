@@ -25,8 +25,6 @@ const options = {
 
 const app = createApp({
   components: {
-    VueQuiz : Vue.defineAsyncComponent(() =>
-    loadModule('assets/js/vue-components/vue-quiz.vue', options)),
     VueNutritionQuiz : Vue.defineAsyncComponent(() =>
     loadModule('assets/js/vue-components/vue-nutrition-quiz.vue', options)),
   

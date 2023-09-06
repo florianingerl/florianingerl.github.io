@@ -1,5 +1,5 @@
 <template>
-    <vue-quiz :questions="questions"></vue-quiz>
+    <vue-quiz :lg="lg" :questions="questions"></vue-quiz>
 </template>
 
 <script>
@@ -13,6 +13,8 @@ export default {
   
   },
 
+  props: ['lg'],
+
   setup(){
      console.log("The setup function is executed!");
      
@@ -24,32 +26,36 @@ export default {
       [
 	{
 		question: "Wie heißt dieses Gemüse?",
-		questionFranc : "Comment s'appelle ce légume?",
+		questionFr : "Comment s'appelle ce légume?",
+		questionEn : "How do you call this vegetable?",
 		imageUrl: "assets/img/rawfood/rooteBeete1.jpg",
 		type: "multiple choice",
 		options: [{ option : "Tomate", correct: false }, { option : "Roote Beete", correct: true }],
-		optionsFranc : ["tomate", "betterave rouge"],
+		optionsFr : [{ option : "tomate", correct: false }, { option : "betterave rouge", correct: true }],
+		optionsEn : [{ option : "tomato", correct: false }, { option : "beetroot", correct: true }],
 		correct: 1
 
 	},
 
 	{
 		question: "Wie heißt dieses Gemüse?",
-		questionFranc : "Comment s'appelle ce légume?",
+		questionFr : "Comment s'appelle ce légume?",
+		questionEn : "How do you call this vegetable?",
 		imageUrl: "assets/img/rawfood/kohlrabi.jpg",
 		type: "multiple choice",
 		options: [{ option : "Kartoffel", correct: false }, { option : "Kohlrabi", correct: true }],
-		optionsFranc : ["pomme de terre", "chou-rave"],
+		optionsFr : [{ option : "pomme de terre", correct: false }, { option : "chou-rave", correct: true }],
+		optionsEn: [{ option : "potato", correct: false }, { option : "kohlrabi", correct: true }],
 		correct: 1
 	},
 
 	{
 		question: "Was eignet sich zur Wasseraufbereitung?",
-		questionFranc : "Quel instrument est utile pour améliorer la qualité de l'eau?",
+		questionFr : "Quel instrument est utile pour améliorer la qualité de l'eau?",
 		imageUrl: "assets/img/rawfood/wasserwirbler.png",
 		type: "multiple choice",
 		options: [{ option : "Wasserwirbler", correct: true }, { option : "Sirup", correct: false }],
-		optionsFranc: ["Un tourbillon d'eau", "sirop"],
+		optionsFr: ["Un tourbillon d'eau", "sirop"],
 		correct: 0
 	}
 	,

@@ -1,14 +1,37 @@
 <template>
-    <vue-question v-if="i < questions.length" :question="questions[i]"></vue-question>
-    <div v-if="i == questions.length">
+    <vue-question v-if="i < questions.length" :question="questions[i]" :lg="lg"></vue-question>
+    <div v-if="i == questions.length && lg=='de'">
         Gratulation! Du hast alle Fragen des Quiz beantwortet!
     </div>
-    <ul class="pagination">
+    <div v-if="i == questions.length && lg=='en'">
+        Congratulations! You have answered all the questions of this quiz!
+    </div>
+    <div v-if="i == questions.length && lg=='fr'">
+       Félicitations! Tu viens de répondre à toutes les questions!
+    </div>
+  <ul class="pagination" v-if="lg==='de'">
   <li class="page-item"><button class="page-link" @click="jumpBackwardClicked" data-bs-toggle="tooltip" title="Gehe 5 Aufgaben zurück"><i class="fa fa-fast-backward" aria-hidden="true"></i></button></li>
   <li class="page-item"><button class="page-link" @click="previousExerciseClicked" data-bs-toggle="tooltip" title="Vorige Aufgabe"><i class="fa fa-backward" aria-hidden="true"></i></button></li>
   <li v-for="q in displayedQuestions" class="page-item" :class="{active : q == i}" :key="q"><button class="page-link" @click="i=q;">{{q}}</button></li>
   <li class="page-item"><button class="page-link" @click="nextExerciseClicked" data-bs-toggle="tooltip" title="Nächste Aufgabe"><i class="fa fa-forward" aria-hidden="true"></i></button></li>
   <li class="page-item"><button class="page-link" @click="jumpForwardClicked" data-bs-toggle="tooltip" title="Gehe 5 Aufgaben weiter"><i class="fa fa-fast-forward" aria-hidden="true"></i></button></li>
+  </ul>
+  <ul class="pagination" v-else-if="lg==='en'">
+  <li class="page-item"><button class="page-link" @click="jumpBackwardClicked" data-bs-toggle="tooltip" title="Jump 5 exercises backward"><i class="fa fa-fast-backward" aria-hidden="true"></i></button></li>
+  <li class="page-item"><button class="page-link" @click="previousExerciseClicked" data-bs-toggle="tooltip" title="Previous exercise"><i class="fa fa-backward" aria-hidden="true"></i></button></li>
+  <li v-for="q in displayedQuestions" class="page-item" :class="{active : q == i}" :key="q"><button class="page-link" @click="i=q;">{{q}}</button></li>
+  <li class="page-item"><button class="page-link" @click="nextExerciseClicked" data-bs-toggle="tooltip" title="Next Exercise"><i class="fa fa-forward" aria-hidden="true"></i></button></li>
+  <li class="page-item"><button class="page-link" @click="jumpForwardClicked" data-bs-toggle="tooltip" title="Jump 5 exercises forward"><i class="fa fa-fast-forward" aria-hidden="true"></i></button></li>
+  </ul>
+   <ul class="pagination" v-else-if="lg==='fr'">
+  <li class="page-item"><button class="page-link" @click="jumpBackwardClicked" data-bs-toggle="tooltip" title="Sauter 5 exercices en arrière"><i class="fa fa-fast-backward" aria-hidden="true"></i></button></li>
+  <li class="page-item"><button class="page-link" @click="previousExerciseClicked" data-bs-toggle="tooltip" title="Exercice précédent"><i class="fa fa-backward" aria-hidden="true"></i></button></li>
+  <li v-for="q in displayedQuestions" class="page-item" :class="{active : q == i}" :key="q"><button class="page-link" @click="i=q;">{{q}}</button></li>
+  <li class="page-item"><button class="page-link" @click="nextExerciseClicked" data-bs-toggle="tooltip" title="Prochain exercice"><i class="fa fa-forward" aria-hidden="true"></i></button></li>
+  <li class="page-item"><button class="page-link" @click="jumpForwardClicked" data-bs-toggle="tooltip" title="Sauter 5 exercices en avant"><i class="fa fa-fast-forward" aria-hidden="true"></i></button></li>
+  </ul>
+
+
 </ul>
     
 </template>
@@ -23,7 +46,7 @@ export default {
     loadModule('assets/js/vue-components/vue-question.vue', options)),
   
   },
-  props: ['questions'],
+  props: ['questions', 'lg'],
 
   setup(){
      console.log("The setup function is executed!");
