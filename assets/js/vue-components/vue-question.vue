@@ -2,7 +2,7 @@
 <div id="topcontainer" class="d-flex flex-row">
 <img v-if="question.imageUrl != undefined" :src="question.imageUrl" @click="imageClicked"/>
 <div>
-<p v-if="lg==='de'">
+<p v-if="lg==='de' || lg === 'en' && question.questionEn === undefined || lg === 'fr' && question.questionFr === undefined">
 {{ question.question }}
 </p>
 <p v-else-if="lg==='en'">
@@ -11,19 +11,19 @@
 <p v-else-if="lg==='fr'">
 {{ question.questionFr }}
 </p>
-<div v-if="lg==='de'">
+<div v-if="lg==='de' || lg === 'en' && question.optionsEn === undefined || lg === 'fr' && question.optionsFr === undefined">
 <div v-for="option in question.options" :key="option" :class="{correct : validated && option.checked && option.correct, notcorrect : validated && option.checked && !option.correct}">
 <input type="checkbox" v-model="option.checked"/>
 <label>{{option.option}}</label>
 </div>
 </div>
-<div v-if="lg==='en'">
+<div v-else-if="lg==='en'">
 <div v-for="option in question.optionsEn" :key="option" :class="{correct : validated && option.checked && option.correct, notcorrect : validated && option.checked && !option.correct}">
 <input type="checkbox" v-model="option.checked"/>
 <label>{{option.option}}</label>
 </div>
 </div>
-<div v-if="lg==='fr'">
+<div v-else-if="lg==='fr'">
 <div v-for="option in question.optionsFr" :key="option" :class="{correct : validated && option.checked && option.correct, notcorrect : validated && option.checked && !option.correct}">
 <input type="checkbox" v-model="option.checked"/>
 <label>{{option.option}}</label>
