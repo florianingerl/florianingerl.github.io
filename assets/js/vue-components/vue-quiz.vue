@@ -15,6 +15,7 @@
   <li v-for="q in displayedQuestions" class="page-item" :class="{active : q == i}" :key="q"><button class="page-link" @click="i=q;">{{q}}</button></li>
   <li class="page-item"><button class="page-link" @click="nextExerciseClicked" data-bs-toggle="tooltip" title="Nächste Aufgabe"><i class="fa fa-forward" aria-hidden="true"></i></button></li>
   <li class="page-item"><button class="page-link" @click="jumpForwardClicked" data-bs-toggle="tooltip" title="Gehe 5 Aufgaben weiter"><i class="fa fa-fast-forward" aria-hidden="true"></i></button></li>
+  <input @keypress="onlyNumberKey" @change="goToQuestionClicked" type="text" :value="i" style="width: 50px;"/> <span style="text-align: center;"> / {{ questions.length - 1}} </span>
   </ul>
   <ul class="pagination" v-else-if="lg==='en'">
   <li class="page-item"><button class="page-link" @click="jumpBackwardClicked" data-bs-toggle="tooltip" title="Jump 5 exercises backward"><i class="fa fa-fast-backward" aria-hidden="true"></i></button></li>
@@ -22,6 +23,7 @@
   <li v-for="q in displayedQuestions" class="page-item" :class="{active : q == i}" :key="q"><button class="page-link" @click="i=q;">{{q}}</button></li>
   <li class="page-item"><button class="page-link" @click="nextExerciseClicked" data-bs-toggle="tooltip" title="Next Exercise"><i class="fa fa-forward" aria-hidden="true"></i></button></li>
   <li class="page-item"><button class="page-link" @click="jumpForwardClicked" data-bs-toggle="tooltip" title="Jump 5 exercises forward"><i class="fa fa-fast-forward" aria-hidden="true"></i></button></li>
+  <input @keypress="onlyNumberKey" @change="goToQuestionClicked" type="text" :value="i" style="width: 50px;"/> <span style="text-align: center;"> / {{ questions.length - 1 }} </span>
   </ul>
    <ul class="pagination" v-else-if="lg==='fr'">
   <li class="page-item"><button class="page-link" @click="jumpBackwardClicked" data-bs-toggle="tooltip" title="Sauter 5 exercices en arrière"><i class="fa fa-fast-backward" aria-hidden="true"></i></button></li>
@@ -29,6 +31,7 @@
   <li v-for="q in displayedQuestions" class="page-item" :class="{active : q == i}" :key="q"><button class="page-link" @click="i=q;">{{q}}</button></li>
   <li class="page-item"><button class="page-link" @click="nextExerciseClicked" data-bs-toggle="tooltip" title="Prochain exercice"><i class="fa fa-forward" aria-hidden="true"></i></button></li>
   <li class="page-item"><button class="page-link" @click="jumpForwardClicked" data-bs-toggle="tooltip" title="Sauter 5 exercices en avant"><i class="fa fa-fast-forward" aria-hidden="true"></i></button></li>
+  <input @keypress="onlyNumberKey" @change="goToQuestionClicked" type="text" :value="i" style="width: 50px;"/> <span style="text-align: center;"> / {{ questions.length - 1 }} </span>
   </ul>
 
 
@@ -59,6 +62,27 @@ export default {
     };
   },
   methods: {
+    goToQuestionClicked(e){
+      console.log("Go to question was clicked!");
+      let u = parseInt( e.target.value );
+      if( u < 0 || u >= this.questions.length ){
+        return;
+      }
+      this.i = u;
+    },
+
+    onlyNumberKey(evt) {
+            console.log("A key was pressed!"); 
+            // Only ASCII character in that range allowed
+            var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+            if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57)){
+                console.log("False is returned!");
+                evt.stopPropagation();
+                return false;
+            }
+            console.log("True is returned!");
+            return true;
+        },
      nextExerciseClicked(){
         this.i++;
         console.log(this.i);
