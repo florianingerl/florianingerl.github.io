@@ -3,13 +3,13 @@
 </template>
 
 <script>
+import VueQuiz from "./vue-quiz.vue";
 
 export default {
 
   components: {
     
-    VueQuiz : Vue.defineAsyncComponent(() =>
-    loadModule('assets/js/vue-components/vue-quiz.vue', options)),
+    VueQuiz ,
   
   },
 
