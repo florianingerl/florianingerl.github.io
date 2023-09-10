@@ -27,6 +27,16 @@ const app = createApp({
   components: {
     VueNutritionQuiz : Vue.defineAsyncComponent(() =>
     loadModule('assets/js/vue-components/vue-nutrition-quiz.vue', options)),
+   
   
   },
 }).mount('#nutritionquiz');
+
+createApp({
+  components: {
+    VueConciousnessQuiz : Vue.defineAsyncComponent(() =>
+    loadModule('assets/js/vue-components/vue-conciousness-quiz.vue', options)),
+   
+  
+  },
+}).mount('#conciousness');
