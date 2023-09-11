@@ -167,6 +167,18 @@ export default {
 	},
 
 	{
+		question: "Wer bringt dich schneller um?",
+		questionEn: "Who kills you faster?",
+		questionFr: "Qui te tuera plus vite?",
+		imageUrl: "assets/img/rawfood/lovingcook.png",
+		type: "multiple choice",
+		options: [{ option : "Ein sehr guter Arzt", correct: false }, { option : "Eine dich liebende Köchin", correct: true }],
+		optionsEn: [{ option : "a very good doctor", correct: false }, { option : "a cook who loves you", correct: true }],
+		optionsFr: [{ option : "un très bon médecin", correct: false }, { option : "une cuisinière qui t'aime", correct: true }],
+		correct: 1
+	},
+
+	{
 		question: "Wie heißt dieser Salat?",
 		questionEn: "What is this salad called?",
 		questionFr: "Wie heißt dieser Salat?",
