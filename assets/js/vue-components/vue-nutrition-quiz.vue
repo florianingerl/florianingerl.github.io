@@ -64,7 +64,7 @@ export default {
 	{
 		question:"In welcher Form sollte man Getreide laut dem Rohkost-Guru Dr. Schnitzer am besten essen?",
 		questionFranc: "Sous quelle forme est-ce qu'on dois manger les céréales selon le guru d'alimentation crue Dr. Schnitzer?",
-		questionEn: "According to raw food guru Dr. Schnitzer, in what form is it best to eat grains?",
+		questionEn: "According to raw food guru Dr. Schnitzer, in what form is it the best to eat grains?",
 		imageUrl: "assets/img/rawfood/weizensprossen.jpg",
 		type: "multiple choice",
 		options: [{ option : "als Getreidebrei oder als Keimlinge", correct: true }, { option : "Brot", correct: false }, { option : "Nudeln", correct: false }],
@@ -123,7 +123,7 @@ export default {
 	{
 		question: "Wie schmeckt roote Beete?",
 		questionFr: "Quel goût la betterave a-t-elle?",
-		questionEn: "How does beet root taste?",
+		questionEn: "How does beetroot taste?",
 		imageUrl: "assets/img/rawfood/rooteBeete1.jpg",
 		type: "multiple choice",
 		options: [{ option : "bitter", correct: false }, { option : "süß", correct: true }, { option : "scharf", correct: false }],
@@ -133,7 +133,7 @@ export default {
 	},
 	{
 		question: "Sprossen aus Leinsamen sind wertvoll, weil sie viel Fett enthalten. Wie schmecken wohl Leinsamensprossen?",
-		questionEn: "Linseed sprouts are valuable because they contain a lot of fat? What do linseed sprouts taste like?",
+		questionEn: "Linseed sprouts are valuable because they contain a lot of fat. What do linseed sprouts taste like?",
 		questionFr: "Les pousses de lin sont précieuses parce qu'elles contiennent beaucoup de graisse? Quel goût les pousses de lin ont-t-elles?",
 		imageUrl: "assets/img/rawfood/leinsamensprossen.jpg",
 		type: "multiple choice",
@@ -161,7 +161,7 @@ export default {
 		imageUrl: "assets/img/rawfood/frischkornbrei.jpg",
 		type: "multiple choice",
 		options: [{ option : "Wasser", correct: false }, { option : "Dinkel", correct: false }, { option : "Milch", correct: true }, { option : "Sonnenblumenkerne", correct: false }, { option : "Himbeeren", correct: false }],
-		optionsEn: [{ option : "water", correct: false }, { option : "spelled", correct: false }, { option : "milk", correct: true }, { option : "sunflower seeds", correct: false }, { option : "rasperries", correct: false }],
+		optionsEn: [{ option : "water", correct: false }, { option : "spelt", correct: false }, { option : "milk", correct: true }, { option : "sunflower seeds", correct: false }, { option : "rasperries", correct: false }],
 		optionsFr: [{ option : "de l'eau", correct: false }, { option : "épeautre", correct: false }, { option : "du lait", correct: true }, { option : "graines de tournesol", correct: false }, { option : "framboises", correct: false }],
 		correct: 2
 	},
@@ -197,7 +197,7 @@ export default {
 		imageUrl: "assets/img/rawfood/yogiaufnagelbrett.png",
 		type: "multiple choice",
 		options: [{ option : "aus Kostengründen", correct: false }, { option : "Du verlierst die Unterscheidungskraft (zwischen Bedürfnissen der Sinne und des Körpers)", correct: true }],
-		optionsEn: [{ option : "because of cost", correct: false }, { option : "You loose the power of discrimination (between the needs of the body and the senses)", correct: true }],
+		optionsEn: [{ option : "because of cost", correct: false }, { option : "You lose the power of discrimination (between the needs of the body and the senses)", correct: true }],
 		optionsFr: [{ option : "à cause du cout", correct: false }, { option : "Tu perds le pouvoir de distinction (entre les besoins des sens et les besoins du corps)", correct: true }],
 		correct: 3
 	},
@@ -205,7 +205,7 @@ export default {
 
 	{
 		question: "Wie schmeckt Endiviensalat?",
-		questionEn: "What is the taste of endive?",
+		questionEn: "How does endivie taste?",
 		questionFr: "Quel est le goût de l'endive?",
 		imageUrl: "assets/img/rawfood/endivien.jpg",
 		type: "multiple choice",
@@ -234,7 +234,7 @@ export default {
 		imageUrl: "assets/img/rawfood/kichererbsensalat.jpg",
 		type: "multiple choice",
 		options: [{ option : "Weil sie tonnenweise Salat essen", correct: false }, { option : "Weil sie Sprossen aus Getreide und Hülsenfrüchten essen", correct: true }],
-		optionsEn: [{ option : "Because they eat tons of salad", correct: false }, { option : "Because they eat sprouts from grains and legumes", correct: true }],
+		optionsEn: [{ option : "they eat tons of salad", correct: false }, { option : "they eat sprouts from grains and legumes", correct: true }],
 		optionsFr: [{ option : "Parce qu'ils mangent des tonnes de salade", correct: false }, { option : "Parce qu'ils mangent des germes de céréales et de légumineuses", correct: true }],
 		correct: 1
 	},
@@ -248,7 +248,7 @@ export default {
 		imageUrl: "assets/img/rawfood/johannschnitzer.gif",
 		type: "multiple choice",
 		options: [{ option : "an der Länge seines Darms", correct: false }, { option : "an seinem Gebiss", correct: true }, { option : "an der chemischen Zusammensetzung der Magensäure", correct: false }],
-		optionsEn: [{ option : "by the length of this intestines", correct: false }, { option : "by his teeth", correct: true }, { option : "by the chemical composition of his stomach acid", correct: false }],
+		optionsEn: [{ option : "by the length of their intestines", correct: false }, { option : "by their teeth", correct: true }, { option : "by the chemical composition of their stomach acid", correct: false }],
 		optionsFr: [{ option : "par la longueur de ses intestins", correct: false }, { option : "par ses dents", correct: true }, { option : "par la composition chimique de son acide gastrique", correct: false }],
 		correct: 1
 	},
@@ -314,7 +314,7 @@ export default {
 	{
 		question: "Wasser macht verschiedene Kristalle, je nachdem wie man es vorher behandelt? Mit welcher Musik wurde dieses Wasser bespielt?",
 		questionFr: "L'eau produit des cristeaux différents selon la facon dont tu la traites au préalable? Quelle musique jouait-on sur cette eau?",
-		questionEn: "Water makes different cristals depending on how you treat it beforehand? What music was played on this water?",
+		questionEn: "Water makes different cristals depending on how you treat it beforehand. What music was played to this water?",
 		imageUrl: "assets/img/rawfood/mozartsymphonie40.png",
 		type: "multiple choice",
 		options: [{ option : "The Rolling Stones - I can't get no satisfaction", correct: false }, { option : "Mozart - Symphonie 40", correct: true }],
@@ -366,7 +366,7 @@ export default {
 		{ option: "Weil sie so wenig trinken, dass ihr Körper keine Flüssigkeit mehr hergeben kann.", correct: false }],
 		optionsFr: [{ option : "Parce que l'élimination de toxines par la peau ne fonctionne pas pour eux.", correct: false }, { option : "Parce que les céréales, les légumes, les germes et les herbes sauvages ne contiennent aucune toxine pouvant être excrétée par la peau.", correct: true },
 		{ option: "Parce qu’ils boivent si peu que leur corps ne peut plus se débarasser de liquide.", correct: false }],
-		optionsEn: [{ option : "Because the excretion of toxins through the skin doesn't work for them.", correct: false }, { option : "Because cereal porridge, vegetables, sprouts and wild herbs do not contain any toxins that can be excreted through the skin. ", correct: true },
+		optionsEn: [{ option : "Because the excretion of toxins through the skin doesn't work for them.", correct: false }, { option : "Because fresh grain porridge, vegetables, sprouts and wild herbs do not contain any toxins that can be excreted through the skin. ", correct: true },
 		{ option: "Because they drink so little that their bodies can no longer give away any fluid.", correct: false }],
 		correct: 3
 	},
@@ -400,8 +400,8 @@ export default {
 		imageUrl: "assets/img/rawfood/salatmitspeisewicke.jpg",
 		type: "multiple choice",
 		options: [{ option : "Blaukraut", correct: false }, { option : "Roggen", correct: false }, { option : "Pastinake", correct: false }, { option : "Speisewicke", correct: false }, { option : "Basilikum", correct: true }],
-		options: [{ option : "red cabbage", correct: false }, { option : "rye", correct: false }, { option : "parsnip", correct: false }, { option : "sweet pea", correct: false }, { option : "basil", correct: true }],
-		options: [{ option : "chou rouge", correct: false }, { option : "seigle", correct: false }, { option : "panais", correct: false }, { option : "pois de senteur", correct: false }, { option : "basilic", correct: true }],
+		optionsEn: [{ option : "red cabbage", correct: false }, { option : "rye", correct: false }, { option : "parsnip", correct: false }, { option : "sweet pea", correct: false }, { option : "basil", correct: true }],
+		optionsFr: [{ option : "chou rouge", correct: false }, { option : "seigle", correct: false }, { option : "panais", correct: false }, { option : "pois de senteur", correct: false }, { option : "basilic", correct: true }],
 		correct: 4
 	},
 	{
@@ -411,7 +411,7 @@ export default {
 		imageUrl: "assets/img/rawfood/loewenzahn.png",
 		type: "multiple choice",
 		options: [{ option : "Weil sie mehr als 500 Euro im Monat Zwangsgebühren an die Krankenkasse zahlen müssen", correct: false }, { option : "Weil Krankheit durch falsche, artfremde Ernährung und medizynische Behandlung entsteht und Rohköstler aus Zeit-und Kostengründen auf beides verzichten.", correct: true }, { option : "Weil sie Glück haben, dass der mörderische Fuchsbandwurm im Löwenzahn sie noch nicht umgebracht hat.", correct: false }],
-		optionsEn: [{ option : "Because they have to pay compulsory fees to the health insurance company of more than 500 euros a month. ", correct: false }, { option : "Because illness is caused by incorrect, non-human-specific nutrition and medical treatment and raw foodists avoid both for reasons of time and money.", correct: true }, { option : "Because they're lucky that the murderous fox tapeworm in the dandelions hasn't killed them yet.", correct: false }],
+		optionsEn: [{ option : "Because they have to pay compulsory fees to the health insurance company of more than 500 euros a month. ", correct: false }, { option : "Because illness is caused by incorrect, non-human-specific nutrition and medical treatment and raw foodists avoid both for reasons of time and money.", correct: true }, { option : "Because they're lucky that the murderous fox tapeworms in the dandelions haven't killed them yet.", correct: false }],
 		optionsFr: [{ option : "Parce qu'ils doivent payer des frais obligatoires à la caisse d'assurance maladie de plus de 500 euros par mois.", correct: false }, { option : "Parce que la maladie est causée par une alimentation et un traitement médical incorrects et non spécifiques à l'éspèce humaine, et que les crudivoires évitent les deux pour des raisons de temps et d'argent.", correct: true }, { option : "Parce qu'ils ont de la chance que le ténia meurtrier du renard ne les ait pas encore tués.", correct: false }],
 		correct: 4
 	},
@@ -429,7 +429,7 @@ export default {
 
 	{
 		question: "Warum essen bestimmte Rohköstler kein Obst?",
-		questionEn: "Why do certain raw food eaters not eat fruit?",
+		questionEn: "Why do certain raw food eaters not eat fruits?",
 		questionFr: "Pourquoi certains crudivores ne mangent-ils pas de fruits?",
 		imageUrl: "assets/img/rawfood/zahnarzt.png",
 		type: "multiple choice",
@@ -512,7 +512,7 @@ export default {
 		imageUrl: "assets/img/rawfood/rohkost.png",
 		type: "multiple choice",
 		options: [{ option : "Weil bei ihnen die Zeit und das Geld für die Medizyniker-Besuche entfällt", correct: true }, { option : "Weil sie 60 Euro-Zwangs-GEZ-Gebühren alle 3 Monate zahlen müssen, ohne einen Radio-oder Fernseher zu besitzen", correct: false }, {option: "Weil das Zu-und Aufräumen von Salaten und Getreidebreien nur <5 min Zeit kostet", correct: true} ],
-		optionsEn: [{ option : "Because they don't have the time and money for medical visits.", correct: true }, { option : "Because they have to pay 60 euro compulsory GEZ fees every 3 months without owning a radio or television.", correct: false }, {option: "Because preparing and cleaning up salads and cereal porridges only takes <5 minutes.", correct: true} ],
+		optionsEn: [{ option : "Because they don't have the time and money for medical visits.", correct: true }, { option : "Because they have to pay 60 euro compulsory GEZ fees every 3 months without owning a radio or television.", correct: false }, {option: "Because preparing salads and cereal porridges and cleaning up only take <5 minutes.", correct: true} ],
 		optionsFr: [{ option : "Parce qu'ils n'ont ni le temps ni l'argent pour les visites médicales.", correct: true }, { option : "Parce qu'ils doivent payer 60 euros de frais GEZ obligatoires tous les 3 mois sans posséder de radio ou de télévision.", correct: false }, {option: "Parce que préparer et nettoyer les salades et les bouillies de céréales ne prend que <5 minutes.", correct: true} ],
 		correct: 3
 	}
