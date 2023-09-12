@@ -262,9 +262,22 @@ export default {
 		type: "multiple choice",
 		options: [{ option : "Rotkohl", correct: false }, { option : "Weißkohl", correct: true }],
 		optionsFr: [{ option : "chou rouge", correct: false }, { option : "chou blanc", correct: true }],
-		options: [{ option : "red cabbage", correct: false }, { option : "white cabbage", correct: true }],
+		optionsEn: [{ option : "red cabbage", correct: false }, { option : "white cabbage", correct: true }],
 		correct: 1
 	},
+
+	{
+		question: "Was machen Rohköstler im Winter?",
+		questionFr: "Que font les crudivores en hiver?",
+		questionEn: "What do a raw food eaters do in winter?",
+		imageUrl: "assets/img/rawfood/winter.png",
+		type: "multiple choice",
+		options: [{ option : "Eine warme Jacke anziehen", correct: true }, { option : "Weil die rohen Sprossen, Frischkornbreie und Gemüse von innen wärmen, laufen sie auch im Winter mit kurzer Hose und T-Shirt rum.", correct: false }],
+		optionsFr: [{ option : "Porter une veste chaude", correct: false }, { option : "Parce que les pousses crues, la bouillie de céréales fraîches et les légumes les réchauffent de l'intérieur, ils se promènent en short et en T-shirt même en hiver.", correct: false }],
+		optionsEn: [{ option : "Wear a warm jacket", correct: true }, { option : "Because the raw sprouts, fresh grain porridges and vegetables warm them from the inside, they walk around in shorts and a T-shirt even in winter", correct: false }],
+		correct: 1
+	},
+
 	{
 		question: "Wie heißt dieses Gemüse?",
 		questionFr: "Comment s'appelle ce légume?",
@@ -275,6 +288,17 @@ export default {
 		optionsFr: [{ option : "navet jaune", correct: false }, { option : "navet rouge", correct: false }, { option : "navet", correct: true }],
 		optionsEn: [{ option : "yellow turnip", correct: false }, { option : "red turnip", correct: false }, { option : "turnip", correct: true }],
 		correct: 2
+	},
+	{
+		question: "Was bedeutet frisch in Frischkornbrei?",
+		questionFr: "Que signifie frais dans la bouillie de céréales fraîches?",
+		questionEn: "What does fresh mean in fresh grain porridge?",
+		imageUrl: "assets/img/rawfood/roggenbrei.jpg",
+		type: "multiple choice",
+		options: [{ option : "Frisch gekocht", correct: false }, { option : "Frisch gemahlen, aus keimfähigem Getreide", correct: true }],
+		optionsFr: [{ option : "Fraîchement cuit", correct: false }, { option : "fraîchement moulu, à partir de grains germinables", correct: true }],
+		optionsEn: [{ option : "Freshly cooked", correct: false }, { option : "Freshly ground, from germinable grains", correct: true }],
+		correct: 1
 	},
 	{
 		question: "Welche Zutat ist nicht in diesem Salat?",
