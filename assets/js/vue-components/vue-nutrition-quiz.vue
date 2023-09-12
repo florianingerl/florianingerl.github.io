@@ -191,6 +191,19 @@ export default {
 	},
 
 	{
+		question: "Warum ist es riskant, Essen zu konsumieren, was die Sinne erfreut aber der Körper nicht unbedingt braucht (z.B. Obst, Fruchtgemüse, Zwiebeln, Essig, Gewürz)?",
+		questionEn: "Why is it risky to consume food that pleases the senses but that the body does not necessarily need (fruit, fruit vegetables, vinegar, spices) ?",
+		questionFr: "Pourquoi est-il risqué de consommer des aliments qui plaisent aux sens mais dont le corps n'a pas forcément besoin (ex. fruits, oignons, vinaigre, épices) ?",
+		imageUrl: "assets/img/rawfood/yogiaufnagelbrett.png",
+		type: "multiple choice",
+		options: [{ option : "aus Kostengründen", correct: false }, { option : "Du verlierst die Unterscheidungskraft (zwischen Bedürfnissen der Sinne und des Körpers)", correct: true }],
+		optionsEn: [{ option : "because of cost", correct: false }, { option : "You loose the power of discrimination (between the needs of the body and the senses)", correct: true }],
+		optionsFr: [{ option : "à cause du cout", correct: false }, { option : "Tu perds le pouvoir de distinction (entre les besoins des sens et les besoins du corps)", correct: true }],
+		correct: 3
+	},
+
+
+	{
 		question: "Wie schmeckt Endiviensalat?",
 		questionEn: "What is the taste of endive?",
 		questionFr: "Quel est le goût de l'endive?",
@@ -200,6 +213,18 @@ export default {
 		optionsEn: [{ option : "sweet", correct: false }, { option : "bitter", correct: true }, { option : "spicey", correct: false }],
 		optionsFr: [{ option : "sucré", correct: false }, { option : "amer", correct: true }, { option : "épicé", correct: false }],
 		correct: 1
+	},
+
+		{
+		question: "Welches Buch solltest du eher lesen, wenn du Kontrolle über die Sinne und den Geist gewinnen willst?",
+		questionEn: "Which book should you read if you want to gain control over your senses and mind?",
+		questionFr: "Quel livre devrais-tu lire si tu souhaites prendre le contrôle de tes sens et de ton esprit ?",
+		imageUrl: "assets/img/rawfood/bhagavadgita.png",
+		type: "multiple choice",
+		options: [{ option : "Bhagavda Gita", correct: true }, { option : "Schnelle und leckere Rezepte mit nur fünf Zutaten für Fleisch, Fisch, vegetarische und süße Gerichte - mit Ideen für Gewürzmischungen und Rubs", correct: false }],
+		optionsEn: [{ option : "Bhagavda Gita", correct: true }, { option : "Men with the Pot Cookbook: Delicious Grilled Meats and Forest Feasts", correct: true }],
+		optionsFr: [{ option : "Bhagavda Gita", correct: true }, { option : "Recettes de Cuisine Traditionnelle de Viande de Porc", correct: true }],
+		correct: 0
 	},
 
 	{
