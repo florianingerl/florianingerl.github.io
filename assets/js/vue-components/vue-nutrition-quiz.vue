@@ -539,7 +539,29 @@ export default {
 		optionsEn: [{ option : "Because they don't have the time and money for medical visits.", correct: true }, { option : "Because they have to pay 60 euro compulsory GEZ fees every 3 months without owning a radio or television.", correct: false }, {option: "Because preparing salads and cereal porridges and cleaning up only take <5 minutes.", correct: true} ],
 		optionsFr: [{ option : "Parce qu'ils n'ont ni le temps ni l'argent pour les visites médicales.", correct: true }, { option : "Parce qu'ils doivent payer 60 euros de frais GEZ obligatoires tous les 3 mois sans posséder de radio ou de télévision.", correct: false }, {option: "Parce que préparer et nettoyer les salades et les bouillies de céréales ne prend que <5 minutes.", correct: true} ],
 		correct: 3
-	}
+	},
+	{
+		question: "Wie heißt dieses Gemüse?",
+		questionFr: "Comment s'appelle ce légume?",
+		questionEn: "What is the name of this vegetable?",
+		imageUrl: "assets/img/rawfood/spitzkohl.png",
+		type: "multiple choice",
+		options: [{ option : "Weißkohl", correct: false }, { option : "Spitzkohl", correct: true }],
+		optionsFr: [{ option : "chou blanc", correct: false }, { option : "chou pointu", correct: true }],
+		optionsEn: [{ option : "white cabbage", correct: false }, { option : "pointed cabbage", correct: true }],
+		correct: 1
+	},
+	{
+		question: "Welche Zutat ist nicht in diesem Salat?",
+		questionFr: "Quel ingrédient n'est pas dans cette salade?",
+		questionEn: "What ingredient is not in this salad?",
+		imageUrl: "assets/img/rawfood/spitzkohlplatterbsensalat.jpg",
+		type: "multiple choice",
+		options: [{ option : "Platterbsen", correct: false }, { option : "Weizen", correct: false }, { option : "Spitzkohl", correct: false }, { option : "Roote Beete", correct: true }, { option : "Karotte", correct: false }],
+		optionsEn: [{ option : "flat peas", correct: false }, { option : "wheat", correct: false }, { option : "pointed cabbage", correct: false }, { option : "beetroot", correct: true }, { option : "carrot", correct: false }],
+		optionsFr: [{ option : "petits pois", correct: false }, { option : "blé", correct: false }, { option : "chou pointu", correct: false }, { option : "betterave rouge", correct: true }, { option : "carotte", correct: true }],
+		correct: 4
+	},
 
 ]
     };
