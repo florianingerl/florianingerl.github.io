@@ -395,6 +395,55 @@ export default {
 		correct: 3
 	},
 
+{
+		question: "Was ist Selbstliebe?",
+		questionEn: "What is self-love?",
+		questionFr: "Qu'est-ce que l'amour de soi?",
+		imageUrl: "assets/img/Reikiwater.jpg",
+		type: "multiple choice",
+		options: [{ option : "Eigenes Reiki-Wasser herstellen", correct: true }, { option : "Eigene Limonade herstellen, die die Zähne schon aushalten", correct: false }],
+		optionsEn: [{ option : "Make your own Reiki water", correct: true }, { option : "Make your own lemonade", correct: false }],
+		optionsFr: [{ option : "Préparer ta propre eau Reiki", correct: true }, { option : "Préparer ta propre limonade", correct: false }],
+		correct: 2
+	},
+
+	
+	{
+		question: "Was ist Selbstliebe?",
+		questionEn: "What is self-love?",
+		questionFr: "Qu'est-ce que l'amour de soi?",
+		imageUrl: "assets/img/rawfood/ReikiBlumenkohl.png",
+		type: "multiple choice",
+		options: [{ option : "Eigenen Reiki-Blumenkohl herstellen", correct: true }, { option : "Eigenen Blumenkohl-Kuchen backen", correct: false }],
+		optionsEn: [{ option : "Make your own Reiki cauliflower", correct: true }, { option : "Bake your own Reiki cake", correct: false }],
+		optionsFr: [{ option : "Préparer ton propre chou-fleur Reiki", correct: true}, { option : "Préparer ton propre gâteau au chou-fleur", correct: false }],
+		correct: 2
+	},
+		{
+		question: "Wie heißt dieser Kohlkopf?",
+		questionEn: "What is the name of this head of cabbage?",
+		questionFr: "Quel est le nom de cette tête de chou?",
+		imageUrl: "assets/img/rawfood/wirsing.png",
+		type: "multiple choice",
+		options: [{ option : "Wirsing", correct: true }, { option : "Grünkohl", correct: false }],
+		optionsEn: [{ option : "savoy cabbage", correct: true }, { option : "kale", correct: false }],
+		optionsFr: [{ option : "chou de Milan", correct: true }, { option : "chou frisé", correct: false }],
+		correct: 4
+	},
+
+		{
+		question: "Welche Zutat ist nicht in diesem Salat?",
+		questionEn: "Which ingredient is not in this salad?",
+		questionFr: "Quel ingrédient n'est pas dans cette salade?",
+		imageUrl: "assets/img/rawfood/wirsingsalat.jpg",
+		type: "multiple choice",
+		options: [{ option : "Wirsing", correct: false }, { option : "Gelbe Beete", correct: false }, { option : "Weizen", correct: false }, { option : "Linsen", correct: false }, { option : "Banane", correct: true }],
+		optionsEn: [{ option : "savoy cabbage", correct: false }, { option : "yellow beetroot", correct: false }, { option : "wheat", correct: false }, { option : "lentils", correct: false }, { option : "banana", correct: true }],
+		optionsFr: [{ option : "chou de Milan", correct: false }, { option : "betterave jaune", correct: false }, { option : "blé", correct: false }, { option : "lentilles", correct: false }, { option : "banane", correct: true }],
+		correct: 4
+	},
+
+
 	{
 		question: "Welche Zutat ist nicht in diesem Getreidebrei?",
 		questionEn: "What ingredient is not in this fresh grain porridge?",
