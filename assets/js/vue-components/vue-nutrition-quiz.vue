@@ -63,7 +63,7 @@ export default {
 	,
 	{
 		question:"In welcher Form sollte man Getreide laut dem Rohkost-Guru Dr. Schnitzer am besten essen?",
-		questionFranc: "Sous quelle forme est-ce qu'on dois manger les céréales selon le guru d'alimentation crue Dr. Schnitzer?",
+		questionFr: "Sous quelle forme est-ce qu'on dois manger les céréales selon le guru d'alimentation crue Dr. Schnitzer?",
 		questionEn: "According to raw food guru Dr. Schnitzer, in what form is it the best to eat grains?",
 		imageUrl: "assets/img/rawfood/weizensprossen.jpg",
 		type: "multiple choice",
@@ -441,6 +441,18 @@ export default {
 		optionsEn: [{ option : "savoy cabbage", correct: false }, { option : "yellow beetroot", correct: false }, { option : "wheat", correct: false }, { option : "lentils", correct: false }, { option : "banana", correct: true }],
 		optionsFr: [{ option : "chou de Milan", correct: false }, { option : "betterave jaune", correct: false }, { option : "blé", correct: false }, { option : "lentilles", correct: false }, { option : "banane", correct: true }],
 		correct: 4
+	},
+
+	{
+		question: "Karma ist das Gesetz von Ursache und Wirkung. Was du sähst, das erntest du. Was erzeugt auf jeden Fall schlechtes Karma?",
+		questionEn: "Karma is the law of cause and effect. What you sow is what you reap. What definitely creates bad karma?",
+		questionFr: "Le karma est la loi de cause à effet. Ce que vous semez est ce que vous récoltez. Qu’est-ce qui crée définitivement un mauvais karma ?",
+		imageUrl: "assets/img/rawfood/yogiaufnagelbrett.png",
+		type: "multiple choice",
+		options: [{ option : "Nahrung wegwerfen", correct: true }, { option : "Nicht Klavier üben, obwohl von den Eltern befohlen", correct: false }],
+		optionsEn: [{ option : "Throw away food", correct: true }, { option : "not practicing the piano despite being told to by parents", correct: false }],
+		optionsFr: [{ option : "Jeter de la nourriture", correct: true}, { option : "Ne pas pratiquer le piano malgré les conseils des parents", correct: false }],
+		correct: 2
 	},
 
 
