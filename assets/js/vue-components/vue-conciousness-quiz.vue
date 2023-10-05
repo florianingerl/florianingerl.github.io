@@ -117,9 +117,9 @@ questionEn:  "Why is it important to be aware of your feelings?",
 		questionFr: "Pourquoi est-ce qu'il est important de s'apercevoir de ses sentiments?", 
 		imageUrl: "assets/img/cs/fragezeichen.jpg",
 		type: "multiple choice",
-		options: [{ option: "Weil sie uns ins Hier und Jetzt bringen", correct: false }, { option: "Weil sie uns von unserer Pflicht ablenken", correct: false }],
-optionsEn:  [{ option: "Because they bring us to the present moment", correct: false }, { option: "Because they distract us from our duty", correct: false }],
-		optionsFr: [{ option: "Parce qu'ils nous amènent dans le moment présent", correct: false }, { option: "parce qu'ils nous distraient de notre travail", correct: false }],
+		options: [{ option: "Weil sie uns ins Hier und Jetzt bringen", correct: true }, { option: "Weil sie uns von unserer Pflicht ablenken", correct: false }],
+optionsEn:  [{ option: "Because they bring us to the present moment", correct: true }, { option: "Because they distract us from our duty", correct: false }],
+		optionsFr: [{ option: "Parce qu'ils nous amènent dans le moment présent", correct: true }, { option: "parce qu'ils nous distraient de notre travail", correct: false }],
 		correct: 0
 	},
 	
@@ -129,7 +129,7 @@ questionEn:  "Who are you?",
 		questionFr: "Qui es-tu?", 
 		imageUrl: "assets/img/cs/fragezeichen.jpg",
 		type: "multiple choice",
-		options: [{ option: "Die Stimme im Kopf", correct: false }, { option: "Der Körper", correct: false }, { option: "Eine Geschichte oder ein Lebenslauf", correct: false }, { option: "Der gegenwärtige Moment", correct: false }],
+		options: [{ option: "Die Stimme im Kopf", correct: false }, { option: "Der Körper", correct: false }, { option: "Eine Geschichte oder ein Lebenslauf", correct: false }, { option: "Der gegenwärtige Moment", correct: true }],
 optionsEn:  [{ option: "The voice in the head", correct: false }, { option: "The body", correct: false }, { option: "A story or a resume", correct: false }, { option: "The present moment", correct: true }],
 		optionsFr: [{ option: "La voix dans la tête", correct: false }, { option: "Le corps", correct: false }, { option: "Une histoire ou un CV", correct: false }, { option: "Le moment présent", correct: true }],
 		correct: 3
@@ -175,7 +175,7 @@ questionEn:  "Which feeling is not one of the 6 primary feelings that all mamals
 		questionFr: "Quel sentiment n'appartient pas aux 6 sentiments primaires que tous les mammifères connaissent?", 
 		imageUrl: "assets/img/cs/fragezeichen.jpg",
 		type: "multiple choice",
-		options: [ { option: "Angst", correct: false }, { option: "Freude", correct: false }, { option: "Wut", correct: false }, { option: "Ekel", correct: false }, { option: "Überraschung", correct: false }, { option: "Nervosität", correct: false }, { option: "Trauer", correct: false }],
+		options: [ { option: "Angst", correct: false }, { option: "Freude", correct: false }, { option: "Wut", correct: false }, { option: "Ekel", correct: false }, { option: "Überraschung", correct: false }, { option: "Nervosität", correct: true }, { option: "Trauer", correct: false }],
 optionsEn:  [ { option: "fear", correct: false }, { option: "joy", correct: false }, { option: "anger", correct: false }, { option: "disgust", correct: false }, { option: "intoxication", correct: false }, { option: "nervousness", correct: true }, { option: "sadness", correct: false }],
 		optionsFr: [ { option: "peur", correct: false }, { option: "joie", correct: false }, { option: "colère", correct: false }, { option: "dégoût", correct: false }, { option: "ivresse", correct: false }, { option: "nervosité", correct: true}, { option: "tristesse", correct: false }],
 		correct: 5
@@ -281,6 +281,16 @@ questionEn:  "What does the voice in your head do when you listen to it?",
 		options: [ { option: "Die Stimme verstummt, weil sie das Bewusstsein nicht aushält", correct: true }, { option: "Sie sagt mir nichts mehr, also mach ich lieber den Fernseher an.", correct: false }],
 optionsEn:  [ { option: "The voice falls silent because it can't bear consciousness", correct: true }, { option: "It doesn't tell me anything anymore, so I have to turn on the TV.", correct: false }],
 		optionsFr:  [ { option: "Elle se taise parce qu'elle ne peut pas supporter la conscience", correct: true }, { option: "Elle ne me parle plus, donc j'allume la télé.", correct: false }],
+		correct: 0
+	},	{
+		question: "Du hast große Pläne, um die Welt zu retten oder besser zu machen. Was ist günstiger, als es umzusetzen?",
+questionEn:  "You have big plans to save the world or make it better. What is cheaper than implementing it?",
+		questionFr: "Vous avez de grands projets pour sauver le monde ou le rendre meilleur. Qu’est-ce qui coûte moins cher que de le mettre en œuvre?", 
+		imageUrl: "assets/img/cs/fragezeichen.jpg",
+		type: "multiple choice",
+		options: [ { option: "Mit deiner Psychaterin darüber sprechen", correct: true }, { option: "Mit deiner Englisch-Nachhilfelehrerin darüber sprechen", correct: true }, { option: "Mit deinem Franzöisch-Nachhilfelehrer darüber sprechen", correct: true }],
+optionsEn:  [ { option: "Talk to your psychiatrist about it", correct: true }, { option: "Talk to your English tutor about it", correct: true }, { option: "Talk to your French tutor about it", correct: true } ],
+		optionsFr:  [ { option: "Parle-en à ton psychiatre", correct: true }, { option: "Parle-en à ta prof privée d'anglais", correct: true }, { option: "Parle-en à ta prof privée de francais", correct: true }],
 		correct: 0
 	}
 
