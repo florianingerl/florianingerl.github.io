@@ -77,7 +77,7 @@ optionsEn:  [{ option: "Thinking of the next meal", correct: false }, { option: 
 	},
 	
 	{
-		question: "Du bist unzufrieden in deiner Arbeit. Welcher der folgenden 4 Optionen ist nicht gut?",
+		question: "Du bist unzufrieden in deiner Arbeit. Welche der folgenden 4 Optionen ist nicht gut?",
 questionEn:  "You are dissatisfied with your work. Which of the following 4 options is not good?",
 		questionFr: "Tu n'est pas heureux avec ton travail. Laquelle des 4 options suivantes n'est pas bonne?",
 		imageUrl: "assets/img/cs/fragezeichen.jpg",
@@ -288,9 +288,9 @@ questionEn:  "You have big plans to save the world or make it better. What is ch
 		questionFr: "Vous avez de grands projets pour sauver le monde ou le rendre meilleur. Qu’est-ce qui coûte moins cher que de le mettre en œuvre?", 
 		imageUrl: "assets/img/cs/fragezeichen.jpg",
 		type: "multiple choice",
-		options: [ { option: "Mit deiner Psychaterin darüber sprechen", correct: true }, { option: "Mit deiner Englisch-Nachhilfelehrerin darüber sprechen", correct: true }, { option: "Mit deinem Franzöisch-Nachhilfelehrer darüber sprechen", correct: true }],
-optionsEn:  [ { option: "Talk to your psychiatrist about it", correct: true }, { option: "Talk to your English tutor about it", correct: true }, { option: "Talk to your French tutor about it", correct: true } ],
-		optionsFr:  [ { option: "Parle-en à ton psychiatre", correct: true }, { option: "Parle-en à ta prof privée d'anglais", correct: true }, { option: "Parle-en à ta prof privée de francais", correct: true }],
+		options: [ { option: "Mit deiner Psychaterin darüber sprechen", correct: true }, { option: "Mit deiner Englisch-Nachhilfelehrerin darüber sprechen", correct: true }, { option: "Mit deinem Franzöisch-Nachhilfelehrer darüber sprechen", correct: true }, { option: "Die eigene Wohnung durchputzen", correct: true }],
+optionsEn:  [ { option: "Talk to your psychiatrist about it", correct: true }, { option: "Talk to your English tutor about it", correct: true }, { option: "Talk to your French tutor about it", correct: true }, { option: "Clean your own flat", correct: true } ],
+		optionsFr:  [ { option: "Parle-en à ton psychiatre", correct: true }, { option: "Parle-en à ta prof privée d'anglais", correct: true }, { option: "Parle-en à ta prof privée de francais", correct: true }, { option: "Nettoyer ton propre appartement", correct: true }],
 		correct: 0
 	}
 
