@@ -10,7 +10,7 @@
 
 <ol>
 <li>
-Tu as ajouté de l'huile d'olive dans ta salade?
+Tu as ajouté de l'huile d'olive à ta salade?
 </li>
 <li>
 Est-ce que tu ajoutes du vinaigre à ta salade?
