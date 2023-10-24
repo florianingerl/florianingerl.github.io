@@ -247,6 +247,8 @@ I cooked the food. My children died. -> </br>
 If I hadn't cooked the food, my children wouldn't have died.
 
 <ol>
+
+<li>I didn't eat any dandelions today. So I had to eat more grains.</li>
 <li>I didn't read this book. I acquired an indirect digestive aliment.</li>
 <li>I was not able to read English texts. I was not able to read this book.</li>
 <li>My cells weren't obedient. So they refused my orders.</li>
@@ -254,6 +256,7 @@ If I hadn't cooked the food, my children wouldn't have died.
 
 <VueHideShow>
 <ol>
+<li>If I had eaten more dandelions today, I wouldn't have had to eat so much grain.</li>
 <li>If I had read this book, I wouldn't have acquired an indirect digestive aliment.</li>
 <li>If I had been able to read English texts, I would have been able to read this book.</li>
 <li>If my cells had been obedient, they wouldn't have refused my orders.</li>
