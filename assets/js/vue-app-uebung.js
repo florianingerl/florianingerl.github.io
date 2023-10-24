@@ -50,6 +50,9 @@ loadModule('assets/js/vue-components/french/grammaire/vue-pronom-en.vue', option
 
 const VuePronomEnMengenwort = Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/french/grammaire/vue-pronom-en-mengenwort.vue', options));
+
+const VueDontOuDuquel = Vue.defineAsyncComponent(() =>
+loadModule('assets/js/vue-components/french/grammaire/vue-dont-ou-duquel.vue', options));
 // 2. Define some routes
 // Each route should map to a component.
 // We'll talk about nested routes later.
@@ -101,6 +104,11 @@ const routes = [
           name: 'Pronom en mit Mengenwort',
           path: 'enmengenwort',
           component: VuePronomEnMengenwort
+        },
+        {
+          name: 'Dont ou duquel',
+          path: 'dontouduquel',
+          component: VueDontOuDuquel
         }
        ]}
 
