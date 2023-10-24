@@ -47,6 +47,9 @@ loadModule('assets/js/vue-components/informatik/vue-regex-exercises.vue', option
 
 const VuePronomEn = Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/french/grammaire/vue-pronom-en.vue', options));
+
+const VuePronomEnMengenwort = Vue.defineAsyncComponent(() =>
+loadModule('assets/js/vue-components/french/grammaire/vue-pronom-en-mengenwort.vue', options));
 // 2. Define some routes
 // Each route should map to a component.
 // We'll talk about nested routes later.
@@ -93,6 +96,11 @@ const routes = [
           name: 'Pronom en',
           path: 'en',
           component: VuePronomEn
+        },
+        {
+          name: 'Pronom en mit Mengenwort',
+          path: 'enmengenwort',
+          component: VuePronomEnMengenwort
         }
        ]}
 
