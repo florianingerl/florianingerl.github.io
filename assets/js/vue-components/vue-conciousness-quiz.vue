@@ -227,6 +227,31 @@ optionsEn:  [ { option: "You can only notice this when you are you conscious of 
 	},
 
 	{
+		question: "Wie lernt man Mathe, Physik oder Informatik?",
+questionEn:  "How do you learn maths, physics or computer science?",
+		questionFr: "Comment est-ce que tu apprends les maths, la physique ou l'informatique?", 
+		imageUrl: "assets/img/cs/fragezeichen.jpg",
+		type: "multiple choice",
+		options: [ { option: "Mit der Angst und Blockierung, eine nicht vom staatlichen Lehrer anerkannte Notation oder Lösungweg zu verwenden.", correct: false }, { option: "Mit dem Motto: Alles, was begründet ist und was mein Gegenüber versteht, ist korrekt.", correct: true }, { option: "mit Neugier, neue Sachen auf die eigene Art auszuprobieren", correct: true }],
+optionsEn:  [ { option: "With the fear and blockage of using a notation or solution that is not recognized by the state teacher.", correct: false }, { option: "With the motto: Everything that is justified and what the other person understands is correct.", correct: true }, { option: "with curiosity to try new things in your own way", correct: true }],
+		optionsFr:  [ { option: "Avec la peur et le blocage d'utiliser une notation ou une solution qui n'est pas reconnue par le professeur d'état.", correct: false },{ option: "Avec la devise : Tout ce qui est justifié et ce que l'autre comprend est correct.", correct: true }, { option: "avec curiosité d'essayer de nouvelles choses à ta manière", correct: true }],
+		correct: 5
+	},
+
+	{
+		question: "Wie lernt man Hatha-Yoga?",
+questionEn:  "How do you learn Hatha-Yoga?",
+		questionFr: "Comment est-ce que tu apprends Hatha-Yoga?", 
+		imageUrl: "assets/img/cs/fragezeichen.jpg",
+		type: "multiple choice",
+		options: [ { option: "Mit der Angst und Blockierung, eine nicht vom Buch oder Lehrer anerkannte Bewegung mit der genau richtigen Reihenfolge und Dauer zu machen.", correct: false }, { option: "Mit Neugier probiert man aus, wo welche (selbst variierte/ausgedachte) Übung dehnt, kräftigt, etc...", correct: true }],
+		
+optionsEn:  [ { option: "With the fear and blockage of doing a movement that is not recognized by the book or teacher and with exactly the right order and duration.", correct: false }, { option: "With curiosity you try out which (self-varied/thought-up) exercise where stretches, strengthens, etc...", correct: true }],
+		optionsFr:  [ { option: "Avec la peur et le blocage de faire un mouvement qui n'est pas reconnu par le livre ou le professeur et avec exactement le bon ordre et la bonne durée.", correct: false },{ option: "de sa voix", correct: false }, { option: "Avec curiosité, vous essayez lequel (auto-varié/pensé -up) exercice où s'étire, se renforce, etc...", correct: true }],
+		correct: 5
+	},
+
+	{
 		question: "Was bewirkt es, mehr Aufmerksamkeit auf die Ausatmung zu lenken?",
 questionEn:  "What does bringing more attention to exhalation do?",
 		questionFr: "À quoi sert d’accorder davantage d’attention à l’expiration?", 

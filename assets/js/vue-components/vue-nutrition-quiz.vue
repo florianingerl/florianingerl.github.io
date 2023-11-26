@@ -119,6 +119,17 @@ export default {
 		optionsFr: [{ option : "céleri-rave", correct: true }, { option : "radis", correct: false }],
 		correct: 0
 	},
+	{
+		question:"Warum lernst du nirgendwo, dass Giersch essbar und gesund ist?",
+		questionFr: "Sous quelle forme est-ce qu'on dois manger les céréales selon le guru d'alimentation crue Dr. Schnitzer?",
+		questionEn: "According to raw food guru Dr. Schnitzer, in what form is it the best to eat grains?",
+		imageUrl: "assets/img/rawfood/giersch.png",
+		type: "multiple choice",
+		options: [{ option : "weil es keine Werbung einer Gierschindustrie gibt, die den Giersch pasteurisiert,kocht,haltbar macht und dann in Tablettenform verkauft", correct: true }, { option : "Weil der Mensch kein Widerkäuer ist und Giersch nicht gesund", correct: false }],
+		optionsFr: [{ option : "car il n'y a pas de publicité d'une industrie de la courge qui pasteurise la courge, la cuit, la conserve puis la vend sous forme de comprimés", correct: true }, { option : "Parce que les humains ne sont pas des ruminants et que la courge n'est pas saine", correct: false }],
+		optionsEn: [{ option : "because there is no advertising from a gourd industry that pasteurizes the gourd, cooks it, preserves it and then sells it in tablet form", correct: true }, { option : "Because humans are not ruminants and gourd is not healthy", correct: false }],
+		correct: 0
+	},
 	
 	{
 		question: "Wie schmeckt roote Beete?",
@@ -279,6 +290,18 @@ export default {
 	},
 
 	{
+		question: "Was machen Rohköstler im Winter?",
+		questionFr: "Que font les crudivores en hiver?",
+		questionEn: "What do a raw food eaters do in winter?",
+		imageUrl: "assets/img/rawfood/winter.png",
+		type: "multiple choice",
+		options: [{ option : "Viel Sport und Yoga, um sich mithilfe der Muskeln aufzuwärmen", correct: true }, { option : "Im Angesicht der Kälte müssen sie einsehen, dass Nahrung gekocht sein muss", correct: false }],
+		optionsEn: [{ option : "A lot of sports and Yoga to warum up", correct: false }, { option : "Facing the cold weather, they have to admit that food must be cooked", correct: false }],
+		optionsFr: [{ option : "Beaucoup de sport et de yoga pour se rechauffer", correct: true }, { option : "Face au froid, ils doivent reconnaitre que la nourriture doit être cuite", correct: false }],
+		correct: 1
+	},
+
+	{
 		question: "Wie heißt dieses Gemüse?",
 		questionFr: "Comment s'appelle ce légume?",
 		questionEn: "What is the name of this vegetable?",
@@ -296,6 +319,17 @@ export default {
 		imageUrl: "assets/img/rawfood/roggenbrei.jpg",
 		type: "multiple choice",
 		options: [{ option : "Frisch gekocht", correct: false }, { option : "Frisch gemahlen, aus keimfähigem Getreide", correct: true }],
+		optionsFr: [{ option : "Fraîchement cuit", correct: false }, { option : "fraîchement moulu, à partir de grains germinables", correct: true }],
+		optionsEn: [{ option : "Freshly cooked", correct: false }, { option : "Freshly ground, from germinable grains", correct: true }],
+		correct: 1
+	},
+	{
+		question: "Warum sind Getreidesprossen noch besser als Frischkornbrei?",
+		questionFr: "Que signifie frais dans la bouillie de céréales fraîches?",
+		questionEn: "What does fresh mean in fresh grain porridge?",
+		imageUrl: "assets/img/rawfood/roggenbrei.jpg",
+		type: "multiple choice",
+		options: [{ option : "Weil der Keimprozess die Gluten auf ein verträgliches Minimum reduziert", correct: true }, { option : "Weil im Getreidebrei Wasser drin ist, was die Magensäure verdünnt", correct: true }, { option : "Weil wenn man die Sprossen vorher kocht, sind sie besser verdaulich", correct: false }],
 		optionsFr: [{ option : "Fraîchement cuit", correct: false }, { option : "fraîchement moulu, à partir de grains germinables", correct: true }],
 		optionsEn: [{ option : "Freshly cooked", correct: false }, { option : "Freshly ground, from germinable grains", correct: true }],
 		correct: 1
