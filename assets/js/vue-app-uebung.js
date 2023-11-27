@@ -48,6 +48,9 @@ loadModule('assets/js/vue-components/informatik/vue-regex-exercises.vue', option
 const VuePronomEn = Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/french/grammaire/vue-pronom-en.vue', options));
 
+const VueNiNi = Vue.defineAsyncComponent(() =>
+loadModule('assets/js/vue-components/french/grammaire/vue-ni-ni.vue', options));
+
 const VuePronomEnMengenwort = Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/french/grammaire/vue-pronom-en-mengenwort.vue', options));
 
@@ -109,6 +112,11 @@ const routes = [
           name: 'Dont ou duquel',
           path: 'dontouduquel',
           component: VueDontOuDuquel
+        },
+        {
+          name: 'Négation avec ne...ni...ni',
+          path: 'nenini',
+          component: VueNiNi
         }
        ]}
 

@@ -29,6 +29,7 @@ export default {
   mounted(){
      console.log("The setup function is executed!");
      this.sentences2 = this.sentences;
+     
   },
   setup(){
    console.log("The setup function is executed!");
