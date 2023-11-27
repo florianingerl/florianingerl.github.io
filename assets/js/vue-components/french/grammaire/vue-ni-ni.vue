@@ -76,7 +76,7 @@ export default {
        solution: "Préparer une salade ne coûte ni de temps ni d'éléctricité." },
        {task: "Est-ce que ta grand-mère peut coudre ou tricoter?", solution: "Ma grand-mère ne sait ni coudre ni tricoter."},
        {task: "Est-ce que les lentilles ou les haricots de mungo sont difficiles à digester?", solution: "Ni les lentils ne les haricots de mungo ne sont difficiles à digster." },
-       {task: "Est-ce que le médecin ou ses pillules sont utiles quand on souffres d'un alimentation unnaturel?", solution: "Ni le médecin ni ses pillules ne sont utiles quand on souffre d'un alimentation unnaturel."},
+       {task: "Est-ce que le médecin ou ses pillules sont utiles quand on souffre d'un alimentation unnaturel?", solution: "Ni le médecin ni ses pillules ne sont utiles quand on souffre d'un alimentation unnaturel."},
        ]
     };
   }
