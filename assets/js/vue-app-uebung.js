@@ -51,6 +51,9 @@ loadModule('assets/js/vue-components/french/grammaire/vue-pronom-en.vue', option
 const VueNiNi = Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/french/grammaire/vue-ni-ni.vue', options));
 
+const VueTantOuSi = Vue.defineAsyncComponent(() =>
+loadModule('assets/js/vue-components/french/grammaire/vue-si-tant.vue', options));
+
 const VuePronomEnMengenwort = Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/french/grammaire/vue-pronom-en-mengenwort.vue', options));
 
@@ -117,7 +120,13 @@ const routes = [
           name: 'Négation avec ne...ni...ni',
           path: 'nenini',
           component: VueNiNi
-        }
+        },
+        {
+          name: 'Tant ou si',
+          path: 'tantousi',
+          component: VueTantOuSi
+        },
+
        ]}
 
     ]

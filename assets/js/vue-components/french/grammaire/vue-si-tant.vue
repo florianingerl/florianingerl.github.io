@@ -2,40 +2,21 @@
 
 <div>
 
-<h1>La négation par ne...ni...ni</h1>
+<h1>Tant ou si</h1>
 
-<p>Ne...ni...ni est la forme négative de "et" ou "ou". Les articles indéfinis et partitifs (un, une, des, du, de la, de l') disparaissent.  Les articles définis (le, la, l', les), les adjectifs possessifs, les adjectifs démonstratifs et les prépositions ne changent pas. </p> 
+<p>Cas 1: +tant+de+Nom+que :</p>
 
-<p>Question: Est-ce que tu as des frères ou des soeurs?</p>
+     J'avais tant faim que je pouvais manger un kilo de lentilles à un seul repas.
 
-<p>Réponse : Non, je n'ai ni frères ni soeurs</p>
+<p>Cas 2: si+adjectif+que</p>
 
-<p>Question: Parlez-vous le russe ou l'espagnol?</p>
-
-<p>Réponse : Non, je ne parle ni le russe ni l'espagnol.</p>
-
-<p>Cas 1: +ne+verbe+ni+infinitif+ni+infinitif :</p>
-
-     Il ne peut ni arrèter de penser ni dormir. 
-
-<p>Cas 2: +ne+verbe+ni+Nom(G.N.,pronom)+ni+Nom(G.N.,pronom)</p>
-
-      Je n'ai besoin ni de conseil ni d'argent de toi. 
-
-<p>Cas 3: +Ni+Nom(G.N.,pronom)+ne+Verbe.... </p>
-
-     Ni ceux qui dorment trop ni ceux qui ne dorment pas assez ont atteint l'équilibre.
-
-
+      Il me fait si froid que je veux plutot mourir.
    
-<VueExercise instruction="Répondons à la question ou mettons les phrases suivantes à la forme négative en utilisant la négation par NI...NI.">
-<div>
-<p>Exemple:</p>
-<p>Mon père et ma mère peuvent me reconciler quand je suis triste.</p>
-<p>Ni mon père ni ma mère ne peuvent me reconciler quand je suis triste.</p>
-</div>
+<VueExercise instruction="Remplis les trous avec si ou tant!">
 
-<VueWholeSentence lg="fr" :sentences="sentences1" />
+<VueGaps lg="fr" gaptext="J'avais {tant} peur que je me cachait sous mon lit." />
+<VueGaps lg="fr" gaptext="Il chantait {si} fort qu'il faillait mettre les doigts dans les oreilles." />
+<VueGaps lg="fr" gaptext="Ils faisaient {tant} de bruit qu'on ne pouvait plus entendre ses propres mots." />
 
 
 
