@@ -54,6 +54,9 @@ loadModule('assets/js/vue-components/french/grammaire/vue-ni-ni.vue', options));
 const VueTantOuSi = Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/french/grammaire/vue-si-tant.vue', options));
 
+const VueDuDeLeTemps = Vue.defineAsyncComponent(() =>
+loadModule('assets/js/vue-components/french/grammaire/vue-du-de-le-temps.vue', options));
+
 const VuePronomEnMengenwort = Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/french/grammaire/vue-pronom-en-mengenwort.vue', options));
 
@@ -125,6 +128,11 @@ const routes = [
           name: 'Tant ou si',
           path: 'tantousi',
           component: VueTantOuSi
+        },
+        {
+          name: 'Du,de ou le temps',
+          path: 'dudeouletemps',
+          component: VueDuDeLeTemps
         },
 
        ]}
