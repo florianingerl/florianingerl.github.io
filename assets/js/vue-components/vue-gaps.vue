@@ -1,18 +1,13 @@
 <template>
-<!-- <input class="frenchinput" type="text"><div>A lot of Sonderzeichen</div></input> -->
 <div>
-<p>
-<span v-for="gap in gaps" >
+<ol>
+<li v-for="innergaps in gaps">
+<span v-for="gap in innergaps" >
   {{ gap.text }} 
-  <div v-if="lg==='fr'" class="frenchinput"> 
-  <input v-if="gap.gap!=''" @focus="(e) => { gap.target = e.target; gap.hasFocus = true; }" @blur="if(!gap.mouseover)gap.hasFocus=false;" :class="{ notcorrect: validated && gap.guess != gap.gap, correct: validated && gap.guess === gap.gap }" type="text" v-model="gap.guess"> 
-  <div v-if="gap.hasFocus" :style="'left:'+gap.target.selectionStart+'ch;'" @mouseover="gap.mouseover=true" @mouseout="gap.mouseover=false">
-    <span v-for="symbol in frenchSymbols" @click="insertSymbol(gap,symbol)" v-html="symbol"></span>
-  </div>
-  </div>
-  <input v-else-if="gap.gap!=''" :class="{ notcorrect: validated && gap.guess != gap.gap, correct: validated && gap.guess === gap.gap }" type="text" v-model="gap.guess"> 
+  <input v-if="gap.gap!=''" :class="{ notcorrect: validated && gap.guess != gap.gap, correct: validated && gap.guess === gap.gap }" type="text" v-model="gap.guess"> 
 </span>
-</p>
+</li>
+</ol>
 
 <p v-if="lg==='fr'">
 <button @click="buttonValidateClicked">Valider ma solution</button>
@@ -40,15 +35,17 @@ export default {
 
   data() {
     return {
-       //gaps : [{text: "Florian est le ", gap: "frère", guess:""}, {text: " de sa ", gap: "soeur", guess:""}, {text: " qui s'appelle ", gap: "Sonja", guess:""}],
+       /*gaps : [[{text: "Florian est le ", gap: "frère", guess:""}, {text: " de sa ", gap: "soeur", guess:""}, {text: " qui s'appelle ", gap: "Sonja", guess:""}],
+                [{text: "Florian est le ", gap: "frère", guess:""}, {text: " de sa ", gap: "soeur", guess:""}, {text: " qui s'appelle ", gap: "Sonja", guess:""}] ],
+       */
        gaps: [],
-       validated: false ,
-       frenchSymbols : ['é','è','\u00E7']
+       validated: false 
     };
   },
 
   mounted(){
      console.log("The setup function is executed!");
+     
      if( this.gapfile ){
      var xhttp = new XMLHttpRequest();
      xhttp.onreadystatechange = () => {
@@ -60,12 +57,16 @@ export default {
 
         console.log("I can read the file!");
       console.log(data);
-      this.parseGapText(data);
+      this.parseGapTexts(JSON.parse(data));
     }
 };
 xhttp.open("GET", this.gapfile, true);
 xhttp.send();
 
+     }
+     else if(this.gaptext && Array.isArray(this.gaptext) ){ //gaptext is an array of gaptexts
+     console.log(this.gaptext);
+      this.parseGapTexts(this.gaptext);
      }
      else if(this.gaptext){
       this.parseGapText(this.gaptext);
@@ -78,43 +79,30 @@ xhttp.send();
   
   
   methods: {
-    insertSymbol(gap, symbol){
-    let p = gap.target.selectionStart;
-    console.log(p);
-    gap.guess = gap.guess.substring(0,p) + symbol + gap.guess.substring(p);
-    gap.target.focus();
-    console.log("Setting selection!");
-    gap.target.setSelectionRange(p+1,p+1);
-  },
-
-    textTyped(e){
-      console.log("Text was inserted!");
-      this.testGap.target = e.target;
-      console.log(e.target.selectionStart);
-    },
-     frenchSymbolClicked(e){
-        console.log("Event handler was clicked!");
-        this.testGap.guess = "Hallo Welt!";
-        e.stopPropagation();
-        return false;
-     },
-
+    
      buttonValidateClicked(){
         this.validated = true;
         console.log("The button validated was clicked!");
      },
      showSolutionClicked(){
         this.validated = true;
-        this.gaps.forEach( gap => {
-          gap.guess = gap.gap;
+        this.gaps.forEach( innergaps => {
+          innergaps.forEach( gap => { gap.guess = gap.gap; } );
           
+        } );
+     },
+     parseGapTexts(gaptexts){
+      console.log("parseGapTexts called!");
+        gaptexts.forEach( gaptext => {
+           console.log(gaptext + " is now parsed!");
+           this.parseGapText(gaptext);
         } );
      },
      parseGapText(data){
       if(!data.endsWith("}")){
         data += "{}";
       }
-      this.gaps = [];
+      let gaps = [];
       let i = 0;
       while (true){
         let gap = {};
@@ -127,9 +115,10 @@ xhttp.send();
         gap.gap = data.substring(j+1,i);
         i++;
         gap.guess = "";
-        this.gaps.push(gap);
+        gaps.push(gap);
       }
-      console.log(this.gaps);
+      console.log(gaps);
+      this.gaps.push(gaps);
      }
   }
 }
@@ -145,26 +134,6 @@ xhttp.send();
 .notcorrect {
     color: red;
     border: 1px solid red
-}
-
-
-.frenchinput {
-  position: relative;
-  display: inline;
-}
-
-.frenchinput div span {
-  padding: 3px;
-  border: solid 1px black;
-}
-
-.frenchinput div {
-  position: absolute;
-  top: 103%;
-  background-color: orange;
-  border: solid 2px black;
-  z-index: 1;
-
 }
 
 

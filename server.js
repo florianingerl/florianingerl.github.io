@@ -1,3 +1,5 @@
+const db = require('./my_modules/sqlite3db');
+
 const express = require('express');
 const cookieParser = require("cookie-parser");
 const sessions = require('express-session');
@@ -57,6 +59,15 @@ app.post('/user',(req,res) => {
 app.get('/logout',(req,res) => {
   req.session.destroy();
   res.redirect('/');
+});
+
+app.post('/usersignup', (req, res) => {
+  console.log("Route user signup was called!");
+  console.log(req.body);
+  db.insertNewUser(req.body, ()=>{
+    console.log("The user was successfully inserted!");
+    res.status(200).send("Good");
+  }  );
 });
 
 

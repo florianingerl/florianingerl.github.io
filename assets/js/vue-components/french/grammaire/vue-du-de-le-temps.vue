@@ -41,10 +41,7 @@ Non, je n'ai pas le temps (de/pour jouer aux cartes avec toi).
    
 <VueExercise instruction="Remplis les trous avec le temps, du temps ou de temps">
 
-<VueGaps lg="fr" gaptext="Michael n'a jamais {de temps}. Il s'excuse toujour si on veut quelque chose de lui.
-Papa a toujours {le temps} de faire du ski, mais il n'a jamais {le temps} de faire un tour de vélo avec moi.
-Est-ce que je peux t'expliquer mon problème. Oui, mais fais vite. J'ai peu {de temps}.
-Je n'ai pas {de} temps à perdre." />
+<VueGaps lg="fr" :gaptext="gaptext" />
 
 </VueExercise>
 
@@ -79,7 +76,10 @@ export default {
   
   data() {
     return {
-       
+       gaptext: ["Michael n'a jamais {de temps}. Il s'excuse toujours si on veut quelque chose de lui.",
+"Papa a toujours {le temps} de faire du ski, mais il n'a jamais {le temps} de faire un tour de vélo avec moi.",
+"Est-ce que je peux t'expliquer mon problème. Oui, mais fais vite. J'ai peu {de temps}.",
+"Je n'ai pas {de} temps à perdre."]
     };
   }
 }
