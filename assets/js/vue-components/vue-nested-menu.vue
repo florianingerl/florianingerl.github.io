@@ -10,8 +10,10 @@
 
 <!-- Page content -->
 <div class="main">
+<!-- <router-link to="/signup" class="btn btn-primary">Sign up</router-link>
+<button>Sign in</button> -->
    <router-view></router-view>
-</div>
+</div> 
     
 </template>
 
