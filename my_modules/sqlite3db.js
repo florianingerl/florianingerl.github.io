@@ -1,6 +1,6 @@
 const sqlite3 = require('sqlite3').verbose();
 
-let db = new sqlite3.Database('./sample.db');
+let db = new sqlite3.Database('./my_modules/sample.db');
 
 
 function insertNewUser( user, callback) {
@@ -10,8 +10,8 @@ function insertNewUser( user, callback) {
         }
         callback();
       });
-}
+};
 
-exports = {
+module.exports = {
     insertNewUser 
 };

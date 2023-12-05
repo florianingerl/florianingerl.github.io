@@ -63,6 +63,9 @@ loadModule('assets/js/vue-components/french/grammaire/vue-pronom-en-mengenwort.v
 const VueDontOuDuquel = Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/french/grammaire/vue-dont-ou-duquel.vue', options));
 
+const VueEnDenDansDent = Vue.defineAsyncComponent(() =>
+loadModule('assets/js/vue-components/french/grammaire/vue-en-den-dans-dent.vue', options));
+
 const VueSignUp = Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/vue-sign-up.vue', options));
 // 2. Define some routes
@@ -137,6 +140,11 @@ const routes = [
           path: 'dudeouletemps',
           component: VueDuDeLeTemps
         },
+        {
+          name: "En,d'en,dans ou dent",
+          path: 'endendansdent',
+          component: VueEnDenDansDent
+        },
 
        ]}
 
@@ -153,12 +161,14 @@ const routes = [
         component : VueRegexExercises
       }
     ],
-  },
+  }
+  
+  /*,
   {
     name: 'Sign up',
     path: '/signup',
     component: VueSignUp
-  }
+  }*/
 
 ];
 
