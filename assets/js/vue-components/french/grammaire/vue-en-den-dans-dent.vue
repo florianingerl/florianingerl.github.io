@@ -70,8 +70,12 @@ export default {
 "Inutile d'acheter d'avantage de lentilles! Je viens {d'en} acheter 100 kilos.",
 "Est-ce que tu veux ton propre ordinateur? Oui, j'ai envie {d'en} avoir un.",
 "Le cours de soutien commence {dans} 10 minutes.",
-"En vélo, je vais de ma maison jusqu'à l'université {en} 60 minutes." ]
-    };
+"En vélo, je vais de ma maison jusqu'à l'université {en} 60 minutes.",
+"Pas nécessaire {d'en} acheter parce que les {dents}de-lion poussent gratuitement dans la nature.",
+"Ca ne sert à rien {d'en} faire une grande affaire." ,
+"Combien de {dents} de devant est-ce que tu as? J'{en} ai deux.",
+"Je brosse mes {dents} (afin qu'elles restent blanches) {en} 2 minutes."]
+ };
   }
 }
 </script>
