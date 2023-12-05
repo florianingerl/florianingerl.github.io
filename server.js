@@ -64,6 +64,7 @@ app.get('/logout',(req,res) => {
 app.post('/usersignup', (req, res) => {
   console.log("Route user signup was called!");
   console.log(req.body);
+  console.log(db);
   db.insertNewUser(req.body, ()=>{
     console.log("The user was successfully inserted!");
     res.status(200).send("Good");

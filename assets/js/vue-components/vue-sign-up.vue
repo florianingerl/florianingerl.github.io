@@ -1,7 +1,7 @@
 <template>
 
 
-<form>
+<div>
         <h2>Login</h2>
         <div class="input-field">
             <input type="text" v-model="user.nickname" name="username" id="username" placeholder="Enter username">
@@ -13,7 +13,7 @@
             <input type="email" v-model="user.email" name="email" id="email" placeholder="Enter your e-mail">
         </div>
         <input @click="signUpClicked" type="submit" value="Sign up">
-</form>
+</div>
 
 
     
@@ -39,20 +39,12 @@ export default {
   methods: {
     signUpClicked() {
         console.log("The sign up button was clicked!");
-        if( this.user.nickname.trim().length() == 0 ){
-            alert("Please give your nickname!");
-            return;
-        }
-        if( this.user.password.trim().length() == 0 ){
-            alert("Please give a password!");
-            return;
-        }
-        if( this.user.email.trim().length() == 0 ){
-            alert("Please give an email!");
-            return;
-        }
+        console.log(this.user);
+        
+        console.log("Axios will be called!");
+        console.log(axios);
 
-        axios.post('/usersignup', user)
+        axios.post('http://localhost:3000/usersignup', user)
   .then(function (response) {
     console.log(response);
   })
