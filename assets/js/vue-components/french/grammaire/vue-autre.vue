@@ -1,6 +1,17 @@
 <template>
 
 <div>
+<h1 class=".text-danger">D'autres</h1>
+D'autres signifie "en plus" ou "davantage".
+<p>Exemple:<br>
+Je n'ai pas assez de lentilles. Il faut que j'en achète d'autres.
+</p>
+
+<h1 class=".text-danger">Des autres</h1>
+Des est l'abbreviation de de + les. 
+<p>Exemple:<br>
+Un écrivain prend souvent de l'inspiration des autres écrivains.
+</p>
    
 <VueExercise instruction="Remplis les trous avec autres, des autres ou d'autres">
 
