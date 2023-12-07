@@ -59,11 +59,14 @@ export default {
     replaceAll(){
         console.log("The button was clicked!");
         let editorText = this.editor;
-        let regEx = new RegExp(this.find, 'g')
+        let regEx = new RegExp(this.find, 'g');
+        
         this.editor = editorText.replace(regEx, this.replaceby);
 
         let regExCor = new RegExp(this.exercise.find, 'g');
         let editorTextCor = editorText.replace(regExCor, this.exercise.replaceby);
+
+        console.log("EditorTextCor\n" + editorTextCor);
 
         if(this.editor == editorTextCor ){
             this.score = 1;
