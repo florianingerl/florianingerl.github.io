@@ -76,6 +76,9 @@ write "\." if you want to match "." and write "\+" if you want to match a "+".
 E.g. "(?<!a)b" would find the "b" in "ccccb" but would not find the b in "ccccab" because it was proceded by an a.
 -->
 
+<RegexExercise :exercise="{ instruction: 'Replace every score by labelscore, that includes that labelscore should not become labellabelscore! So use a negative lookbehind!', 
+ editor: 'score is high. labelscore is a variable name for a label where the score is displayed. score can be increased or score can be decreased which the score label then displays.', find: '(?<!label)score', replaceby: 'labelscore' }" ></RegexExercise>
+
 </template>
 
 
