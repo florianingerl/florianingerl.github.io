@@ -6,9 +6,15 @@ Regular expressions can be used to find and replace text that match a certain pa
 <h3>Matching digits</h3>
 For example, you can write "\d" to search for a digit. So the search for "\d" in the string
 "Hallo123goodby45" would find 5 things.
+
+<RegexExercise :exercise="{ instruction: 'Replace every digit by the word young', 
+ editor: 'Baby Alfred is 2. Baby Dennis is 3. Baby Frieda is 5.', find: '\\d', replaceby: 'young' }" ></RegexExercise>
 <h3>Repetitions</h3>
 By searching for "\d+", you can search for a sequence of at least one digit. So the search for
 "\d+" in "Hallo123goodby45" would find 2 things, i.e. "123" and "45".
+
+<RegexExercise :exercise="{ instruction: 'Replace every age by a teenager', 
+ editor: 'Alfred is 12. Dennis is 15. Frieda is 16.', find: '\\d+', replaceby: 'a teenager' }" ></RegexExercise>
 </p>
 <p>
 <h3>Using groups in the replace string</h3>
@@ -72,12 +78,19 @@ write "\." if you want to match "." and write "\+" if you want to match a "+".
 
 
 <h3>Negative look-behind</h3>
-<!-- With "(?<!regex1)regex2" you can match anything that matches regex2 but is not proceded by anything matching regex1.
-E.g. "(?<!a)b" would find the "b" in "ccccb" but would not find the b in "ccccab" because it was proceded by an a.
--->
+With "(? < !regex1)regex2" you can match anything that matches regex2 but is not proceded by anything matching regex1.
+E.g. "(? < !a)b" would find the "b" in "ccccb" but would not find the "b" in "ccccab" because it is proceded by an a.
+
 
 <RegexExercise :exercise="{ instruction: 'Replace every score by labelscore, that includes that labelscore should not become labellabelscore! So use a negative lookbehind!', 
  editor: 'score is high. labelscore is a variable name for a label where the score is displayed. score can be increased or score can be decreased which the score label then displays.', find: '(?<!label)score', replaceby: 'labelscore' }" ></RegexExercise>
+
+ <h3>Negative look-ahead</h3>
+With "regex1(?!regex2)" you can match anything that matches regex1 but is not followed by anything matching regex2.
+E.g. "b(?!a)" would find the "b" in "bccc" but would not find the "b" in "baccc" because it is followed by an a.
+
+<RegexExercise :exercise="{ instruction: 'Replace every info by information, that includes that information should not become infoinformation! So use a negative lookahead!', 
+ editor: 'info is the abbreviation of information. infos are available through the Internet. info makes you smarter', find: 'info(?!rmation)', replaceby: 'information' }" ></RegexExercise>
 
 </template>
 
