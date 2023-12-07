@@ -58,7 +58,7 @@ and capture the result in a group to be used in the replace string.
 
 <RegexExercise :exercise="{instruction:'Replace each point by a html list entry, for example 1. Des fruits should be  replaced by <li>Des fruits</li>. Please also get rid of useless whitespace.',
 editor: '1. Des fruits et légumes de qualité (carburant et nutriments)\n2. Des feuilles vertes (nutriments et fibres)\n3. Une source grasse protéinée (noix, olive, fruit gras, oeuf, poisson, viande)',
-find: '\d+\.\s*(.*)',
+find: '\\d+\\.\\s*(.*)',
 replaceby: '<li>$1</li>' }" ></RegexExercise>
 
 <div>
