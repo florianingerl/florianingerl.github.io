@@ -6,7 +6,7 @@
   {{ gap.text }} 
   <select v-if="gap.gap!=''" :class="{ notcorrect: validated && gap.guess != gap.gap[0], correct: validated && gap.guess === gap.gap[0] }" v-model="gap.guess">
     <option disabled value="">Please select one</option>
-    <option v-for="op in gap.gap">{{ op }}</option>
+    <option v-for="op in suffle(gap.gap)">{{ op }}</option>
   </select> 
 </span>
 </li>
@@ -94,6 +94,12 @@ xhttp.send();
           
         } );
      },
+
+     suffle(array){
+      let newarray = [...array];
+      newarray.sort( (a,b) => 0.5 - Math.random() );
+      return newarray;
+      },
      parseGapTexts(gaptexts){
       console.log("parseGapTexts called!");
         gaptexts.forEach( gaptext => {
