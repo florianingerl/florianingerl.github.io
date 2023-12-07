@@ -66,6 +66,9 @@ loadModule('assets/js/vue-components/french/grammaire/vue-dont-ou-duquel.vue', o
 const VueEnDenDansDent = Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/french/grammaire/vue-en-den-dans-dent.vue', options));
 
+const VueAutre = Vue.defineAsyncComponent(() =>
+loadModule('assets/js/vue-components/french/grammaire/vue-autre.vue', options));
+
 const VueSignUp = Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/vue-sign-up.vue', options));
 // 2. Define some routes
@@ -144,6 +147,11 @@ const routes = [
           name: "En,d'en,dans ou dent",
           path: 'endendansdent',
           component: VueEnDenDansDent
+        },
+        {
+          name: "Des autres ou d'autres",
+          path: 'autre',
+          component: VueAutre
         },
 
        ]}
