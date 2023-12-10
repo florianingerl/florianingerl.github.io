@@ -6,6 +6,7 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 
+
     <style>
         .footer {
           position: fixed;
@@ -29,7 +30,7 @@
         </style>
 </head>
 
-<body>
+<body class="clickable">
 
     <div id="gaps">
         <vue-nested-menu></vue-nested-menu>
@@ -61,6 +62,33 @@
     // always executed
   });
     </script> -->
+    <script>
+      console.log("This script is executed!");
+      document.getElementsByTagName("body")[0].addEventListener("click",function(e){
+        console.log("The body was clicked!");
+          s = window.getSelection();
+          var range = s.getRangeAt(0);
+          var node = s.anchorNode;
+          
+          // Find starting point
+          while(range.toString().search(/[^\w]/) != 0) {                 
+             range.setStart(node,(range.startOffset -1));
+          }
+          range.setStart(node, range.startOffset +1);
+          
+          // Find ending point
+          do{
+            range.setEnd(node,range.endOffset + 1);
+    
+         }while(range.toString().search(/[^\w]/) == -1 && range.toString().trim() != '');
+         
+         // Alert result
+         var str = range.toString().trim();
+         console.log(str);
+         window.open("https://fr.thefreedictionary.com/" + str, "_blank").focus();
+        });
+        console.log("This script has been executed!");
+      </script>
     <script src="https://unpkg.com/vue@latest"></script>
 	  <script src="https://cdn.jsdelivr.net/npm/vue3-sfc-loader"></script>
     <script src="https://unpkg.com/vue-router@4"></script>
