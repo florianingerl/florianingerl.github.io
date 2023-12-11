@@ -69,6 +69,9 @@ loadModule('assets/js/vue-components/french/grammaire/vue-en-den-dans-dent.vue',
 const VueAutre = Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/french/grammaire/vue-autre.vue', options));
 
+const VueFrancais = Vue.defineAsyncComponent(() =>
+loadModule('assets/js/vue-components/french/vue-francais.vue', options));
+
 const VueSignUp = Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/vue-sign-up.vue', options));
 // 2. Define some routes
@@ -94,7 +97,13 @@ const routes = [
   {
     name: 'Français',
     path: '/french',
+    
     children: [
+      { name: "Nagivation",
+        path: '',
+        component: VueFrancais
+
+      },
       {name: 'Livres',
       path: 'livres',
       children: [
