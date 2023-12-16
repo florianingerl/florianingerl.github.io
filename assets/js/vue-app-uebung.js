@@ -69,6 +69,9 @@ loadModule('assets/js/vue-components/french/grammaire/vue-en-den-dans-dent.vue',
 const VueAutre = Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/french/grammaire/vue-autre.vue', options));
 
+const VueConditionelle3 = Vue.defineAsyncComponent(() =>
+loadModule('assets/js/vue-components/french/grammaire/vue-phrase-conditionelle3.vue', options));
+
 const VueFrancais = Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/french/vue-francais.vue', options));
 
@@ -162,6 +165,12 @@ const routes = [
           path: 'autre',
           component: VueAutre
         },
+        {
+          name: "Phrase conditionelle 3",
+          path: 'conditionelle3',
+          component: VueConditionelle3
+        },
+
 
        ]}
 
