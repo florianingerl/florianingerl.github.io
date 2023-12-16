@@ -10,8 +10,8 @@
     </thead>
     <tbody>
       <tr>
-        <td>1</td>
-        <td><router-link to="/french/grammaire/en">Pronom en</router-link></td>
+        <td>3</td>
+        <td><router-link to="/french/grammaire/conditionelle3">Phrase de type conditionelle 3</router-link></td>
         <td>Flori10</td>
       </tr>
       <tr>
@@ -19,6 +19,12 @@
         <td><router-link to="/french/grammaire/dontouduquel">Dont ou duquel</router-link></td>
         <td>Flori10</td>
       </tr>
+      <tr>
+        <td>1</td>
+        <td><router-link to="/french/grammaire/en">Pronom en</router-link></td>
+        <td>Flori10</td>
+      </tr>
+      
     </tbody>
   </table>
 
