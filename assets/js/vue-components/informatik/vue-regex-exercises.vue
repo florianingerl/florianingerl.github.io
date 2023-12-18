@@ -92,6 +92,16 @@ E.g. "b(?!a)" would find the "b" in "bccc" but would not find the "b" in "baccc"
 <RegexExercise :exercise="{ instruction: 'Replace every info by information, that includes that information should not become infoinformation! So use a negative lookahead!', 
  editor: 'info is the abbreviation of information. infos are available through the Internet. info makes you smarter', find: 'info(?!rmation)', replaceby: 'information' }" ></RegexExercise>
 
+<h3>(Negative) Character classes</h3>
+Character classes are specified in brackets [], e.g. [a-zA-Z] matches any small or capital letter.
+You can also use negative character classes by putting ^ just after the opening bracket,e.g. [^)] would
+match anything except a quote.<br>
+For example the regex "[^"]*" would match anything inside of quotes.
+
+<!--
+<RegexExercise :exercise="{ instruction: 'Replace every <th align="left"> by <th style="text-align: left">. This should also work for any other alignment like right or center.', 
+ editor: '<td align="left">This is left aligned</td><td align="right">This is right aligned</td> <td align="center">This is center aligned</td>', find: 'info(?!rmation)', replaceby: 'information' }" ></RegexExercise>
+-->
 </template>
 
 

@@ -72,6 +72,9 @@ loadModule('assets/js/vue-components/french/grammaire/vue-autre.vue', options));
 const VueConditionelle3 = Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/french/grammaire/vue-phrase-conditionelle3.vue', options));
 
+const VuePasseSimple = Vue.defineAsyncComponent(() =>
+loadModule('assets/js/vue-components/french/grammaire/vue-passe-simple.vue', options));
+
 const VueFrancais = Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/french/vue-francais.vue', options));
 
@@ -169,6 +172,11 @@ const routes = [
           name: "Phrase conditionelle 3",
           path: 'conditionelle3',
           component: VueConditionelle3
+        },
+        {
+          name: "Passe simple",
+          path: 'passesimple',
+          component: VuePasseSimple
         },
 
 
