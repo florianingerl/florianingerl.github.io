@@ -32,10 +32,11 @@ Voilà la conjugation du verbe être au passé simple.
 </table>
    
 <VueExercise instruction="Remplis les trous avec le verbe donné à l'imparfait ou au passé simple!">
-
+<h3 class="text-center">L'histoire d'un buveur avec de bonnes résolutions</h3>
 <VueGaps lg="fr" :gaptext="gaptext">
 
 </VueGaps>
+<h4 class="text-center">La fin de l'histoire</h4>
 
 </VueExercise>
 
