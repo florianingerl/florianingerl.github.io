@@ -75,6 +75,9 @@ loadModule('assets/js/vue-components/french/grammaire/vue-phrase-conditionelle3.
 const VuePasseSimple = Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/french/grammaire/vue-passe-simple.vue', options));
 
+const VueImparfaitOuPlusQueParfait = Vue.defineAsyncComponent(() =>
+loadModule('assets/js/vue-components/french/grammaire/vue-imparfait-plus-que-parfait.vue', options));
+
 const VueFrancais = Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/french/vue-francais.vue', options));
 
@@ -178,6 +181,11 @@ const routes = [
           path: 'passesimple',
           component: VuePasseSimple
         },
+        {
+          name: "Imparfait ou Plus-que-parfait",
+          path: 'imparfaitouplusqueparfait',
+          component: VueImparfaitOuPlusQueParfait
+        }
 
 
        ]}
