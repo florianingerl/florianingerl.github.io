@@ -78,6 +78,9 @@ loadModule('assets/js/vue-components/french/grammaire/vue-passe-simple.vue', opt
 const VueImparfaitOuPlusQueParfait = Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/french/grammaire/vue-imparfait-plus-que-parfait.vue', options));
 
+const VueLionPasseSimpleOuImparfait = Vue.defineAsyncComponent(() =>
+loadModule('assets/js/vue-components/french/grammaire/vue-lion-passe-simple.vue', options));
+
 const VueFrancais = Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/french/vue-francais.vue', options));
 
@@ -185,6 +188,11 @@ const routes = [
           name: "Imparfait ou Plus-que-parfait",
           path: 'imparfaitouplusqueparfait',
           component: VueImparfaitOuPlusQueParfait
+        },
+        {
+          name: "L'histoire d'un lion - Passé simple ou l'imparfait",
+          path: 'lionpassesimpleouimparfait',
+          component: VueLionPasseSimpleOuImparfait
         }
 
 

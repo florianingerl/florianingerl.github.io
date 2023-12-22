@@ -5,10 +5,15 @@
       <tr>
         <th>N°</th>
         <th>Titre</th>
-        <th>Autheur</th>
+        <th>Autheur</th>lionpassesimpleouimparfait
       </tr>
     </thead>
     <tbody>
+    <tr>
+        <td>6</td>
+        <td><router-link to="/french/grammaire/lionpassesimpleouimparfait">L'histoire d'un lion - Passé simple ou l'imparfait</router-link></td>
+        <td>Flori10</td>
+      </tr>
      <tr>
         <td>5</td>
         <td><router-link to="/french/grammaire/imparfaitouplusqueparfait">Imparfait ou Plus-que-parfait</router-link></td>
