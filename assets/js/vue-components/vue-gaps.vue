@@ -10,12 +10,12 @@
 </ol>
 
 <p v-if="lg==='fr'">
-<button @click="buttonValidateClicked">Valider ma solution</button>
-<button @click="showSolutionClicked">Montre-moi la solution</button>
+<button class="btn btn-primary mr5" @click="buttonValidateClicked">Valider ma solution</button>
+<button class="btn btn-primary" @click="showSolutionClicked">Montre-moi la solution</button>
 </p>
 <p v-else>
-<button @click="buttonValidateClicked">Validate</button>
-<button @click="showSolutionClicked">Show me the solution</button>
+<button class="btn btn-primary mr1" @click="buttonValidateClicked">Validate</button>
+<button class="btn btn-primary mr1" @click="showSolutionClicked">Show me the solution</button>
 </p>
 
 
