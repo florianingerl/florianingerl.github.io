@@ -81,6 +81,9 @@ loadModule('assets/js/vue-components/french/grammaire/vue-imparfait-plus-que-par
 const VueLionPasseSimpleOuImparfait = Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/french/grammaire/vue-lion-passe-simple.vue', options));
 
+const VueEnoughToo = Vue.defineAsyncComponent(() =>
+loadModule('assets/js/vue-components/english/grammar/vue-too-enough.vue', options));
+
 const VueFrancais = Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/french/vue-francais.vue', options));
 
@@ -92,6 +95,7 @@ loadModule('assets/js/vue-components/informatik/vue-computer-science.vue', optio
 
 const VueSignUp = Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/vue-sign-up.vue', options));
+
 
 
 // 2. Define some routes
@@ -117,7 +121,11 @@ const routes = [
   ] }, {
     name: 'Grammar',
     path: 'grammar',
-    children: []
+    children: [ {
+      name: 'Enough and Too',
+      path: 'enoughtoo',
+      component: VueEnoughToo
+    }]
   }]
     
   },
