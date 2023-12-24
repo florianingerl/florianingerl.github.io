@@ -28,8 +28,8 @@ const options = {
 
 const app = createApp({
   components: {
-    VueNestedMenu : Vue.defineAsyncComponent(() =>
-    loadModule('assets/js/vue-components/vue-nested-menu.vue', options))  
+    VueHome : Vue.defineAsyncComponent(() =>
+    loadModule('assets/js/vue-components/vue-home.vue', options))  
   }
 });
 
@@ -84,8 +84,16 @@ loadModule('assets/js/vue-components/french/grammaire/vue-lion-passe-simple.vue'
 const VueFrancais = Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/french/vue-francais.vue', options));
 
+const VueEnglish = Vue.defineAsyncComponent(() =>
+loadModule('assets/js/vue-components/english/vue-english.vue', options));
+
+const VueComputerScience = Vue.defineAsyncComponent(() =>
+loadModule('assets/js/vue-components/informatik/vue-computer-science.vue', options));
+
 const VueSignUp = Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/vue-sign-up.vue', options));
+
+
 // 2. Define some routes
 // Each route should map to a component.
 // We'll talk about nested routes later.
@@ -93,7 +101,14 @@ const routes = [
   {
     name: 'English',
     path: '/english',
-    children: [ {name: 'Books', path: 'books', 
+    children: [
+      {
+        name: "Navigation",
+        path: '',
+        component: VueEnglish
+      },
+      
+      {name: 'Books', path: 'books', 
   children: [
     {name: 'Raw food',
      path: 'rawfood/:page',
@@ -205,6 +220,11 @@ const routes = [
     name: 'Informatik',
     path: '/informatik',
     children: [
+      {
+        name: "Navigation",
+        path: "",
+        component: VueComputerScience
+      },
       {
         name: 'Regular expressions',
         path: 'regex',

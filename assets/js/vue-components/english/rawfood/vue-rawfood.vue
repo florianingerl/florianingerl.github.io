@@ -281,6 +281,66 @@ explain how we can restore that immunity or, better still, prevent its decline.
 </VueGaps>
 </VueExercise>
 
+
+
+</div>
+
+<div v-if="$route.params.page == 3">
+The fear of microbes has so frightened men that to escape them they have recourse to
+the most dangerous measures and yet they obtain entirely opposite results. The cooking of
+raw foodstuffs in order to avoid microbes is one of the most fateful mistakes in medical
+science. We cannot exterminate microbes from the face of the earth. They are found
+everywhere, they will always exist and can enter our organisms through multifarious channels.
+In particular, by cooking our food we first of all weaken the resistance of our cells and then we
+destroy in our foodstuffs those natural antibiotics that are destined by nature to fight against
+microbes. Even those doctors who are addicted to cooked food confirm that many vitamins,
+which are destroyed on the fire, have bacterial properties. That is why animals that feed on
+rubbish heaps are not nearly so subject to infectious diseases as man is.
+
+<VueExercise instruction="Fill in the gaps by still, yet or already">
+<VueGaps gaptext="Do you {still} eat cooked food after having read the first paragraphs of the book?
+Indeed, I have {already} read these first paragraphs and I have understood them, and {yet}, I haven't managed {yet} to get rid of my old bad habits.">
+
+</VueGaps>
+</VueExercise>
+
+<h2>The Cancer Cell is the Direct</h2>
+<h3>Offspring of Degenerated Food</h3>
+Many cooked-eaters are inclined to believe that because man has fed on cooked food for
+centuries on end, he must be accustomed to it and may now suffer if he starts eating raw food
+all at once. In other words, if we have filled a motor-car with dirty and inferior petrol for a certain time, the engine may have become used
+to it and it may be damaged if the dirty petrol is replaced by clean fuel.
+
+<VueExercise instruction="Fill in the gaps with all or every">
+<VueGaps gaptext="{All} my life, I have cooked {all} the food to get rid of {all} the microbes. Ant yet, although I 
+ killed {every} microbe, that might have been in the food, I was tired {all} day and {all} of my body was hurting. I repeat: {Every} limb of my body was aching. And I was addictive to sugar stuff. {Every} time I saw a cake I immediately had to eat it {all}.">
+ </VueGaps>
+</VueExercise>
+
+
+First of all, a period of a few thousand years is nothing compared with the 1.5 billion years
+during which, along with his ancestors, man lived and developed exclusively on raw food. Besides,
+that man has not, in fact, become habituated to cooked food is proven by the very existence of
+diseases, which disappear and the organism then returns to its normal functions once man has
+recourse to raw nourishment.
+
+<VueExercise instruction="Fill in the gaps with very, too or enough">
+<VueGaps gaptext="I am {very} tired although it's only 8 p.m, because I have eaten {too} much cooked food.
+Once and for all, I have {enough} of cooked food that only makes me {very} ill. I will from now on eat vegetables and grains to get {enough} nutrients.">
+
+</VueGaps>
+</VueExercise>
+
+
+It is true that by the laws of evolution our organism tries to adapt itself to the food it
+receives, but not in the way that some people imagine. Those nutritive constituents of food that
+are essential for the complicated processes and the specialized major functions of the cells are
+easily destroyed under the influence of fire. Therefore, the foodstuffs that are considered
+nutritious by cooked-eaters lack those essential constituents, but instead they have an
+abundant supply of proteins, fats and carbohydrates, several times in excess of the demands of
+the cells.
+
+
 </div>
 
 <button @click="nextPageClicked">Next page</button>
@@ -288,6 +348,7 @@ explain how we can restore that immunity or, better still, prevent its decline.
 
 <script>
 import VueGaps from "./../../vue-gaps.vue";
+import VueMcGaps from "./../../vue-mc-gaps.vue";
 import VueQuestion from "./../../vue-question.vue";
 import VueExercise from "./../../vue-exercise.vue";
 import VueWholeSentence from "./../../vue-whole-sentence.vue";
@@ -312,7 +373,7 @@ export default {
   },
   data(){
         return {
-                numPages: 2
+                numPages: 3
         };
   },
   methods: {
