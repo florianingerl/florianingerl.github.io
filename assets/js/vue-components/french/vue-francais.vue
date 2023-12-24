@@ -5,7 +5,7 @@
       <tr>
         <th>N°</th>
         <th>Titre</th>
-        <th>Autheur</th>lionpassesimpleouimparfait
+        <th>Autheur</th>
       </tr>
     </thead>
     <tbody>
