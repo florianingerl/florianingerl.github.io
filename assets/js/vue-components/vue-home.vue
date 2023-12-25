@@ -5,7 +5,7 @@
   @click="w3_close()">Close &times;</button>
  
    <router-link class="w3-bar-item w3-button" to="/french">Français</router-link>
-   <router-link class="w3-bar-item w3-button" to="/english/grammar/enoughtoo">English</router-link>
+   <router-link class="w3-bar-item w3-button" to="/english">English</router-link>
    <router-link class="w3-bar-item w3-button" to="/informatik">Computer science</router-link>
 </div>
 

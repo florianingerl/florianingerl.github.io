@@ -86,9 +86,14 @@ loadModule('assets/js/vue-components/english/grammar/vue-too-enough.vue', option
 
 const VueFrancais = Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/french/vue-francais.vue', options));
+console.log("Logging VueFrancais");
+
+console.log(VueFrancais);
 
 const VueEnglish = Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/english/vue-english.vue', options));
+
+console.log(VueEnglish);
 
 const VueComputerScience = Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/informatik/vue-computer-science.vue', options));
@@ -107,7 +112,7 @@ const routes = [
     path: '/english',
     children: [
       {
-        name: "Navigation",
+        name: "Navigationsklfjk",
         path: '',
         component: VueEnglish
       },
@@ -134,7 +139,7 @@ const routes = [
     path: '/french',
     
     children: [
-      { name: "Nagivation",
+      { name: "Nagivationsfdsdf",
         path: '',
         component: VueFrancais
 
@@ -229,7 +234,7 @@ const routes = [
     path: '/informatik',
     children: [
       {
-        name: "Navigation",
+        name: "Navigationsdfsdf",
         path: "",
         component: VueComputerScience
       },
