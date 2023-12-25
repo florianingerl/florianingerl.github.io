@@ -3,11 +3,13 @@
 <div>
 <h1>Enough and Too</h1>
 You can say the same thing in three different ways:
-<ul class="withborder">
+<div class="withborder">
+<ul >
 <li>I couldn't carry that bag of wheat. It was too heavy.</li>
 <li>The bag of wheat was so heavy that I couldn't carry it.</li>
 <li>The bag of wheat was too heavy to carry.</li>
 </ul>
+</div>
 Some more examples like this:
 <ol>
 <li>
@@ -104,6 +106,10 @@ td {
 .withborder {
     border: solid 2px blue;
     background-color: white;
+
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 
