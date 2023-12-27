@@ -1,0 +1,38 @@
+.cours {
+    padding: 10px;
+    background-color: bisque;
+}
+
+.cours h1 {
+    color: black;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.cours section h2 {
+    color: red;
+    font-size: 23px;
+    font-weight: bold;
+}
+
+.cours section {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.cours section .exemple {
+    color: blue;
+    font-style: italic;
+}
+
+.cours section .exemple h3 {
+    background-color:aqua;
+    font-style: normal;
+    display: inline;
+}
+
+.cours .instruction {
+    background-color: yellow;
+    color: black;
+    
+}

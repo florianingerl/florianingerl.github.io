@@ -2,7 +2,7 @@
 <div class="nice">
 <h2 v-if="lg==='fr'">Exercice</h2>
 <h2 v-else>Exercise</h2>
-<h4>{{instruction}}</h4>
+<h4 class="instruction">{{instruction}}</h4>
 <slot> </slot>
 </div>
 
@@ -51,6 +51,12 @@ export default {
   background-color: #ccffff;
   border-radius: 5px;
   margin-bottom: 10px;
+  margin-top: 30px;
+}
+
+.instruction {
+  background-color: yellow;
+  color: black;
 }
 
 
