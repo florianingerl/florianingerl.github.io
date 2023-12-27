@@ -81,6 +81,9 @@ loadModule('assets/js/vue-components/french/grammaire/vue-imparfait-plus-que-par
 const VueLionPasseSimpleOuImparfait = Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/french/grammaire/vue-lion-passe-simple.vue', options));
 
+const VueRajouterOuAjouter = Vue.defineAsyncComponent(() =>
+loadModule('assets/js/vue-components/french/grammaire/vue-rajouter-ou-ajouter.vue', options));
+
 const VueEnoughToo = Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/english/grammar/vue-too-enough.vue', options));
 
@@ -162,6 +165,11 @@ const routes = [
       {name: 'Grammaire',
        path: 'grammaire',
        children: [
+        {
+          name: 'Rajouter ou ajouter',
+          path: 'rajouterouajouter',
+          component: VueRajouterOuAjouter
+        },
         {
           name: 'Pronom en',
           path: 'en',

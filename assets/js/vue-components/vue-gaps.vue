@@ -10,12 +10,12 @@
 </ol>
 
 <p v-if="lg==='fr'">
-<button class="btn btn-primary mr5" @click="buttonValidateClicked">Valider ma solution</button>
-<button class="btn btn-primary" @click="showSolutionClicked">Montre-moi la solution</button>
+<button class="btn btn-primary mr3" @click="buttonValidateClicked">Valider ma solution</button>
+<button class="btn btn-primary " @click="showSolutionClicked">Montre-moi la solution</button>
 </p>
 <p v-else>
-<button class="btn btn-primary mr1" @click="buttonValidateClicked">Validate</button>
-<button class="btn btn-primary mr1" @click="showSolutionClicked">Show me the solution</button>
+<button class="btn btn-primary mr3" @click="buttonValidateClicked">Validate</button>
+<button class="btn btn-primary" @click="showSolutionClicked">Show me the solution</button>
 </p>
 
 
@@ -135,6 +135,11 @@ xhttp.send();
     color: red;
     border: 1px solid red
 }
+
+.mr3 {
+  margin-right: 10px;
+}
+
 
 
 </style>
