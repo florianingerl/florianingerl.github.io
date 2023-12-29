@@ -5,11 +5,12 @@
 Cette article a pour but de vous enseigner la différence entre "rajouter" et "ajouter".
 
 <section>
+<img style="float: right; width: 400px" src="assets/img/rawfood/salatmitmungobohnen.jpg"></img>
 <h2>Ajouter</h2>
 On ajoute quelque chose de nouveau qui n'était pas là avant.
 <div class="exemple">
 <h3>Exemple:</h3><br>
-J'ajoute des pousses du blé à ma salade. (La salade ne contenait pas encore de pousses du blé.)
+J'ajoute des pousses de haricot mungo à ma salade. (La salade ne contenait pas encore de pousses de haricot mungo.)
 </div>
 </section>
 
