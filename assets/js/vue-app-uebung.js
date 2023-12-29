@@ -84,6 +84,10 @@ loadModule('assets/js/vue-components/french/grammaire/vue-lion-passe-simple.vue'
 const VueRajouterOuAjouter = Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/french/grammaire/vue-rajouter-ou-ajouter.vue', options));
 
+
+const VueEven = Vue.defineAsyncComponent(() =>
+loadModule('assets/js/vue-components/english/grammar/vue-even.vue', options));
+
 const VueEnoughToo = Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/english/grammar/vue-too-enough.vue', options));
 
@@ -133,7 +137,14 @@ const routes = [
       name: 'Enough and Too',
       path: 'enoughtoo',
       component: VueEnoughToo
-    }]
+    },
+    {
+      name: 'Even',
+      path: 'even',
+      component: VueEven
+    }
+  
+  ]
   }]
     
   },
