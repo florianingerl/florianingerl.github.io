@@ -3,6 +3,7 @@
 <div>
    
 <VueExercise instruction="Remplis les trous avec le verbe donné à l'imparfait ou au plus-que-parfait!">
+<img src="assets/img/francais/vers.png" style="float: right; height: 200px;" />
 <h3 class="text-center">L'histoire d'un vers trop prudent</h3>
 <VueGaps lg="fr" :gaptext="gaptext">
 

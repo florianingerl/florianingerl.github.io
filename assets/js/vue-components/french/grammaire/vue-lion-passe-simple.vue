@@ -1,8 +1,9 @@
 <template>
 
 <div>
-<img src="assets/img/francais/lion.png" />
+
 <VueExercise instruction="Remplis les trous avec le verbe donné à l'imparfait ou au passé simple!">
+<img style="float: right; width: 300px" src="assets/img/francais/lion.png" />
 <h3 class="text-center">Un spectacle merveilleux d'un lion</h3>
 <VueGaps lg="fr" :gaptext="gaptext">
 
