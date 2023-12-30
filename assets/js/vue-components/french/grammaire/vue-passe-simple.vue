@@ -1,7 +1,7 @@
 <template>
 
 <div>
-
+<!--
 Voilà la conjugation des verbes de la prèmiere, deuxième et troisième groupe (des verbes réguliers).
 <table class="table table-striped">
 <thead>
@@ -29,9 +29,10 @@ Voilà la conjugation du verbe être au passé simple.
 <tr><td>Nous</td><td>fûmes</td></tr>
 <tr><td>Vous</td><td>fûtes</td></tr>
 <tr><td>Ils</td><td>furent</td></tr>
-</table>
+</table> -->
    
 <VueExercise instruction="Remplis les trous avec le verbe donné à l'imparfait ou au passé simple!">
+<img src="assets/img/francais/buveur.png" style="float: right; height: 300px" ></img>
 <h3 class="text-center">L'histoire d'un buveur avec de bonnes résolutions</h3>
 <VueGaps lg="fr" :gaptext="gaptext">
 
