@@ -334,6 +334,31 @@ export default {
 		optionsEn: [{ option : "Freshly cooked", correct: false }, { option : "Freshly ground, from germinable grains", correct: true }],
 		correct: 1
 	},
+
+	{
+		question: "Welche Getreide enthalten keine Gluten und können gut als Brei aus Sprossen gegessen werden?",
+		questionFr: "Que signifie frais dans la bouillie de céréales fraîches?",
+		questionEn: "What does fresh mean in fresh grain porridge?",
+		imageUrl: "assets/img/rawfood/buchweizenbrei.jpg",
+		type: "multiple choice",
+		options: [{ option : "Roggen", correct: false }, { option : "Buchweizen", correct: true }, { option : "Weizen", correct: false },  { option : "Quinoa", correct: true },  { option : "Amaranth", correct: true } ],
+		optionsFr: [{ option : "Fraîchement cuit", correct: false }, { option : "fraîchement moulu, à partir de grains germinables", correct: true }],
+		optionsEn: [{ option : "Freshly cooked", correct: false }, { option : "Freshly ground, from germinable grains", correct: true }],
+		correct: 1
+	},
+
+	{
+		question: "Für was sind Gluten gut?",
+		questionFr: "Que signifie frais dans la bouillie de céréales fraîches?",
+		questionEn: "What does fresh mean in fresh grain porridge?",
+		imageUrl: "assets/img/rawfood/buchweizenbrei.jpg",
+		type: "multiple choice",
+		options: [{ option : "Für eine Rohkosternährung für Gesund-und Leistungsfähigkeit", correct: false }, { option : "Sie liefern den Kleber, damit der Bäcker leichter Produkte zur Befriedung der Sinne backen kann.", correct: true } ],
+		optionsFr: [{ option : "Fraîchement cuit", correct: false }, { option : "fraîchement moulu, à partir de grains germinables", correct: true }],
+		optionsEn: [{ option : "Freshly cooked", correct: false }, { option : "Freshly ground, from germinable grains", correct: true }],
+		correct: 1
+	},
+
 	{
 		question: "Welche Zutat ist nicht in diesem Salat?",
 		questionFr: "Quel ingrédient n'est pas dans cette salade?",
