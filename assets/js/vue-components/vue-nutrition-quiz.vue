@@ -325,37 +325,49 @@ export default {
 	},
 	{
 		question: "Warum sind Getreidesprossen noch besser als Frischkornbrei?",
-		questionFr: "Que signifie frais dans la bouillie de céréales fraîches?",
-		questionEn: "What does fresh mean in fresh grain porridge?",
+		questionFr: "Pourquoi les graines germées sont-elles encore meilleures que la bouillie de céréales fraîches?",
+		questionEn: "Why are grain sprouts even better than fresh grain porridge?",
 		imageUrl: "assets/img/rawfood/roggenbrei.jpg",
 		type: "multiple choice",
 		options: [{ option : "Weil der Keimprozess die Gluten auf ein verträgliches Minimum reduziert", correct: true }, { option : "Weil im Getreidebrei Wasser drin ist, was die Magensäure verdünnt", correct: true }, { option : "Weil wenn man die Sprossen vorher kocht, sind sie besser verdaulich", correct: false }],
-		optionsFr: [{ option : "Fraîchement cuit", correct: false }, { option : "fraîchement moulu, à partir de grains germinables", correct: true }],
-		optionsEn: [{ option : "Freshly cooked", correct: false }, { option : "Freshly ground, from germinable grains", correct: true }],
+		optionsFr: [{ option : "Parce que le processus de germination réduit le gluten à un minimum tolérable", correct: true }, { option : "Parce que la bouillie de céréales contient de l'eau, qui dilue l'acide gastrique.", correct: true }, { option : "Car si vous faites cuire les pousses à l’avance, elles sont plus faciles à digérer", correct: false }],
+		optionsEn: [{ option : "Because the germination process reduces gluten to a tolerable minimum.", correct: true }, { option : "Because cereal porridge contains water, which dilutes the stomach acid.", correct: true },  { option : "Because if you cook the sprouts beforehand, they are easier to digest.", correct: false }],
 		correct: 1
 	},
 
 	{
 		question: "Welche Getreide enthalten keine Gluten und können gut als Brei aus Sprossen gegessen werden?",
-		questionFr: "Que signifie frais dans la bouillie de céréales fraîches?",
-		questionEn: "What does fresh mean in fresh grain porridge?",
+		questionFr: "Quelles céréales ne contiennent pas de gluten et peuvent être consommées sous forme de bouillie à base de germes ?",
+		questionEn: "Which grains do not contain gluten and can be eaten as a porridge made from sprouts?",
 		imageUrl: "assets/img/rawfood/buchweizenbrei.jpg",
 		type: "multiple choice",
 		options: [{ option : "Roggen", correct: false }, { option : "Buchweizen", correct: true }, { option : "Weizen", correct: false },  { option : "Quinoa", correct: true },  { option : "Amaranth", correct: true } ],
-		optionsFr: [{ option : "Fraîchement cuit", correct: false }, { option : "fraîchement moulu, à partir de grains germinables", correct: true }],
-		optionsEn: [{ option : "Freshly cooked", correct: false }, { option : "Freshly ground, from germinable grains", correct: true }],
+		optionsFr: [{ option : "Seigle", correct: false }, { option : "Sarrasin", correct: true }, { option : "Blé", correct: false },  { option : "Quinoa", correct: true },  { option : "Amarante", correct: true }],
+		optionsEn: [{ option : "Rye", correct: false }, { option : "Buckwheat", correct: true }, { option : "Wheat", correct: false },  { option : "Quinoa", correct: true },  { option : "Amaranth", correct: true }],
 		correct: 1
 	},
 
 	{
-		question: "Für was sind Gluten gut?",
-		questionFr: "Que signifie frais dans la bouillie de céréales fraîches?",
-		questionEn: "What does fresh mean in fresh grain porridge?",
+		question: "Für was sind Gluten im Getreide gut?",
+		questionFr: "À quoi sert le gluten présent dans les céréales?",
+		questionEn: "What are gluten in grains good for?",
 		imageUrl: "assets/img/rawfood/buchweizenbrei.jpg",
 		type: "multiple choice",
 		options: [{ option : "Für eine Rohkosternährung für Gesund-und Leistungsfähigkeit", correct: false }, { option : "Sie liefern den Kleber, damit der Bäcker leichter Produkte zur Befriedung der Sinne backen kann.", correct: true } ],
-		optionsFr: [{ option : "Fraîchement cuit", correct: false }, { option : "fraîchement moulu, à partir de grains germinables", correct: true }],
-		optionsEn: [{ option : "Freshly cooked", correct: false }, { option : "Freshly ground, from germinable grains", correct: true }],
+		optionsFr: [{ option : "Pour la santé", correct: false }, { option : "Il fournit la colle qui permet au boulanger de préparer plus facilement des produits qui satisfont les sens.", correct: true }],
+		optionsEn: [{ option : "For your health", correct: false }, { option : "They provide the glue so that the baker can more easily bake products that satisfy the senses.", correct: true }],
+		correct: 1
+	},
+
+	{
+		question: "Welches Öl ist am besten weil am wenigsten oxidationsanfällig?",
+		questionFr: "Quelle huile est la meilleure parce qu’elle est la moins sensible à l’oxydation?",
+		questionEn: "Which oil is best because it is least susceptible to oxidation?",
+		imageUrl: "assets/img/rawfood/oliveoil.png",
+		type: "multiple choice",
+		options: [{ option : "Olivenöl", correct: true }, { option : "Rapsöl", correct: false } ],
+		optionsFr: [{ option : "L'huile d'olive", correct: true }, { option : "L'huile de colza", correct: false }],
+		optionsEn: [{ option : "Olive oil", correct: true }, { option : "Rapeseed oil", correct: false }],
 		correct: 1
 	},
 
