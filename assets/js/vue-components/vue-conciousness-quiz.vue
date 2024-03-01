@@ -286,6 +286,21 @@ optionsEn:  [ { option: "between your ears (if unobserved)", correct: true }, { 
 		optionsFr:  [ { option: "entre tes oreilles (si non surveilé)", correct: true }, { option: "ton patron", correct: false }, { option: "ta soeur", correct: false }, { option: "ton frère", correct: false }, { option: "ton père", correct: false }, { option: "ta mère", correct: false }],
 		correct: 0
 	},
+
+		{
+		question: "Was hilft dir dabei, ruhelos, oberflächlich und gestresst zu werden?",
+questionEn:  "What does manifesting mean?",
+		questionFr: "Que signifie manifester?", 
+		imageUrl: "assets/img/cs/fragezeichen.jpg",
+		type: "multiple choice",
+		options: [ { option: "Facebook", correct: true }, { option: "Spam", correct: true }, { option: "Nachrichten", correct: true }, { option: "Ein gutes Buch", correct: false }, { option: "Ein Handy und Whatsapp", correct: true }, { option: "Ein Waldspaziergang", correct: false } ],
+optionsEn:  [ { option: "Notice and appreciate the good things that are around you now", correct: true }, { option: "wishing for something that isn't here now", correct: false }],
+		optionsFr:  [ { option: "remarquer les bonnes choses qui sont là ici et maintenant", correct: true }, { option: "souhaiter quelque chose qui n'est pas là ici et maintenant", correct: false }],
+		correct: 0
+	},
+
+
+
 	{
 		question: "Was bedeutet Manifestieren?",
 questionEn:  "What does manifesting mean?",
@@ -313,7 +328,7 @@ questionEn:  "You have big plans to save the world or make it better. What is ch
 		questionFr: "Vous avez de grands projets pour sauver le monde ou le rendre meilleur. Qu’est-ce qui coûte moins cher que de le mettre en œuvre?", 
 		imageUrl: "assets/img/cs/fragezeichen.jpg",
 		type: "multiple choice",
-		options: [ { option: "Mit deiner Psychaterin darüber sprechen", correct: true }, { option: "Mit deiner Englisch-Nachhilfelehrerin darüber sprechen", correct: true }, { option: "Mit deinem Franzöisch-Nachhilfelehrer darüber sprechen", correct: true }, { option: "Die eigene Wohnung durchputzen", correct: true }],
+		options: [ { option: "Mit deiner Psychaterin darüber sprechen", correct: true }, { option: "Mit deiner Englisch-Nachhilfelehrerin darüber sprechen", correct: true }, { option: "Mit deiner Französisch-Nachhilfelehrerin darüber sprechen", correct: true }, { option: "Die eigene Wohnung durchputzen", correct: true }],
 optionsEn:  [ { option: "Talk to your psychiatrist about it", correct: true }, { option: "Talk to your English tutor about it", correct: true }, { option: "Talk to your French tutor about it", correct: true }, { option: "Clean your own flat", correct: true } ],
 		optionsFr:  [ { option: "Parle-en à ton psychiatre", correct: true }, { option: "Parle-en à ta prof privée d'anglais", correct: true }, { option: "Parle-en à ta prof privée de francais", correct: true }, { option: "Nettoyer ton propre appartement", correct: true }],
 		correct: 0

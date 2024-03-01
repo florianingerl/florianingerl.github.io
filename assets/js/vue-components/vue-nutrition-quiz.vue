@@ -406,6 +406,18 @@ export default {
 		optionsFr: [{ option : "orge", correct: false }, { option : "chou rouge", correct: false }, { option : "lentilles", correct: false }, { option : "concombre", correct: true }, { option : "beetroot", correct: false }],
 		correct: 3
 	},
+
+	{
+		question: "Wann ist alles neu, spannend, interessant und aufregend?",
+		questionEn: "Which ingredient is not in this salad?",
+		questionFr: "Quel ingrédient n'est pas dans cette salade?",
+		imageUrl: "assets/img/rawfood/rotkohlsalat.JPG",
+		type: "multiple choice",
+		options: [{ option : "Mit frischer Rohkost und viel Aufmerksamkeit im Hier und Jetzt", correct: true }, { option : "Mit viel Zucker und wenn du immer stärkere Anregungen brauchst", correct: false }],
+		optionsEn: [{ option : "barley", correct: false }, { option : "red cabbage", correct: false }, { option : "lentils", correct: false }, { option : "cucumber", correct: true }, { option : "beetroot", correct: false }],
+		optionsFr: [{ option : "orge", correct: false }, { option : "chou rouge", correct: false }, { option : "lentilles", correct: false }, { option : "concombre", correct: true }, { option : "beetroot", correct: false }],
+		correct: 3
+	},
 	{
 		question: "Wasser macht verschiedene Kristalle, je nachdem wie man es vorher behandelt? Mit welcher Musik wurde dieses Wasser bespielt?",
 		questionFr: "L'eau produit des cristeaux différents selon la facon dont tu la traites au préalable? Quelle musique jouait-on sur cette eau?",
@@ -438,6 +450,18 @@ export default {
 		optionsFr: [{ option : "pour être en bonne santé et productif", correct: true }, { option : "En raison de leurs allergies, ils ne peuvent tolérer une alimentation saine et normale. Il leur faudrait beaucoup d'argent et de temps pour faire traiter leurs allergies par un bon médecin.", correct: false }],
 		optionsEn: [{ option : "to be healthy and productive", correct: true }, { option : "Because of their allergies, they cannot tolerate good, normal nutrition. They would need a lot of money and time to have their allergies treated by a good doctor", correct: false }],
 		correct: 2
+	},
+
+	{
+		question: "Was könnte Ursache für Kopfschmerzen sein?",
+		questionEn: "Which ingredient is not in this salad?",
+		questionFr: "Quel ingrédient n'est pas dans cette salade?",
+		imageUrl: "assets/img/rawfood/rotkohlsalat.JPG",
+		type: "multiple choice",
+		options: [{ option : "Strahlung vom WLAN", correct: true }, { option : "Strahlung vom Handy", correct: true }, { option : "Internet per Kabel", correct: false }  ],
+		optionsEn: [{ option : "barley", correct: false }, { option : "red cabbage", correct: false }, { option : "lentils", correct: false }, { option : "cucumber", correct: true }, { option : "beetroot", correct: false }],
+		optionsFr: [{ option : "orge", correct: false }, { option : "chou rouge", correct: false }, { option : "lentilles", correct: false }, { option : "concombre", correct: true }, { option : "beetroot", correct: false }],
+		correct: 3
 	},
 
 	{
