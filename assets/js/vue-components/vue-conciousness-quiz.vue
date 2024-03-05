@@ -234,7 +234,7 @@ questionEn:  "How do you learn maths, physics or computer science?",
 		type: "multiple choice",
 		options: [ { option: "Mit der Angst und Blockierung, eine nicht vom staatlichen Lehrer anerkannte Notation oder Lösungweg zu verwenden.", correct: false }, { option: "Mit dem Motto: Alles, was begründet ist und was mein Gegenüber versteht, ist korrekt.", correct: true }, { option: "mit Neugier, neue Sachen auf die eigene Art auszuprobieren", correct: true }],
 optionsEn:  [ { option: "With the fear and blockage of using a notation or solution that is not recognized by the state teacher.", correct: false }, { option: "With the motto: Everything that is justified and what the other person understands is correct.", correct: true }, { option: "with curiosity to try new things in your own way", correct: true }],
-		optionsFr:  [ { option: "Avec la peur et le blocage d'utiliser une notation ou une solution qui n'est pas reconnue par le professeur d'état.", correct: false },{ option: "Avec la devise : Tout ce qui est justifié et ce que l'autre comprend est correct.", correct: true }, { option: "avec curiosité d'essayer de nouvelles choses à ta manière", correct: true }],
+		optionsFr:  [ { option: "Avec la peur et le blocage d'utiliser une notation ou une solution qui n'est pas reconnue par le professeur d'état.", correct: false },{ option: "Avec la devise : Tout ce qui est justifié et ce que l'autre comprend est correct.", correct: true }, { option: "Avec curiosité d'essayer de nouvelles choses à ta manière", correct: true }],
 		correct: 5
 	},
 
@@ -247,7 +247,7 @@ questionEn:  "How do you learn Hatha-Yoga?",
 		options: [ { option: "Mit der Angst und Blockierung, eine nicht vom Buch oder Lehrer anerkannte Bewegung mit der genau richtigen Reihenfolge und Dauer zu machen.", correct: false }, { option: "Mit Neugier probiert man aus, wo welche (selbst variierte/ausgedachte) Übung dehnt, kräftigt, etc...", correct: true }],
 		
 optionsEn:  [ { option: "With the fear and blockage of doing a movement that is not recognized by the book or teacher and with exactly the right order and duration.", correct: false }, { option: "With curiosity you try out which (self-varied/thought-up) exercise where stretches, strengthens, etc...", correct: true }],
-		optionsFr:  [ { option: "Avec la peur et le blocage de faire un mouvement qui n'est pas reconnu par le livre ou le professeur et avec exactement le bon ordre et la bonne durée.", correct: false },{ option: "de sa voix", correct: false }, { option: "Avec curiosité, vous essayez lequel (auto-varié/pensé -up) exercice où s'étire, se renforce, etc...", correct: true }],
+		optionsFr:  [ { option: "Avec la peur et le blocage de faire un mouvement qui n'est pas reconnu par le livre ou le professeur et avec exactement le bon ordre et la bonne durée.", correct: false }, { option: "Avec curiosité, vous essayez lequel (auto-varié/pensé -up) exercice où s'étire, se renforce, etc...", correct: true }],
 		correct: 5
 	},
 
@@ -289,13 +289,13 @@ optionsEn:  [ { option: "between your ears (if unobserved)", correct: true }, { 
 
 		{
 		question: "Was hilft dir dabei, ruhelos, oberflächlich und gestresst zu werden?",
-questionEn:  "What does manifesting mean?",
-		questionFr: "Que signifie manifester?", 
+questionEn:  "What helps you become restless, superficial, and stressed?",
+		questionFr: "Qu’est-ce qui vous aide à devenir agité, superficiel et stressé ?", 
 		imageUrl: "assets/img/cs/fragezeichen.jpg",
 		type: "multiple choice",
 		options: [ { option: "Facebook", correct: true }, { option: "Spam", correct: true }, { option: "Nachrichten", correct: true }, { option: "Ein gutes Buch", correct: false }, { option: "Ein Handy und Whatsapp", correct: true }, { option: "Ein Waldspaziergang", correct: false } ],
-optionsEn:  [ { option: "Notice and appreciate the good things that are around you now", correct: true }, { option: "wishing for something that isn't here now", correct: false }],
-		optionsFr:  [ { option: "remarquer les bonnes choses qui sont là ici et maintenant", correct: true }, { option: "souhaiter quelque chose qui n'est pas là ici et maintenant", correct: false }],
+optionsEn:  [ { option: "Facebook", correct: true }, { option: "spam messages", correct: true }, { option: "a good book", correct: false }, { option: "a cell phone and WhatsApp", correct: true }, { option: "a walk in the forest", correct: false } ],
+		optionsFr:  [ { option: "Facebook", correct: true }, { option: "les spams", correct: true }, { option: "un bon livre", correct: false }, { option: "un téléphone portable et WhatsApp", correct: true }, { option: "une balade en forêt", correct: false } ],
 		correct: 0
 	},
 
