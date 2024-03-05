@@ -56,14 +56,14 @@ export default {
 		imageUrl: "assets/img/rawfood/wasserwirbler.png",
 		type: "multiple choice",
 		options: [{ option : "Wasserwirbler", correct: true }, { option : "Sirup", correct: false }],
-		optionsFr: [{ option : "un tourbillon d'eau", correct: true }, { option : "sirop", correct: false }],
-		optionsEn: [{ option : "un tourbillon d'eau", correct: true }, { option : "sirop", correct: false }],
+		optionsFr: [{ option : "un vitaliseur d'eau", correct: true }, { option : "sirop", correct: false }],
+		optionsEn: [{ option : "a vitalizer of water", correct: true }, { option : "sirop", correct: false }],
 		correct: 0
 	}
 	,
 	{
 		question:"In welcher Form sollte man Getreide laut dem Rohkost-Guru Dr. Schnitzer am besten essen?",
-		questionFr: "Sous quelle forme est-ce qu'on dois manger les céréales selon le guru d'alimentation crue Dr. Schnitzer?",
+		questionFr: "Sous quelle forme est-ce qu'on doit manger les céréales selon le guru d'alimentation crue Dr. Schnitzer?",
 		questionEn: "According to raw food guru Dr. Schnitzer, in what form is it the best to eat grains?",
 		imageUrl: "assets/img/rawfood/weizensprossen.jpg",
 		type: "multiple choice",
@@ -121,7 +121,7 @@ export default {
 	},
 	{
 		question:"Warum lernst du nirgendwo, dass Giersch essbar und gesund ist?",
-		questionFr: "Sous quelle forme est-ce qu'on dois manger les céréales selon le guru d'alimentation crue Dr. Schnitzer?",
+		questionFr: "Pourquoi n’apprenez-vous nulle part que les plantes de sol sont comestibles et saines?",
 		questionEn: "According to raw food guru Dr. Schnitzer, in what form is it the best to eat grains?",
 		imageUrl: "assets/img/rawfood/giersch.png",
 		type: "multiple choice",
@@ -145,7 +145,7 @@ export default {
 	{
 		question: "Sprossen aus Leinsamen sind wertvoll, weil sie viel Fett enthalten. Wie schmecken wohl Leinsamensprossen?",
 		questionEn: "Linseed sprouts are valuable because they contain a lot of fat. What do linseed sprouts taste like?",
-		questionFr: "Les pousses de lin sont précieuses parce qu'elles contiennent beaucoup de graisse? Quel goût les pousses de lin ont-t-elles?",
+		questionFr: "Les pousses de lin sont précieuses parce qu'elles contiennent beaucoup de graisse. Quel goût les pousses de lin ont-t-elles?",
 		imageUrl: "assets/img/rawfood/leinsamensprossen.jpg",
 		type: "multiple choice",
 		options: [{ option : "scharf", correct: false }, { option : "wie Schokolade", correct: true }],
@@ -173,7 +173,7 @@ export default {
 		type: "multiple choice",
 		options: [{ option : "Wasser", correct: false }, { option : "Dinkel", correct: false }, { option : "Milch", correct: true }, { option : "Sonnenblumenkerne", correct: false }, { option : "Himbeeren", correct: false }],
 		optionsEn: [{ option : "water", correct: false }, { option : "spelt", correct: false }, { option : "milk", correct: true }, { option : "sunflower seeds", correct: false }, { option : "rasperries", correct: false }],
-		optionsFr: [{ option : "de l'eau", correct: false }, { option : "épeautre", correct: false }, { option : "du lait", correct: true }, { option : "graines de tournesol", correct: false }, { option : "framboises", correct: false }],
+		optionsFr: [{ option : "de l'eau", correct: false }, { option : "de l'épeautre", correct: false }, { option : "du lait", correct: true }, { option : "des graines de tournesol", correct: false }, { option : "des framboises", correct: false }],
 		correct: 2
 	},
 
@@ -190,7 +190,7 @@ export default {
 	},
 
 	{
-		question: "Wie heißt dieser Salat?",
+		question: "Comment est-ce qu'on appelle cette salade?",
 		questionEn: "What is this salad called?",
 		questionFr: "Wie heißt dieser Salat?",
 		imageUrl: "assets/img/rawfood/endivien.jpg",
@@ -209,7 +209,7 @@ export default {
 		type: "multiple choice",
 		options: [{ option : "aus Kostengründen", correct: false }, { option : "Du verlierst die Unterscheidungskraft (zwischen Bedürfnissen der Sinne und des Körpers)", correct: true }],
 		optionsEn: [{ option : "because of cost", correct: false }, { option : "You lose the power of discrimination (between the needs of the body and the senses)", correct: true }],
-		optionsFr: [{ option : "à cause du cout", correct: false }, { option : "Tu perds le pouvoir de distinction (entre les besoins des sens et les besoins du corps)", correct: true }],
+		optionsFr: [{ option : "à cause du coût", correct: false }, { option : "Tu perds le pouvoir de distinction (entre les besoins des sens et les besoins du corps)", correct: true }],
 		correct: 3
 	},
 
@@ -234,7 +234,7 @@ export default {
 		type: "multiple choice",
 		options: [{ option : "Bhagavda Gita", correct: true }, { option : "Schnelle und leckere Rezepte mit nur fünf Zutaten für Fleisch, Fisch, vegetarische und süße Gerichte - mit Ideen für Gewürzmischungen und Rubs", correct: false }],
 		optionsEn: [{ option : "Bhagavda Gita", correct: true }, { option : "Men with the Pot Cookbook: Delicious Grilled Meats and Forest Feasts", correct: true }],
-		optionsFr: [{ option : "Bhagavda Gita", correct: true }, { option : "Recettes de Cuisine Traditionnelle de Viande de Porc", correct: true }],
+		optionsFr: [{ option : "Bhagavda Gita", correct: true }, { option : "Recettes de cuisine traditionnelle de viande de porc", correct: true }],
 		correct: 0
 	},
 
@@ -284,7 +284,7 @@ export default {
 		imageUrl: "assets/img/rawfood/winter.png",
 		type: "multiple choice",
 		options: [{ option : "Eine warme Jacke anziehen", correct: true }, { option : "Weil die rohen Sprossen, Frischkornbreie und Gemüse von innen wärmen, laufen sie auch im Winter mit kurzer Hose und T-Shirt rum.", correct: false }],
-		optionsFr: [{ option : "Porter une veste chaude", correct: false }, { option : "Parce que les pousses crues, la bouillie de céréales fraîches et les légumes les réchauffent de l'intérieur, ils se promènent en short et en T-shirt même en hiver.", correct: false }],
+		optionsFr: [{ option : "Porter une veste chaude", correct: true }, { option : "Parce que les pousses crues, la bouillie de céréales fraîches et les légumes les réchauffent de l'intérieur, ils se promènent en short et en T-shirt même en hiver.", correct: false }],
 		optionsEn: [{ option : "Wear a warm jacket", correct: true }, { option : "Because the raw sprouts, fresh grain porridges and vegetables warm them from the inside, they walk around in shorts and a T-shirt even in winter", correct: false }],
 		correct: 1
 	},
@@ -409,18 +409,18 @@ export default {
 
 	{
 		question: "Wann ist alles neu, spannend, interessant und aufregend?",
-		questionEn: "Which ingredient is not in this salad?",
-		questionFr: "Quel ingrédient n'est pas dans cette salade?",
-		imageUrl: "assets/img/rawfood/rotkohlsalat.JPG",
+		questionEn: "When is everything new, exciting and interesting?",
+		questionFr: "Quand est-ce que tout est nouveau, excitant, intéressant et excitant ?",
+		imageUrl: "assets/img/cs/fragezeichen.jpg",
 		type: "multiple choice",
 		options: [{ option : "Mit frischer Rohkost und viel Aufmerksamkeit im Hier und Jetzt", correct: true }, { option : "Mit viel Zucker und wenn du immer stärkere Anregungen brauchst", correct: false }],
-		optionsEn: [{ option : "barley", correct: false }, { option : "red cabbage", correct: false }, { option : "lentils", correct: false }, { option : "cucumber", correct: true }, { option : "beetroot", correct: false }],
-		optionsFr: [{ option : "orge", correct: false }, { option : "chou rouge", correct: false }, { option : "lentilles", correct: false }, { option : "concombre", correct: true }, { option : "beetroot", correct: false }],
+		optionsEn: [{ option : "With fresh raw food and a lot of attention in the here and now.", correct: true }, { option : "With a lot of sugar and when you need ever stronger stimulation", correct: false } ],
+		optionsFr: [{ option : "Avec des aliments frais et crus et beaucoup d'attention ici et maintenant", correct: true }, { option : "Avec beaucoup de sucre et quand vous avez besoin d'une stimulation toujours plus forte", correct: false } ],
 		correct: 3
 	},
 	{
 		question: "Wasser macht verschiedene Kristalle, je nachdem wie man es vorher behandelt? Mit welcher Musik wurde dieses Wasser bespielt?",
-		questionFr: "L'eau produit des cristeaux différents selon la facon dont tu la traites au préalable? Quelle musique jouait-on sur cette eau?",
+		questionFr: "L'eau produit des cristaux différents selon la façon dont tu la traites au préalable? Quelle musique jouait-on sur cette eau?",
 		questionEn: "Water makes different cristals depending on how you treat it beforehand. What music was played to this water?",
 		imageUrl: "assets/img/rawfood/mozartsymphonie40.png",
 		type: "multiple choice",
@@ -454,13 +454,13 @@ export default {
 
 	{
 		question: "Was könnte Ursache für Kopfschmerzen sein?",
-		questionEn: "Which ingredient is not in this salad?",
-		questionFr: "Quel ingrédient n'est pas dans cette salade?",
-		imageUrl: "assets/img/rawfood/rotkohlsalat.JPG",
+		questionEn: "What could be the cause of a headache?",
+		questionFr: "Quelle pourrait être la cause d’un mal de tête?",
+		imageUrl: "assets/img/rawfood/internetperkabel.png",
 		type: "multiple choice",
 		options: [{ option : "Strahlung vom WLAN", correct: true }, { option : "Strahlung vom Handy", correct: true }, { option : "Internet per Kabel", correct: false }  ],
-		optionsEn: [{ option : "barley", correct: false }, { option : "red cabbage", correct: false }, { option : "lentils", correct: false }, { option : "cucumber", correct: true }, { option : "beetroot", correct: false }],
-		optionsFr: [{ option : "orge", correct: false }, { option : "chou rouge", correct: false }, { option : "lentilles", correct: false }, { option : "concombre", correct: true }, { option : "beetroot", correct: false }],
+		optionsEn: [{ option : "Radiation from WiFi", correct: true }, { option : "radiation from cell phones", correct: true }, { option : "internet via cable", correct: false } ],
+		optionsFr: [{ option : "Rayonnement du WiFi", correct: true }, { option : "rayonnement des téléphones portables", correct: true }, { option : "Internet par câble", correct: false } ],
 		correct: 3
 	},
 
@@ -602,7 +602,7 @@ export default {
 		imageUrl: "assets/img/rawfood/breitwegerich.png",
 		type: "multiple choice",
 		options: [{ option : "Löwenzahn", correct: false }, { option : "Spitzwegerich", correct: true }, { option : "Breitwegerich", correct: true }, { option: "Gänseblümchen", correct : false }],
-		optionsFr: [{ option : "Pissenlits", correct: false }, { option : ", plantain lancéolé", correct: true }, { option : "plantain large", correct: true }, { option: "marguerite", correct : false }],
+		optionsFr: [{ option : "pissenlits", correct: false }, { option : "plantain lancéolé", correct: true }, { option : "plantain large", correct: true }, { option: "marguerite", correct : false }],
 		optionsEn: [{ option : "dandelions", correct: false }, { option : "ribwort plantain", correct: true }, { option : "broad plantain", correct: true }, { option: "daisies", correct : false }],
 		correct: 4
 	},
@@ -615,7 +615,7 @@ export default {
 		type: "multiple choice",
 		options: [{ option : "Weil sie sich das Geld und die Zeit für das Obstessen und den anschließenden Gang zum Zahnmedizyniker sparen wollen", correct: true }, { option : "Weil sie nicht wissen, was gut und teuer ist", correct: false }],
 		optionsEn: [{ option : "Because they want to save the time and the money of eating fruit and then going to the dentist.", correct: true }, { option : "Because they don't know what is good and expensive", correct: false }],
-		optionsFr: [{ option : "Parce qu'ils veulent économiser de l'argent et du temps en ne pas mangeant de fruits et ensuite allant chez le dentiste.", correct: true }, { option : "Parce qu'ils ne savent pas ce qui est bon et cher.", correct: false }],
+		optionsFr: [{ option : "Parce qu'ils veulent économiser de l'argent et du temps en ne mangeant pas  de fruits et ensuite en allant chez le dentiste.", correct: true }, { option : "Parce qu'ils ne savent pas ce qui est bon et cher.", correct: false }],
 		correct: 4
 	},
 	
@@ -671,13 +671,13 @@ export default {
 		type: "multiple choice",
 		options: [{ option : "Gänseblümchen", correct: false }, { option : "Giersch", correct: true }, { option : "Löwenzahn", correct: false }, { option : "Gänsedistel", correct: false }],
 		optionsEn: [{ option : "daisies", correct: false }, { option : "groundweed", correct: true }, { option : "dandelion", correct: false }, { option : "goose thistle", correct: false }],
-		optionsFr: [{ option : "Gänseblümchen", correct: false }, { option : "herbe de sol", correct: true }, { option : "pissenlit", correct: false }, { option : "chardon d'oie", correct: false }],
+		optionsFr: [{ option : "marguerite", correct: false }, { option : "herbe de sol", correct: true }, { option : "pissenlit", correct: false }, { option : "chardon d'oie", correct: false }],
 		correct: 3
 	},
 	{
 		question: "Wie viel spart ein Rohköstler pro Jahr an Strom, weil er keinen Kühlschrank benutzt?",
 		questionEn: "How much money does a raw food eater save per year by not using a refrigerator?",
-		questionFr: "Combien d'argent un crudivore économise-t-il en ne pas utilisant de réfrigérateur?",
+		questionFr: "Combien d'argent un crudivore économise-t-il en n'utilisant pas de réfrigérateur?",
 		imageUrl: "assets/img/rawfood/kuelschrank.png",
 		type: "multiple choice",
 		options: [{ option : "80kWh = 40 Euro", correct: true }, { option : "Er zahlt mit seiner Gesundheit", correct: false }],
