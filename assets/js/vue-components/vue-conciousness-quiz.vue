@@ -300,6 +300,19 @@ optionsEn:  [ { option: "Facebook", correct: true }, { option: "spam messages", 
 	},
 
 
+	{
+		question: "Was könnte Ursache für Kopfschmerzen sein?",
+		questionEn: "What could be the cause of a headache?",
+		questionFr: "Quelle pourrait être la cause d’un mal de tête?",
+		imageUrl: "assets/img/rawfood/internetperkabel.png",
+		type: "multiple choice",
+		options: [{ option : "Strahlung vom WLAN", correct: true }, { option : "Strahlung vom Handy", correct: true }, { option : "Internet per Kabel", correct: false }  ],
+		optionsEn: [{ option : "Radiation from WiFi", correct: true }, { option : "radiation from cell phones", correct: true }, { option : "internet via cable", correct: false } ],
+		optionsFr: [{ option : "Rayonnement du WiFi", correct: true }, { option : "rayonnement des téléphones portables", correct: true }, { option : "Internet par câble", correct: false } ],
+		correct: 3
+	},
+
+
 
 	{
 		question: "Was bedeutet Manifestieren?",
@@ -330,7 +343,7 @@ questionEn:  "You have big plans to save the world or make it better. What is ch
 		type: "multiple choice",
 		options: [ { option: "Mit deiner Psychaterin darüber sprechen", correct: true }, { option: "Mit deiner Englisch-Nachhilfelehrerin darüber sprechen", correct: true }, { option: "Mit deiner Französisch-Nachhilfelehrerin darüber sprechen", correct: true }, { option: "Die eigene Wohnung durchputzen", correct: true }],
 optionsEn:  [ { option: "Talk to your psychiatrist about it", correct: true }, { option: "Talk to your English tutor about it", correct: true }, { option: "Talk to your French tutor about it", correct: true }, { option: "Clean your own flat", correct: true } ],
-		optionsFr:  [ { option: "Parle-en à ton psychiatre", correct: true }, { option: "Parle-en à ta prof privée d'anglais", correct: true }, { option: "Parle-en à ta prof privée de francais", correct: true }, { option: "Nettoyer ton propre appartement", correct: true }],
+		optionsFr:  [ { option: "Parle-en à ton psychiatre", correct: true }, { option: "Parle-en à ta prof privée d'anglais", correct: true }, { option: "Parle-en à ta prof privée de français", correct: true }, { option: "Nettoyer ton propre appartement", correct: true }],
 		correct: 0
 	}
 
