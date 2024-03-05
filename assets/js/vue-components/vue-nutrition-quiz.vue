@@ -278,6 +278,19 @@ export default {
 	},
 
 	{
+		question: "In welcher Form sollte man Hülsenfrüchte (Linsen, Süßlupinen, Mungobohnen, Kichererbsen, etc...) im Sinne der Gesund-und Leistungsfähigkeit am besten essen?",
+		questionFr: "Sous quelle forme consommer au mieux des légumineuses (lentilles, lupins doux, haricots mungo, pois chiches…) pour la santé et la performance ?",
+		questionEn: "In what form should you best eat legumes (lentils, sweet lupins, mung beans, chickpeas, etc.) for health and performance?",
+		type: "multiple choice",
+		imageUrl: "assets/img/rawfood/sprouttowers.png",
+		options: [{ option : "gekocht", correct: false }, { option : "geröstet", correct: false }, { option : "gemahlen", correct: false }, { option : "gesprosst", correct: true }],
+		optionsFr:  [{ option : "bouilli", correct: false }, { option : "rôti", correct: false }, { option : "moulu", correct: false }, { option : "germé", correct: true } ],
+		optionsEn:  [{ option : "boiled", correct: false }, { option : "roasted", correct: false }, { option : "ground", correct: false }, { option : "sprouted", correct: true } ],
+		correct: 3
+
+	},
+
+	{
 		question: "Was machen Rohköstler im Winter?",
 		questionFr: "Que font les crudivores en hiver?",
 		questionEn: "What do a raw food eaters do in winter?",
@@ -462,6 +475,20 @@ export default {
 		optionsEn: [{ option : "Radiation from WiFi", correct: true }, { option : "radiation from cell phones", correct: true }, { option : "internet via cable", correct: false } ],
 		optionsFr: [{ option : "Rayonnement du WiFi", correct: true }, { option : "rayonnement des téléphones portables", correct: true }, { option : "Internet par câble", correct: false } ],
 		correct: 3
+	},
+
+
+	{
+		question: "In welcher Form sollte man Leinsamen essen, damit diese wirklich als Superfood zählen?",
+		questionFr: "Sous quelle forme faut-il manger les graines de lin pour qu’elles soient réellement considérées comme un superaliment?",
+		questionEn: "In what form should you eat flaxseeds so that they really count as a superfood?",
+		type: "multiple choice",
+		imageUrl: "assets/img/rawfood/leinsamen.png",
+		options: [{ option : "gekocht", correct: false }, { option : "geröstet", correct: false }, { option : "gemahlen", correct: false }, { option : "gesprosst (im Kressesieb oder im Turm)", correct: true }],
+		optionsFr:  [{ option : "bouilli", correct: false }, { option : "rôti", correct: false }, { option : "moulu", correct: false }, { option : "germé (au tamis à cresson ou dans la tour)", correct: true } ],
+		optionsEn:  [{ option : "boiled", correct: false }, { option : "roasted", correct: false }, { option : "ground", correct: false }, { option : "sprouted (in the cress sieve or in the tower)", correct: true } ],
+		correct: 3
+
 	},
 
 	{
