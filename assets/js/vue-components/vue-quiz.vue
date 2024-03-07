@@ -27,10 +27,10 @@
   </ul>
    <ul class="pagination" v-else-if="lg==='fr'">
   <li class="page-item"><button class="page-link" @click="jumpBackwardClicked" data-bs-toggle="tooltip" title="Sauter 5 exercices en arrière"><i class="fa fa-fast-backward" aria-hidden="true"></i></button></li>
-  <li class="page-item"><button class="page-link" @click="previousExerciseClicked" data-bs-toggle="tooltip" title="Exercice précédent"><i class="fa fa-backward" aria-hidden="true"></i></button></li>
+  <li class="page-item"><button class="page-link" @click="previousExerciseClicked" data-bs-toggle="tooltip" title="Question précédente"><i class="fa fa-backward" aria-hidden="true"></i></button></li>
   <li v-for="q in displayedQuestions" class="page-item" :class="{active : q == i}" :key="q"><button class="page-link" @click="i=q;">{{q}}</button></li>
-  <li class="page-item"><button class="page-link" @click="nextExerciseClicked" data-bs-toggle="tooltip" title="Prochain exercice"><i class="fa fa-forward" aria-hidden="true"></i></button></li>
-  <li class="page-item"><button class="page-link" @click="jumpForwardClicked" data-bs-toggle="tooltip" title="Sauter 5 exercices en avant"><i class="fa fa-fast-forward" aria-hidden="true"></i></button></li>
+  <li class="page-item"><button class="page-link" @click="nextExerciseClicked" data-bs-toggle="tooltip" title="Question suivante"><i class="fa fa-forward" aria-hidden="true"></i></button></li>
+  <li class="page-item"><button class="page-link" @click="jumpForwardClicked" data-bs-toggle="tooltip" title="Sauter 5 questions"><i class="fa fa-fast-forward" aria-hidden="true"></i></button></li>
   <input @keypress="onlyNumberKey" @change="goToQuestionClicked" type="text" :value="i" style="width: 50px;"/> <span style="text-align: center;"> / {{ questions.length - 1 }} </span>
   </ul>
 
