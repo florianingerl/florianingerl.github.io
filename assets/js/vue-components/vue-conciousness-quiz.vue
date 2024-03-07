@@ -119,7 +119,7 @@ questionEn:  "Why is it important to be aware of your feelings?",
 		type: "multiple choice",
 		options: [{ option: "Weil sie uns ins Hier und Jetzt bringen", correct: true }, { option: "Weil sie uns von unserer Pflicht ablenken", correct: false }],
 optionsEn:  [{ option: "Because they bring us to the present moment", correct: true }, { option: "Because they distract us from our duty", correct: false }],
-		optionsFr: [{ option: "Parce qu'ils nous amènent dans le moment présent", correct: true }, { option: "parce qu'ils nous distraient de notre travail", correct: false }],
+		optionsFr: [{ option: "Parce qu'ils nous amènent dans le moment présent", correct: true }, { option: "Parce qu'ils nous distraient de notre travail", correct: false }],
 		correct: 0
 	},
 	
@@ -131,7 +131,7 @@ questionEn:  "Who are you?",
 		type: "multiple choice",
 		options: [{ option: "Die Stimme im Kopf", correct: false }, { option: "Der Körper", correct: false }, { option: "Eine Geschichte oder ein Lebenslauf", correct: false }, { option: "Der gegenwärtige Moment", correct: true }],
 optionsEn:  [{ option: "The voice in your head", correct: false }, { option: "The body", correct: false }, { option: "A story or a CV", correct: false }, { option: "The present moment", correct: true }],
-		optionsFr: [{ option: "La voix dans la tête", correct: false }, { option: "Le corps", correct: false }, { option: "Une histoire ou un CV", correct: false }, { option: "Le moment présent", correct: true }],
+		optionsFr: [{ option: "La voix dans ta tête", correct: false }, { option: "Le corps", correct: false }, { option: "Une histoire ou un CV", correct: false }, { option: "Le moment présent", correct: true }],
 		correct: 3
 	},
 	
@@ -188,7 +188,7 @@ questionEn:  "What can you do to differentiate more clearly between your own tho
 		type: "multiple choice",
 		options: [ { option: "Fernseher verschrotten", correct: false }, { option: "Zeitung nicht lesen", correct: false }, { option: "Von zuhause ausziehen", correct: false }, { option: "Alle 3 Optionen sind richig", correct: true }],
 optionsEn:  [ { option: "get rid of the TV", correct: false }, { option: "not read the newspaper", correct: false }, { option: "move out from home", correct: false }, { option: "All 3 options", correct: true }],
-		optionsFr: [ { option: "ne pas avoir de télé", correct: false }, { option: "ne pas lire de nouvelles", correct: false }, { option: "avoir son propre appartement", correct: false }, { option: "Toutes les options sont correctes", correct: true }],
+		optionsFr: [ { option: "ne pas avoir de télé", correct: false }, { option: "ne pas lire de nouvelles", correct: false }, { option: "avoir son propre appartement", correct: false }, { option: "toutes les options sont correctes", correct: true }],
 		correct: 3
 	},
 	{
@@ -271,7 +271,7 @@ questionEn:  "What does bringing more attention to inhalation do?",
 		type: "multiple choice",
 		options: [ { option: "mehr Wachheit", correct: true }, { option: "Langeweile", correct: false }, { option: "Verlust von Bewusstein", correct: false }],
 optionsEn:  [ { option: "more alterness", correct: true }, { option: "boredom", correct: false }, { option: "You loose consciousness", correct: false }],
-		optionsFr:  [ { option: "plus de vigilance", correct: true }, { option: "d'ennui", correct: false }, { option: "Tu perds connaissance", correct: false }],
+		optionsFr:  [ { option: "plus de vigilance", correct: true }, { option: "de l'ennui", correct: false }, { option: "Tu perds connaissance", correct: false }],
 		correct: 0
 	},
 
