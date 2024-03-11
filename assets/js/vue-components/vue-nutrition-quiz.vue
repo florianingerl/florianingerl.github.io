@@ -746,6 +746,18 @@ export default {
 		correct: 4
 	},
 
+	{
+		question: "Was sollte bei dir Ekel erregen?",
+		questionFr: "Qu'est-ce qui devrait vous dégoûter ?",
+		questionEn: "What should disgust you?",
+		imageUrl: "assets/img/rawfood/loewenzahn.png",
+		type: "multiple choice",
+		options: [{ option : "Löwenzahn, der nicht nass, gelb oder braun ist und wo Hunde vorbei gehen", correct: false }, { option : "Ein Blick und ein Riechen in den Kuhstall, wo deine Milch und dein Fleisch herkommt", correct: true }],
+		optionsEn: [{ option : "Dandelions that are not wet, yellow or brown and where dogs walk by", correct: false }, { option : "a look and a smell into a cowshed where your milk and meat comes from", correct: true } ],
+		optionsFr: [{ option : "Des pissenlits qui ne sont pas mouillés, jaunes ou bruns et où passent les chiens", correct: false }, { option : "un regard et une odeur dans une étable d'où viennent votre lait et votre viande", correct: true }],
+		correct: 4
+	},
+
 ]
     };
   },
