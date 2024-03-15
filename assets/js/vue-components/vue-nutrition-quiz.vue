@@ -758,6 +758,18 @@ export default {
 		correct: 4
 	},
 
+	{
+		question: "Was ist die beste Haltung, um wach und gesund zu bleiben? Ordne in aufsteigender Reihenfolge, d.h. beste Haltung zuletzt!",
+		questionFr: "Quelle est la meilleure posture pour rester éveillé et en bonne santé ? Classez par ordre croissant, c'est-à-dire la meilleure posture en dernier !",
+		questionEn: "What is the best posture to stay awake and healthy? Arrange in ascending order, i.e. best posture last!",
+		imageUrl: "assets/img/rawfood/barfuss.png",
+		type: "multiple choice",
+		options: [{ option : "Liegen, Sitzen, Knien, Stehen, Gehen, Barfuß gehen", correct: true }, { option : "Barfuß gehen, Gehen, Stehen, Knien, Sitzen, Liegen", correct: false }],
+		optionsEn: [{ option : "Lying, sitting, kneeling, standing, walking, walking barefoot", correct: true }, { option : "walking barefoot, walking, standing, kneeling, sitting, lying down", correct: false } ],
+		optionsFr: [{ option : "Couché, assis, à genoux, debout, marchant, marchant pieds nus", correct: true }, { option : "marchant pieds nus, marchant, debout, à genoux, assis, couché", correct: false }],
+		correct: 4
+	},
+
 ]
     };
   },
