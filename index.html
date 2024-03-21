@@ -1249,8 +1249,18 @@
 							gleich ein paar Aufgabenblätter mit, die man in einer
 							Nachhilfestunde besprechen könnte.</p>
 
+							<script>
+								function validateForm() {
+								  let x = document.forms["myForm"]["fname"].value;
+								  if (x !== "7") {
+									alert("Bitte sag mir das Ergebnis von 3+4");
+									return false;
+								  }
+								}
+							</script>
+<!--  -->
 
-						<form action="https://getform.io/f/bddcb2ba-fb16-4fa3-baf2-aabd7227b87a" method="post"
+						<form name="myForm" onsubmit="return validateForm()" action="https://getform.io/f/bddcb2ba-fb16-4fa3-baf2-aabd7227b87a" method="post"
 							role="form" class="php-email-form">
 							<div class="row">
 								<div class="col-md-6 form-group">
@@ -1276,6 +1286,13 @@
 								<div class="error-message"></div>
 								<div class="sent-message">Deine Nachricht wurde gesendet!
 									Vielen Dank!</div>
+							</div>
+							<div>
+								<p>Bitte beantworte die folgende Frage, sodass ich weiß, dass du kein Roboter bist.</p>
+								<p>Was ist 3+4? <input type="text" name="fname"></p>
+
+							
+
 							</div>
 							<div class="text-center">
 								<button type="submit">Nachricht senden</button>
