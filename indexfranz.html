@@ -916,8 +916,17 @@
 							contactes via e-mail et si tu m'envoies assez d'exercices dont on peut parler pendant un
 							cours particulier.</p>
 
+							<script>
+								function validateForm() {
+								  let x = document.forms["myForm"]["fname"].value;
+								  if (x !== "7") {
+									alert("Merci de me dire le résultat de 3+4");
+									return false;
+								  }
+								}
+							</script>	
 
-						<form action="https://getform.io/f/bddcb2ba-fb16-4fa3-baf2-aabd7227b87a" method="post"
+						<form name="myForm" onsubmit="return validateForm()" action="https://getform.io/f/bddcb2ba-fb16-4fa3-baf2-aabd7227b87a" method="post"
 							role="form" class="php-email-form">
 							<div class="row">
 								<div class="col-md-6 form-group">
@@ -943,6 +952,11 @@
 								<div class="error-message"></div>
 								<div class="sent-message">Ton message a été envoyé!
 									Merci beaucoup!</div>
+							</div>
+
+							<div>
+								<p>Merci de répondre à la question suivante pour que je sache que tu n'es pas un robot.</p>
+								<p>Que vaut 3+4? <input type="text" name="fname"></p>
 							</div>
 							<div class="text-center">
 								<button type="submit">Envoyer le message!</button>

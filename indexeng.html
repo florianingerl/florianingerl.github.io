@@ -926,8 +926,18 @@
 						<p>The best thing to do is to contact me via e-mail and send along a few worksheets that can be
 							discussed in a private lesson. But you can also use the form below.</p>
 
+							<script>
+								function validateForm() {
+								  let x = document.forms["myForm"]["fname"].value;
+								  if (x !== "7") {
+									alert("Please tell me the result of 3+4");
+									return false;
+								  }
+								}
+							</script>	
 
-						<form action="https://getform.io/f/bddcb2ba-fb16-4fa3-baf2-aabd7227b87a" method="post"
+
+						<form name="myForm" onsubmit="return validateForm()" action="https://getform.io/f/bddcb2ba-fb16-4fa3-baf2-aabd7227b87a" method="post"
 							role="form" class="php-email-form">
 							<div class="row">
 								<div class="col-md-6 form-group">
@@ -952,6 +962,14 @@
 								<div class="loading">L�dt</div>
 								<div class="error-message"></div>
 								<div class="sent-message">Your message was sent! Thanks!</div>
+							</div>
+
+							<div>
+								<p>Please answer the following question so that I know that you aren't a roboter.</p>
+								<p>What is 3+4? <input type="text" name="fname"></p>
+
+							
+
 							</div>
 							<div class="text-center">
 								<button type="submit">Send message</button>
