@@ -122,12 +122,12 @@ export default {
 	{
 		question:"Warum lernst du nirgendwo, dass Giersch essbar und gesund ist?",
 		questionFr: "Pourquoi n’apprenez-vous nulle part que les plantes de sol sont comestibles et saines?",
-		questionEn: "According to raw food guru Dr. Schnitzer, in what form is it the best to eat grains?",
+		questionEn: "Why don't you learn anywhere that groundweed is edible and healthy?",
 		imageUrl: "assets/img/rawfood/giersch.png",
 		type: "multiple choice",
 		options: [{ option : "weil es keine Werbung einer Gierschindustrie gibt, die den Giersch pasteurisiert,kocht,haltbar macht und dann in Tablettenform verkauft", correct: true }, { option : "Weil der Mensch kein Widerkäuer ist und Giersch nicht gesund", correct: false }],
 		optionsFr: [{ option : "car il n'y a pas de publicité d'une industrie de la courge qui pasteurise la courge, la cuit, la conserve puis la vend sous forme de comprimés", correct: true }, { option : "Parce que les humains ne sont pas des ruminants et que la courge n'est pas saine", correct: false }],
-		optionsEn: [{ option : "because there is no advertising from a gourd industry that pasteurizes the gourd, cooks it, preserves it and then sells it in tablet form", correct: true }, { option : "Because humans are not ruminants and gourd is not healthy", correct: false }],
+		optionsEn: [{ option : "because there is no advertising from a groundweed industry that pasteurizes the groundweed, cooks it, preserves it and then sells it in tablet form", correct: true }, { option : "Because humans are not ruminants and groundweed is not healthy", correct: false }],
 		correct: 0
 	},
 	
@@ -767,6 +767,30 @@ export default {
 		options: [{ option : "Liegen, Sitzen, Knien, Stehen, Gehen, Barfuß gehen", correct: true }, { option : "Barfuß gehen, Gehen, Stehen, Knien, Sitzen, Liegen", correct: false }],
 		optionsEn: [{ option : "Lying, sitting, kneeling, standing, walking, walking barefoot", correct: true }, { option : "walking barefoot, walking, standing, kneeling, sitting, lying down", correct: false } ],
 		optionsFr: [{ option : "Couché, assis, à genoux, debout, marchant, marchant pieds nus", correct: true }, { option : "marchant pieds nus, marchant, debout, à genoux, assis, couché", correct: false }],
+		correct: 4
+	},
+
+	{
+		question: "Wo kannst du Getreide, Hülsenfrüchte und Ölsaaten in Naturland-Qualität online kaufen?",
+		questionFr: "Où acheter en ligne des céréales, des légumineuses et des graines oléagineuses de qualité Naturland?",
+		questionEn: "Where can you buy grains, legumes and oilseeds in Naturland quality online?",
+		imageUrl: "assets/img/rawfood/biohoflex.png",
+		type: "multiple choice",
+		options: [{ option : "Bei Monsanto", correct: false}, { option : "Biohof Lex", correct: true },  { option : "Bayer", correct: false }, { option : "Syngenta", correct: false } ],
+		optionsEn: [{ option : "At Monsanto", correct: false }, { option : "Biohof Lex", correct: true }, { option : "Bayer", correct: false }, { option : "Syngenta", correct: false } ],
+		optionsFr: [{ option : "Chez Monsanto", correct: false }, { option : "Biohof Lex", correct: true }, { option : "Bayer", correct: false }, { option : "Syngenta", correct: false }],
+		correct: 4
+	},
+
+	{
+		question: "Was ist pures Gift für deine Zähne, den Kiefer und deine ganze Statik?",
+		questionFr: "Qu'est-ce qui est un pur poison pour vos dents, votre mâchoire et toute votre statique?",
+		questionEn: "What is pure poison for your teeth, jaw and all your statics?",
+		imageUrl: "assets/img/rawfood/zahnspange.png",
+		type: "multiple choice",
+		options: [{ option : "Zahnspange", correct: true}, { option : "Artgerechte Nahrung, die noch abgebissen und gekaut werden muss", correct: false }, { option : "Im Wald barfuß spazieren gehen", correct: false }  ],
+		optionsEn: [{ option : "Braces", correct: true }, { option : "Species-appropriate food that still needs to be bitten off and chewed", correct: false }, , { option : "Walking barefoot in the forest", correct: false } ],
+		optionsFr: [{ option : "Bracelets", correct: true }, { option : "Des aliments adaptés à l'espèce qui doivent encore être mordus et mâchés", correct: false }, { option : "Marcher pieds nus dans la forêt", correct: false }],
 		correct: 4
 	},
 
