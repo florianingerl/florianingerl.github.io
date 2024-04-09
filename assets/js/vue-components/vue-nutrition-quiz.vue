@@ -385,6 +385,30 @@ export default {
 	},
 
 	{
+		question: "Wie viel spart ein Rohköstler pro Jahr, indem er gar kein Öl verwendet? (Leinsamen sind im Vergleich quasi geschenkt.)",
+		questionFr: "Quelle huile est la meilleure parce qu’elle est la moins sensible à l’oxydation?",
+		questionEn: "Which oil is best because it is least susceptible to oxidation?",
+		imageUrl: "assets/img/rawfood/leinsamen.png",
+		type: "multiple choice",
+		options: [{ option : "1 Flasche Öl pro Woche = 52* 10 Euro = 520 Euro pro Jahr", correct: true }, { option : "viele Hautunreinheiten", correct: true }, { option : "Er muss mit seiner Gesundheit zahlen", correct: false } ],
+		optionsFr: [{ option : "L'huile d'olive", correct: true }, { option : "L'huile de colza", correct: false }],
+		optionsEn: [{ option : "Olive oil", correct: true }, { option : "Rapeseed oil", correct: false }],
+		correct: 1
+	},
+
+	{
+		question: "Welches Prinzip würde dich sofort rundum gesund machen, weil du dadurch selber denken und fühlen lernen könntest?",
+		questionFr: "Quelle huile est la meilleure parce qu’elle est la moins sensible à l’oxydation?",
+		questionEn: "Which oil is best because it is least susceptible to oxidation?",
+		imageUrl: "assets/img/rawfood/satanismus.png",
+		type: "multiple choice",
+		options: [{ option : "Jede Arztbehandlung zusätzlich zu der Krankenversicherung und den Steuern für's satanistisch-kommunistische System selber zahlen (auch nicht von der Steuer absetzen)", correct: true }, { option : "Soviel zum Arzt gehen wie möglich, weil es ja kostenlos ist", correct: false } ],
+		optionsFr: [{ option : "L'huile d'olive", correct: true }, { option : "L'huile de colza", correct: false }],
+		optionsEn: [{ option : "Olive oil", correct: true }, { option : "Rapeseed oil", correct: false }],
+		correct: 1
+	},
+
+	{
 		question: "Welche Zutat ist nicht in diesem Salat?",
 		questionFr: "Quel ingrédient n'est pas dans cette salade?",
 		questionEn: "Which ingredient is not in this salad?",
