@@ -1,0 +1,8 @@
+Je veux faire ce jeu de conversation.
+C'est un exercice sur les quatres oreilles et les quatres bouches selon le modèle de Schulz et Thun (https://activites-en-pedagogie.com/pourquoi-un-message-simple-peut-induire-un-conflit-la-theorie-des-4-oreilles-selon-friedmann-schulz-von-thun/)
+
+1) L'un de nous raconte 1-3 petites phrases ou même une petite histoire
+2) L'autre répétes les mots 
+3) L'autre dit avec quelle oreille ( factuel, appel, relation, auto-révélation ) il a entendu les mots et pourquoi
+4) L'un dit avec quelle bouche il a parlé et pourquoi
+5) Puis on change les roles et ainsi de suite

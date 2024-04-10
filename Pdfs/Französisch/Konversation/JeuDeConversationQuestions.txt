@@ -1,0 +1,7 @@
+Je veux faire ce jeu de conversation.
+Voilà les règles:
+1) L'un doit poser une question à l'autre ( pris depuis une liste où une question qui vient spontanement )
+2) L'autre doit y répondre 
+3) L'un doit répéter les mots (c'est là ou tu peux corriger ) 
+4) L'un doit dire ce que les mots ont provoqué sur lui ( pensées, sensations dans le corps ou émotions , sans le juger, sans donner des conseils.... ) 
+5) On change les roles . La prochaine question peut avoir un rapport avec la question précédente mais pas nécéssairement
