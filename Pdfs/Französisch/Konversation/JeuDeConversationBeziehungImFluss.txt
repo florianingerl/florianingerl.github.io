@@ -1,0 +1,5 @@
+Je veux faire ce jeu de conversation dont les règles sont assez simple:
+
+1) L'un dis dans au plus 3-4 phrases ce qu'il pense, ressentit dans le corps ou éprouve.
+2) L'autre répète (pour montrer qu'il a entendu ) les mots de l'autre (mot par mot ou seulement par le sens )
+3) Puis l'autre di ce qu'il pense, ressentit dans le corps ou éprouve en tant que reaction de  ce que l'un a dit
