@@ -1,0 +1,6 @@
+Übung zur Konversation:
+1) Partner A muss Partner B eine Frage stellen
+2) Partner B muss darauf antworten
+3) Partner A muss die Worte von Partner B wiederholen 
+4) Partner A muss sagen, was diese Worte in ihm ausgelösen
+5) Nun darf Partner A eine Frage stellen und so weiter und sofort

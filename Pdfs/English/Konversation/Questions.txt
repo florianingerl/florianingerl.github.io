@@ -1,0 +1,6 @@
+Exercise for conversation:
+1) Partner A asks Partner B a question
+2) Partner B must respond to the question
+3) Then Partner A must repeat Partner B's answer
+4) Partner A has to say, what this answer does with him
+5) Then Partner A has to ask a question and so on....
