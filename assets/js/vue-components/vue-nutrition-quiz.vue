@@ -98,7 +98,7 @@ export default {
 	},
 	{
 		question: "Wie heißt dieses Gemüse?",
-		question: "Comment est-ce qu'on appelle ce légume?",
+		questionFr: "Comment est-ce qu'on appelle ce légume?",
 		questionEn: "What is the name of this vegetable?",
 		imageUrl: "assets/img/rawfood/rotkohl.jpg",
 		type: "multiple choice",
