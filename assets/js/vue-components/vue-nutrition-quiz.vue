@@ -361,6 +361,18 @@ export default {
 	},
 
 	{
+		question: "Warum ist ein Brei aus Amaranth gegenüber einem aus Roggen-Sprossen eindeutig zu bevorzugen?",
+		questionFr: "Quelles céréales ne contiennent pas de gluten et peuvent être consommées sous forme de bouillie à base de germes ?",
+		questionEn: "Which grains do not contain gluten and can be eaten as a porridge made from sprouts?",
+		imageUrl: "assets/img/rawfood/amaranthbrei.jpg",
+		type: "multiple choice",
+		options: [{ option : "Weil Amaranth glutenfrei ist", correct: true }, { option : "Weil Amaranth billiger ist", correct: false }, { option : "Weil Amaranth sehr bitter schmeckt, sodass du die Herrschaft über deine Sinne nicht verlierst", correct: true } ],
+		optionsFr: [{ option : "Seigle", correct: false }, { option : "Sarrasin", correct: true }, { option : "Blé", correct: false },  { option : "Quinoa", correct: true },  { option : "Amarante", correct: true }],
+		optionsEn: [{ option : "Rye", correct: false }, { option : "Buckwheat", correct: true }, { option : "Wheat", correct: false },  { option : "Quinoa", correct: true },  { option : "Amaranth", correct: true }],
+		correct: 1
+	},
+
+	{
 		question: "Für was sind Gluten im Getreide gut?",
 		questionFr: "À quoi sert le gluten présent dans les céréales?",
 		questionEn: "What are gluten in grains good for?",
@@ -369,6 +381,30 @@ export default {
 		options: [{ option : "Für eine Rohkosternährung für Gesund-und Leistungsfähigkeit", correct: false }, { option : "Sie liefern den Kleber, damit der Bäcker leichter Produkte zur Befriedung der Sinne backen kann.", correct: true } ],
 		optionsFr: [{ option : "Pour la santé", correct: false }, { option : "Il fournit la colle qui permet au boulanger de préparer plus facilement des produits qui satisfont les sens.", correct: true }],
 		optionsEn: [{ option : "For your health", correct: false }, { option : "They provide the glue so that the baker can more easily bake products that satisfy the senses.", correct: true }],
+		correct: 1
+	},
+
+	{
+		question: "Was ist der Vorteil vom einem Brei aus Reis gegenüber einem Brei aus Roggen-Sprossen?",
+		questionFr: "Quelles céréales ne contiennent pas de gluten et peuvent être consommées sous forme de bouillie à base de germes ?",
+		questionEn: "Which grains do not contain gluten and can be eaten as a porridge made from sprouts?",
+		imageUrl: "assets/img/rawfood/reisbrei.jpg",
+		type: "multiple choice",
+		options: [{ option : "Reis ist glutenfrei", correct: true }, { option : "Reis ist billiger", correct: false }, { option : "Reis keimt schneller als Roggen", correct: false } ],
+		optionsFr: [{ option : "Seigle", correct: false }, { option : "Sarrasin", correct: true }, { option : "Blé", correct: false },  { option : "Quinoa", correct: true },  { option : "Amarante", correct: true }],
+		optionsEn: [{ option : "Rye", correct: false }, { option : "Buckwheat", correct: true }, { option : "Wheat", correct: false },  { option : "Quinoa", correct: true },  { option : "Amaranth", correct: true }],
+		correct: 1
+	},
+
+	{
+		question: "Wie kannst du die überschüssige Energie sinnvoll verbrauchen, wenn du einmal zuviele Sprossen gezüchtet hast?",
+		questionFr: "Quelles céréales ne contiennent pas de gluten et peuvent être consommées sous forme de bouillie à base de germes ?",
+		questionEn: "Which grains do not contain gluten and can be eaten as a porridge made from sprouts?",
+		imageUrl: "assets/img/rawfood/imwaldjoggen.jpg",
+		type: "multiple choice",
+		options: [{ option : "Barfuß im Wald laufen/joggen", correct: true }, { option : "Dich mit deiner Familie streiten", correct: false }, { option : "Chatten und Telefonieren", correct: false } ],
+		optionsFr: [{ option : "Seigle", correct: false }, { option : "Sarrasin", correct: true }, { option : "Blé", correct: false },  { option : "Quinoa", correct: true },  { option : "Amarante", correct: true }],
+		optionsEn: [{ option : "Rye", correct: false }, { option : "Buckwheat", correct: true }, { option : "Wheat", correct: false },  { option : "Quinoa", correct: true },  { option : "Amaranth", correct: true }],
 		correct: 1
 	},
 
