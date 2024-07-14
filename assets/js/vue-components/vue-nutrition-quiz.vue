@@ -278,6 +278,20 @@ export default {
 	},
 
 	{
+		question: "Wie viel Zeit braucht es zwischen zwei Mahlzeiten?",
+		questionFr: "Comment s'appelle ce légume?",
+		questionEn: "What is the name of this vegetable?",
+		imageUrl: "assets/img/rawfood/weißkohl.jpg",
+		type: "multiple choice",
+		options: [{ option : "genügend bis die erste verdaut worden ist, am besten soviel bis du richtig Hunger und von Sport oder Arbeit erschöpft bist", correct: true }, { option : "egal, für die Verdauung auch kein Problem, viele verschiedene Früchte in einer Mahlzeit zu verzehren", correct: false }],
+		optionsFr: [{ option : "chou rouge", correct: false }, { option : "chou blanc", correct: true }],
+		optionsEn: [{ option : "red cabbage", correct: false }, { option : "white cabbage", correct: true }],
+		correct: 1
+	},
+
+
+
+	{
 		question: "In welcher Form sollte man Hülsenfrüchte (Linsen, Süßlupinen, Mungobohnen, Kichererbsen, etc...) im Sinne der Gesund-und Leistungsfähigkeit am besten essen?",
 		questionFr: "Sous quelle forme consommer au mieux des légumineuses (lentilles, lupins doux, haricots mungo, pois chiches…) pour la santé et la performance ?",
 		questionEn: "In what form should you best eat legumes (lentils, sweet lupins, mung beans, chickpeas, etc.) for health and performance?",
@@ -467,6 +481,18 @@ export default {
 		optionsFr: [{ option : "Non, parce qu'on peut économiser de l'argent en ne commandant pas de boisson dans un restaurant", correct: false }, { option : "Non, parce que cela dilue l'acide gastrique", correct: true }, { option : "Oui, parce que les boissons énergisantes sont bonnes pour les dents.", correct: false }],
 		correct: 1
 	},
+
+	{
+		question: "Wie lange sollte man vor und nach einer Mahlzeit nichts trinken, um die Magensäure nicht zu verdünnen?",
+		questionEn: "Should you drink something with your meal?",
+		questionFr: "Faut-il boire quelque chose avec un repas?",
+		imageUrl: "assets/img/rawfood/verredeleau2.png",
+		type: "multiple choice",
+		options: [{ option : "30 min", correct: true }, { option : "5 min", correct: false }],
+		optionsEn: [{ option : "No, because you can save money by not ordering a drink in a restaurant", correct: false }, { option : "No, because it dilutes the stomach acid", correct: true }, { option : "Yes, because energy drinks are good for your teeth.", correct: false }],
+		optionsFr: [{ option : "Non, parce qu'on peut économiser de l'argent en ne commandant pas de boisson dans un restaurant", correct: false }, { option : "Non, parce que cela dilue l'acide gastrique", correct: true }, { option : "Oui, parce que les boissons énergisantes sont bonnes pour les dents.", correct: false }],
+		correct: 1
+	},
 	
 	{
 		question: "Welche Zutat ist nicht in diesem Salat?",
@@ -481,6 +507,42 @@ export default {
 	},
 
 	{
+		question: "Ist es gut, soviel verschiedenes Zeug in einer Mahlzeit zu haben wie in diesem Salat?",
+		questionFr: "Comment s'appelle ce légume?",
+		questionEn: "What is the name of this vegetable?",
+		imageUrl: "assets/img/rawfood/rotkohlsalat.JPG",
+		type: "multiple choice",
+		options: [{ option : "Nein, Monomahlzeiten wären viel besser für die Verdauung", correct: true }, { option : "Ja, weil die Kombination der Nährstoffe und Vielfalt wichtig ist", correct: false }],
+		optionsFr: [{ option : "chou rouge", correct: false }, { option : "chou blanc", correct: true }],
+		optionsEn: [{ option : "red cabbage", correct: false }, { option : "white cabbage", correct: true }],
+		correct: 1
+	},
+
+	{
+		question: "Wodurch könnte man Gemüse aus dem Biomarkt ersetzen, was nie wirklich frisch ist?",
+		questionFr: "Comment s'appelle ce légume?",
+		questionEn: "What is the name of this vegetable?",
+		imageUrl: "assets/img/rawfood/nursuesslupinen.jpg",
+		type: "multiple choice",
+		options: [{ option : "Wildkräuter", correct: true }, { option : "Dosenfutter", correct: false }],
+		optionsFr: [{ option : "chou rouge", correct: false }, { option : "chou blanc", correct: true }],
+		optionsEn: [{ option : "red cabbage", correct: false }, { option : "white cabbage", correct: true }],
+		correct: 1
+	},
+
+	{
+		question: "Ist Vielfalt bei der Ernährung wichtig?",
+		questionFr: "Comment s'appelle ce légume?",
+		questionEn: "What is the name of this vegetable?",
+		imageUrl: "assets/img/rawfood/amarantsprossen.jpg",
+		type: "multiple choice",
+		options: [{ option : "Ja, aber nicht innerhalb einer Mahlzeit. Monomahlzeiten sind für die Verdauung besser", correct: true }, { option : "Ja, die Kombination der Nährstoffe innerhalb einer Mahlzeit ist wichtig für die optimale Produktion von Eiweiß", correct: false }, {option : "Ja, deswegen iss auch mal einen Brei aus Amaranthsprossen mit Kürbiskernsprossen zum Frühstück anstatt immer nur Buchweizen-Sprossen mit Hanfsprossen", correct: true }],
+		optionsFr: [{ option : "chou rouge", correct: false }, { option : "chou blanc", correct: true }],
+		optionsEn: [{ option : "red cabbage", correct: false }, { option : "white cabbage", correct: true }],
+		correct: 1
+	},
+
+	{
 		question: "Wann ist alles neu, spannend, interessant und aufregend?",
 		questionEn: "When is everything new, exciting and interesting?",
 		questionFr: "Quand est-ce que tout est nouveau, excitant, intéressant et excitant ?",
@@ -490,6 +552,18 @@ export default {
 		optionsEn: [{ option : "With fresh raw food and a lot of attention in the here and now.", correct: true }, { option : "With a lot of sugar and when you need ever stronger stimulation", correct: false } ],
 		optionsFr: [{ option : "Avec des aliments frais et crus et beaucoup d'attention ici et maintenant", correct: true }, { option : "Avec beaucoup de sucre et quand vous avez besoin d'une stimulation toujours plus forte", correct: false } ],
 		correct: 3
+	},
+
+	{
+		question: "Wie kannst du die Qualität vom Wasser verbessern?",
+		questionFr: "Comment s'appelle ce légume?",
+		questionEn: "What is the name of this vegetable?",
+		imageUrl: "assets/img/rawfood/waterdestiller.jpg",
+		type: "multiple choice",
+		options: [{ option : "Einem Destilliergerät", correct: true }, { option : "mit Zucker, damit es nach was schmeckt und die Sinne betört und damit meine Unterscheidungskraft erhöht", correct: false }],
+		optionsFr: [{ option : "chou rouge", correct: false }, { option : "chou blanc", correct: true }],
+		optionsEn: [{ option : "red cabbage", correct: false }, { option : "white cabbage", correct: true }],
+		correct: 1
 	},
 	{
 		question: "Wasser macht verschiedene Kristalle, je nachdem wie man es vorher behandelt? Mit welcher Musik wurde dieses Wasser bespielt?",
@@ -536,6 +610,31 @@ export default {
 		optionsFr: [{ option : "Rayonnement du WiFi", correct: true }, { option : "rayonnement des téléphones portables", correct: true }, { option : "Internet par câble", correct: false } ],
 		correct: 3
 	},
+
+	{
+		question: "Welche Sprossen sind außer den Getreide,Hülsenfrüchten und Ölsaaten-Sprossen noch wichtig und enthalten viele Nährstoffe?",
+		questionEn: "What could be the cause of a headache?",
+		questionFr: "Quelle pourrait être la cause d’un mal de tête?",
+		imageUrl: "assets/img/rawfood/brokolisprossen.jpg",
+		type: "multiple choice",
+		options: [{ option : "Grüne Sprossen wie z.B. Brokkoli oder Grünkohl-Sprossen", correct: true }, { option : "Sprossen aus dem Biomarkt, die frisch verpackt wurden", correct: false } ],
+		optionsEn: [{ option : "Radiation from WiFi", correct: true }, { option : "radiation from cell phones", correct: true }, { option : "internet via cable", correct: false } ],
+		optionsFr: [{ option : "Rayonnement du WiFi", correct: true }, { option : "rayonnement des téléphones portables", correct: true }, { option : "Internet par câble", correct: false } ],
+		correct: 3
+	},
+
+	{
+		question: "Worauf solltest du bei jeder Mahlzeit wenigstens achten, wenn sie nur aus dem üblichen Schrott besteht?",
+		questionEn: "What could be the cause of a headache?",
+		questionFr: "Quelle pourrait être la cause d’un mal de tête?",
+		imageUrl: "assets/img/rawfood/yogiaufnagelbrett.png",
+		type: "multiple choice",
+		options: [{ option : "Dass dieser tote, wertlose Schrott wenigstens nicht schmeckt, damit nicht die Sinne betört und du jegliche Unterscheidungskraft verlierst", correct: true }, { option : "Dass es gut schmeckt, viel Zucker und Fett enthält, weil die Betörung der Sinne mir Freude im Leben gibt. Unterscheidungskraft brauch ich keine.", correct: false } ],
+		optionsEn: [{ option : "Radiation from WiFi", correct: true }, { option : "radiation from cell phones", correct: true }, { option : "internet via cable", correct: false } ],
+		optionsFr: [{ option : "Rayonnement du WiFi", correct: true }, { option : "rayonnement des téléphones portables", correct: true }, { option : "Internet par câble", correct: false } ],
+		correct: 3
+	},
+
 
 
 	{
