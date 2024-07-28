@@ -637,13 +637,13 @@ export default {
 
 	{
 		question: "Was zeigt diese Graphik?",
-		questionEn: "What could be the cause of a headache?",
-		questionFr: "Quelle pourrait être la cause d’un mal de tête?",
+		questionEn: "What does this graphic show?",
+		questionFr: "Que montre ce graphique?",
 		imageUrl: "assets/img/rawfood/buchweizengraphik.png",
 		type: "multiple choice",
 		options: [{ option : "Vom Quiz-Author geschätzer Verlauf der Energie, nachdem man Buchweizensprossen gegessen hat", correct: true }, { option : "Energieverlauf, nachdem man frisches Obst gegessen hat", correct: false } ],
-		optionsEn: [{ option : "Radiation from WiFi", correct: true }, { option : "radiation from cell phones", correct: true }, { option : "internet via cable", correct: false } ],
-		optionsFr: [{ option : "Rayonnement du WiFi", correct: true }, { option : "rayonnement des téléphones portables", correct: true }, { option : "Internet par câble", correct: false } ],
+		optionsEn: [{ option : "Energy history estimated by quiz author after eating buckwheat sprouts", correct: true }, { option : "Energy history after eating fresh fruit", correct: false } ],
+		optionsFr: [{ option : "Historique énergétique estimé par l'auteur du quiz après avoir mangé des pousses de sarrasin", correct: true }, { option : "Historique énergétique après avoir mangé des fruits frais", correct: false } ],
 		correct: 3
 	},
 
