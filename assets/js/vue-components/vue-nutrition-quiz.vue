@@ -649,13 +649,13 @@ export default {
 
 	{
 		question: "Worauf solltest du bei jeder Mahlzeit wenigstens achten, wenn sie nur aus dem üblichen Schrott besteht?",
-		questionEn: "What could be the cause of a headache?",
-		questionFr: "Quelle pourrait être la cause d’un mal de tête?",
+		questionEn: "What should you at least pay attention to at every meal if it only consists of the usual junk?",
+		questionFr: "À quoi devez-vous au moins faire attention à chaque repas s’il ne s’agit que de cochonneries habituelles ?",
 		imageUrl: "assets/img/rawfood/yogiaufnagelbrett.png",
 		type: "multiple choice",
-		options: [{ option : "Dass dieser tote, wertlose Schrott wenigstens nicht schmeckt, damit nicht die Sinne betört und du jegliche Unterscheidungskraft verlierst", correct: true }, { option : "Dass es gut schmeckt, viel Zucker und Fett enthält, weil die Betörung der Sinne mir Freude im Leben gibt. Unterscheidungskraft brauch ich keine.", correct: false } ],
-		optionsEn: [{ option : "Radiation from WiFi", correct: true }, { option : "radiation from cell phones", correct: true }, { option : "internet via cable", correct: false } ],
-		optionsFr: [{ option : "Rayonnement du WiFi", correct: true }, { option : "rayonnement des téléphones portables", correct: true }, { option : "Internet par câble", correct: false } ],
+		options: [{ option : "Dass dieser tote, wertlose Schrott wenigstens nicht schmeckt, damit nicht die Sinne betört und du jegliche Unterscheidungskraft verlierst", correct: true }, { option : "Dass es gut schmeckt, viel Zucker und Fett enthält, weil die Betörung der Sinne mir Freude im Leben gibt.", correct: false } ],
+		optionsEn: [{ option : "That this dead, worthless junk at least doesn't taste good, so that it doesn't beguile your senses and you lose all ability to distinguish", correct: true }, { option : "That it tastes good, contains a lot of sugar and fat, because the intoxication of the senses gives me joy in life.", correct: false } ],
+		optionsFr: [{ option : "Que ces cochonneries mortes et sans valeur au moins n'aient pas bon goût, afin qu'elles ne séduisent pas vos sens et que vous ne perdiez toute capacité de distinction", correct: true }, { option : "Que ce soit a bon goût, contient beaucoup de sucre et de graisse, car l'ivresse des sens me donne de la joie de vivre", correct: false } ],
 		correct: 3
 	},
 
