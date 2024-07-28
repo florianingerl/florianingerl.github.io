@@ -412,13 +412,13 @@ export default {
 
 	{
 		question: "Wie kannst du die überschüssige Energie sinnvoll verbrauchen, wenn du einmal zuviele Sprossen gezüchtet hast?",
-		questionFr: "Quelles céréales ne contiennent pas de gluten et peuvent être consommées sous forme de bouillie à base de germes ?",
-		questionEn: "Which grains do not contain gluten and can be eaten as a porridge made from sprouts?",
+		questionFr: "Comment pouvez-vous utiliser judicieusement l’excès d’énergie si vous avez fait pousser trop de pousses ??",
+		questionEn: "How can you use the excess energy sensibly if you have grown too many sprouts??",
 		imageUrl: "assets/img/rawfood/imwaldjoggen.jpg",
 		type: "multiple choice",
-		options: [{ option : "Barfuß im Wald laufen/joggen", correct: true }, { option : "Dich mit deiner Familie streiten", correct: false }, { option : "Chatten und Telefonieren", correct: false } ],
-		optionsFr: [{ option : "Seigle", correct: false }, { option : "Sarrasin", correct: true }, { option : "Blé", correct: false },  { option : "Quinoa", correct: true },  { option : "Amarante", correct: true }],
-		optionsEn: [{ option : "Rye", correct: false }, { option : "Buckwheat", correct: true }, { option : "Wheat", correct: false },  { option : "Quinoa", correct: true },  { option : "Amaranth", correct: true }],
+		options: [{ option : "Barfuß im Wald joggen", correct: true }, { option : "Dich mit deiner Familie streiten", correct: false }, { option : "Chatten und Telefonieren", correct: false } ],
+		optionsEn: [{ option : "Jogging barefoot in the forest", correct: true }, { option : "Arguing with your family", correct: false }, { option : "Chatting and making phone calls", correct: false } ],
+		optionsFr: [{ option : "Courir pieds nus en forêt", correct: true }, { option : "Se disputer avec votre famille", correct: false }, { option : "Discuter et téléphoner", correct: false } ],
 		correct: 1
 	},
 
@@ -436,25 +436,25 @@ export default {
 
 	{
 		question: "Wie viel spart ein Rohköstler pro Jahr, indem er gar kein Öl verwendet? (Leinsamen sind im Vergleich quasi geschenkt.)",
-		questionFr: "Quelle huile est la meilleure parce qu’elle est la moins sensible à l’oxydation?",
-		questionEn: "Which oil is best because it is least susceptible to oxidation?",
+		questionFr: "Combien un spécialiste de l’alimentation crue économise-t-il par an en n’utilisant pas d’huile du tout? (En comparaison, les graines de lin sont pratiquement gratuites.)",
+		questionEn: "How much does a raw foodist save per year by not using oil at all? (In comparison, linseeds are practically free.)",
 		imageUrl: "assets/img/rawfood/leinsamen.png",
 		type: "multiple choice",
 		options: [{ option : "1 Flasche Öl pro Woche = 52* 10 Euro = 520 Euro pro Jahr", correct: true }, { option : "viele Hautunreinheiten", correct: true }, { option : "Er muss mit seiner Gesundheit zahlen", correct: false } ],
-		optionsFr: [{ option : "L'huile d'olive", correct: true }, { option : "L'huile de colza", correct: false }],
-		optionsEn: [{ option : "Olive oil", correct: true }, { option : "Rapeseed oil", correct: false }],
+		optionsEn: [{ option : "1 bottle of oil per week = 52* 10 euros = 520 euros per year", correct: true }, { option : "many skin blemishes", correct: true }, { option : "He loses his health", correct: false } ],
+		optionsFr: [{ option : "1 bouteille d'huile par semaine = 52* 10 euros = 520 euros par an", correct: true }, { option : "de nombreuses imperfections cutanées", correct: true }, { option : "Il perd sa santé", correct: false } ],
 		correct: 1
 	},
 
 	{
 		question: "Welches Prinzip würde dich sofort rundum gesund machen, weil du dadurch selber denken und fühlen lernen könntest?",
-		questionFr: "Quelle huile est la meilleure parce qu’elle est la moins sensible à l’oxydation?",
-		questionEn: "Which oil is best because it is least susceptible to oxidation?",
+		questionFr: "Quel principe vous rendrait immédiatement en parfaite santé car il vous permettrait d'apprendre à penser et à ressentir par vous-même ?",
+		questionEn: "Which principle would immediately make you completely healthy because it would allow you to learn to think and feel for yourself?",
 		imageUrl: "assets/img/rawfood/satanismus.png",
 		type: "multiple choice",
+		optionsEn: [{ option : "Pay every doctor's treatment yourself in addition to health insurance and taxes for the satanic-communist system (also don't deduct it from your taxes)", correct: true }, { option : "Go to the doctor as much as possible, because it's free", correct: false } ],
 		options: [{ option : "Jede Arztbehandlung zusätzlich zu der Krankenversicherung und den Steuern für's satanistisch-kommunistische System selber zahlen (auch nicht von der Steuer absetzen)", correct: true }, { option : "Soviel zum Arzt gehen wie möglich, weil es ja kostenlos ist", correct: false } ],
-		optionsFr: [{ option : "L'huile d'olive", correct: true }, { option : "L'huile de colza", correct: false }],
-		optionsEn: [{ option : "Olive oil", correct: true }, { option : "Rapeseed oil", correct: false }],
+		optionsFr: [{ option : "Payez vous-même les soins de chaque médecin en plus de l'assurance maladie et des impôts du système satanique-communiste (ne les déduisez pas non plus de vos impôts)", correct: true }, { option : "Allez au médecin autant que possible, car c'est gratuit", correct: false } ],
 		correct: 1
 	},
 
