@@ -279,13 +279,13 @@ export default {
 
 	{
 		question: "Wie viel Zeit braucht es zwischen zwei Mahlzeiten?",
-		questionFr: "Comment s'appelle ce légume?",
-		questionEn: "What is the name of this vegetable?",
+		questionFr: "Combien de temps faut-il entre deux repas?",
+		questionEn: "How much time does it take between two meals??",
 		imageUrl: "assets/img/rawfood/weißkohl.jpg",
 		type: "multiple choice",
 		options: [{ option : "genügend bis die erste verdaut worden ist, am besten soviel bis du richtig Hunger und von Sport oder Arbeit erschöpft bist", correct: true }, { option : "egal, für die Verdauung auch kein Problem, viele verschiedene Früchte in einer Mahlzeit zu verzehren", correct: false }],
-		optionsFr: [{ option : "chou rouge", correct: false }, { option : "chou blanc", correct: true }],
-		optionsEn: [{ option : "red cabbage", correct: false }, { option : "white cabbage", correct: true }],
+		optionsFr: [{ option : "assez jusqu'à ce que le premier soit digéré, de préférence jusqu'à ce que vous ayez vraiment faim et que vous soyez épuisé par le sport ou le travail", correct: true }, { option : "peu importe, ce n'est aucun problème pour la digestion non plus de manger beaucoup de fruits différents en seul repas", correct: false }],
+		optionsEn: [{ option : "enough until the first one has been digested, preferably until you are really hungry and exhausted from sport or work", correct: true }, { option : "It doesn't matter. Nor is it a problem for the digestion to eat many different fruits in one meal", correct: false }],
 		correct: 1
 	},
 
@@ -376,13 +376,13 @@ export default {
 
 	{
 		question: "Warum ist ein Brei aus Amaranth gegenüber einem aus Roggen-Sprossen eindeutig zu bevorzugen?",
-		questionFr: "Quelles céréales ne contiennent pas de gluten et peuvent être consommées sous forme de bouillie à base de germes ?",
-		questionEn: "Which grains do not contain gluten and can be eaten as a porridge made from sprouts?",
+		questionFr: "Pourquoi une bouillie à base d'amarante est-elle nettement préférable à une bouillie à base de pousses de seigle?",
+		questionEn: "Why is a porridge made from amaranth clearly preferable to one made from rye sprouts?",
 		imageUrl: "assets/img/rawfood/amaranthbrei.jpg",
 		type: "multiple choice",
+		optionsEn: [{ option : "Because amaranth is gluten-free", correct: true }, { option : "Because amaranth is cheaper", correct: false }, { option : "Because amaranth tastes very bitter, so you don't lose control of your senses", correct: true } ],
+		optionsFr: [{ option : "Parce que l'amarante ne contient pas de gluten", correct: true }, { option : "Parce que l'amarante est moins chère", correct: false }, { option : "Parce que l'amarante a un goût très amer, donc vous ne perdez pas le contrôle de vos sens", correct: true } ],
 		options: [{ option : "Weil Amaranth glutenfrei ist", correct: true }, { option : "Weil Amaranth billiger ist", correct: false }, { option : "Weil Amaranth sehr bitter schmeckt, sodass du die Herrschaft über deine Sinne nicht verlierst", correct: true } ],
-		optionsFr: [{ option : "Seigle", correct: false }, { option : "Sarrasin", correct: true }, { option : "Blé", correct: false },  { option : "Quinoa", correct: true },  { option : "Amarante", correct: true }],
-		optionsEn: [{ option : "Rye", correct: false }, { option : "Buckwheat", correct: true }, { option : "Wheat", correct: false },  { option : "Quinoa", correct: true },  { option : "Amaranth", correct: true }],
 		correct: 1
 	},
 
@@ -399,14 +399,14 @@ export default {
 	},
 
 	{
-		question: "Was ist der Vorteil vom einem Brei aus Reis gegenüber einem Brei aus Roggen-Sprossen?",
-		questionFr: "Quelles céréales ne contiennent pas de gluten et peuvent être consommées sous forme de bouillie à base de germes ?",
-		questionEn: "Which grains do not contain gluten and can be eaten as a porridge made from sprouts?",
+		question: "Was ist der Vorteil von einem Brei aus Reis-Sprossen gegenüber einem Brei aus Roggen-Sprossen?",
+		questionFr: "Quel est l'avantage d'une bouillie à base de pousses de riz par rapport à une bouillie à base de pousses de seigle ??",
+		questionEn: "What is the advantage of a porridge made from rice sprouts compared to a porridge made from rye sprouts??",
 		imageUrl: "assets/img/rawfood/reisbrei.jpg",
 		type: "multiple choice",
 		options: [{ option : "Reis ist glutenfrei", correct: true }, { option : "Reis ist billiger", correct: false }, { option : "Reis keimt schneller als Roggen", correct: false } ],
-		optionsFr: [{ option : "Seigle", correct: false }, { option : "Sarrasin", correct: true }, { option : "Blé", correct: false },  { option : "Quinoa", correct: true },  { option : "Amarante", correct: true }],
-		optionsEn: [{ option : "Rye", correct: false }, { option : "Buckwheat", correct: true }, { option : "Wheat", correct: false },  { option : "Quinoa", correct: true },  { option : "Amaranth", correct: true }],
+		optionsEn: [{ option : "Rice is gluten-free", correct: true }, { option : "Rice is cheaper", correct: false }, { option : "Rice germinates faster than Rye", correct: false } ],
+		optionsFr: [{ option : "Le riz ne contient pas de gluten", correct: true }, { option : "Le riz est moins cher", correct: false }, { option : "Le riz germe plus vite que le seigle", correct: false } ],
 		correct: 1
 	},
 
