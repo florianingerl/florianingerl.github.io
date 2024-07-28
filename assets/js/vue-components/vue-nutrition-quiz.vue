@@ -484,13 +484,13 @@ export default {
 
 	{
 		question: "Wie lange sollte man vor und nach einer Mahlzeit nichts trinken, um die Magensäure nicht zu verdünnen?",
-		questionEn: "Should you drink something with your meal?",
-		questionFr: "Faut-il boire quelque chose avec un repas?",
+		questionEn: "How long should you not drink before and after a meal to avoid diluting your stomach acid?",
+		questionFr: "Combien de temps ne faut-il pas boire avant et après un repas pour éviter de diluer l'acide gastrique?",
 		imageUrl: "assets/img/rawfood/verredeleau2.png",
 		type: "multiple choice",
 		options: [{ option : "30 min", correct: true }, { option : "5 min", correct: false }],
-		optionsEn: [{ option : "No, because you can save money by not ordering a drink in a restaurant", correct: false }, { option : "No, because it dilutes the stomach acid", correct: true }, { option : "Yes, because energy drinks are good for your teeth.", correct: false }],
-		optionsFr: [{ option : "Non, parce qu'on peut économiser de l'argent en ne commandant pas de boisson dans un restaurant", correct: false }, { option : "Non, parce que cela dilue l'acide gastrique", correct: true }, { option : "Oui, parce que les boissons énergisantes sont bonnes pour les dents.", correct: false }],
+		optionsEn: [{ option : "30 min", correct: true }, { option : "5 min", correct: false }],
+		optionsFr: [{ option : "30 min", correct: true }, { option : "5 min", correct: false }],
 		correct: 1
 	},
 	
@@ -508,37 +508,37 @@ export default {
 
 	{
 		question: "Ist es gut, soviel verschiedenes Zeug in einer Mahlzeit zu haben wie in diesem Salat?",
-		questionFr: "Comment s'appelle ce légume?",
-		questionEn: "What is the name of this vegetable?",
+		questionFr: "Est-ce bon d'avoir autant de choses différentes dans un même repas comme dans cette salade?",
+		questionEn: "Is it good to have so many different things in one meal like in this salad?",
 		imageUrl: "assets/img/rawfood/rotkohlsalat.JPG",
 		type: "multiple choice",
 		options: [{ option : "Nein, Monomahlzeiten wären viel besser für die Verdauung", correct: true }, { option : "Ja, weil die Kombination der Nährstoffe und Vielfalt wichtig ist", correct: false }],
-		optionsFr: [{ option : "chou rouge", correct: false }, { option : "chou blanc", correct: true }],
-		optionsEn: [{ option : "red cabbage", correct: false }, { option : "white cabbage", correct: true }],
+		optionsEn: [{ option : "No, mono meals would be much better for digestion", correct: true }, { option : "Yes, because the combination of nutrients and variety is important", correct: false }],
+		optionsFr: [{ option : "Non, les mono-repas seraient bien meilleurs pour la digestion", correct: true }, { option : "Oui, car la combinaison de nutriments et de la variété est importante", correct: false }],
 		correct: 1
 	},
 
 	{
 		question: "Wodurch könnte man Gemüse aus dem Biomarkt ersetzen, was nie wirklich frisch ist?",
-		questionFr: "Comment s'appelle ce légume?",
-		questionEn: "What is the name of this vegetable?",
+		questionFr: "Par quoi remplacer les légumes du marché bio qui ne sont jamais vraiment frais?",
+		questionEn: "What could you replace vegetables from the organic market with that are never really fresh?",
 		imageUrl: "assets/img/rawfood/nursuesslupinen.jpg",
 		type: "multiple choice",
-		options: [{ option : "Wildkräuter", correct: true }, { option : "Dosenfutter", correct: false }],
-		optionsFr: [{ option : "chou rouge", correct: false }, { option : "chou blanc", correct: true }],
-		optionsEn: [{ option : "red cabbage", correct: false }, { option : "white cabbage", correct: true }],
+		options: [{ option : "Eine leicht-verdauliche Mono-Mahlzeit nur aus Sprossen essen", correct: true }, { option : "Dosenfutter", correct: false }],
+		optionsEn: [{ option : "Eat an easy-to-digest mono meal made only from sprouts", correct: true }, { option : "Canned food", correct: false }],
+		optionsFr: [{ option : "Mangez un repas mono facile à digérer à base de germes uniquement", correct: true }, { option : "Nourriture en conserve", correct: false }],
 		correct: 1
 	},
 
 	{
 		question: "Ist Vielfalt bei der Ernährung wichtig?",
-		questionFr: "Comment s'appelle ce légume?",
-		questionEn: "What is the name of this vegetable?",
+		questionFr: "La diversité est-elle importante en nutrition?",
+		questionEn: "Is diversity important in nutrition?",
 		imageUrl: "assets/img/rawfood/amarantsprossen.jpg",
 		type: "multiple choice",
-		options: [{ option : "Ja, aber nicht innerhalb einer Mahlzeit. Monomahlzeiten sind für die Verdauung besser", correct: true }, { option : "Ja, die Kombination der Nährstoffe innerhalb einer Mahlzeit ist wichtig für die optimale Produktion von Eiweiß", correct: false }, {option : "Ja, deswegen iss auch mal einen Brei aus Amaranthsprossen mit Kürbiskernsprossen zum Frühstück anstatt immer nur Buchweizen-Sprossen mit Hanfsprossen", correct: true }],
-		optionsFr: [{ option : "chou rouge", correct: false }, { option : "chou blanc", correct: true }],
-		optionsEn: [{ option : "red cabbage", correct: false }, { option : "white cabbage", correct: true }],
+		options: [{ option : "Ja, aber nicht innerhalb einer Mahlzeit. Monomahlzeiten sind für die Verdauung besser", correct: true }, { option : "Ja, die Kombination der Nährstoffe innerhalb einer Mahlzeit ist wichtig für die optimale Produktion von Eiweiß", correct: false }, {option : "Ja, deswegen iss zur Abwechslung auch mal einen Brei aus Amaranthsprossen mit Kürbiskernsprossen zum Frühstück anstatt immer nur Buchweizen-Sprossen mit Hanfsprossen", correct: true }],
+		optionsEn: [{ option : "Yes, but not within a meal. Mono meals are better for digestion", correct: true }, { option : "Yes, the combination of nutrients within a meal is important for optimal protein production", correct: false }, {option : "Yes, so for a change, eat a porridge made from amaranth sprouts with pumpkin seed sprouts for breakfast instead of always just buckwheat sprouts with hemp sprouts", correct: true }],
+		optionsFr: [{ option : "Oui, mais pas au sein d'un repas. Les repas mono sont meilleurs pour la digestion", correct: true }, { option : "Oui, la combinaison de nutriments au sein d'un repas est importante pour une production optimale de protéines", correct: false }, {option : "Oui, c'est pourquoi vous devriez manger un porridge à base de pousses d'amarante et de graines de citrouille au petit-déjeuner au lieu de toujours uniquement des pousses de sarrasin et de chanvre", correct: true }],
 		correct: 1
 	},
 
