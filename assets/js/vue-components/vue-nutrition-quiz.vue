@@ -556,13 +556,13 @@ export default {
 
 	{
 		question: "Wie kannst du die Qualität vom Wasser verbessern?",
-		questionFr: "Comment s'appelle ce légume?",
-		questionEn: "What is the name of this vegetable?",
+		questionFr: "Comment améliorer la qualité de votre eau?",
+		questionEn: "How can you improve the quality of your water?",
 		imageUrl: "assets/img/rawfood/waterdestiller.jpg",
 		type: "multiple choice",
 		options: [{ option : "Einem Destilliergerät", correct: true }, { option : "mit Zucker, damit es nach was schmeckt und die Sinne betört und damit meine Unterscheidungskraft erhöht", correct: false }],
-		optionsFr: [{ option : "chou rouge", correct: false }, { option : "chou blanc", correct: true }],
-		optionsEn: [{ option : "red cabbage", correct: false }, { option : "white cabbage", correct: true }],
+		optionsFr: [{ option : "Un alambic", correct: true }, { option : "avec du sucre, pour qu'il ait un goût de quelque chose et enivre les sens et augmente ainsi mon pouvoir de discrimination", correct: false }],
+		optionsEn: [{ option : "A still", correct: true }, { option : "with sugar, so that it tastes like something and intoxicates the senses and thus increases my power of discrimination", correct: false }],
 		correct: 1
 	},
 	{
@@ -613,25 +613,25 @@ export default {
 
 	{
 		question: "Welche Sprossen sind außer den Getreide,Hülsenfrüchten und Ölsaaten-Sprossen noch wichtig und enthalten viele Nährstoffe?",
-		questionEn: "What could be the cause of a headache?",
-		questionFr: "Quelle pourrait être la cause d’un mal de tête?",
+		questionEn: "Apart from grains, legumes and oilseed sprouts, which sprouts are important and contain many nutrients?",
+		questionFr: "Hormis les céréales, les légumineuses et les germes d’oléagineux, quels germes sont importants et contiennent de nombreux nutriments?",
 		imageUrl: "assets/img/rawfood/brokolisprossen.jpg",
 		type: "multiple choice",
 		options: [{ option : "Grüne Sprossen wie z.B. Brokkoli oder Grünkohl-Sprossen", correct: true }, { option : "Sprossen aus dem Biomarkt, die frisch verpackt wurden", correct: false } ],
-		optionsEn: [{ option : "Radiation from WiFi", correct: true }, { option : "radiation from cell phones", correct: true }, { option : "internet via cable", correct: false } ],
-		optionsFr: [{ option : "Rayonnement du WiFi", correct: true }, { option : "rayonnement des téléphones portables", correct: true }, { option : "Internet par câble", correct: false } ],
+		optionsEn: [{ option : "Green sprouts such as broccoli or kale sprouts", correct: true }, { option : "Sprouts from the organic market that were freshly packaged", correct: false } ],
+		optionsFr: [{ option : "Pousses vertes telles que pousses de brocoli ou de chou frisé", correct: true }, { option : "Pousses du marché biologique fraîchement emballées", correct: false } ],
 		correct: 3
 	},
 
 	{
 		question: "Was zeigt diese Graphik?",
-		questionEn: "What could be the cause of a headache?",
-		questionFr: "Quelle pourrait être la cause d’un mal de tête?",
+		questionEn: "What does this graphic show?",
+		questionFr: "Que montre ce graphique?",
 		imageUrl: "assets/img/rawfood/zuckerkurve.png",
 		type: "multiple choice",
 		options: [{ option : "Vom Quiz-Author geschätzer Verlauf der Energie, nachdem man Zucker (z.B. Obst) gegessen hat", correct: true }, { option : "Energieverlauf, nachdem man Buchweizensprossen gegessen hat", correct: false } ],
-		optionsEn: [{ option : "Radiation from WiFi", correct: true }, { option : "radiation from cell phones", correct: true }, { option : "internet via cable", correct: false } ],
-		optionsFr: [{ option : "Rayonnement du WiFi", correct: true }, { option : "rayonnement des téléphones portables", correct: true }, { option : "Internet par câble", correct: false } ],
+		optionsEn: [{ option : "Energy history estimated by the quiz author after eating sugar (e.g. fruit)", correct: true }, { option : "Energy history after eating buckwheat sprouts", correct: false } ],
+		optionsFr: [{ option : "Historique énergétique estimé par l'auteur du quiz après avoir mangé du sucre (par exemple des fruits)", correct: true }, { option : "Historique énergétique après avoir mangé des pousses de sarrasin", correct: false } ],
 		correct: 3
 	},
 
