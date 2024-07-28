@@ -966,6 +966,18 @@ export default {
 	},
 
 	{
+		question: "Wo kannst du keimfähigen Reis online kaufen?",
+		questionFr: "Où peut-on acheter du riz germinable en ligne?",
+		questionEn: "Where can you buy germinable rice online?",
+		imageUrl: "assets/img/rawfood/reisbrei.jpg",
+		type: "multiple choice",
+		options: [{ option : "Bei Top-Fruits", correct: true}, { option : "Monsanto", correct: false},  { option : "Bayer", correct: false }, { option : "Syngenta", correct: false } ],
+		optionsEn: [{ option : "Top-Fruits", correct: true}, { option : "Monsanto", correct: false},  { option : "Bayer", correct: false }, { option : "Syngenta", correct: false } ],
+		optionsFr: [{ option : "Top-Fruits", correct: true}, { option : "Monsanto", correct: false},  { option : "Bayer", correct: false }, { option : "Syngenta", correct: false } ],
+		correct: 4
+	},
+
+	{
 		question: "Was ist pures Gift für deine Zähne, den Kiefer und deine ganze Statik?",
 		questionFr: "Qu'est-ce qui est un pur poison pour vos dents, votre mâchoire et toute votre statique?",
 		questionEn: "What is pure poison for your teeth, jaw and all your statics?",
