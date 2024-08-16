@@ -469,6 +469,30 @@ export default {
 		optionsEn: [{ option : "white cabbage", correct: false }, { option : "wheat", correct: false }, { option : "beetroot", correct: false }, { option : "carrot", correct: true }, { option : "sweet lupins", correct: false }],
 		correct: 3
 	},
+
+	{
+		question: "Was ist der Vorteil von einer Monomahlzeit aus Mungobohnen gegenüber einem Konglomerat?",
+		questionFr: "Quel ingrédient n'est pas dans cette salade?",
+		questionEn: "Which ingredient is not in this salad?",
+		imageUrl: "assets/img/rawfood/monomungobohnen.JPG",
+		type: "multiple choice",
+		options: [{ option : "leicht verdaulich", correct: true }, { option : "günstiger", correct: true }, { option : "schmeckt nicht", correct: false } ],
+		optionsFr: [{ option : "chou blanc", correct: false }, { option : "blé", correct: false }, { option : "betterave", correct: false }, { option : "carotte", correct: true }, { option : "lupin doux", correct: false }],
+		optionsEn: [{ option : "white cabbage", correct: false }, { option : "wheat", correct: false }, { option : "beetroot", correct: false }, { option : "carrot", correct: true }, { option : "sweet lupins", correct: false }],
+		correct: 3
+	},
+
+	{
+		question: "Warum ist eine Monomahlzeit aus Belugalinsen gegenüber Belugalinsen mit Gemüse zu bevorzugen?",
+		questionFr: "Quel ingrédient n'est pas dans cette salade?",
+		questionEn: "Which ingredient is not in this salad?",
+		imageUrl: "assets/img/rawfood/monobelugalinsen.JPG",
+		type: "multiple choice",
+		options: [{ option : "Das Gemüse ist aus dem Supermarkt ist nicht frisch", correct: true }, { option : "Nur Sprossen sind wirklich frisch", correct: true }, { option : "Weil Belugalinsen mit Gemüse eine ungünstige chemische Reaktion machen", correct: false } ],
+		optionsFr: [{ option : "chou blanc", correct: false }, { option : "blé", correct: false }, { option : "betterave", correct: false }, { option : "carotte", correct: true }, { option : "lupin doux", correct: false }],
+		optionsEn: [{ option : "white cabbage", correct: false }, { option : "wheat", correct: false }, { option : "beetroot", correct: false }, { option : "carrot", correct: true }, { option : "sweet lupins", correct: false }],
+		correct: 3
+	},
 	
 	{
 		question: "Sollte man zu einer Mahlzeit auch was trinken? Welche Aussage ist richtig?",
