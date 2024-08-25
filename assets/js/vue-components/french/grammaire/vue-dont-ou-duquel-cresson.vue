@@ -5,7 +5,7 @@
 <h1>Dont ou duquel - petit exercice avec des tamis de cresson</h1>
 
 <p>
-<img src="assets/img/rawfood/tamisdecresson.jpg" height="100px" alt="Tamis de cresson"></img>
+<img style="height: 100px" src="assets/img/rawfood/tamisdecresson.jpg"  alt="Tamis de cresson"></img>
 Merci de lire <a href="https://www.francaisfacile.com/exercices/exercice-francais-2/exercice-francais-105504.php">ce cours</a> sur francaisfacile.com. Puis,
 revenez ici et fais mon test! Bonne chance!
 </p>
