@@ -63,6 +63,9 @@ loadModule('assets/js/vue-components/french/grammaire/vue-pronom-en-mengenwort.v
 const VueDontOuDuquel = Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/french/grammaire/vue-dont-ou-duquel.vue', options));
 
+const VueDontOuDuquelCresson = Vue.defineAsyncComponent(() =>
+  loadModule('assets/js/vue-components/french/grammaire/vue-dont-ou-duquel-cresson.vue', options));
+
 const VueEnDenDansDent = Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/french/grammaire/vue-en-den-dans-dent.vue', options));
 
@@ -196,6 +199,13 @@ const routes = [
           path: 'dontouduquel',
           component: VueDontOuDuquel
         },
+
+        {
+          name: 'Dont ou duquel - exercice avec des tamis de cresson',
+          path: 'dontouduquelcresson',
+          component: VueDontOuDuquelCresson
+        },
+
         {
           name: 'Négation avec ne...ni...ni',
           path: 'nenini',
