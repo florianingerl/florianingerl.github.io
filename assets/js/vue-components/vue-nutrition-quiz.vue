@@ -517,6 +517,18 @@ export default {
 		optionsFr: [{ option : "30 min", correct: true }, { option : "5 min", correct: false }],
 		correct: 1
 	},
+
+	{
+		question: "Wie kannst du damit aufhören, zwanghaft Schrott zu essen?",
+		questionEn: "How can you stop compulsively eating junk?",
+		questionFr: "Comment arrêter de manger compulsivement des cochonneries?",
+		imageUrl: "assets/img/rawfood/brokolisprossen.jpg",
+		type: "multiple choice",
+		options: [{ option : "30 Tage und Nächte Fasten, wie Jesus in der Wüste", correct: false }, { option : "Du musst genügend Sprossen essen, damit du den Unterschied zwischen frisch und tot wirklich verstehst und dann ganz natürlich auf Schrott verzichtest", correct: true }],
+		optionsEn: [{ option : "Fasting for 30 days and nights, like Jesus in the desert", correct: false }, { option : "You have to eat enough sprouts so that you really understand the difference between fresh and dead and then naturally avoid junk", correct: true }],
+		optionsFr: [{ option : "Jeûner pendant 30 jours et nuits, comme Jésus dans le désert", correct: false }, { option : "Vous devez manger suffisamment de pousses pour bien comprendre la différence entre frais et morts et ensuite éviter naturellement les cochonneries", correct: true }],
+		correct: 1
+	},
 	
 	{
 		question: "Welche Zutat ist nicht in diesem Salat?",
