@@ -684,6 +684,18 @@ export default {
 	},
 
 	{
+		question: "Was ist neben Sprossen noch essentiell für eine Ernährung mit Nährstoffen im Überfluss, weil sie Jod und viele Mineralien enthalten?",
+		questionEn: "Besides sprouts, what else is essential for a diet with plenty of nutrients because they contain iodine and many minerals?",
+		questionFr: "Outre les germes, quoi d’autre est essentiel pour une alimentation riche en nutriments, car ils contiennent de l’iode et de nombreux minéraux?",
+		imageUrl: "assets/img/rawfood/meeresspagetti.png",
+		type: "multiple choice",
+		options: [{ option : "Algen", correct: true }, { option : "toter Schrott", correct: false }, { option : "Obst", correct: false }, { option : "Nüsse", correct: false } ],
+		optionsEn: [{ option : "Algae", correct: true }, { option : "dead scrap", correct: false }, { option : "fruit", correct: false }, { option : "nuts", correct: false } ],
+		optionsFr: [{ option : "Algues", correct: true }, { option : "ferraille morte", correct: false }, { option : "fruit", correct: false }, { option : "noix", correct: false } ],
+		correct: 3
+	},
+
+	{
 		question: "Worauf solltest du bei jeder Mahlzeit wenigstens achten, wenn sie nur aus dem üblichen Schrott besteht?",
 		questionEn: "What should you at least pay attention to at every meal if it only consists of the usual junk?",
 		questionFr: "À quoi devez-vous au moins faire attention à chaque repas s’il ne s’agit que de cochonneries habituelles ?",
