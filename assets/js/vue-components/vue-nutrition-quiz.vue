@@ -488,7 +488,7 @@ export default {
 		questionEn: "Which ingredient is not in this salad?",
 		imageUrl: "assets/img/rawfood/monobelugalinsen.JPG",
 		type: "multiple choice",
-		options: [{ option : "Das Gemüse ist aus dem Supermarkt ist nicht frisch", correct: true }, { option : "Nur Sprossen sind wirklich frisch", correct: true }, { option : "Weil Belugalinsen mit Gemüse eine ungünstige chemische Reaktion machen", correct: false } ],
+		options: [{ option : "Das Gemüse aus dem Supermarkt ist nicht frisch", correct: true }, { option : "Nur Sprossen sind wirklich frisch", correct: true }, { option : "Weil Belugalinsen mit Gemüse eine ungünstige chemische Reaktion machen", correct: false } ],
 		optionsFr: [{ option : "chou blanc", correct: false }, { option : "blé", correct: false }, { option : "betterave", correct: false }, { option : "carotte", correct: true }, { option : "lupin doux", correct: false }],
 		optionsEn: [{ option : "white cabbage", correct: false }, { option : "wheat", correct: false }, { option : "beetroot", correct: false }, { option : "carrot", correct: true }, { option : "sweet lupins", correct: false }],
 		correct: 3
@@ -596,7 +596,7 @@ export default {
 		questionEn: "How can you improve the quality of your water?",
 		imageUrl: "assets/img/rawfood/waterdestiller.jpg",
 		type: "multiple choice",
-		options: [{ option : "Einem Destilliergerät", correct: true }, { option : "mit Zucker, damit es nach was schmeckt und die Sinne betört und damit meine Unterscheidungskraft erhöht", correct: false }],
+		options: [{ option : "Einem Destilliergerät", correct: true }, { option : "mit Zucker, damit es nach was schmeckt und die Sinne betört und damit sich meine Unterscheidungskraft erhöht", correct: false }],
 		optionsFr: [{ option : "Un alambic", correct: true }, { option : "avec du sucre, pour qu'il ait un goût de quelque chose et enivre les sens et augmente ainsi mon pouvoir de discrimination", correct: false }],
 		optionsEn: [{ option : "A still", correct: true }, { option : "with sugar, so that it tastes like something and intoxicates the senses and thus increases my power of discrimination", correct: false }],
 		correct: 1
@@ -689,9 +689,21 @@ export default {
 		questionFr: "À quoi devez-vous au moins faire attention à chaque repas s’il ne s’agit que de cochonneries habituelles ?",
 		imageUrl: "assets/img/rawfood/yogiaufnagelbrett.png",
 		type: "multiple choice",
-		options: [{ option : "Dass dieser tote, wertlose Schrott wenigstens nicht schmeckt, damit nicht die Sinne betört und du jegliche Unterscheidungskraft verlierst", correct: true }, { option : "Dass es gut schmeckt, viel Zucker und Fett enthält, weil die Betörung der Sinne mir Freude im Leben gibt.", correct: false } ],
+		options: [{ option : "Dass dieser tote, wertlose Schrott wenigstens nicht schmeckt, damit er nicht die Sinne betört und du jegliche Unterscheidungskraft verlierst", correct: true }, { option : "Dass es gut schmeckt, viel Zucker und Fett enthält, weil die Betörung der Sinne mir Freude im Leben gibt.", correct: false } ],
 		optionsEn: [{ option : "That this dead, worthless junk at least doesn't taste good, so that it doesn't beguile your senses and you lose all ability to distinguish", correct: true }, { option : "That it tastes good, contains a lot of sugar and fat, because the intoxication of the senses gives me joy in life.", correct: false } ],
 		optionsFr: [{ option : "Que ces cochonneries mortes et sans valeur au moins n'aient pas bon goût, afin qu'elles ne séduisent pas vos sens et que vous ne perdiez toute capacité de distinction", correct: true }, { option : "Que ce soit a bon goût, contient beaucoup de sucre et de graisse, car l'ivresse des sens me donne de la joie de vivre", correct: false } ],
+		correct: 3
+	},
+
+	{
+		question: "Wie viel spart ein Rohköstler, der das nicht ganz frische Gemüse vom Biomarkt nicht mehr braucht und sich nur noch von Sprossen, Algen und Wildkräutern ernährt?",
+		questionEn: "How much does a raw foodist save who no longer needs the not-quite-fresh vegetables from the organic market and only eats sprouts, seaweed and wild herbs?",
+		questionFr: "Combien d'argent peut économiser un crudivore qui n'a plus besoin des légumes pas tout à fait frais du marché bio et qui ne mange que des pousses, des algues et des herbes sauvages?",
+		imageUrl: "assets/img/rawfood/brokolisprossen.jpg",
+		type: "multiple choice",
+		options: [{ option : "5 Euro pro Tag an Gemüse = 365 * 5 Euro = 1825 Euro pro Jahr", correct: true }, { option : "Er bezahlt mit seiner Gesundheit", correct: false } ],
+		optionsEn: [{ option : "5 euros per day in vegetables = 365 * 5 euros = 1825 euros per year", correct: true }, { option : "He pays with his health", correct: false } ],
+		optionsFr: [{ option : "5 euros par jour en légumes = 365 * 5 euros = 1825 euros par an", correct: true }, { option : "Il paie avec sa santé", correct: false } ],
 		correct: 3
 	},
 
