@@ -34,7 +34,7 @@ export default {
   components: {
   
   },
-  props: ['gapfile','gaptext','lg'],
+  props: ['gapfile','gaptext', 'same', 'lg'],
 
   data() {
     return {
@@ -74,6 +74,36 @@ xhttp.send();
      else if(this.gaptext){
       this.parseGapText(this.gaptext);
      }
+
+     console.log( "The value of this.same is " + this.same );
+     if(this.same){
+       let alloptions = [];
+        console.log( "The value of this.gaps is " + this.gaps );
+       this.gaps.forEach( innergaps => {
+           innergaps.forEach( gap => {
+           gap.gap.forEach( option => {
+              if( alloptions.indexOf(option) == -1 ){
+                alloptions.push(option);
+              }
+           });
+       });
+
+       });
+       this.gaps.forEach( innergaps => {
+        innergaps.forEach(
+        gap => {
+           let i = alloptions.indexOf(gap.gap[0]);
+           gap.gap = [...alloptions];
+           let s = gap.gap[0];
+           gap.gap[0] = gap.gap[i];
+           gap.gap[i] = s;
+
+       });
+
+     });
+     }
+
+
 
   },
   setup(){
