@@ -87,6 +87,9 @@ loadModule('assets/js/vue-components/french/grammaire/vue-lion-passe-simple.vue'
 const VueRajouterOuAjouter = Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/french/grammaire/vue-rajouter-ou-ajouter.vue', options));
 
+const VueEncore = Vue.defineAsyncComponent(() =>
+  loadModule('assets/js/vue-components/french/vocabulaire/vue-encore.vue', options));
+
 
 const VueEven = Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/english/grammar/vue-even.vue', options));
@@ -253,7 +256,18 @@ const routes = [
         }
 
 
-       ]}
+       ]},
+       {
+        name: 'Vocabulaire',
+       path: 'vocabulaire',
+       children: [
+        {
+          name: 'Let mot encore',
+          path: 'encore',
+          component: VueEncore
+        },
+       ]
+       }
 
     ]
     
