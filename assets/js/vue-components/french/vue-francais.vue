@@ -10,6 +10,11 @@
     </thead>
     <tbody>
     <tr>
+    <td>9</td>
+       <td><router-link to="/french/vocabulaire/encore">Le mot encore</router-link></td>
+       <td>Flori10</td>
+    </tr>
+    <tr>
        <td>8</td>
        <td><router-link to="/french/grammaire/dontouduquelcresson">Dont ou duquel - exerice avec des tamis de cresson</router-link></td>
        <td>Flori10</td>
