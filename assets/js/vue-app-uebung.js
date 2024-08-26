@@ -87,6 +87,9 @@ loadModule('assets/js/vue-components/french/grammaire/vue-lion-passe-simple.vue'
 const VueRajouterOuAjouter = Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/french/grammaire/vue-rajouter-ou-ajouter.vue', options));
 
+const VueCeluiCelle = Vue.defineAsyncComponent(() =>
+  loadModule('assets/js/vue-components/french/grammaire/vue-celui-celle.vue', options));
+
 const VueEncore = Vue.defineAsyncComponent(() =>
   loadModule('assets/js/vue-components/french/vocabulaire/vue-encore.vue', options));
 
@@ -182,6 +185,11 @@ const routes = [
       {name: 'Grammaire',
        path: 'grammaire',
        children: [
+        {
+          name: 'Celui, celle, ceux ou celles',
+          path: 'celuioucelle',
+          component: VueCeluiCelle
+        },
         {
           name: 'Rajouter ou ajouter',
           path: 'rajouterouajouter',
