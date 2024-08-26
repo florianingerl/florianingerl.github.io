@@ -10,7 +10,7 @@ Puis fais le test!
    
 <VueExercise instruction="Choissez le sens dans lequel encore apparaît dans la phrase! Bonne chance!">
 
-<VueMCGaps lg="fr" :gaptext="gaptext">
+<VueMCGaps lg="fr" :gaptext="gaptext" :same="true">
 
 </VueMCGaps>
 
