@@ -708,6 +708,54 @@ export default {
 	},
 
 	{
+		question: "Du hast gerade langen, kräftezährenden Sport gemacht und bist körperlich erschöfpt. Was brauchst du nun zum Essen?",
+		questionEn: "What should you at least pay attention to at every meal if it only consists of the usual junk?",
+		questionFr: "À quoi devez-vous au moins faire attention à chaque repas s’il ne s’agit que de cochonneries habituelles ?",
+		imageUrl: "assets/img/rawfood/buchweizenbrei.jpg",
+		type: "multiple choice",
+		options: [{ option : "Kraftfutter, Kohlehydrate, d.h. Getreide oder Hülsenfrüchte", correct: true }, { option : "Vitamine, d.h. frischen Löwenzahn, Brokoli-oder Grünkohlsprossen", correct: false  } , { option : "Fett, d.h. Leinsamensprossen", correct: false  } ],
+		optionsEn: [{ option : "That this dead, worthless junk at least doesn't taste good, so that it doesn't beguile your senses and you lose all ability to distinguish", correct: true }, { option : "That it tastes good, contains a lot of sugar and fat, because the intoxication of the senses gives me joy in life.", correct: false } ],
+		optionsFr: [{ option : "Que ces cochonneries mortes et sans valeur au moins n'aient pas bon goût, afin qu'elles ne séduisent pas vos sens et que vous ne perdiez toute capacité de distinction", correct: true }, { option : "Que ce soit a bon goût, contient beaucoup de sucre et de graisse, car l'ivresse des sens me donne de la joie de vivre", correct: false } ],
+		correct: 3
+	},
+
+	{
+		question: "Du bist vom Sport verletzt, z.B. tut dein Knie weh oder deine Achillesferse reizt? Was brauchst du nun zum Essen?",
+		questionEn: "What should you at least pay attention to at every meal if it only consists of the usual junk?",
+		questionFr: "À quoi devez-vous au moins faire attention à chaque repas s’il ne s’agit que de cochonneries habituelles ?",
+		imageUrl: "assets/img/rawfood/brokolisprossen.jpg",
+		type: "multiple choice",
+		options: [{ option : "Kraftfutter, Kohlehydrate, d.h. Getreide oder Hülsenfrüchte", correct: false }, { option : "Vitamine, d.h. frischen Löwenzahn, Brokoli-oder Grünkohlsprossen", correct: true  } , { option : "Fett, d.h. Leinsamensprossen", correct: false  }  ],
+		optionsEn: [{ option : "That this dead, worthless junk at least doesn't taste good, so that it doesn't beguile your senses and you lose all ability to distinguish", correct: true }, { option : "That it tastes good, contains a lot of sugar and fat, because the intoxication of the senses gives me joy in life.", correct: false } ],
+		optionsFr: [{ option : "Que ces cochonneries mortes et sans valeur au moins n'aient pas bon goût, afin qu'elles ne séduisent pas vos sens et que vous ne perdiez toute capacité de distinction", correct: true }, { option : "Que ce soit a bon goût, contient beaucoup de sucre et de graisse, car l'ivresse des sens me donne de la joie de vivre", correct: false } ],
+		correct: 3
+	},
+
+	{
+		question: "Du hast trockene Haut und Lippen? Was brauchst du nun zum Essen?",
+		questionEn: "What should you at least pay attention to at every meal if it only consists of the usual junk?",
+		questionFr: "À quoi devez-vous au moins faire attention à chaque repas s’il ne s’agit que de cochonneries habituelles ?",
+		imageUrl: "assets/img/rawfood/leinsamen.png",
+		type: "multiple choice",
+		options: [{ option : "Kraftfutter, Kohlehydrate, d.h. Getreide oder Hülsenfrüchte", correct: false }, { option : "Vitamine, d.h. frischen Löwenzahn, Brokoli-oder Grünkohlsprossen", correct: false  } , { option : "Fett, d.h. Leinsamensprossen", correct: true  }  ],
+		optionsEn: [{ option : "That this dead, worthless junk at least doesn't taste good, so that it doesn't beguile your senses and you lose all ability to distinguish", correct: true }, { option : "That it tastes good, contains a lot of sugar and fat, because the intoxication of the senses gives me joy in life.", correct: false } ],
+		optionsFr: [{ option : "Que ces cochonneries mortes et sans valeur au moins n'aient pas bon goût, afin qu'elles ne séduisent pas vos sens et que vous ne perdiez toute capacité de distinction", correct: true }, { option : "Que ce soit a bon goût, contient beaucoup de sucre et de graisse, car l'ivresse des sens me donne de la joie de vivre", correct: false } ],
+		correct: 3
+	},
+
+	{
+		question: "Du hast Pickel und Übergewicht, kannst nachts nicht schlafen, bist vom üblichen Schrott bis unter die Kante vergiftet. Was brauchst du nun?",
+		questionEn: "What should you at least pay attention to at every meal if it only consists of the usual junk?",
+		questionFr: "À quoi devez-vous au moins faire attention à chaque repas s’il ne s’agit que de cochonneries habituelles ?",
+		imageUrl: "assets/img/cs/fragezeichen.jpg",
+		type: "multiple choice",
+		options: [{ option : "Rohkost zur Entgiftung", correct: true }, { option : "einen guten Medizyniker, der dir Medikamente (noch mehr Gift) verschreibt", correct: false  }  ],
+		optionsEn: [{ option : "That this dead, worthless junk at least doesn't taste good, so that it doesn't beguile your senses and you lose all ability to distinguish", correct: true }, { option : "That it tastes good, contains a lot of sugar and fat, because the intoxication of the senses gives me joy in life.", correct: false } ],
+		optionsFr: [{ option : "Que ces cochonneries mortes et sans valeur au moins n'aient pas bon goût, afin qu'elles ne séduisent pas vos sens et que vous ne perdiez toute capacité de distinction", correct: true }, { option : "Que ce soit a bon goût, contient beaucoup de sucre et de graisse, car l'ivresse des sens me donne de la joie de vivre", correct: false } ],
+		correct: 3
+	},
+
+	{
 		question: "Wie viel spart ein Rohköstler, der das nicht ganz frische Gemüse vom Biomarkt nicht mehr braucht und sich nur noch von Sprossen, Algen und Wildkräutern ernährt?",
 		questionEn: "How much does a raw foodist save who no longer needs the not-quite-fresh vegetables from the organic market and only eats sprouts, seaweed and wild herbs?",
 		questionFr: "Combien d'argent peut économiser un crudivore qui n'a plus besoin des légumes pas tout à fait frais du marché bio et qui ne mange que des pousses, des algues et des herbes sauvages?",
