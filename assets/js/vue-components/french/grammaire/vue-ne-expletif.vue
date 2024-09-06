@@ -1,7 +1,7 @@
 <template>
 
 <div>
-<h1 class=".text-danger">Le mot encore</h1>
+<h1 class=".text-danger">Ne explétif</h1>
 
 <p>
 Renseigne-toi sur ne explétif sur l'Internet, par exemple  <a href="https://www.lawlessfrench.com/grammar/ne-expletif/">là-bas</a>
