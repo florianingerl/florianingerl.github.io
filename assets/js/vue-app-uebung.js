@@ -90,6 +90,9 @@ loadModule('assets/js/vue-components/french/grammaire/vue-rajouter-ou-ajouter.vu
 const VueCeluiCelle = Vue.defineAsyncComponent(() =>
   loadModule('assets/js/vue-components/french/grammaire/vue-celui-celle.vue', options));
 
+const VueNeExpletif = Vue.defineAsyncComponent(() =>
+  loadModule('assets/js/vue-components/french/grammaire/vue-ne-expletif.vue', options));
+
 const VueEncore = Vue.defineAsyncComponent(() =>
   loadModule('assets/js/vue-components/french/vocabulaire/vue-encore.vue', options));
 
@@ -185,6 +188,11 @@ const routes = [
       {name: 'Grammaire',
        path: 'grammaire',
        children: [
+        {
+          name: 'Ne explétif',
+          path: 'neexpletif',
+          component: VueNeExpletif
+        },
         {
           name: 'Celui, celle, ceux ou celles',
           path: 'celuioucelle',

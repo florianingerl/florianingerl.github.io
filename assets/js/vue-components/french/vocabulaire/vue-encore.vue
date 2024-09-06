@@ -49,8 +49,8 @@ export default {
     return {
        gaptext: [ "J'ai terminé mon travail, je vais en demander encore un peu ! {De surcroît, en outre}",
 "Erwin n'a pas encore fini ses devoirs. {Opposition à déjà}",
-"Ne me pose pas encore la même question ! {Opposition à déjà}",
-"L'enfant n'a pas encore brossé ses dents. {Contraire de ne... plus}",
+"Ne me pose pas encore la même question ! {Fait à répétition}",
+"L'enfant n'a pas encore brossé ses dents. {Opposition à déjà}",
 "J'ai encore le temps de jouer avec toi si tu veux ! {Contraire de ne... plus.}",
 "Mentir et s'en réjouir est encore pire que de justement mentir .{ degré plus grand}",
 "Pour ce poste, il te faut une longue expérience et encore faut-il que tu réussisses tous les entretiens préliminaires. {En addition, un autre}",

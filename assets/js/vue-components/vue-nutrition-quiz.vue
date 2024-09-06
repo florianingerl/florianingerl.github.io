@@ -756,6 +756,18 @@ export default {
 	},
 
 	{
+		question: "Zu was führt Obstessen?",
+		questionEn: "What should you at least pay attention to at every meal if it only consists of the usual junk?",
+		questionFr: "À quoi devez-vous au moins faire attention à chaque repas s’il ne s’agit que de cochonneries habituelles ?",
+		imageUrl: "assets/img/cs/fragezeichen.jpg",
+		type: "multiple choice",
+		options: [{ option : "Frieden im Geist, Ausgeglichenheit", correct: false }, { option : "Heißhungerattacken", correct: true  } ],
+		optionsEn: [{ option : "That this dead, worthless junk at least doesn't taste good, so that it doesn't beguile your senses and you lose all ability to distinguish", correct: true }, { option : "That it tastes good, contains a lot of sugar and fat, because the intoxication of the senses gives me joy in life.", correct: false } ],
+		optionsFr: [{ option : "Que ces cochonneries mortes et sans valeur au moins n'aient pas bon goût, afin qu'elles ne séduisent pas vos sens et que vous ne perdiez toute capacité de distinction", correct: true }, { option : "Que ce soit a bon goût, contient beaucoup de sucre et de graisse, car l'ivresse des sens me donne de la joie de vivre", correct: false } ],
+		correct: 3
+	},
+
+	{
 		question: "Wie viel spart ein Rohköstler, der das nicht ganz frische Gemüse vom Biomarkt nicht mehr braucht und sich nur noch von Sprossen, Algen und Wildkräutern ernährt?",
 		questionEn: "How much does a raw foodist save who no longer needs the not-quite-fresh vegetables from the organic market and only eats sprouts, seaweed and wild herbs?",
 		questionFr: "Combien d'argent peut économiser un crudivore qui n'a plus besoin des légumes pas tout à fait frais du marché bio et qui ne mange que des pousses, des algues et des herbes sauvages?",

@@ -126,6 +126,9 @@ xhttp.send();
      },
 
      suffle(array){
+      if(this.same){
+        return array;
+      }
       let newarray = [...array];
       newarray.sort( (a,b) => 0.5 - Math.random() );
       return newarray;
