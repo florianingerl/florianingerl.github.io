@@ -10,6 +10,11 @@
     </thead>
     <tbody>
     <tr>
+        <td>4</td>
+        <td><router-link to="/english/books/fred/1">A book about Fred</router-link></td>
+        <td>Flori10</td>
+      </tr>
+    <tr>
         <td>1</td>
         <td><router-link to="/english/books/rawfood/1">Raw food</router-link></td>
         <td>Flori10</td>

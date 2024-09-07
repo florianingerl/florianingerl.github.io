@@ -42,6 +42,9 @@ loadModule('assets/js/vue-components/french/alimentation/vue-bagavad-gita.vue', 
 const VueRawFood =  Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/english/rawfood/vue-rawfood.vue', options));
 
+const VueFred =  Vue.defineAsyncComponent(() =>
+  loadModule('assets/js/vue-components/english/books/vue-anna-story.vue', options));
+
 const VueRegexExercises =  Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/informatik/vue-regex-exercises.vue', options));
 
@@ -141,6 +144,10 @@ const routes = [
     {name: 'Raw food',
      path: 'rawfood/:page',
      component: VueRawFood },
+
+     {name: 'Fred',
+      path: 'fred/:page',
+      component: VueFred },
     
   ] }, {
     name: 'Grammar',
