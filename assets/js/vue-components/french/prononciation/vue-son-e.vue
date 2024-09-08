@@ -2,14 +2,14 @@
 
 <div>
 
-<h1>Celui, celle, ceux ou celles - petit exercice avec des voleurs</h1>
+<h1>Le son é</h1>
 
 <p>
-Merci de lire par exemple <a target="_blank" href="https://www.francaisfacile.com/exercices/exercice-francais-2/exercice-francais-2922.php"> ce cours</a> sur les pronoms démonstratifs. Puis,
-revenez ici et faites mon test en remplissant les trous avec celui, celle, ceux ou celles! Bonne chance!
+Merci de lire par exemple <a target="_blank" href="https://www.jerevise.fr/son-e-er-et-phoneme-mots.html"> ce cours</a> sur le son é en francais. Puis,
+revenez ici et faites mon test en remplissant les trous! Bonne chance!
 </p>
    
-<VueExercise instruction="Remplis les trous avec celui, celle, ceux ou celles">
+<VueExercise instruction="Remplis les trous avec er, es, ée, ...!">
 
 <VueGaps lg="fr" :gaptext="gaptext">
 
@@ -29,7 +29,7 @@ import VueHideShow from "./../../vue-hideshow.vue";
 import VueGaps from "./../../vue-gaps.vue";
 
 export default {
-  name: "VueCeluiCelle",
+  name: "VueSonE",
   components: {
     VueExercise,
     VueHideShow,
@@ -46,16 +46,22 @@ export default {
   
   data() {
     return {
-       gaptext: "Aujourd'hui, j'ai pass{é} une bonne journ{ée}. Le ciel était éclair{é} par de la lumière dor{ée} du soleil." +
- "En un tel jour, on ne veut bien sûr pas regard{er} la tél{é} {et} en effet, j'ai décid{é} de faire un tour en vélo." +
- "Mon vélo était gar{é} au rez-de-chaus{ée} de mon appartement." +
- "Après avoir quitt{é} mon canapé, j'ai mis mes chaussures les plus confortables. Elles n'étaient pas trop justes de sorte qu'elles ne blessaient pas mes pi{ed}s.\n" +
- "J'ai commenc{é} mon tour. La chaus{ée} était bien sêche. Car il faisait si chaud, comme un ouvri{er}, j'ai enlevé mon T-shirt pour que ma peau toute nue puisse encore mieux profiter du soleil. Ahhh!" +
- "Ce sont les jours de cong{é} comme celui-là qui me donnent un sentiment de liberté {et} de légèreté. Mes yeux savouraient la beaut{é} de la nature." +
- "{Celui} qui n'est plus là. Dans le pays d'où elle vient, on arrache un doigt de la main des voleurs. Et regarde! " +
- "{Celui} qui m'a volé la montre a subi la même punition que " +
- "{celle} de sa complice. Lui aussi, il lui manque un doigt. Mais c'est complètement barbare! J'aime mieux les punitions en France que " +
- "{celles} dans les pays sous-développés."
+       gaptext: "Aujourd'hui, je vais pass{er} une bonne journ{ée}. Le ciel est éclair{é} par la lumière dor{ée} du soleil." +
+ "En un tel jour, on ne veut bien sûr pas regard{er} la tél{é} {et} en effet, je décide de faire un tour en vélo." +
+ "Mon vélo est gar{é} au r{ez}-de-chauss{ée} de mon appartement." +
+ "Après avoir quitt{é} mon canap{é}, je mets mes chaussures les plus confortables. Elles ne sont pas trop justes de sorte qu'elles ne blessent pas mes pi{eds}.\n" +
+ "Je commence mon tour. La chausd{ée} était bien sêche. Comme un ouvri{er} en un jour si chaud, j'enlève mon T-shirt pour que ma peau toute nue puisse encore mieux profit{er} du soleil. Ahhh!" +
+ "Ce sont les jours de cong{é} comme celui-là qui me donnent un sentiment de libert{é} {et} de légèret{é}. M{es} yeux savouraient la beaut{é} de la nature." +
+ "Dans le pani{er} à l'arrière de mon vélo, j'ai emport{é} deux bouteilles de th{é}. Quelle chance que mon méti{er} me laisse ce temps de loisir. Car c'est dimanche, la plupart des gens dans mon quarti{er} ne doivent pas travailler non plus." +
+ "Je me gratte le n{ez}. Une mouche a failli me piquer là-bas." +
+ "Au cours de mon tour, je me promets plusieurs recr{ée} pour boire un peu de th{é} {et} de manger d{es} pissenlits. " +
+ "Je fais bien attention qu'il n'y a pas d'araign{ée} sur le pissenlit avant que je ne le mange." +
+ "Après 4 heures, je sens que j'ai faim {et} je fais demi-tour. J'ai toujours peur de perdre mes cl{ées}, je me rassure donc fréquemment qu'elles sont toujours dans m{es} poches." +
+ "Si l'ét{é} pouvait rest{er} pour l'éternit{é}! Une id{ée} serait de voyager à l'autre bout de la terre en hiver mais comment y trouv{er} du traivail?" +
+ "Tandis que j'ai toutes c{es} pens{ées}, j'avale aussi d{es} kilomètres pour rentr{er} ch{ez} moi. En rentrant, je bois mon th{é} en de grosses gorg{ées} parce qu'il fait si chaud et j'ai tellement soif." +
+ "Heuresement, pas d'embouteillage sur m{es} senti{ers}. Finalement, j'atteinds mon appartement et l'ouvrit avec mon cl{ée}. Comment pass{er} la soir{ée} maintenant?" +
+ "Je suis tout affam{é}. Je mange donc d'abord en de grosses bouch{ées} m{es} pousses de brokoli et de lin. Puis je lis un livre sur un cheval{ier} appel{é} Lancelot et n{é} en 1000 " +
+ "qui sait mieux que tous les autres chevali{ers} de se servir de son ép{ée}."
     };
   }
 }

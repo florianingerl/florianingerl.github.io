@@ -9,6 +9,11 @@
       </tr>
     </thead>
     <tbody> 
+      <tr>
+<td>12</td>
+       <td><router-link to="/french/prononciation/sone">Le son é</router-link></td>
+       <td>Flori10</td>
+    </tr>
     <tr>
 <td>11</td>
        <td><router-link to="/french/grammaire/neexpletif">Ne explétif</router-link></td>

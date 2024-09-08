@@ -54,6 +54,9 @@ loadModule('assets/js/vue-components/french/grammaire/vue-pronom-en.vue', option
 const VueNiNi = Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/french/grammaire/vue-ni-ni.vue', options));
 
+const VueSonE = Vue.defineAsyncComponent(() =>
+  loadModule('assets/js/vue-components/french/prononciation/vue-son-e.vue', options));
+
 const VueTantOuSi = Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/french/grammaire/vue-si-tant.vue', options));
 
@@ -191,6 +194,17 @@ const routes = [
           component: VueBhagavadGita
         }
       ],
+      },
+      {
+        name: 'Prononciation',
+        path: 'prononciation',
+        children: [
+          {
+            name: 'Le son é',
+            path: "sone",
+            component: VueSonE
+          }
+        ]
       },
       {name: 'Grammaire',
        path: 'grammaire',
