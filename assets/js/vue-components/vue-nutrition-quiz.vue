@@ -125,7 +125,7 @@ export default {
 		questionEn: "Why don't you learn anywhere that groundweed is edible and healthy?",
 		imageUrl: "assets/img/rawfood/giersch.png",
 		type: "multiple choice",
-		options: [{ option : "weil es keine Werbung einer Gierschindustrie gibt, die den Giersch pasteurisiert,kocht,haltbar macht und dann in Tablettenform verkauft", correct: true }, { option : "Weil der Mensch kein Widerkäuer ist und Giersch nicht gesund", correct: false }],
+		options: [{ option : "weil es keine Werbung einer Gierschindustrie gibt, die den Giersch pasteurisiert,kocht,haltbar macht und dann in Tablettenform verkauft", correct: true }, { option : "Weil der Mensch kein Wiederkäuer ist und Giersch nicht gesund", correct: false }],
 		optionsFr: [{ option : "car il n'y a pas de publicité d'une industrie de la courge qui pasteurise la courge, la cuit, la conserve puis la vend sous forme de comprimés", correct: true }, { option : "Parce que les humains ne sont pas des ruminants et que la courge n'est pas saine", correct: false }],
 		optionsEn: [{ option : "because there is no advertising from a groundweed industry that pasteurizes the groundweed, cooks it, preserves it and then sells it in tablet form", correct: true }, { option : "Because humans are not ruminants and groundweed is not healthy", correct: false }],
 		correct: 0
@@ -161,7 +161,7 @@ export default {
 		type: "multiple choice",
 		options: [{ option : "scharf", correct: true }, { option : "bitter", correct: false }, { option : "süß", correct: false }],
 		optionsEn: [{ option : "spicey", correct: true }, { option : "bitter", correct: false }, { option : "sweet", correct: false }],
-		options: [{ option : "épicé", correct: true }, { option : "amer", correct: false }, { option : "sucré", correct: false }],
+		optionsFr: [{ option : "épicé", correct: true }, { option : "amer", correct: false }, { option : "sucré", correct: false }],
 		correct: 0
 	},
 
@@ -190,9 +190,9 @@ export default {
 	},
 
 	{
-		question: "Comment est-ce qu'on appelle cette salade?",
+		questionFr: "Comment est-ce qu'on appelle cette salade?",
 		questionEn: "What is this salad called?",
-		questionFr: "Wie heißt dieser Salat?",
+		question: "Wie heißt dieser Salat?",
 		imageUrl: "assets/img/rawfood/endivien.jpg",
 		type: "multiple choice",
 		options: [{ option : "Zuckerhut", correct: false }, { option : "Kopfsalat", correct: false }, { option : "Chicoree", correct: false }, { option : "Endiviensalat", correct: true }],
