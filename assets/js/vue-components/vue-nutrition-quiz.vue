@@ -143,7 +143,7 @@ export default {
 		correct: 1
 	},
 	{
-		question: "Sprossen aus Leinsamen sind wertvoll, weil sie viel Fett enthalten. Wie schmecken wohl Leinsamensprossen?",
+		question: "Sprossen aus Leinsamen sind wertvoll, weil sie viel Omega-3-Fettsäuren enthalten. Wie schmecken wohl Leinsamensprossen?",
 		questionEn: "Linseed sprouts are valuable because they contain a lot of fat. What do linseed sprouts taste like?",
 		questionFr: "Les pousses de lin sont précieuses parce qu'elles contiennent beaucoup de graisse. Quel goût les pousses de lin ont-t-elles?",
 		imageUrl: "assets/img/rawfood/leinsamensprossen.jpg",
@@ -1108,6 +1108,18 @@ export default {
 		optionsFr: [{ option : "Bracelets", correct: true }, { option : "Des aliments adaptés à l'espèce qui doivent encore être mordus et mâchés", correct: false }, { option : "Marcher pieds nus dans la forêt", correct: false }],
 		correct: 4
 	},
+
+	{
+		question: "Welchen Vorteil hat ein Rohköstler, der keine Zahnpasta mehr braucht?",
+		questionFr: "Quel avantage a un crudivore s’il n’a plus besoin de dentifrice ?",
+		questionEn: "What advantage does a raw foodist have if he no longer needs toothpaste?",
+		imageUrl: "assets/img/rawfood/zahnbuerste.png",
+		type: "multiple choice",
+		options: [{ option : "Die natürliche Mundflora bleibt erhalten", correct: true}, { option : "Kostenersparnis", correct: true }, { option : "Zeitersparnis", correct: true } , { option : "Er bekommt faule Zähne, weil ihm das Fluor aus der Zahnpasta fehlt", correct: false }  ],
+		optionsEn: [{ option : "The natural oral flora is preserved", correct: true }, { option : "Cost savings", correct: true }, , { option : "Time savings", correct: true }, { option: "He gets rotten teeth because the fluorine out the toothpaste is missing", correct: false } ],
+		optionsFr: [{ option : "La flore buccale naturelle est préservée", correct: true }, { option : "Économies de coûts", correct: false }, { option : "Gain de temps", correct: true },  { option : "Il a des dents pourries à cause du fluor qu'il lui manque", correct: false } ],
+		correct: 4
+	}
 
 ]
     };
