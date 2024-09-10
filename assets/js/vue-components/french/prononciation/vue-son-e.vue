@@ -50,8 +50,8 @@ export default {
  "En un tel jour, on ne veut bien sûr pas regard{er} la tél{é} {et} en effet, je décide de faire un tour en vélo." +
  "Mon vélo est gar{é} au r{ez}-de-chauss{ée} de mon appartement." +
  "Après avoir quitt{é} mon canap{é}, je mets mes chaussures les plus confortables. Elles ne sont pas trop justes de sorte qu'elles ne blessent pas mes pi{eds}.\n" +
- "Je commence mon tour. La chausd{ée} était bien sêche. Comme un ouvri{er} en un jour si chaud, j'enlève mon T-shirt pour que ma peau toute nue puisse encore mieux profit{er} du soleil. Ahhh!" +
- "Ce sont les jours de cong{é} comme celui-là qui me donnent un sentiment de libert{é} {et} de légèret{é}. M{es} yeux savouraient la beaut{é} de la nature." +
+ "Je commence mon tour. La chauss{ée} était bien sêche. Comme un ouvri{er} en un jour si chaud, j'enlève mon T-shirt pour que ma peau toute nue puisse encore mieux profit{er} du soleil. Ahhh!" +
+ "Ce sont les jours de cong{é} comme celui-là qui me donnent un sentiment de libert{é} {et} de légèret{é}. M{es} yeux savourent la beaut{é} de la nature." +
  "Dans le pani{er} à l'arrière de mon vélo, j'ai emport{é} deux bouteilles de th{é}. Quelle chance que mon méti{er} me laisse ce temps de loisir. Car c'est dimanche, la plupart des gens dans mon quarti{er} ne doivent pas travailler non plus." +
  "Je me gratte le n{ez}. Une mouche a failli me piquer là-bas." +
  "Au cours de mon tour, je me promets plusieurs recr{ée} pour boire un peu de th{é} {et} de manger d{es} pissenlits. " +
