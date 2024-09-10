@@ -82,7 +82,7 @@ xhttp.send();
        this.gaps.forEach( innergaps => {
            innergaps.forEach( gap => {
            gap.gap.forEach( option => {
-              if( alloptions.indexOf(option) == -1 ){
+              if( alloptions.indexOf(option) == -1 && option != '' ){
                 alloptions.push(option);
               }
            });
@@ -92,11 +92,13 @@ xhttp.send();
        this.gaps.forEach( innergaps => {
         innergaps.forEach(
         gap => {
+          if(gap.gap[0] != ''){
            let i = alloptions.indexOf(gap.gap[0]);
            gap.gap = [...alloptions];
            let s = gap.gap[0];
            gap.gap[0] = gap.gap[i];
            gap.gap[i] = s;
+          }
 
        });
 
