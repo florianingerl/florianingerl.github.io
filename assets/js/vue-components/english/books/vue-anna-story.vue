@@ -22,6 +22,43 @@ It was June, the most children-loving among the company's employees, that began 
 
 </VueExercise>
 
+"Should anything go wrong, we had better set up an insurance." contributed Edwin, the
+company's chairman. "Me in fact, I am not sure whether there is a market for such
+totally new toys."
+"As of me, said Vanessa, the creative director, I want to create the best toy which we can all be proud of."
+"Great, I agree" said Fred. "Now let's brainstorm ideas for this new toy."
+"I like the idea of a toy that immediately destroys itself when you try to operate it in a wrong but obvious way. That way, the child immediately would have to buy a new toy and we could earn thus twice the money!" suggested Dave, who often came up with rather funny or even ridiculous ideas.
+
+"I fancy the idea of a toy that's similiar to a stick. A two-player-game can be played with it. One player has to punch the other one in some limb and ..... " Sally began, but her idea was not yet so sophisticated that she could formulate it all.
+
+
+<VueExercise instruction="Make one sentence out of the two like in the example!">
+
+<p>
+Example: Cooking food is the greatest babarism. Mankind is capable of it. -> <br>
+Cooking food is the greates barbarism that mankind is capable of.
+</p>
+
+<VueGaps lg="en" :gaptext="['Scoring goals is a game-winning capabilty. Our number 9 is responsible for it. {Scoring goals is a game-winning capability that our number 9 is responsilbe for.}',
+'Going into a ghost-haunted castle is an adventure. Erwin is not afraid of it.{Going into a ghost-haunted castle is an adventure that Erwin is not afraid of.}',
+'Organising projects is an important job. Tom is responsible for it.{Organising projects is an important job that Tom is responsible for.}',
+'Learning English is a great free time activity. I am interested in it.{Learning English is a great free time activity that I am interested in.}',
+]">
+
+</VueGaps>
+
+</VueExercise>
+
+
+Spending huge amounts of money in incertain projects can cause a bankruptcy. Edwin is reluctant about it.
+Scoring goals is a game-winning capabilty. Our number 9 is responsible for it.
+
+Going into a ghost-haunted castle is an adventure. Erwin is not afraid of it.
+Most of the team was a bit reluctant about Sally's idea because they found it too violent for children. In the end, Fred came up with the best idea and since he was the boss, no one could say no to him.
+
+"I want to build a huge doll house on top of the mountain next to our city. I want to fill it with toys so children can go there and play all day if they, of course, buy a ticket."
+With no objections coming up, the meeting was concluded and after this one-hour-work-day , everyone could savely go home to care for their respective families while knowing that their toys were at this very moment made by some very cheap Chinese craftsmen.
+
 
 <h1>Chapter 1</h1>
 <h2>Fred and his relations</h2>
