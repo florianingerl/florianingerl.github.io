@@ -3,6 +3,27 @@
 <h1>It all doesn't matter</h1>
 
 <h1>Chapter 1</h1>
+
+Fred was a very stubborn fellow. His ideas were so rigid that it was hard to
+collaborate with him. Nevertheless, Fred was the head of a 5-men-6-women company which made toys for very small children.
+Fred was also a really superstitious man and he liked to start all the staff meeting by singing a Christmas song to bring peace and love into his company. So this is how they started the first meeting of the week which was scheduled to discuss a big new project.
+It was June, the most children-loving among the company's employees, that began to speak about their big new project. All the others listened very attentively. "As we all now, this new project of ours will be very costly unless we have the toys made in China. But I'm still very motivated to set off the project, because if it succeeds, it will warm up the hearts of so many young children and their mothers! "
+
+<VueExercise instruction="Fill in the correct compound adjective!">
+
+<VueGaps lg="en" :gaptext="['The (fast, pace) {fast-paced} environment of big cities always make me feel overwhelmed.',
+'A (self, confidence) {self-confident} leader never has any doubts.',
+'The song was so (heart, break ) {heart-breaking} that it made me cry for serveral hours.',
+'The non-sense she always tells is not only brain- but also (ear , harm) {ear-harming}.',
+'My new shirt was (snow, white) {snow-white} until I spilled my coffee on it one morning. Now it has a brown stain.',
+'This computer is so simple and (fool,proof) {fool-proof} to use that even a little child could use it.']">
+
+</VueGaps>
+
+</VueExercise>
+
+
+<h1>Chapter 1</h1>
 <h2>Fred and his relations</h2>
 Fred was a very superstitious fellow. For example, he was convinced that the day would be more friendly to him if he got up at exactly
 4.44am: He never left his house on the thirteenth day of a month. On Christmas Eve, he always prayed for exactly 24 minutes.

@@ -38,7 +38,7 @@ Fred admirait le courage de sa mère! Il aurait eu peur seulement à la pensée 
 
 <VueExercise>
 Quels mots désignent des qualités et lesquels désignent des défauts? <br>
-courage, orgueil, générosité, vanité, sérénité, patience, médiocrité, vantardise, paresse
+courage, orgueil, générosité, vanité, sérénité, patience, médiocrité, vantardise, paresse, bravoure, nervosité, rigeur, vigeur, préservance, humilité
 <VueHideShow>
 <p>Qualités: courage, générosité, vanité, sérénité, patience</p>
 <p>Défauts: orgueil, vanité, médiocrité, vantardise, paresse</p>
