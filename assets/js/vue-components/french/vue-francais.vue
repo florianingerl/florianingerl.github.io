@@ -9,6 +9,11 @@
       </tr>
     </thead>
     <tbody> 
+    <tr>
+<td>13</td>
+       <td><router-link to="/french/livres/livresurfred/1">Un livre sur Fred</router-link></td>
+       <td>Flori10</td>
+    </tr>
       <tr>
 <td>12</td>
        <td><router-link to="/french/prononciation/sone">Le son é</router-link></td>
