@@ -39,6 +39,9 @@ loadModule('assets/js/vue-components/french/alimentation/vue-alimentation1.vue',
 const VueBhagavadGita = Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/french/alimentation/vue-bagavad-gita.vue', options));
 
+const VueLivreSurFred = Vue.defineAsyncComponent(() =>
+  loadModule('assets/js/vue-components/french/livres/vue-marie-histoire.vue', options));
+
 const VueRawFood =  Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/english/rawfood/vue-rawfood.vue', options));
 
@@ -192,6 +195,11 @@ const routes = [
           name: "Bhagavad Gita",
           path: 'bhagavadgita/:page',
           component: VueBhagavadGita
+        },
+        {
+          name: "Livre sur Fred",
+          path: 'livresurfred/:page',
+          component: VueLivreSurFred
         }
       ],
       },
