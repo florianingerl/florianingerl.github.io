@@ -34,10 +34,19 @@ export default {
   
   methods: {
     openDict(event){
-        console.log("A french site was double clicked!");
+        console.log("A method in my vue component is executed!");
+        console.log(this.$stupidProp);
+        console.log(this.$window);
+        console.log(this.window);
+
+       console.log(this.$router.$stupidProp );
+       console.log(this.$router.stupidProp );
+       console.log(this.$router.$window2);
+       console.log(this.$router.window2);
+
 
         console.log("event.target = " + event.target );
-        let s = this.$window.getSelection();
+        let s = this.window.getSelection();
         console.log("s = " + s );
           var range = s.getRangeAt(0);
           var node = s.anchorNode;

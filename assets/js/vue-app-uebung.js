@@ -367,10 +367,24 @@ const router = VueRouter.createRouter({
   routes, // short for `routes: routes`
 });
 
+router.$window = window;
+router.$stupidProp = { age: 30, name: "Florian" };
+
+router.window2 = window;
+router.stupidProp2 = { age: 30, name: "Florian" };
+
 /*
 Vue.prototype.$window = window;
 Vue.prototype.$stupidprop = { stupid: "This is a stupid object", age: 12 }; */
+app.config.globalProperties.stupidProp = { age : 30, name: "Florian" };
+console.log(app.config.globalProperties.stupidProp);
+
 app.config.globalProperties.window = window;
+console.log(app.config.globalProperties.window);
+
+console.log(window);
+
+
 
 app.use(router);
 app.mount("#gaps");
