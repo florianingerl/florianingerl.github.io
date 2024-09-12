@@ -1,8 +1,8 @@
 <template>
 
 <div :class="{ topnav: true, responsive : responsive }" id="myTopnav">
-   <router-link :class="{active : $route.fullPath.includes('/french') }" to="/french">Français</router-link>
-   <router-link :class="{active : $route.fullPath.includes('/english') }" to="/english">English</router-link>
+   <router-link :class="{active : $route.fullPath.includes('/french') }" to="/fr/french">Français</router-link>
+   <router-link :class="{active : $route.fullPath.includes('/english') }" to="/en/english">English</router-link>
    <router-link :class="{active : $route.fullPath.includes('/informatik') }" to="/informatik">Computer science</router-link>
   <a href="javascript:void(0);" class="icon" @click="myFunction">
     <i class="fa fa-bars"></i>

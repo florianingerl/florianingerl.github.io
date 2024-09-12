@@ -51,6 +51,9 @@ const VueFred =  Vue.defineAsyncComponent(() =>
 const VueFr = Vue.defineAsyncComponent(() =>
   loadModule('assets/js/vue-components/french/vue-fr.vue', options));
 
+const VueDict =   Vue.defineAsyncComponent(() =>
+  loadModule('assets/js/vue-components/vue-dict.vue', options));
+
 const VueEn = Vue.defineAsyncComponent(() =>
   loadModule('assets/js/vue-components/english/vue-en.vue', options));
 
@@ -143,8 +146,8 @@ loadModule('assets/js/vue-components/vue-sign-up.vue', options));
 const routes = [
   {
     name: 'English',
-    path: '/english',
-    component: VueEn,
+    path: '/en/:language',
+    component: VueDict,
     children: [
       {
         name: "Navigationsklfjk",
@@ -182,8 +185,8 @@ const routes = [
   },
   {
     name: 'Français',
-    path: '/french',
-    component: VueFr,
+    path: '/fr/:language',
+    component: VueDict,
     
     children: [
       { name: "Nagivationsfdsdf",
