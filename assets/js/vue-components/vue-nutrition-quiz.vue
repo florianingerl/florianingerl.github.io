@@ -1119,6 +1119,18 @@ export default {
 		optionsEn: [{ option : "The natural oral flora is preserved", correct: true }, { option : "Cost savings", correct: true }, , { option : "Time savings", correct: true }, { option: "He gets rotten teeth because the fluorine out the toothpaste is missing", correct: false } ],
 		optionsFr: [{ option : "La flore buccale naturelle est préservée", correct: true }, { option : "Économies de coûts", correct: false }, { option : "Gain de temps", correct: true },  { option : "Il a des dents pourries à cause du fluor qu'il lui manque", correct: false } ],
 		correct: 4
+	},
+
+	{
+		question: "Was ist frisch?",
+		questionFr: "Qu'est-ce qui est frais ?",
+		questionEn: "What is fresh?",
+		imageUrl: "assets/img/rawfood/kressefensterbrett.jpg",
+		type: "multiple choice",
+		options: [{ option : "Nüsse, von einem wilden Nussbaum, vom Boden aufgehoben", correct: false}, { option : "Kresse vom eigenen Fensterbrett", correct: true }  ],
+		optionsEn: [{ option : "Nuts picked up from a wild walnut tree from the ground", correct: false }, { option : "cress from your own windowsill", correct: true } ],
+		optionsFr: [{ option : "Noix d'un noyer sauvage, ramassées sur le sol", correct: false }, { option : "cresson sur le rebord de votre fenêtre", correct: true } ],
+		correct: 4
 	}
 
 ]
