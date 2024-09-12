@@ -1,6 +1,6 @@
 <template>
 <div @dblclick="openDict">
-    <h1>Double clique sur n'importe quel mot sur ce cite pour une traduction!</h1>
+    <h1>Double click on any word on this page to get a translation!</h1>
     <router-view/>
 </div>
 
@@ -10,7 +10,7 @@
 <script>
 
 export default {
-  name: "VueFr",
+  name: "VueEn",
   components: {
   
   },
@@ -67,7 +67,7 @@ export default {
          // Alert result
          var str = range.toString().trim();
          console.log(str);
-         window.open("https://fr.thefreedictionary.com/" + str, "_blank").focus();
+         window.open("https://www.wordreference.com/enfr/" + str, "_blank").focus();
        
         console.log("This script has been executed!");  
     }
