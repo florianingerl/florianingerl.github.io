@@ -1,6 +1,14 @@
 <template>
 <div @dblclick="openDict">
     <h1>Double clique sur n'importe quel mot sur ce cite pour une traduction!</h1>
+    <p>Select your preferred dictionary:
+     <select v-model="selectedDict">
+  <option disabled value="">Please select one</option>
+  <option>The free dictionary French - French</option>
+  <option>Word Reference French - English</option>
+  <option>Word Reference French - German</option>
+</select>
+</p>
     <router-view/>
 </div>
 
@@ -18,7 +26,7 @@ export default {
 
   data() {
     return {
-       
+       selectedDict : "The free dictionary French - French"
     };
   },
 
@@ -67,7 +75,16 @@ export default {
          // Alert result
          var str = range.toString().trim();
          console.log(str);
-         window.open("https://fr.thefreedictionary.com/" + str, "_blank").focus();
+          var baseUrl = "https://fr.thefreedictionary.com/";
+         if(this.selectedDict === "Word Reference French - German" ){
+             baseUrl = "https://www.wordreference.com/frde/";
+         }
+         else if(this.selectedDict === "Word Reference French - English" ){
+             baseUrl = "https://www.wordreference.com/fren/";
+         }
+         window.open(baseUrl + str, "_blank").focus();
+       
+      
        
         console.log("This script has been executed!");  
     }
