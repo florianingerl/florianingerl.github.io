@@ -11,22 +11,22 @@
     <tbody>
     <tr>
         <td>4</td>
-        <td><router-link to="/english/books/fred/1">A book about Fred</router-link></td>
+        <td><router-link to="/en/english/books/fred/1">A book about Fred</router-link></td>
         <td>Flori10</td>
       </tr>
     <tr>
         <td>1</td>
-        <td><router-link to="/english/books/rawfood/1">Raw food</router-link></td>
+        <td><router-link to="/en/english/books/rawfood/1">Raw food</router-link></td>
         <td>Flori10</td>
         </tr>
         <tr>
         <td>2</td>
-        <td><router-link to="/english/grammar/enoughtoo">Enough and Too</router-link></td>
+        <td><router-link to="/en/english/grammar/enoughtoo">Enough and Too</router-link></td>
         <td>Flori10</td>
       </tr>
       <tr>
         <td>3</td>
-        <td><router-link to="/english/grammar/even">Even</router-link></td>
+        <td><router-link to="/en/english/grammar/even">Even</router-link></td>
         <td>Flori10</td>
       </tr>
     
