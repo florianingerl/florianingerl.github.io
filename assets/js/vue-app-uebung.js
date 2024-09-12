@@ -48,6 +48,9 @@ loadModule('assets/js/vue-components/english/rawfood/vue-rawfood.vue', options))
 const VueFred =  Vue.defineAsyncComponent(() =>
   loadModule('assets/js/vue-components/english/books/vue-anna-story.vue', options));
 
+const VueFr = Vue.defineAsyncComponent(() =>
+  loadModule('assets/js/vue-components/french/vue-fr.vue', options));
+
 const VueRegexExercises =  Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/informatik/vue-regex-exercises.vue', options));
 
@@ -176,6 +179,7 @@ const routes = [
   {
     name: 'Français',
     path: '/french',
+    component: VueFr,
     
     children: [
       { name: "Nagivationsfdsdf",
@@ -361,7 +365,12 @@ const router = VueRouter.createRouter({
   // 4. Provide the history implementation to use. We are using the hash history for simplicity here.
   history: VueRouter.createWebHashHistory(),
   routes, // short for `routes: routes`
-})
+});
+
+/*
+Vue.prototype.$window = window;
+Vue.prototype.$stupidprop = { stupid: "This is a stupid object", age: 12 }; */
+app.config.globalProperties.window = window;
 
 app.use(router);
 app.mount("#gaps");
