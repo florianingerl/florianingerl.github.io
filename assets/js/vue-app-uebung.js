@@ -51,6 +51,9 @@ const VueFred =  Vue.defineAsyncComponent(() =>
 const VueFr = Vue.defineAsyncComponent(() =>
   loadModule('assets/js/vue-components/french/vue-fr.vue', options));
 
+const VueEn = Vue.defineAsyncComponent(() =>
+  loadModule('assets/js/vue-components/english/vue-en.vue', options));
+
 const VueRegexExercises =  Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/informatik/vue-regex-exercises.vue', options));
 
@@ -141,6 +144,7 @@ const routes = [
   {
     name: 'English',
     path: '/english',
+    component: VueEn,
     children: [
       {
         name: "Navigationsklfjk",
