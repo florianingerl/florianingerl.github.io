@@ -7,6 +7,7 @@
   <option>The free dictionary French - French</option>
   <option>Word Reference French - English</option>
   <option>Word Reference French - German</option>
+  <option>Larousse French - French</option>
 </select>
 </p>
     <router-view/>
@@ -81,6 +82,9 @@ export default {
          }
          else if(this.selectedDict === "Word Reference French - English" ){
              baseUrl = "https://www.wordreference.com/fren/";
+         }
+         else if(this.selectedDict == "Larousse French - French" ){
+            baseUrl = "https://www.larousse.fr/dictionnaires/francais/";
          }
          window.open(baseUrl + str, "_blank").focus();
        

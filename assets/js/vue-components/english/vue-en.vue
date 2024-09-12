@@ -7,6 +7,7 @@
   <option>Word Reference English - French</option>
   <option>Word Reference English - German</option>
   <option>The free dictionary English - English</option>
+  <option>Oxford Learner's dictionary English - English</option>
 </select>
 </p>
     <router-view/>
@@ -81,6 +82,9 @@ export default {
          }
          else if(this.selectedDict === "The free dictionary English - English" ){
             baseUrl = "https://en.thefreedictionary.com/";
+         }
+         else if(this.selectedDict === "Oxford Learner's dictionary English - English" ){
+            baseUrl = "https://www.oxfordlearnersdictionaries.com/definition/english/";
          }
          window.open(baseUrl + str, "_blank").focus();
        
