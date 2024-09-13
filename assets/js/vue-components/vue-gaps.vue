@@ -4,7 +4,7 @@
 <li v-for="innergaps in gaps">
 <span v-for="gap in innergaps" >
   {{ gap.text }} 
-  <input v-if="gap.gap!=''" :style="{ width: ( gap.gap.length + 2 ) + 'ch' }" :class="{ notcorrect: validated && gap.guess != gap.gap, correct: validated && gap.guess === gap.gap }" type="text" v-model="gap.guess"> 
+  <input :disabled="validated" v-if="gap.gap!=''" :style="{ width: ( gap.gap.length + 2 ) + 'ch' }" :class="{ notcorrect: validated && gap.guess != gap.gap, correct: validated && gap.guess === gap.gap }" type="text" v-model="gap.guess"> 
 </span>
 </li>
 </ol>
@@ -35,9 +35,6 @@ export default {
 
   data() {
     return {
-       /*gaps : [[{text: "Florian est le ", gap: "frère", guess:""}, {text: " de sa ", gap: "soeur", guess:""}, {text: " qui s'appelle ", gap: "Sonja", guess:""}],
-                [{text: "Florian est le ", gap: "frère", guess:""}, {text: " de sa ", gap: "soeur", guess:""}, {text: " qui s'appelle ", gap: "Sonja", guess:""}] ],
-       */
        gaps: [],
        validated: false 
     };

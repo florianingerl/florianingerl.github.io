@@ -11,24 +11,11 @@
 <p v-else-if="lg==='fr'">
 {{ question.questionFr }}
 </p>
-<div v-if="lg==='de' || lg === 'en' && question.optionsEn === undefined || lg === 'fr' && question.optionsFr === undefined">
-<div v-for="option in question.options" :key="option" :class="{correct : validated && option.checked && option.correct, notcorrect : validated && option.checked && !option.correct}">
-<input type="checkbox" v-model="option.checked"/>
+<div v-for="option in getOptionsForLg()" :key="option" :class="{correct : validated && option.checked && option.correct, notcorrect : validated && option.checked && !option.correct}">
+<input :disabled="validated" type="checkbox" v-model="option.checked"/>
 <label>{{option.option}}</label>
 </div>
-</div>
-<div v-else-if="lg==='en'">
-<div v-for="option in question.optionsEn" :key="option" :class="{correct : validated && option.checked && option.correct, notcorrect : validated && option.checked && !option.correct}">
-<input type="checkbox" v-model="option.checked"/>
-<label>{{option.option}}</label>
-</div>
-</div>
-<div v-else-if="lg==='fr'">
-<div v-for="option in question.optionsFr" :key="option" :class="{correct : validated && option.checked && option.correct, notcorrect : validated && option.checked && !option.correct}">
-<input type="checkbox" v-model="option.checked"/>
-<label>{{option.option}}</label>
-</div>
-</div>
+
 
 <div v-if="lg==='en'" class="d-flex flex-row">
 <button @click="validate">Validate</button>
@@ -60,6 +47,7 @@ export default {
      console.log("The setup function is executed!");
      
   },
+  
   props: ['question', 'hasNextButton', 'lg'],
   
   data() {
@@ -74,24 +62,34 @@ export default {
     }
   },
   methods: {
-    getOptionsForLg(question){
-      if(lg === 'de'){
-        return question.options;
+    getOptionsForLg(){
+      if(this.lg == undefined || this.lg==='de' || this.lg === 'en' && this.question.optionsEn === undefined || this.lg === 'fr' && this.question.optionsFr === undefined){
+        return this.question.options;
       }
-      else if(lg === 'en'){
-        return question.optionsEn;
+      else if(this.lg === 'en'){
+        return this.question.optionsEn;
       }
-      else if(lg === 'fr'){
-        return question.optionsFr;
+      else if(this.lg === 'fr'){
+        return this.question.optionsFr;
       }
     },
     validate(){
       console.log("The validate button was clicked!");
+      if(this.validated) return;
       this.validated = true;
+      this.question.correctlyAnswered = true;
+
+      this.getOptionsForLg().forEach( (option) => {
+          if(option.checked != option.correct ){
+              this.question.correctlyAnswered = false;
+          }
+      });
     },
     showSolution(){
-      this.validated = false;
-      this.question.options.forEach( option => { option.checked = option.correct; });
+      console.log("The show solution button was clicked!");
+     
+      this.getOptionsForLg().forEach( option => { option.checked = option.correct; });
+      this.validated = true;
     },
     imageClicked(){
       console.log("The image was clicked!");

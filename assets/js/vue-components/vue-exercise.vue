@@ -28,17 +28,11 @@ export default {
   
   data() {
     return {
-       gaps: [],
-       validated: false 
+       
     };
   },
   methods: {
-     buttonValidateClicked(){
-        this.validated = true;
-        console.log("The button validated was clicked!");
-     },
-     parseGapText(data){
-     }
+  
   }
 }
 </script>

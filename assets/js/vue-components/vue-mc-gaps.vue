@@ -4,7 +4,7 @@
 <li v-for="innergaps in gaps">
 <span v-for="gap in innergaps" >
   {{ gap.text }} 
-  <select v-if="gap.gap!=''" :class="{ notcorrect: validated && gap.guess != gap.gap[0], correct: validated && gap.guess === gap.gap[0] }" v-model="gap.guess">
+  <select :disabled="validated" v-if="gap.gap!=''" :class="{ notcorrect: validated && gap.guess != gap.gap[0], correct: validated && gap.guess === gap.gap[0] }" v-model="gap.guess">
     <option disabled value="">Please select one</option>
     <option v-for="op in suffle(gap.gap)">{{ op }}</option>
   </select> 
@@ -38,9 +38,6 @@ export default {
 
   data() {
     return {
-       /*gaps : [[{text: "Florian est le ", gap: ["frère","père"], guess:""}, {text: " de sa ", gap: ["soeur","mère"], guess:""}, {text: " qui s'appelle ", gap: ["Sonja","Emma"], guess:""}],
-             [{text: "Florian est le ", gap: ["frère","père"], guess:""}, {text: " de sa ", gap: ["soeur","mère"], guess:""}, {text: " qui s'appelle ", gap: ["Sonja","Emma"], guess:""}] ],
-       */
        gaps: [],
        validated: false 
     };
