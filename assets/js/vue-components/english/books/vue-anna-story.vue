@@ -60,6 +60,69 @@ Most of the team was a bit reluctant about Sally's idea because they found it to
 With no objections coming up, the meeting was concluded and after this one-hour-work-day , everyone could savely go home to care for their respective families while knowing that their toys were at this very moment made by some very cheap Chinese craftsmen.
 
 
+
+Edwin went home swiftly, a smile on his face, very satisfied with the outcome of the meeting.
+After opening the door with his keys, he announced his return by calling the name of his wife.
+His wife looked both happy and tired when she came to welcome him. Just like most days, it was her who took care of their altogether 6 children that day, hence she was exhausted. But it was important to them to come all together every evening for dinner exactly at 8:23 PM.
+
+<VueExercise instruction="Choose between all together or altogether" lg="en">
+<VueGaps lg="en" :gaptext="['Kevin, the squirrel, ate five nuts in the morning, three at noon and six in the afternoon, so he ate 14 nuts {altogether}.',
+'Let\'s sing the refrain once again {all together}!',
+'Kevin knew that he had made stupid mistakes at questions 44 and 46, but he was still pleased with his performence in the exam {altogether}.',
+'Kevin, Sally and me, we needed to carry the cupboard {all together}, because it was so heavy.',
+'I understand your arguments but I also understand my objections. Altogether, I don\'t want to start this project.',
+'The food was good, the bed was soft and I had a nice view of the ocean. I was thus {altogether} pleased with my hotel room.',
+'He gave one explanation after another, didn\'t interrupt to hear my questions and I just couldn\'t follow the pace of his monologue. In the end, I was {altogether} confused.']">
+
+</VueGaps>
+
+</VueExercise>
+
+
+Then they usually played a few of the games that Edwin company made and this activity never became dull.
+In fact, you could say, that Edwin himself was still a kid. But of course, if needed, he became their responsible father.
+
+<VueExercise lg="en" instruction="Put the words in the correct order">
+
+<VueWordOrder lg="en" :sentences="['My father had always wanted to travel to Greece.',
+'You should never eat candies for breakfast.',
+'Usually, I prefer not to go out in the evening.',
+'You should never say never.',
+'The little girl has not done her homework yet.',
+'He drove quickly to the supermarket.']"  >
+</VueWordOrder>
+
+</VueExercise>
+
+The whole family played together with various toys until one of Edwin's children said:
+"Daddy, I feel nauseous. Please help me!"
+Edwin and his wife didn't think much of it first but their little boy was still feeling unwell a few hours later too.
+With a few comforting words and a warm tea from the mother, the coming of an ambulance could as usual be avoided. It was just a normal stomach ache resulting from too much candies.
+In the end, they stopped the game playing, brought the ill child into his bed and seized this occasion to go all together into bed earlier today.
+
+Meanwhile, Vanessa who was a young professional in her twenties, spent her evening with her mother. 
+
+"Such a lovely evening!" said her mother but Vanessa could not have disagreed more. 
+She was young and beautiful so she wanted to be in a bar meeting handsome men instead of staying at home with her mother.
+
+
+<VueExercise lg="en" instruction="Fill in the gaps with such, such a or so!">
+<VueGaps lg="en" gaptext="What a pity that Vannessa didn't think that she was {so} handsome herself.  Otherwise, she could have saved {so} much time putting on her make-up.
+In spite of a few freckles and a few pimples, Vanessa had {such a} beautiful face. A few men in the bars turned their head towards her, found her attractive and then immediately wanted to marry her. But Vanessa dispised {such} overly direct behaviour.
+Vanessa felt {so} bored and disappointed by these men that she decided to go back home to her mother.  She felt unhappy with her romantic life and thought that she was {such a} failure. {Such} ideas were also reinforced by her mother who always told her that it's shameful if a woman is not married by 20 years old." >
+</VueGaps>
+</VueExercise>
+
+"Why don't you find yourself a rich husband and settle down with him somewhere in the country!" her mother kept saying. "Instead, you keep eating these candies that distort your face with pimples and lose your time in the bar.
+Upon hearing her mother's words for the thousandth time, Vanessa wished she had rather stayed with her father when her parents divorced.
+"I had better go to bed now, Mum, I have work tomorrow" she said to get rid of her mother and she went to her room.
+
+<VueExercise lg="en" instruction="Fill in the gaps with had better or should!">
+<VueGaps lg="en" gaptext="Sally had already passed her twentieth too, but unlike Vanessa she had a serious relationship with a smart man working at the univerity as a history teacher. It {should} be surprising that a smart professor and Sally, being rather daft, can fit together. But opposites seem to attract each other.
+However, the professor knew that he {had better} not speak about the complicated details of his job because Sally wouldn't understand." >
+</VueGaps>
+</VueExercise>
+
 <h1>Chapter 1</h1>
 <h2>Fred and his relations</h2>
 Fred was a very superstitious fellow. For example, he was convinced that the day would be more friendly to him if he got up at exactly
@@ -428,6 +491,7 @@ import VueMcGaps from "./../../vue-mc-gaps.vue";
 import VueQuestion from "./../../vue-question.vue";
 import VueExercise from "./../../vue-exercise.vue";
 import VueWholeSentence from "./../../vue-whole-sentence.vue";
+import VueWordOrder from "./../../vue-word-order.vue";
 import VueHideShow from "./../../vue-hideshow.vue";
 
 export default {
@@ -437,7 +501,8 @@ export default {
      VueQuestion,
      VueExercise,
      VueWholeSentence,
-     VueHideShow
+     VueHideShow,
+     VueWordOrder
   },
 
   mounted(){
