@@ -2,7 +2,7 @@
 
 <div v-for="(sentence,index) in sentences2">
 <p>{{index+1}}.{{sentence.task}}</p>
-<p><input style="display:block;width:100%" v-model="sentence.guess" type="text" :class="{ correct: validated && sentence.guess == sentence.solution, notcorrect: validated && sentence.guess != sentence.solution }"/></p>
+<p><input :disabled="validated" style="display:block;width:100%" v-model="sentence.guess" type="text" :class="{ correct: validated && sentence.guess == sentence.solution, notcorrect: validated && sentence.guess != sentence.solution }"/></p>
 </div>
 
 <p v-if="lg==='fr'">
@@ -48,7 +48,7 @@ export default {
     },
     showSolutionClicked(){
         console.log("Button show solution was clicked!");
-        this.validated = false;
+        this.validated = true;
         this.sentences2.forEach( sentence => {
             sentence.guess = sentence.solution;
         });

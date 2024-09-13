@@ -39,7 +39,7 @@ Example: Cooking food is the greatest babarism. Mankind is capable of it. -> <br
 Cooking food is the greates barbarism that mankind is capable of.
 </p>
 
-<VueGaps lg="en" :gaptext="['Scoring goals is a game-winning capabilty. Our number 9 is responsible for it. {Scoring goals is a game-winning capability that our number 9 is responsilbe for.}',
+<VueGaps lg="en" :gaptext="['Scoring goals is a game-winning capabilty. Our number 9 is responsible for it. {Scoring goals is a game-winning capability that our number 9 is responsible for.}',
 'Going into a ghost-haunted castle is an adventure. Erwin is not afraid of it.{Going into a ghost-haunted castle is an adventure that Erwin is not afraid of.}',
 'Organising projects is an important job. Tom is responsible for it.{Organising projects is an important job that Tom is responsible for.}',
 'Learning English is a great free time activity. I am interested in it.{Learning English is a great free time activity that I am interested in.}',
