@@ -1,6 +1,5 @@
 <template>
-<div id="topcontainer" class="d-flex flex-row">
-<img v-if="question.imageUrl != undefined" :src="question.imageUrl" @click="imageClicked"/>
+
 <div>
 <p v-if="lg==='de' || lg === 'en' && question.questionEn === undefined || lg === 'fr' && question.questionFr === undefined">
 {{ question.question }}
@@ -35,7 +34,6 @@
 <button v-if="hasNextButton">Nächste Aufgabe</button>
 </div>
 
-</div>
 </div>
 
 </template>
@@ -92,13 +90,6 @@ export default {
      
       this.getOptionsForLg().forEach( option => { option.checked = option.correct; });
       this.validated = true;
-    },
-    imageClicked(){
-      console.log("The image was clicked!");
-      let fullPage = document.getElementById('fullpage');
-
-		  fullPage.style.backgroundImage = 'url(' + this.question.imageUrl + ')';
-		  fullPage.style.display = 'block';
     }
   },
   mounted() {
@@ -133,9 +124,6 @@ export default {
   background-color: #fc5c5c
 }
 
-img {
-  height: 200px;
-}
 
 #topcontainer {
   margin-bottom: 15px;
