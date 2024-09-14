@@ -5,7 +5,7 @@
 <h1>Le son é</h1>
 
 <p>
-Merci de lire par exemple <a target="_blank" href="https://www.jerevise.fr/son-e-er-et-phoneme-mots.html"> ce cours</a> sur le son é en francais. Puis,
+Merci de lire par exemple <a style="text-transform: none" target="_blank" href="https://www.jerevise.fr/son-e-er-et-phoneme-mots.html">ce cours</a> sur le son é en francais. Puis,
 revenez ici et faites mon test en remplissant les trous! Bonne chance!
 </p>
    
