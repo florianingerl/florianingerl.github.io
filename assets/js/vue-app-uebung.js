@@ -60,6 +60,9 @@ const VueDict =   Vue.defineAsyncComponent(() =>
 const VueEn = Vue.defineAsyncComponent(() =>
   loadModule('assets/js/vue-components/english/vue-en.vue', options));
 
+const VueConduireOuCourir = Vue.defineAsyncComponent(() =>
+  loadModule('assets/js/vue-components/french/vocabulaire/vue-conduireoucourir.vue', options));
+
 const VueRegexExercises =  Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/informatik/vue-regex-exercises.vue', options));
 
@@ -330,6 +333,11 @@ const routes = [
           path: 'encore',
           component: VueEncore
         },
+        {
+          name: 'Conduire ou courir à tous les temps et modes',
+          path: 'conduireoucourir',
+          component: VueConduireOuCourir
+        }
        ]
        }
 

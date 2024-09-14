@@ -4,7 +4,7 @@
 <h1 class=".text-danger">Le mot encore</h1>
 
 <p>
-Cherche le mot encore dans un dictionnaire, par exemple celui de <a href="https://www.larousse.fr/dictionnaires/francais/encore/29244">Larousse</a> .
+Cherche le mot encore dans un dictionnaire, par exemple celui de <a style="text-transform: none" href="https://www.larousse.fr/dictionnaires/francais/encore/29244">Larousse</a> .
 Puis fais le test!
 </p>
    
