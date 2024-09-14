@@ -46,10 +46,11 @@ export default {
   },
   methods: {
     shuffleWords(text){
-       // const text = "What's up, world? 你好世界！ こんにちは世界！สวัสดีชาวโลก";
+       /* const text = "What's up, world? 你好世界！ こんにちは世界！สวัสดีชาวโลก";
 const segmenter = new Intl.Segmenter([], { granularity: 'word' });
 const segmentedText = segmenter.segment(text);
-const words = [...segmentedText].filter(s => s.isWordLike).map(s => s.segment);
+const words = [...segmentedText].filter(s => s.isWordLike).map(s => s.segment); */
+let words = text.split(/\s+/);
 this.shuffle(words);
 let s = "";
 words.forEach( (word,index) => { s = s + word; if(index != words.length-1 ){ s = s + " / "; } } );

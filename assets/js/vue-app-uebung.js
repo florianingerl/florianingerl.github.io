@@ -45,6 +45,9 @@ const VueLivreSurFred = Vue.defineAsyncComponent(() =>
 const VueRawFood =  Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/english/rawfood/vue-rawfood.vue', options));
 
+const VueInversionSujetVerbe = Vue.defineAsyncComponent(() =>
+  loadModule('assets/js/vue-components/french/grammaire/vue-inversion-sujet.vue', options));
+
 const VueFred =  Vue.defineAsyncComponent(() =>
   loadModule('assets/js/vue-components/english/books/vue-anna-story.vue', options));
 
@@ -228,6 +231,11 @@ const routes = [
       {name: 'Grammaire',
        path: 'grammaire',
        children: [
+        {
+            name: 'Inversion du sujet et verbe',
+            path: 'inversionsujetverbe',
+            component: VueInversionSujetVerbe
+        },
         {
           name: 'Ne explétif',
           path: 'neexpletif',
