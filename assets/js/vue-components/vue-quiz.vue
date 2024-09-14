@@ -1,8 +1,9 @@
 <template>
-    <VueMCGaps v-if="i < questions.length && questions[i].type === 'gapText'" :gaptext="questions[i].gapText" :lg="lg" ></VueMCGaps>
-
-    <vue-question v-if="i < questions.length && questions[i].type === 'multiple choice'" :question="questions[i]" :lg="lg" @answered-event="calcScore"></vue-question>
-    
+   
+    <VueImage v-if="i < questions.length" :imageUrl="questions[i].imageUrl">
+      <VueMCGaps v-if="questions[i].type === 'gapText'" :gaptext="questions[i].gapText" :lg="lg"></VueMCGaps>
+      <VueQuestion v-if="questions[i].type === 'multiple choice'" :question="questions[i]" :lg="lg" @answered-event="calcScore"></VueQuestion>
+    </VueImage>
     <div v-if="i == questions.length && lg=='de'">
         Gratulation! Du hast alle Fragen des Quiz beantwortet!
     </div>
@@ -45,15 +46,16 @@
 
 <script>
 import VueMCGaps from "./vue-mc-gaps.vue";
+import VueQuestion from "./vue-question.vue";
+import VueImage from "./vue-image.vue";
 
 export default {
 
   components: {
     
-    VueQuestion : Vue.defineAsyncComponent(() =>
-    loadModule('assets/js/vue-components/vue-question.vue', options)),
-
-    VueMCGaps
+    VueQuestion,
+    VueMCGaps,
+    VueImage
   
   },
   props: ['questions', 'lg'],
@@ -138,7 +140,14 @@ export default {
           this.i -=5;
         else
           this.i = 0;
-     }
+     },
+     imageClicked(){
+      console.log("The image was clicked!");
+      let fullPage = document.getElementById('fullpage');
+
+		  fullPage.style.backgroundImage = 'url(' + this.question.imageUrl + ')';
+		  fullPage.style.display = 'block';
+    }
   },
   computed : {
       displayedQuestions(){

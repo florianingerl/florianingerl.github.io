@@ -1136,7 +1136,8 @@ export default {
 
 	{
 			type: 'gapText',
-			gapText: 'Ist du {kalt|warm}, dann wirst du {alt|lahm}.'
+			imageUrl: "assets/img/rawfood/kressefensterbrett.jpg",
+			gapText: 'Ist du {kalt|warm}, dann wirst du {alt}.'
 		}
 
 ]
