@@ -1,5 +1,5 @@
 <template>
-    <vue-question v-if="i < questions.length" :question="questions[i]" :lg="lg"></vue-question>
+    <vue-question v-if="i < questions.length" :question="questions[i]" :lg="lg" @answered-event="calcScore"></vue-question>
     <div v-if="i == questions.length && lg=='de'">
         Gratulation! Du hast alle Fragen des Quiz beantwortet!
     </div>
@@ -34,8 +34,9 @@
   <input @keypress="onlyNumberKey" @change="goToQuestionClicked" type="text" :value="i" style="width: 50px;"/> <span style="text-align: center;"> / {{ questions.length - 1 }} </span>
   </ul>
 
+  <p>Your score: {{ scoreText }} </p>
 
-</ul>
+
     
 </template>
 
@@ -58,10 +59,38 @@ export default {
   
   data() {
     return {
-       i : 0
+       i : 0,
+       scoreText: ""
     };
   },
   methods: {
+    calcScore(){
+      let answered = 0;
+      let correct = 0;
+      this.questions.forEach( (question) => {
+         if( question.correctlyAnswered == undefined )
+            return;
+         answered++;
+         console.log(question.correctlyAnswered);
+         if( question.correctlyAnswered ) {
+           correct++;
+         }
+      } );
+
+      if(this.lg === "en"){
+        this.scoreText = "You have answered "+ correct + " of " + answered + " questions correctly.";
+      }
+      else if(this.lg === "fr"){
+        this.scoreText = "Tu as répondu à " + correct + " parmi " + answered + " questions correctement.";
+      }
+      else {
+        this.scoreText = "Du hast " + correct + " von " + answered + " Fragen richtig beantwortet.";
+      }
+
+        
+
+    },
+
     goToQuestionClicked(e){
       console.log("Go to question was clicked!");
       let u = parseInt( e.target.value );

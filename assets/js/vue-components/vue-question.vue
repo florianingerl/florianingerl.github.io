@@ -12,7 +12,7 @@
 {{ question.questionFr }}
 </p>
 <div v-for="option in getOptionsForLg()" :key="option" :class="{correct : validated && option.checked && option.correct, notcorrect : validated && option.checked && !option.correct}">
-<input :disabled="validated" type="checkbox" v-model="option.checked"/>
+<input :disabled="question.correctlyAnswered != undefined" type="checkbox" v-model="option.checked"/>
 <label>{{option.option}}</label>
 </div>
 
@@ -84,6 +84,8 @@ export default {
               this.question.correctlyAnswered = false;
           }
       });
+
+      this.$emit("answered-event");
     },
     showSolution(){
       console.log("The show solution button was clicked!");
