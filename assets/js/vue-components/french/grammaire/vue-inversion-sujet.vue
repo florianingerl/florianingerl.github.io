@@ -1,6 +1,14 @@
 <template>
 
 <div>
+
+This is just a stupid test
+
+<VueExercise lg="fr" instruction="This is just a stupid test">
+<VueMCGaps lg="fr" gaptext="{His|My|Your} bag belongs to {him}. The bag belongs to Paul.">
+
+</VueMCGaps>
+</VueExercise>
    
 <VueExercise instruction="Mettez les mots dans le bon ordre!">
 
@@ -44,6 +52,7 @@
 import VueExercise from "./../../vue-exercise.vue";
 import VueHideShow from "./../../vue-hideshow.vue";
 import VueGaps from "./../../vue-gaps.vue";
+import VueMCGaps from "./../../vue-mc-gaps.vue";
 import VueWordOrder from "./../../vue-word-order.vue";
 
 export default {
@@ -52,7 +61,8 @@ export default {
     VueExercise,
     VueHideShow,
     VueGaps,
-    VueWordOrder
+    VueWordOrder,
+    VueMCGaps
   },
 
   mounted(){

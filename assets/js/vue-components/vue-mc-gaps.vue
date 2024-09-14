@@ -4,13 +4,16 @@
 <li v-for="innergaps in gaps">
 <span v-for="gap in innergaps" >
   {{ gap.text }} 
-  <select :disabled="validated" v-if="gap.gap!=''" :class="{ notcorrect: validated && gap.guess != gap.gap[0], correct: validated && gap.guess === gap.gap[0] }" v-model="gap.guess">
+  <select :disabled="validated" v-if="gap.gap!='' && Array.isArray(gap.gap)" :class="{ notcorrect: validated && gap.guess != gap.gap[0], correct: validated && gap.guess === gap.gap[0] }" v-model="gap.guess">
     <option disabled value="">Please select one</option>
     <option v-for="op in suffle(gap.gap)">{{ op }}</option>
   </select> 
+
+  <input :disabled="validated" v-if="gap.gap!='' && !Array.isArray(gap.gap)" :style="{ width: ( gap.gap.length + 2 ) + 'ch' }" :class="{ notcorrect: validated && gap.guess != gap.gap, correct: validated && gap.guess === gap.gap }" type="text" v-model="gap.guess"> 
 </span>
 </li>
 </ol>
+
 
 <p v-if="lg==='fr'">
 <button @click="buttonValidateClicked">Valider ma solution</button>
@@ -78,23 +81,27 @@ xhttp.send();
         console.log( "The value of this.gaps is " + this.gaps );
        this.gaps.forEach( innergaps => {
            innergaps.forEach( gap => {
+           if(Array.isArray(gap.gap) ) { 
            gap.gap.forEach( option => {
               if( alloptions.indexOf(option) == -1 && option != '' ){
                 alloptions.push(option);
               }
            });
+           }
        });
 
        });
        this.gaps.forEach( innergaps => {
         innergaps.forEach(
         gap => {
+          if( Array.isArray( gap.gap) ){
           if(gap.gap[0] != ''){
            let i = alloptions.indexOf(gap.gap[0]);
            gap.gap = [...alloptions];
            let s = gap.gap[0];
            gap.gap[0] = gap.gap[i];
            gap.gap[i] = s;
+          }
           }
 
        });
@@ -119,7 +126,9 @@ xhttp.send();
      showSolutionClicked(){
         this.validated = true;
         this.gaps.forEach( innergaps => {
-          innergaps.forEach( gap => { gap.guess = gap.gap[0]; } );
+          innergaps.forEach( gap => {
+             gap.guess = Array.isArray(gap.gap) ? gap.gap[0] : gap.gap; 
+             } );
           
         } );
      },
@@ -154,6 +163,9 @@ xhttp.send();
         gap.text = data.substring(i,j);
         i = data.indexOf("}",j);
         gap.gap = data.substring(j+1,i).split("|");
+        if( gap.gap.length == 1){ //This is just a normal gap, not a multiple options gap, | didn't appear
+          gap.gap = gap.gap[0];
+        }
 
         i++;
         gap.guess = "";
