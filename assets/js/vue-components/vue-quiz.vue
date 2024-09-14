@@ -1,5 +1,8 @@
 <template>
-    <vue-question v-if="i < questions.length" :question="questions[i]" :lg="lg" @answered-event="calcScore"></vue-question>
+    <VueMCGaps v-if="i < questions.length && questions[i].type === 'gapText'" :gaptext="questions[i].gapText" :lg="lg" ></VueMCGaps>
+
+    <vue-question v-if="i < questions.length && questions[i].type === 'multiple choice'" :question="questions[i]" :lg="lg" @answered-event="calcScore"></vue-question>
+    
     <div v-if="i == questions.length && lg=='de'">
         Gratulation! Du hast alle Fragen des Quiz beantwortet!
     </div>
@@ -41,6 +44,7 @@
 </template>
 
 <script>
+import VueMCGaps from "./vue-mc-gaps.vue";
 
 export default {
 
@@ -48,6 +52,8 @@ export default {
     
     VueQuestion : Vue.defineAsyncComponent(() =>
     loadModule('assets/js/vue-components/vue-question.vue', options)),
+
+    VueMCGaps
   
   },
   props: ['questions', 'lg'],
@@ -64,7 +70,8 @@ export default {
     };
   },
   methods: {
-    calcScore(){
+    calcScore(correctlyAnswered){
+      this.questions[this.i].correctlyAnswered = correctlyAnswered;
       let answered = 0;
       let correct = 0;
       this.questions.forEach( (question) => {

@@ -77,15 +77,15 @@ export default {
       console.log("The validate button was clicked!");
       if(this.validated) return;
       this.validated = true;
-      this.question.correctlyAnswered = true;
+      let correct = true;
 
       this.getOptionsForLg().forEach( (option) => {
           if(option.checked != option.correct ){
-              this.question.correctlyAnswered = false;
+            correct = false;
           }
       });
 
-      this.$emit("answered-event");
+      this.$emit("answered-event", correct );
     },
     showSolution(){
       console.log("The show solution button was clicked!");

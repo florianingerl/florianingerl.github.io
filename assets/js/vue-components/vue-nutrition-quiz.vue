@@ -24,6 +24,7 @@ export default {
     return {
        questions: 
       [
+		
 	{
 		question: "Wie heißt dieses Gemüse?",
 		questionFr : "Comment s'appelle ce légume?",
@@ -1131,7 +1132,12 @@ export default {
 		optionsEn: [{ option : "Nuts picked up from a wild walnut tree from the ground", correct: false }, { option : "cress from your own windowsill", correct: true } ],
 		optionsFr: [{ option : "Noix d'un noyer sauvage, ramassées sur le sol", correct: false }, { option : "cresson sur le rebord de votre fenêtre", correct: true } ],
 		correct: 4
-	}
+	},
+
+	{
+			type: 'gapText',
+			gapText: 'Ist du {kalt|warm}, dann wirst du {alt|lahm}.'
+		}
 
 ]
     };
