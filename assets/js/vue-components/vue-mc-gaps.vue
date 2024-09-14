@@ -1,6 +1,6 @@
 <template>
 <div>
-<ol>
+<ol style="list-style-type: none">
 <li v-for="innergaps in gaps">
 <span v-for="gap in innergaps" >
   {{ gap.text }} 
@@ -37,7 +37,7 @@ export default {
   components: {
   
   },
-  props: ['gapfile','gaptext', 'same', 'lg'],
+  props: ['gapfile','gaptext', 'same', 'lg', 'numbering'],
 
   data() {
     return {
