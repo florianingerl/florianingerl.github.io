@@ -72,8 +72,8 @@ export default {
     };
   },
   methods: {
-    calcScore(correctlyAnswered){
-      this.questions[this.i].correctlyAnswered = correctlyAnswered;
+    calcScore(){
+      
       let answered = 0;
       let correct = 0;
       this.questions.forEach( (question) => {

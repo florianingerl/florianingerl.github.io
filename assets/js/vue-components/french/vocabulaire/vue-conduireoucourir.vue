@@ -56,7 +56,7 @@ export default {
 "Si les fausses indictions sur les panneaux ne m\'avaient pas {conduit} dans cette forêt sombre, je serais déjà rentré et aurais pris un bain chaud.",
 "Ses mains {couraient} vite sur le clavier de mon ordinateur et, en que peu de temps, il avait réparé mon ordinateur.",
 "Peut importe dans quelle équipe Christiano Ronaldo joue, il {conduit} son équipe vers la finale de la ligue de Champions.",
-"Laisse tes pensées {courir} et ne les observe simplement. De cette façon, tu obtiendras de la paix et maîtrise de ton esprit.",
+"Laisse tes pensées {courir} et les observe simplement. De cette façon, tu obtiendras de la paix et maîtrise de ton esprit.",
 "Les critiques perpetuels des profs l\'ont {conduit} à l\'abondonce de tous ses efforts.",
 "Le prof {conduisait} bien son entreprise et par conséquant, tous les employées étaitent heureux d\'y travailler.",
 "Si l\'argent ne {conduisait} pas le monde, il y {aurait} probablement simplement beaucoup de confusion.",
