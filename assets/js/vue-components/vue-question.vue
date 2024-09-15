@@ -10,7 +10,7 @@
 <p v-else-if="lg==='fr'">
 {{ question.questionFr }}
 </p>
-<div v-for="option in getOptionsForLg()" :key="option" :class="{correct : validated && option.checked && option.correct, notcorrect : validated && option.checked && !option.correct}">
+<div v-for="option in getOptionsForLg()" :key="option" :class="{correct : question.correctlyAnswered != undefined && option.checked && option.correct, notcorrect : question.correctlyAnswered != undefined && option.checked && !option.correct}">
 <input :disabled="question.correctlyAnswered != undefined" type="checkbox" v-model="option.checked"/>
 <label>{{option.option}}</label>
 </div>
@@ -50,13 +50,13 @@ export default {
   
   data() {
     return {
-      validated : false
+      
     };
   },
   watch: {
     question(newQuestion, oldQuestion){
       console.log("The watcher was called!");
-      this.validated = false;
+      
     }
   },
   methods: {
@@ -73,17 +73,22 @@ export default {
     },
     validate(){
       console.log("The validate button was clicked!");
-      if(this.validated) return;
-      this.validated = true;
-      let correct = true;
+      if(this.question.correctlyAnswered != undefined ) return;
+      
+      this.question.correctlyAnswered = true;
 
       this.getOptionsForLg().forEach( (option) => {
+        if(option.checked == undefined ){
+          option.checked = false;
+        }
+          console.log( "checked: " + option.checked + " correct: " + option.correct );
           if(option.checked != option.correct ){
-            correct = false;
+            console.log("It thought that option.checked wasn't option.correct!");
+            this.question.correctlyAnswered = false;
           }
       });
 
-      this.$emit("answered-event", correct );
+      this.$emit("answered-event");
     },
     showSolution(){
       console.log("The show solution button was clicked!");
