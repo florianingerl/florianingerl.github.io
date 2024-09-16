@@ -48,6 +48,9 @@ loadModule('assets/js/vue-components/english/rawfood/vue-rawfood.vue', options))
 const VueInversionSujetVerbe = Vue.defineAsyncComponent(() =>
   loadModule('assets/js/vue-components/french/grammaire/vue-inversion-sujet.vue', options));
 
+const VueMonumentPoisson = Vue.defineAsyncComponent(() =>
+  loadModule('assets/js/vue-components/french/breveshistoires/vue-monument-poisson.vue', options));
+
 const VueConjunctions = Vue.defineAsyncComponent(() =>
   loadModule('assets/js/vue-components/english/vocabulary/vue-conjunctions.vue', options));
 
@@ -213,6 +216,17 @@ const routes = [
         path: '',
         component: VueFrancais
 
+      },
+      {
+        name: 'Brèves histoires',
+        path: 'breveshistoires',
+        children: [
+          {
+            name: "Monument d'un poisson",
+            path: 'monumentpoisson',
+            component: VueMonumentPoisson
+          }
+        ]
       },
       {name: 'Livres',
       path: 'livres',
