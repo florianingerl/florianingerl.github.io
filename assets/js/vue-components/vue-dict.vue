@@ -80,6 +80,7 @@ export default {
 
 
         console.log("event.target = " + event.target );
+        /*
         let s = this.window.getSelection();
         console.log("s = " + s );
           var range = s.getRangeAt(0);
@@ -87,10 +88,13 @@ export default {
           
         
           // Find starting point
-          while(range.toString().search(/[^\w]/) != 0) {                 
+          while(range.toString().search(/[^\w]|^/) != 0) {                 
              range.setStart(node,(range.startOffset -1));
           }
-          range.setStart(node, range.startOffset +1);
+          if(range.toString().search(/[^\w]/ == 0) ){
+            console.log("This was executed!");
+            range.setStart(node, range.startOffset +1);
+          }
           
           // Find ending point
           do{
@@ -100,7 +104,8 @@ export default {
          
          // Alert result
          var str = range.toString().trim();
-         console.log(str);
+         console.log(str); */
+         let str = this.window.getSelection().toString();
           var baseUrl = "https://fr.thefreedictionary.com/";
          let i = this.dictionaries.findIndex( (dict) => dict.name === this.selectedDict );
          if( i!= -1 ){
