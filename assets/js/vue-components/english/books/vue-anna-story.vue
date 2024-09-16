@@ -7,7 +7,7 @@
 
 Fred was a very stubborn fellow. His ideas were so rigid that it was hard to
 collaborate with him. Nevertheless, Fred was the head of a 5-men-6-women company which made toys for very small children.
-Fred was also a really superstitious man and he liked to start all the staff meeting by singing a Christmas song to bring peace and love into his company. So this is how they started the first meeting of the week which was scheduled to discuss a big new project.
+Fred was also a really superstitious man and he liked to start all the staff meetings by singing a Christmas song to bring peace and love into his company. So this is how they started the first meeting of the week which was scheduled to discuss a big new project.
 It was June, the most children-loving among the company's employees, that began to speak about their big new project. All the others listened very attentively. "As we all now, this new project of ours will be very costly unless we have the toys made in China. But I'm still very motivated to set off the project, because if it succeeds, it will warm up the hearts of so many young children and their mothers! "
 
 <VueExercise instruction="Fill in the correct compound adjective!">
@@ -26,7 +26,7 @@ It was June, the most children-loving among the company's employees, that began 
 "Should anything go wrong, we had better set up an insurance." contributed Edwin, the
 company's chairman. "Me in fact, I am not sure whether there is a market for such
 totally new toys."
-"As of me, said Vanessa, the creative director, I want to create the best toy which we can all be proud of."
+"As of me", said Vanessa, the creative director, I want to create the best toy which we can all be proud of."
 "Great, I agree" said Fred. "Now let's brainstorm ideas for this new toy."
 "I like the idea of a toy that immediately destroys itself when you try to operate it in a wrong but obvious way. That way, the child immediately would have to buy a new toy and we could earn thus twice the money!" suggested Dave, who often came up with rather funny or even ridiculous ideas.
 
@@ -37,7 +37,7 @@ totally new toys."
 
 <p>
 Example: Cooking food is the greatest babarism. Mankind is capable of it. -> <br>
-Cooking food is the greates barbarism that mankind is capable of.
+Cooking food is the greatest barbarism that mankind is capable of.
 </p>
 
 <VueGaps lg="en" :gaptext="['Scoring goals is a game-winning capabilty. Our number 9 is responsible for it. {Scoring goals is a game-winning capability that our number 9 is responsible for.}',
@@ -50,11 +50,6 @@ Cooking food is the greates barbarism that mankind is capable of.
 
 </VueExercise>
 
-
-Spending huge amounts of money in incertain projects can cause a bankruptcy. Edwin is reluctant about it.
-Scoring goals is a game-winning capabilty. Our number 9 is responsible for it.
-
-Going into a ghost-haunted castle is an adventure. Erwin is not afraid of it.
 Most of the team was a bit reluctant about Sally's idea because they found it too violent for children. In the end, Fred came up with the best idea and since he was the boss, no one could say no to him.
 
 "I want to build a huge doll house on top of the mountain next to our city. I want to fill it with toys so children can go there and play all day if they, of course, buy a ticket."
@@ -71,7 +66,7 @@ His wife looked both happy and tired when she came to welcome him. Just like mos
 'Let\'s sing the refrain once again {all together}!',
 'Kevin knew that he had made stupid mistakes at questions 44 and 46, but he was still pleased with his performence in the exam {altogether}.',
 'Kevin, Sally and me, we needed to carry the cupboard {all together}, because it was so heavy.',
-'I understand your arguments but I also understand my objections. Altogether, I don\'t want to start this project.',
+'I understand your arguments but I also understand my objections. {Altogether}, I don\'t want to start this project.',
 'The food was good, the bed was soft and I had a nice view of the ocean. I was thus {altogether} pleased with my hotel room.',
 'He gave one explanation after another, didn\'t interrupt to hear my questions and I just couldn\'t follow the pace of his monologue. In the end, I was {altogether} confused.']">
 
@@ -80,7 +75,7 @@ His wife looked both happy and tired when she came to welcome him. Just like mos
 </VueExercise>
 
 
-Then they usually played a few of the games that Edwin company made and this activity never became dull.
+Then they usually played a few of the games that Edwin's company made and this activity never became dull.
 In fact, you could say, that Edwin himself was still a kid. But of course, if needed, he became their responsible father.
 
 <VueExercise lg="en" instruction="Put the words in the correct order">
@@ -101,10 +96,12 @@ Edwin and his wife didn't think much of it first but their little boy was still 
 With a few comforting words and a warm tea from the mother, the coming of an ambulance could as usual be avoided. It was just a normal stomach ache resulting from too much candies.
 In the end, they stopped the game playing, brought the ill child into his bed and seized this occasion to go all together into bed earlier today.
 
+<p>
 Meanwhile, Vanessa who was a young professional in her twenties, spent her evening with her mother. 
 
 "Such a lovely evening!" said her mother but Vanessa could not have disagreed more. 
 She was young and beautiful so she wanted to be in a bar meeting handsome men instead of staying at home with her mother.
+</p>
 
 
 <VueExercise lg="en" instruction="Fill in the gaps with such, such a or so!">
@@ -145,13 +142,13 @@ But no matter how many times did Sally try to explain her relationship to her mo
 So because Sally couldn't share her feelings freely with her mother, she decided to confide to her friend instead.
 
 "I love Anton so much that I want to marry him next week."
-"Difficult to keep up with all your news!" remarked his friend similing a bit. "First you company that wants to set off this new big project and then you yourself, who wants to marry this grandfather after just 2 months that you know each other!"
+"Difficult to keep up with all your news!" remarked his friend similing a bit. "First your company that wants to set off this new big project and then you yourself, who wants to marry this grandfather after just 2 months that you know each other!"
 "He only has two grandsons, that's not a lot!" defended herself Sally.
 
 "Still, if I were you, I'd wait a few more months before proposing to him" advised her friend.
 But Sally was not only daft, but also very stubborn, two qualities that often appear in combination.
 That's why such advice usally entered into Sally's left ear and existed through the right one without leaving any trace in her brain.
-So she asked her friend: "How would you him the proposal? During a nice dinner with dimly lit candles?"
+So she asked her friend: "How would you give him the proposal? During a nice dinner with dimly lit candles?"
 "Yes, that's a fantastic idea! That's how I will do it. Plus, we will also play this new game that my company created for couples. It'll be very romantic, thank you for the idea!"
 
 <VueExercise lg="en" instruction="Fill in the gaps with either talk, tell or discuss">
@@ -172,11 +169,11 @@ Always appreciating nice clothing herself, she was immediately all excited about
 That was the usual thing with Sally! Her ideas and plans changed so quickly that it was difficult to keep up with them! Let's now leave Hannah and Sally to themselves and see what Fred is doing in this very moment.
 
 <VueExercise lg="en" instruction="Fill in the gaps with either let or leave!">
-<VueGaps lg="en" :gaptext="['My parents don\'t {let|leave} me stay out late.',
+<VueMCGaps lg="en" :gaptext="['My parents don\'t {let|leave} me stay out late.',
 'My boss never {leaves|lets} me alone.',
 'Katy {left|leaves} school before graduation.']">
 
-</VueGaps>
+</VueMCGaps>
 </VueExercise>
 
 
