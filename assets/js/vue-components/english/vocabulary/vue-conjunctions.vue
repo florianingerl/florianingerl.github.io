@@ -131,7 +131,7 @@ export default {
 "You need to do your homework {before|after|as long as} you go to bed.",
 "I go into bed early enough {to|so that|for} be fit tomorrow.",
 "{Since|For|After} you are so lazy, you won't achieve your goals.",
-"Si les fausses indications sur les panneaux ne m\'avaient pas {conduit} dans cette forêt sombre, je serais déjà rentré et aurais pris un bain chaud.",
+"{Once|Before|Although} you got used to me, we will get on very well.",
 "Ses mains {couraient} vite sur le clavier de mon ordinateur et, en que peu de temps, il avait réparé mon ordinateur.",
 "Peu importe dans quelle équipe Cristiano Ronaldo joue, il {conduit} son équipe vers la finale de la ligue des champions.",
 "Laisse tes pensées {courir} et les observe simplement. De cette façon, tu obtiendras de la paix et la maîtrise de ton esprit.",
