@@ -1,7 +1,7 @@
 <template>
-<div @dblclick="openDict">
+<div @dblclick="openDict" @keypress="openDictOnPressingK">
 
-    <h1>Double clique sur n'importe quel mot sur ce cite pour une traduction!</h1>
+    <h4>Double-click on any word on this page to see a translation!</h4>
     Select your preferred dictionary:
      <select  v-model="selectedDict">
   <option disabled value="">Please select one</option>
@@ -68,43 +68,7 @@ export default {
 
     },
     openDict(event){
-        console.log("A method in my vue component is executed!");
-        console.log(this.$stupidProp);
-        console.log(this.$window);
-        console.log(this.window);
-
-       console.log(this.$router.$stupidProp );
-       console.log(this.$router.stupidProp );
-       console.log(this.$router.$window2);
-       console.log(this.$router.window2);
-
-
-        console.log("event.target = " + event.target );
-        /*
-        let s = this.window.getSelection();
-        console.log("s = " + s );
-          var range = s.getRangeAt(0);
-          var node = s.anchorNode;
-          
         
-          // Find starting point
-          while(range.toString().search(/[^\w]|^/) != 0) {                 
-             range.setStart(node,(range.startOffset -1));
-          }
-          if(range.toString().search(/[^\w]/ == 0) ){
-            console.log("This was executed!");
-            range.setStart(node, range.startOffset +1);
-          }
-          
-          // Find ending point
-          do{
-            range.setEnd(node,range.endOffset + 1);
-    
-         }while(range.toString().search(/[^\w]/) == -1 && range.toString().trim() != '');
-         
-         // Alert result
-         var str = range.toString().trim();
-         console.log(str); */
          let str = this.window.getSelection().toString();
           var baseUrl = "https://fr.thefreedictionary.com/";
          let i = this.dictionaries.findIndex( (dict) => dict.name === this.selectedDict );
@@ -116,6 +80,13 @@ export default {
       
        
         console.log("This script has been executed!");  
+    },
+
+    openDictOnPressingK(event){
+      console.log("A key was pressed!");
+
+      console.log( event.keyName );
+      console.log( event);
     }
   }
 }
