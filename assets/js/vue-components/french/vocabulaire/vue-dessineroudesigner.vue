@@ -47,11 +47,11 @@ export default {
   
   data() {
     return {
-       gaptext: [ "Si Paul avait déjà son permis de {conduire}, il ne prendrait plus le métro.",
-       "Ce weekend, notre équipe de football {coura} 20 kilomètres pour nous entraîner pour le semi-marathon de Berlin.",
-"En {conduisant} ses enfants à l\'école, la mère a l\'occasion de leur parler et d\'apprendre quelque chose sur leur vie.",
-"Il faut que tu {coures} s\'il ne te reste que peu de temps pour atteindre un rendez-vous.",
-"Le prof {a conduit} ses élèves dans la nature et leur a enseigné les noms des fleurs les plus courants.",
+       gaptext: [ "J'ai découvert un logiciel qui me {désigne} les erreur d'orthographe et de grammaire en les soulignant en bleu.",
+       "Antoine a été {désigné} comme represantant de classe parce qu'il est aimé par tout le monde et a obtenu le plus de votes.",
+"x dans les équations désigne un nombre qu'il faut trouver de sorte que l'équation soit vérfié.",
+"Dirk Novizki est {désigné} pour être joueur de basketball parce qu'il est tellement grand.",
+"Le lion {désigna} l'antilope le plus faible comme sa victime, puis le chassa.",
 "C\'est le sentier le plus court qui vous {conduise} au sommet de la montagne.",
 "Si les fausses indications sur les panneaux ne m\'avaient pas {conduit} dans cette forêt sombre, je serais déjà rentré et aurais pris un bain chaud.",
 "Ses mains {couraient} vite sur le clavier de mon ordinateur et, en que peu de temps, il avait réparé mon ordinateur.",
