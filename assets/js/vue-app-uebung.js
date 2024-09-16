@@ -48,6 +48,9 @@ loadModule('assets/js/vue-components/english/rawfood/vue-rawfood.vue', options))
 const VueInversionSujetVerbe = Vue.defineAsyncComponent(() =>
   loadModule('assets/js/vue-components/french/grammaire/vue-inversion-sujet.vue', options));
 
+const VueConjunctions = Vue.defineAsyncComponent(() =>
+  loadModule('assets/js/vue-components/english/vocabulary/vue-conjunctions.vue', options));
+
 const VueFred =  Vue.defineAsyncComponent(() =>
   loadModule('assets/js/vue-components/english/books/vue-anna-story.vue', options));
 
@@ -159,6 +162,17 @@ const routes = [
         name: "Navigationsklfjk",
         path: '',
         component: VueEnglish
+      },
+
+      {
+        name: 'Vocabulary', path: 'vocabulary',
+        children: [
+          {
+            name: 'Conjunctions',
+            path: 'conjunctions',
+            component: VueConjunctions
+          }
+        ]
       },
       
       {name: 'Books', path: 'books', 
