@@ -5,13 +5,12 @@
 <h4><i>par Florian Ingerl</i></h4>
 
 
+<VueImage imageUrl="assets/img/francais/lion.png">
 <p>
 Un jour, moi et ma classe, le 5b, devaient inventer chacun une histoire dont la prof leur avaient donnée le titre: "Le monument dans ta ville!"
 Difficle de tirer une histoire sur ce thème du néant. Mais Antoine amait bien écrire créativement et commença:
 </p>
-<!--
-<VueImage imageUrl="assets/img/lion.jpg">
-</VueImage> -->
+</VueImage>
 
 <p>
 Moi, je suis Antoine, 10 ans, et j'habite dans un petit village au centre duquel il y a un monument. Celui-ci est un pilier sur lequel un

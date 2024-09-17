@@ -51,6 +51,9 @@ const VueInversionSujetVerbe = Vue.defineAsyncComponent(() =>
 const VueMonumentPoisson = Vue.defineAsyncComponent(() =>
   loadModule('assets/js/vue-components/french/breveshistoires/vue-monument-poisson.vue', options));
 
+const VueLionSimba = Vue.defineAsyncComponent(() =>
+  loadModule('assets/js/vue-components/french/breveshistoires/vue-histoire-max.vue', options));
+
 const VueConjunctions = Vue.defineAsyncComponent(() =>
   loadModule('assets/js/vue-components/english/vocabulary/vue-conjunctions.vue', options));
 
@@ -225,6 +228,11 @@ const routes = [
             name: "Monument d'un poisson",
             path: 'monumentpoisson',
             component: VueMonumentPoisson
+          },
+          {
+            name: "Le lion Simba et sa femme Alexandra",
+            path: "lelionsimba",
+            component: VueLionSimba
           }
         ]
       },
