@@ -9,6 +9,12 @@
       </tr>
     </thead>
     <tbody> 
+
+       <tr>
+<td>16</td>
+       <td><router-link to="/fr/french/breveshistoires/lelionsimba">Le lion Simba</router-link></td>
+       <td>Flori10</td>
+    </tr>
     <tr>
 <td>15</td>
        <td><router-link to="/fr/french/breveshistoires/monumentpoisson">Monument d'un poisson</router-link></td>
