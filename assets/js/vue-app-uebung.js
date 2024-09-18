@@ -51,6 +51,9 @@ const VueInversionSujetVerbe = Vue.defineAsyncComponent(() =>
 const VueMonumentPoisson = Vue.defineAsyncComponent(() =>
   loadModule('assets/js/vue-components/french/breveshistoires/vue-monument-poisson.vue', options));
 
+const VueSonO = Vue.defineAsyncComponent(() =>
+  loadModule('assets/js/vue-components/french/prononciation/vue-son-o.vue', options));
+
 const VueLionSimba = Vue.defineAsyncComponent(() =>
   loadModule('assets/js/vue-components/french/breveshistoires/vue-histoire-max.vue', options));
 
@@ -264,6 +267,11 @@ const routes = [
             name: 'Le son é',
             path: "sone",
             component: VueSonE
+          },
+          {
+            name: 'Le son o',
+            path: "sono",
+            component: VueSonO
           }
         ]
       },

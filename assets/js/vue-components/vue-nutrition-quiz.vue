@@ -31,7 +31,7 @@ export default {
 		questionEn : "What is the name of this vegetable?",
 		imageUrl: "assets/img/rawfood/rooteBeete1.jpg",
 		type: "multiple choice",
-		options: [{ option : "Tomate", correct: false }, { option : "Roote Beete", correct: true }],
+		options: [{ option : "Tomate", correct: false }, { option : "Rote Beete", correct: true }],
 		optionsFr : [{ option : "tomate", correct: false }, { option : "betterave rouge", correct: true }],
 		optionsEn : [{ option : "tomato", correct: false }, { option : "beetroot", correct: true }],
 		correct: 1
@@ -51,7 +51,7 @@ export default {
 	},
 
 	{
-		question: "Was eignet sich zur Wasseraufbereitung?",
+		question: "Was eignet sich zur Wasserenergetisierung?",
 		questionFr : "Quel instrument est utile pour améliorer la qualité de l'eau?",
 		questionEn : "Which instrument is useful to improve the quality of water?",
 		imageUrl: "assets/img/rawfood/wasserwirbler.png",
@@ -63,7 +63,7 @@ export default {
 	}
 	,
 	{
-		question:"In welcher Form sollte man Getreide laut dem Rohkost-Guru Dr. Schnitzer am besten essen?",
+		question:"Welche Zubereitungsform von Getreide fördert die Verdaulichkeit und erhöht den Nährstoffgehalt?",
 		questionFr: "Sous quelle forme est-ce qu'on doit manger les céréales selon le guru d'alimentation crue Dr. Schnitzer?",
 		questionEn: "According to raw food guru Dr. Schnitzer, in what form is it the best to eat grains?",
 		imageUrl: "assets/img/rawfood/weizensprossen.jpg",
@@ -87,12 +87,12 @@ export default {
 
 	},
 	{
-		question: "Warum fügt ein Rohköstler seinem Getreidebrei Hanfsprossen hinzu?",
+		question: "Warum isst ein Rohköstler Hanfsprossen?",
 		questionFr: "Pourquoi un crudivore ajoute-t-il des pousses de chanvre à sa bouillie de céréales fraîches? ",
 		questionEn: "Why does a raw fooder add hempsprouts to his fresh grain porridge?",
 		imageUrl: "assets/img/rawfood/hanfsprossen.jpg",
 		type: "multiple choice",
-		options: [{ option : "wegen der berauschenden Wirkung", correct: false }, { option : "wegen dem vielen Fett und dem würzigen Geschmack", correct: true }],
+		options: [{ option : "wegen der berauschenden Wirkung", correct: false }, {option: "Wegen dem optimalen Fettsäurespektrum mit vielen Omega-3-Fettsäuren von Hanf und dem würzigen Geschmack", correct: true } ],
 		optionsEn: [{ option : "because of the intoxicating effect", correct: false }, { option : "because of the fat and the spicey taste", correct: true }],
 		optionsFr: [{ option : "à cause de l'effet intoxicant", correct: false }, { option : "à cause du gras et du goût épicé", correct: true }],
 		correct: 1
@@ -126,14 +126,14 @@ export default {
 		questionEn: "Why don't you learn anywhere that groundweed is edible and healthy?",
 		imageUrl: "assets/img/rawfood/giersch.png",
 		type: "multiple choice",
-		options: [{ option : "weil es keine Werbung einer Gierschindustrie gibt, die den Giersch pasteurisiert,kocht,haltbar macht und dann in Tablettenform verkauft", correct: true }, { option : "Weil der Mensch kein Wiederkäuer ist und Giersch nicht gesund", correct: false }],
+		options: [{ option : "weil es keine Werbung einer Gierschindustrie gibt, die den Giersch pasteurisiert, kocht, haltbar macht und dann in Tablettenform verkauft", correct: true }, { option : "Weil der Mensch kein Wiederkäuer ist und Giersch nicht gesund", correct: false }],
 		optionsFr: [{ option : "car il n'y a pas de publicité d'une industrie de la courge qui pasteurise la courge, la cuit, la conserve puis la vend sous forme de comprimés", correct: true }, { option : "Parce que les humains ne sont pas des ruminants et que la courge n'est pas saine", correct: false }],
 		optionsEn: [{ option : "because there is no advertising from a groundweed industry that pasteurizes the groundweed, cooks it, preserves it and then sells it in tablet form", correct: true }, { option : "Because humans are not ruminants and groundweed is not healthy", correct: false }],
 		correct: 0
 	},
 	
 	{
-		question: "Wie schmeckt roote Beete?",
+		question: "Wie schmeckt Rote Beete?",
 		questionFr: "Quel goût la betterave a-t-elle?",
 		questionEn: "How does beetroot taste?",
 		imageUrl: "assets/img/rawfood/rooteBeete1.jpg",
@@ -155,7 +155,18 @@ export default {
 		correct: 1
 	},
 	{
-		question: "Wie schmeckt Kresse?",
+		question: "Welches Keimgerät ist am besten für gelierende Leinsamen geeignet?",
+		questionEn: "Linseed sprouts are valuable because they contain a lot of fat. What do linseed sprouts taste like?",
+		questionFr: "Les pousses de lin sont précieuses parce qu'elles contiennent beaucoup de graisse. Quel goût les pousses de lin ont-t-elles?",
+		imageUrl: "assets/img/rawfood/leinsamensprossen.jpg",
+		type: "multiple choice",
+		options: [{ option : "Kressesieb", correct: true }, { option : "Keimglas", correct: false }, { option: "Keimschale mit Vliespapier", correct: true } ],
+		optionsEn: [{ option : "spicey", correct: false }, { option : "like chocolate", correct: true }],
+		optionsFr: [{ option : "épicé", correct: false }, { option : "comme du chocolat", correct: true }],
+		correct: 1
+	},
+	{
+		question: "Wie sollten Kressesprossen schmecken?",
 		questionEn: "What does cress taste like?",
 		questionFr: "Quel est le goût du cresson?",
 		imageUrl: "assets/img/rawfood/kresse.jpg",
@@ -172,7 +183,7 @@ export default {
 		questionFr: "Quel ingrédient n'a pas sa place dans une bouillie de céréales fraîches?",
 		imageUrl: "assets/img/rawfood/frischkornbrei.jpg",
 		type: "multiple choice",
-		options: [{ option : "Wasser", correct: false }, { option : "Dinkel", correct: false }, { option : "Milch", correct: true }, { option : "Sonnenblumenkerne", correct: false }, { option : "Himbeeren", correct: false }],
+		options: [{ option : "Wasser", correct: false }, { option : "Dinkel", correct: false }, { option : "Kuhmilch", correct: true }, { option : "Sonnenblumenkerne", correct: false }, { option : "Himbeeren", correct: false }],
 		optionsEn: [{ option : "water", correct: false }, { option : "spelt", correct: false }, { option : "milk", correct: true }, { option : "sunflower seeds", correct: false }, { option : "rasperries", correct: false }],
 		optionsFr: [{ option : "de l'eau", correct: false }, { option : "de l'épeautre", correct: false }, { option : "du lait", correct: true }, { option : "des graines de tournesol", correct: false }, { option : "des framboises", correct: false }],
 		correct: 2
@@ -203,7 +214,7 @@ export default {
 	},
 
 	{
-		question: "Warum ist es riskant, Essen zu konsumieren, was die Sinne erfreut aber der Körper nicht unbedingt braucht (z.B. Obst, Fruchtgemüse, Zwiebeln, Essig, Gewürz)?",
+		question: "Warum ist es riskant, Essen zu konsumieren, was die Sinne erfreut aber der Körper nicht unbedingt braucht (z.B. Obst, Fruchtgemüse, Zwiebeln, Essig, Gewürz) ?",
 		questionEn: "Why is it risky to consume food that pleases the senses but that the body does not necessarily need (fruit, fruit vegetables, vinegar, spices) ?",
 		questionFr: "Pourquoi est-il risqué de consommer des aliments qui plaisent aux sens mais dont le corps n'a pas forcément besoin (ex. fruits, oignons, vinaigre, épices) ?",
 		imageUrl: "assets/img/rawfood/yogiaufnagelbrett.png",
@@ -228,12 +239,24 @@ export default {
 	},
 
 		{
-		question: "Welches Buch solltest du eher lesen, wenn du Kontrolle über die Sinne und den Geist gewinnen willst?",
-		questionEn: "Which book should you read if you want to gain control over your senses and mind?",
+		question: "Welches Buch solltest du eher lesen, wenn du Kontrolle über die Sinne und den Geist gewinnen willst ?",
+		questionEn: "Which book should you read if you want to gain control over your senses and mind ?",
 		questionFr: "Quel livre devrais-tu lire si tu souhaites prendre le contrôle de tes sens et de ton esprit ?",
 		imageUrl: "assets/img/rawfood/bhagavadgita.png",
 		type: "multiple choice",
 		options: [{ option : "Bhagavda Gita", correct: true }, { option : "Schnelle und leckere Rezepte mit nur fünf Zutaten für Fleisch, Fisch, vegetarische und süße Gerichte - mit Ideen für Gewürzmischungen und Rubs", correct: false }],
+		optionsEn: [{ option : "Bhagavda Gita", correct: true }, { option : "Men with the Pot Cookbook: Delicious Grilled Meats and Forest Feasts", correct: true }],
+		optionsFr: [{ option : "Bhagavda Gita", correct: true }, { option : "Recettes de cuisine traditionnelle de viande de porc", correct: true }],
+		correct: 0
+	},
+
+		{
+		question: "Was ist Geschmack ?",
+		questionEn: "Which book should you read if you want to gain control over your senses and mind ?",
+		questionFr: "Quel livre devrais-tu lire si tu souhaites prendre le contrôle de tes sens et de ton esprit ?",
+		imageUrl: "assets/img/rawfood/bhagavadgita.png",
+		type: "multiple choice",
+		options: [{ option : "Gewohnheit", correct: true }, { option : "angeboren", correct: false }],
 		optionsEn: [{ option : "Bhagavda Gita", correct: true }, { option : "Men with the Pot Cookbook: Delicious Grilled Meats and Forest Feasts", correct: true }],
 		optionsFr: [{ option : "Bhagavda Gita", correct: true }, { option : "Recettes de cuisine traditionnelle de viande de porc", correct: true }],
 		correct: 0
@@ -245,7 +268,7 @@ export default {
 		questionFr: "Pourquoi les mangeurs de nourriture crue sont-ils rassasiés?",
 		imageUrl: "assets/img/rawfood/kichererbsensalat.jpg",
 		type: "multiple choice",
-		options: [{ option : "Weil sie tonnenweise Salat essen", correct: false }, { option : "Weil sie Sprossen aus Getreide und Hülsenfrüchten essen", correct: true }],
+		options: [{option: "Weil sie literweise Orangensaft trinken", correct: false }, { option : "Weil sie tonnenweise Salat essen", correct: false }, { option : "Weil sie balast-und nährstoffreiche Pflanzen wie Sprossen aus Hülsenfrüchten und Getreide konsumieren", correct: true }],
 		optionsEn: [{ option : "they eat tons of salad", correct: false }, { option : "they eat sprouts from grains and legumes", correct: true }],
 		optionsFr: [{ option : "Parce qu'ils mangent des tonnes de salade", correct: false }, { option : "Parce qu'ils mangent des germes de céréales et de légumineuses", correct: true }],
 		correct: 1
@@ -254,9 +277,9 @@ export default {
 
 
 	{
-		question: "Woran erkennt man laut dem Rohkost-Guru und Zahnarzt Dr. Schnitzer am eindeutigsten, dass der Mensch ein Fruchtesser (Samen, Wurzelknollen, Blattschösslinge) ist?",
-		questionEn: "According to raw food guru and dentist Dr. Schnitzer, how can you see most clearly that humans are fruit eaters (seeds, root tubers, leafy shoots)?",
-		questionFr: "Selon le gourou des aliments crus et dentiste Dr. Schnitzer, comment est-ce qu'on peut voir très clairement que les humains sont des mangeurs de fruits (graines, tubercules, pousses feuillues)?",
+		question: "Woran erkennt man laut dem Rohkost-Guru und Zahnarzt Dr. Schnitzer am eindeutigsten, dass der Mensch ein Fruchtesser (Samen, Wurzelknollen, Blattschösslinge) ist ? ",
+		questionEn: "According to raw food guru and dentist Dr. Schnitzer, how can you see most clearly that humans are fruit eaters (seeds, root tubers, leafy shoots) ?",
+		questionFr: "Selon le gourou des aliments crus et dentiste Dr. Schnitzer, comment est-ce qu'on peut voir très clairement que les humains sont des mangeurs de fruits (graines, tubercules, pousses feuillues) ?",
 		imageUrl: "assets/img/rawfood/johannschnitzer.gif",
 		type: "multiple choice",
 		options: [{ option : "an der Länge seines Darms", correct: false }, { option : "an seinem Gebiss", correct: true }, { option : "an der chemischen Zusammensetzung der Magensäure", correct: false }],
@@ -284,7 +307,7 @@ export default {
 		questionEn: "How much time does it take between two meals??",
 		imageUrl: "assets/img/rawfood/weißkohl.jpg",
 		type: "multiple choice",
-		options: [{ option : "genügend bis die erste verdaut worden ist, am besten soviel bis du richtig Hunger und von Sport oder Arbeit erschöpft bist", correct: true }, { option : "egal, für die Verdauung auch kein Problem, viele verschiedene Früchte in einer Mahlzeit zu verzehren", correct: false }],
+		options: [{ option : "Essenspause, bis die letzte Mahlzeit verdaut ist, was bei schweren Mahlzeiten 3-4 Stunden dauert", correct: true }, { option : "Verdauung kann jederzeit alles verarbeiten, solange die Nahrung gesund ist", correct: false }],
 		optionsFr: [{ option : "assez jusqu'à ce que le premier soit digéré, de préférence jusqu'à ce que vous ayez vraiment faim et que vous soyez épuisé par le sport ou le travail", correct: true }, { option : "peu importe, ce n'est aucun problème pour la digestion non plus de manger beaucoup de fruits différents en seul repas", correct: false }],
 		optionsEn: [{ option : "enough until the first one has been digested, preferably until you are really hungry and exhausted from sport or work", correct: true }, { option : "It doesn't matter. Nor is it a problem for the digestion to eat many different fruits in one meal", correct: false }],
 		correct: 1
@@ -293,7 +316,7 @@ export default {
 
 
 	{
-		question: "In welcher Form sollte man Hülsenfrüchte (Linsen, Süßlupinen, Mungobohnen, Kichererbsen, etc...) im Sinne der Gesund-und Leistungsfähigkeit am besten essen?",
+		question: "In welcher Form sollte man Hülsenfrüchte (Linsen, Süßlupinen, Mungobohnen, Kichererbsen, etc...) im Sinne der Gesundheit und der Leistungsfähigkeit am besten essen ?",
 		questionFr: "Sous quelle forme consommer au mieux des légumineuses (lentilles, lupins doux, haricots mungo, pois chiches…) pour la santé et la performance ?",
 		questionEn: "In what form should you best eat legumes (lentils, sweet lupins, mung beans, chickpeas, etc.) for health and performance?",
 		type: "multiple choice",
@@ -318,12 +341,24 @@ export default {
 	},
 
 	{
+		question: "Was hält am besten im Winter warm, wo der Effekt auch noch einen bis zwei Tage nachwirkt ?",
+		questionFr: "Que font les crudivores en hiver ?",
+		questionEn: "What do a raw food eaters do in winter ?",
+		imageUrl: "assets/img/rawfood/winter.png",
+		type: "multiple choice",
+		options: [{ option : "Muskelaufbautraining", correct: true }, { option : "Spazieren gehen", correct: false }],
+		optionsFr: [{ option : "Porter une veste chaude", correct: true }, { option : "Parce que les pousses crues, la bouillie de céréales fraîches et les légumes les réchauffent de l'intérieur, ils se promènent en short et en T-shirt même en hiver.", correct: false }],
+		optionsEn: [{ option : "Wear a warm jacket", correct: true }, { option : "Because the raw sprouts, fresh grain porridges and vegetables warm them from the inside, they walk around in shorts and a T-shirt even in winter", correct: false }],
+		correct: 1
+	},
+
+	{
 		question: "Was machen Rohköstler im Winter?",
 		questionFr: "Que font les crudivores en hiver?",
 		questionEn: "What do a raw food eaters do in winter?",
 		imageUrl: "assets/img/rawfood/winter.png",
 		type: "multiple choice",
-		options: [{ option : "Viel Sport und Yoga, um sich mithilfe der Muskeln aufzuwärmen", correct: true }, { option : "Im Angesicht der Kälte müssen sie einsehen, dass Nahrung gekocht sein muss", correct: false }],
+		options: [{ option : "Viel Sport zum Muskelaufbau und Yoga", correct: true }, { option : "Im Angesicht der Kälte müssen sie einsehen, dass Nahrung gekocht sein muss", correct: false }],
 		optionsEn: [{ option : "A lot of sports and Yoga to warum up", correct: false }, { option : "Facing the cold weather, they have to admit that food must be cooked", correct: false }],
 		optionsFr: [{ option : "Beaucoup de sport et de yoga pour se rechauffer", correct: true }, { option : "Face au froid, ils doivent reconnaitre que la nourriture doit être cuite", correct: false }],
 		correct: 1
@@ -357,7 +392,7 @@ export default {
 		questionEn: "Why are grain sprouts even better than fresh grain porridge?",
 		imageUrl: "assets/img/rawfood/roggenbrei.jpg",
 		type: "multiple choice",
-		options: [{ option : "Weil der Keimprozess die Gluten auf ein verträgliches Minimum reduziert", correct: true }, { option : "Weil im Getreidebrei Wasser drin ist, was die Magensäure verdünnt", correct: true }, { option : "Weil wenn man die Sprossen vorher kocht, sind sie besser verdaulich", correct: false }],
+		options: [{ option : "Der Keimprozess reduziert Glutein auf ein verträgliches Minimum", correct: true }, { option : "Weil im Getreidebrei Wasser drin ist, was die Magensäure verdünnt", correct: true }, { option : "Das Kochen der Sprossen erhöht den Nährstoffgehalt", correct: false }],
 		optionsFr: [{ option : "Parce que le processus de germination réduit le gluten à un minimum tolérable", correct: true }, { option : "Parce que la bouillie de céréales contient de l'eau, qui dilue l'acide gastrique.", correct: true }, { option : "Car si vous faites cuire les pousses à l’avance, elles sont plus faciles à digérer", correct: false }],
 		optionsEn: [{ option : "Because the germination process reduces gluten to a tolerable minimum.", correct: true }, { option : "Because cereal porridge contains water, which dilutes the stomach acid.", correct: true },  { option : "Because if you cook the sprouts beforehand, they are easier to digest.", correct: false }],
 		correct: 1
@@ -465,7 +500,7 @@ export default {
 		questionEn: "Which ingredient is not in this salad?",
 		imageUrl: "assets/img/rawfood/weißkohlsalat.jpg",
 		type: "multiple choice",
-		options: [{ option : "Weißkohl", correct: false }, { option : "Weizen", correct: false }, { option : "Roote Beete", correct: false }, { option : "Karotte", correct: true }, { option : "Süßlupinen", correct: false }],
+		options: [{ option : "Weißkohl", correct: false }, { option : "Weizen", correct: false }, { option : "Rote Beete", correct: false }, { option : "Karotte", correct: true }, { option : "Süßlupinen", correct: false }],
 		optionsFr: [{ option : "chou blanc", correct: false }, { option : "blé", correct: false }, { option : "betterave", correct: false }, { option : "carotte", correct: true }, { option : "lupin doux", correct: false }],
 		optionsEn: [{ option : "white cabbage", correct: false }, { option : "wheat", correct: false }, { option : "beetroot", correct: false }, { option : "carrot", correct: true }, { option : "sweet lupins", correct: false }],
 		correct: 3
@@ -1044,7 +1079,7 @@ export default {
 		questionEn: "What ingredient is not in this salad?",
 		imageUrl: "assets/img/rawfood/spitzkohlplatterbsensalat.jpg",
 		type: "multiple choice",
-		options: [{ option : "Platterbsen", correct: false }, { option : "Weizen", correct: false }, { option : "Spitzkohl", correct: false }, { option : "Roote Beete", correct: true }, { option : "Karotte", correct: false }],
+		options: [{ option : "Platterbsen", correct: false }, { option : "Weizen", correct: false }, { option : "Spitzkohl", correct: false }, { option : "Rote Beete", correct: true }, { option : "Karotte", correct: false }],
 		optionsEn: [{ option : "flat peas", correct: false }, { option : "wheat", correct: false }, { option : "pointed cabbage", correct: false }, { option : "beetroot", correct: true }, { option : "carrot", correct: false }],
 		optionsFr: [{ option : "petits pois", correct: false }, { option : "blé", correct: false }, { option : "chou pointu", correct: false }, { option : "betterave rouge", correct: true }, { option : "carotte", correct: true }],
 		correct: 4
