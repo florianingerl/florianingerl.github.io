@@ -10,6 +10,12 @@
     </thead>
     <tbody> 
 
+           <tr>
+<td>17</td>
+       <td><router-link to="/fr/french/prononciation/sono">Le son o</router-link></td>
+       <td>Flori10</td>
+    </tr>
+
        <tr>
 <td>16</td>
        <td><router-link to="/fr/french/breveshistoires/lelionsimba">Le lion Simba</router-link></td>
