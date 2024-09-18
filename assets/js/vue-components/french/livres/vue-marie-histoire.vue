@@ -61,6 +61,38 @@ courage, orgueil, générosité, vanité, sérénité, patience, médiocrité, v
 
 </div>
 
+"Presque personne ne veut voyager de France en Australie à cette période de l'année.
+C'est pourquoi ils vendent les billets pas cher."
+C'était pour Joséphine une opportunité inattendue et elle n'hésita pas une seconde à la saisir.
+Le lendemain, Fred ayant consenti à emmener sa mère à l'aéroport, il remarqua qu'il n'y avait pas grand-chose à mettre à l'arrière de la voiture, parce sa mère n'emportait presque aucun bagage. Elle n'emportait que quelques livres et vêtements, et ses bijoux.
+Elle avait laissé chez elle presque toutes ses affaires, ce qui étonna Fred qui avait l'habitude de voir sa mère habituellement beaucoup trop chargée lorsqu'elle partait en vacances.
+
+<VueExercise lg="fr" instruction="Remplis les trous avec emporter, apporter ou rapporter à la bonne conjugaison ! ">
+<VueMCGaps lg="fr" :gaptext="['Fred était intrigué par le fait que sa mère n\'{emportait} que si peu.',
+'Quand tu vas à un entraînement de football, tu dois {apporter} tes chaussures.',
+'Merci de m\'avoir prêté ton livre. Je te le {rapporte} maintenant.',
+'Le chien a été {emporté} par une grosse vague sur le rivage.',
+'As-tu {apporté} ce que je t\'ai demandé?',
+'Merci de {rapporter} vos bouteilles vides pour la consigne.']">
+
+</VueMCGaps>
+</VueExercise>
+
+"Mais pourquoi n'a-t-elle presque pas de bagage pour un voyage si lointain?" songea Fred.
+"Et pourquoi voyager à cette période de l'année en Australie?" Fred soupçonna sa mère d'avoir des plans malveillants. A partir de ce moment-là, il eut la puce à l'oreille. Et quand sa mère regarda ailleurs, il fouilla un peu dans ses affaires.
+Alors qu'elle saluait justement une connaissance qui passait par là par hasard, Fred découvrit dans ses affaires un paquet bien mystérieux adressé à un certain Monsieur Legrand.
+Le paquet était léger. Si Fred avait eu le temps d'ouvrir le paquet, inspecter son contenu et puis le refermer à nouveau sans que sa mère s'en apercoive, il l'aurait certainement fait. Mais il n'osa pas le faire.
+
+<VueExercise lg="fr" instruction="Comment est-ce qu'on écrit le son o en francais? Remplis les trous avec o, ô, eau, au!">
+<VueMCGaps lg="fr" :gaptext="['C\'était bien tr{o}p risqué, il ne pouvait se le permettre.' +
+'Il retira son chap{eau} qui lui tenait bien tr{o}p ch{au}d.' +
+'\'\'Est-ce que ce mystérieux paquet v{au}t-il la peine de prendre le risque de se faire prendre pour un fouineur par ma mère ? \'\' se dit-il.' +
+'Au contraire, c\'était un garç{o}n h{ô}nnête qui avait obtenu son baccal{au}réat avec mention. Il pouvait quand même ouvrir le paquet et prétendre après qu\'un fant{ô}me l\'avait ouvert.']">
+
+</VueMCGaps>
+
+</VueExercise>
+
 <button @click="nextPageClicked">Next page</button>
 </template>
 
