@@ -202,6 +202,18 @@ export default {
 	},
 
 	{
+		question: "Deine Großmutter bäckt dir eine leckere Apfeltorte? Was ist das?",
+		questionEn: "Who kills you faster?",
+		questionFr: "Qui te tuera plus vite?",
+		imageUrl: "assets/img/rawfood/lovingcook.png",
+		type: "multiple choice",
+		options: [{ option : "Liebe", correct: false }, { option : "Schwere Körperverletzung", correct: true }],
+		optionsEn: [{ option : "a very good doctor", correct: false }, { option : "a cook who loves you", correct: true }],
+		optionsFr: [{ option : "un très bon médecin", correct: false }, { option : "une cuisinière qui t'aime", correct: true }],
+		correct: 1
+	},
+
+	{
 		questionFr: "Comment est-ce qu'on appelle cette salade?",
 		questionEn: "What is this salad called?",
 		question: "Wie heißt dieser Salat?",
