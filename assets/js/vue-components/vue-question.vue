@@ -1,17 +1,17 @@
 <template>
 
 <div>
-<p v-if="lg==='de' || lg === 'en' && question.questionEn === undefined || lg === 'fr' && question.questionFr === undefined">
-{{ question.question }}
+<p v-if="lg==='de' || lg === 'en' && question2.questionEn == undefined || lg === 'fr' && question2.questionFr == undefined">
+{{ question2.question }}
 </p>
 <p v-else-if="lg==='en'">
-{{ question.questionEn }}
+{{ question2.questionEn }}
 </p>
 <p v-else-if="lg==='fr'">
-{{ question.questionFr }}
+{{ question2.questionFr }}
 </p>
-<div v-for="option in getOptionsForLg()" :key="option" :class="{correct : question.correctlyAnswered != undefined && option.checked && option.correct, notcorrect : question.correctlyAnswered != undefined && option.checked && !option.correct}">
-<input :disabled="question.correctlyAnswered != undefined" type="checkbox" v-model="option.checked"/>
+<div v-for="option in getOptionsForLg()" :key="option" :class="{correct : question2.correctlyAnswered != undefined && option.checked && option.correct, notcorrect : question2.correctlyAnswered != undefined && option.checked && !option.correct}">
+<input :disabled="question2.correctlyAnswered != undefined" type="checkbox" v-model="option.checked"/>
 <label>{{option.option}}</label>
 </div>
 
@@ -50,32 +50,34 @@ export default {
   
   data() {
     return {
-      
+       question2: {}
     };
   },
   watch: {
     question(newQuestion, oldQuestion){
       console.log("The watcher was called!");
+      this.question2 = newQuestion;
       
     }
   },
   methods: {
     getOptionsForLg(){
-      if(this.lg == undefined || this.lg==='de' || this.lg === 'en' && this.question.optionsEn === undefined || this.lg === 'fr' && this.question.optionsFr === undefined){
-        return this.question.options;
+      if(this.lg == undefined || this.lg==='de' || this.lg === 'en' && this.question2.optionsEn == undefined || this.lg === 'fr' && this.question2.optionsFr == undefined){
+        console.log("this.question2.options is returned!");
+        return this.question2.options;
       }
       else if(this.lg === 'en'){
-        return this.question.optionsEn;
+        return this.question2.optionsEn;
       }
       else if(this.lg === 'fr'){
-        return this.question.optionsFr;
+        return this.question2.optionsFr;
       }
     },
     validate(){
       console.log("The validate button was clicked!");
-      if(this.question.correctlyAnswered != undefined ) return;
+      if(this.question2.correctlyAnswered != undefined ) return;
       
-      this.question.correctlyAnswered = true;
+      this.question2.correctlyAnswered = true;
 
       this.getOptionsForLg().forEach( (option) => {
         if(option.checked == undefined ){
@@ -84,7 +86,7 @@ export default {
           console.log( "checked: " + option.checked + " correct: " + option.correct );
           if(option.checked != option.correct ){
             console.log("It thought that option.checked wasn't option.correct!");
-            this.question.correctlyAnswered = false;
+            this.question2.correctlyAnswered = false;
           }
       });
 
@@ -94,14 +96,17 @@ export default {
       console.log("The show solution button was clicked!");
      
       this.getOptionsForLg().forEach( option => { option.checked = option.correct; });
-      this.validated = true;
+      if(this.question2.correctlyAnswered == undefined){
+        this.question2.correctlyAnswered = false;
+      }
     }
   },
   mounted() {
     console.log('Vue Question Component mounted');
+    this.question2 = this.question;
 
-    if(!this.question){
-      this.question = 
+    if(!this.question2){
+      this.question2 = 
       {
 		question: "Das ist eine Test-Frage aus vue-question.vue?",
 		imageUrl: "assets/img/rawfood/brokolisalat.JPG",
@@ -114,7 +119,8 @@ export default {
 	    };
     }
 
-    this.question.options.forEach( option => { option.checked = false; });
+    this.question2.options.forEach( option => { option.checked = false; });
+    
   }
 };
 </script>

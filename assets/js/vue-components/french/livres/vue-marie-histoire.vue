@@ -54,7 +54,7 @@ courage, orgueil, générosité, vanité, sérénité, patience, médiocrité, v
 		question: 'Quelle phrase est correcte?',
 		type: 'multiple choice',
 		options: [{option:'Il pensait n\'avoir pas le temps de manger avant de partir.', correct: false },
-     {option:'Il pensait ne pas avoir le temps de manger avant de partir.', correct: false }
+     {option:'Il pensait ne pas avoir le temps de manger avant de partir.', correct: true }
      ]
 	    }" :hasNextButton="false" /></VueExercise>
 
