@@ -4,7 +4,7 @@
 <h1 class=".text-danger">Courir et conduire à tous les temps et modes</h1>
 
 <p>
-Cherche les mot conduire et courir dans un dictionnaire, par exemple celui de <a style="text-transform: none" href="https://www.larousse.fr/dictionnaires/francais/courir">Larousse</a> .
+Cherche les mots conduire et courir dans un dictionnaire, par exemple celui de <a style="text-transform: none" href="https://www.larousse.fr/dictionnaires/francais/courir">Larousse</a>.
 Puis fais le test!
 </p>
    
@@ -51,7 +51,7 @@ export default {
        "Ce weekend, notre équipe de football {coura} 20 kilomètres pour nous entraîner pour le semi-marathon de Berlin.",
 "En {conduisant} ses enfants à l\'école, la mère a l\'occasion de leur parler et d\'apprendre quelque chose sur leur vie.",
 "Il faut que tu {coures} s\'il ne te reste que peu de temps pour atteindre un rendez-vous.",
-"Le prof {a conduit} ses élèves dans la nature et leur a enseigné les noms des fleurs les plus courants.",
+"Le prof {a conduit} ses élèves dans la nature et leur a enseigné le nom des fleurs les plus courants.",
 "C\'est le sentier le plus court qui vous {conduise} au sommet de la montagne.",
 "Si les fausses indications sur les panneaux ne m\'avaient pas {conduit} dans cette forêt sombre, je serais déjà rentré et aurais pris un bain chaud.",
 "Ses mains {couraient} vite sur le clavier de mon ordinateur et, en que peu de temps, il avait réparé mon ordinateur.",
