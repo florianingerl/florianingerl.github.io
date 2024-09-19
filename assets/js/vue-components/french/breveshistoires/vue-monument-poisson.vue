@@ -7,7 +7,7 @@
 
 <VueImage imageUrl="assets/img/francais/poisson.png">
 <p>
-Un jour, moi et ma classe, le 5b, devaient inventer chacun une histoire dont la prof leur avaient donnée le titre: "Le monument dans ta ville!"
+Un jour, Antoine et sa classe devaient inventer une histoire dont la prof avaient donnée le titre: "Le monument dans ta ville!"
 Difficle de tirer une histoire sur ce thème du néant. Mais Antoine amait bien écrire créativement et commença:
 </p>
 </VueImage>
@@ -20,9 +20,9 @@ un monument. Au moins s'il parviendrait à attraper un poisson encore plus grand
 </p>
 
 <VueExercise lg="fr" instruction="Choisis le bon sens dans laquelle le mot encore apparait dans la phrase!">
-<VueMCGaps lg="fr" :gaptext="['Tu es encore en retard.{répétition}',
-'Mentir et s\'en réjouir et encore pire que simplement mentir.{degré plus grand}',
-'Elle n\'a pas encore fait ses devoirs.{Opposition à déjà}']" :same="true" >
+<VueMCGaps lg="fr" :gaptext="['Tu es encore en retard.{répétition|}',
+'Mentir et s\'en réjouir et encore pire que simplement mentir.{degré plus grand|}',
+'Elle n\'a pas encore fait ses devoirs.{Opposition à déjà|}']" :same="true" >
 
 </VueMCGaps>
 </VueExercise>
@@ -39,7 +39,7 @@ de son canne à pêche au but de laquelle il avait attaché un appât aussi loin
 </VueExercise>
 
 Mais pourquoi tremblait-il ? Pas de raison d'avoir peur puisqu'il n'y avait pas de requins dans le lac. Afin de se
-calmer, il chassa la pensée des requins de son ésprit et commença à attendre patienement jusqu'à ce que un poisson tire au fil.
+calmer, il chassa la pensée des requins de son ésprit et commença à attendre patiemment jusqu'à ce que un poisson tire au fil.
 Un quart d'heure, une demi heure, une heure.... Puis deux heures s'écoulèrent sans que rien ne se produisit.
 
 <VueExercise lg="fr" instruction="Trouve la bonne préposition!" :same="true" >
@@ -74,7 +74,7 @@ voulait son monument à coté de celui de l'ancien maître.
 <VueExercise lg="fr" instruction="Remplis les trous par celui, celle, ceux ou celles!">
 <VueMCGaps lg="fr" gaptext="Il ne trouve pas sa propre canne à pêche. Il prend donc {celle} de son père. 
 Et il ne peut non plus trouver ces appâts. Il prend alors {ceux} de son père. Et où sont ses lunettes? {Celles} qu'il
-utilise toujours pour la pêche. Il demande à son père s'il les a vues quelque part mais {celui}-ci n\'a pas envie de lui aider.">
+utilise toujours pour la pêche. Il demande à son père s'il les a vues quelque part mais {celui}-ci n'a pas envie de lui aider.">
 
 </VueMCGaps>
 
