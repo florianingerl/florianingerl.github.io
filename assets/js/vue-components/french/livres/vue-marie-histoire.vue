@@ -98,7 +98,7 @@ Le paquet était léger. Si Fred avait eu le temps d'ouvrir le paquet, inspecter
 
 <script>
 import VueGaps from "./../../vue-gaps.vue";
-import VueMcGaps from "./../../vue-mc-gaps.vue";
+import VueMCGaps from "./../../vue-mc-gaps.vue";
 import VueQuestion from "./../../vue-question.vue";
 import VueExercise from "./../../vue-exercise.vue";
 import VueWholeSentence from "./../../vue-whole-sentence.vue";
@@ -111,7 +111,8 @@ export default {
      VueQuestion,
      VueExercise,
      VueWholeSentence,
-     VueHideShow
+     VueHideShow,
+     VueMCGaps
   },
 
   mounted(){
