@@ -176,6 +176,78 @@ That was the usual thing with Sally! Her ideas and plans changed so quickly that
 </VueMCGaps>
 </VueExercise>
 
+So, as already mentioned, let's move now to Fred, the director of the toy company. His wife was also a very ambitious business women, and none of the two had a lot of time to care for their son Alexander.
+His wife, Miranda had this habit of staying in her office until midnight to work, especially when her company faced challenges. This was one of the many drawbacks of having successful parents as a young boy. Although they had a lot of money, but not a lot of time together.
+Alexander struggled for a tiny bit of attention from his parents. Up until now, he hadn't got their attention, let alone their love.
+That's why he was really unenthusiastic when one evening his dad came home and shared the news with him:
+
+"I took on a big new project at work, son! We will create a house on top of the hill next to the city for the children of our town! It will be a place where they can come and play. Isn't it wonderful?"
+What Alexander didn't need, was of course another toy or something similiar. His room was already packed with all these made-in-China cheap products of his dad's company. And what he also didn't need, was to be once again the test person for another stupid toy or a stupid toy house. That's why, not even letting his father finishing his speak, he started rebeling against him: "No, I will not take part in your business stuff once again! I want to write a book. And not lose my time with your stupid toys! "
+His father of course had difficulty accepting his answer but at least, he left him alone after his rejection. However, when his fashion designer mother came home, unfortunately she also had some news:
+
+"My dear son, I'm launching a new sport clothes line for young boys and I need you to model for me!" said his mother.
+
+"No! Leave me alone! I just want to be free and self-independent!" replied Alexander.
+
+<VueExercise lg="en" instruction="Form correct conditional sentences of type 3">
+<VueMCGaps lg="en" :gaptext="['If his mother {had not told} (not tell) him these news, Alexander {would have asked} (ask) her to read a book with him.',
+
+'If Alexander {hadn\'t interrupted} (not interrupt) his father, his father {would have suggested} (suggest) something stupid to him.',
+
+'If Miranda {had not married} (not marry) her husband, they {wouldn\'t have gotten} (get) Alexander.',
+'If Alexander\'s tutor {hadn\'t looked over} (not look over) Alexander\'s essay, it {would have contained} (contain) a lot of errors.',
+
+'If Alexander {had understood} (understand) the point of a new toy house, he {would have accepted} (accept) to help his father.',
+
+'If Miranda {had tried} (try) to convince her son more strongly, Alexander {would have given in} (give in) to her mother.']">
+
+</VueMCGaps>
+</VueExercise>
+
+
+
+"Yesterday, I finished writing another short story. I have now written 20 short stories altogether. Why don't you two help me to find a publisher for my stories? " Alexander asked his parents.
+"But you're only 13 years old, you are too young to publish anything" objected his father.
+
+"Yes, plus if your stories are not the best, our family will be laughed at by everyone! I don't want people to think we're clowns" added his mother.
+<VueExercise lg="en" instruction="Form one sentence out of the two like in the example using enough or too!">
+<p>Example 1:</p>
+<p>David doesn't call his girlfriend. He is tired.</p>
+<p>David is too tired to call his girlfriend.</p>
+
+<p>Example 2:</p>
+<p>The Trainors don't buy a house. They haven't got money.</p>
+<p>The Trainors haven't got enough money to buy a house</p>
+
+
+<ol>
+<li>Your stories aren't good. They can't cheer children up.</li>
+<li>Your stories are long. They can't entertain children.</li>
+<li>Your stories aren't funny. They dont't make children laugh.</li>
+<li>The women is daft. She doesn't understand the Maths problem.</li>
+<li>Fred is stubborn. He doesn't accept help from his colleagues.</li>
+<li>June wasn't prissy. She didn't care about her clothes.</li>
+</ol>
+
+<VueHideShow lg = "en">
+<ol>
+<li>Your stories aren't good enough to cheer children up.</li>
+
+<li>Your stories are too long to entertain children.</li>
+
+<li>Your stories are not funny enough to make children laugh.</li>
+<li>The woman was too daft to understand the Maths problem.</li>
+
+<li>Fred was too stubborn to accept help from his colleagues.</li>
+<li>June wasn't prissy enough to care about her clothes.
+</ol>
+</VueHideShow>
+</VueExercise>
+
+
+"Why don't we go out to a nice restaurant all together and discuss what it still needs so that my stories can be published? " suggested Alexander to his parents.
+"You were defiant with both of us this evening, Alexander, so why do you think we would say yes to this request and spend money on a nice dinner in a restaurant when you don't help us?" asked his father.
+
 
 
 </div>
