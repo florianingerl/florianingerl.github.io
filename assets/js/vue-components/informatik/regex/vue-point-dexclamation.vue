@@ -10,7 +10,7 @@ In the following exercise, do a Find-And-Replace operation such that there is ex
 </p>
 
 <RegexExercise :exercise="{ instruction: 'Ensure that there is exactly one space before and after the exclamation mark!', 
- editor: 'Comment t\'appelles-tu?Alfred. D\'où viens-tu   ?       De Nice. Que veux-tu manger ?Du brokoli.', find: '(\\s*)\\?(\\s*)', replaceby: ' ? ' }" ></RegexExercise>
+ editor: 'Hors de ma vue   !Je ne peux plus te supporter. Quelle suprise que tu es là!Je suis enchanté. Quel dommage que tu n\'étais pas là!  La fête était très bonne.', find: '(\\s*)\\!(\\s*)', replaceby: ' ! ' }" ></RegexExercise>
 
 </div>
 </template>
