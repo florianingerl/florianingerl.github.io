@@ -146,6 +146,9 @@ console.log("Logging VueFrancais");
 const VueDeutsch = Vue.defineAsyncComponent(() =>
   loadModule('assets/js/vue-components/deutsch/vue-deutsch.vue', options));
 
+const VueRegexPointDExclamation = Vue.defineAsyncComponent(() =>
+  loadModule('assets/js/vue-components/informatik/regex/vue-point-dexclamation.vue', options));
+
 const VueKatzeMagFisch =  Vue.defineAsyncComponent(() =>
   loadModule('assets/js/vue-components/deutsch/kurzgeschichten/vue-katze-vanessa.vue', options));
 
@@ -434,6 +437,18 @@ const routes = [
         name: 'Regular expressions',
         path: 'regex',
         component : VueRegexExercises
+      },
+      {
+        name: "Regex exercises",
+        path: 'regexexercises',
+        children : [
+          {
+            name: 'Exclamation mark in French',
+            path: 'pointdexclamationfr',
+            component: VueRegexPointDExclamation
+          }
+        ]
+        
       }
     ],
   }
