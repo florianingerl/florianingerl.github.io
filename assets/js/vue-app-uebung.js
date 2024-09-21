@@ -143,6 +143,15 @@ const VueFrancais = Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/french/vue-francais.vue', options));
 console.log("Logging VueFrancais");
 
+const VueDeutsch = Vue.defineAsyncComponent(() =>
+  loadModule('assets/js/vue-components/deutsch/vue-deutsch.vue', options));
+
+const VueKatzeMagFisch =  Vue.defineAsyncComponent(() =>
+  loadModule('assets/js/vue-components/deutsch/kurzgeschichten/vue-katze-vanessa.vue', options));
+
+const VueKatzeVanessa = Vue.defineAsyncComponent(() =>
+  loadModule('assets/js/vue-components/deutsch/kurzgeschichten/vue-katze-vanessa.vue', options));
+
 console.log(VueFrancais);
 
 const VueEnglish = Vue.defineAsyncComponent(() =>
@@ -211,6 +220,30 @@ const routes = [
   ]
   }]
     
+  },
+  {
+    name: 'Deutsch',
+    path: '/de/:language',
+    component: VueDict,
+    children: [
+      {
+        name: "NavDeutsch",
+        path: '',
+        component: VueDeutsch
+      },
+      {
+        name: "Kurzgeschichten",
+        path: 'kurzgeschichten',
+        children: [
+          {
+            name: 'Eine Katze, die Fisch mag',
+            path: 'katzemagfisch',
+            component: VueKatzeMagFisch
+          }
+        ]
+
+      }
+    ]
   },
   {
     name: 'Français',
