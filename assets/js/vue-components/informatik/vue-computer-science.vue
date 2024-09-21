@@ -9,6 +9,12 @@
       </tr>
     </thead>
     <tbody>
+
+    <tr>
+        <td>1</td>
+        <td><router-link to="/informatik/regexexercises/pointdexclamationfr">Exclamation mark in the French language</router-link></td>
+        <td>Flori10</td>
+      </tr>
     <tr>
         <td>1</td>
         <td><router-link to="/informatik/regex">Regular expressions</router-link></td>
