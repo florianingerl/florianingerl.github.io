@@ -52,9 +52,29 @@ Jedoch ist natürlich eine Aktentasche nicht geeignet, um einen kleinen Fisch da
 
 Melli schob die Aktentasche mit ihrem Näschen zum Fischer und sagte ihm so, er solle die kleine Makrele darin verstauen. "Das geht doch nicht!", rief er lachend und setzte nach mit, "Deinem Herrchen würde das sicher nicht gefallen, wenn seine Aktentasche nach Fisch riechen würde!"
 
+<!--
 <VueExercise lg="de" instruction="Bilde Konditionalsätze wie in den Beispielen!">
 
+<p>Beispiel 1:</p>
+<p>Katze, sehen, Maus, essen (Konditionalsatz der Vergangenheit)</p>
+<p>Wenn die Katze eine Maus gesehen hätte, hätte sie die Maus gegessen.</p>
+
+<ol>
+<li>Katze, Geld, haben, Fisch, bezahlen (Konditionalsatz der Vergangenheit)</li>
+<li>Katze, Hunger, Fisch, wollen (Konditionalsatz der Vergangenheit)</li>
+<li>Katze, angeln, können, Fische fangen (Konditionalsatz mit irrealer Bedingung) </li>
+</ol>
+
+<VueHideShow lg="de">
+<ol>
+<li>Wenn die Katze Geld gehabt hätte, hätte sie den Fisch bezahlt.</li>
+<li>Wenn die Katze keinen Hunger gehabt hätte, hätte sie keinen Fisch gewollt.</li>
+<li>Wenn die Katze angeln könnte, würde sie sich selbst Fische fangen.</li>
+</ol>
+</VueHideShow>
 </VueExercise>
+-->
+
 Bei Fisch in einer Aktentasche war der Handel gestoppt wie bei einer roten Ampel. Beide überlegten, wie die Ampel wieder grün schalten könnte und die Katze machte zuerst einen Vorschlag:
 Die Katze, die ihren kleinen Fisch unter keinen Umständen verlieren wollte, öffnete plötzlich ihr Maul und gab dem sich anbahnenden Gähnen nach.
 "Na also, da haben wir ja schon eine Lösung.", kam es nun vom Fischer, welcher den Fisch der Katze flugs ins Maul steckte.

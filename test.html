@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <title>
+            Stupid test
+        </title>
+        <script>
+            function adjustWidth(event){
+                console.log("The adjustWidth function was called!")
+            }
+
+        </script>
+    </head>
+    <body>
+
+<p>This is a text input:</p>
+<p> <input onload="adjustWidth" type="text" value="Amen"> </p>
+<p> <input onload="console.log('Event was called!')" type="text" value="Amen"> </p>
+<p> <input onload="console.log('Does semicolon help?');" type="text" value="Amen"> </p>
+
+    </body>
+</html>
