@@ -63,6 +63,9 @@ export default {
                          { name: "Oxford Learner's dictionary English - English", url: "https://www.oxfordlearnersdictionaries.com/definition/english/"},
                          { name: "The free dictionary English - English", url: "https://en.thefreedictionary.com/" }];
    }
+   else if( this.$route.params.language === 'deutsch' ){
+     this.dictionaries = [ { name: "The free dictionary Deutsch - Deutsch", url: "https://de.thefreedictionary.com/" } ];
+   }
 
    this.selectedDict = this.dictionaries[0].name;
 
