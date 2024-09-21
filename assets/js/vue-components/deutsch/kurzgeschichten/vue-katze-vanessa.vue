@@ -2,15 +2,16 @@
 <div>
 
 <h1>Eine Katze, die Fisch mag</h1>
-<h4><i>par Florian Ingerl und Vanessa Feiller</i></h4>
+<h4><i>von Florian Ingerl und Vanessa Feiller</i></h4>
 
+<img style="float: right; height: 200px" src="assets/img/deutsch/katze.JPG"></img>
 Natürlich verstaut eine Katze ihre Sachen nicht in einer Aktentasche,
 obwohl sich in der Tasche genug Platz finden würde, für alles was eine Katze so zum Leben braucht.
 Vielleicht bewachte die Katze die Aktentasche nur für ihr Herrchen, aber eigentlich wäre das die Aufgabe eines Wachhundes.
 "Ob ich dem Fischer einen Fisch abluchsen könnte? Ich gebe ihm mein bestes und herzzerreißendes Miauen, dann klappt es bestimmt.", sinnierte die Katze.
 Angekommen neben des Fischers Standes auf dem Marktplatz, fing die Katze, die übrigens 
 Melli hieß, ganz süß zu miauen an. Dabei schielte sie zu den Fischen, um ihren Wunsch einer Fischmahlzeit damit auszudrücken.
-<VueExercise lg="de" instruction="Bilde Sätze mit um...zu+Infinitiv, ohne...zu+Instatt oder anstatt...zu+Infinitiv wie in den Beispielen!">
+<VueExercise lg="de" instruction="Bilde Sätze mit um...zu+Infinitiv, ohne...zu+Infinitiv oder anstatt...zu+Infinitiv wie in den Beispielen!">
 <p>Beispiel 1:</p>
 <p>Er, Hunger, stillen, etwas, essen</p>
 <p>Er isst etwas, um seinen Hunger zu stillen.</p>
@@ -52,7 +53,6 @@ Jedoch ist natürlich eine Aktentasche nicht geeignet, um einen kleinen Fisch da
 
 Melli schob die Aktentasche mit ihrem Näschen zum Fischer und sagte ihm so, er solle die kleine Makrele darin verstauen. "Das geht doch nicht!", rief er lachend und setzte nach mit, "Deinem Herrchen würde das sicher nicht gefallen, wenn seine Aktentasche nach Fisch riechen würde!"
 
-<!--
 <VueExercise lg="de" instruction="Bilde Konditionalsätze wie in den Beispielen!">
 
 <p>Beispiel 1:</p>
@@ -61,7 +61,7 @@ Melli schob die Aktentasche mit ihrem Näschen zum Fischer und sagte ihm so, er 
 
 <ol>
 <li>Katze, Geld, haben, Fisch, bezahlen (Konditionalsatz der Vergangenheit)</li>
-<li>Katze, Hunger, Fisch, wollen (Konditionalsatz der Vergangenheit)</li>
+<li>Katze, keinen Hunger, kein Fisch, wollen (Konditionalsatz der Vergangenheit)</li>
 <li>Katze, angeln, können, Fische fangen (Konditionalsatz mit irrealer Bedingung) </li>
 </ol>
 
@@ -73,28 +73,53 @@ Melli schob die Aktentasche mit ihrem Näschen zum Fischer und sagte ihm so, er 
 </ol>
 </VueHideShow>
 </VueExercise>
--->
 
-Bei Fisch in einer Aktentasche war der Handel gestoppt wie bei einer roten Ampel. Beide überlegten, wie die Ampel wieder grün schalten könnte und die Katze machte zuerst einen Vorschlag:
+
+Bei Fisch in einer Aktentasche war der Handel gestoppt wie bei einer roten Ampel. Beide überlegten, wie die Ampel wieder grün schalten könnten und die Katze machte zuerst einen Vorschlag:
 Die Katze, die ihren kleinen Fisch unter keinen Umständen verlieren wollte, öffnete plötzlich ihr Maul und gab dem sich anbahnenden Gähnen nach.
 "Na also, da haben wir ja schon eine Lösung.", kam es nun vom Fischer, welcher den Fisch der Katze flugs ins Maul steckte.
 Ungünstigerweise wurde die Katze Melli beim Transport des Fisches in ihrem Maul von einer Gruppe von streunenden Katzen beobachtet. Diese streunenden Katzen waren sehr ungebildet und hingen den ganzen Tag lang nur faul herum und fragten sich jetzt, wo Melli den leckeren Fisch herhatte.
 
-"Wenn ich dir einen kleinen Fisch gebe, begann der Fischer, dann möchte ich, dass du ihn woanders verspeist und nicht noch mehr hungrige Mäuler anziehst!" Melli bestätigte die Aussage mit einem Miauen und einem freudigen Wedeln ihres Schwanzes.
-Jedoch ist natürlich eine Aktentasche nicht geeignet, um einen kleinen Fisch darin zu transportieren, sondern in einer Aktentasche transportiert man Akten.
-Melli schob die Aktentasche mit ihrem Näschen zum Fischer und sagte ihm so, er solle die kleine Makrele darin verstauen. "Das geht doch nicht!", rief er lachend und setzte nach mit, "Deinem Herrchen würde das sicher nicht gefallen, wenn seine Aktentasche nach Fisch riechen würde!"
-Bei Fisch in einer Aktentasche war der Handel gestoppt wie bei einer roten Ampel. Beide überlegten, wie die Ampel wieder grün schalten könnte und die Katze machte zuerst einen Vorschlag:
-Die Katze, die ihren kleinen Fisch unter keinen Umständen verlieren wollte, öffnete plötzlich ihr Maul und gab dem sich anbahnenden Gähnen nach.
-"Na also, da haben wir ja schon eine Lösung.", kam es nun vom Fischer, welcher den Fisch der Katze flugs ins Maul steckte.
-Ungünstigerweise wurde die Katze Melli beim Transport des Fisches in ihrem Maul von einer Gruppe von streunenden Katzen beobachtet. Diese streunenden Katzen waren sehr ungebildet und hingen den ganzen Tag lang nur faul herum und fragten sich jetzt, wo Melli den leckeren Fisch herhatte.
+<VueExercise lg="de" instruction="Finde das Gegenteil">
+<VueMCGaps lg="de" :gaptext="['öffnen -> {schließen}', 'stoppen -> {starten}', 'klein -> {groß}', 'verlieren -> {gewinnen}', 'faul -> {fleißig}']">
+
+</VueMCGaps>
+
+</VueExercise>
+
 Als Melli darauf nicht wirklich antworten wollte, um dem Fischer keine Probleme zu bereiten, richtete sich die Meute von Katzen gegen sie. Diese nun fauchenden Ungetüme versuchten der armen Melli den Weg zu versperren und sie in eine Ecke der Gasse zu drängen.
 Wie schade! Hätte Melli jetzt das Nudelholz ihrer Großmutter zur Hand, so hätte sie sich damit gut zur Wehr setzten können. Ihre Großmutter hatte öfter Nudeln mit Fisch gekocht.
 In dem kurzen Moment jedoch, wo Melli in alten Erinnerungen schwelgte, war sie den Fisch losgeworden.
-Die Katze deren Magen knurrte, wollte sich jedoch noch nicht geschlagen geben. Irgendwo musste es doch etwas, für sie zum Fressen geben.
-Osterhase
+Die Katze, deren Magen knurrte, wollte sich jedoch noch nicht geschlagen geben. Irgendwo musste es doch etwas, für sie zum Fressen geben.
+
+<VueExercise lg="de" instruction="Mache einen Satz aus den zwei Sätzen indem du einen Relativsätz mit Genitiv wie im Beispiel benutzt!">
+<p>Beispiel 1:</p>
+<p>Die Katze lief davon und bezahlte nicht. In ihrem Maul war der Fisch.</p>
+<p>Die Katze, in derem Maul der Fisch war, lief davon und bezahlte nicht.
+
+<ol>
+<li>Das Fell der Katze war dreckig. Die Katze ging unter die Dusche.</li>
+<li>Die Zähne der Katze waren scharf. Die Katze zerriss die Aktentasche aus Versehen.</li>
+<li>Die Stimme des Fischers war sehr kräftig. Der Fischer machte lautstark Werbung für seine Fische.</li>
+</ol>
+
+<VueHideShow lg="de">
+<li>Die Katze, deren Fell dreckig war, ging unter die Dusche.</li>
+<li>Die Katze, deren Zähne scharf waren, zerriss die Aktentasche aus Versehen.</li>
+<li>Der Fischer, dessen Stimme sehr kräftig war, machte lautstark Werbung für seine Fische.</li>
+</VueHideShow>
+</VueExercise>
+
 Keinen Blick in die Schaufenster verschwendend und von ihrem knurrenden Magen getrieben, lief die Katze zurück zum Fischer, wo sie wieder zum Miauen begann.
 Der Fischer war diesmal jedoch nicht allein. An seinem Verkaufsstand, war ein Kunde verkleidet als Osterhase, der seine Bestellungen abholte. Ob der Mann im Kostüm heute Waschtag und deswegen nichts anderes zum Anziehen hatte? Den seltsamen Mann ignorierend maunzte sie sich die Seele aus dem Leib.
 Der Fischer war jetzt völlig verwirrt. Hier der Lärm der miauenden Katze, die doch eben gerade einen Fisch bekommen hatte und jetzt wieder da war, und dort dieser Mann im Osterhasenköstum, obwohl gar kein Ostern war.
+
+<VueExercise lg="de" instruction="Fülle die Lücken mit dem gegebenen Verb im Präteritum aus!">
+<VueMCGaps lg="de" :gaptext="['Die Katze {lief} (laufen) nach Hause.', 'Der Fischer {rief} (rufen) nach der Polizei', 'Die streunenden Katzen {gingen} (gehen) leer aus.', 'Die Katze {hatte} (haben) Hunger.']">
+
+</VueMCGaps>
+</VueExercise>
+
 "Hier ihr bestellter Fisch Hr. Kimmer und ich hoffe sie sind wie immer zufrieden!"
 "Natürlich, ihr Fisch ist schließlich der beste in der Gegend!"
 Beide wünschten sich noch einen schönen Tag und beendeten ihr Gespräch im Eiltempo.
@@ -104,8 +129,6 @@ ein Ende zu bereiten.
 
 
 THE END
-Natürlich verstaut eine Katze ihre.txt
-Displaying Natürlich verstaut eine Katze ihre.txt.
 
 </div>
 
