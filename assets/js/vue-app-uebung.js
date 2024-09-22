@@ -78,6 +78,9 @@ const VueConduireOuCourir = Vue.defineAsyncComponent(() =>
 const VueRegexExercises =  Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/informatik/vue-regex-exercises.vue', options));
 
+const VueMithelfen =  Vue.defineAsyncComponent(() =>
+  loadModule('assets/js/vue-components/vue-mithelfen.vue', options));
+
 const VuePronomEn = Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/french/grammaire/vue-pronom-en.vue', options));
 
@@ -139,6 +142,9 @@ loadModule('assets/js/vue-components/english/grammar/vue-even.vue', options));
 const VueEnoughToo = Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/english/grammar/vue-too-enough.vue', options));
 
+const VueParentheses = Vue.defineAsyncComponent(() =>
+  loadModule('assets/js/vue-components/informatik/regex/vue-parentheses.vue', options));
+
 const VueFrancais = Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/french/vue-francais.vue', options));
 console.log("Logging VueFrancais");
@@ -148,6 +154,9 @@ const VueDeutsch = Vue.defineAsyncComponent(() =>
 
 const VueRegexPointDExclamation = Vue.defineAsyncComponent(() =>
   loadModule('assets/js/vue-components/informatik/regex/vue-point-dexclamation.vue', options));
+
+const VueGuillemetsFrancais = Vue.defineAsyncComponent(() =>
+  loadModule('assets/js/vue-components/informatik/regex/vue-guillements.vue', options));
 
 const VueKatzeMagFisch =  Vue.defineAsyncComponent(() =>
   loadModule('assets/js/vue-components/deutsch/kurzgeschichten/vue-katze-vanessa.vue', options));
@@ -174,6 +183,11 @@ loadModule('assets/js/vue-components/vue-sign-up.vue', options));
 // Each route should map to a component.
 // We'll talk about nested routes later.
 const routes = [
+  {
+    name: 'Mithelfen',
+    path: '/mithelfen',
+    component: VueMithelfen
+  },
   {
     name: 'English',
     path: '/en/:language',
@@ -446,6 +460,16 @@ const routes = [
             name: 'Exclamation mark in French',
             path: 'pointdexclamationfr',
             component: VueRegexPointDExclamation
+          },
+          {
+            name: 'Guillemets en francais',
+            path: 'guillemetsfrancais',
+            component: VueGuillemetsFrancais
+          },
+          {
+            name: 'Parentheses en francais',
+            path: 'parenthesesfrancais',
+            component: VueParentheses
           }
         ]
         

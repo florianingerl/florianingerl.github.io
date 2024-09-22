@@ -5,6 +5,8 @@
    <router-link :class="{active : $route.fullPath.includes('/english') }" to="/en/english">English</router-link>
    <router-link :class="{active : $route.fullPath.includes('/deutsch') }" to="/de/deutsch">Deutsch</router-link>
    <router-link :class="{active : $route.fullPath.includes('/informatik') }" to="/informatik">Computer science</router-link>
+
+   <router-link :class="{active : $route.fullPath.includes('/mithelfen') }" to="/mithelfen">Mithelfen</router-link>
   <a href="javascript:void(0);" class="icon" @click="myFunction">
     <i class="fa fa-bars"></i>
   </a>
