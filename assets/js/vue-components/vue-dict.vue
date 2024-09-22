@@ -64,7 +64,10 @@ export default {
                          { name: "The free dictionary English - English", url: "https://en.thefreedictionary.com/" }];
    }
    else if( this.$route.params.language === 'deutsch' ){
-     this.dictionaries = [ { name: "The free dictionary Deutsch - Deutsch", url: "https://de.thefreedictionary.com/" } ];
+     this.dictionaries = [ { name: "The free dictionary Deutsch - Deutsch", url: "https://de.thefreedictionary.com/" },
+                         { name: "Word Reference Deutsch - Englisch", url: "https://www.wordreference.com/deen/" },
+                         { name: "Word Reference Deutsch - Französisch", url: "https://www.wordreference.com/defr/" },
+                         { name: "Word Reference Deutsch - Spanisch", url: "https://www.wordreference.com/dees/" } ];
    }
 
    this.selectedDict = this.dictionaries[0].name;
