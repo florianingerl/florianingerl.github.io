@@ -155,6 +155,9 @@ const VueDeutsch = Vue.defineAsyncComponent(() =>
 const VueRegexPointDExclamation = Vue.defineAsyncComponent(() =>
   loadModule('assets/js/vue-components/informatik/regex/vue-point-dexclamation.vue', options));
 
+const VueLabelSetTextTextAreaAppend = Vue.defineAsyncComponent(() =>
+  loadModule('assets/js/vue-components/informatik/regex/vue-labelsettext-textareaappend.vue', options));
+
 const VueGuillemetsFrancais = Vue.defineAsyncComponent(() =>
   loadModule('assets/js/vue-components/informatik/regex/vue-guillements.vue', options));
 
@@ -456,6 +459,11 @@ const routes = [
         name: "Regex exercises",
         path: 'regexexercises',
         children : [
+          {
+            name: 'Appending text to text area instead of setting text of label',
+            path: 'labelsettexttextareaappend',
+            component: VueLabelSetTextTextAreaAppend
+          },
           {
             name: 'Exclamation mark in French',
             path: 'pointdexclamationfr',
