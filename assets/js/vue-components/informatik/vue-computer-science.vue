@@ -10,6 +10,12 @@
     </thead>
     <tbody>
 
+
+ <tr>
+        <td>4</td>
+        <td><router-link to="/informatik/regexexercises/labelsettexttextareaappend">Appending text to a text area instead of setting text of a label</router-link></td>
+        <td>Flori10</td>
+      </tr>
      <tr>
         <td>4</td>
         <td><router-link to="/informatik/regexexercises/parenthesesfrancais">Brackets in the French language</router-link></td>
