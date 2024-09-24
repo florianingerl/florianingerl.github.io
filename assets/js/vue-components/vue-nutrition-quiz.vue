@@ -74,12 +74,12 @@ export default {
 		correct: 0
 	},
 	{
-		question: "Welche Zutat gehört nicht in einen Frischkornbrei?",
+		question: "Welche Zutaten gehören in einen Frischkornbrei?",
 		questionFr: "Quel ingrédient n'a pas sa place dans une bouillie de céréales fraîches?",
 		questionEn: "Which ingredient doesn't belong to a fresh grain porridge?",
 		type: "multiple choice",
 		imageUrl: "assets/img/rawfood/frischkornbrei.jpg",
-		options: [{ option : "Roggen", correct: false }, { option : "Haselnüsse", correct: false }, { option : "Apfel", correct: false }, { option : "Marmelade", correct: true }, { option : "Leinsamen", correct: false }],
+		options: [{ option : "außer Sprossen aus Pseudogetreide wie Hirse, Buchweizen, Amaranth und Quinoa gehört da nichts rein.", correct: true }, { option : "Kuhmilch, Marmelade, Nüsse, Obst und viel Zucker! Das schmeckt so gut! Hast du das schon mal probiert?", correct: false } ],
 		optionsFr: ["seigle","noisette", "pomme", "confiture","graine de line"],
 		optionsFr:  [{ option : "seigle", correct: false }, { option : "noisette", correct: false }, { option : "pomme", correct: false }, { option : "confiture", correct: true }, { option : "graine de lin", correct: false }],
 		optionsEn:  [{ option : "rye", correct: false }, { option : "hazelnuts", correct: false }, { option : "apple", correct: false }, { option : "marmelade", correct: true }, { option : "linseeds", correct: false }],
@@ -92,7 +92,7 @@ export default {
 		questionEn: "Why does a raw fooder add hempsprouts to his fresh grain porridge?",
 		imageUrl: "assets/img/rawfood/hanfsprossen.jpg",
 		type: "multiple choice",
-		options: [{ option : "wegen der berauschenden Wirkung", correct: false }, {option: "Wegen dem optimalen Fettsäurespektrum mit vielen Omega-3-Fettsäuren von Hanf und dem würzigen Geschmack", correct: true } ],
+		options: [{ option : "wegen der berauschenden Wirkung", correct: false }, {option: "Wegen dem optimalen Fettsäurespektrum mit vielen Omega-3-Fettsäuren und dem würzigen Geschmack", correct: true } ],
 		optionsEn: [{ option : "because of the intoxicating effect", correct: false }, { option : "because of the fat and the spicey taste", correct: true }],
 		optionsFr: [{ option : "à cause de l'effet intoxicant", correct: false }, { option : "à cause du gras et du goût épicé", correct: true }],
 		correct: 1
@@ -178,12 +178,12 @@ export default {
 	},
 
 	{
-		question: "Welche Zutat gehört nicht in einen Frischkornbrei?",
+		question: "Welche Zutaten gehören in einen Frischkornbrei?",
 		questionEn: "Which ingredient does not belong in a fresh grain porridge?",
 		questionFr: "Quel ingrédient n'a pas sa place dans une bouillie de céréales fraîches?",
 		imageUrl: "assets/img/rawfood/frischkornbrei.jpg",
 		type: "multiple choice",
-		options: [{ option : "Wasser", correct: false }, { option : "Dinkel", correct: false }, { option : "Kuhmilch", correct: true }, { option : "Sonnenblumenkerne", correct: false }, { option : "Himbeeren", correct: false }],
+		options: [{ option : "Kuhmilch, Haferflocken, Butter, Sahne, Obst und Nüsse als Konglomerat", correct: false }, { option : "Außer Sprossen aus Pseudogetreide wie Hirse, Buchweizen, Amaranth und Quinoa gehört da nichts rein. Eine leicht verdauliche Monomahlzeit also!", correct: true }],
 		optionsEn: [{ option : "water", correct: false }, { option : "spelt", correct: false }, { option : "milk", correct: true }, { option : "sunflower seeds", correct: false }, { option : "rasperries", correct: false }],
 		optionsFr: [{ option : "de l'eau", correct: false }, { option : "de l'épeautre", correct: false }, { option : "du lait", correct: true }, { option : "des graines de tournesol", correct: false }, { option : "des framboises", correct: false }],
 		correct: 2
@@ -411,7 +411,7 @@ export default {
 	},
 
 	{
-		question: "Welche Getreide enthalten keine Gluten und können gut als Brei aus Sprossen gegessen werden?",
+		question: "Welche gluteinfreien Getreide und Pseudogetreide eignen sich gut zur Zubereitung eines Breis aus Sprossen?",
 		questionFr: "Quelles céréales ne contiennent pas de gluten et peuvent être consommées sous forme de bouillie à base de germes ?",
 		questionEn: "Which grains do not contain gluten and can be eaten as a porridge made from sprouts?",
 		imageUrl: "assets/img/rawfood/buchweizenbrei.jpg",
@@ -430,17 +430,17 @@ export default {
 		type: "multiple choice",
 		optionsEn: [{ option : "Because amaranth is gluten-free", correct: true }, { option : "Because amaranth is cheaper", correct: false }, { option : "Because amaranth tastes very bitter, so you don't lose control of your senses", correct: true } ],
 		optionsFr: [{ option : "Parce que l'amarante ne contient pas de gluten", correct: true }, { option : "Parce que l'amarante est moins chère", correct: false }, { option : "Parce que l'amarante a un goût très amer, donc vous ne perdez pas le contrôle de vos sens", correct: true } ],
-		options: [{ option : "Weil Amaranth glutenfrei ist", correct: true }, { option : "Weil Amaranth billiger ist", correct: false }, { option : "Weil Amaranth sehr bitter schmeckt, sodass du die Herrschaft über deine Sinne nicht verlierst", correct: true } ],
+		options: [{ option : "Weil Amaranth glutenfrei ist", correct: true }, { option : "Weil Amaranth billiger ist", correct: false }, { option : "Weil Amaranth nicht den gewohnten süßen Geschmack triggert, sodass du die Herrschaft über deine Sinne nicht verlierst", correct: true } ],
 		correct: 1
 	},
 
 	{
-		question: "Für was sind Gluten im Getreide gut?",
+		question: "Wofür ist Glutein im Getreide gut?",
 		questionFr: "À quoi sert le gluten présent dans les céréales?",
 		questionEn: "What are gluten in grains good for?",
 		imageUrl: "assets/img/rawfood/buchweizenbrei.jpg",
 		type: "multiple choice",
-		options: [{ option : "Für eine Rohkosternährung für Gesund-und Leistungsfähigkeit", correct: false }, { option : "Sie liefern den Kleber, damit der Bäcker leichter Produkte zur Befriedung der Sinne backen kann.", correct: true } ],
+		options: [{ option : "Glutein ist essentiell für Gesundheit und Leistungsfähigkeit", correct: false }, { option : "Sie liefern den Kleber, damit der Bäcker leichter Produkte zur Befriedung der Sinne backen kann.", correct: true } ],
 		optionsFr: [{ option : "Pour la santé", correct: false }, { option : "Il fournit la colle qui permet au boulanger de préparer plus facilement des produits qui satisfont les sens.", correct: true }],
 		optionsEn: [{ option : "For your health", correct: false }, { option : "They provide the glue so that the baker can more easily bake products that satisfy the senses.", correct: true }],
 		correct: 1
@@ -555,12 +555,24 @@ export default {
 	},
 
 	{
-		question: "Wie lange sollte man vor und nach einer Mahlzeit nichts trinken, um die Magensäure nicht zu verdünnen?",
+		question: "Wie lange sollte man vor einer Mahlzeit nichts trinken, um die Magensäure nicht zu verdünnen?",
 		questionEn: "How long should you not drink before and after a meal to avoid diluting your stomach acid?",
 		questionFr: "Combien de temps ne faut-il pas boire avant et après un repas pour éviter de diluer l'acide gastrique?",
 		imageUrl: "assets/img/rawfood/verredeleau2.png",
 		type: "multiple choice",
-		options: [{ option : "30 min", correct: true }, { option : "5 min", correct: false }],
+		options: [{ option : "15-30 min", correct: true }, { option : "5 min", correct: false }],
+		optionsEn: [{ option : "30 min", correct: true }, { option : "5 min", correct: false }],
+		optionsFr: [{ option : "30 min", correct: true }, { option : "5 min", correct: false }],
+		correct: 1
+	},
+
+	{
+		question: "Wie lange sollte man nach einer Mahlzeit nichts trinken, um die Magensäure nicht zu verdünnen?",
+		questionEn: "How long should you not drink before and after a meal to avoid diluting your stomach acid?",
+		questionFr: "Combien de temps ne faut-il pas boire avant et après un repas pour éviter de diluer l'acide gastrique?",
+		imageUrl: "assets/img/rawfood/verredeleau2.png",
+		type: "multiple choice",
+		options: [{ option : "bis zu 4 Stunden in Abhängigkeit von der Mahlzeit", correct: true }, { option : "5 min", correct: false }],
 		optionsEn: [{ option : "30 min", correct: true }, { option : "5 min", correct: false }],
 		optionsFr: [{ option : "30 min", correct: true }, { option : "5 min", correct: false }],
 		correct: 1
@@ -570,7 +582,7 @@ export default {
 		question: "Wie kannst du damit aufhören, zwanghaft Schrott zu essen?",
 		questionEn: "How can you stop compulsively eating junk?",
 		questionFr: "Comment arrêter de manger compulsivement des cochonneries?",
-		imageUrl: "assets/img/rawfood/brokolisprossen.jpg",
+		imageUrl: "assets/img/rawfood/brokolisprossen.JPG",
 		type: "multiple choice",
 		options: [{ option : "30 Tage und Nächte Fasten, wie Jesus in der Wüste", correct: false }, { option : "Du musst genügend Sprossen essen, damit du den Unterschied zwischen frisch und tot wirklich verstehst und dann ganz natürlich auf Schrott verzichtest", correct: true }],
 		optionsEn: [{ option : "Fasting for 30 days and nights, like Jesus in the desert", correct: false }, { option : "You have to eat enough sprouts so that you really understand the difference between fresh and dead and then naturally avoid junk", correct: true }],
@@ -606,7 +618,7 @@ export default {
 		question: "Wodurch könnte man Gemüse aus dem Biomarkt ersetzen, was nie wirklich frisch ist?",
 		questionFr: "Par quoi remplacer les légumes du marché bio qui ne sont jamais vraiment frais?",
 		questionEn: "What could you replace vegetables from the organic market with that are never really fresh?",
-		imageUrl: "assets/img/rawfood/nursuesslupinen.jpg",
+		imageUrl: "assets/img/rawfood/nursuesslupinen.JPG",
 		type: "multiple choice",
 		options: [{ option : "Eine leicht-verdauliche Mono-Mahlzeit nur aus Sprossen essen", correct: true }, { option : "Dosenfutter", correct: false }],
 		optionsEn: [{ option : "Eat an easy-to-digest mono meal made only from sprouts", correct: true }, { option : "Canned food", correct: false }],
@@ -642,9 +654,9 @@ export default {
 		question: "Wie kannst du die Qualität vom Wasser verbessern?",
 		questionFr: "Comment améliorer la qualité de votre eau?",
 		questionEn: "How can you improve the quality of your water?",
-		imageUrl: "assets/img/rawfood/waterdestiller.jpg",
+		imageUrl: "assets/img/rawfood/waterdestiller.JPG",
 		type: "multiple choice",
-		options: [{ option : "Einem Destilliergerät", correct: true }, { option : "mit Zucker, damit es nach was schmeckt und die Sinne betört und damit sich meine Unterscheidungskraft erhöht", correct: false }],
+		options: [{ option : "Mit einem Destilliergerät, um alle Schadstoffe aus dem Leitungswasser zu entfernen", correct: true }, { option : "mit Zucker, damit es nach was schmeckt und die Sinne betört und damit sich meine Unterscheidungskraft erhöht", correct: false }],
 		optionsFr: [{ option : "Un alambic", correct: true }, { option : "avec du sucre, pour qu'il ait un goût de quelque chose et enivre les sens et augmente ainsi mon pouvoir de discrimination", correct: false }],
 		optionsEn: [{ option : "A still", correct: true }, { option : "with sugar, so that it tastes like something and intoxicates the senses and thus increases my power of discrimination", correct: false }],
 		correct: 1
@@ -696,10 +708,10 @@ export default {
 	},
 
 	{
-		question: "Welche Sprossen sind außer den Getreide,Hülsenfrüchten und Ölsaaten-Sprossen noch wichtig und enthalten viele Nährstoffe?",
+		question: "Welche Sprossen sind außer den Getreide, Hülsenfrüchten und Ölsaaten-Sprossen noch wichtig und enthalten viele Nährstoffe?",
 		questionEn: "Apart from grains, legumes and oilseed sprouts, which sprouts are important and contain many nutrients?",
 		questionFr: "Hormis les céréales, les légumineuses et les germes d’oléagineux, quels germes sont importants et contiennent de nombreux nutriments?",
-		imageUrl: "assets/img/rawfood/brokolisprossen.jpg",
+		imageUrl: "assets/img/rawfood/brokolisprossen.JPG",
 		type: "multiple choice",
 		options: [{ option : "Grüne Sprossen wie z.B. Brokkoli oder Grünkohl-Sprossen", correct: true }, { option : "Sprossen aus dem Biomarkt, die frisch verpackt wurden", correct: false } ],
 		optionsEn: [{ option : "Green sprouts such as broccoli or kale sprouts", correct: true }, { option : "Sprouts from the organic market that were freshly packaged", correct: false } ],
@@ -761,7 +773,7 @@ export default {
 		questionFr: "À quoi devez-vous au moins faire attention à chaque repas s’il ne s’agit que de cochonneries habituelles ?",
 		imageUrl: "assets/img/rawfood/buchweizenbrei.jpg",
 		type: "multiple choice",
-		options: [{ option : "Kraftfutter, Kohlehydrate, d.h. Getreide oder Hülsenfrüchte", correct: true }, { option : "Vitamine, d.h. frischen Löwenzahn, Brokoli-oder Grünkohlsprossen", correct: false  } , { option : "Fett, d.h. Leinsamensprossen", correct: false  } ],
+		options: [{ option : "Kraftfutter, Kohlehydrate, d.h. Getreide oder Hülsenfrüchte", correct: true }, { option : "Vitamine, d.h. frischen Löwenzahn, Brokoli-oder Grünkohlsprossen", correct: false  } , { option : "Omega-3-Fettsäuren, d.h. Leinsamensprossen", correct: false  } ],
 		optionsEn: [{ option : "That this dead, worthless junk at least doesn't taste good, so that it doesn't beguile your senses and you lose all ability to distinguish", correct: true }, { option : "That it tastes good, contains a lot of sugar and fat, because the intoxication of the senses gives me joy in life.", correct: false } ],
 		optionsFr: [{ option : "Que ces cochonneries mortes et sans valeur au moins n'aient pas bon goût, afin qu'elles ne séduisent pas vos sens et que vous ne perdiez toute capacité de distinction", correct: true }, { option : "Que ce soit a bon goût, contient beaucoup de sucre et de graisse, car l'ivresse des sens me donne de la joie de vivre", correct: false } ],
 		correct: 3
@@ -771,9 +783,9 @@ export default {
 		question: "Du bist vom Sport verletzt, z.B. tut dein Knie weh oder deine Achillesferse reizt? Was brauchst du nun zum Essen?",
 		questionEn: "What should you at least pay attention to at every meal if it only consists of the usual junk?",
 		questionFr: "À quoi devez-vous au moins faire attention à chaque repas s’il ne s’agit que de cochonneries habituelles ?",
-		imageUrl: "assets/img/rawfood/brokolisprossen.jpg",
+		imageUrl: "assets/img/rawfood/brokolisprossen.JPG",
 		type: "multiple choice",
-		options: [{ option : "Kraftfutter, Kohlehydrate, d.h. Getreide oder Hülsenfrüchte", correct: false }, { option : "Vitamine, d.h. frischen Löwenzahn, Brokoli-oder Grünkohlsprossen", correct: true  } , { option : "Fett, d.h. Leinsamensprossen", correct: false  }  ],
+		options: [{ option : "Kraftfutter, Kohlehydrate, d.h. Getreide oder Hülsenfrüchte", correct: false }, { option : "Vitamine, d.h. frischen Löwenzahn, Brokoli-oder Grünkohlsprossen", correct: true  } , { option : "Omega-3-Fettsäuren, d.h. Leinsamensprossen", correct: false  }  ],
 		optionsEn: [{ option : "That this dead, worthless junk at least doesn't taste good, so that it doesn't beguile your senses and you lose all ability to distinguish", correct: true }, { option : "That it tastes good, contains a lot of sugar and fat, because the intoxication of the senses gives me joy in life.", correct: false } ],
 		optionsFr: [{ option : "Que ces cochonneries mortes et sans valeur au moins n'aient pas bon goût, afin qu'elles ne séduisent pas vos sens et que vous ne perdiez toute capacité de distinction", correct: true }, { option : "Que ce soit a bon goût, contient beaucoup de sucre et de graisse, car l'ivresse des sens me donne de la joie de vivre", correct: false } ],
 		correct: 3
@@ -785,7 +797,7 @@ export default {
 		questionFr: "À quoi devez-vous au moins faire attention à chaque repas s’il ne s’agit que de cochonneries habituelles ?",
 		imageUrl: "assets/img/rawfood/leinsamen.png",
 		type: "multiple choice",
-		options: [{ option : "Kraftfutter, Kohlehydrate, d.h. Getreide oder Hülsenfrüchte", correct: false }, { option : "Vitamine, d.h. frischen Löwenzahn, Brokoli-oder Grünkohlsprossen", correct: false  } , { option : "Fett, d.h. Leinsamensprossen", correct: true  }  ],
+		options: [{ option : "Kraftfutter, Kohlehydrate, d.h. Getreide oder Hülsenfrüchte", correct: false }, { option : "Vitamine, d.h. frischen Löwenzahn, Brokoli-oder Grünkohlsprossen", correct: false  } , { option : "Omega-3-Fettsäuren, d.h. Leinsamensprossen", correct: true  }  ],
 		optionsEn: [{ option : "That this dead, worthless junk at least doesn't taste good, so that it doesn't beguile your senses and you lose all ability to distinguish", correct: true }, { option : "That it tastes good, contains a lot of sugar and fat, because the intoxication of the senses gives me joy in life.", correct: false } ],
 		optionsFr: [{ option : "Que ces cochonneries mortes et sans valeur au moins n'aient pas bon goût, afin qu'elles ne séduisent pas vos sens et que vous ne perdiez toute capacité de distinction", correct: true }, { option : "Que ce soit a bon goût, contient beaucoup de sucre et de graisse, car l'ivresse des sens me donne de la joie de vivre", correct: false } ],
 		correct: 3
@@ -797,7 +809,7 @@ export default {
 		questionFr: "À quoi devez-vous au moins faire attention à chaque repas s’il ne s’agit que de cochonneries habituelles ?",
 		imageUrl: "assets/img/cs/fragezeichen.jpg",
 		type: "multiple choice",
-		options: [{ option : "Rohkost zur Entgiftung", correct: true }, { option : "einen guten Medizyniker, der dir Medikamente (noch mehr Gift) verschreibt", correct: false  }  ],
+		options: [{ option : "Grüne Rohkost zur Entgiftung", correct: true }, { option : "einen guten Medizyniker, der dir Medikamente (noch mehr Gift) verschreibt", correct: false  }  ],
 		optionsEn: [{ option : "That this dead, worthless junk at least doesn't taste good, so that it doesn't beguile your senses and you lose all ability to distinguish", correct: true }, { option : "That it tastes good, contains a lot of sugar and fat, because the intoxication of the senses gives me joy in life.", correct: false } ],
 		optionsFr: [{ option : "Que ces cochonneries mortes et sans valeur au moins n'aient pas bon goût, afin qu'elles ne séduisent pas vos sens et que vous ne perdiez toute capacité de distinction", correct: true }, { option : "Que ce soit a bon goût, contient beaucoup de sucre et de graisse, car l'ivresse des sens me donne de la joie de vivre", correct: false } ],
 		correct: 3
@@ -819,7 +831,7 @@ export default {
 		question: "Wie viel spart ein Rohköstler, der das nicht ganz frische Gemüse vom Biomarkt nicht mehr braucht und sich nur noch von Sprossen, Algen und Wildkräutern ernährt?",
 		questionEn: "How much does a raw foodist save who no longer needs the not-quite-fresh vegetables from the organic market and only eats sprouts, seaweed and wild herbs?",
 		questionFr: "Combien d'argent peut économiser un crudivore qui n'a plus besoin des légumes pas tout à fait frais du marché bio et qui ne mange que des pousses, des algues et des herbes sauvages?",
-		imageUrl: "assets/img/rawfood/brokolisprossen.jpg",
+		imageUrl: "assets/img/rawfood/brokolisprossen.JPG",
 		type: "multiple choice",
 		options: [{ option : "5 Euro pro Tag an Gemüse = 365 * 5 Euro = 1825 Euro pro Jahr", correct: true }, { option : "Er bezahlt mit seiner Gesundheit", correct: false } ],
 		optionsEn: [{ option : "5 euros per day in vegetables = 365 * 5 euros = 1825 euros per year", correct: true }, { option : "He pays with his health", correct: false } ],
@@ -979,7 +991,7 @@ export default {
 		questionFr: "Comment s'appelle cette plante sauvage comestible?",
 		imageUrl: "assets/img/rawfood/breitwegerich.png",
 		type: "multiple choice",
-		options: [{ option : "Löwenzahn", correct: false }, { option : "Spitzwegerich", correct: true }, { option : "Breitwegerich", correct: true }, { option: "Gänseblümchen", correct : false }],
+		options: [{ option : "Löwenzahn", correct: false }, { option : "Spitzwegerich", correct: false }, { option : "Breitwegerich", correct: true }, { option: "Gänseblümchen", correct : false }],
 		optionsFr: [{ option : "pissenlits", correct: false }, { option : "plantain lancéolé", correct: true }, { option : "plantain large", correct: true }, { option: "marguerite", correct : false }],
 		optionsEn: [{ option : "dandelions", correct: false }, { option : "ribwort plantain", correct: true }, { option : "broad plantain", correct: true }, { option: "daisies", correct : false }],
 		correct: 4
@@ -1173,7 +1185,7 @@ export default {
 		question: "Was ist frisch?",
 		questionFr: "Qu'est-ce qui est frais ?",
 		questionEn: "What is fresh?",
-		imageUrl: "assets/img/rawfood/kressefensterbrett.jpg",
+		imageUrl: "assets/img/rawfood/kressefensterbrett.JPG",
 		type: "multiple choice",
 		options: [{ option : "Nüsse, von einem wilden Nussbaum, vom Boden aufgehoben", correct: false}, { option : "Kresse vom eigenen Fensterbrett", correct: true }  ],
 		optionsEn: [{ option : "Nuts picked up from a wild walnut tree from the ground", correct: false }, { option : "cress from your own windowsill", correct: true } ],
