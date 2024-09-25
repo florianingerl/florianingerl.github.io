@@ -93,6 +93,31 @@ Le paquet était léger. Si Fred avait eu le temps d'ouvrir le paquet, inspecter
 
 </VueExercise>
 
+Mais il était aussi impossible de simplement questionner sa mère à propos du paquet. Si elle refusait, il ne parviendrait jamais à découvrir son secret. Par conséquent, il lui fallait une ruse pour distraire sa mère pour avoir assez de temps pour ouvrir le paquet discrètement.
+Il mis alors en oeuvre un plan qu'il jugea de prime abord excellent.
+S' il avait eu plus de temps avant l'embarquement du vol, il aurait eu plus de temps
+pour réfléchir. Mais étant donné qu'il n' en avait pas, il fallait agir tout de suite.
+Il prit son café à emporter dont il n'avait bu que la moitié, et gaspilla son contenu sur la chemise de sa mère. De plus, il la bascula de sorte qu'elle tomba par terre.
+Evidemment, cet incident n'était pas arrivé par hasard et c'est ce qui interloqua sa mère: " Mais que fais-tu là? Enfin, me voici toute sale et tombée à la renverse! " 
+"Désolé, bredouilla-t-il, tu devrais aller te changer aux toilettes."
+"Tandis que tu seras aux toilettes, je prendrai bien soin de tes affaires et en particulier de tes paquets!"
+La mère fit comme proposé et Fred saisit immédiatement l'occasion d'ouvrir le paquet et découvrit son contenu.
+C'était quelque chose de bleu en forme de cube qui avait la taille d'un ballon de football.
+En le balançant entre ses bras, il sentait que le paquet était presque creux.
+Il décida de l'ouvrir tant sa curiosité était grande et découvrit une sorte de boîte qui semblait vide mais qui contenait en réalité une sorte de poudre dorée qui lui rappela immédiatement celle qu'il avait utilisée un jour lorsqu'il était gamin.
+Quand on avalait cette poudre dorée, on ne se souvenait plus de tous ses mauvais souvenirs. Par conséquent, Fred ne savait plus comment était sa vie avant d'avoir pris la poudre quand il était un gamin de 14 ans. "Pourquoi sa mère avait-elle besoin d'en prendre ?" se demanda-t-il.
+
+Il se sentit désespéré quand sa mère surgit subitement près de lui. Elle eut pitié de lui en le voyant son paquet à la main, réclamant des explications concernant cette mystérieuse poudre dorée. Allait-elle lui offrir son aide après ce qu'il avait fait?
+Fred était complètement déconcerté et ne trouva aucun mot pour défendre son comportement. Il balbutia simplement: "Dommage que j'aie ouvert ton paquet.... C'était
+par hasard...."
+Sa mère lui répondit aussitôt: " Je ne te permets pas de fouiller dans mes affaires quand je suis en train de faire quelque chose sans surveiller mes affaires. Je ne les ai justement pas abandonnées là, c'était à toi de les surveiller."
+"Ok!", dit Fred. "Arrête de me faire des reproches! Sinon, ton avion s'envolera sans toi!"
+Sa mère se demandait ce qui trottait dans la tête de son fils, pourquoi cette drôle d'attitude depuis qu'ils étaient à l'aéroport. "Je veux partir avec toi en Australie, lui avoua-t-il finalement. "
+"Et pourquoi, s'enquit-elle, surprise"
+"Je m'inquiète pour toi, je ne sais pas ce qui t'attend là-bas."
+Heureusement, on pouvait encore acheter un billet pour le vol, bien que ce ne fusse plus 100 euros, mais déjà 120 euros. Alors, le fils et sa mère embarquèrent dans l'avion.
+Malheureusement, leurs places n'étaient pas tout à côté l'une de l'autre mais il y avait seulement un homme assis entre eux. Celui-ci avait l'air d'être un buveur. Ca puait!
+
 <button @click="nextPageClicked">Next page</button>
 </template>
 
