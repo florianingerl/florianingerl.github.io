@@ -94,10 +94,27 @@ Le paquet était léger. Si Fred avait eu le temps d'ouvrir le paquet, inspecter
 </VueExercise>
 
 Mais il était aussi impossible de simplement questionner sa mère à propos du paquet. Si elle refusait, il ne parviendrait jamais à découvrir son secret. Par conséquent, il lui fallait une ruse pour distraire sa mère pour avoir assez de temps pour ouvrir le paquet discrètement.
+
+<VueExercise lg="fr" instruction="Remplis les trous avec la bonne conjugaison du verbe distraire ou dissiper">
+<VueMCGaps lg="fr" :gaptext="['Rien ne peut me {distraire} en ce moment d\'écrire cet exercise car je suis tout plongé dans ce travail.',
+'Quand un sujet n\'est pas tellement intéressant, les élèves de la classe 5b deviennent immédiatement {dissipés}.']">
+
+</VueMCGaps>
+</VueExercise>
+
 Il mis alors en oeuvre un plan qu'il jugea de prime abord excellent.
 S' il avait eu plus de temps avant l'embarquement du vol, il aurait eu plus de temps
 pour réfléchir. Mais étant donné qu'il n' en avait pas, il fallait agir tout de suite.
 Il prit son café à emporter dont il n'avait bu que la moitié, et gaspilla son contenu sur la chemise de sa mère. De plus, il la bascula de sorte qu'elle tomba par terre.
+
+<VueExercise lg="fr" instruction="Remplissez les trous par à, de ou d'">
+<VueMCGaps lg="fr" gaptext="Un verre {à} eau sert {à} boire {de} l'eau avec lui bien qu'il ne soit pas rempli avec {de} l'eau {à} un moment donné. 
+Si un verre {à} vin est {à} un instant donné rempli avec {de} l'eau, on peut l'appeler un verre {d'} eau.">
+
+</VueMCGaps>
+</VueExercise>
+
+
 Evidemment, cet incident n'était pas arrivé par hasard et c'est ce qui interloqua sa mère: " Mais que fais-tu là? Enfin, me voici toute sale et tombée à la renverse! " 
 "Désolé, bredouilla-t-il, tu devrais aller te changer aux toilettes."
 "Tandis que tu seras aux toilettes, je prendrai bien soin de tes affaires et en particulier de tes paquets!"
@@ -106,6 +123,12 @@ C'était quelque chose de bleu en forme de cube qui avait la taille d'un ballon 
 En le balançant entre ses bras, il sentait que le paquet était presque creux.
 Il décida de l'ouvrir tant sa curiosité était grande et découvrit une sorte de boîte qui semblait vide mais qui contenait en réalité une sorte de poudre dorée qui lui rappela immédiatement celle qu'il avait utilisée un jour lorsqu'il était gamin.
 Quand on avalait cette poudre dorée, on ne se souvenait plus de tous ses mauvais souvenirs. Par conséquent, Fred ne savait plus comment était sa vie avant d'avoir pris la poudre quand il était un gamin de 14 ans. "Pourquoi sa mère avait-elle besoin d'en prendre ?" se demanda-t-il.
+
+<VueExercise lg="fr" instruction="Remplis les trous avec dent, d'en ou dont">
+<VueMCGaps lg="fr" gaptext="Est-ce que tu veux encore de l'eau minérale? Non, je viens {d'en} boire trois litres. Ce {dont} j'ai besoin maintenant, c'est une toilette! Pas pour y brosser les {dents} mais pour faire du pipi.">
+
+</VueMCGaps>
+</VueExercise>
 
 Il se sentit désespéré quand sa mère surgit subitement près de lui. Elle eut pitié de lui en le voyant son paquet à la main, réclamant des explications concernant cette mystérieuse poudre dorée. Allait-elle lui offrir son aide après ce qu'il avait fait?
 Fred était complètement déconcerté et ne trouva aucun mot pour défendre son comportement. Il balbutia simplement: "Dommage que j'aie ouvert ton paquet.... C'était
