@@ -744,6 +744,30 @@ export default {
 	},
 
 	{
+		question: "Was zeigt diese Graphik?",
+		questionEn: "What does this graphic show?",
+		questionFr: "Que montre ce graphique?",
+		imageUrl: "assets/img/rawfood/Obstesser.png",
+		type: "multiple choice",
+		options: [{ option : "Energieverlauf für 10 min von einem Rohköstler, der zwei bis drei Sprossen-Mono-Mahlzeiten am Tag isst", correct: false }, { option : "Energieverlauf für 10 min vom Angestellten einer Firma, wo Obst kostenlos bereitgestellt wird.", correct: true } ],
+		optionsEn: [{ option : "Energy history estimated by quiz author after eating buckwheat sprouts", correct: true }, { option : "Energy history after eating fresh fruit", correct: false } ],
+		optionsFr: [{ option : "Historique énergétique estimé par l'auteur du quiz après avoir mangé des pousses de sarrasin", correct: true }, { option : "Historique énergétique après avoir mangé des fruits frais", correct: false } ],
+		correct: 3
+	},
+
+	{
+		question: "Was geben dir die frischen Sprossen noch außer Energie, weil sie regelmäßig gesäht, gegossen und geerntet werden müssen?",
+		questionEn: "What does this graphic show?",
+		questionFr: "Que montre ce graphique?",
+		imageUrl: "assets/img/rawfood/brokolisprossen.JPG",
+		type: "multiple choice",
+		options: [{ option : "Struktur", correct: true }, { option : "Wertschätzung für unsere Nahrung", correct: true }, { option: "Schlechten Geschmack und Mangel", correct: false } ],
+		optionsEn: [{ option : "Energy history estimated by quiz author after eating buckwheat sprouts", correct: true }, { option : "Energy history after eating fresh fruit", correct: false } ],
+		optionsFr: [{ option : "Historique énergétique estimé par l'auteur du quiz après avoir mangé des pousses de sarrasin", correct: true }, { option : "Historique énergétique après avoir mangé des fruits frais", correct: false } ],
+		correct: 3
+	},
+
+	{
 		question: "Was ist neben Sprossen noch essentiell für eine Ernährung mit Nährstoffen im Überfluss, weil sie Jod und viele Mineralien enthalten?",
 		questionEn: "Besides sprouts, what else is essential for a diet with plenty of nutrients because they contain iodine and many minerals?",
 		questionFr: "Outre les germes, quoi d’autre est essentiel pour une alimentation riche en nutriments, car ils contiennent de l’iode et de nombreux minéraux?",
@@ -834,6 +858,18 @@ export default {
 		imageUrl: "assets/img/rawfood/brokolisprossen.JPG",
 		type: "multiple choice",
 		options: [{ option : "5 Euro pro Tag an Gemüse = 365 * 5 Euro = 1825 Euro pro Jahr", correct: true }, { option : "Er bezahlt mit seiner Gesundheit", correct: false } ],
+		optionsEn: [{ option : "5 euros per day in vegetables = 365 * 5 euros = 1825 euros per year", correct: true }, { option : "He pays with his health", correct: false } ],
+		optionsFr: [{ option : "5 euros par jour en légumes = 365 * 5 euros = 1825 euros par an", correct: true }, { option : "Il paie avec sa santé", correct: false } ],
+		correct: 3
+	},
+
+	{
+		question: "Was ist die günstigste und frischeste Rohkosternährung?",
+		questionEn: "How much does a raw foodist save who no longer needs the not-quite-fresh vegetables from the organic market and only eats sprouts, seaweed and wild herbs?",
+		questionFr: "Combien d'argent peut économiser un crudivore qui n'a plus besoin des légumes pas tout à fait frais du marché bio et qui ne mange que des pousses, des algues et des herbes sauvages?",
+		imageUrl: "assets/img/rawfood/brokolisprossen.JPG",
+		type: "multiple choice",
+		options: [{ option : "Mit vielen Tropenfrüchten", correct: true }, { option : "Mit Wildräutern und Sprossen aus Keimsaaten mit Mengenrabatt", correct: true } , { option: "Mit relativ frischem Gemüse vom Biomarkt" , correct: false }],
 		optionsEn: [{ option : "5 euros per day in vegetables = 365 * 5 euros = 1825 euros per year", correct: true }, { option : "He pays with his health", correct: false } ],
 		optionsFr: [{ option : "5 euros par jour en légumes = 365 * 5 euros = 1825 euros par an", correct: true }, { option : "Il paie avec sa santé", correct: false } ],
 		correct: 3
@@ -1188,6 +1224,18 @@ export default {
 		imageUrl: "assets/img/rawfood/kressefensterbrett.JPG",
 		type: "multiple choice",
 		options: [{ option : "Nüsse, von einem wilden Nussbaum, vom Boden aufgehoben", correct: false}, { option : "Kresse vom eigenen Fensterbrett", correct: true }  ],
+		optionsEn: [{ option : "Nuts picked up from a wild walnut tree from the ground", correct: false }, { option : "cress from your own windowsill", correct: true } ],
+		optionsFr: [{ option : "Noix d'un noyer sauvage, ramassées sur le sol", correct: false }, { option : "cresson sur le rebord de votre fenêtre", correct: true } ],
+		correct: 4
+	},
+
+	{
+		question: "Wodurch könnte man Nüsse leichter verdaulich machen?",
+		questionFr: "Qu'est-ce qui est frais ?",
+		questionEn: "What is fresh?",
+		imageUrl: "assets/img/rawfood/walnuesse.png",
+		type: "multiple choice",
+		options: [{ option : "Vorher einweichen, was den Keimprozess schon startet", correct: true}, { option : "braten", correct: false }, {option: "kochen", correct: false }  ],
 		optionsEn: [{ option : "Nuts picked up from a wild walnut tree from the ground", correct: false }, { option : "cress from your own windowsill", correct: true } ],
 		optionsFr: [{ option : "Noix d'un noyer sauvage, ramassées sur le sol", correct: false }, { option : "cresson sur le rebord de votre fenêtre", correct: true } ],
 		correct: 4
