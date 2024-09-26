@@ -84,7 +84,8 @@ Mais en remontant à temps, il avait retrouvé son sang froid et avait oublié s
 <VueExercise lg="fr" instruction="Remplis les trous avec l'adjectif donné au feminin!">
 <VueMCGaps lg="fr" :gaptext="['La chaussée est bien {sèche} (sec). On peut conduire son moto.',
 'Elle ne gagnera pas la coupe du monde bien qu\'elle le dise. Elle est simplement {prétentieuse}(prétentieux).',
-'Ta coiffure est vraiment {affreuse} (affreux). As-tu coupé tes cheveux toi-même?']">
+'Ta coiffure est vraiment {affreuse} (affreux). As-tu coupé tes cheveux toi-même?',
+'Tu n\'as pas besoin de beaucoup de temps pour lire cette histoire car elle est très {brève}(bref).']">
 
 </VueMCGaps>
 </VueExercise>
