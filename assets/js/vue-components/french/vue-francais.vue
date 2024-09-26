@@ -9,6 +9,12 @@
       </tr>
     </thead>
     <tbody> 
+    
+     <tr>
+<td>18</td>
+       <td><router-link to="/fr/french/breveshistoires/deuxgamins">Fred et Antoine, meilleurs amis</router-link></td>
+       <td>Flori10</td>
+    </tr>
 
            <tr>
 <td>17</td>
@@ -142,7 +148,9 @@ export default {
 </script>
 
 <style scoped>
-
+a {
+  text-transform: none
+}
 
 
 </style>

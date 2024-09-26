@@ -42,6 +42,9 @@ loadModule('assets/js/vue-components/french/alimentation/vue-bagavad-gita.vue', 
 const VueLivreSurFred = Vue.defineAsyncComponent(() =>
   loadModule('assets/js/vue-components/french/livres/vue-marie-histoire.vue', options));
 
+const VueDeuxGamins = Vue.defineAsyncComponent(() =>
+  loadModule('assets/js/vue-components/french/breveshistoires/vue-deux-gamins.vue', options));
+
 const VueRawFood =  Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/english/rawfood/vue-rawfood.vue', options));
 
@@ -280,6 +283,11 @@ const routes = [
         name: 'Brèves histoires',
         path: 'breveshistoires',
         children: [
+          {
+            name: "Antoine et Fred, meilleurs ami",
+            path: 'deuxgamins',
+            component: VueDeuxGamins
+          },
           {
             name: "Monument d'un poisson",
             path: 'monumentpoisson',
