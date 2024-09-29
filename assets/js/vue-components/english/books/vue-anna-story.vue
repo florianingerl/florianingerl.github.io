@@ -244,50 +244,82 @@ His father of course had difficulty accepting his answer but at least, he left h
 </VueHideShow>
 </VueExercise>
 
-
+<p>
 "Why don't we go out to a nice restaurant all together and discuss what it still needs so that my stories can be published? " suggested Alexander to his parents.
 "You were defiant with both of us this evening, Alexander, so why do you think we would say yes to this request and spend money on a nice dinner in a restaurant when you don't help us?" asked his father.
+"What? You haven't got enough money to afford a dinner at a restaurant? That's why you work all day?" exclaimed Alexander indiginantly. "Then I will go alone to the restaurant and pay with my pocket money." And with these words, Alexander considered the discussion as finished and we can now leave the three of them.
+</p>
 
-"What? You haven't got enough money to afford a dinner at a restaurant? That's why you work all day?" exclaimed Alexander indiginantly. "Then I will go alone to the restaurant and pay with my pocket money." And with these words, Alexander considered the discussion as finished and we can now leave the three of them. Let's look to Sally and Hannah.
+<p>
+Let's look to Sally and Hannah.
 Finally, Satruday morning arrived and Sally met her friend, Hannah in front of the city's most expensive bridal shop, Beate's fashion. Although Sally didn't have a lot of money, nor an engagement ring for the moment but she didn't hesitate to explore her wedding dress options. But there were so many dresses that she felt really unsure about which one to choose.
+
+<VueExercise lg="en" instruction="Fill in the gaps with a conjunction of coordination!">
+<VueMCGaps lg="en" :gaptext="['{Not only|} is he very smart, but also very sympathetic.',
+'{Neither|} my mom nor my dad can cheer me up, when I am really sad.',
+'I honour my mom {and|} my dad.',
+'He {not only|} has stomach ache, but also fever.',
+'My dad wants to buy {either|} a new Porsche or a Ferrari.',
+'Do you take tea {or|} just hot water with milk?']">
+</VueMCGaps>
+</VueExercise>
+
 The shop assistant came to help. "Unsure, which dress to choose?" she asked. "Have you already seen the one from our advertisement? A really brilliant, new young and talented fashion designer, a rising star, created it. Here it is."
 With these words, the shop assistant handed over an in fact nice-looking white wedding-dress and the price label must have been somewhere hidden.
 Sally tried on the beautiful dress and she instantly felt like a princess so she decided to buy the dress. But the problem was that she only had a few coins in her pocket and didn't have enough money to pay for it. But suddenly she had a genious idea.
 
+<VueExercise lg="en" instruction="Fill in the gaps with either litte, a little, few or a few">
+<VueMCGaps lg="en" :gaptext="['{A few|} points may require some additional explanation.',
+'He wears the clothes he finds abandoned in the streets because he has only {little|} money.',
+'Can I have {a little} bit of your attention, please?',
+'{Few} days are as sunny as this one has been!']">
+
+</VueMCGaps>
+</VueExercise>
+</p>
+
+<p>
 "We should go to the casino and play with some games so we can try to win some money!" Sally suggested to her friend, Hannah.
 It's a known fact that small coins give you luck. Since Sally had a lot of small coins in her pocket, she didn't need to gamble for long. No! She immediately won the money for the dress.
-Anton immediately {won} Sally's heart when they met.
+</p>
 
-Sally only had {one} good friend, Hannah.
-That's why Sally could need another {one} and was thus glad to have {won} Anton's affection.
+<VueExercise lg="en" instruction="Fill in the gaps with either one or won" >
+<VueMCGaps lg="en" gaptext="Anton immediately {won} Sally's heart when they met. Sally only had {one} good friend, Hannah. That's why Sally could need another {one} and was thus glad to have {won} Anton's affection.">
+</VueMCGaps>
+</VueExercise>
+
+<p>
 After winning the money, they quickly rushed back to the shop to buy the most beautiful garment Sally had ever seen in her life. They still had some money left afterwards so Sally had another great idea:
-
-"I want to go and get a new tattoo on my arm!" she announced.
-
-"But you already have 41 tattoos, Sally! What do you want this time?" asked Hannah.
-
+"I want to go and get a new tattoo on my arm!" she announced. "But you already have 41 tattoos, Sally! What do you want this time?" asked Hannah.
 "I have a new favourite animal. The snake! I want that!"
+</p>
+
+<p>
 In the meantime, a new day had dawned at Edwin's house. Weekend!
 Last week, Edwin had installed a few new computer games on his children's computers, but now he was afraid that this had been a great mistake. It was difficult know to  bring them away from the computer and have a word with them.
 But his wife, Brigitte was happy about the video games. She was very tired of having 6 children and she also felt lonely from time to time because she didn't have time for herself or for spending time with her friends.
 Before the video games, Brigitte always had to make up small stories to entertain her children. Not having heard at least 3 of them, Ben, her youngest, refused to fall asleep. Since the computer computer games, Ben could still not sleep because the blue light from the computer screen he looked at so late, prevented his sleep. But at least Brigitte wasn't bothered by that.
-prevent sb from doing sth vs cannot help doing sth...
-The policeman {prevented} the murderer from shooting his victim.
+</p>
 
-I {cannot help} laughing when you tell a funny joke.
+<VueExercise lg="en" instruction="Use either prevent sb from doing sth oder can't help doing sth to fill in the gaps!">
+<VueMCGaps lg="en" :gaptext="['The policeman {prevented|} the murderer from shooting his victim.',
+'I {cannot help|} laughing when you tell a funny joke.',
+'The teacher {prevented|} the students from cheating on the test.',
+'She is addicted and {cannot help|} smoking one cigarette after another.',
+'Nothing can {prevent me from|} achieving my goals in life!']" >
+</VueMCGaps>
+</VueExercise>
 
-The teacher {prevented} the students from cheating on the test.
-
-She is addicted and {can't help} smoking one cigarette after another.
-
-Nothing can {keep me from} achieving my goals in life!
+<p>
 Erwin knew about the loneliness of his wife so he offered to take care of the children alone that Saturday afternoon.
-
 "Don't worry, we'll have a lot of fun at home! Go spend time with your friends!" he told his wife.
+</p>
 
+<p>
 But Brigitte kept worrying because she knew that her children were dependent on her. Usually her main preoccupation was her family but she gladly accepted her husband's offer and excitedly got ready to meet her friends.
 So Brigitte met Vanessa at a restaurant in town to exchange some gossip which pleased very much Alexander who always needed such material for his next book and who was sitting alone at a table nearby listing to the chatting of the two women.
 "I have an interesting story for you today" started Vanessa."One of my colleagues, Sally went and bought a marvelous wedding dress this week! But you know what's crazy? She's not even engaged yet!"
+</p>
 
 </div>
 
