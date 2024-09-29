@@ -60,8 +60,33 @@ export default {
 		optionsFr: [{ option : "un vitaliseur d'eau", correct: true }, { option : "sirop", correct: false }],
 		optionsEn: [{ option : "a vitalizer of water", correct: true }, { option : "sirop", correct: false }],
 		correct: 0
+	},
+
+	{
+		question: "Mit einem Destilliergerät kannst du dein Wasser zum Trinken und zum Einweichen der Sprossen von allen Giftstoffen reinigen. Wie kannst du das Wasser noch energetisieren?",
+		questionFr : "Quel instrument est utile pour améliorer la qualité de l'eau?",
+		questionEn : "Which instrument is useful to improve the quality of water?",
+		imageUrl: "assets/img/rawfood/reikiwasser.png",
+		type: "multiple choice",
+		options: [{ option : "mit Reiki", correct: true }, { option : "mit Brausetabletten", correct: false }],
+		optionsFr: [{ option : "un vitaliseur d'eau", correct: true }, { option : "sirop", correct: false }],
+		optionsEn: [{ option : "a vitalizer of water", correct: true }, { option : "sirop", correct: false }],
+		correct: 0
 	}
 	,
+
+	{
+		question: "Wie kannst du deine Sprossen geschmacklich noch verbessern und die Verdaulichkeit erhöhen?",
+		questionFr : "Quel instrument est utile pour améliorer la qualité de l'eau?",
+		questionEn : "Which instrument is useful to improve the quality of water?",
+		imageUrl: "assets/img/rawfood/buchweizenreiki.png",
+		type: "multiple choice",
+		options: [{ option : "mit bisschen Zucker und Zimt", correct: false }, { option : "mit Reiki", correct: true }],
+		optionsFr: [{ option : "un vitaliseur d'eau", correct: true }, { option : "sirop", correct: false }],
+		optionsEn: [{ option : "a vitalizer of water", correct: true }, { option : "sirop", correct: false }],
+		correct: 0
+	},
+
 	{
 		question:"Welche Zubereitungsform von Getreide fördert die Verdaulichkeit und erhöht den Nährstoffgehalt?",
 		questionFr: "Sous quelle forme est-ce qu'on doit manger les céréales selon le guru d'alimentation crue Dr. Schnitzer?",
@@ -1236,6 +1261,42 @@ export default {
 		imageUrl: "assets/img/rawfood/walnuesse.png",
 		type: "multiple choice",
 		options: [{ option : "Vorher einweichen, was den Keimprozess schon startet", correct: true}, { option : "braten", correct: false }, {option: "kochen", correct: false }  ],
+		optionsEn: [{ option : "Nuts picked up from a wild walnut tree from the ground", correct: false }, { option : "cress from your own windowsill", correct: true } ],
+		optionsFr: [{ option : "Noix d'un noyer sauvage, ramassées sur le sol", correct: false }, { option : "cresson sur le rebord de votre fenêtre", correct: true } ],
+		correct: 4
+	},
+
+	{
+		question: "Was ist eine sehr effektive Methode, um wieder Kontrolle über die Sinne zu bekommen?",
+		questionFr: "Qu'est-ce qui est frais ?",
+		questionEn: "What is fresh?",
+		imageUrl: "assets/img/rawfood/yogiaufnagelbrett.png",
+		type: "multiple choice",
+		options: [{ option : "Saures, bitteres und scharfes mixen und möglichst viel von diesem Konglomgerat runterbekommen", correct: true}, { option : "Viel Süßes, Fettes und Würziges mixen, sodass es richtig gut schmeckt, und versuchen, nicht alles zu essen", correct: false }  ],
+		optionsEn: [{ option : "Nuts picked up from a wild walnut tree from the ground", correct: false }, { option : "cress from your own windowsill", correct: true } ],
+		optionsFr: [{ option : "Noix d'un noyer sauvage, ramassées sur le sol", correct: false }, { option : "cresson sur le rebord de votre fenêtre", correct: true } ],
+		correct: 4
+	},
+
+	{
+		question: "Was ist eine sehr effektive Methode, um wieder Kontrolle über die Sinne zu bekommen?",
+		questionFr: "Qu'est-ce qui est frais ?",
+		questionEn: "What is fresh?",
+		imageUrl: "assets/img/rawfood/yogiaufnagelbrett.png",
+		type: "multiple choice",
+		options: [{ option : "Saures, bitteres und scharfes mixen und möglichst viel von diesem Konglomgerat runterbekommen", correct: true}, { option : "Viel Süßes, Fettes und Würziges mixen, sodass es richtig gut schmeckt, und versuchen, nicht alles zu essen", correct: false } , {option: "Die erste Option ist zwar effektiv, wird sich aber nie allgemeiner Beliebtheit erfreuen.", correct: true } ],
+		optionsEn: [{ option : "Nuts picked up from a wild walnut tree from the ground", correct: false }, { option : "cress from your own windowsill", correct: true } ],
+		optionsFr: [{ option : "Noix d'un noyer sauvage, ramassées sur le sol", correct: false }, { option : "cresson sur le rebord de votre fenêtre", correct: true } ],
+		correct: 4
+	},
+
+	{
+		question: "Wo kannst du in Gröbenzell eine Reiki-Behandlung und eine Reiki-Einweihung zum 1.Grad bekommen, damit du deine Sprossen und dein Wasser mit Reiki behandlen kannst?",
+		questionFr: "Qu'est-ce qui est frais ?",
+		questionEn: "What is fresh?",
+		imageUrl: "assets/img/rawfood/mereikimeister.JPG",
+		type: "multiple choice",
+		options: [{ option : "Bei mir, dem frisch ausgebildeteten Reiki-Meister", correct: true}, { option : "Du musst bis nach Brasilien oder den Philipinen fliegen, wo die besten Heiler leben", correct: false }  ],
 		optionsEn: [{ option : "Nuts picked up from a wild walnut tree from the ground", correct: false }, { option : "cress from your own windowsill", correct: true } ],
 		optionsFr: [{ option : "Noix d'un noyer sauvage, ramassées sur le sol", correct: false }, { option : "cresson sur le rebord de votre fenêtre", correct: true } ],
 		correct: 4
