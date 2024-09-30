@@ -255,7 +255,7 @@ Let's look to Sally and Hannah.
 Finally, Satruday morning arrived and Sally met her friend, Hannah in front of the city's most expensive bridal shop, Beate's fashion. Although Sally didn't have a lot of money, nor an engagement ring for the moment but she didn't hesitate to explore her wedding dress options. But there were so many dresses that she felt really unsure about which one to choose.
 
 <VueExercise lg="en" instruction="Fill in the gaps with a conjunction of coordination!">
-<VueMCGaps lg="en" :gaptext="['{Not only|} is he very smart, but also very sympathetic.',
+<VueMCGaps lg="en" :same="true" :gaptext="['{Not only|} is he very smart, but also very sympathetic.',
 '{Neither|} my mom nor my dad can cheer me up, when I am really sad.',
 'I honour my mom {and|} my dad.',
 'He {not only|} has stomach ache, but also fever.',
@@ -269,7 +269,7 @@ With these words, the shop assistant handed over an in fact nice-looking white w
 Sally tried on the beautiful dress and she instantly felt like a princess so she decided to buy the dress. But the problem was that she only had a few coins in her pocket and didn't have enough money to pay for it. But suddenly she had a genious idea.
 
 <VueExercise lg="en" instruction="Fill in the gaps with either litte, a little, few or a few">
-<VueMCGaps lg="en" :gaptext="['{A few|} points may require some additional explanation.',
+<VueMCGaps lg="en"  :same="true" :gaptext="['{A few|} points may require some additional explanation.',
 'He wears the clothes he finds abandoned in the streets because he has only {little|} money.',
 'Can I have {a little} bit of your attention, please?',
 '{Few} days are as sunny as this one has been!']">
@@ -302,7 +302,7 @@ Before the video games, Brigitte always had to make up small stories to entertai
 </p>
 
 <VueExercise lg="en" instruction="Use either prevent sb from doing sth oder can't help doing sth to fill in the gaps!">
-<VueMCGaps lg="en" :gaptext="['The policeman {prevented|} the murderer from shooting his victim.',
+<VueMCGaps lg="en" :same="true"  :gaptext="['The policeman {prevented|} the murderer from shooting his victim.',
 'I {cannot help|} laughing when you tell a funny joke.',
 'The teacher {prevented|} the students from cheating on the test.',
 'She is addicted and {cannot help|} smoking one cigarette after another.',
