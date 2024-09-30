@@ -161,6 +161,12 @@ const VueRegexPointDExclamation = Vue.defineAsyncComponent(() =>
 const VueLabelSetTextTextAreaAppend = Vue.defineAsyncComponent(() =>
   loadModule('assets/js/vue-components/informatik/regex/vue-labelsettext-textareaappend.vue', options));
 
+const VueConnaitreOuSavoir = Vue.defineAsyncComponent(() =>
+  loadModule('assets/js/vue-components/french/vocabulaire/vue-connaitre-ou-savoir.vue', options));
+
+const VueMettre = Vue.defineAsyncComponent(() =>
+  loadModule('assets/js/vue-components/french/vocabulaire/vue-mettre.vue', options));
+
 const VueGuillemetsFrancais = Vue.defineAsyncComponent(() =>
   loadModule('assets/js/vue-components/informatik/regex/vue-guillements.vue', options));
 
@@ -442,6 +448,16 @@ const routes = [
           name: 'Conduire ou courir à tous les temps et modes',
           path: 'conduireoucourir',
           component: VueConduireOuCourir
+        },
+        {
+          name: 'Connaître ou savoir à présent de l\'indicatif',
+          path: 'connaitreousavoir',
+          component: VueConnaitreOuSavoir
+        },
+        {
+          name: 'Mettre à présent de l\'indicatif',
+          path: 'mettre',
+          component: VueMettre
         }
        ]
        }
