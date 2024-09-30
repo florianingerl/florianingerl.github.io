@@ -10,6 +10,12 @@
     </thead>
     <tbody> 
 
+         <tr>
+<td>20</td>
+       <td><router-link to="/fr/french/vocabulaire/mettre">Mettre à présent de l'indicatif</router-link></td>
+       <td>Flori10</td>
+    </tr>
+
      <tr>
 <td>19</td>
        <td><router-link to="/fr/french/vocabulaire/connaitreousavoir">Connaître ou savoir à présent de l'indicatif</router-link></td>
