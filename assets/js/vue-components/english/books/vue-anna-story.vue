@@ -271,8 +271,8 @@ Sally tried on the beautiful dress and she instantly felt like a princess so she
 <VueExercise lg="en" instruction="Fill in the gaps with either litte, a little, few or a few">
 <VueMCGaps lg="en"  :same="true" :gaptext="['{A few|} points may require some additional explanation.',
 'He wears the clothes he finds abandoned in the streets because he has only {little|} money.',
-'Can I have {a little} bit of your attention, please?',
-'{Few} days are as sunny as this one has been!']">
+'Can I have {a little|} bit of your attention, please?',
+'{Few|} days in Germany are as sunny as this one has been!']">
 
 </VueMCGaps>
 </VueExercise>

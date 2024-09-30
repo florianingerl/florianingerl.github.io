@@ -7,8 +7,10 @@
   <select :disabled="validated" v-if="gap.gap!='' && Array.isArray(gap.gap)" :class="{ notcorrect: validated && gap.guess != gap.solution, correct: validated && gap.guess === gap.solution }" v-model="gap.guess">
     <option v-for="op in gap.gap">{{ op }}</option>
   </select> 
-
-  <input :disabled="validated" v-if="gap.gap!='' && !Array.isArray(gap.gap)" :style="{ width: ( gap.gap.length + 2 ) + 'ch' }" :class="{ notcorrect: validated && gap.guess != gap.gap, correct: validated && gap.guess === gap.gap }" type="text" v-model="gap.guess"> 
+  <input v-if="!validated && gap.gap!='' && !Array.isArray(gap.gap)" :style="{ width: ( gap.gap.length + 2 ) + 'ch' }" type="text" v-model="gap.guess"> </input>
+  <span v-if="validated && gap.gap!='' && !Array.isArray(gap.gap)"  :class="{ notcorrect: validated && gap.guess != gap.gap, correct: validated && gap.guess === gap.gap }">{{ gap.guess }} </span>
+  <span v-if="validated && gap.gap!='' && !Array.isArray(gap.gap) && gap.gap != gap.guess" class="correct">{{ gap.gap }} </span>
+  <span v-if="validated && gap.gap!='' && Array.isArray(gap.gap) && gap.guess != gap.solution" class="correct"> {{ gap.solution }} </span>
 </span>
 </li>
 </ol>
@@ -169,7 +171,8 @@ export default {
 
 .notcorrect {
     color: red;
-    border: 1px solid red
+    border: 1px solid red;
+    text-decoration: line-through;
 }
 
 
