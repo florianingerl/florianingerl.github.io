@@ -5,7 +5,6 @@
 <span v-for="gap in innergaps" >
   {{ gap.text }} 
   <select :disabled="validated" v-if="gap.gap!='' && Array.isArray(gap.gap)" :class="{ notcorrect: validated && gap.guess != gap.solution, correct: validated && gap.guess === gap.solution }" v-model="gap.guess">
-    <option disabled value="">Please select one</option>
     <option v-for="op in gap.gap">{{ op }}</option>
   </select> 
 
@@ -37,7 +36,7 @@ export default {
   components: {
   
   },
-  props: ['gapfile','gaptext', 'same', 'lg', 'numbering'],
+  props: ['gaptext', 'same', 'lg', 'numbering'],
 
   data() {
     return {
@@ -49,25 +48,7 @@ export default {
   mounted(){
      console.log("The setup function is executed!");
      
-     if( this.gapfile ){
-     var xhttp = new XMLHttpRequest();
-     xhttp.onreadystatechange = () => {
-     if (xhttp.readyState == 4 && xhttp.status == 200) {
-       // Typical action to be performed when the document is ready:
-        let data = xhttp.responseText;
-        console.log("The ajax query works!");
-        console.log(data);
-
-        console.log("I can read the file!");
-      console.log(data);
-      this.parseGapTexts(JSON.parse(data));
-    }
-};
-xhttp.open("GET", this.gapfile, true);
-xhttp.send();
-
-     }
-     else if(this.gaptext && Array.isArray(this.gaptext) ){ //gaptext is an array of gaptexts
+    if(this.gaptext && Array.isArray(this.gaptext) ){ //gaptext is an array of gaptexts
      console.log(this.gaptext);
       this.parseGapTexts(this.gaptext);
      }
