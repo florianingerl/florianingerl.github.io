@@ -167,6 +167,9 @@ const VueConnaitreOuSavoir = Vue.defineAsyncComponent(() =>
 const VueMettre = Vue.defineAsyncComponent(() =>
   loadModule('assets/js/vue-components/french/vocabulaire/vue-mettre.vue', options));
 
+const VueAnnaCat = Vue.defineAsyncComponent(() =>
+  loadModule('assets/js/vue-components/english/shortstories/vue-anna-cat.vue', options));
+
 const VueGuillemetsFrancais = Vue.defineAsyncComponent(() =>
   loadModule('assets/js/vue-components/informatik/regex/vue-guillements.vue', options));
 
@@ -232,7 +235,22 @@ const routes = [
       path: 'fred/:page',
       component: VueFred },
     
-  ] }, {
+  ] },
+  {
+    name: 'Short stories',
+    path: 'shortstories',
+    children: [
+      {
+        name: 'The cat detective',
+        path: 'thecatdetective',
+        component: VueAnnaCat
+
+      }
+  ]
+  },
+  
+  
+  {
     name: 'Grammar',
     path: 'grammar',
     children: [ {
