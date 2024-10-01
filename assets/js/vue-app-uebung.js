@@ -170,6 +170,9 @@ const VueMettre = Vue.defineAsyncComponent(() =>
 const VueAnnaCat = Vue.defineAsyncComponent(() =>
   loadModule('assets/js/vue-components/english/shortstories/vue-anna-cat.vue', options));
 
+const VueAnnaTurtoises = Vue.defineAsyncComponent(() =>
+  loadModule('assets/js/vue-components/english/shortstories/vue-anna-turtoise.vue', options));
+
 const VueGuillemetsFrancais = Vue.defineAsyncComponent(() =>
   loadModule('assets/js/vue-components/informatik/regex/vue-guillements.vue', options));
 
@@ -245,6 +248,11 @@ const routes = [
         path: 'thecatdetective',
         component: VueAnnaCat
 
+      },
+      {
+        name: 'Advertisement and turtoises',
+        path: 'annaturtoises',
+        component: VueAnnaTurtoises
       }
   ]
   },
