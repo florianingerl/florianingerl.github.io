@@ -50,6 +50,43 @@ qui aiment chasser des animaux sauvages.
 
 </VueExercise>
 
+<p>
+Il sait qu'il va avoir un aventure. 
+Il y a des lions étrangers dans son territoire. Il doit les combattre.
+Il connaît tous les arbres dans son territoire.
+Les arbres dans son territoire ne sont pas aussi hauts qu'une montagne.
+</p>
+
+<p>
+ Il a un plan. Il va grimper sur l'un des arbres et sauter de là sur ses ennemies.
+ Il saute sur les ennemies qui sont le plus proches. De cette façon, il les tue tout.
+ Mais il ne les mange pas après parce qu'ils ne sont pas aussi bon que les lapins ou les souris.
+ </p>
+
+ <p>
+Il est dans le lac qu'il boit parce qu'il a soif. Bien sûr, il ne boit pas tout le lac. Après avoir bu,
+il se met à dormir sous un arbre.
+ </p>
+
+ <p>
+Puis, il chasse un lapin dans son territoire. Le résultat en est qu'il n'a plus faim. Où sont ses autres proies?
+ </p>
+
+ <p>
+Quelqu'un, qui n'est pas son ami, a probablement volé tous ses autres proies. Tant mieux, pas bon de ne manger que de la viande. Au lieu de cela,
+il va manger de la salade.
+ </p>
+
+ <p>
+Il rencontre un homme qui porte un pull bleu. Il fait la connaissance de cet homme dans une grotte où il cherche normalement des souris.
+<< Mais pourquoi il n'y a plus de souris dans la grotte ? >> demande-t-il à l'homme qui porte le pull bleu. << Parce que ce serpent-ci les a déjà tout
+mangé. >> reponds l'homme.  
+ </p>
+
+ <p>
+Le lion parle à l'homme et l'homme met sa main sur le lion. << Pas de raison pour mourir de faim! >> dit l'homme au lion. << Je connais un
+couloir secret où il y a beaucoup de souris à manger ! >> Et l'homme montre le couloir au lion. Mais le lion a peur de l'homme.
+ </p>
 
 
 </div>
