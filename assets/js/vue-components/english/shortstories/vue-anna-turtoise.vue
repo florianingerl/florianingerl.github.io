@@ -1,8 +1,8 @@
 <template>
 <div>
 
-<h1>Eine Katze, die Fisch mag</h1>
-<h4><i>von Florian Ingerl und Anna Scakacs</i></h4>
+<h1>Advertisement with turtoises</h1>
+<h4><i>by Florian Ingerl and Anna Scakacs</i></h4>
 
 <img style="float: right; height: 200px" src="assets/img/deutsch/katze.JPG"></img>
 
@@ -11,8 +11,15 @@ Her name was Clara and she used to cry a lot when she was a small tutoise but ov
 Because of her positive attitude towards life, she attracted only fellow tortoises who were also very positive and creative.
 She could have stayed unhappy all her life if she hadn't changed her perspective. But thankfully she did and so she managed to meet these other amazing turtoises and they became a tight-knit (=close) group of friends.</p>
 
-<VueExercise>
 
+<VueExercise lg="en" instruction="Fill in the gaps with either be/get used to doing sth or used to do sth!">
+<VueMCGaps lg="en" :gaptext="['When I was young, I {used to play|am used to playing} football. Now, I don\'t play it anymore because of other priorities.',
+'I {am used to getting up|used to get up} at 4 o\'clock in the morning. That gives me more time to read books.',
+'There {used to be|is used to being|used to being} a bridge, but the terrible storm of last month has destroyed it.',
+'Mr Chips {is used to working|used to work} 10 hours a day. His job is funny, so he does it voluntarily.',
+'Mr Chips {used to work|is used to working} 10 hours a day. Now, he has grown old and 10 hours a day would be too much for him.']">
+
+</VueMCGaps>
 </VueExercise>
 <p>
 Anton was the funniest of the group and often told jokes about humans or snakes and there was also Bryan, who was eating all the time and weighted a lot.
@@ -22,18 +29,63 @@ If the three friends knew how many other turtoises would show up, they wouldn't 
 Fortunately, Anton was in a good mood and - after everyone had sat down and gotten their salads - began to tell an anecdote: "Yesterday, the idea came to my mind that - because the salads in the supermarkets are so expensive - they must be really high quality and I went in there to buy one."
 </p>
 
+
+<VueExercise lg="en" instruction="Use either an infinitv or an -ing-form">
+<VueMCGaps lg="en" :gaptext="['Although Bryan\'s stomach was already full, he continued {eating|to eat}.',
+'Where has Anton learnt {telling|to telling} such funny jokes and short stories?',
+'Clara, Anton and Bryan were all looking forward {to eating|eating|to eat} delicious turtoise-food at the restaurant.']">
+
+</VueMCGaps>
+</VueExercise>
+
 "Yes, I also went to the supermarket yesterday and I saw the price and the quality of the salads, commented Clara. "But next time it might be better if we planted our own salads and had organic food for dinner."
 Anton shortly appreciated Clara's comment by smiling into her direction, then continued his story: "Not having any money in my pockets, I simply took the salad in my mouth to the cassier and asked him whether I can bring him the money later and take the salad now with me."
 Bryan being a bit surprised by Anton's anecdote, asked his friend: "And so did the cashier let you leave without paying?"
+
+<VueExercise lg="en" instruction="Fill in the gaps using either have sth. done, let sb do sth, or make sb do sth">
+<VueMCGaps lg="en" :gaptext="['His overfull stomach {made Bryan stop|let Bryan stop|have Bryan stopped} eating.',
+'The funny jokes of Anton {made everybody laugh|have everybody laughed|let everybody laugh}.',
+'His friends {let Bryan fart|make Bryan fart|have Bryan farted} in the restaurant without making any reproches.',
+'In the restaurant, the three friends {have their food brought|let their food bring|make their food bring} to their table. What a service!']">
+
+</VueMCGaps>
+</VueExercise>
+
 "No!" answered Anton. "He wasn't happy that I had taken the salad already in my mouth and that I had no money. I suggested of course to simply put the salad back."
 "What a funny turtoise you are, Anton!" said Bryan laughing. "I hope they didn't ban you from entering this supermarket again because we will need more food for our dinner party next week, added the food-obssessed turtoise.
+
+<VueExercise lg="en" instruction="Fill in the gaps with a compound-adjective!">
+<VueMCGaps lg="en" :gaptext="['Bryan is so {dim-witted|sky-blue} that he cannot even add one and one.',
+'Clara is such a {breath-taking|ugly-looking} turtoise that all the male turtoises turn their head towars her.',
+'The {Oxford-University-educated|LMU-University-educated} Bryan is very intelligent.']">
+
+</VueMCGaps>
+</VueExercise>
+
+
 "I am listening to you but I don't understand you, because your mouth is still halfful, Bryan." - said Clara. "Please finish eating first before you speak!"
 "In case I was rude, I apologize for my poor manners, Clara. You are right, I should first finish eating my food but I like to eat a lot and also talk a lot so I sometimes do both at the same time, said Bryan.
 "Can I continue with my story?" asked Anton who was a bit annoyed about having been interrupted. In reply to this, the other two stopped talking and looked attentively in the direction of Anton to encourage him to continue.
+
+learn to do sth, forget to do std, remember to to sth, stop to do sth, continue to do sth, used to do sth, to be/get used to doing sth, manage to do sth., try to do sth, expect, invite, know, begin, look forward to
+<VueExercise lg="en" instruction="Fill in the gaps by using either an infinitiv or an ing-form">
+<VueMCGaps lg="en" :gaptext="['Let\'s stop {to have|having} a break.',
+'Remember {to close|closing} the window before you leave!',
+'Clara will never forget Bryan {telling|to tell} his funny jokes.']">
+
+</VueMCGaps>
+</VueExercise>
+
 Without waiting another second, Anton happily continued his story: "So no, they didn't ban me from the supermarket. Actually, something amazing happened while I was at the till. A young man with a nice camera saw me and filmed me with my salad in the mouth. He was a reporter and wanted to do an interview with me because he had never seen such a good-looking turtoise like me."
 So first the reporter paid my salad and thus calmed the shop assistant's anger and said:
 "I haven't eaten anything today yet! So why don't we sit and eat something together here and I can question you about tortoise-matters? "
 
+<VueExercise lg="en" instruction="Use either the simple past or the present perfect!">
+<VueMCGaps lg="en" :gaptext="['Anton {has never been|was never} interviewed before.',
+'Yet to write!']">
+
+</VueMCGaps>
+</VueExercise>
 
 
 Natürlich verstaut eine Katze ihre Sachen nicht in einer Aktentasche,
