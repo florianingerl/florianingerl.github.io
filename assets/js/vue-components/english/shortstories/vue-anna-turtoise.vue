@@ -2,9 +2,9 @@
 <div>
 
 <h1>Advertisement with turtoises</h1>
-<h4><i>by Florian Ingerl and Anna Scakacs</i></h4>
+<h4><i>by Florian Ingerl and  <a href="https://www.professeurparticulier.com/244477-annonce-professeur-unlock-your-english-potential-with-personalized-online-lessons-anglais-a-lannion-22300-en-anglais.html">Anna Scakaz<a></i></h4>
 
-<img style="float: right; height: 200px" src="assets/img/deutsch/katze.JPG"></img>
+<img style="float: right; height: 200px" src="assets/img/english/turtoise.PNG"></img>
 
 <p>Once upon a time, there was a turtoise who was very happy most of the time.
 Her name was Clara and she used to cry a lot when she was a small tutoise but over time, she learnt to be more optimistic and have a positive view on life.
@@ -67,7 +67,6 @@ Bryan being a bit surprised by Anton's anecdote, asked his friend: "And so did t
 "In case I was rude, I apologize for my poor manners, Clara. You are right, I should first finish eating my food but I like to eat a lot and also talk a lot so I sometimes do both at the same time, said Bryan.
 "Can I continue with my story?" asked Anton who was a bit annoyed about having been interrupted. In reply to this, the other two stopped talking and looked attentively in the direction of Anton to encourage him to continue.
 
-learn to do sth, forget to do std, remember to to sth, stop to do sth, continue to do sth, used to do sth, to be/get used to doing sth, manage to do sth., try to do sth, expect, invite, know, begin, look forward to
 <VueExercise lg="en" instruction="Fill in the gaps by using either an infinitiv or an ing-form">
 <VueMCGaps lg="en" :gaptext="['Let\'s stop {to have|having} a break.',
 'Remember {to close|closing} the window before you leave!',
@@ -82,136 +81,127 @@ So first the reporter paid my salad and thus calmed the shop assistant's anger a
 
 <VueExercise lg="en" instruction="Use either the simple past or the present perfect!">
 <VueMCGaps lg="en" :gaptext="['Anton {has never been|was never} interviewed before.',
-'Yet to write!']">
+'Clara {was told|has been told} a joke by Anton on Friday.',
+'{Have you finished|Did you finish} dinner yet?']">
 
 </VueMCGaps>
 </VueExercise>
 
+"Okay, great, let's do that! I'm genuinely excited about this interview because this is the first time that someone wants to interview me, said Anton.
+After taking seat at a table in the supermarket's restaurant, Anton was given his first question: "Do tortoises ever clean their shell. I am genuinely curious about that, because your tongue isn't long enough to reach your shell, is it? "
 
-Natürlich verstaut eine Katze ihre Sachen nicht in einer Aktentasche,
-obwohl sich in der Tasche genug Platz finden würde, für alles was eine Katze so zum Leben braucht.
-Vielleicht bewachte die Katze die Aktentasche nur für ihr Herrchen, aber eigentlich wäre das die Aufgabe eines Wachhundes.
-"Ob ich dem Fischer einen Fisch abluchsen könnte? Ich gebe ihm mein bestes und herzzerreißendes Miauen, dann klappt es bestimmt.", sinnierte die Katze.
-Angekommen neben des Fischers Standes auf dem Marktplatz, fing die Katze, die übrigens 
-Melli hieß, ganz süß zu miauen an. Dabei schielte sie zu den Fischen, um ihren Wunsch einer Fischmahlzeit damit auszudrücken.
-<VueExercise lg="de" instruction="Bilde Sätze mit um...zu+Infinitiv, ohne...zu+Infinitiv oder anstatt...zu+Infinitiv wie in den Beispielen!">
-<p>Beispiel 1:</p>
-<p>Er, Hunger, stillen, etwas, essen</p>
-<p>Er isst etwas, um seinen Hunger zu stillen.</p>
+<VueExercise lg="en" instruction="Complete the sentences with question tags!">
+<VueMCGaps lg="en" :gaptext="['You will help me, {won\'t you|will not you|don\'t you}?',
+'You are a reporter for BBC, {aren\'t you|are you|do you}?',
+'Don\'t ask me stupid questions, {will you|won\'t you}?']">
 
-<p>Beispiel 2:</p>
-<p>Fernsehen schauen, Hausaufgaben, machen, Er </p>
-<p>Er schaut Fernsehen, anstatt seine Hausaufgaben zu machen.</p>
-
-<p>Beispiel 3:</p>
-<p>Er, gehen, auf Widersehen sagen</p>
-<p>Er geht, ohne auf Widersehen zu sagen.</p>
-
+</VueMCGaps>
+</VueExercise>
+"No, we don't clean our shells because as you said, our tongue is not long enough. But also we don't need to clean it because it cleans itself from the inside. And from the outside we don't clean it, unless we get it dirty. If that's the case, we go and wash ourselves in a river."
+"What you just said, suddenly gave me an idea! What about constructing a boat in the form and the material of a turtoise shell and sell it to people, so that they can travel with it along the river!"
+And you would be the turtoise that I need to advertise.
+<VueExercise lg="en" instruction="Make one sentences out of the two as in the example!">
+<p>Example 1: You can't drink the tea. It is hot. => The tea is too hot to drink.</p>
+<p>Example 2: This therapy can't heal. It is not powerful. => This therapy isn't powerful enough to heal.</p>
 <ol>
-<li>Gustav, Chef, an jemandem vorbei gehen, jdn grüßen</li>
-<li>Camille, Urlaub machen, arbeiten, lieber</li>
-<li>Katze, putzen, Fell, schmutzig, sein</li>
+<li>Anton's tongue is short. He can't reach his shell.</li>
+<li>Anton's jokes don't make people laugh. They are not funny.</li>
+<li>You can't sell this book. It is not good.</li>
+<li>You can't carry the turtoise. It is heavy.</li>
 </ol>
-<VueHideShow lg="de">
+<VueHideShow lg="en">
 <ol>
-<li>Gustav geht an seinem Chef vorbei, ohne ihn zu grüßen.</li>
-<li>Camille macht lieber Urlaub, anstatt zu arbeiten.</li>
-<li>Die Katze putzt ihr Fell, um nicht schmutzig zu sein.</li>
+<li>Anton's tongue is too short to reach his shell.</li>
+<li>Anton's jokes aren't funny enough to make people laugh.</li>
+<li>The book is not good enough to sell.</li>
+<li>The turtoise is too heavy to carry.</li>
 </ol>
 </VueHideShow>
 </VueExercise>
 
+<img style="float: left; height: 200px" src="assets/img/english/turtoise.PNG"></img>
+"Okay, I love the idea! I have always wanted to participate in a business project and become rich! I also want to have my picture and our boat in the newspaper so I can become famous as well. I will also ask my turtoise friends to take part in this project with me, we can work  all together! I remember already talking about this idea with Clara and Bryan a few years ago when a businessman contacted me. But unfortunately he didn't have enough money to pay us, so we said no."
+"That business man must have been a complete idiot!" exclaimed the interviewer.
+"Me by contrast, I will pay you 10 000  dollars in advance of course for your services." To prove this, he immediately handed over an enveloppe with the money.
 
-"Wenn ich dir einen kleinen Fisch gebe, begann der Fischer, dann möchte ich, dass du ihn woanders verspeist und nicht noch mehr hungrige Mäuler anziehst!" Melli bestätigte die Aussage mit einem Miauen und einem freudigen Wedeln ihres Schwanzes.
-Jedoch ist natürlich eine Aktentasche nicht geeignet, um einen kleinen Fisch darin zu transportieren, sondern in einer Aktentasche transportiert man Akten.
-<VueExercise lg="de" instruction="Fülle die Lücken mit sondern, aber, denn, und oder oder" >
-<VueMCGaps lg="de" :gaptext="['Die Katze heißt nicht Melissa, {sondern} sie heißt Melli.',
-'Die Katze kann zwar nicht bellen, {aber} sie kann miauen.',
-'Die Katze isst einen Fisch, {denn} sie hat Hunger.',
-'Du bezahlst den Fisch {oder} ich gebe ihn dir nicht.',
-'Die Katze mag gerne Fisch {und} Mäuse.']">
+<VueExercise lg="en" instruction="Fill in the gaps with either all together or altogether!">
+<VueMCGaps lg="en" :gaptext="['Anton ate two salads for breakfast, three salads for lunch and four salads for dinner. So he ate nine salads {altogether|all together}',
+'The salad was too big for one turtoise, so Clara, Bryan and Anton had to eat it {all together|altogether}',
+'The food was cheap and delicious, the room was warm and the chairs were soft. The three friends were {altogether|all together} pleased with the restaurant.']">
 
 </VueMCGaps>
 </VueExercise>
 
-Melli schob die Aktentasche mit ihrem Näschen zum Fischer und sagte ihm so, er solle die kleine Makrele darin verstauen. "Das geht doch nicht!", rief er lachend und setzte nach mit, "Deinem Herrchen würde das sicher nicht gefallen, wenn seine Aktentasche nach Fisch riechen würde!"
+"So let's meet tomorrow at the river. I will bring a boat and a camera so we can make a short advertisement video clip. Nothing can go wrong!"
+"Okay, perfect but I have some requests! You should also give us 100 salads as a bonus next to the money. Plus invite an architect to build the boat and a clown as well who will entertain us and make us laugh for the video. I'm more handsome when I'm laughing. See you tomorrow morning!"
 
-<VueExercise lg="de" instruction="Bilde Konditionalsätze wie in den Beispielen!">
+<VueExercise lg="en" instruction="Fill in the gaps with either nothing or not...anything">
+<VueMCGaps lg="en" :gaptext="['I don\'t want to hear {anything|nothing}.',
+'Turtoises can make an advertisement for {anything|nothing}.',
+'The advertised product is good for {nothing|anything} although it is cheap.']">
 
-<p>Beispiel 1:</p>
-<p>Katze, sehen, Maus, essen (Konditionalsatz der Vergangenheit)</p>
-<p>Wenn die Katze eine Maus gesehen hätte, hätte sie die Maus gegessen.</p>
+</VueMCGaps>
+</VueExercise>
 
+"Of course, the best architect on earth will construct this boat, no need for you tortoises to worry about that. Otherwise I would endager your lives by sending you on the river in an unsafe boat. And of course, the material of the boat will not be real tortoise shell material but some cheap replacement.
+<VueExercise lg="en" instruction="From singular to plural. Transform the sentences as in the example!">
+<p>Example: A cat likes to eat a mouse. => Cats like to eat mice.</p>
 <ol>
-<li>Katze, Geld, haben, Fisch, bezahlen (Konditionalsatz der Vergangenheit)</li>
-<li>Katze, keinen Hunger, kein Fisch, wollen (Konditionalsatz der Vergangenheit)</li>
-<li>Katze, angeln, können, Fische fangen (Konditionalsatz mit irrealer Bedingung) </li>
+<li>A mouse has a relatively short life.</li>
+<li>A man needs a challenge in his life.</li>
+<li>A knife cuts a salad into small pieces.</li>
 </ol>
-
-<VueHideShow lg="de">
+<VueHideShow lg="en">
 <ol>
-<li>Wenn die Katze Geld gehabt hätte, hätte sie den Fisch bezahlt.</li>
-<li>Wenn die Katze keinen Hunger gehabt hätte, hätte sie keinen Fisch gewollt.</li>
-<li>Wenn die Katze angeln könnte, würde sie sich selbst Fische fangen.</li>
+<li>Mice have relatively short lives.</li>
+<li>Men need challenges in their life.</li>
+<li>Knives cut salads into small pieces.</li>
 </ol>
 </VueHideShow>
 </VueExercise>
 
+And your words make me realize that you are a real marketing expert. I will book the best clown I can find. He will be there tomorrow.
+Having finished telling the story of what happened to him that afternoon, Anton turned towards his friends with great excitement and asked them:
+"So do you want to come with me tomorrow?"
 
-Bei Fisch in einer Aktentasche war der Handel gestoppt wie bei einer roten Ampel. Beide überlegten, wie die Ampel wieder grün schalten könnten und die Katze machte zuerst einen Vorschlag:
-Die Katze, die ihren kleinen Fisch unter keinen Umständen verlieren wollte, öffnete plötzlich ihr Maul und gab dem sich anbahnenden Gähnen nach.
-"Na also, da haben wir ja schon eine Lösung.", kam es nun vom Fischer, welcher den Fisch der Katze flugs ins Maul steckte.
-Ungünstigerweise wurde die Katze Melli beim Transport des Fisches in ihrem Maul von einer Gruppe von streunenden Katzen beobachtet. Diese streunenden Katzen waren sehr ungebildet und hingen den ganzen Tag lang nur faul herum und fragten sich jetzt, wo Melli den leckeren Fisch herhatte.
-
-<VueExercise lg="de" instruction="Finde das Gegenteil">
-<VueMCGaps lg="de" :gaptext="['öffnen -> {schließen}', 'stoppen -> {starten}', 'klein -> {groß}', 'verlieren -> {gewinnen}', 'faul -> {fleißig}']">
-
-</VueMCGaps>
-
-</VueExercise>
-
-Als Melli darauf nicht wirklich antworten wollte, um dem Fischer keine Probleme zu bereiten, richtete sich die Meute von Katzen gegen sie. Diese nun fauchenden Ungetüme versuchten der armen Melli den Weg zu versperren und sie in eine Ecke der Gasse zu drängen.
-Wie schade! Hätte Melli jetzt das Nudelholz ihrer Großmutter zur Hand, so hätte sie sich damit gut zur Wehr setzten können. Ihre Großmutter hatte öfter Nudeln mit Fisch gekocht.
-In dem kurzen Moment jedoch, wo Melli in alten Erinnerungen schwelgte, war sie den Fisch losgeworden.
-Die Katze, deren Magen knurrte, wollte sich jedoch noch nicht geschlagen geben. Irgendwo musste es doch etwas, für sie zum Fressen geben.
-
-<VueExercise lg="de" instruction="Mache einen Satz aus den zwei Sätzen indem du einen Relativsätz mit Genitiv wie im Beispiel benutzt!">
-<p>Beispiel 1:</p>
-<p>Die Katze lief davon und bezahlte nicht. In ihrem Maul war der Fisch.</p>
-<p>Die Katze, in derem Maul der Fisch war, lief davon und bezahlte nicht.
-
-<ol>
-<li>Das Fell der Katze war dreckig. Die Katze ging unter die Dusche.</li>
-<li>Die Zähne der Katze waren scharf. Die Katze zerriss die Aktentasche aus Versehen.</li>
-<li>Die Stimme des Fischers war sehr kräftig. Der Fischer machte lautstark Werbung für seine Fische.</li>
-</ol>
-
-<VueHideShow lg="de">
-<li>Die Katze, deren Fell dreckig war, ging unter die Dusche.</li>
-<li>Die Katze, deren Zähne scharf waren, zerriss die Aktentasche aus Versehen.</li>
-<li>Der Fischer, dessen Stimme sehr kräftig war, machte lautstark Werbung für seine Fische.</li>
-</VueHideShow>
-</VueExercise>
-
-Keinen Blick in die Schaufenster verschwendend und von ihrem knurrenden Magen getrieben, lief die Katze zurück zum Fischer, wo sie wieder zum Miauen begann.
-Der Fischer war diesmal jedoch nicht allein. An seinem Verkaufsstand, war ein Kunde verkleidet als Osterhase, der seine Bestellungen abholte. Ob der Mann im Kostüm heute Waschtag und deswegen nichts anderes zum Anziehen hatte? Den seltsamen Mann ignorierend maunzte sie sich die Seele aus dem Leib.
-Der Fischer war jetzt völlig verwirrt. Hier der Lärm der miauenden Katze, die doch eben gerade einen Fisch bekommen hatte und jetzt wieder da war, und dort dieser Mann im Osterhasenköstum, obwohl gar kein Ostern war.
-
-<VueExercise lg="de" instruction="Fülle die Lücken mit dem gegebenen Verb im Präteritum aus!">
-<VueMCGaps lg="de" :gaptext="['Die Katze {lief} (laufen) nach Hause.', 'Der Fischer {rief} (rufen) nach der Polizei', 'Die streunenden Katzen {gingen} (gehen) leer aus.', 'Die Katze {hatte} (haben) Hunger.']">
+<VueExercise lg="en" instruction="Fill in the gaps by an expression with make sb do sth or have sth done or let sb do sth!">
+<VueMCGaps lg="en" :gaptext="['I don\'t buy food in the supermarket. Instead, I {have my food delivered|make my food deliver|let my food deliver}.',
+'This exercise {makes you think|has you thought}.',
+'This film is so boring that it {makes you fall|lets you fall|has you fallen} asleep.',
+'The shop assistant doesn\'t {let Bryian buy|make Bryian buy|have Bryian bought} alcohol.']">
 
 </VueMCGaps>
 </VueExercise>
 
-"Hier ihr bestellter Fisch Hr. Kimmer und ich hoffe sie sind wie immer zufrieden!"
-"Natürlich, ihr Fisch ist schließlich der beste in der Gegend!"
-Beide wünschten sich noch einen schönen Tag und beendeten ihr Gespräch im Eiltempo.
-Der Fischer war eigentlich ein versierter Geschäftsmann. Die Katze hatte zwar nur 50 Cent in ihrer Aktentasche und sein Fisch kostete 1 Euro, dennoch ließ er sich auf den vergünstigten Handel ein, um dem verkaufsschädlichen Katzenjammer an seinem Stand
-ein Ende zu bereiten.
-Überglücklich ob des geglückten Deals, nahm die Katze den gekauften Fisch, doch als sie ihn fressen wollte rief jemand ihren Namen, "Melli! Wo treibst du dich schon wieder rum, meine Mama wird mir den Hosenboden versohlen, wenn wir nicht pünktlich zu Hause sind!" Der kleine Malte nahm die Katze samt Aktentasche auf seine Arme und lief geschwind mit seinem Haustier nach Hause, wo beide hoffentlich keine Standpauke zu hören bekamen.
+"Yes, of course, being in a video is something I have always dreamt about! replied Clara happily and Bryan also agreed.
+Because they had received the money in advance, the three turtoises had enough means to make themselves beautiful. In order to do that, they booked an expert in Laugh Yoga who trained them all night.
+So they appeared for the meeting all nice and in good mood.
+<VueExercise lg="en" instruction="Fill in the gaps by a self-pronoun!">
+<VueMCGaps lg="en" :gaptext="['For this exercise, I do not need any help. I can do it {myself}.',
+'I cannot help you with this exercise. You have to do it {yourself}.',
+'Clara finds {herself} attractive.',
+'The three friends take pictures of {themselves}.']">
 
+</VueMCGaps>
+</VueExercise>
 
-THE END
+<img style="float: right; height: 200px" src="assets/img/english/turtoise.PNG"></img>
+The small advertisement clip was made. It has to be admitted, that the boat was really rubbish but the clip became very, very good.
+Despite the product being garbage because of the cheap material, people loved the boat and bought a lot of them, making the turtoises the richest turtoises ever. However, Anton, Clara and Bryan were not satisfied with this reporter and his lack of quality product so they found another businessman after and continued to model for better products.
+<VueExercise lg="en" instruction="Fill in the gaps with unlike, instead of, despite, although, whereas or though">
+<VueMCGaps lg="en" :gaptext="['{Unlike} the other businessman, the new one appreciated quality.',
+'The advertised boat was rubbish, the advertisement was entertaining {though}.',
+'{Instead of} advertising a lot of rubbish, you should improve the quality of your services.',
+'{Despite} his lack of confidence, he showed up in front of the audience and made a good speech.',
+'Anton is very thin {whereas} Bryian is rather fat.']">
+
+</VueMCGaps>
+</VueExercise>
+
+They became very rich and very popular turtoises.
+The interviewer didn't have to give up. What made his business flourish was the fact, that the boat got destroyed very quickly and people had to buy an expensive new one.
+
+<h2>The end</h2>
 
 </div>
 

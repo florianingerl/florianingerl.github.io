@@ -2,7 +2,7 @@
 <div>
 
 <h1>The cat detective</h1>
-<h4><i>by Florian Ingerl and Anna Scakacs</i></h4>
+<h4><i>by Florian Ingerl and  <a href="https://www.professeurparticulier.com/244477-annonce-professeur-unlock-your-english-potential-with-personalized-online-lessons-anglais-a-lannion-22300-en-anglais.html">Anna Scakaz<a></i></h4>
 
 <img style="float: right; height: 200px" src="assets/img/deutsch/katze.JPG"></img>
 The cat didn't really need his bag.
