@@ -56,7 +56,7 @@
     </tr>
     <tr>
 <td>13</td>
-       <td><router-link to="/fr/french/livres/livresurfred/1">Un livre sur Fred</router-link></td>
+       <td><router-link to="/fr/french/livres/livresurfred/1">Une chute douce</router-link></td>
        <td>Flori10</td>
     </tr>
       <tr>
