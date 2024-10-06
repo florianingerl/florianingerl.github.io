@@ -179,6 +179,9 @@ const VueGuillemetsFrancais = Vue.defineAsyncComponent(() =>
 const VueKatzeMagFisch =  Vue.defineAsyncComponent(() =>
   loadModule('assets/js/vue-components/deutsch/kurzgeschichten/vue-katze-vanessa.vue', options));
 
+const VueVogelMarcia =  Vue.defineAsyncComponent(() =>
+  loadModule('assets/js/vue-components/deutsch/kurzgeschichten/vue-marcia-vogel.vue', options));
+
 const VueKatzeVanessa = Vue.defineAsyncComponent(() =>
   loadModule('assets/js/vue-components/deutsch/kurzgeschichten/vue-katze-vanessa.vue', options));
 
@@ -294,6 +297,11 @@ const routes = [
             name: 'Eine Katze, die Fisch mag',
             path: 'katzemagfisch',
             component: VueKatzeMagFisch
+          },
+          {
+            name: 'Mit Vögeln Äpfel teilen',
+            path: 'vogelmarcia',
+            component: VueVogelMarcia
           }
         ]
 
