@@ -161,6 +161,18 @@ export default {
 	},
 
 	{
+		question: "Ca. 3 Stunden lang solltest du nach schweren Mahlzeiten (z.B. nach einer 200g-Linsensprossen-Monomahlzeit) nichts trinken? Wann solltest du denn dann trinken?",
+		questionFr : "Quel instrument est utile pour améliorer la qualité de l'eau?",
+		questionEn : "Which instrument is useful to improve the quality of water?",
+		imageUrl: "assets/img/rawfood/verredeleau2.png",
+		type: "multiple choice",
+		options: [{ option : "Eine halbe Stunde vor einer Mahlzeit", correct: true }, { option : "Während einer Mahlzeit", correct: false }, , { option : "gar nichts mehr", correct: false }],
+		optionsFr: [{ option : "un vitaliseur d'eau", correct: true }, { option : "sirop", correct: false }],
+		optionsEn: [{ option : "a vitalizer of water", correct: true }, { option : "sirop", correct: false }],
+		correct: 0
+	},
+
+	{
 		question: "Warum isst ein Rohköstler Hanfsprossen?",
 		questionFr: "Pourquoi un crudivore ajoute-t-il des pousses de chanvre à sa bouillie de céréales fraîches? ",
 		questionEn: "Why does a raw fooder add hempsprouts to his fresh grain porridge?",
