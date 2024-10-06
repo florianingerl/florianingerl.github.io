@@ -1053,12 +1053,12 @@ export default {
 	},
 
 	{
-		question: "Was biete ich dir gerne an, wenn du zu mir wegen Nachhilfe in MINT oder Sprachen, Ernährungsberatung oder einer Reiki-Behandlung ?",
+		question: "Was biete ich dir gerne an, wenn du zu mir wegen Nachhilfe in MINT oder Sprachen, Ernährungsberatung oder einer Reiki-Behandlung kommst?",
 		questionEn: "What is self-love?",
 		questionFr: "Qu'est-ce que l'amour de soi?",
-		imageUrl: "assets/img/rawfood/meafterernaehrungsberatung.png",
+		imageUrl: "assets/img/rawfood/reikiflasche.JPG",
 		type: "multiple choice",
-		options: [{ option : "Schlankes Gesicht und Nase ohne Hautunreinheiten", correct: true }, { option : "Wache Augen und nur noch 4 Stunden Schlafbedarf", correct: true }, { option : "Totale Abmagerung", correct: false }],
+		options: [{ option : "Eine kleine Flasche mit destilliertem Reiki-Wasser", correct: true }, { option : "Eine Flasche abgestandenes Leitungswasser", correct: false }],
 		optionsEn: [{ option : "Make your own Reiki cauliflower", correct: true }, { option : "Bake your own Reiki cake", correct: false }],
 		optionsFr: [{ option : "Préparer ton propre chou-fleur Reiki", correct: true}, { option : "Préparer ton propre gâteau au chou-fleur", correct: false }],
 		correct: 2
