@@ -1041,10 +1041,10 @@ export default {
 	},
 
 	{
-		question: "Zu was hat bei mir eine Ernährungsberatung in 4-6 Sessions bei Normen Nauber (googlebar) geführt?",
+		question: "Zu was hat bei mir Ernährungsberatung in 4-6 Sessions bei Normen Nauber (googlebar) geführt?",
 		questionEn: "What is self-love?",
 		questionFr: "Qu'est-ce que l'amour de soi?",
-		imageUrl: "assets/img/rawfood/meafterernaehrungsberatung.PNG",
+		imageUrl: "assets/img/rawfood/meafterernaehrungsberatung.png",
 		type: "multiple choice",
 		options: [{ option : "Schlankes Gesicht und Nase ohne Hautunreinheiten", correct: true }, { option : "Wache Augen und nur noch 4 Stunden Schlafbedarf", correct: true }, { option : "Totale Abmagerung", correct: false }],
 		optionsEn: [{ option : "Make your own Reiki cauliflower", correct: true }, { option : "Bake your own Reiki cake", correct: false }],
