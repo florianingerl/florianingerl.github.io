@@ -2,12 +2,12 @@
     <div>
     
     <h1>Mit Vögeln Äpfel teilen</h1>
-    <h4><i>von Florian Ingerl und Marcia</i></h4>
+    <h4><i>von Florian Ingerl und Marcia Poletti</i></h4>
     
     <img style="float: right; height: 200px" src="assets/img/deutsch/vogel.jpg"></img>
 
     Es war einmal ein Vogel, dessen Federn schwarz waren, und der Anton hieß.
-Anton flog gerne in der Luft, aber heute regnet es. Die Luft ist nass und Anton möchte ausschlafen. Der Baum ist grün und die Blumen sind schön. Anton ist  in dem Baum.
+Anton flog gerne in der Luft, aber an jenem Tag regnete es. Die Luft war nass und Anton mochte ausschlafen. Der Baum war grün und die Blumen waren schön. Anton war in dem Baum.
 
 <VueExercise lg="de" instruction="Fülle die Lücken mit dem Artikel im Datif oder Akkusativ aus!">
 <VueMCGaps lg="de" :gaptext="['Der Vogel sitzt auf {einem|einen} Ast.',
