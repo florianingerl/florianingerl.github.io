@@ -81,7 +81,7 @@ export default {
 		questionEn : "Which instrument is useful to improve the quality of water?",
 		imageUrl: "assets/img/rawfood/reikiwasser.png",
 		type: "multiple choice",
-		options: [{ option : "Japanische Fremdenergie, die die katholische Kirche zurecht mit Misstrauen anschaut", correct: false }, { option : "Universelle Lebensenergie", correct: true }, , { option : "Heilung durch Handauflegen und mit Symbolen", correct: true }],
+		options: [{ option : "Japanische Fremdenergie, die die katholische Kirche zurecht mit Misstrauen beäugt", correct: false }, { option : "Universelle Lebensenergie", correct: true }, { option : "Heilung durch Handauflegen und mit Symbolen", correct: true }],
 		optionsFr: [{ option : "un vitaliseur d'eau", correct: true }, { option : "sirop", correct: false }],
 		optionsEn: [{ option : "a vitalizer of water", correct: true }, { option : "sirop", correct: false }],
 		correct: 0
@@ -167,7 +167,7 @@ export default {
 		questionEn : "Which instrument is useful to improve the quality of water?",
 		imageUrl: "assets/img/rawfood/haut.PNG",
 		type: "multiple choice",
-		options: [{ option : "Zucker (z.B. vom Obst) und Fett (z.B. vom Öl) und Chemie (Shampoo, Sonnencreme, etc...)", correct: true }, { option : "Wildkräuter", correct: false }, , { option : "Algen", correct: false }, , { option : "Leinsamensprossen", correct: false }],
+		options: [{ option : "Zucker (z.B. Obst) und Fett (z.B. Öl) und Chemie (z.B. Shampoo, Sonnencreme, etc...)", correct: true }, { option : "Wildkräuter", correct: false }, { option : "Algen", correct: false }, { option : "Leinsamensprossen", correct: false }],
 		optionsFr: [{ option : "un vitaliseur d'eau", correct: true }, { option : "sirop", correct: false }],
 		optionsEn: [{ option : "a vitalizer of water", correct: true }, { option : "sirop", correct: false }],
 		correct: 0
@@ -179,7 +179,7 @@ export default {
 		questionEn : "Which instrument is useful to improve the quality of water?",
 		imageUrl: "assets/img/rawfood/verredeleau2.png",
 		type: "multiple choice",
-		options: [{ option : "Eine halbe Stunde vor einer Mahlzeit", correct: true }, { option : "Während einer Mahlzeit", correct: false }, , { option : "gar nichts mehr", correct: false }],
+		options: [{ option : "Eine halbe Stunde vor einer Mahlzeit", correct: true }, { option : "Während einer Mahlzeit", correct: false }, { option : "gar nichts mehr", correct: false }],
 		optionsFr: [{ option : "un vitaliseur d'eau", correct: true }, { option : "sirop", correct: false }],
 		optionsEn: [{ option : "a vitalizer of water", correct: true }, { option : "sirop", correct: false }],
 		correct: 0
@@ -1299,7 +1299,7 @@ export default {
 		imageUrl: "assets/img/rawfood/zahnspange.png",
 		type: "multiple choice",
 		options: [{ option : "Zahnspange", correct: true}, { option : "Artgerechte Nahrung, die noch abgebissen und gekaut werden muss", correct: false }, { option : "Im Wald barfuß spazieren gehen", correct: false }  ],
-		optionsEn: [{ option : "Braces", correct: true }, { option : "Species-appropriate food that still needs to be bitten off and chewed", correct: false }, , { option : "Walking barefoot in the forest", correct: false } ],
+		optionsEn: [{ option : "Braces", correct: true }, { option : "Species-appropriate food that still needs to be bitten off and chewed", correct: false }, { option : "Walking barefoot in the forest", correct: false } ],
 		optionsFr: [{ option : "Bracelets", correct: true }, { option : "Des aliments adaptés à l'espèce qui doivent encore être mordus et mâchés", correct: false }, { option : "Marcher pieds nus dans la forêt", correct: false }],
 		correct: 4
 	},
@@ -1311,7 +1311,7 @@ export default {
 		imageUrl: "assets/img/rawfood/zahnbuerste.png",
 		type: "multiple choice",
 		options: [{ option : "Die natürliche Mundflora bleibt erhalten", correct: true}, { option : "Kostenersparnis", correct: true }, { option : "Zeitersparnis", correct: true } , { option : "Er bekommt faule Zähne, weil ihm das Fluor aus der Zahnpasta fehlt", correct: false }  ],
-		optionsEn: [{ option : "The natural oral flora is preserved", correct: true }, { option : "Cost savings", correct: true }, , { option : "Time savings", correct: true }, { option: "He gets rotten teeth because the fluorine out the toothpaste is missing", correct: false } ],
+		optionsEn: [{ option : "The natural oral flora is preserved", correct: true }, { option : "Cost savings", correct: true }, { option : "Time savings", correct: true }, { option: "He gets rotten teeth because the fluorine out the toothpaste is missing", correct: false } ],
 		optionsFr: [{ option : "La flore buccale naturelle est préservée", correct: true }, { option : "Économies de coûts", correct: false }, { option : "Gain de temps", correct: true },  { option : "Il a des dents pourries à cause du fluor qu'il lui manque", correct: false } ],
 		correct: 4
 	},
