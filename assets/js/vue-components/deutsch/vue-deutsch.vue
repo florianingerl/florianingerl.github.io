@@ -65,6 +65,9 @@ export default {
 
 <style scoped>
 
+a {
+  text-transform: none
+}
 
 
 </style>
