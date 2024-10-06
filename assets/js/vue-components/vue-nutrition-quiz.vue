@@ -155,7 +155,7 @@ export default {
 		questionEn : "Which instrument is useful to improve the quality of water?",
 		imageUrl: "assets/img/rawfood/fahrrad.PNG",
 		type: "multiple choice",
-		options: [{ option : "Mit S-und U-Bahn, denn man kann ja einfach an der ganzen Werbung für Fast-Food und den kranken Menschen, die es dort essen und trinken unbeeinflusst vorbei gehen", correct: false }, { option : "Du wirst leider mit dem Fahrrad fahren müssen, selbst bei -12 Grad im Winter. Bonus: Du entgehst dabei auch dem Elektrosmog", correct: true }],
+		options: [{ option : "Mit S-und U-Bahn, denn man kann ja einfach an der ganzen Werbung für Fast-Food und den kranken Menschen, die es dort essen und trinken unbeeinflusst vorbei gehen", correct: false }, { option : "Du wirst leider mit dem Fahrrad fahren müssen, selbst bei -12 Grad im Winter. Bonus: Du bekommst frische Luft und Bewegung und entgehst dem Elektrosmog", correct: true }],
 		optionsFr: [{ option : "un vitaliseur d'eau", correct: true }, { option : "sirop", correct: false }],
 		optionsEn: [{ option : "a vitalizer of water", correct: true }, { option : "sirop", correct: false }],
 		correct: 0
@@ -301,7 +301,7 @@ export default {
 	},
 
 	{
-		question: "Deine Großmutter bäckt dir eine leckere Apfeltorte? Was ist das?",
+		question: "Deine Großmutter backt dir eine leckere Apfeltorte? Was ist das?",
 		questionEn: "Who kills you faster?",
 		questionFr: "Qui te tuera plus vite?",
 		imageUrl: "assets/img/rawfood/lovingcook.png",
@@ -1335,18 +1335,6 @@ export default {
 		imageUrl: "assets/img/rawfood/walnuesse.png",
 		type: "multiple choice",
 		options: [{ option : "Vorher einweichen, was den Keimprozess schon startet", correct: true}, { option : "braten", correct: false }, {option: "kochen", correct: false }  ],
-		optionsEn: [{ option : "Nuts picked up from a wild walnut tree from the ground", correct: false }, { option : "cress from your own windowsill", correct: true } ],
-		optionsFr: [{ option : "Noix d'un noyer sauvage, ramassées sur le sol", correct: false }, { option : "cresson sur le rebord de votre fenêtre", correct: true } ],
-		correct: 4
-	},
-
-	{
-		question: "Was ist eine sehr effektive Methode, um wieder Kontrolle über die Sinne zu bekommen?",
-		questionFr: "Qu'est-ce qui est frais ?",
-		questionEn: "What is fresh?",
-		imageUrl: "assets/img/rawfood/yogiaufnagelbrett.png",
-		type: "multiple choice",
-		options: [{ option : "Saures, bitteres und scharfes mixen und möglichst viel von diesem Konglomgerat runterbekommen", correct: true}, { option : "Viel Süßes, Fettes und Würziges mixen, sodass es richtig gut schmeckt, und versuchen, nicht alles zu essen", correct: false }  ],
 		optionsEn: [{ option : "Nuts picked up from a wild walnut tree from the ground", correct: false }, { option : "cress from your own windowsill", correct: true } ],
 		optionsFr: [{ option : "Noix d'un noyer sauvage, ramassées sur le sol", correct: false }, { option : "cresson sur le rebord de votre fenêtre", correct: true } ],
 		correct: 4
