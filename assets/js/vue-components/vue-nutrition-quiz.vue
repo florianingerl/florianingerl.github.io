@@ -76,6 +76,19 @@ export default {
 	,
 
 	{
+		question: "Was ist Reiki?",
+		questionFr : "Quel instrument est utile pour améliorer la qualité de l'eau?",
+		questionEn : "Which instrument is useful to improve the quality of water?",
+		imageUrl: "assets/img/rawfood/reikiwasser.png",
+		type: "multiple choice",
+		options: [{ option : "Japanische Fremdenergie, die die katholische Kirche zurecht mit Misstrauen anschaut", correct: false }, { option : "Universelle Lebensenergie", correct: true }, , { option : "Heilung durch Handauflegen und mit Symbolen", correct: true }],
+		optionsFr: [{ option : "un vitaliseur d'eau", correct: true }, { option : "sirop", correct: false }],
+		optionsEn: [{ option : "a vitalizer of water", correct: true }, { option : "sirop", correct: false }],
+		correct: 0
+	}
+	,
+
+	{
 		question: "Wie kannst du durch Reiki unterscheiden, was wertvolle Nahrung und was Schrott ist?",
 		questionFr : "Quel instrument est utile pour améliorer la qualité de l'eau?",
 		questionEn : "Which instrument is useful to improve the quality of water?",
