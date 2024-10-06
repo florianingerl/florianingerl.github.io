@@ -76,6 +76,18 @@ export default {
 	,
 
 	{
+		question: "Wie kannst du durch Reiki unterscheiden, was wertvolle Nahrung und was Schrott ist?",
+		questionFr : "Quel instrument est utile pour améliorer la qualité de l'eau?",
+		questionEn : "Which instrument is useful to improve the quality of water?",
+		imageUrl: "assets/img/rawfood/buchweizenreiki.png",
+		type: "multiple choice",
+		options: [{ option : "Reiki wirkt nur bei Schrott", correct: false }, { option : "Es macht keinen Spaß oder man fühlt fast nichts, wenn man Schrott mit Reiki behandelt.", correct: true }, { option : "Reiki kann nur das Lebendige heilen und energetisieren", correct: true }],
+		optionsFr: [{ option : "un vitaliseur d'eau", correct: true }, { option : "sirop", correct: false }],
+		optionsEn: [{ option : "a vitalizer of water", correct: true }, { option : "sirop", correct: false }],
+		correct: 0
+	},
+
+	{
 		question: "Wie kannst du deine Sprossen geschmacklich noch verbessern und die Verdaulichkeit erhöhen?",
 		questionFr : "Quel instrument est utile pour améliorer la qualité de l'eau?",
 		questionEn : "Which instrument is useful to improve the quality of water?",
@@ -111,6 +123,43 @@ export default {
 		correct: 3
 
 	},
+
+	{
+		question: "Wie kannst du niemals Selbstbeherrschung und gute Gewohnheiten beim Essen erlangen?",
+		questionFr : "Quel instrument est utile pour améliorer la qualité de l'eau?",
+		questionEn : "Which instrument is useful to improve the quality of water?",
+		imageUrl: "assets/img/rawfood/imwaldjoggen.jpg",
+		type: "multiple choice",
+		options: [{ option : "Wenn du dich von der Werbung in S-und U-Bahn bombardieren lässt und den schwer kranken Menschen dort beim Fast-Food-Essen und Cola-Trinken zuschaust.", correct: true }, { option : "Wenn du dich in den Wald begibst, wo es nur Löwenzahn und andere Wildkräuter gibt", correct: false }, { option : "Wenn du ständig mit Sklaven der Sinne verkehrst, die ihre Unterscheidungskraft lange verloren haben und die dir Kuchen essend und Kaffe trinkend erklären, dass der Körper bestimmte Nährstoffe braucht", correct: true }],
+		optionsFr: [{ option : "un vitaliseur d'eau", correct: true }, { option : "sirop", correct: false }],
+		optionsEn: [{ option : "a vitalizer of water", correct: true }, { option : "sirop", correct: false }],
+		correct: 0
+	},
+
+	{
+		question: "Du bist ein Sklave der Sinne, der sich gute Essgewohnheiten aneignen will und der jeden Tag von einem Vorort in die Münchner Innenstadt zur Arbeit fahren muss. Wie kommst du dort am besten hin?",
+		questionFr : "Quel instrument est utile pour améliorer la qualité de l'eau?",
+		questionEn : "Which instrument is useful to improve the quality of water?",
+		imageUrl: "assets/img/rawfood/fahrrad.PNG",
+		type: "multiple choice",
+		options: [{ option : "Mit S-und U-Bahn, denn man kann ja einfach an der ganzen Werbung für Fast-Food und den kranken Menschen, die es dort essen und trinken unbeeinflusst vorbei gehen", correct: false }, { option : "Du wirst leider mit dem Fahrrad fahren müssen, selbst bei -12 Grad im Winter. Bonus: Du entgehst dabei auch dem Elektrosmog", correct: true }],
+		optionsFr: [{ option : "un vitaliseur d'eau", correct: true }, { option : "sirop", correct: false }],
+		optionsEn: [{ option : "a vitalizer of water", correct: true }, { option : "sirop", correct: false }],
+		correct: 0
+	},
+
+	{
+		question: "Was macht schlechte Haut?",
+		questionFr : "Quel instrument est utile pour améliorer la qualité de l'eau?",
+		questionEn : "Which instrument is useful to improve the quality of water?",
+		imageUrl: "assets/img/rawfood/haut.PNG",
+		type: "multiple choice",
+		options: [{ option : "Zucker (z.B. vom Obst) und Fett (z.B. vom Öl) und Chemie (Shampoo, Sonnencreme, etc...)", correct: true }, { option : "Wildkräuter", correct: false }, , { option : "Algen", correct: false }, , { option : "Leinsamensprossen", correct: false }],
+		optionsFr: [{ option : "un vitaliseur d'eau", correct: true }, { option : "sirop", correct: false }],
+		optionsEn: [{ option : "a vitalizer of water", correct: true }, { option : "sirop", correct: false }],
+		correct: 0
+	},
+
 	{
 		question: "Warum isst ein Rohköstler Hanfsprossen?",
 		questionFr: "Pourquoi un crudivore ajoute-t-il des pousses de chanvre à sa bouillie de céréales fraîches? ",
