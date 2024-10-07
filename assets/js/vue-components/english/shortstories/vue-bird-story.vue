@@ -34,7 +34,7 @@ It was time to name him.
 <VueExercise lg="en" instruction="Fill in the gaps with either an infinitv or an ing-form!">
 <VueMCGaps lg="en" :gaptext="['I saw the accident {happen|happening}.',
 'I heard the bird {singing|sing}.',
-'I heard my father {switch off|switching off}',
+'I heard my father {switch off|switching off} the television.',
 'I feel the sun {warming|warm} my skin.']">
 
 </VueMCGaps>
@@ -62,7 +62,7 @@ Fortunately, the music teacher also liked birds and their singing and could even
 </VueMCGaps>
 </VueExercise>
 
-Although they had just begun the lessons so Lara had some doubts about this prediction, one afternoon 
+Since they had just begun the lessons, Lara had some doubts about this prediction, one afternoon 
 they received an unexpected letter from the Royal Family of the country who invited them to the palace to sing 
 for the King.
 <VueExercise lg="en" instruction="Fill in the gaps with either who or which!">
@@ -79,7 +79,7 @@ and laughing already and they encoutered there thus an already nice atmosphere.
 <VueExercise lg="en" instruction="Choose between the past progressive or the simple past!">
 <VueMCGaps lg="en" :gaptext="['Dave {was dreaming} (dream) when suddenly his teacher {asked} (ask) him a question.',
 'Brigitte {was tidying up} (tidy up) her room when the phone {rang} (ring).',
-'Kevin {was listening} to an audio book when his mother {asked} (ask) him to help her in the kitchen.']">
+'Kevin {was listening} (listen) to an audio book when his mother {asked} (ask) him to help her in the kitchen.']">
 
 </VueMCGaps>
 </VueExercise>
@@ -110,7 +110,7 @@ Example: He didn't want to offend his father. Kevin kept the silence. -> Not wan
 <VueHideShow lg="en">
 <ol>
 <li>Not knowing the correct answer to the question, Brigitte invented something.</li>
-<li>Not caring for her child, the mother let it starve.</li>
+<li>Not caring for it, the mother let her child starve.</li>
 <li>Not liking Math, Dave usually reads fantasy books during Math lessons.</li>
 </ol>
 </VueHideShow>
@@ -121,7 +121,7 @@ It was a huge honour for them and not only Lara, but even her bird got all red i
 Of course, there were journalists present at the event as well so the next day the whole country could read about
 their magnificent performance.
 <VueExercise lg="en" instruction="Fill in the gaps with either even or only!">
-<VueMCGaps lg="en" :gaptext="['{Even} I can heal people by laying my hands onto their bodies, so everyone can do Reiki.',
+<VueMCGaps lg="en" :gaptext="['{Even} I can heal people by laying my hands onto their body, so everyone can do Reiki.',
 '{Only} Harry knows all the secret corridors in Hogwarts.',
 '{Even} the most boring book comes from some author who had the energy to write it.',
 'I love {only} you and I want to marry you.']">
@@ -143,7 +143,7 @@ The interview went very well. However, unfortunately when Lara read the article 
 she discovered that it was full of brazen (=shameless) lies which were a big risk to their reputation 
 so they quickly needed to find a solution to fix this situation.
 
-<VueExercise lg="en" instruction="Fill in the gap with the opposite!">
+<VueExercise lg="en" instruction="Fill in the gaps with the opposite!">
 <VueMCGaps lg="en" :gaptext="['Lara is a {beautiful} (ugly) woman.',
 'There is only a {small} (big) risk that the sky falls on our head.',
 'The glass is {empty} (full).']">
@@ -157,7 +157,7 @@ and enjoyed their support in their blossoming career for many years.
 
 <VueExercise lg="en" instruction="Make one sentence out of the two as in the example!">
 <p>
-Kevin didn't want to bother his father. He did his homework all alone. -> In order to not bother his father, Kevin did his homework all alone.
+Example: Kevin didn't want to bother his father. He did his homework all alone. -> In order to not bother his father, Kevin did his homework all alone.
 </p>
 <ol>
 <li>Sally didn't want to become fat. She didn't eat the cake.</li>
