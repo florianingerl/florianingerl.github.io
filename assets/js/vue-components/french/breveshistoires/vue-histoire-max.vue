@@ -88,6 +88,51 @@ Le lion parle à l'homme et l'homme met sa main sur le lion. << Pas de raison po
 couloir secret où il y a beaucoup de souris à manger ! >> Et l'homme montre le couloir au lion. Mais le lion a peur de l'homme.
  </p>
 
+<p>
+ Pourquoi a-t-il peur de l'homme? Parce que l'homme a l'air de travailler au zoo. Simba a peur que l'homme
+ puisse l'attraper et le mettre dans un cage au zoo.
+ </p>
+
+<p>
+ En effet, l'homme aux vêtements bleus et le patron du zoo. L'homme montre le couloir secret où il y a beaucoup
+ de souris au lion. Mais en effet, le couloir secret est un cage dans lequel l'homme enferme Simba. Et l'homme n'est pas désolé.
+</p>
+ 
+ <p>
+ L'homme sort de la grotte. Il monte dans sa voiture. Après, il conduit au zoo. Le lion est en colère. La voiture
+ où il est appartient à l'homme. La voiture que l'homme conduit est vite.
+ </p>
+
+<p>
+ Le patron du zoo et Simba arrivent au zoo en seulement peu de temps parce que la voiture est vite. Là, Simba vient
+ dans un cage plus grand où il y a déjà d'autres lions et lionnes.
+ </p>
+
+<p>
+ L'homme s'appelle Jan. Simba ne connait pas les autres animaux. Une fois par jour, un bus apporte de la viande aux lions.
+Cette fois-ci, le bus apporte la viande des ennemies que Simba a tués.
+</p>
+
+<p>
+Simba mache la nourriture. Il se fait confortable. Puis, il va dans le bus.
+</p>
+
+<p>
+Mais comment Simba est-il sorti du cage? Un employée travaille au zoo qui mentit toujours et qui vole l'argent
+du zoo et le cache dans le cage des lions. Quand cet employée-ci cache l'argent dans le cage de Simba, celui-ci
+peut s'en aller à travers la porte ouverte du cage.
+</p>
+
+<p>
+Quand il rentre, Simba donne un baiser à sa femme. La viande n'est plus là.
+</p>
+
+<p>
+Heuresement, Simba et sa femme voient que le bus a perdu beaucoup de viande. Ils peuvent en manger autant qu'ils veulent.
+Simba dit: << La viande appartient à toi et à moi. >>
+</p>
+
+<h2> The end </h2>
 
 </div>
 
