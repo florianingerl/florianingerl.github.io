@@ -1,7 +1,31 @@
 Tears were pouring down Lisa's cheeks. Why?
-She had gone for a walk with her beloved rabbit that morning but her rabbit sadly got lost. Lisa didn't have a map with her, let alone a telephone to call for help.
+
+<VueExercise lg="en" instruction="Fill in the gaps with the correct interrogative pronoun!">
+<VueMCGaps lg="en" :gaptext="['{Why} are you so sad?',
+'{What} is your preferred colour?',
+'{When} do you usually get up?']">
+
+</VueMCGaps>
+</VueExercise>
+She had gone for a walk with her beloved rabbit that morning but her rabbit sadly got lost. Lisa didn't have a map with her, 
+let alone a telephone to call for help.
+<VueExercise lg="en" :topics="['let alone']" instruction="Choose the option that makes sense!">
+<VueMCGaps lg="en" :gaptext="['He does not have enough strength to lift his light suitcase, let alone {his heavier one|his backpack}. So he needed help to carry all his bagage.',
+'He does not have the patience to read a short story, let alone {a book|an article in a magazine}.',
+'Anton does not forgive his employees if they make a mistake by accident, let alone {if they do it on purpose|if they do it because of illness}.']">
+
+</VueMCGaps>
+</VueExercise>
+
 "Why did my beloved rabbit want to get away from me?"-Lisa cried to herself.
 The more she thought about this, the more confused she got. Still, she decided to find her rabbit, so she kept walking on the path that led to a forest.
+
+<VueExercise lg="en" :topics="['The more/less...., the more/less ... ']" instruction="Choose the option that makes sense!">
+<VueMCGaps lg="en" :gaptext="['']">
+
+</VueMCGaps>
+</VueExercise>
+
 What a miracle! Once she stepped into the forest and inhaled the fresh air, her thoughts immediately changed into good ones. One of her new ideas: she could attract her rabbit by laying down some carrots in all her room back at home.
 So Lisa quickly left the forrest and went to a grocery store to buy carrots for her plan. She found the vegetables at the front of the store and after having paid, she hurried home to execute her plan.
 "Unless my rabbit has caught a cold and a blocked nose, it will certainly smell the scent of the carrots and will not be able to resist and come quickly home"- Lisa thought.

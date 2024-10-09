@@ -8,7 +8,7 @@
 Lara had always wanted a pet, preferably a bird because she liked them singing.
 After school, she always went to the pet shop and looked at a lovely green bird sitting in a cage in the window waiting 
 for his new owner.
-<VueExercise lg="en" instruction="Bring the words into the correct order!">
+<VueExercise lg="en" :topics="['Position of adverbs']" instruction="Bring the words into the correct order!">
 <VueWordOrder lg="en" :sentences="['I will never be able to fly.',
 'I have not heard such a beautiful voice before.',
 'I have not brushed my teeth yet.',

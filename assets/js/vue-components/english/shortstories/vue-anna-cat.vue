@@ -79,7 +79,7 @@ Not being sure whether Gareth should believe him or not, he just nodded his head
 Gareth knew that he had just broken his promise to stay in the shadows as a detective by declaring who he was to this cat, but suddenly he had a strange feeling that maybe it was the wife who was doing something bad.
 
 
-<VueExercise lg="en" instruction="Fill in the gaps with the correct phrasal verb with up or down!">
+<VueExercise lg="en" :topics="['Phrasal verbs with up and down', 'Phrasal verbs', 'Phrasal verbs with up', 'Phrasal verbs with down']" instruction="Fill in the gaps with the correct phrasal verb with up or down!">
 <VueMCGaps lg="en" :gaptext="['You still have to pay for the meeting although you didn\'t {show|hide|appear} up.',
 'The cat detective {laid|brought|said} down all the evidence in front of the judge.',
 'The accused husband could not {bring|take|go} up any defences in front of the judge.']">
