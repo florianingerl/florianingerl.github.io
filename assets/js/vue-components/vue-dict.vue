@@ -83,7 +83,7 @@ export default {
          if( i!= -1 ){
             baseUrl = this.dictionaries[i].url;
          }
-         window.open(baseUrl + str, "_blank").focus();
+         this.window.open(baseUrl + str, "_blank").focus();
        
       
        

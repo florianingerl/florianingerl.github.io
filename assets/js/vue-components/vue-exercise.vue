@@ -1,8 +1,16 @@
 <template>
 <div class="nice">
 <h2 v-if="lg==='fr'">Exercice</h2>
-<h2 v-else>Exercise</h2>
+<h2 v-if="lg==='en'">Exercise</h2>
+<h2 v-if="lg==='de'">Übung</h2>
 <h4 class="instruction">{{instruction}}</h4>
+<p v-if="topics !== undefined" class="topics">
+Topics:
+<div v-for="topic in topics" style="display: inline;">
+<span  class="topic">{{ topic }} </span>
+<button @click="google(topic)">Google</button>
+</div>
+</p>
 <slot> </slot>
 </div>
 
@@ -16,7 +24,7 @@ export default {
   components: {
     
   },
-  props: ['instruction','lg'],
+  props: ['instruction','topics','lg'],
 
   mounted(){
      console.log("The setup function is executed!");
@@ -32,7 +40,12 @@ export default {
     };
   },
   methods: {
-  
+     google(topic){
+        let baseUrl = "https://www.google.com/search?q=";
+        //topic = "adjectif+attribut+ou+%C3%A9pith%C3%A8te";
+        this.window.open(baseUrl + topic, "_blank").focus();
+        
+     }
   }
 }
 </script>
@@ -51,6 +64,10 @@ export default {
 .instruction {
   background-color: yellow;
   color: black;
+}
+
+.topics {
+  color: orange;
 }
 
 
