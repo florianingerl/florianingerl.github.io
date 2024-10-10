@@ -173,6 +173,9 @@ const VueAnnaCat = Vue.defineAsyncComponent(() =>
 const VueAnnaLaraAndHerBird = Vue.defineAsyncComponent(() =>
   loadModule('assets/js/vue-components/english/shortstories/vue-bird-story.vue', options));
 
+const VueDeuxOiseauxAmoureux = Vue.defineAsyncComponent(() =>
+  loadModule('assets/js/vue-components/french/breveshistoires/vue-marie-deux-oiseaux.vue', options));
+
 const VueAnnaTurtoises = Vue.defineAsyncComponent(() =>
   loadModule('assets/js/vue-components/english/shortstories/vue-anna-turtoise.vue', options));
 
@@ -335,6 +338,11 @@ const routes = [
             name: "Antoine et Fred, meilleurs ami",
             path: 'deuxgamins',
             component: VueDeuxGamins
+          },
+          {
+            name: "L'histoire d'amour de deux oiseaux",
+            path: 'deuxoiseauxamoureux',
+            component: VueDeuxOiseauxAmoureux
           },
           {
             name: "Monument d'un poisson",

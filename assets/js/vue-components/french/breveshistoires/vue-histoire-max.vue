@@ -13,7 +13,7 @@ Le lion Simba est très fier de ses muscles forts. Son corps est orange. Ses che
 
 <VueExercise lg="fr" :topics="['Les adjectifs possessifs']" instruction="Remplis les trous avec le bon adjectif possessif (mon, ma, mes, ton, ta, tes, son, sa, ses,....) !">
 <VueMCGaps lg="fr" :gaptext="['J\'aime {ma} soeur.',
-'Il est grand et {son} père est grand aussi.', 'Elle porte une jube et {sa} mère porte une robe.', '{Mon} chien veut jouer avec moi.']">
+'Il est grand et {son} père est grand aussi.', 'Elle porte une jupe et {sa} mère porte une robe.', '{Mon} chien veut jouer avec moi.']">
 
 </VueMCGaps>
 </VueExercise>
@@ -28,7 +28,7 @@ Sa queue est très longue et ses jambes aussi. Il a beaucoup de dents pointus. S
 
 Il habite en Afrique, plus précisement à Alexandria qui est la capitale d'Égypte. Il y habite avec sa femme, une lionne qui s'appelle
 Alexandra.
-<VueExercise lg="fr" :topics="['Prépositions devant le nom des villes et des pays','Prépositions et destinations geographiques']" instruction="Fill in the gaps avec la bonne préposition!" >
+<VueExercise lg="fr" :topics="['Prépositions devant le nom des villes et des pays','Prépositions et destinations geographiques']" instruction="Remplis les trous avec la bonne préposition!" >
 <VueMCGaps lg="fr" :gaptext="['Florian est né {en} Allemagne, plus précisement {à} Munich.',
 'Bruxelles se trouve {en} Belgique.',
 'Pour aller d\'Allemagne {aux} États-Unis, il faut prendre soit le bateau soit l\'avion.']">
@@ -58,7 +58,7 @@ qui aiment chasser des animaux sauvages.
 </VueExercise>
 
 <p>
-Il sait qu'il va avoir un aventure. 
+Il sait qu'il va avoir une aventure. 
 Il y a des lions étrangers dans son territoire. Il doit les combattre.
 Il connaît tous les arbres dans son territoire.
 Les arbres dans son territoire ne sont pas aussi hauts qu'une montagne.
@@ -82,7 +82,7 @@ Les arbres dans son territoire ne sont pas aussi hauts qu'une montagne.
 <VueExercise lg="fr" :topics="['Les articles démonstatifs ce,cet,cette,ces']" instruction="Remplis les trous avec le bon article démonstratif!">
 <VueMCGaps lg="fr" :gaptext="['{Cette} souris a un très bon goût. C\'est au moins ce que trouve Simba.',
 '{Ce} lapin se cache derrière un arbre.',
-'{Ces} lions sont tous affamés. Par consequent, les lapins doivent se mettre en garde.',
+'{Ces} lions sont tous affamés. Par conséquent, les lapins doivent se mettre en garde.',
 '{Cet} homme au pull bleu travaille au zoo d\'Alexandria.']">
 
 </VueMCGaps>
@@ -139,32 +139,32 @@ couloir secret où il y a beaucoup de souris à manger ! >> Et l'homme montre le
 <VueMCGaps lg="fr" :gaptext="['Les souris ont peur des {chats|chiens}',
 'Le {tigre|canard} ainsi que le lion sont des chats.',
 'Si on va dans un restaurant chinois en Allemagne, on peut y manger des {canards|tigres}.',
-'Le prédesseur de l\'homme est {le singe|l\'escargot}',
+'Le prédécesseur de l\'homme est {le singe|l\'escargot}',
 'Les {escargots|chats} sont très lents et ils aiment la salade.',
-'Les {moustiques} peuvent te piquer et ils aiment la couleur jaune et la lumière.',
-'Maja et son ami Willi sont des {abeilles}.',
-'Winni Pou est un {ours}.',
-'Au lever du soleil, le {coq} émit Kikeriki.',
-'Quand on a des {poules}, on a toujours des œufs à manger.']">
+'Les {moustiques|tigres} peuvent te piquer et ils aiment la couleur jaune et la lumière.',
+'Maja et son ami Willi sont des {abeilles|moustiques}.',
+'Winni Pou est un {ours|lapin}.',
+'Au lever du soleil, le {coq|renard} émit Kikeriki.',
+'Quand on a des {poules|renards}, on a toujours des œufs à manger.']">
 
 </VueMCGaps>
  </VueExercise>
 
 <p>
  Pourquoi a-t-il peur de l'homme? Parce que l'homme a l'air de travailler au zoo. Simba a peur que l'homme
- puisse l'attraper et le mettre dans un cage au zoo.
+ puisse l'attraper et le mettre dans une cage au zoo.
  </p>
- <VueExercise lg="fr" :topics="['Le verbe mettre à présent de l\'indicatif','Conjugaison du verbe mettre']" instruction="Conjugez le verbe mettre à présent de l\'indicatif!">
+ <VueExercise lg="fr" :topics="['Le verbe mettre à présent de l\'indicatif','Conjugaison du verbe mettre']" instruction="Conjugez le verbe mettre à présent de l'indicatif!">
 <VueMCGaps lg="fr" :gaptext="['Simba et Alexandra ne {mettent} jamais la table avant de manger leurs lapins. En effet, il n\'y a pas de table dans leur maison.',
 'Simba est loin d\'Alexandria. Afin d\'y retourner avant la crépuscule, il se {met} en route immédiatement.',
-'{Mettez} des vêtements chauds si vous ne voulez pas souffrir en hiver.']">
+'{Mettez} des vêtements chauds si vous ne voulez pas souffrir en hiver!']">
 
 </VueMCGaps>
  </VueExercise>
 
 <p>
  En effet, l'homme aux vêtements bleus est le patron du zoo. L'homme montre le couloir secret, où il y a beaucoup
- de souris, au lion. Mais en effet, le couloir secret est un cage dans lequel l'homme enferme Simba. Et l'homme n'est pas désolé.
+ de souris, au lion. Mais en effet, le couloir secret est une cage dans laquelle l'homme enferme Simba. Et l'homme n'est pas désolé.
 </p>
 
 <VueExercise lg="fr" :topics="['Les articles contractés','Les articles definis contractés']" instruction="Remplis les trous avec la préposition à ou de suivi d'un article défini. Contracte la préposition et l'article si nécessaire!">
@@ -192,14 +192,14 @@ couloir secret où il y a beaucoup de souris à manger ! >> Et l'homme montre le
 
 <p>
  Le patron du zoo et Simba arrivent au zoo en seulement peu de temps parce que la voiture est vite. Là, Simba vient
- dans un cage plus grand où il y a déjà d'autres lions et lionnes.
+ dans une cage plus grande où il y a déjà d'autres lions et lionnes.
  </p>
 
  <VueExercise lg="fr" :topics="['autre ou même']" instruction="Fais le bon choix parmi autre ou même!">
-<VueMCGaps lg="fr" :gaptext="['Simba et sa femme ont les mêmes hobbies.',
+<VueMCGaps lg="fr" :gaptext="['Simba et sa femme ont les {mêmes} hobbies.',
 'Simba et sa femme aident l\'un l\'{autre}.',
 'Nous écrivons une histoire de façon une phrase après une {autre}.',
-'{Même} dans l\'Égypte, il y a l\'Internet.']">
+'{Même} en Égypte, il y a l\'Internet.']">
 
 </VueMCGaps>
  </VueExercise>
@@ -222,11 +222,11 @@ Cette fois-ci, le bus apporte la viande des ennemies que Simba a tués.
 </VueExercise>
 
 <p>
-Simba mache la nourriture. Il se fait confortable. Puis, il va dans le bus.
+Simba mâche la nourriture. Il se fait confortable. Puis, il va dans le bus.
 </p>
 
 <VueExercise lg="fr" :topics="['Le verbe aller à présent de l\'indicatif', 'Conjugaison du verbe aller']" instruction="Conjugez le verbe aller à présent de l'indicatif!">
-<VueMCGaps lg="fr" :gaptext="['Simba n\'a plus envie de rester dans son cage. Alors, il s\'en {va}.',
+<VueMCGaps lg="fr" :gaptext="['Simba n\'a plus envie de rester dans sa cage. Alors, il s\'en {va}.',
 'Je {vais} chercher mon fils à la gare.',
 'Tu {vas} apprendre beaucoup de français en faisant cet exercice.',
 'Alexandra et Simba {vont} souvent au lac au centre d\'Alexandria pour se baigner.',
@@ -237,12 +237,12 @@ Simba mache la nourriture. Il se fait confortable. Puis, il va dans le bus.
 </VueExercise>
 
 <p>
-Mais comment Simba est-il sorti du cage? Un employée travaille au zoo qui mentit toujours et qui vole l'argent
-du zoo et le cache dans le cage des lions. Quand cet employée-ci cache l'argent dans le cage de Simba, celui-ci
-peut s'en aller à travers la porte ouverte du cage.
+Mais comment Simba est-il sorti de la cage? Un employée travaille au zoo qui mentit toujours et qui vole l'argent
+du zoo et le cache dans la cage des lions. Quand cet employée-ci cache l'argent dans la cage de Simba, celui-ci
+peut s'en aller à travers la porte ouverte de la cage.
 </p>
 
-<VueExercise lg="fr" :topics="['Les pronoms directs']">
+<VueExercise lg="fr" :topics="['Les pronoms directs']" instruction="Réponds à la question comme dans les exemples!">
 <p>
 Exemple 1: Simba a-t-il déjà mangé la viande? Oui, il l'a déjà mangée.
 </p>
@@ -265,7 +265,7 @@ Exemple 4: Veux-tu prendre ce crayon pour ton dessin? Oui, je veux le prendre.
 <VueHideShow lg="fr">
 <ol>
 <li>As-tu mangé la pomme? Oui, je l'ai mangée.</li>
-<li>As-tu déjà fait tes devoirs? Oui, je les ai déjà fait.</li>
+<li>As-tu déjà fait tes devoirs? Oui, je les ai déjà faits.</li>
 </ol>
 </VueHideShow>
 </VueExercise>
@@ -282,7 +282,7 @@ Exemple 1: Tu veux encore jouer au ballon? -> Non, je ne veux plus jouer au ball
 Exemple 2: Tu veux boire quelque chose? -> Non, je ne veux rien boire.
 </p>
 <p>
-Exemple 3: Tu as vu quelqu'un qui a volé mon vélo? -> Non, je n'ai vue personne.
+Exemple 3: Tu as vu quelqu'un qui a volé mon vélo? -> Non, je n'ai vu personne.
 </p>
 
 <ol>
