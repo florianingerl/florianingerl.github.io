@@ -28,10 +28,17 @@ Sa queue est très longue et ses jambes aussi. Il a beaucoup de dents pointus. S
 
 Il habite en Afrique, plus précisement à Alexandria qui est la capitale d'Égypte. Il y habite avec sa femme, une lionne qui s'appelle
 Alexandra.
+<VueExercise lg="fr" :topics="['Prépositions devant le nom des villes et des pays','Prépositions et destinations geographiques']" instruction="Fill in the gaps avec la bonne préposition!" >
+<VueMCGaps lg="fr" :gaptext="['Florian est né {en} Allemagne, plus précisement {à} Munich.',
+'Bruxelles se trouve {en} Belgique.',
+'Pour aller d\'Allemagne {aux} États-Unis, il faut prendre soit le bateau soit l\'avion.']">
+
+</VueMCGaps>
+</VueExercise>
 D'habitude, les deux mangent des lapins et des souris qu'ils chassent aussi ensemble. Il joue volontiers avec un ballon. En outre,
 il aime sauter à travers des anneaux.
 
-<VueExercise lg="fr" instruction="Trouve le mot feminin!">
+<VueExercise lg="fr" :topics="['Féminin des noms']" instruction="Trouve le mot féminin!">
 <VueMCGaps lg="fr" :gaptext="['lion -> {lionne}', 'vendeur -> {vendeuse}', 'docteur -> {doctrice}', 'danseur -> {danseuse}', 'musicien -> {musicienne}', 'professeur -> {professeur}']">
 
 </VueMCGaps>
@@ -42,7 +49,7 @@ Il aime la natation et souvent, il et sa femme Alexandra vont au lac au centre d
 veut plutôt vivre dans la nature. Il a non seulement peur du zoo, mais aussi des employés qui y travaillent et aussi des gens
 qui aiment chasser des animaux sauvages.
 
-<VueExercise lg="fr" instruction="Remplis les trous avec à la, au, de la, du, de la, du !">
+<VueExercise lg="fr" :topics="['Les articles definis contractés']" instruction="Remplis les trous avec à la, au, de la, du, de la, du !">
 <VueMCGaps lg="fr" :gaptext="['Je vais souvent {au} cinéma de mon village.', 'Simba se réjouit {des} yeux de sa femme.',
 'Simba se réjouit {du} visage de Alexandra.', 'Simba est fier {du} lapin qu\'il a récemment chassé.', 'Sa femme est fière {de la} vache qu\'elle a récemment chassée.', 'Simba a besoin {du} repas que sa femme fait pour lui.']">
 
@@ -57,11 +64,29 @@ Il connaît tous les arbres dans son territoire.
 Les arbres dans son territoire ne sont pas aussi hauts qu'une montagne.
 </p>
 
+<VueExercise lg="fr" :topics="['tout, toute, tous, toutes']" instruction="Remplis les trous avec tout,toute,tous,toutes">
+<VueMCGaps lg="fr" :gaptext="['Sans sa femme, Simba s\'ennuyerait {toute} la journée.',
+'Alexandra a mangé {tout} le lapin.',
+'{Toutes} les souris en Égypte ont peur de Simba.',
+'{Tous} les lapins se cachent dans les herbes s\'ils voient Simba venir.']">
+
+</VueMCGaps>
+</VueExercise>
+
 <p>
  Il a un plan. Il va grimper sur l'un des arbres et sauter de là sur ses ennemies.
- Il saute sur les ennemies qui sont le plus proches. De cette façon, il les tue tout.
+ Il saute sur les ennemies qui sont le plus proches. De cette façon, il les tue tous.
  Mais il ne les mange pas après parce qu'ils ne sont pas aussi bon que les lapins ou les souris.
  </p>
+
+<VueExercise lg="fr" :topics="['Les articles démonstatifs ce,cet,cette,ces']" instruction="Remplis les trous avec le bon article démonstratif!">
+<VueMCGaps lg="fr" :gaptext="['{Cette} souris a un très bon goût. C\'est au moins ce que trouve Simba.',
+'{Ce} lapin se cache derrière un arbre.',
+'{Ces} lions sont tous affamés. Par consequent, les lapins doivent se mettre en garde.',
+'{Cet} homme au pull bleu travaille au zoo d\'Alexandria.']">
+
+</VueMCGaps>
+</VueExercise>
 
  <p>
 Il est dans le lac qu'il boit parce qu'il a soif. Bien sûr, il ne boit pas tout le lac. Après avoir bu,
