@@ -18,7 +18,8 @@ Vielleicht war er trotzdem manchmal einsam. Er sang immer gerne, und hatte Spaß
 </VueExercise>
 
 Er sah ein Eichhörnchen und dachte, dass er auch gerne auf Bäume klettern können würde. Er fragte dann das Eichhörnchen, ob es sein Freund sein möchte.
-<VueExercise><VueQuestion lg="de" :topics="['Fall nach sein']" :question="{
+<VueExercise lg="de" :topics="['Fall nach sein']" instruction="Beantworte die Frage!">
+<VueQuestion lg="de" :question="{
 		question: 'Um welchen Fall handelt sich es bei <<sein Freund>> in den Sätzen << Ich bin sein Freund.>> oder << Im möchte dein Freund sein. >> ?',
 		type: 'multiple choice',
 		options: [{option:'Akkusativ', correct: false },
@@ -124,7 +125,8 @@ import VueQuestion from "./../../vue-question.vue";
          VueHideShow,
          VueMCGaps,
          VueHideShow,
-         VueWordOrder
+         VueWordOrder,
+         VueQuestion
          
       },
     
