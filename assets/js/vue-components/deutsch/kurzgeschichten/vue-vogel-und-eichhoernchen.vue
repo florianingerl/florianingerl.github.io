@@ -43,7 +43,7 @@ Vogel ein Eichhörnchen zum Freund haben wollen? Was kann denn ein Eichhörnchen
 
 <img style="float: right; height: 200px" src="assets/img/deutsch/eichhoernchen.PNG"></img>
 Werner war ein bisschen verwirrt. Was sollten zwei neue Freunde miteinander machen? "Gehen wir Würmer jagen! Magst du Würmer essen? Ich kann nie genug davon haben!" antwortete Werner fröhlich.
-"Würmer habe ich noch nie gegessen." erwiderte das Eichhörnchen. "Aber ich schlage etwas anderes vor. "Was hältst du davon, wenn wir Nüsse suchen gingen? Ich mag Walnüsse, Haselnüsse, Eicheln, Cashewkerne und Macadamia."
+"Würmer habe ich noch nie gegessen." erwiderte das Eichhörnchen. "Aber ich schlage etwas anderes vor. Was hältst du davon, wenn wir Nüsse suchen gingen? Ich mag Walnüsse, Haselnüsse, Eicheln, Cashewkerne und Macadamia."
 
 <VueExercise lg="de" :topics="['Halten oder denken']" instruction="Befülle die Lücken mit den richtig konjugierten Verben halten oder denken!">
 <VueMCGaps lg="de" :gaptext="['Das Eichhörnchen {hält} nicht viel von der Idee, Würmer zu jagen.',
@@ -59,7 +59,7 @@ Das Eichhörnchen, das gerade gefragt worden ist, bekam Übelheit.
 Werner, der noch nie einen Freund mit so viel Fell gehabt hatte, überlegte, wie sie einen Kompromiss finden könnten.  "Ich habe gerade eine brilliante Idee!" rief er plötzlich beigeistert. "Als ich einmal neben dem gelben Haus gechillt habe, habe ich die Oma gehört, wie sie sehr böse darüber war, dass alle ihre Nüsse voll mit Würmern waren. Was hältst du von einem kleinen Diebstahl?"
 
 <VueExercise lg="de" :topics="['Rufen oder schreien']" instruction="Befülle die Lücken mit den richtigen konjugierten Verben rufen oder schreien">
-<VueMCGaps lg="de" :gaptext="['<<Raus aus meinem Garten!>> schreit die Oma wütend, die keine Tiere bei ihr duldet.',
+<VueMCGaps lg="de" :gaptext="['<<Raus aus meinem Garten!>> {schreit} die Oma wütend, die keine Tiere bei ihr duldet.',
 'Die Oma {ruft} den Arzt wegen ihrer Allergie gegen Vögel und Eichhörnchen an.',
 'Beim Anblick von den Tieren auf ihrem Fensterbrett ist die Oma ohnmächtig geworden und kann nicht mehr um Hilfe {rufen}.']">
 
@@ -68,8 +68,8 @@ Werner, der noch nie einen Freund mit so viel Fell gehabt hatte, überlegte, wie
 
 Als das Eichhörnchen das Wort "Diebstahl" hörte, fühlte es sich unangenehm.
 Nach kurzem Überlegen schlug es aber vor: "Das finde ich eine tolle Idee von dir, lieber Vogel! Aber man soll nicht stehlen.
- Das ist eines der zehn Gebote und ich bin gläubiger Christ. Wir müssen also die Oma vorher fragen. "
-"Aber wie sollen wir mit der Oma reden?", fragte Werner." Wir sollten einfach vor dem Fenster sitzen und nett aussehen. ", antwortete das Eichhörnchen. Dann wird die Oma uns etwas freiwillig geben. " Man macht sowas, wenn man süße Tiere sieht." meinte es. 
+ Das ist eines der zehn Gebote und ich bin gläubiger Christ. Wir müssen also die Oma vorher fragen." <br/>
+ "Aber wie sollen wir mit der Oma reden?", fragte Werner. "Wir sollten einfach vor dem Fenster sitzen und nett aussehen.", antwortete das Eichhörnchen. "Dann wird die Oma uns etwas freiwillig geben." Man macht sowas, wenn man süße Tiere sieht." meinte es. 
 <VueExercise lg="de" :topics="['Mann, man oder wir', 'Indefinitpronomen man']" instruction="Befülle die Lücken mit Mann, man oder wir">
 <VueMCGaps lg="de" :gaptext="['{Man} bekämpft Ratten oft mit Rattengift und findet sie nicht süß.',
 'Mäuse kann {man} leicht mit Ratten verwechseln.',
