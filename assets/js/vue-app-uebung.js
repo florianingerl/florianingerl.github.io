@@ -185,6 +185,9 @@ const VueGuillemetsFrancais = Vue.defineAsyncComponent(() =>
 const VueKatzeMagFisch =  Vue.defineAsyncComponent(() =>
   loadModule('assets/js/vue-components/deutsch/kurzgeschichten/vue-katze-vanessa.vue', options));
 
+const VueVogelEichhoernchen =  Vue.defineAsyncComponent(() =>
+  loadModule('assets/js/vue-components/deutsch/kurzgeschichten/vue-vogel-und-eichhoernchen.vue', options));
+
 const VueVogelMarcia =  Vue.defineAsyncComponent(() =>
   loadModule('assets/js/vue-components/deutsch/kurzgeschichten/vue-marcia-vogel.vue', options));
 
@@ -304,6 +307,11 @@ const routes = [
         name: "Kurzgeschichten",
         path: 'kurzgeschichten',
         children: [
+          {
+            name:'Ein Vogel und ein Eichhörnchen',
+            path: 'vogelundeichhoernchen',
+            component: VueVogelEichhoernchen
+          },
           {
             name: 'Eine Katze, die Fisch mag',
             path: 'katzemagfisch',

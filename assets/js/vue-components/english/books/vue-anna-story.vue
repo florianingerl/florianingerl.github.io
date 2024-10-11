@@ -321,6 +321,30 @@ So Brigitte met Vanessa at a restaurant in town to exchange some gossip which pl
 "I have an interesting story for you today" started Vanessa."One of my colleagues, Sally went and bought a marvelous wedding dress this week! But you know what's crazy? She's not even engaged yet!"
 </p>
 
+
+"I had already 2 children with my husband before I married him!" remarked Brigitte. "But it's true that even me didn't buy a weeding dress before being engaged!"
+"At least, you already had a stable relationship! On the other hand, I still can't find a good man. I have a lack of patience now!" said Vanessa.
+
+"Don't worry, you're not missing out on a lot! Relationships are not always easy, nor happy", confessed Brigitte.
+"Let's analyse your happy situation! Thanks to your husband earning a lot of money with 
+his toys, you don't have to work and you can be there for your children! So you should be grateful!"
+
+"Yes, I am grateful" agreed Brittige. "But sometimes I just want to get rid of all the housework and also all of my children!"
+"Life is so ironic! I'm itching to get married and have children and you want to get rid of them! I wish we could switch places for a while!" 
+
+"I don't know anybody who deserves happiness and a good man more than you do, Vanessa", replied Brigitte. "But I also think nobody really deserves you, you're too good of a person."
+"Yes, maybe you are right although there must be someone somewhere who is as good of a person as me. But unfortunately, you didn't take up my suggestion. In fact, I was serious.
+Why not switch places for a while? Since we don't look that different except for our hair and have approximately the same age, everyone could be fooled if we just put on wigs."
+"That's a tempting proposition! I'm just a bit afraid because I have a husband of course! What if Edwin gets angry at me and breaks up with me?"
+"Of course, I understand, you can tell him our secret if you want. But I remember a time when even your husband mixed us up by accident! You know when I also had short hair!"
+"Yes I remember that. My husband had also just had on operation on his left eye! But let's not distract ourselves with old stories not applicable now - because I don't want to hurt my husband's eyes - but let's rather focus on the present and discuss how to put our plan into action. I need to tell you a lot about my husband and my children so you can take my role and you also need to tell me a lot about your mother and the other people that you frequently meet."
+"Yes, we need to start with my mother because I live with her and see her a lot unfortunately. Prepare yourself because sometimes she can be mad! Especially when we talk about my lack of prospect for the future in relation to marriage."
+
+"Don't worry! If I can handle my sometimes crazy children, I'll be able to handle your mum too. I just hope she will not realize what we are up to!"
+"I wouldn't be the end of the world either if anybody realized that we switched roles, since he don't have to splurge a lot of money on the wigs, nor on exchaning now on the habits and character of our relatives! And since we not only have approximately the same age, but also the same height, we don't have to splurge money on buying outfits."
+"Okay, great so I think we should start our experiment {and} we should go to a hairsalon right now to buy our wigs!" suggested Brigitte. "{Not only} do we have to pay attention to the right colour though {but} also to the right length of the wig!"
+"Okay" agreed Vanessa. "We could {either} go to your preferred hair salon - it's near Trafalgar square I think - {or} mine which is a bit cheaper. After putting on our wigs, {neither} your mum {nor} my husband will realise that we switched roles."
+
 </div>
 
 <button @click="nextPageClicked">Next page</button>
