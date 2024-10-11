@@ -69,7 +69,7 @@ Als das Eichhörnchen das Wort "Diebstahl" hörte, fühlte es sich unangenehm.
 Nach kurzem Überlegen schlug es aber vor: "Das finde ich eine tolle Idee von dir, lieber Vogel! Aber man soll nicht stehlen.
  Das ist eines der zehn Gebote und ich bin gläubiger Christ. Wir müssen also die Oma vorher fragen. "
 "Aber wie sollen wir mit der Oma reden?", fragte Werner." Wir sollten einfach vor dem Fenster sitzen und nett aussehen. ", antwortete das Eichhörnchen. Dann wird die Oma uns etwas freiwillig geben. " Man macht sowas, wenn man süße Tiere sieht." meinte es. 
-<VueExercise lg="de" :topics="['Mann, man oder wir']" instruction="Befülle die Lücken mit Mann, man oder wir">
+<VueExercise lg="de" :topics="['Mann, man oder wir', 'Indefinitpronomen man']" instruction="Befülle die Lücken mit Mann, man oder wir">
 <VueMCGaps lg="de" :gaptext="['{Man} bekämpft Ratten oft mit Rattengift und findet sie nicht süß.',
 'Mäuse kann {man} leicht mit Ratten verwechseln.',
 'Werner ist leider noch nicht der {Mann} einer Frau, weswegen er manchmal einsam ist.',
