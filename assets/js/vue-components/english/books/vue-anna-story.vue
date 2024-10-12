@@ -315,35 +315,120 @@ Erwin knew about the loneliness of his wife so he offered to take care of the ch
 "Don't worry, we'll have a lot of fun at home! Go spend time with your friends!" he told his wife.
 </p>
 
+<VueExercise lg="en" :topics="['alone or lonely', 'alone, lonely or only']" instruction="Fill in the gaps by alone, lonely or only">
+<VueMCGaps lg="en" :gaptext="['With my books, I feel less {lonely}.',
+'Anton can do this piece of work all {alone}.',
+'{Only} Erwin can cheer up his children when they are sad.']">
+
+</VueMCGaps>
+</VueExercise>
+
 <p>
 But Brigitte kept worrying because she knew that her children were dependent on her. Usually her main preoccupation was her family but she gladly accepted her husband's offer and excitedly got ready to meet her friends.
 So Brigitte met Vanessa at a restaurant in town to exchange some gossip which pleased very much Alexander who always needed such material for his next book and who was sitting alone at a table nearby listing to the chatting of the two women.
 "I have an interesting story for you today" started Vanessa."One of my colleagues, Sally went and bought a marvelous wedding dress this week! But you know what's crazy? She's not even engaged yet!"
 </p>
 
+<VueExercise lg="en" :topics="['Relative sentences','who, which or that']" instruction="Fill in the gaps with who, which or that!">
+<VueMCGaps lg="en" :gaptext="['Brigitte, {who} is sometimes fed up with her children, wants to have more time for herself.',
+'The toys {which} Edwin\'s company made and are left on the floor all over the house drive Brigitte often mad.',
+'Vanessa, {who} likes to exchange gossip, desperately wants to have a husband and children.']">
 
-"I had already 2 children with my husband before I married him!" remarked Brigitte. "But it's true that even me didn't buy a weeding dress before being engaged!"
-"At least, you already had a stable relationship! On the other hand, I still can't find a good man. I have a lack of patience now!" said Vanessa.
+</VueMCGaps>
+</VueExercise>
+
+
+"I had already 2 children with my husband before I married him!" remarked Brigitte. 
+"But it's true that even me didn't buy a weeding dress before being engaged!"
+"At least, you already had a stable relationship! On the other hand, I still can't find a good man. 
+I have a lack of patience now!" said Vanessa.
+
+<VueExercise lg="en" :topics="['lack or miss']" instruction="Fill in the gaps by either lack or miss!" >
+<VueMCGaps lg="en" :gaptext="['Vanessa never {misses} an opportunity to exchange gossip.',
+'Alexander would {lack} inspiration if he didn\'t listen to the gossip of women in restaurants.',
+'Alexander is sad because he {misses} his parent\'s support to publish his short stories.',
+'If you write Brigitte with only one t, you {missed} one.']">
+
+</VueMCGaps>
+</VueExercise>
 
 "Don't worry, you're not missing out on a lot! Relationships are not always easy, nor happy", confessed Brigitte.
 "Let's analyse your happy situation! Thanks to your husband earning a lot of money with 
 his toys, you don't have to work and you can be there for your children! So you should be grateful!"
 
+<VueExercise lg="en" :topics="['Find the opposite adjective']" instruction="Find the oppsite of the given adjective!">
+<VueMCGaps lg="en" :gaptext="['This exercise is not {difficult} (easy).',
+'Vanessa is {sad} (happy) about not having a husband and children.',
+'Alexander was given a lot of birthday-money by his parents and he is {grateful} (ungrateful) for it.']">
+
+</VueMCGaps>
+</VueExercise>
+
 "Yes, I am grateful" agreed Brittige. "But sometimes I just want to get rid of all the housework and also all of my children!"
 "Life is so ironic! I'm itching to get married and have children and you want to get rid of them! I wish we could switch places for a while!" 
 
-"I don't know anybody who deserves happiness and a good man more than you do, Vanessa", replied Brigitte. "But I also think nobody really deserves you, you're too good of a person."
+<VueExercise lg="en" :topics="['to be fed up with sth or to get rid of sth']" instruction="Fill in the gaps with either <<to be fed up with sth>> or <<to get rid of sth>>!">
+<VueMCGaps lg="en" :gaptext="['Brigitte is {fed up with} the toys of her children spread all over the floor.',
+'Vanessa wants to {get rid of} her loneliness by finding a good husbund.',
+'Alexander is {fed up with} his parents misusing him for advertising their toys.']">
+
+</VueMCGaps>
+</VueExercise>
+
+"I don't know anybody who deserves happiness and a good man more than you do, Vanessa", replied Brigitte. 
+"But I also think nobody really deserves you, you're too good of a person."
 "Yes, maybe you are right although there must be someone somewhere who is as good of a person as me. But unfortunately, you didn't take up my suggestion. In fact, I was serious.
 Why not switch places for a while? Since we don't look that different except for our hair and have approximately the same age, everyone could be fooled if we just put on wigs."
+
+<VueExercise lg="en" :topics="['Indefinite pronouns nobody, anybody, everybody, somebody']" instruction="Fill in the gaps with either nobody, anybody or somebody!">
+<VueMCGaps lg="en" :gaptext="['Vanessa doesn\'t know {anybody} yet who wants to marry her.',
+'{Nobody} wants to buy expensive and stupid toys.',
+'{Everybody} has a mum and a dad.',
+'Reiki is a simple technique to heal. It can be done by {anybody}.',
+'Alexander is looking for {somebody} who could help him publish his short stories.']">
+
+</VueMCGaps>
+</VueExercise>
+
 "That's a tempting proposition! I'm just a bit afraid because I have a husband of course! What if Edwin gets angry at me and breaks up with me?"
 "Of course, I understand, you can tell him our secret if you want. But I remember a time when even your husband mixed us up by accident! You know when I also had short hair!"
-"Yes I remember that. My husband had also just had on operation on his left eye! But let's not distract ourselves with old stories not applicable now - because I don't want to hurt my husband's eyes - but let's rather focus on the present and discuss how to put our plan into action. I need to tell you a lot about my husband and my children so you can take my role and you also need to tell me a lot about your mother and the other people that you frequently meet."
-"Yes, we need to start with my mother because I live with her and see her a lot unfortunately. Prepare yourself because sometimes she can be mad! Especially when we talk about my lack of prospect for the future in relation to marriage."
+"Yes I remember that. My husband had also just had on operation on his left eye! But let's not distract ourselves with old stories not applicable now - because I don't want to hurt my husband's eyes - but let's rather focus on the present and discuss how to put our plan into action. 
+I need to tell you a lot about my husband and my children so you can take my role and you also 
+need to tell me a lot about your mother and the other people that you frequently meet."
 
-"Don't worry! If I can handle my sometimes crazy children, I'll be able to handle your mum too. I just hope she will not realize what we are up to!"
+<VueExercise lg="en" :topics="['Find the opposite adjective']" instruction="Find the opposite adjective!">
+<VueMCGaps lg="en" :gaptext="['The topic of Alexander\'s next book is {secret} (public).',
+'When you are bored, the time seems to be {long} (short).',
+'Brigitte\'s children are still {young} (old), so they can\'t be blamed for leaving all their toys lying around.',
+'Alexander goes {frequently} (rarely) into restaurants to get inspiration from listening to the gossip of women.']">
+
+</VueMCGaps>
+</VueExercise>
+
+
+"Yes, we need to start with my mother because I live with her and see her a lot unfortunately.
+Prepare yourself because sometimes she can be mad! Especially when we talk about my lack of prospect for the future in relation
+ to marriage."
+
+ <VueExercise lg="en" :topics="['Reflexive pronouns myself, yourself, himself, herself']" instruction="Fill in the gaps with a relexive pronoun among myself, yourself, himself or herself">
+<VueMCGaps lg="en" :gaptext="['Brigitte is good to {herself} when she sometimes takes a break from looking after her children.',
+'I not only do maths and physics but am also interested in writing short stories and love {myself} for it.',
+'You can be proud of {yourself} if you have achieved something.',
+'Alexander was distracted by the women\'s gossip so he hurt {himself} with his knife.']">
+
+</VueMCGaps>
+ </VueExercise>
+
+"Don't worry! If I can handle my sometimes crazy children, I'll be able to handle your mum too. 
+I just hope she will not realize what we are up to!"
 "I wouldn't be the end of the world either if anybody realized that we switched roles, since he don't have to splurge a lot of money on the wigs, nor on exchaning now on the habits and character of our relatives! And since we not only have approximately the same age, but also the same height, we don't have to splurge money on buying outfits."
-"Okay, great so I think we should start our experiment {and} we should go to a hairsalon right now to buy our wigs!" suggested Brigitte. "{Not only} do we have to pay attention to the right colour though {but} also to the right length of the wig!"
-"Okay" agreed Vanessa. "We could {either} go to your preferred hair salon - it's near Trafalgar square I think - {or} mine which is a bit cheaper. After putting on our wigs, {neither} your mum {nor} my husband will realise that we switched roles."
+
+<!--
+<VueExercise lg="en" :topics="['conjunctions of coordination']" instruction="Fill in the gaps with neither, either, or, and, not only, only and nor!">
+<VueMCGaps lg="en" gaptext="<<Okay, great so I think we should start our experiment {and} we should go to a hairsalon right now to buy our wigs!>> suggested Brigitte. <<{Not only} do we have to pay attention to the right colour though {but} also to the right length of the wig!>>
+<<Okay>> agreed Vanessa. <<We could {either} go to your preferred hair salon - it's near Trafalgar square I think - {or} mine which is a bit cheaper. After putting on our wigs, {neither} your mum {nor} my husband will realise that we switched roles.>>" >
+<VueMCGaps>
+<VueExercise> -->
 
 </div>
 
