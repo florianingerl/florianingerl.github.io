@@ -430,6 +430,36 @@ I just hope she will not realize what we are up to!"
 <VueMCGaps>
 <VueExercise> -->
 
+"Ok! I start telling you something about my mum!" said Vanessa. "She goes to a club once a week to play bridge with some other old women, who -like her- have nothing better do do. And she eats nothing else than spagetti with mint sauce! So don't cook anything else for her!"
+"Okay, so I have to look up a good spagetti recipe by dinner" said Brigitte. "But I can do that on my phone actually by the time we get to the hair salon because taking the metro will take us half an hour anyway."
+"Well! You shouldn't meet my mum until you haven't learned that recipe off by heart!" 
+Having reached the hair salon, they told the suprised hairdresser: "Just give us both the same haircut, how it looks like is of secondary importance."
+As soon as the haidresser, who was a bit taken aback by this unusual customer demand, grasped these instructions, he started his work.
+He was a very talented and experienced professional so it only took him 30 minutes to complete both haircuts. Despite the quick work though, the result was remarkable and the two women were very happy with their new, short hair.
+
+"I think it's time for us to switch places and go home", suggested Brigitte. "I left my husband alone with the children and I think he might need help by now."
+Each woman went to her new destination. Brigitte needed some time to get over the loss of her beautiful hair whereas Vanessa's hair had not been verby nice before and she even admired her new haircut in the mirror. Vanessa was sure that this new beautiful haircut marked the end of her lonliness.
+Brigitte felt very happy and excited as she was going home to Vanessa's mother but she shouldn't have been. She thought she would finally have some peace and could stay alone without her children but it turned out that Vanessa's mother was a very intense lady.
+
+"I already told you, my daughter, you mustn't go out alone! And look at your hair! What did you do to your beautiful long hair?!"
+Brigitte needed some time to grasp the meaning of these words and how to reply to them. In order to play her role convincingly, she came up with: "The haircut may be ugly, but rest assured that my hair will regrow, unfortunaltely I can't speed up this process. And why shouldn't I go out alone? I am an adult of almost 30 years who can take care of herself. And of course I wouldn't enter the car of a drunken man who can't control his hormones."
+"You are still my child and I disagree, you are always in danger out there because of these men! So just accept what I say and stay at home!"
+
+Brigitte didn't want to go on like this so she just accepted the words of Vanessa's mother and decided to go upstairs to her new room which was located above the kitchen. She sat down on her new bed and finally relaxed in peace.
+What a pleasure to take now some time off and do nothing and in doing so, even making Vanessa's mother happy for the time being. 
+In the kitchen below her room, she heard Vanessa's mother cleaning cups of tea and breaking some of these, because she probably had let them fall down.
+So let's now leave Brigitte to enjoy her time alone and the sounds of the breaking dishes in the kitchen and look at how Vanessa is doing in her new role. 
+
+When Vanessa arrived to Brigitte and Erwin's big family house, she noticed two small dogs who were treated really well: they had a big section of the garden just for them to play and were dressed in cute dog jackets. Concerning the rest of the family, when she entered the house, she was welcomed by six very energetic children and a tired Erwin.
+"I should switch roles with this Chinese tradesman who longs for a woman and a family" thought Erwin. After some reflection however, he put aside that idea because this particular Chinese man was twice as tall as him and had much too narrow eyes compared to his, so they wouldn't deceive anyone if they switched roles.
+"Welcome home, honey" said Erwin to Vanessa whom he believed to be his wife. "I know we wanted to go to the cinema tonight with the children but can we cancel our plan, please? I'm too tired to leave the house."
+
+"Yes, sure, don't worry, I will take care of the children now" offered Vanessa. "I know you have an important phone call to make with your boss and I don't want you to postpone it because of us!"
+Happy about not having to leave the house, Edwin went to his office at home and locked the door twice and put the sign "I'm not available for anyone" on the outside of his door. 
+He had left his desk in total disoder, so first he tidied up a bit.
+
+
+
 </div>
 
 <button @click="nextPageClicked">Next page</button>
