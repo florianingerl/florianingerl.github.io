@@ -18,9 +18,27 @@ Comme sa couleur préférée était l'orange, elle voulait un animal de compagni
 </VueMCGaps>
 </VueExercise>
 
-C'était le plus beau oiseau qui ait jamais volé au-dessus de la Terre qu'elle recut enfin pour son dixième anniversaire. Et bien sûr, ses ailles étaitent oranges comme les fruits du même nom bien que cet oiseau ne mangeait pas de fruits mais seulement des graines.
-Elle s'attendait à ne pas devoir s'occuper beaucoup de l´oiseau. Mais l´oiseau avait besoin de beaucoup d'attention. C'est une autre paire de manche à ce qu´elle s'attendait.
-"L'oiseau et moi"pensa Linda. "On pourrait voler ensemble jusqu'à Mars et y rencontrer des extraterrestes. Je ne volerai pas moi-même bien sûr. Mais mon animal me portera."
+C'était le plus beau oiseau qui ait jamais volé au-dessus de la Terre qu'elle recut enfin pour son dixième anniversaire.
+ Et bien sûr, ses ailles étaitent oranges comme les fruits du même nom bien que cet oiseau ne mangeait pas de fruits 
+ mais seulement des graines.
+<VueExercise lg="fr" :topics="['Subjonctif']" instrction="Remplis les trous avec le verbe donné au subjonctif!">
+<VueMCGaps lg="fr" :gaptext="['Bien que Linda n\'avait que dix ans, elle {apprenne} (apprendre) très vite comment il faut s\'occuper d\'un oiseau.',
+'Linda donne des graines à son oiseau pour que celui-ci n\' {aie} (avoir) plus faim.']">
+
+</VueMCGaps>
+</VueExercise>
+
+Elle s'attendait à ne pas devoir s'occuper beaucoup de l´oiseau. Mais l´oiseau avait besoin de beaucoup d'attention. 
+C'est une autre paire de manche à ce qu'elle s'attendait.
+"L'oiseau et moi" pensa Linda. "On pourrait voler ensemble jusqu'à Mars et y rencontrer des extraterrestes. 
+Je ne volerai pas moi-même bien sûr. Mais mon animal me portera."
+
+<VueExercise lg="fr" :topics="['Le Futur simple']" instruction="Remplis les trous avec le verbe donné au futur simple!">
+<VueMCGaps lg="fr" :gaptext="['']">
+
+</VueMCGaps>
+</VueExercise>
+
 "Tu veux voler jusqu'à la planète Mars!" s'exclama  l´oiseau.
 "Je suis d'accord de t' y amener à condition que mon ami Wilfried, le singe, fasse partie du voyage."
 "Ok allons-y" Dans l´obscurité de la nuit. Il commencèrent leur voyage à travers l´espace.
