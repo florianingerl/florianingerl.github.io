@@ -9,6 +9,12 @@
       </tr>
     </thead>
     <tbody> 
+
+       <tr>
+<td>23</td>
+       <td><router-link to="/fr/french/breveshistoires/lindaetsonoiseau">Linda et son oiseau</router-link></td>
+       <td>Flori10</td>
+    </tr>
  
     <tr>
 <td>22</td>
