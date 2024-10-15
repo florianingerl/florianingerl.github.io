@@ -60,6 +60,9 @@ const VueSonO = Vue.defineAsyncComponent(() =>
 const VueLionSimba = Vue.defineAsyncComponent(() =>
   loadModule('assets/js/vue-components/french/breveshistoires/vue-histoire-max.vue', options));
 
+const VueAntoineRenards = Vue.defineAsyncComponent(() =>
+  loadModule('assets/js/vue-components/french/breveshistoires/vue-histoire-max2.vue', options));
+
 const VueConjunctions = Vue.defineAsyncComponent(() =>
   loadModule('assets/js/vue-components/english/vocabulary/vue-conjunctions.vue', options));
 
@@ -361,6 +364,11 @@ const routes = [
             name: "Le lion Simba et sa femme Alexandra",
             path: "lelionsimba",
             component: VueLionSimba
+          },
+          {
+            name: "Antoine et la chasse",
+            path: "antoineetlachasse",
+            component: VueAntoineRenards
           }
         ]
       },

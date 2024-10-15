@@ -9,7 +9,13 @@
       </tr>
     </thead>
     <tbody> 
-   
+ 
+    <tr>
+<td>22</td>
+       <td><router-link to="/fr/french/breveshistoires/antoineetlachasse">Antoine et la chasse</router-link></td>
+       <td>Flori10</td>
+    </tr>
+
       <tr>
 <td>21</td>
        <td><router-link to="/fr/french/breveshistoires/deuxoiseauxamoureux">L'histoire de deux oiseaux amoureux</router-link></td>
