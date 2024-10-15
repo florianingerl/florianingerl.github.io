@@ -60,6 +60,9 @@ const VueSonO = Vue.defineAsyncComponent(() =>
 const VueLionSimba = Vue.defineAsyncComponent(() =>
   loadModule('assets/js/vue-components/french/breveshistoires/vue-histoire-max.vue', options));
 
+const VueLindaEtSonOiseau = Vue.defineAsyncComponent(() =>
+  loadModule('assets/js/vue-components/french/breveshistoires/vue-oiseau-lune.vue', options));
+
 const VueAntoineRenards = Vue.defineAsyncComponent(() =>
   loadModule('assets/js/vue-components/french/breveshistoires/vue-histoire-max2.vue', options));
 
@@ -369,6 +372,11 @@ const routes = [
             name: "Antoine et la chasse",
             path: "antoineetlachasse",
             component: VueAntoineRenards
+          },
+          {
+            name: "Linda et son oiseau",
+            path: "lindaetsonoiseau",
+            component: VueLindaEtSonOiseau
           }
         ]
       },
