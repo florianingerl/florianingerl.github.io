@@ -51,6 +51,9 @@ loadModule('assets/js/vue-components/english/rawfood/vue-rawfood.vue', options))
 const VueInversionSujetVerbe = Vue.defineAsyncComponent(() =>
   loadModule('assets/js/vue-components/french/grammaire/vue-inversion-sujet.vue', options));
 
+const VueNegationEsp = Vue.defineAsyncComponent(() =>
+  loadModule('assets/js/vue-components/espagnol/grammaire/vue-negation-espagnol.vue', options));
+
 const VueMonumentPoisson = Vue.defineAsyncComponent(() =>
   loadModule('assets/js/vue-components/french/breveshistoires/vue-monument-poisson.vue', options));
 
@@ -205,6 +208,10 @@ console.log(VueFrancais);
 const VueEnglish = Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/english/vue-english.vue', options));
 
+
+const VueEspagnol = Vue.defineAsyncComponent(() =>
+  loadModule('assets/js/vue-components/espagnol/vue-espagnol.vue', options));
+
 console.log(VueEnglish);
 
 const VueComputerScience = Vue.defineAsyncComponent(() =>
@@ -223,6 +230,28 @@ const routes = [
     name: 'Mithelfen',
     path: '/mithelfen',
     component: VueMithelfen
+  },
+  {
+    name: 'Espagnol',
+    path: '/esp/:language',
+    component: VueDict,
+    children: [
+      {
+        name: 'Navigation espagnol',
+        path: '',
+        component: VueEspagnol
+      },
+      {
+        name: 'Grammaire', path: 'grammaire',
+        children: [
+          {
+            name: 'La négation en espagnol',
+            path: 'negationenespagnol',
+            component: VueNegationEsp
+          }
+        ]
+      }
+    ]
   },
   {
     name: 'English',
