@@ -8,7 +8,18 @@
         <th>Autheur</th>
       </tr>
     </thead>
-    <tbody> 
+
+<tbody>
+    <tr>
+        <td>3</td>
+        <td><router-link to="/fr/french/negationenespagnol">La négation en espagnol</router-link></td>
+        <td>Flori10</td>
+      </tr>
+    <tr>
+        <td>2</td>
+        <td><router-link to="/esp/espagnol/negationenespagnol">La négation en espagnol</router-link></td>
+        <td>Flori10</td>
+      </tr>
 
       <tr>
         <td>1</td>
