@@ -1,0 +1,11 @@
+
+'Mi padre no quiere esta mujer.',
+'Su madre no puede comprar sus zapatos hoy.',
+'Vuestra casa es grande.',
+'El nino esta llorando porque su prima esta sentada en su silla.',
+'Mis llaves están sobre la mesa de la cocina.',
+'Vuestro gato es muy chistoso, se comporta como un gran burgués muy rico.',
+'Su hermana es muy bonita. Tiene el pelo largo y rubio y ojos verdes.',
+'Le dara su regalo de cumpleanos hoy por la noche',
+'Va a la playa con nuestros amigos.',
+'Mi coche esta en la calle.'

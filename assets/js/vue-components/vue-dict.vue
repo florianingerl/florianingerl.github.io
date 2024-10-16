@@ -71,6 +71,12 @@ export default {
                          { name: "Pons Deutsch - Russisch", url: "https://de.pons.com/%C3%BCbersetzung-2/deutsch-russisch/" }
                         ];
    }
+   else if( this.$route.params.language === 'espagnol' ){
+     this.dictionaries = [ { name: "Word Reference Französisch - Spanisch", url: "https://www.wordreference.com/espfr/" },
+                           { name: "The free dictionary Espagnol - Espagnol", url: "https://esp.thefreedictionary.com/" },
+                         { name: "Word Reference Spanisch - Deutsch", url: "https://www.wordreference.com/espde/" }
+                        ];
+   }
 
    this.selectedDict = this.dictionaries[0].name;
 
