@@ -2,10 +2,10 @@
 <div>
 
 <h1>Le négation en espagnol</h1>
-<h4><i>by Florian Ingerl and <a href="https://www.professeurparticulier.com/voir-les-coordonnees-refK8jxCGxMMx37WoM6qFxCMzp2Unqi95JJ4T7wqu82S10FgCBw7Y.html">Olivia Voisin</a></h4>
+<h4><i>by Florian Ingerl and <a href="https://www.professeurparticulier.com/voir-les-coordonnees-refK8jxCGxMMx37WoM6qFxCMzp2Unqi95JJ4T7wqu82S10FgCBw7Y.html">Olivia Voisin</a></i></h4>
 
 
-<p>
+<p class="instruction">
 Remettez les mots de la phrase en le bon ordre!
 Voilà le vocabulaire nécessaire pour passer le test:
 </p>
@@ -66,8 +66,8 @@ Nadie sabe la repuesta.
 'No tengo un hermano.',
 'El niño no quiere dormir.',
 'A ninguna mujer le gusta.',
-'El niño no quiere comer nada.'
-'El hombre nunca quiere una mujer estúpida.'
+'El niño no quiere comer nada.',
+'El hombre nunca quiere una mujer estúpida.',
 'Nadie le da dinero.']">
 
 </VueWordOrder>
@@ -125,6 +125,11 @@ h3 {
 
 .exemple {
     color: blue;
+}
+
+.instruction {
+  background-color: yellow;
+  color: black;
 }
 
 

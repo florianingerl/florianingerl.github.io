@@ -54,6 +54,8 @@ const VueInversionSujetVerbe = Vue.defineAsyncComponent(() =>
 const VueNegationEsp = Vue.defineAsyncComponent(() =>
   loadModule('assets/js/vue-components/espagnol/grammaire/vue-negation-espagnol.vue', options));
 
+console.log(VueNegationEsp);
+
 const VueMonumentPoisson = Vue.defineAsyncComponent(() =>
   loadModule('assets/js/vue-components/french/breveshistoires/vue-monument-poisson.vue', options));
 
@@ -242,6 +244,11 @@ const routes = [
         component: VueEspagnol
       },
       {
+        name: 'La négation en espagnol',
+        path: 'negationenespagnol',
+        component: VueNegationEsp
+      },
+      {
         name: 'Grammaire', path: 'grammaire',
         children: [
           {
@@ -372,6 +379,11 @@ const routes = [
         path: '',
         component: VueFrancais
 
+      },
+      {
+        name: 'La négation en espagnol',
+        path: 'negationenespagnol',
+        component: VueNegationEsp
       },
       {
         name: 'Brèves histoires',
