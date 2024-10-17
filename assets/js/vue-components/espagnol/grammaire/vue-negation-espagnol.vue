@@ -53,7 +53,7 @@ Nadie sabe la repuesta.
 'No hace nada.',
 'El médico no recibe a nadie hoy',
 'Este perro de ojos azules no tiene buena salud.',
-'El alumno nunca regala chocolates a su profesora',
+'El alumno nunca regala chocolates a su profesora.',
 'La muchacha no va de vacaciones este verano.',
 'No quiero nada.',
 'Yo no voy al cine esta noche. Yo tampoco.',
