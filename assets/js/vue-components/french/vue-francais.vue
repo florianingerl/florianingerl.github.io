@@ -8,7 +8,13 @@
         <th>Autheur</th>
       </tr>
     </thead>
-    <tbody> 
+    <tbody>
+
+    <tr>
+<td>24</td>
+       <td><router-link to="/fr/french/breveshistoires/renardreligeux">Un renard religeux</router-link></td>
+       <td>Flori10</td>
+    </tr>
 
        <tr>
 <td>23</td>

@@ -4,7 +4,7 @@
 <h1>Advertisement with turtoises</h1>
 <h4><i>by Florian Ingerl and  <a href="https://www.professeurparticulier.com/244477-annonce-professeur-unlock-your-english-potential-with-personalized-online-lessons-anglais-a-lannion-22300-en-anglais.html">Anna Scakaz<a></i></h4>
 
-<img style="float: right; height: 200px" src="assets/img/english/turtoise.PNG"></img>
+<img style="float: right; height: 200px" src="assets/img/english/turtoise.png"></img>
 
 <p>Once upon a time, there was a turtoise who was very happy most of the time.
 Her name was Clara and she used to cry a lot when she was a small tutoise but over time, she learnt to be more optimistic and have a positive view on life.
@@ -51,6 +51,7 @@ Bryan being a bit surprised by Anton's anecdote, asked his friend: "And so did t
 </VueMCGaps>
 </VueExercise>
 
+<img style="float: right; height: 200px" src="assets/img/english/turtoise.png"></img>
 "No!" answered Anton. "He wasn't happy that I had taken the salad already in my mouth and that I had no money. I suggested of course to simply put the salad back."
 "What a funny turtoise you are, Anton!" said Bryan laughing. "I hope they didn't ban you from entering this supermarket again because we will need more food for our dinner party next week, added the food-obssessed turtoise.
 
@@ -87,6 +88,7 @@ So first the reporter paid my salad and thus calmed the shop assistant's anger a
 </VueMCGaps>
 </VueExercise>
 
+<img style="float: right; height: 200px" src="assets/img/english/turtoise.png"></img>
 "Okay, great, let's do that! I'm genuinely excited about this interview because this is the first time that someone wants to interview me, said Anton.
 After taking seat at a table in the supermarket's restaurant, Anton was given his first question: "Do tortoises ever clean their shell. I am genuinely curious about that, because your tongue isn't long enough to reach your shell, is it? "
 
@@ -132,6 +134,7 @@ And you would be the turtoise that I need to advertise.
 </VueMCGaps>
 </VueExercise>
 
+<img style="float: right; height: 200px" src="assets/img/english/turtoise.png"></img>
 "So let's meet tomorrow at the river. I will bring a boat and a camera so we can make a short advertisement video clip. Nothing can go wrong!"
 "Okay, perfect but I have some requests! You should also give us 100 salads as a bonus next to the money. Plus invite an architect to build the boat and a clown as well who will entertain us and make us laugh for the video. I'm more handsome when I'm laughing. See you tomorrow morning!"
 
@@ -185,7 +188,7 @@ So they appeared for the meeting all nice and in good mood.
 </VueMCGaps>
 </VueExercise>
 
-<img style="float: right; height: 200px" src="assets/img/english/turtoise.PNG"></img>
+<img style="float: right; height: 200px" src="assets/img/english/turtoise.png"></img>
 The small advertisement clip was made. It has to be admitted, that the boat was really rubbish but the clip became very, very good.
 Despite the product being garbage because of the cheap material, people loved the boat and bought a lot of them, making the turtoises the richest turtoises ever. However, Anton, Clara and Bryan were not satisfied with this reporter and his lack of quality product so they found another businessman after and continued to model for better products.
 <VueExercise lg="en" instruction="Fill in the gaps with unlike, instead of, despite, although, whereas or though">

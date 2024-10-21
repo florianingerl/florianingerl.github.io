@@ -45,6 +45,9 @@ const VueLivreSurFred = Vue.defineAsyncComponent(() =>
 const VueDeuxGamins = Vue.defineAsyncComponent(() =>
   loadModule('assets/js/vue-components/french/breveshistoires/vue-deux-gamins.vue', options));
 
+const VueRenardPoule = Vue.defineAsyncComponent(() =>
+  loadModule('assets/js/vue-components/french/breveshistoires/vue-renard-poule.vue', options));
+
 const VueRawFood =  Vue.defineAsyncComponent(() =>
 loadModule('assets/js/vue-components/english/rawfood/vue-rawfood.vue', options));
 
@@ -393,6 +396,11 @@ const routes = [
             name: "Antoine et Fred, meilleurs ami",
             path: 'deuxgamins',
             component: VueDeuxGamins
+          },
+          {
+            name: "Un renard religeux",
+            path: 'renardreligeux',
+            component: VueRenardPoule
           },
           {
             name: "L'histoire d'amour de deux oiseaux",
