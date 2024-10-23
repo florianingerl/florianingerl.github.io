@@ -23,7 +23,7 @@ const options = {
   },
 };
 
-const app = createApp({
+createApp({
   components: {
     VueNutritionQuiz : Vue.defineAsyncComponent(() =>
     loadModule('assets/js/vue-components/vue-nutrition-quiz.vue', options)),
@@ -31,6 +31,15 @@ const app = createApp({
   
   },
 }).mount('#nutritionquiz');
+
+createApp({
+  components: {
+    VueLernenLehrenQuiz : Vue.defineAsyncComponent(() =>
+    loadModule('assets/js/vue-components/vue-lernen-lehren-quiz.vue', options)),
+   
+  
+  },
+}).mount('#lernenlehren');
 
 createApp({
   components: {
