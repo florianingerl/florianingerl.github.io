@@ -72,6 +72,66 @@ export default {
 		optionsEn : [{ option : "tomato", correct: false }, { option : "beetroot", correct: true }],
 		correct: 1
 
+	},
+	{
+		question: "Was könnte dich dazu motivieren, besser Englisch zu lernen?",
+		questionFr : "Comment s'appelle ce légume?",
+		questionEn : "What is the name of this vegetable?",
+		imageUrl: "assets/img/cs/fragezeichen.jpg",
+		type: "multiple choice",
+		options: [{ option : "Du kannst eine teure Reise ins verregnete England machen", correct: false }, { option : "Du kannst dann Engländern Deutsch-Nachhilfe verkaufen", correct: true }],
+		optionsFr : [{ option : "tomate", correct: false }, { option : "betterave rouge", correct: true }],
+		optionsEn : [{ option : "tomato", correct: false }, { option : "beetroot", correct: true }],
+		correct: 1
+
+	},
+	{
+		question: "Was könnte dich dazu motivieren, besser Französisch zu lernen?",
+		questionFr : "Comment s'appelle ce légume?",
+		questionEn : "What is the name of this vegetable?",
+		imageUrl: "assets/img/cs/fragezeichen.jpg",
+		type: "multiple choice",
+		options: [{ option : "Du kannst vielleicht mal nach Südfrankreich auswandern, wo es mehr Sonne als hier gibt", correct: true }, { option : "Du kannst Franzosen Deutsch-Nachhilfe verkaufen", correct: true }, { option : "Du kannst in Frankreich teuren Urlaub machen und weißt wie man im Restaurant teuren Schrott bestellt.", correct: false }],
+		optionsFr : [{ option : "tomate", correct: false }, { option : "betterave rouge", correct: true }],
+		optionsEn : [{ option : "tomato", correct: false }, { option : "beetroot", correct: true }],
+		correct: 1
+
+	},
+	{
+		question: "Wenn dein Hobby (wie z.B. Schach oder Bücherlesen) langweilig geworden ist, wie belebst du es neu?",
+		questionFr : "Comment s'appelle ce légume?",
+		questionEn : "What is the name of this vegetable?",
+		imageUrl: "assets/img/cs/fragezeichen.jpg",
+		type: "multiple choice",
+		options: [{ option : "Lerne dein Hobby auf Englisch, Französisch oder Spanisch", correct: true }, { option : "Lass dir die Regeln von deinem Hobby nochmal von einem Staatsdiener erklären", correct: false }],
+		optionsFr : [{ option : "tomate", correct: false }, { option : "betterave rouge", correct: true }],
+		optionsEn : [{ option : "tomato", correct: false }, { option : "beetroot", correct: true }],
+		correct: 1
+
+	},
+	{
+		question: "Was könnte dich noch zum besser Englisch-Lernen motivieren?",
+		questionFr : "Comment s'appelle ce légume?",
+		questionEn : "What is the name of this vegetable?",
+		imageUrl: "assets/img/cs/fragezeichen.jpg",
+		type: "multiple choice",
+		options: [{ option : "Eine Psychaterin kostest 150 Euro/h. Einer Englischnachhilfelehrerin kann man auch alles erzählen und die kostet nur 25Euro/h", correct: true }, { option : "Um Hollywood-Filme und anderes Gift in der Orginal-Sprache sehen zu können", correct: false }],
+		optionsFr : [{ option : "tomate", correct: false }, { option : "betterave rouge", correct: true }],
+		optionsEn : [{ option : "tomato", correct: false }, { option : "beetroot", correct: true }],
+		correct: 1
+
+	},
+	{
+		question: "Was könnte dich noch zum besser Englisch-Lernen motivieren?",
+		questionFr : "Comment s'appelle ce légume?",
+		questionEn : "What is the name of this vegetable?",
+		imageUrl: "assets/img/cs/fragezeichen.jpg",
+		type: "multiple choice",
+		options: [{ option : "Eine Psychaterin kostest 150 Euro/h. Einer Englischnachhilfelehrerin kann man auch alles erzählen und die kostet nur 25Euro/h", correct: true }, { option : "Um Hollywood-Filme und anderes Gift in der Orginal-Sprache sehen zu können", correct: false }],
+		optionsFr : [{ option : "tomate", correct: false }, { option : "betterave rouge", correct: true }],
+		optionsEn : [{ option : "tomato", correct: false }, { option : "beetroot", correct: true }],
+		correct: 1
+
 	}
 
 ]
