@@ -122,17 +122,43 @@ export default {
 
 	},
 	{
-		question: "Was könnte dich noch zum besser Englisch-Lernen motivieren?",
+		question: "Ab wann kannst du Tutor an der Uni machen?",
 		questionFr : "Comment s'appelle ce légume?",
 		questionEn : "What is the name of this vegetable?",
 		imageUrl: "assets/img/cs/fragezeichen.jpg",
 		type: "multiple choice",
-		options: [{ option : "Eine Psychaterin kostest 150 Euro/h. Einer Englischnachhilfelehrerin kann man auch alles erzählen und die kostet nur 25Euro/h", correct: true }, { option : "Um Hollywood-Filme und anderes Gift in der Orginal-Sprache sehen zu können", correct: false }],
+		options: [{ option : "Erst, sobald du deinen Bachelor-Abschluss hast und genügend kompetent bist.", correct: false }, { option : "Gleich nach dem ersten Semester", correct: true }],
+		optionsFr : [{ option : "tomate", correct: false }, { option : "betterave rouge", correct: true }],
+		optionsEn : [{ option : "tomato", correct: false }, { option : "beetroot", correct: true }],
+		correct: 1
+
+	},
+	{
+		question: "Wo kannst du deine eigenen MINT-Aufgaben online publizieren?",
+		questionFr : "Comment s'appelle ce légume?",
+		questionEn : "What is the name of this vegetable?",
+		imageUrl: "assets/img/cs/fragezeichen.jpg",
+		type: "multiple choice",
+		options: [{ option : "Auf der Homepage von der LMU München", correct: false }, { option : "Auf MaxAcademy", correct: true }],
+		optionsFr : [{ option : "tomate", correct: false }, { option : "betterave rouge", correct: true }],
+		optionsEn : [{ option : "tomato", correct: false }, { option : "beetroot", correct: true }],
+		correct: 1
+
+	},
+
+	{
+		question: "Ab wann kannst du Englisch-Nachhilfe geben?",
+		questionFr : "Comment s'appelle ce légume?",
+		questionEn : "What is the name of this vegetable?",
+		imageUrl: "assets/img/cs/fragezeichen.jpg",
+		type: "multiple choice",
+		options: [{ option : "Ab der 6.Klasse kannst du 5.Klässlern und Klassenkameraden bezahlte Nachhilfe geben", correct: true }, { option : "Erst mit einer abgeschlossenen Ausbildung zur Fremdsprachenkorrespondentin", correct: false }, { option : "Erst mit einem abgeschlossenen Lehramt-Studium in Englisch", correct: false }],
 		optionsFr : [{ option : "tomate", correct: false }, { option : "betterave rouge", correct: true }],
 		optionsEn : [{ option : "tomato", correct: false }, { option : "beetroot", correct: true }],
 		correct: 1
 
 	}
+
 
 ]
     };
