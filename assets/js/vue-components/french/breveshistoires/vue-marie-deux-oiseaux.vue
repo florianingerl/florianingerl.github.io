@@ -2,7 +2,7 @@
 <div>
 
 <h1>Une histoire d'amour de deux oiseaux</h1>
-<h4><i>par Florian Ingerl et  <a href="https://mariefaure.fr/">Marie Faure</a></i></h4>
+<h4><i>par Florian Ingerl</i></h4>
 
 
 
