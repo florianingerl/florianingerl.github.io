@@ -2,7 +2,7 @@
 <div>
 
 <h1>Antoine et Fred, meilleurs amis</h1>
-<h4><i>par Florian Ingerl et Marie Faure</i></h4>
+<h4><i>par Florian Ingerl</i></h4>
 <p><img style="float: right; height: 200px" src="assets/img/francais/deuxgamins.png"></img> Antoine et Fred s'entendaient toujours bien.
 Ils se portaient l'un l'autre aux nues.
 Antoine était le meilleur ami que Fred ait jamais eu,

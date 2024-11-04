@@ -2,7 +2,7 @@
 <div>
 
 <h1>Un renard religeux</h1>
-<h4><i>par Florian Ingerl et <a href="https://mariefaure.fr/">Marie Faure</a></i></h4>
+<h4><i>par Florian Ingerl</i></h4>
 
 <img src="assets/img/francais/antoineloupe.png" style="height:200px; float: right;"></img>
 
