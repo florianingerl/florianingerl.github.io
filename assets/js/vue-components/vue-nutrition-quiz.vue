@@ -64,58 +64,58 @@ export default {
 
 	{
 		question: "Mit einem Destilliergerät kannst du dein Wasser zum Trinken und zum Einweichen der Sprossen von allen Giftstoffen reinigen. Wie kannst du das Wasser noch energetisieren?",
-		questionFr : "Quel instrument est utile pour améliorer la qualité de l'eau?",
-		questionEn : "Which instrument is useful to improve the quality of water?",
+		questionFr : "Vous pouvez utiliser un distillateur pour purifier votre eau afin de la boire et de faire tremper les germes de toutes les toxines. Sinon, comment pouvez-vous dynamiser l’eau ?",
+		questionEn : "You can use a distiller to purify your water for drinking and soaking sprouts from all toxins. How else can you energize the water?",
 		imageUrl: "assets/img/rawfood/reikiwasser.png",
 		type: "multiple choice",
 		options: [{ option : "mit Reiki", correct: true }, { option : "mit Brausetabletten", correct: false }],
-		optionsFr: [{ option : "un vitaliseur d'eau", correct: true }, { option : "sirop", correct: false }],
-		optionsEn: [{ option : "a vitalizer of water", correct: true }, { option : "sirop", correct: false }],
+		optionsFr : [{ option : "avec Reiki", correct : true }, { option : "avec comprimés effervescents", correct : false }],
+		optionsEn: [{ option : "with Reiki", correct: true }, { option : "with effervescent tablets", correct: false }],
 		correct: 0
 	}
 	,
 
 	{
 		question: "Was ist Reiki?",
-		questionFr : "Quel instrument est utile pour améliorer la qualité de l'eau?",
-		questionEn : "Which instrument is useful to improve the quality of water?",
+		questionFr : "Qu'est-ce que c'est Reiki?",
+		questionEn : "What is Reiki?",
 		imageUrl: "assets/img/rawfood/reikiwasser.png",
 		type: "multiple choice",
 		options: [{ option : "Japanische Fremdenergie, die die katholische Kirche zurecht mit Misstrauen beäugt", correct: false }, { option : "Universelle Lebensenergie", correct: true }, { option : "Heilung durch Handauflegen und mit Symbolen", correct: true }],
-		optionsFr: [{ option : "un vitaliseur d'eau", correct: true }, { option : "sirop", correct: false }],
-		optionsEn: [{ option : "a vitalizer of water", correct: true }, { option : "sirop", correct: false }],
+		optionsFr : [{ option : "L'énergie étrangère japonaise que l'Église catholique considère à juste titre avec suspicion", correct : false }, { option : "Énergie vitale universelle", correct : true }, { option : "Guérison par l'imposition des mains et avec des symboles", correct : true }],
+		optionsEn: [{ option: "Japanese foreign energy that the Catholic Church rightly views with suspicion", correct: false }, { option: "Universal life energy", correct: true }, { option: "Healing through the laying on of hands and with symbols", correct: true }],
 		correct: 0
 	}
 	,
 
 	{
 		question: "Wie kannst du durch Reiki unterscheiden, was wertvolle Nahrung und was Schrott ist?",
-		questionFr : "Quel instrument est utile pour améliorer la qualité de l'eau?",
-		questionEn : "Which instrument is useful to improve the quality of water?",
+		questionFr : "Comment pouvez-vous utiliser le Reiki pour distinguer ce qui est de la nourriture précieuse et ce qui est indésirable ?",
+		questionEn : "How can you use Reiki to distinguish what is valuable food and what is junk?",
 		imageUrl: "assets/img/rawfood/buchweizenreiki.png",
 		type: "multiple choice",
 		options: [{ option : "Reiki wirkt nur bei Schrott", correct: false }, { option : "Es macht keinen Spaß oder man fühlt fast nichts, wenn man Schrott mit Reiki behandelt.", correct: true }, { option : "Reiki kann nur das Lebendige heilen und energetisieren", correct: true }],
-		optionsFr: [{ option : "un vitaliseur d'eau", correct: true }, { option : "sirop", correct: false }],
-		optionsEn: [{ option : "a vitalizer of water", correct: true }, { option : "sirop", correct: false }],
+		optionsFr : [{ option : "Le Reiki ne fonctionne que sur les déchets", correct : false }, { option : "Ce n'est pas amusant ou vous ne ressentez presque rien lorsque vous traitez des déchets avec le Reiki.", correct : true }, { option : "Reiki ne peut que guérir et dynamiser les vivants", correct : true }],
+		optionsEn: [{ option : "Reiki only works on junk", correct: false }, { option : "It's no fun or you feel almost nothing when you treat junk with Reiki.", correct: true }, { option : "Reiki can only heal and energize the living", correct: true }],
 		correct: 0
 	},
 
 	{
 		question: "Wie kannst du deine Sprossen geschmacklich noch verbessern und die Verdaulichkeit erhöhen?",
-		questionFr : "Quel instrument est utile pour améliorer la qualité de l'eau?",
-		questionEn : "Which instrument is useful to improve the quality of water?",
+		questionFr : "Comment améliorer le goût de vos pousses et augmenter leur digestibilité ?",
+		questionEn : "How can you improve the taste of your sprouts and increase their digestibility?",
 		imageUrl: "assets/img/rawfood/buchweizenreiki.png",
 		type: "multiple choice",
 		options: [{ option : "mit bisschen Zucker und Zimt", correct: false }, { option : "mit Reiki", correct: true }],
-		optionsFr: [{ option : "un vitaliseur d'eau", correct: true }, { option : "sirop", correct: false }],
-		optionsEn: [{ option : "a vitalizer of water", correct: true }, { option : "sirop", correct: false }],
+		optionsFr : [{ option : "avec un peu de sucre et de cannelle", correct : false }, { option : "avec Reiki", correct : true }],
+		optionsEn: [{ option : "with a little sugar and cinnamon", correct: false }, { option : "with Reiki", correct: true }],
 		correct: 0
 	},
 
 	{
 		question:"Welche Zubereitungsform von Getreide fördert die Verdaulichkeit und erhöht den Nährstoffgehalt?",
-		questionFr: "Sous quelle forme est-ce qu'on doit manger les céréales selon le guru d'alimentation crue Dr. Schnitzer?",
-		questionEn: "According to raw food guru Dr. Schnitzer, in what form is it the best to eat grains?",
+		questionFr: "Quelle forme de préparation des céréales favorise la digestibilité et augmente la teneur en nutriments ?",
+		questionEn: "Which form of preparation of grain promotes digestibility and increases the nutrient content?",
 		imageUrl: "assets/img/rawfood/weizensprossen.jpg",
 		type: "multiple choice",
 		options: [{ option : "als Getreidebrei oder als Keimlinge", correct: true }, { option : "Brot", correct: false }, { option : "Nudeln", correct: false }],
@@ -125,51 +125,50 @@ export default {
 	},
 	{
 		question: "Welche Zutaten gehören in einen Frischkornbrei?",
-		questionFr: "Quel ingrédient n'a pas sa place dans une bouillie de céréales fraîches?",
-		questionEn: "Which ingredient doesn't belong to a fresh grain porridge?",
+		questionFr: "Quels ingrédients composent une bouillie de céréales fraîches ?",
+		questionEn: "What ingredients belong in a fresh grain porridge?",
 		type: "multiple choice",
 		imageUrl: "assets/img/rawfood/frischkornbrei.jpg",
 		options: [{ option : "außer Sprossen aus Pseudogetreide wie Hirse, Buchweizen, Amaranth und Quinoa gehört da nichts rein.", correct: true }, { option : "Kuhmilch, Marmelade, Nüsse, Obst und viel Zucker! Das schmeckt so gut! Hast du das schon mal probiert?", correct: false } ],
-		optionsFr: ["seigle","noisette", "pomme", "confiture","graine de line"],
-		optionsFr:  [{ option : "seigle", correct: false }, { option : "noisette", correct: false }, { option : "pomme", correct: false }, { option : "confiture", correct: true }, { option : "graine de lin", correct: false }],
-		optionsEn:  [{ option : "rye", correct: false }, { option : "hazelnuts", correct: false }, { option : "apple", correct: false }, { option : "marmelade", correct: true }, { option : "linseeds", correct: false }],
+		optionsFr : [{ option : "Rien n'y appartient à part les germes de pseudo-céréales comme le mil, le sarrasin, l'amarante et le quinoa.", correct : true }, { option : "Lait de vache, confiture, noix, fruits et beaucoup de sucre ! C'est tellement bon ! Avez-vous déjà essayé ça ?", correct : false } ],
+		optionsEn: [{ option: "Nothing belongs in there except sprouts from pseudo-grains such as millet, buckwheat, amaranth and quinoa.", correct: true }, { option: "Cow's milk, jam, nuts, fruit and lots of sugar! It tastes so good ! Have you tried this before?", correct: false } ],
 		correct: 3
 
 	},
 
 	{
 		question: "Wie kannst du niemals Selbstbeherrschung und gute Gewohnheiten beim Essen erlangen?",
-		questionFr : "Quel instrument est utile pour améliorer la qualité de l'eau?",
-		questionEn : "Which instrument is useful to improve the quality of water?",
+		questionFr : "Comment ne jamais parvenir à la maîtrise de soi et à de bonnes habitudes alimentaires ?",
+		questionEn : "How can you never achieve self-control and good eating habits?",
 		imageUrl: "assets/img/rawfood/imwaldjoggen.jpg",
 		type: "multiple choice",
 		options: [{ option : "Wenn du dich von der Werbung in S-und U-Bahn bombardieren lässt und den schwer kranken Menschen dort beim Fast-Food-Essen und Cola-Trinken zuschaust.", correct: true }, { option : "Wenn du dich in den Wald begibst, wo es nur Löwenzahn und andere Wildkräuter gibt", correct: false }, { option : "Wenn du ständig mit Sklaven der Sinne verkehrst, die ihre Unterscheidungskraft lange verloren haben und die dir Kuchen essend und Kaffe trinkend erklären, dass der Körper bestimmte Nährstoffe braucht", correct: true }],
-		optionsFr: [{ option : "un vitaliseur d'eau", correct: true }, { option : "sirop", correct: false }],
-		optionsEn: [{ option : "a vitalizer of water", correct: true }, { option : "sirop", correct: false }],
+		optionsFr : [{ option : "Si vous vous laissez bombarder par la publicité dans le S-Bahn et le métro et que vous regardez les gens gravement malades manger de la restauration rapide et boire du cola.", correct : true }, { option : "Si vous y allez dans la forêt, où il n'y a que des pissenlits et autres herbes sauvages", correct: false }, { option : "Si vous fréquentez constamment des esclaves des sens qui ont depuis longtemps perdu leur pouvoir de discrimination et qui vous donnent du gâteau et du café en buvant , expliquez que le corps a besoin de certains nutriments", correct : true }],
+		optionsEn: [{ option: "If you let yourself be bombarded by advertising in the S-Bahn and subway and watch the seriously ill people there eating fast food and drinking cola.", correct: true }, { option: "If you go into the forest, where there are only dandelions and other wild herbs", correct: false }, { option : "If you constantly associate with slaves of the senses who have long lost their power of discrimination and who give you cake and coffee while drinking, explain that the body needs certain nutrients", correct: true }],
 		correct: 0
 	},
 
 	{
 		question: "Du bist ein Sklave der Sinne, der sich gute Essgewohnheiten aneignen will und der jeden Tag von einem Vorort in die Münchner Innenstadt zur Arbeit fahren muss. Wie kommst du dort am besten hin?",
-		questionFr : "Quel instrument est utile pour améliorer la qualité de l'eau?",
-		questionEn : "Which instrument is useful to improve the quality of water?",
+		questionFr : "Vous êtes un esclave des sens qui souhaite développer de bonnes habitudes alimentaires et qui doit chaque jour se rendre au travail en voiture depuis la banlieue jusqu'au centre-ville de Munich. Quelle est la meilleure façon d'y arriver ?",
+		questionEn : "You are a slave of the senses who wants to develop good eating habits and who has to drive to work every day from a suburb to downtown Munich. What's the best way to get there?",
 		imageUrl: "assets/img/rawfood/fahrrad.PNG",
 		type: "multiple choice",
 		options: [{ option : "Mit S-und U-Bahn, denn man kann ja einfach an der ganzen Werbung für Fast-Food und den kranken Menschen, die es dort essen und trinken unbeeinflusst vorbei gehen", correct: false }, { option : "Du wirst leider mit dem Fahrrad fahren müssen, selbst bei -12 Grad im Winter. Bonus: Du bekommst frische Luft und Bewegung und entgehst dem Elektrosmog", correct: true }],
-		optionsFr: [{ option : "un vitaliseur d'eau", correct: true }, { option : "sirop", correct: false }],
-		optionsEn: [{ option : "a vitalizer of water", correct: true }, { option : "sirop", correct: false }],
+		optionsFr : [{ option : "Avec le S-Bahn et le U-Bahn, car vous pouvez simplement passer devant toutes les publicités pour la restauration rapide et les malades qui y mangent et y boivent sans être influencés", correct : false }, { option : "Malheureusement, vous devrez faire du vélo, même à -12 degrés en hiver. Bonus : vous pourrez prendre l'air, faire de l'exercice et éviter l'électrosmog", correct : true }],
+		optionsEn: [{ option: "With S-Bahn and U-Bahn, because you can just walk past all the advertising for fast food and the sick people who eat and drink it there without being influenced", correct: false }, { option : "Unfortunately, you'll have to ride your bike, even at -12 degrees in winter. Bonus: you'll get fresh air and exercise and avoid the electrosmog", correct: true }],
 		correct: 0
 	},
 
 	{
 		question: "Was macht schlechte Haut?",
-		questionFr : "Quel instrument est utile pour améliorer la qualité de l'eau?",
-		questionEn : "Which instrument is useful to improve the quality of water?",
+		questionFr : "Qu’est-ce qui cause une mauvaise peau ?",
+		questionEn : "What causes bad skin?",
 		imageUrl: "assets/img/rawfood/haut.PNG",
 		type: "multiple choice",
 		options: [{ option : "Zucker (z.B. Obst) und Fett (z.B. Öl) und Chemie (z.B. Shampoo, Sonnencreme, etc...)", correct: true }, { option : "Wildkräuter", correct: false }, { option : "Algen", correct: false }, { option : "Leinsamensprossen", correct: false }],
-		optionsFr: [{ option : "un vitaliseur d'eau", correct: true }, { option : "sirop", correct: false }],
-		optionsEn: [{ option : "a vitalizer of water", correct: true }, { option : "sirop", correct: false }],
+		optionsFr : [{ option : "Sucre (ex. fruits) et graisses (ex. huile) et produits chimiques (ex. shampoing, crème solaire, etc...)", correct : true }, { option : "Herbes sauvages", correct : false } , { option : "Algues", correct : false }, { option : "Pousses de lin", correct : false }],
+		optionsEn: [{ option : "Sugar (e.g. fruit) and fat (e.g. oil) and chemicals (e.g. shampoo, sunscreen, etc...)", correct: true }, { option : "Wild herbs", correct: false }, { option : "Algae", correct: false }, { option : "Flaxseed sprouts", correct: false }],
 		correct: 0
 	},
 
