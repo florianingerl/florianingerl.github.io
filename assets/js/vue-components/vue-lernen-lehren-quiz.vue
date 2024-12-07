@@ -157,6 +157,19 @@ export default {
 		optionsEn : [{ option : "tomato", correct: false }, { option : "beetroot", correct: true }],
 		correct: 1
 
+	},
+
+	{
+		question: "In welcher Haltung kann man im Winter lange lesen oder seine Gedanken sortieren?",
+		questionFr : "Comment s'appelle ce légume?",
+		questionEn : "What is the name of this vegetable?",
+		imageUrl: "assets/img/rawfood/krabbeln.png",
+		type: "multiple choice",
+		options: [{ option : "Am Boden hin und her krabbelnd", correct: true }, { option : "Im Stehen", correct: false }, { option : "Spazieren gehend in der Kälte draußen", correct: false }, { option : "Fahrad fahrend in der Kälte draußen", correct: false }],
+		optionsFr : [{ option : "tomate", correct: false }, { option : "betterave rouge", correct: true }],
+		optionsEn : [{ option : "tomato", correct: false }, { option : "beetroot", correct: true }],
+		correct: 1
+
 	}
 
 
