@@ -692,7 +692,7 @@ export default {
 		question: "Wie nennt man im Yoga die Muster im Gehirn, die dich dazu zwingen, deine Sinne zu befriedigen und dabei den Körper zu vergiften?",
 		questionEn: "In yoga, what do you call the patterns in the brain that force you to satisfy your senses and poison the body in the process?",
 		questionFr: "En yoga, comment appelle-t-on les schémas cérébraux qui vous obligent à satisfaire vos sens et empoisonnent ainsi le corps ?",
-		imageUrl: "assets/img/rawfood/brokolisprossen.JPG",
+		imageUrl: "assets/img/rawfood/samskaras.png",
 		type: "multiple choice",
 		options: [{ option : "Samskaras", correct: true }, { option : "Saskia", correct: false }],
 		optionsEn: [{ option : "Samskaras", correct: true }, { option : "Saskia", correct: false }],
