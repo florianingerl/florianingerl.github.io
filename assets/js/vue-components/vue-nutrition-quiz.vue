@@ -65,7 +65,7 @@ export default {
 	{
 		question: "Mit einem Destilliergerät kannst du dein Wasser zum Trinken und zum Einweichen der Sprossen von allen Giftstoffen reinigen. Wie kannst du das Wasser noch energetisieren?",
 		questionFr : "Vous pouvez utiliser un distillateur pour purifier votre eau afin de la boire et de faire tremper les germes de toutes les toxines. Sinon, comment pouvez-vous dynamiser l’eau ?",
-		questionEn : "You can use a distiller to purify your water for drinking and soaking sprouts from all toxins. How else can you energize the water?",
+		questionEn : "You can use a distiller to purify your water from all toxins for drinking purposes and for soaking sprouts. How else can you energize the water?",
 		imageUrl: "assets/img/rawfood/reikiwasser.png",
 		type: "multiple choice",
 		options: [{ option : "mit Reiki", correct: true }, { option : "mit Brausetabletten", correct: false }],
@@ -83,7 +83,7 @@ export default {
 		type: "multiple choice",
 		options: [{ option : "Japanische Fremdenergie, die die katholische Kirche zurecht mit Misstrauen beäugt", correct: false }, { option : "Universelle Lebensenergie", correct: true }, { option : "Heilung durch Handauflegen und mit Symbolen", correct: true }],
 		optionsFr : [{ option : "L'énergie étrangère japonaise que l'Église catholique considère à juste titre avec suspicion", correct : false }, { option : "Énergie vitale universelle", correct : true }, { option : "Guérison par l'imposition des mains et avec des symboles", correct : true }],
-		optionsEn: [{ option: "Japanese foreign energy that the Catholic Church rightly views with suspicion", correct: false }, { option: "Universal life energy", correct: true }, { option: "Healing through the laying on of hands and with symbols", correct: true }],
+		optionsEn: [{ option: "Japanese foreign energy that the Catholic Church rightly views with suspicion", correct: false }, { option: "Universal life energy", correct: true }, { option: "Healing to the laying of hands on somebody or something", correct: true }],
 		correct: 0
 	}
 	,
@@ -96,7 +96,7 @@ export default {
 		type: "multiple choice",
 		options: [{ option : "Reiki wirkt nur bei Schrott", correct: false }, { option : "Es macht keinen Spaß oder man fühlt fast nichts, wenn man Schrott mit Reiki behandelt.", correct: true }, { option : "Reiki kann nur das Lebendige heilen und energetisieren", correct: true }],
 		optionsFr : [{ option : "Le Reiki ne fonctionne que sur les déchets", correct : false }, { option : "Ce n'est pas amusant ou vous ne ressentez presque rien lorsque vous traitez des déchets avec le Reiki.", correct : true }, { option : "Reiki ne peut que guérir et dynamiser les vivants", correct : true }],
-		optionsEn: [{ option : "Reiki only works on junk", correct: false }, { option : "It's no fun or you feel almost nothing when you treat junk with Reiki.", correct: true }, { option : "Reiki can only heal and energize the living", correct: true }],
+		optionsEn: [{ option : "Reiki only works on junk", correct: false }, { option : "It's no fun or you feel almost nothing when you treat junk with Reiki.", correct: true }, { option : "Reiki can only heal and energize living things", correct: true }],
 		correct: 0
 	},
 
@@ -115,12 +115,12 @@ export default {
 	{
 		question:"Welche Zubereitungsform von Getreide fördert die Verdaulichkeit und erhöht den Nährstoffgehalt?",
 		questionFr: "Quelle forme de préparation des céréales favorise la digestibilité et augmente la teneur en nutriments ?",
-		questionEn: "Which form of preparation of grain promotes digestibility and increases the nutrient content?",
+		questionEn: "Which form of preparation of grain promotes digestibility and increases the nuitritional content?",
 		imageUrl: "assets/img/rawfood/weizensprossen.jpg",
 		type: "multiple choice",
 		options: [{ option : "als Getreidebrei oder als Keimlinge", correct: true }, { option : "Brot", correct: false }, { option : "Nudeln", correct: false }],
 		optionsFr: [{ option : "en tant que bouillie de céréales ou en tant que pousses", correct: true }, { option : "pain", correct: false }, { option : "nouilles", correct: false }],
-		optionsEn: [{ option : "as cereal porrdige or as sprouts", correct: true }, { option : "bread", correct: false }, { option : "pasta", correct: false }],
+		optionsEn: [{ option : "cereal porrdige or sprouts", correct: true }, { option : "bread", correct: false }, { option : "pasta", correct: false }],
 		correct: 0
 	},
 	{
@@ -131,7 +131,7 @@ export default {
 		imageUrl: "assets/img/rawfood/frischkornbrei.jpg",
 		options: [{ option : "außer Sprossen aus Pseudogetreide wie Hirse, Buchweizen, Amaranth und Quinoa gehört da nichts rein.", correct: true }, { option : "Kuhmilch, Marmelade, Nüsse, Obst und viel Zucker! Das schmeckt so gut! Hast du das schon mal probiert?", correct: false } ],
 		optionsFr : [{ option : "Rien n'y appartient à part les germes de pseudo-céréales comme le mil, le sarrasin, l'amarante et le quinoa.", correct : true }, { option : "Lait de vache, confiture, noix, fruits et beaucoup de sucre ! C'est tellement bon ! Avez-vous déjà essayé ça ?", correct : false } ],
-		optionsEn: [{ option: "Nothing belongs in there except sprouts from pseudo-grains such as millet, buckwheat, amaranth and quinoa.", correct: true }, { option: "Cow's milk, jam, nuts, fruit and lots of sugar! It tastes so good ! Have you tried this before?", correct: false } ],
+		optionsEn: [{ option: "Nothing belongs in there except sprouts from pseudo-grains such as millet, buckwheat, amaranth and quinoa.", correct: true }, { option: "Cow's milk, jam, nuts, fruit and a lot of sugar! It tastes so good ! Have you tried this before?", correct: false } ],
 		correct: 3
 
 	},
@@ -144,7 +144,7 @@ export default {
 		type: "multiple choice",
 		options: [{ option : "Wenn du dich von der Werbung in S-und U-Bahn bombardieren lässt und den schwer kranken Menschen dort beim Fast-Food-Essen und Cola-Trinken zuschaust.", correct: true }, { option : "Wenn du dich in den Wald begibst, wo es nur Löwenzahn und andere Wildkräuter gibt", correct: false }, { option : "Wenn du ständig mit Sklaven der Sinne verkehrst, die ihre Unterscheidungskraft lange verloren haben und die dir Kuchen essend und Kaffe trinkend erklären, dass der Körper bestimmte Nährstoffe braucht", correct: true }],
 		optionsFr : [{ option : "Si vous vous laissez bombarder par la publicité dans le S-Bahn et le métro et que vous regardez les gens gravement malades manger de la restauration rapide et boire du cola.", correct : true }, { option : "Si vous y allez dans la forêt, où il n'y a que des pissenlits et autres herbes sauvages", correct: false }, { option : "Si vous fréquentez constamment des esclaves des sens qui ont depuis longtemps perdu leur pouvoir de discrimination et qui vous donnent du gâteau et du café en buvant , expliquez que le corps a besoin de certains nutriments", correct : true }],
-		optionsEn: [{ option: "If you let yourself be bombarded by advertising in the S-Bahn and subway and watch the seriously ill people there eating fast food and drinking cola.", correct: true }, { option: "If you go into the forest, where there are only dandelions and other wild herbs", correct: false }, { option : "If you constantly associate with slaves of the senses who have long lost their power of discrimination and who give you cake and coffee while drinking, explain that the body needs certain nutrients", correct: true }],
+		optionsEn: [{ option: "If you let yourself be bombarded by advertising in the S-Bahn and subway and watch the seriously ill people there eating fast food and drinking cola.", correct: true }, { option: "If you go into the forest, where there are only dandelions and other wild herbs", correct: false }, { option : "If you constantly associate with slaves of the senses who have long lost their power of discrimination and who give you advise on nutrition while drinking coffee.", correct: true }],
 		correct: 0
 	},
 
@@ -156,7 +156,7 @@ export default {
 		type: "multiple choice",
 		options: [{ option : "Mit S-und U-Bahn, denn man kann ja einfach an der ganzen Werbung für Fast-Food und den kranken Menschen, die es dort essen und trinken unbeeinflusst vorbei gehen", correct: false }, { option : "Du wirst leider mit dem Fahrrad fahren müssen, selbst bei -12 Grad im Winter. Bonus: Du bekommst frische Luft und Bewegung und entgehst dem Elektrosmog", correct: true }],
 		optionsFr : [{ option : "Avec le S-Bahn et le U-Bahn, car vous pouvez simplement passer devant toutes les publicités pour la restauration rapide et les malades qui y mangent et y boivent sans être influencés", correct : false }, { option : "Malheureusement, vous devrez faire du vélo, même à -12 degrés en hiver. Bonus : vous pourrez prendre l'air, faire de l'exercice et éviter l'électrosmog", correct : true }],
-		optionsEn: [{ option: "With S-Bahn and U-Bahn, because you can just walk past all the advertising for fast food and the sick people who eat and drink it there without being influenced", correct: false }, { option : "Unfortunately, you'll have to ride your bike, even at -12 degrees in winter. Bonus: you'll get fresh air and exercise and avoid the electrosmog", correct: true }],
+		optionsEn: [{ option: "With S-Bahn and U-Bahn, because you can just walk past all the advertising for fast food and the sick people who eat and drink without being influenced", correct: false }, { option : "Unfortunately, you'll have to ride your bike, even at -12 degrees in winter. Bonus: you'll get fresh air and exercise and avoid the electrosmog", correct: true }],
 		correct: 0
 	},
 
@@ -214,7 +214,7 @@ export default {
 		imageUrl: "assets/img/rawfood/knollensellerie.jpg",
 		type: "multiple choice",
 		options: [{ option : "Knollensellerie", correct: true }, { option : "Radiesschen", correct: false }],
-		optionsEn: [{ option : "celeriac", correct: true }, { option : "radishes", correct: false }],
+		optionsEn: [{ option : "celeriac", correct: true }, { option : "radish", correct: false }],
 		optionsFr: [{ option : "céleri-rave", correct: true }, { option : "radis", correct: false }],
 		correct: 0
 	},
@@ -226,7 +226,7 @@ export default {
 		type: "multiple choice",
 		options: [{ option : "weil es keine Werbung einer Gierschindustrie gibt, die den Giersch pasteurisiert, kocht, haltbar macht und dann in Tablettenform verkauft", correct: true }, { option : "Weil der Mensch kein Wiederkäuer ist und Giersch nicht gesund", correct: false }],
 		optionsFr: [{ option : "car il n'y a pas de publicité d'une industrie de la courge qui pasteurise la courge, la cuit, la conserve puis la vend sous forme de comprimés", correct: true }, { option : "Parce que les humains ne sont pas des ruminants et que la courge n'est pas saine", correct: false }],
-		optionsEn: [{ option : "because there is no advertising from a groundweed industry that pasteurizes the groundweed, cooks it, preserves it and then sells it in tablet form", correct: true }, { option : "Because humans are not ruminants and groundweed is not healthy", correct: false }],
+		optionsEn: [{ option : "because there is no advertising from the groundweed industry that pasteurizes the groundweed, cooks it, preserves it and then sells it in tablet form", correct: true }, { option : "Because humans are not ruminants and groundweed is not healthy", correct: false }],
 		correct: 0
 	},
 	
@@ -414,7 +414,7 @@ export default {
 	{
 		question: "Wie viel Zeit braucht es zwischen zwei Mahlzeiten?",
 		questionFr: "Combien de temps faut-il entre deux repas?",
-		questionEn: "How much time does it take between two meals??",
+		questionEn: "How much time should pass between two meals?",
 		imageUrl: "assets/img/rawfood/weißkohl.jpg",
 		type: "multiple choice",
 		options: [{ option : "Essenspause, bis die letzte Mahlzeit verdaut ist, was bei schweren Mahlzeiten 3-4 Stunden dauert", correct: true }, { option : "Verdauung kann jederzeit alles verarbeiten, solange die Nahrung gesund ist", correct: false }],
@@ -441,7 +441,7 @@ export default {
 	{
 		question: "Was machen Rohköstler im Winter?",
 		questionFr: "Que font les crudivores en hiver?",
-		questionEn: "What do a raw food eaters do in winter?",
+		questionEn: "What do raw food eaters do in winter?",
 		imageUrl: "assets/img/rawfood/winter.png",
 		type: "multiple choice",
 		options: [{ option : "Eine warme Jacke anziehen", correct: true }, { option : "Weil die rohen Sprossen, Frischkornbreie und Gemüse von innen wärmen, laufen sie auch im Winter mit kurzer Hose und T-Shirt rum.", correct: false }],
@@ -453,7 +453,7 @@ export default {
 	{
 		question: "Was hält am besten im Winter warm, wo der Effekt auch noch einen bis zwei Tage nachwirkt ?",
 		questionFr: "Que font les crudivores en hiver ?",
-		questionEn: "What do a raw food eaters do in winter ?",
+		questionEn: "What do raw food eaters do in winter ?",
 		imageUrl: "assets/img/rawfood/winter.png",
 		type: "multiple choice",
 		options: [{ option : "Muskelaufbautraining", correct: true }, { option : "Spazieren gehen", correct: false }],
@@ -469,7 +469,7 @@ export default {
 		imageUrl: "assets/img/rawfood/winter.png",
 		type: "multiple choice",
 		options: [{ option : "Viel Sport zum Muskelaufbau und Yoga", correct: true }, { option : "Im Angesicht der Kälte müssen sie einsehen, dass Nahrung gekocht sein muss", correct: false }],
-		optionsEn: [{ option : "A lot of sports and Yoga to warum up", correct: false }, { option : "Facing the cold weather, they have to admit that food must be cooked", correct: false }],
+		optionsEn: [{ option : "A lot of sports and Yoga to warm up", correct: false }, { option : "Facing the cold weather, they have to admit that food must be cooked", correct: false }],
 		optionsFr: [{ option : "Beaucoup de sport et de yoga pour se rechauffer", correct: true }, { option : "Face au froid, ils doivent reconnaitre que la nourriture doit être cuite", correct: false }],
 		correct: 1
 	},
@@ -504,7 +504,7 @@ export default {
 		type: "multiple choice",
 		options: [{ option : "Der Keimprozess reduziert Glutein auf ein verträgliches Minimum", correct: true }, { option : "Weil im Getreidebrei Wasser drin ist, was die Magensäure verdünnt", correct: true }, { option : "Das Kochen der Sprossen erhöht den Nährstoffgehalt", correct: false }],
 		optionsFr: [{ option : "Parce que le processus de germination réduit le gluten à un minimum tolérable", correct: true }, { option : "Parce que la bouillie de céréales contient de l'eau, qui dilue l'acide gastrique.", correct: true }, { option : "Car si vous faites cuire les pousses à l’avance, elles sont plus faciles à digérer", correct: false }],
-		optionsEn: [{ option : "Because the germination process reduces gluten to a tolerable minimum.", correct: true }, { option : "Because cereal porridge contains water, which dilutes the stomach acid.", correct: true },  { option : "Because if you cook the sprouts beforehand, they are easier to digest.", correct: false }],
+		optionsEn: [{ option : "Because the germination process reduces gluten to a tolerable minimum.", correct: true }, { option : "Because cereal porridge contains water, which dilutes the acid in the stomach.", correct: true },  { option : "Because if you cook the sprouts beforehand, they are easier to digest.", correct: false }],
 		correct: 1
 	},
 
@@ -535,7 +535,7 @@ export default {
 	{
 		question: "Wofür ist Glutein im Getreide gut?",
 		questionFr: "À quoi sert le gluten présent dans les céréales?",
-		questionEn: "What are gluten in grains good for?",
+		questionEn: "What gluten in grains is good for?",
 		imageUrl: "assets/img/rawfood/buchweizenbrei.jpg",
 		type: "multiple choice",
 		options: [{ option : "Glutein ist essentiell für Gesundheit und Leistungsfähigkeit", correct: false }, { option : "Sie liefern den Kleber, damit der Bäcker leichter Produkte zur Befriedung der Sinne backen kann.", correct: true } ],
@@ -551,7 +551,7 @@ export default {
 		imageUrl: "assets/img/rawfood/reisbrei.jpg",
 		type: "multiple choice",
 		options: [{ option : "Reis ist glutenfrei", correct: true }, { option : "Reis ist billiger", correct: false }, { option : "Reis keimt schneller als Roggen", correct: false } ],
-		optionsEn: [{ option : "Rice is gluten-free", correct: true }, { option : "Rice is cheaper", correct: false }, { option : "Rice germinates faster than Rye", correct: false } ],
+		optionsEn: [{ option : "Rice is gluten-free", correct: true }, { option : "Rice is cheaper", correct: false }, { option : "Rice germinates faster than rye", correct: false } ],
 		optionsFr: [{ option : "Le riz ne contient pas de gluten", correct: true }, { option : "Le riz est moins cher", correct: false }, { option : "Le riz germe plus vite que le seigle", correct: false } ],
 		correct: 1
 	},
@@ -571,7 +571,7 @@ export default {
 	{
 		question: "Welches Öl ist am besten weil am wenigsten oxidationsanfällig?",
 		questionFr: "Quelle huile est la meilleure parce qu’elle est la moins sensible à l’oxydation?",
-		questionEn: "Which oil is best because it is least susceptible to oxidation?",
+		questionEn: "Which oil is best because it is the least susceptible to oxidation?",
 		imageUrl: "assets/img/rawfood/oliveoil.png",
 		type: "multiple choice",
 		options: [{ option : "Olivenöl", correct: true }, { option : "Rapsöl", correct: false } ],
@@ -685,6 +685,18 @@ export default {
 		options: [{ option : "30 Tage und Nächte Fasten, wie Jesus in der Wüste", correct: false }, { option : "Du musst genügend Sprossen essen, damit du den Unterschied zwischen frisch und tot wirklich verstehst und dann ganz natürlich auf Schrott verzichtest", correct: true }],
 		optionsEn: [{ option : "Fasting for 30 days and nights, like Jesus in the desert", correct: false }, { option : "You have to eat enough sprouts so that you really understand the difference between fresh and dead and then naturally avoid junk", correct: true }],
 		optionsFr: [{ option : "Jeûner pendant 30 jours et nuits, comme Jésus dans le désert", correct: false }, { option : "Vous devez manger suffisamment de pousses pour bien comprendre la différence entre frais et morts et ensuite éviter naturellement les cochonneries", correct: true }],
+		correct: 1
+	},
+
+	{
+		question: "Wie nennt man im Yoga die Muster im Gehirn, die dich dazu zwingen, deine Sinne zu befriedigen und dabei den Körper zu vergiften?",
+		questionEn: "In yoga, what do you call the patterns in the brain that force you to satisfy your senses and poison the body in the process?",
+		questionFr: "En yoga, comment appelle-t-on les schémas cérébraux qui vous obligent à satisfaire vos sens et empoisonnent ainsi le corps ?",
+		imageUrl: "assets/img/rawfood/brokolisprossen.JPG",
+		type: "multiple choice",
+		options: [{ option : "Samskaras", correct: true }, { option : "Saskia", correct: false }],
+		optionsEn: [{ option : "Samskaras", correct: true }, { option : "Saskia", correct: false }],
+		optionsFr: [{ option : "Samskaras", correct: true }, { option : "Saskia", correct: false }],
 		correct: 1
 	},
 	
