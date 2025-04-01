@@ -115,7 +115,33 @@ export default {
 		questionEn : "What is the name of this vegetable?",
 		imageUrl: "assets/img/cs/fragezeichen.jpg",
 		type: "multiple choice",
-		options: [{ option : "Eine Psychaterin kostest 150 Euro/h. Einer Englischnachhilfelehrerin kann man auch alles erzählen und die kostet nur 25Euro/h", correct: true }, { option : "Um Hollywood-Filme und anderes Gift in der Orginal-Sprache sehen zu können", correct: false }],
+		options: [{ option : "Eine gute deutsche Psychaterin kostest 150 Euro/h. Einer Englischnachhilfelehrerin kann man auch alles erzählen und die kostet nur 25Euro/h", correct: true }, { option : "Um Hollywood-Filme und anderes Gift in der Orginal-Sprache sehen zu können", correct: false }],
+		optionsFr : [{ option : "tomate", correct: false }, { option : "betterave rouge", correct: true }],
+		optionsEn : [{ option : "tomato", correct: false }, { option : "beetroot", correct: true }],
+		correct: 1
+
+	},
+
+	{
+		question: "Was könnte dich noch mehr zum Spanisch-Lernen motivieren?",
+		questionFr : "Comment s'appelle ce légume?",
+		questionEn : "What is the name of this vegetable?",
+		imageUrl: "assets/img/cs/fragezeichen.jpg",
+		type: "multiple choice",
+		options: [{ option : "Spanisch-Nachhilfe von einer spanischen Doktorin der Chemie kostest nur 20 Euro/h", correct: true }, { option : "Um die Filme auf Netflix jetzt auch in Spanisch verstehen zu können", correct: false }],
+		optionsFr : [{ option : "tomate", correct: false }, { option : "betterave rouge", correct: true }],
+		optionsEn : [{ option : "tomato", correct: false }, { option : "beetroot", correct: true }],
+		correct: 1
+
+	},
+
+	{
+		question: "Was könnte dich noch mehr zum Spanisch, Englisch und Französisch-Lernen motivieren?",
+		questionFr : "Comment s'appelle ce légume?",
+		questionEn : "What is the name of this vegetable?",
+		imageUrl: "assets/img/cs/fragezeichen.jpg",
+		type: "multiple choice",
+		options: [{ option : "Eine gute deutsche Psychaterin kostest 150 Euro/h, wohingegen eine Englisch,Spanisch oder Französisch-Nachhilfelehrerin aus Ghana,Venezuela oder Kamerun nur 7 Euro/h kostet und auch gut zuhören kann.", correct: true }, { option : "Du kannst in diesen Ländern Urlaub machen und dort im Restaurant Schrott auf Englisch,Französisch und Spanisch bestellen.", correct: false }],
 		optionsFr : [{ option : "tomate", correct: false }, { option : "betterave rouge", correct: true }],
 		optionsEn : [{ option : "tomato", correct: false }, { option : "beetroot", correct: true }],
 		correct: 1
@@ -160,7 +186,7 @@ export default {
 	},
 
 	{
-		question: "In welcher Haltung kann man im Winter lange lesen oder seine Gedanken sortieren?",
+		question: "In welcher Haltung kann man im Winter lange lesen, ohne dass einem müde oder kalt wird?",
 		questionFr : "Comment s'appelle ce légume?",
 		questionEn : "What is the name of this vegetable?",
 		imageUrl: "assets/img/rawfood/krabbeln.png",
