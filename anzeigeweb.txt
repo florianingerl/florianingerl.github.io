@@ -1,0 +1,20 @@
+Kannst du Hilfe bei einem Projekt für dein Studium brauchen, das etwas mit Webprogrammierung zu tun hat? Oder willst du deine eigene Website erstellen und brauchst Hilfe bei der technischen Umsetzung? Dann kann ich dir als 1er-Mathe-Informatik-Master, mit meiner 1 Jahr Berufserfahrung als Softwareentwickler und als langjähriger Nachhilfelehrer von vielen Informatik-Studenten bestimmt helfen. 
+
+Sobald du mir die Aufgabenstellung deines Projekts kommuniziert hast, können wir sofort einen Termin für morgen oder übermorgen per Mail ausmachen. Folgende Kenntnisse kann ich anbieten: 
+
+1) Programmierung statischer Websites/Frontend mit HTML, CSS, JavaScript, Bootstrap, Tailwind, VueJS, ReactJS, AngularJS, TypeScript 
+2) Programmierung dynamischer Websites/Webserver/Backend mit PHP, NodeJS, Java, Python, C++, C# 
+3) Datenbanken (MySQL, MongoDB) 
+4) Responsive Web-Design 
+5) WordPress 
+6) Bildbearbeitung (mit GIMP) 
+7) Hosting (z.B. kostenlos auf GitHub) 
+8) Suchmaschinenoptimierung (SEO) 
+9) Rechtliches 
+
+Preis:
+4*30 Euro für ein 4*60min-Lernpaket
+35 Euro/60 min für eine einzelne Stunde
+
+bezahlbar mit Paypal oder einer Banküberweisung. 
+!Vorsicht! Die Stornobedingungen, auf die ich dich vorher hinweisen werde, sind zu respektieren., bezahlbar mit PayPal oder einer Banküberweisung. Für die Online-Nachhilfe können wir Skype oder Zoom verwenden. Kamera an ist wichtig, weil viel Kommunikation nonverbal stattfindet. Zusätzlich verwende ich immer noch das Miro-Online-Whiteboard, wo man zusammen etwas schreiben kann. Für die Nachhilfe in Programmierung benutze ich Visual Studio (Code), Eclipse oder IntelliJ zusammen mit dem CodeTogether-Plugin. Ansonsten kontaktiere mich einfach.
