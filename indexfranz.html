@@ -917,7 +917,7 @@
 
 		</div>
 		</section>
-		-->
+
 		<!-- End Why Us Section -->
 
 		<!-- ======= Features Section ======= -->
@@ -971,46 +971,46 @@
 								function validateForm() {
 								  let x = document.forms["myForm"]["fname"].value;
 								  if (x !== "7") {
-									alert("Merci de me dire le résultat de 3+4");
+									alert("Que vaut 3+4?");
 									return false;
 								  }
 								}
-							</script>	
+							</script>
 
-						<form name="myForm" onsubmit="return validateForm()" action="https://getform.io/f/bddcb2ba-fb16-4fa3-baf2-aabd7227b87a" method="post"
+
+						<form name="myForm"  action="https://api.web3forms.com/submit" method="post"
 							role="form" class="php-email-form">
+
+							<input type="hidden" name="access_key" value="aaa027db-e72d-41d2-9b3b-7603e4908475">
+
 							<div class="row">
 								<div class="col-md-6 form-group">
-									<input type="text" name="name" class="form-control" id="name" placeholder="Ton nom"
-										required>
+									<input type="text" name="name" class="form-control" id="name"
+										placeholder="Ton nom" required>
 								</div>
 								<div class="col-md-6 form-group mt-3 mt-md-0">
 									<input type="email" class="form-control" name="email" id="email"
-										placeholder="Ton e-mail" required>
+										placeholder="Ton Email" required>
 								</div>
 							</div>
-							<!-- 
+	
               <div class="form-group mt-3">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Betreff" required>
-              </div>
-              -->
+                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+				</div>
+
+            
 							<div class="form-group mt-3">
 								<textarea class="form-control" name="message" rows="5" placeholder="Message"
 									required></textarea>
 							</div>
-							<div class="my-3">
-								<div class="loading">L�dt</div>
-								<div class="error-message"></div>
-								<div class="sent-message">Ton message a été envoyé!
-									Merci beaucoup!</div>
-							</div>
+							
+							<input type="hidden" name="redirect" value="https://florianingerl.github.io/formsubmissionconfirmation.html">
+							
 
-							<div>
-								<p>Merci de répondre à la question suivante pour que je sache que tu n'es pas un robot.</p>
-								<p>Que vaut 3+4? <input type="text" name="fname"></p>
-							</div>
+							<input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+							
 							<div class="text-center">
-								<button type="submit">Envoyer le message!</button>
+								<button type="submit">Envoie-moi le message!</button>
 							</div>
 						</form>
 
@@ -1020,8 +1020,6 @@
 
 			</div>
 		</section>
-		<!-- End Contact Section -->
-
 
 
 
