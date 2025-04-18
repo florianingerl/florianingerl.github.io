@@ -725,6 +725,18 @@ export default {
 	},
 
 	{
+		question: "Was ist ein Wundermittel gegen Stress, sodass du plötzlich Zeit im Überfluss hast?",
+		questionFr: "Quel est le remède miracle contre le stress qui vous donnera soudainement plus de temps ?",
+		questionEn: "What's a miracle cure for stress that suddenly gives you more time??",
+		imageUrl: "assets/img/rawfood/fasten.jpg",
+		type: "multiple choice",
+		options: [{ option : "Fasten", correct: true }, { option : "Mehr essen", correct: false }],
+		optionsEn: [{ option : "Fasting", correct: true }, { option : "Eating more", correct: false }],
+		optionsFr: [{ option : "Jeûner", correct: true }, { option : "Manger plus", correct: false }],
+		correct: 1
+	},
+
+	{
 		question: "Wodurch könnte man Gemüse aus dem Biomarkt ersetzen, was nie wirklich frisch ist?",
 		questionFr: "Par quoi remplacer les légumes du marché bio qui ne sont jamais vraiment frais?",
 		questionEn: "What could you replace vegetables from the organic market with that are never really fresh?",
