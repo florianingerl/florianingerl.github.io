@@ -196,6 +196,19 @@ export default {
 		optionsEn : [{ option : "tomato", correct: false }, { option : "beetroot", correct: true }],
 		correct: 1
 
+	},
+
+	{
+		question: "Welche Körperhaltung ist zum Lernen am besten?",
+		questionFr : "Quelle posture est la meilleure pour apprendre ?",
+		questionEn : "What posture is best for learning?",
+		imageUrl: "assets/img/rawfood/krabbeln.png",
+		type: "multiple choice",
+		options: [{ option : "Eine wechselnde Haltung mit viel Bewegung", correct: true }, { option : "Unbeweglich im Sitzen", correct: false }],
+		optionsFr : [{ option : "Une posture changeante avec beaucoup de mouvement", correct: false }, { option : "Immobile en position assise", correct: true }],
+		optionsEn : [{ option : "A changing posture with plenty of movement", correct: false }, { option : "Sitting motionless", correct: false }],
+		correct: 1
+
 	}
 
 
