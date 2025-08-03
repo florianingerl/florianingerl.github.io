@@ -152,7 +152,7 @@ export default {
 		question: "Du bist ein Sklave der Sinne, der sich gute Essgewohnheiten aneignen will und der jeden Tag von einem Vorort in die Münchner Innenstadt zur Arbeit fahren muss. Wie kommst du dort am besten hin?",
 		questionFr : "Vous êtes un esclave des sens qui souhaite développer de bonnes habitudes alimentaires et qui doit chaque jour se rendre au travail en voiture depuis la banlieue jusqu'au centre-ville de Munich. Quelle est la meilleure façon d'y arriver ?",
 		questionEn : "You are a slave of the senses who wants to develop good eating habits and who has to drive to work every day from a suburb to downtown Munich. What's the best way to get there?",
-		imageUrl: "assets/img/rawfood/fahrrad.PNG",
+		imageUrl: "assets/img/rawfood/fahrrad.png",
 		type: "multiple choice",
 		options: [{ option : "Mit S-und U-Bahn, denn man kann ja einfach an der ganzen Werbung für Fast-Food und den kranken Menschen, die es dort essen und trinken unbeeinflusst vorbei gehen", correct: false }, { option : "Du wirst leider mit dem Fahrrad fahren müssen, selbst bei -12 Grad im Winter. Bonus: Du bekommst frische Luft und Bewegung und entgehst dem Elektrosmog", correct: true }],
 		optionsFr : [{ option : "Avec le S-Bahn et le U-Bahn, car vous pouvez simplement passer devant toutes les publicités pour la restauration rapide et les malades qui y mangent et y boivent sans être influencés", correct : false }, { option : "Malheureusement, vous devrez faire du vélo, même à -12 degrés en hiver. Bonus : vous pourrez prendre l'air, faire de l'exercice et éviter l'électrosmog", correct : true }],
@@ -164,7 +164,7 @@ export default {
 		question: "Was macht schlechte Haut?",
 		questionFr : "Qu’est-ce qui cause une mauvaise peau ?",
 		questionEn : "What causes bad skin?",
-		imageUrl: "assets/img/rawfood/haut.PNG",
+		imageUrl: "assets/img/rawfood/haut.png",
 		type: "multiple choice",
 		options: [{ option : "Zucker (z.B. Obst) und Fett (z.B. Öl) und Chemie (z.B. Shampoo, Sonnencreme, etc...)", correct: true }, { option : "Wildkräuter", correct: false }, { option : "Algen", correct: false }, { option : "Leinsamensprossen", correct: false }],
 		optionsFr : [{ option : "Sucre (ex. fruits) et graisses (ex. huile) et produits chimiques (ex. shampoing, crème solaire, etc...)", correct : true }, { option : "Herbes sauvages", correct : false } , { option : "Algues", correct : false }, { option : "Pousses de lin", correct : false }],
@@ -752,7 +752,7 @@ export default {
 		question: "Ist Vielfalt bei der Ernährung wichtig?",
 		questionFr: "La diversité est-elle importante en nutrition?",
 		questionEn: "Is diversity important in nutrition?",
-		imageUrl: "assets/img/rawfood/amarantsprossen.jpg",
+		imageUrl: "assets/img/rawfood/amarantsprossen.JPG",
 		type: "multiple choice",
 		options: [{ option : "Ja, aber nicht innerhalb einer Mahlzeit. Monomahlzeiten sind für die Verdauung besser", correct: true }, { option : "Ja, die Kombination der Nährstoffe innerhalb einer Mahlzeit ist wichtig für die optimale Produktion von Eiweiß", correct: false }, {option : "Ja, deswegen iss zur Abwechslung auch mal einen Brei aus Amaranthsprossen mit Kürbiskernsprossen zum Frühstück anstatt immer nur Buchweizen-Sprossen mit Hanfsprossen", correct: true }],
 		optionsEn: [{ option : "Yes, but not within a meal. Mono meals are better for digestion", correct: true }, { option : "Yes, the combination of nutrients within a meal is important for optimal protein production", correct: false }, {option : "Yes, so for a change, eat a porridge made from amaranth sprouts with pumpkin seed sprouts for breakfast instead of always just buckwheat sprouts with hemp sprouts", correct: true }],
@@ -1414,7 +1414,7 @@ export default {
 
 	{
 			type: 'gapText',
-			imageUrl: "assets/img/rawfood/kressefensterbrett.jpg",
+			imageUrl: "assets/img/rawfood/kressefensterbrett.JPG",
 			gapText: 'Ist du {kalt|warm}, dann wirst du {alt}.'
 		}
 
