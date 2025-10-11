@@ -475,6 +475,18 @@ export default {
 	},
 
 	{
+		question: "Während man eine Linsensprossen-Monomahlzeit isst, kann man gleichzeitig lernen. Wie lange liefern die Linsen dafür Energie?",
+		questionFr: "En mangeant un repas de germes de lentilles, vous pouvez étudier en même temps. Comment les lentilles fournissent-elles l'énergie pour cela ?",
+		questionEn: "You can study while eating a lentil sprout meal. How long do the lentils provide energy for this?",
+		imageUrl: "assets/img/rawfood/linsenpur.JPG",
+		type: "multiple choice",
+		options: [{ option : "1.5 Stunden, also genug Zeit, um ein ganzes Regelungstechnik-Skript durchzuochsen", correct: true }, { option : "Nur 10 min, also eine genauso lange Freude wie beim Verzehr eines Döners und danach ist man auch noch verstopft", correct: false } ],
+		optionsFr: [{ option : "1.5 heures, donc assez de temps pour travailler sur un script complet d'ingénierie de contrôle", correct: true }, { option : "Seulement 10 minutes, donc un plaisir aussi long que de manger un kebab", correct: false } ],
+		optionsEn: [{ option : "1.5 hours, so enough time to work through an entire control engineering script", correct: true }, { option : "Only 10 minutes, so just as long a pleasure as eating a kebab", correct: false } ],
+		correct: 2
+	},
+
+	{
 		question: "Wie heißt dieses Gemüse?",
 		questionFr: "Comment s'appelle ce légume?",
 		questionEn: "What is the name of this vegetable?",
