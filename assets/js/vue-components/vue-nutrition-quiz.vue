@@ -487,6 +487,18 @@ export default {
 	},
 
 	{
+		question: "Während man Sonnenblumenkernsprossen isst, kann man z.B. gleichzeitig Spanisch mit einem Hörbuch lernen? Wie lange liefern die Sonnenblumensprossen dafür Energie?",
+		questionFr: "En mangeant des graines germées de tournesol, vous pouvez, par exemple, apprendre l'espagnol avec un livre audio. Combien de temps les graines germées de tournesol fournissent-elles de l'énergie pour cela ?",
+		questionEn: "While eating sunflower seed sprouts, you can, for example, learn Spanish with an audiobook. How long do the sunflower sprouts provide energy for this?",
+		imageUrl: "assets/img/rawfood/Sonnenblumenkernsprossen.JPG",
+		type: "multiple choice",
+		options: [{ option : "1 Stunde, also fast genug Zeit für das Hörbuch von Eckhart Tolle \"El poder de ahora\", was man kostenlos auf YouTube sich anhören kann", correct: true }, { option : "10 min, also eine genauso lange Freude wie bei einem Kuchen und danach ist man auch noch verstopft", correct: false } ],
+		optionsFr: [{ option : "1 heure, soit presque assez de temps pour écouter le livre audio d'Eckhart Tolle « El poder de ahora », que vous pouvez écouter gratuitement sur YouTube.", correct: true }, { option : "10 minutes, soit aussi long que de manger un gâteau", correct: false } ],
+		optionsEn: [{ option : "1 hour, so almost enough time for Eckhart Tolle's audiobook \"El poder de ahora\", which you can listen to for free on YouTube", correct: true }, { option : "10 minutes, so just as long a pleasure as eating a cake", correct: false } ],
+		correct: 2
+	},
+
+	{
 		question: "Wie heißt dieses Gemüse?",
 		questionFr: "Comment s'appelle ce légume?",
 		questionEn: "What is the name of this vegetable?",
