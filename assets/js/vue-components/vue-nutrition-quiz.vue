@@ -24,8 +24,32 @@ export default {
     return {
        questions: 
       [
-		
 	{
+		question: "Wo sollten Sprossen im Winter stehen?",
+		questionFr: "Où faut-il placer les pousses en hiver ?",
+		questionEn: "Where should sprouts be placed in winter?",
+		imageUrl: "assets/img/rawfood/SprossenHeizungWinter.jpg",
+		type: "multiple choice",
+		options: [{ option : "Auf der Heizung", correct: true }, { option : "Im Kühlschrank", correct: false }, { option : "Im Backofen", correct: false }],
+		optionsEn: [{ option : "On the radiator", correct: true }, { option : "In the fridge", correct: false }, { option : "In the oven", correct: false }],
+		optionsFr: [{ option : "Sur le radiateur", correct: true }, { option : "Dans le réfrigérateur", correct: false }, { option : "Dans le four", correct: false }],
+		correct: 4
+	},	
+
+	{
+		question: "Was ist der Vorteil von Sprossen auf Erde gegenüber Sprossen im Keimgerät ?",
+		questionFr: "Quel est l'avantage des pousses cultivés en terre par rapport à ceux cultivés en germoir ?",
+		questionEn: "What is the advantage of sprouts grown in soil compared to those grown in a sprouting tray?",
+		imageUrl: "assets/img/rawfood/SprossenErde.PNG",
+		type: "multiple choice",
+		options: [{ option : "Die Sprossen sind länger frisch haltbar", correct: true }, { option : "Durch das vorherige Kochen der Erde kann Schimmel vermieden werden.", correct: false }],
+		optionsEn: [{ option : "Pre-cooking the soil helps prevent mold.", correct: false }, { option : "Sprouts on soils stay fresh longer", correct: true } ],
+		optionsFr: [{ option : "Les pousses cultivés en terre se conservent plus longtemps. ", correct: true }, { option : "La précuisson de la terre permet d'éviter la formation de moisissures.", correct: false }],
+		correct: 4
+	},	
+	
+	
+	  {
 		question: "Wie heißt dieses Gemüse?",
 		questionFr : "Comment s'appelle ce légume?",
 		questionEn : "What is the name of this vegetable?",
