@@ -47,6 +47,18 @@ export default {
 		optionsFr: [{ option : "Les pousses cultivés en terre se conservent plus longtemps. ", correct: true }, { option : "La précuisson de la terre permet d'éviter la formation de moisissures.", correct: false }],
 		correct: 4
 	},	
+
+	{
+		question: "Was ist der Nachteil von zu vielen Sonnenblumensprossen ?",
+		questionFr: "Quels sont les inconvénients d'une trop grande quantité de pousses de tournesol ?",
+		questionEn: "What's the downside of eating too many sunflower sprouts ? ",
+		imageUrl: "assets/img/rawfood/ZuvielFettSprossen.JPG",
+		type: "multiple choice",
+		options: [{ option : "Zuviel Fett kann Nase und Poren verstopfen, sodass du nicht mehr so frei atmen kannst", correct: true }, { option : "Vogelfutter ist teuer.", correct: false }],
+		optionsEn: [{ option : "Too much fat can clog your nose and pores, making it harder to breathe. ", correct: true }, { option : "Birdseeds are expensive.", correct: false } ],
+		optionsFr: [{ option : "Un excès de matières grasses peut obstruer le nez et les pores, rendant la respiration plus difficile.", correct: true }, { option : "Les graines pour oiseaux sont chères.", correct: false }],
+		correct: 4
+	},	
 	
 	
 	  {
