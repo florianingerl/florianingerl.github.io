@@ -24,6 +24,19 @@ export default {
     return {
        questions: 
       [
+		{
+		question: "Wozu ist eine Bratpfanne gut?",
+		questionFr: "Où faut-il placer les pousses en hiver ?",
+		questionEn: "Where should sprouts be placed in winter?",
+		imageUrl: "assets/img/rawfood/SprossenInBratpfanne.JPG",
+		type: "multiple choice",
+		options: [{ option : "Durch das Braten wird die Nahrung noch frischer und verdaulicher", correct: false }, { option : "Um frische Sprossen auf Erde zu züchten", correct: true }],
+		optionsEn: [{ option : "On the radiator", correct: true }, { option : "In the fridge", correct: false }, { option : "In the oven", correct: false }],
+		optionsFr: [{ option : "Sur le radiateur", correct: true }, { option : "Dans le réfrigérateur", correct: false }, { option : "Dans le four", correct: false }],
+		correct: 4
+	},	
+
+
 	{
 		question: "Wo sollten Sprossen im Winter stehen?",
 		questionFr: "Où faut-il placer les pousses en hiver ?",
