@@ -162,6 +162,18 @@ export default {
 	},
 
 	{
+		question: "Wie kannst du nachts besser schlafen?",
+		questionFr : "Comment améliorer le goût de vos pousses et augmenter leur digestibilité ?",
+		questionEn : "How can you improve the taste of your sprouts and increase their digestibility?",
+		imageUrl: "assets/img/rawfood/blaulichtbrillen.png",
+		type: "multiple choice",
+		options: [{ option : "Spät vor dem Schlafengehen kein Blaulicht mehr in die Augen lassen", correct: true }, { option : "vor dem Schlafengehen noch viel trinken, weil mit voller Blase schläft sich besser", correct: false }, { option: "Vor dem Schlafengehen noch viel Essen, weil die Nahrung im unbeweglichen Schlafzustand optimal verdaut werden kann", correct: false }, {option: "Lüften", correct: true }],
+		optionsFr : [{ option : "avec un peu de sucre et de cannelle", correct : false }, { option : "avec Reiki", correct : true }],
+		optionsEn: [{ option : "with a little sugar and cinnamon", correct: false }, { option : "with Reiki", correct: true }],
+		correct: 0
+	},
+
+	{
 		question:"Welche Zubereitungsform von Getreide fördert die Verdaulichkeit und erhöht den Nährstoffgehalt?",
 		questionFr: "Quelle forme de préparation des céréales favorise la digestibilité et augmente la teneur en nutriments ?",
 		questionEn: "Which form of preparation of grain promotes digestibility and increases the nuitritional content?",
