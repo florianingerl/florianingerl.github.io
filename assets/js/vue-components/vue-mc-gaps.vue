@@ -47,8 +47,31 @@ export default {
     };
   },
 
+  watch: {
+    gaptext: {
+      handler(oldVal, newVal) {
+        console.log("The gaptext changed from " + oldVal + " to " + newVal );
+        this.bigParseGapText();
+      },
+      deep: true,
+    },
+  },
+
   mounted(){
-     console.log("The setup function is executed!");
+    this.bigParseGapText();
+     },
+  setup(){
+   console.log("The setup function is executed!");
+  },
+  
+  
+  methods: {
+
+    bigParseGapText(){
+      this.gaps = [];
+      console.log("The bigParseGapText method was called!");
+
+       console.log("The setup function is executed!");
      
     if(this.gaptext && Array.isArray(this.gaptext) ){ //gaptext is an array of gaptexts
      console.log(this.gaptext);
@@ -95,14 +118,8 @@ export default {
        });
 
      });
-     },
-  setup(){
-   console.log("The setup function is executed!");
-  },
-  
-  
-  methods: {
-    
+    }
+    ,
      buttonValidateClicked(){
         this.validated = true;
         console.log("The button validated was clicked!");

@@ -32,6 +32,15 @@ createApp({
   },
 }).mount('#nutritionquiz');
 
+
+
+createApp({
+  components: {
+    VueSerEstarQuiz : Vue.defineAsyncComponent(() =>
+    loadModule('assets/js/vue-components/vue-ser-estar-quiz.vue', options)),
+  },
+}).mount('#ser-estar-quiz');
+
 createApp({
   components: {
     VueLernenLehrenQuiz : Vue.defineAsyncComponent(() =>
