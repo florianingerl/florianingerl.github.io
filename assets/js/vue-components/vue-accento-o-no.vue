@@ -26,50 +26,6 @@ export default {
       [
 
 
-
-        {
-			type: 'gapText',
-			imageUrl: "assets/img/spanisch/bonitamuyer.jpg",
-			gapText: "Esta muyer {es|está} bonita."
-		},
-
-         {
-			type: 'gapText',
-			imageUrl: "assets/img/spanisch/coche.jpg",
-			gapText: "Mi coche {es|está} rojo."
-		},
-
-    {
-			type: 'gapText',
-			imageUrl: "assets/img/spanisch/maccina.jpg",
-			gapText: "La maquina para la pasta {es|esta} de metal."
-		 },
-
-		 
-		 {
-			type: 'gapText',
-			imageUrl: "assets/img/spanisch/arbol.jpg",
-			gapText: "Ayer {estaba|fue} debajo  de un arbol cuando un terremoto sucedió."
-		 },
-
-		 {
-		 type: 'gapText',
-			imageUrl: "assets/img/spanisch/chilis.jpg",
-			gapText: "Los chilis {son|están} picantes "
-		 },
-
-		 {
-		 type: 'gapText',
-			imageUrl: "assets/img/spanisch/chilis.jpg",
-			gapText: "Esta botella {está|es} vacia."
-		 },
-
-		  {
-		 type: 'gapText',
-			imageUrl: "assets/img/spanisch/jugadordefutbol.jpg",
-			gapText: "Ivann Botella {es|está} un jugador de fútbol."
-		 },
-
       {
 		 type: 'gapText',
 			imageUrl: "assets/img/spanisch/jugadordefutbol.jpg",
