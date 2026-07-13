@@ -124,6 +124,31 @@ export default {
 			gapText: "{Se|Sé} guardo un albero, sono felice."
 		 },
 
+		   {
+			type: 'gapText',
+			imageUrl: "assets/img/spanisch/bonitamuyer.jpg",
+			gapText: "Die Frau {kann} Spanisch sprechen."
+		},
+
+		 {
+			type: 'gapText',
+			imageUrl: "assets/img/spanisch/coche.jpg",
+			gapText: "Das Auto {kann} 200km/h fahren."
+		},
+			 {
+			type: 'gapText',
+			imageUrl: "assets/img/spanisch/coche.jpg",
+			gapText: "Deine Mutter fährt das Auto. {Das Auto wird von deiner Mutter gefahren.}"
+		},
+
+		   {
+			type: 'gapText',
+			imageUrl: "assets/img/spanisch/arbol.jpg",
+			gapText: "Der Regen gießt den Baum.{Der Baum wird von dem Regen gegossen.}"
+		 },
+
+
+
 
 
 
