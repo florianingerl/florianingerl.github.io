@@ -1,5 +1,8 @@
 <template>
 <div>
+  <p>
+    {{ instruction }}
+  </p>
 <ol style="list-style-type: none">
 <li v-for="innergaps in gaps">
 <span v-for="gap in innergaps" >
@@ -38,7 +41,7 @@ export default {
   components: {
   
   },
-  props: ['gaptext', 'same', 'lg', 'numbering'],
+  props: ['gaptext', 'same', 'lg', 'numbering', 'instruction'],
 
   data() {
     return {

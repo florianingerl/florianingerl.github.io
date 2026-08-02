@@ -41,6 +41,22 @@ createApp({
   },
 }).mount('#ser-estar-quiz');
 
+
+createApp({
+  components: {
+    VueItalianoQuiz : Vue.defineAsyncComponent(() =>
+    loadModule('assets/js/vue-components/vue-italiano-quiz.vue', options)),
+  },
+}).mount('#italiano-quiz');
+
+createApp({
+  components: {
+    VueDeutschQuiz : Vue.defineAsyncComponent(() =>
+    loadModule('assets/js/vue-components/vue-deutsch-quiz.vue', options)),
+  },
+}).mount('#deutsch-quiz');
+
+
 createApp({
   components: {
     VueLernenLehrenQuiz : Vue.defineAsyncComponent(() =>

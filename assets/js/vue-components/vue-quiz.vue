@@ -1,7 +1,7 @@
 <template>
    
     <VueImage v-if="i < questions.length" :imageUrl="questions[i].imageUrl">
-      <VueMCGaps v-if="questions[i].type === 'gapText'" :gaptext="questions[i].gapText" :lg="lg" :key="i"></VueMCGaps>
+      <VueMCGaps v-if="questions[i].type === 'gapText'" :instruction="questions[i].instruction" :gaptext="questions[i].gapText" :lg="lg" :key="i"></VueMCGaps>
       <VueQuestion v-if="questions[i].type === 'multiple choice'" :question="questions[i]" :lg="lg" @answered-event="calcScore"></VueQuestion>
     </VueImage>
     <div v-if="i == questions.length && lg=='de'">

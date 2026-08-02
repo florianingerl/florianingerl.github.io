@@ -1510,6 +1510,18 @@ export default {
 	},
 
 	{
+		question: "Du trinkst regelmäßig Cola und spürst keine Zahnschmerzen mehr. Das bedeutet was?",
+		questionFr: "Qu'est-ce qui est frais ?",
+		questionEn: "What is fresh?",
+		imageUrl: "assets/img/rawfood/mereikimeister.JPG",
+		type: "multiple choice",
+		options: [{ option : "Dass du total abgestumpft bist", correct: true}, { option : "Dass auf deine Zähne Cola keinen negativen Effekt hat", correct: false }  ],
+		optionsEn: [{ option : "Nuts picked up from a wild walnut tree from the ground", correct: false }, { option : "cress from your own windowsill", correct: true } ],
+		optionsFr: [{ option : "Noix d'un noyer sauvage, ramassées sur le sol", correct: false }, { option : "cresson sur le rebord de votre fenêtre", correct: true } ],
+		correct: 4
+	},
+
+	{
 			type: 'gapText',
 			imageUrl: "assets/img/rawfood/kressefensterbrett.JPG",
 			gapText: 'Ist du {kalt|warm}, dann wirst du {alt}.'
