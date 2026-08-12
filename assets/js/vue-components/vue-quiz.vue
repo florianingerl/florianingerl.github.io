@@ -1,5 +1,13 @@
 <template>
-   
+   <div>Selected: {{ selectedTopic }}</div>
+
+<select v-model="selectedTopic">
+  <option disabled value="">Bitte wähle ein Thema !</option>
+  <option>Passiv</option>
+  <option>Präpositionen des Ortes</option>
+  <option>Wechselpräpositionen</option>
+</select>
+
     <VueImage v-if="i < questions.length" :imageUrl="questions[i].imageUrl">
       <VueMCGaps v-if="questions[i].type === 'gapText'" :instruction="questions[i].instruction" :gaptext="questions[i].gapText" :lg="lg" :key="i"></VueMCGaps>
       <VueQuestion v-if="questions[i].type === 'multiple choice'" :question="questions[i]" :lg="lg" @answered-event="calcScore"></VueQuestion>
@@ -70,10 +78,22 @@ export default {
   data() {
     return {
        i : 0,
-       scoreText: ""
+       scoreText: "",
+       topics : new Set([]),
+       selectedTopic : ""
     };
   },
   methods: {
+    calcAllTopics() {
+      console.log("calcAllTopics was called!");
+
+      this.questions.forEach( (question) => {
+        if(question.topics){
+        question.topics.forEach( (topic) => { this.topics.add(topic); }  );
+        }
+      } );
+    },
+
     calcScore(){
       
       let answered = 0;
@@ -152,12 +172,14 @@ export default {
     }
   },
   computed : {
+
       displayedQuestions(){
          let a = [];
+         let filteredQuestions = this.selectedTopic ? this.questions.filter( (question) => question.topics.includes(this.selectedTopic) ) : this.questions;
          let j = Math.floor(this.i/5);
          j=j*5;
          let k = 0;
-         while(k < 5 && j < this.questions.length ){
+         while(k < 5 && j < filteredQuestions.length ){
            a.push(j);
            ++j;
            ++k;
@@ -193,7 +215,9 @@ export default {
 	    }
 
        ];
+
     }
+    this.calcAllTopics();
 
   }
 };
