@@ -24,6 +24,114 @@ export default {
     return {
        questions: 
       [
+		{
+		    instruction: "Ist die Präposition gefolgt vom Akkusativ oder vom Dativ?",
+			type: 'gapText',
+			imageUrl: "assets/img/spanisch/bonitamuyer.jpg",
+			gapText: "Die Frau hat ihre Hand unter {ihrem|ihr} Kinn!"
+		},
+
+		{
+		    instruction: "Ist die Präposition gefolgt vom Akkusativ oder vom Dativ?",
+			type: 'gapText',
+			imageUrl: "assets/img/spanisch/bonitamuyer.jpg",
+			gapText: "Die Frau legt ihre Hand unter {ihr|ihrem} Kinn."
+		},
+
+		
+
+			{
+			instruction: "Ist die Präposition gefolgt vom Akkusativ oder vom Dativ?",
+			type: 'gapText',
+			imageUrl: "assets/img/spanisch/coche.jpg",
+			gapText: "Das Auto fährt schon seit 100km auf {der} langen Straße."
+		},
+
+			{
+			instruction: "Ist die Präposition gefolgt vom Akkusativ oder vom Dativ?",
+			type: 'gapText',
+			imageUrl: "assets/img/spanisch/coche.jpg",
+			gapText: "Das Auto biegt in {die|der} Straße ein!"
+		},
+
+	
+		 {
+			instruction: "Ist die Präposition gefolgt vom Akkusativ oder vom Dativ?",
+			type: 'gapText',
+			imageUrl: "assets/img/spanisch/maccina.jpg",
+			gapText: "Die leckeren Nudeln noch in {der|die} Maschine."
+		 },
+
+		 {
+			instruction: "Ist die Präposition gefolgt vom Akkusativ oder vom Dativ?",
+			type: 'gapText',
+			imageUrl: "assets/img/spanisch/maccina.jpg",
+			gapText: "Die leckeren Nudeln fallen aus der Maschine heraus und auf {den|dem} Tisch."
+		 },
+
+		  {
+			instruction: "Konjugiere werden für das Futur 1 !",
+			type: 'gapText',
+			imageUrl: "assets/img/spanisch/arbol.jpg",
+			gapText: "Ich {werde} auf den Baum klettern."
+		 },
+		  {
+			instruction: "Konjugiere werden für das Futur 1 !",
+		    type: 'gapText',
+			imageUrl: "assets/img/spanisch/hombres.jpeg",
+			gapText: "Die vier Männer {werden} ihren Urlaub zusammen genießen."
+		 },
+
+		 {
+		    instruction: "Konjugiere werden für das Futur 1 !",
+			type: 'gapText',
+			imageUrl: "assets/img/spanisch/bonitamuyer.jpg",
+			gapText: "Die Frau {wird} nicht jünger werden."
+		},
+
+
+	  {
+		    instruction: "Konjugiere sein !",
+			type: 'gapText',
+			imageUrl: "assets/img/spanisch/bonitamuyer.jpg",
+			gapText: "Die Frau {ist} schön."
+		},
+
+
+			{
+			instruction: "Konjugiere sein !",
+			type: 'gapText',
+			imageUrl: "assets/img/spanisch/coche.jpg",
+			gapText: "Ich {bin} in meinem roten Auto."
+		},
+
+		
+		 {
+			instruction: "Konjugiere sein !",
+			type: 'gapText',
+			imageUrl: "assets/img/spanisch/maccina.jpg",
+			gapText: "Du {bist} ein guter Koch ."
+		 },
+
+		  {
+			instruction: "Konjugiere sein !",
+			type: 'gapText',
+			imageUrl: "assets/img/spanisch/arbol.jpg",
+			gapText: "Wir {sind} im Schatten des Baumes."
+		 },
+		  {
+			instruction: "Konjugiere sein !",
+		 type: 'gapText',
+			imageUrl: "assets/img/spanisch/hombres.jpeg",
+			gapText: "Diese Männer {sind} Freunde."
+		 },
+
+		 {
+		    instruction: "Konjugiere sein !",
+			type: 'gapText',
+			imageUrl: "assets/img/spanisch/bonitamuyer.jpg",
+			gapText: "Ihr {seid} nicht so schön wie diese Frau."
+		},
 
 	    {
 		    instruction: "Konjugiere sein !",
@@ -56,7 +164,7 @@ export default {
 		 },
 		  {
 			instruction: "Konjugiere sein !",
-		 type: 'gapText',
+		    type: 'gapText',
 			imageUrl: "assets/img/spanisch/hombres.jpeg",
 			gapText: "Die vier Männer {sind} nicht dick"
 		 },
