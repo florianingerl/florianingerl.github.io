@@ -3,9 +3,10 @@
 
 <select v-model="selectedTopic">
   <option disabled value="">Bitte wähle ein Thema !</option>
-  <option>Passiv</option>
-  <option>Präpositionen des Ortes</option>
-  <option>Wechselpräpositionen</option>
+  <option v-for="topic in topics">
+        {{ topic }}
+      </option>
+  
 </select>
 
     <VueImage v-if="i < questions.length" :imageUrl="questions[i].imageUrl">
