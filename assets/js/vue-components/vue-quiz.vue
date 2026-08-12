@@ -1,5 +1,4 @@
 <template>
-   <div>Selected: {{ selectedTopic }}</div>
 
 <select v-model="selectedTopic">
   <option disabled value="">Bitte wähle ein Thema !</option>
@@ -9,42 +8,42 @@
   
 </select>
 
-    <VueImage v-if="i < questions.length" :imageUrl="questions[i].imageUrl">
-      <VueMCGaps v-if="questions[i].type === 'gapText'" :instruction="questions[i].instruction" :gaptext="questions[i].gapText" :lg="lg" :key="i"></VueMCGaps>
-      <VueQuestion v-if="questions[i].type === 'multiple choice'" :question="questions[i]" :lg="lg" @answered-event="calcScore"></VueQuestion>
+    <VueImage v-if="i < displayedQuestions.length" :imageUrl="displayedQuestions[i].imageUrl">
+      <VueMCGaps v-if="displayedQuestions[i].type === 'gapText'" :instruction="displayedQuestions[i].instruction" :gaptext="displayedQuestions[i].gapText" :lg="lg" :key="i"></VueMCGaps>
+      <VueQuestion v-if="displayedQuestions[i].type === 'multiple choice'" :question="displayedQuestions[i]" :lg="lg" @answered-event="calcScore"></VueQuestion>
     </VueImage>
-    <div v-if="i == questions.length && lg=='de'">
+    <div v-if="i == displayedQuestions.length && lg=='de'">
         Gratulation! Du hast alle Fragen des Quiz beantwortet!
     </div>
-    <div v-if="i == questions.length && lg=='en'">
+    <div v-if="i == displayedQuestions.length && lg=='en'">
         Congratulations! You have answered all the questions of this quiz!
     </div>
-    <div v-if="i == questions.length && lg=='fr'">
+    <div v-if="i == displayedQuestions.length && lg=='fr'">
        Félicitations! Tu viens de répondre à toutes les questions!
     </div>
   <ul class="pagination" v-if="lg==='de'">
   <li class="page-item"><button class="page-link" @click="jumpBackwardClicked" data-bs-toggle="tooltip" title="Gehe 5 Aufgaben zurück"><i class="fa fa-fast-backward" aria-hidden="true"></i></button></li>
   <li class="page-item"><button class="page-link" @click="previousExerciseClicked" data-bs-toggle="tooltip" title="Vorige Aufgabe"><i class="fa fa-backward" aria-hidden="true"></i></button></li>
-  <li v-for="q in displayedQuestions" class="page-item" :class="{active : q == i}" :key="q"><button class="page-link" @click="i=q;">{{q}}</button></li>
+  <li v-for="q in displayedQuestionsIndices" class="page-item" :class="{active : q == i}" :key="q"><button class="page-link" @click="i=q;">{{q}}</button></li>
   <li class="page-item"><button class="page-link" @click="nextExerciseClicked" data-bs-toggle="tooltip" title="Nächste Aufgabe"><i class="fa fa-forward" aria-hidden="true"></i></button></li>
   <li class="page-item"><button class="page-link" @click="jumpForwardClicked" data-bs-toggle="tooltip" title="Gehe 5 Aufgaben weiter"><i class="fa fa-fast-forward" aria-hidden="true"></i></button></li>
-  <input @keypress="onlyNumberKey" @change="goToQuestionClicked" type="text" :value="i" style="width: 50px;"/> <span style="vertical-align: baseline;"> / {{ questions.length - 1}} </span>
+  <input @keypress="onlyNumberKey" @change="goToQuestionClicked" type="text" :value="i" style="width: 50px;"/> <span style="vertical-align: baseline;"> / {{ displayedQuestions.length - 1}} </span>
   </ul>
   <ul class="pagination" v-else-if="lg==='en'">
   <li class="page-item"><button class="page-link" @click="jumpBackwardClicked" data-bs-toggle="tooltip" title="Jump 5 exercises backward"><i class="fa fa-fast-backward" aria-hidden="true"></i></button></li>
   <li class="page-item"><button class="page-link" @click="previousExerciseClicked" data-bs-toggle="tooltip" title="Previous exercise"><i class="fa fa-backward" aria-hidden="true"></i></button></li>
-  <li v-for="q in displayedQuestions" class="page-item" :class="{active : q == i}" :key="q"><button class="page-link" @click="i=q;">{{q}}</button></li>
+  <li v-for="q in displayedQuestionsIndices" class="page-item" :class="{active : q == i}" :key="q"><button class="page-link" @click="i=q;">{{q}}</button></li>
   <li class="page-item"><button class="page-link" @click="nextExerciseClicked" data-bs-toggle="tooltip" title="Next Exercise"><i class="fa fa-forward" aria-hidden="true"></i></button></li>
   <li class="page-item"><button class="page-link" @click="jumpForwardClicked" data-bs-toggle="tooltip" title="Jump 5 exercises forward"><i class="fa fa-fast-forward" aria-hidden="true"></i></button></li>
-  <input @keypress="onlyNumberKey" @change="goToQuestionClicked" type="text" :value="i" style="width: 50px;"/> <span style="text-align: center;"> / {{ questions.length - 1 }} </span>
+  <input @keypress="onlyNumberKey" @change="goToQuestionClicked" type="text" :value="i" style="width: 50px;"/> <span style="text-align: center;"> / {{ displayedQuestions.length - 1 }} </span>
   </ul>
    <ul class="pagination" v-else-if="lg==='fr'">
   <li class="page-item"><button class="page-link" @click="jumpBackwardClicked" data-bs-toggle="tooltip" title="Sauter 5 exercices en arrière"><i class="fa fa-fast-backward" aria-hidden="true"></i></button></li>
   <li class="page-item"><button class="page-link" @click="previousExerciseClicked" data-bs-toggle="tooltip" title="Question précédente"><i class="fa fa-backward" aria-hidden="true"></i></button></li>
-  <li v-for="q in displayedQuestions" class="page-item" :class="{active : q == i}" :key="q"><button class="page-link" @click="i=q;">{{q}}</button></li>
+  <li v-for="q in displayedQuestionsIndices" class="page-item" :class="{active : q == i}" :key="q"><button class="page-link" @click="i=q;">{{q}}</button></li>
   <li class="page-item"><button class="page-link" @click="nextExerciseClicked" data-bs-toggle="tooltip" title="Question suivante"><i class="fa fa-forward" aria-hidden="true"></i></button></li>
   <li class="page-item"><button class="page-link" @click="jumpForwardClicked" data-bs-toggle="tooltip" title="Sauter 5 questions"><i class="fa fa-fast-forward" aria-hidden="true"></i></button></li>
-  <input @keypress="onlyNumberKey" @change="goToQuestionClicked" type="text" :value="i" style="width: 50px;"/> <span style="text-align: center;"> / {{ questions.length - 1 }} </span>
+  <input @keypress="onlyNumberKey" @change="goToQuestionClicked" type="text" :value="i" style="width: 50px;"/> <span style="text-align: center;"> / {{ displayedQuestions.length - 1 }} </span>
   </ul>
 
   <p>Your score: {{ scoreText }} </p>
@@ -84,6 +83,16 @@ export default {
        selectedTopic : ""
     };
   },
+ watch: {
+    selectedTopic(newVal, oldVal) {
+      console.log("The selected topic changed!");
+      // only if it actually changed (optional check)
+      if (newVal !== oldVal) {
+        this.i = 0;
+      }
+    }
+  },
+
   methods: {
     calcAllTopics() {
       console.log("calcAllTopics was called!");
@@ -126,7 +135,8 @@ export default {
     goToQuestionClicked(e){
       console.log("Go to question was clicked!");
       let u = parseInt( e.target.value );
-      if( u < 0 || u >= this.questions.length ){
+      if (Number.isNaN(u)) return;    
+      if( u < 0 || u >= this.displayedQuestions.length ){
         return;
       }
       this.i = u;
@@ -153,10 +163,10 @@ export default {
         console.log(this.i);
      },
      jumpForwardClicked(){
-        if(this.i + 5 < this.questions.length)
+        if(this.i + 5 < this.displayedQuestions.length)
           this.i+=5;
         else
-          this.i = this.questions.length - 1;
+          this.i = this.displayedQuestions.length - 1;
      },
      jumpBackwardClicked(){
         if(this.i - 5 >= 0)
@@ -168,25 +178,34 @@ export default {
       console.log("The image was clicked!");
       let fullPage = document.getElementById('fullpage');
 
-		  fullPage.style.backgroundImage = 'url(' + this.question.imageUrl + ')';
+		  fullPage.style.backgroundImage = 'url(' + this.displayedQuestions[this.i].imageUrl + ')';
 		  fullPage.style.display = 'block';
     }
   },
   computed : {
+    
 
       displayedQuestions(){
+        console.log("Displayed questions is called once again!");
+         
+         return this.selectedTopic ? this.questions.filter( (question) => (question.topics || [] ).includes(this.selectedTopic) ) : this.questions;
+        
+      },
+       displayedQuestionsIndices(){
+       console.log("Displayed questions indices is called once again!");
          let a = [];
-         let filteredQuestions = this.selectedTopic ? this.questions.filter( (question) => question.topics.includes(this.selectedTopic) ) : this.questions;
+        
          let j = Math.floor(this.i/5);
          j=j*5;
          let k = 0;
-         while(k < 5 && j < filteredQuestions.length ){
+         while(k < 5 && j < this.displayedQuestions.length ){
            a.push(j);
            ++j;
            ++k;
          }
+         console.log("a.length = " + a.length );
          return a;
-      }
+     }
   },
   mounted() {
     console.log('Vue Questions Component mounted');
