@@ -25,9 +25,51 @@ export default {
        questions: 
       [
 
+	  {
+		    instruction: "Konjugiere sein !",
+			type: 'gapText',
+			imageUrl: "assets/img/spanisch/bonitamuyer.jpg",
+			gapText: "Die Frau {ist} schön."
+		},
 
- {
-		    instruction: "Wähle zwischen nämllich, deshalb oder weil!",
+
+			{
+			instruction: "Konjugiere sein !",
+			type: 'gapText',
+			imageUrl: "assets/img/spanisch/coche.jpg",
+			gapText: "Ich {bin} in meinem roten Auto."
+		},
+
+		
+		 {
+			instruction: "Konjugiere sein !",
+			type: 'gapText',
+			imageUrl: "assets/img/spanisch/maccina.jpg",
+			gapText: "Du {bist} ein guter Koch ."
+		 },
+
+		  {
+			instruction: "Konjugiere sein !",
+			type: 'gapText',
+			imageUrl: "assets/img/spanisch/arbol.jpg",
+			gapText: "Wir {sind} im Schatten des Baumes."
+		 },
+		  {
+			instruction: "Konjugiere sein !",
+		 type: 'gapText',
+			imageUrl: "assets/img/spanisch/hombres.jpeg",
+			gapText: "Diese Männer {sind} Freunde."
+		 },
+
+		 {
+		    instruction: "Konjugiere sein !",
+			type: 'gapText',
+			imageUrl: "assets/img/spanisch/bonitamuyer.jpg",
+			gapText: "Ihr {seid} nicht so schön wie diese Frau."
+		},
+
+{
+		    instruction: "Nämlich, denn oder deshalb!",
 			type: 'gapText',
 			imageUrl: "assets/img/spanisch/bonitamuyer.jpg",
 			gapText: "Die Frau verdreht den Männern die Köpfe. Sie ist {nämlich|deshalb|weil} sehr schön."
