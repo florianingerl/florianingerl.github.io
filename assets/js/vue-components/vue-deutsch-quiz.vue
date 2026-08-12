@@ -25,6 +25,50 @@ export default {
        questions: 
       [
 
+	    {
+		    instruction: "Konjugiere sein !",
+			type: 'gapText',
+			imageUrl: "assets/img/spanisch/bonitamuyer.jpg",
+			gapText: "Die Frau {ist} jung."
+		},
+
+
+			{
+			instruction: "Konjugiere sein !",
+			type: 'gapText',
+			imageUrl: "assets/img/spanisch/coche.jpg",
+			gapText: "Du {bist} in meinem roten Auto."
+		},
+
+		
+		 {
+			instruction: "Konjugiere sein !",
+			type: 'gapText',
+			imageUrl: "assets/img/spanisch/maccina.jpg",
+			gapText: "Die leckeren Nudeln {sind} noch in der Maschine."
+		 },
+
+		  {
+			instruction: "Konjugiere sein !",
+			type: 'gapText',
+			imageUrl: "assets/img/spanisch/arbol.jpg",
+			gapText: "Wir {sind} unter einem Baum."
+		 },
+		  {
+			instruction: "Konjugiere sein !",
+		 type: 'gapText',
+			imageUrl: "assets/img/spanisch/hombres.jpeg",
+			gapText: "Die vier Männer {sind} nicht dick"
+		 },
+
+		 {
+		    instruction: "Konjugiere sein !",
+			type: 'gapText',
+			imageUrl: "assets/img/spanisch/bonitamuyer.jpg",
+			gapText: "Deine Frau und du {seid} deutsch."
+		},
+
+
 	  {
 		    instruction: "Konjugiere sein !",
 			type: 'gapText',
