@@ -51,6 +51,13 @@ createApp({
 
 createApp({
   components: {
+    VueFrancaisQuiz : Vue.defineAsyncComponent(() =>
+    loadModule('assets/js/vue-components/vue-francais-quiz.vue', options)),
+  },
+}).mount('#francais-quiz');
+
+createApp({
+  components: {
     VueDeutschQuiz : Vue.defineAsyncComponent(() =>
     loadModule('assets/js/vue-components/vue-deutsch-quiz.vue', options)),
   },
