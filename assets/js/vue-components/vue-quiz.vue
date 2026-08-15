@@ -8,6 +8,13 @@
   
 </select>
 
+<button @click="newExercise=true">Selber Aufgabe erstellen</button>
+
+<div v-if="newExercise">
+  <!--<VueNewExercise></VueNewExercise>-->
+  This is visible now</div>
+
+<div v-if="!newExercise">
     <VueImage v-if="i < displayedQuestions.length" :imageUrl="displayedQuestions[i].imageUrl">
       <VueMCGaps v-if="displayedQuestions[i].type === 'gapText'" :instruction="displayedQuestions[i].instruction" :gaptext="displayedQuestions[i].gapText" :lg="lg" :key="i"></VueMCGaps>
       <VueQuestion v-if="displayedQuestions[i].type === 'multiple choice'" :question="displayedQuestions[i]" :lg="lg" @answered-event="calcScore"></VueQuestion>
@@ -47,7 +54,7 @@
   </ul>
 
   <p>Your score: {{ scoreText }} </p>
-
+</div>
 
     
 </template>
@@ -56,6 +63,7 @@
 import VueMCGaps from "./vue-mc-gaps.vue";
 import VueQuestion from "./vue-question.vue";
 import VueImage from "./vue-image.vue";
+//import VueNewExercise from "./vue-new-exercise.vue";
 
 export default {
 
@@ -63,7 +71,8 @@ export default {
     
     VueQuestion,
     VueMCGaps,
-    VueImage
+    VueImage,
+    //VueNewExercise
   
   },
   props: ['questions', 'lg'],
@@ -80,7 +89,8 @@ export default {
        i : 0,
        scoreText: "",
        topics : new Set([]),
-       selectedTopic : ""
+       selectedTopic : "",
+       newExercise: false
     };
   },
  watch: {

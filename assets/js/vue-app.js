@@ -32,6 +32,16 @@ createApp({
   },
 }).mount('#nutritionquiz');
 
+createApp({
+  components: {
+    VueNewExercise : Vue.defineAsyncComponent(() =>
+    loadModule('assets/js/vue-components/vue-new-exercise.vue', options)),
+   
+  
+  },
+}).mount('#nutritionquiz');
+
+
 
 
 createApp({
@@ -55,6 +65,7 @@ createApp({
     loadModule('assets/js/vue-components/vue-francais-quiz.vue', options)),
   },
 }).mount('#francais-quiz');
+
 
 createApp({
   components: {
