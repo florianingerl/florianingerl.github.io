@@ -29,7 +29,7 @@ export default {
 		    instruction: "Fais la bonne choix entre qui ou que!",
 			type: 'gapText',
 			imageUrl: "assets/img/spanisch/bonitamuyer.jpg",
-			gapText: "La femme,{qui|que} qui tient sa main sous son mouton, est très jolie."
+			gapText: "La femme,{qui|que} qui tient sa main sous son menton, est très jolie."
 		},
 
 		

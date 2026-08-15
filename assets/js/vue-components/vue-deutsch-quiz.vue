@@ -90,6 +90,14 @@ export default {
 			gapText: "Die vier Männer {werden} ihren Urlaub zusammen genießen."
 		 },
 
+		 {
+			topics : ["Passiv"],
+			instruction: "Forme den Passivsatz !",
+		    type: 'gapText',
+			imageUrl: "assets/img/spanisch/hombres.jpeg",
+			gapText: "Ein Tourist fotografiert die 4 Männer. {Die 4 Männer werden von einem Touristen fotografiert.}"
+		 },
+
 		 { topics : ["Futur 1"],
 		    instruction: "Konjugiere werden für das Futur 1 !",
 			type: 'gapText',
@@ -308,6 +316,23 @@ export default {
 			gapText: "Deine Mutter fährt das Auto. {Das Auto wird von deiner Mutter gefahren.}"
 		},
 
+		
+		 {
+			topics: ["Passiv"],
+				instruction: "Forme den Passivsatz !",
+			type: 'gapText',
+			imageUrl: "assets/img/spanisch/maccina.jpg",
+			gapText: "Ich benutze die Nudelmaschine. {Die Nudelmaschine wird von mir benutzt}."
+		 },
+
+		  {
+			topics: ["Passiv"],
+				instruction: "Forme den Passivsatz !",
+			type: 'gapText',
+			imageUrl: "assets/img/spanisch/arbol.jpg",
+			gapText: "Der Forster fällt den Baum. {Der Baum wird von dem Forster gefällt.}"
+		 },
+
 		   {
 			topics: ["Passiv"],
 				instruction: "Forme den Passivsatz !",
@@ -315,6 +340,31 @@ export default {
 			imageUrl: "assets/img/spanisch/arbol.jpg",
 			gapText: "Der Regen gießt den Baum.{Der Baum wird von dem Regen gegossen.}"
 		 },
+
+		  {
+			topics: ["Passiv"],
+				instruction: "Forme den Passivsatz !",
+			type: 'gapText',
+			imageUrl: "assets/img/spanisch/fahrraeder.png",
+			gapText: "Die Frau folgt dem Mann. {Der Mann wird von der Frau gefolgt.}"
+		 },
+
+		   {
+			topics: ["Passiv"],
+				instruction: "Forme den Passivsatz !",
+			type: 'gapText',
+			imageUrl: "assets/img/spanisch/picknick.png",
+			gapText: "Die Frau streichelt den Hund. {Der Hund wird von der Frau gestreichelt.}"
+		 },
+
+		   {
+			topics: ["Passiv"],
+				instruction: "Forme den Passivsatz !",
+			type: 'gapText',
+			imageUrl: "assets/img/spanisch/volleyball.png",
+			gapText: "Der Spieler schlägt den Ball. {Der Ball wird von dem Spieler geschlagen.}"
+		 },
+
 
 
 
