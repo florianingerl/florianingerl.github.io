@@ -1,6 +1,15 @@
 <template>
 
-<select v-model="selectedTopic">
+
+
+<button @click="newExercise=true">Selber Aufgabe erstellen</button>
+
+<div v-if="newExercise">
+  <VueNewExercise></VueNewExercise>
+  This is visible now</div>
+
+<div v-if="!newExercise">
+    <select v-model="selectedTopic">
   <option disabled value="">Bitte wähle ein Thema !</option>
   <option v-for="topic in topics">
         {{ topic }}
@@ -8,13 +17,6 @@
   
 </select>
 
-<button @click="newExercise=true">Selber Aufgabe erstellen</button>
-
-<div v-if="newExercise">
-  <!--<VueNewExercise></VueNewExercise>-->
-  This is visible now</div>
-
-<div v-if="!newExercise">
     <VueImage v-if="i < displayedQuestions.length" :imageUrl="displayedQuestions[i].imageUrl">
       <VueMCGaps v-if="displayedQuestions[i].type === 'gapText'" :instruction="displayedQuestions[i].instruction" :gaptext="displayedQuestions[i].gapText" :lg="lg" :key="i"></VueMCGaps>
       <VueQuestion v-if="displayedQuestions[i].type === 'multiple choice'" :question="displayedQuestions[i]" :lg="lg" @answered-event="calcScore"></VueQuestion>

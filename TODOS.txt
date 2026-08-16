@@ -1,0 +1,20 @@
+TODO:
+1) Der Rasperri-Pi Server sollte das Git-Repository überwachen, falls sich dort
+was ändert, sollte er den aktuellen-Node-JS-Server stoppen, den neuen von Github
+herunterladen, kompilieren und dann neu starten !
+
+2) Thomas fragen, ob er auf Kleinanzeigen, eine Anzeige für Informatik aufgeben würde, wo er Kunden
+an mich weiterleitet
+
+3) Meine Website refaktoren, sodass sie schneller lädt und die Vue-Komponents nicht so hässlich geladen
+werden
+
+4) Ein Quiz für Französisch
+5) Ein Quiz für Englisch
+6) Quiz für Mathe,Physik,Informatik,Deutsch
+
+7)Paypal-Zahlung inkludieren
+
+8)Website in Vite VueJS app transformieren und auf Github deployen
+Dazu einfach:
+8.1)
