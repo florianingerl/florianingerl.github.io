@@ -2,10 +2,10 @@
 
 
 
-<button @click="newExercise=true">Selber Aufgabe erstellen</button>
+<button v-if="!newExercise" @click="newExercise=true">Selber Aufgabe erstellen</button>
 
 <div v-if="newExercise">
-  <VueNewExercise></VueNewExercise>
+  <VueNewExercise @new-exercise-created="(exercise) => { newExerciseCreated(exercise); }"></VueNewExercise>
   This is visible now</div>
 
 <div v-if="!newExercise">
@@ -65,7 +65,7 @@
 import VueMCGaps from "./vue-mc-gaps.vue";
 import VueQuestion from "./vue-question.vue";
 import VueImage from "./vue-image.vue";
-//import VueNewExercise from "./vue-new-exercise.vue";
+import VueNewExercise from "./vue-new-exercise.vue";
 
 export default {
 
@@ -74,7 +74,7 @@ export default {
     VueQuestion,
     VueMCGaps,
     VueImage,
-    //VueNewExercise
+    VueNewExercise
   
   },
   props: ['questions', 'lg'],
@@ -106,6 +106,19 @@ export default {
   },
 
   methods: {
+    newExerciseCreated(exercise){
+        this.questions.push(exercise);
+        exercise.topics.forEach( (topic) => {
+          this.topics.add(topic);
+        });
+        this.selectedTopic = exercise.topics.length > 0 ? exercise.topics[0] : "";
+        this.i = this.displayedQuestions.length - 1;
+        
+      this.newExercise = false;
+
+      console.log ( this.questions );
+    },
+
     calcAllTopics() {
       console.log("calcAllTopics was called!");
 
