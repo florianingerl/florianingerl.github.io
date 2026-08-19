@@ -8,7 +8,7 @@
 
   <div class="row mb-3">
   <label for="formGroupExampleInput" class="col-3">New topic:</label>
-  <input v-model="newExercise.newTopic" type="text" class="col-7" id="newTopic" placeholder="Enter a new topic" />
+  <input v-model="newTopic" type="text" class="col-7" placeholder="Enter a new topic" />
   <button class="col-2" @click="addNewTopicClicked">Add</button>
 </div>
 
@@ -139,7 +139,10 @@ export default {
     },
 
     addNewTopicClicked(){
+    console.log( this.newTopic );
+
       this.newExercise.topics.push(this.newTopic );
+      console.log(  this.newExercise.topics );
     },
 
     addNewOptionClicked() {
