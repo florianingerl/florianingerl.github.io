@@ -41,6 +41,12 @@ createApp({
   },
 }).mount('#nutritionquiz');
 
+createApp({
+  components: {
+    VueEnglishQuiz : Vue.defineAsyncComponent(() =>
+    loadModule('assets/js/vue-components/vue-english-quiz.vue', options)),
+  },
+}).mount('#english-quiz');
 
 
 

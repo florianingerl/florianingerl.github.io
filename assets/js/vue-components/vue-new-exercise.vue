@@ -11,6 +11,14 @@
   <input v-model="newExercise.newTopic" type="text" class="col-7" id="newTopic" placeholder="Enter a new topic" />
   <button class="col-2" @click="addNewTopicClicked">Add</button>
 </div>
+
+<div>
+  <label for="type" class="form-label">Type:</label>
+  <select v-model="newExercise.type">
+  <option value="gapText" selected>Gap text</option>
+  <option value="multipleChoice">Multiple choice</option>
+</select>
+</div>
    
 
    <div class="mb-3 mt-3">
@@ -22,9 +30,18 @@
     <VueImage :imageUrl="newExercise.imageUrl"></VueImage>
 
 
-    <textarea rows="3"  v-model="newExercise.gapText">
+    <textarea v-if="newExercise.type=='gapText'" rows="3"  v-model="newExercise.gapText">
         Flori {is|are} very intelligent.
     </textarea>
+
+    <div v-if="newExercise.type=='multipleChoice'">
+        Here you should be able to enter the multiple choice exercise.
+         <div class="mb-3 mt-3">
+    <label for="newOption" class="form-label">New option:</label>
+    <input v-model="newOption" type="text" class="form-control" placeholder=""/>
+    <button @click="addNewOptionClicked">Add</button>
+  </div>
+    </div>
   </div>
   <button @click="calcRandomImage">Change image</button>
     <button class="btn-primary btn" @click="newExerciseClicked">Save</button>
@@ -67,7 +84,8 @@ export default {
        type : "gapText",
        imageUrl : "assets/img/spanisch/bonitamuyer.jpg"
     },
-    newTopic: ""
+    newTopic: "",
+    newOption: ""
   };
   },
  watch: {
@@ -105,6 +123,11 @@ export default {
 
     addNewTopicClicked(){
       this.newExercise.topics.push(this.newTopic );
+    },
+
+    addNewOptionClicked() {
+      console.log("The add new option button was clicked");
+      console.log("New option = " + this.newOption );
     }
     
   },
