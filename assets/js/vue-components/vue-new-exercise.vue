@@ -36,10 +36,25 @@
 
     <div v-if="newExercise.type=='multipleChoice'">
         Here you should be able to enter the multiple choice exercise.
+
+
+        <div class="container py-3" style="max-width: 360px;">
+  <ul class="list-group">
+    <li v-for="option in allOptions" class="list-group-item d-flex align-items-center gap-2 selectable" data-value="1" role="button">
+      <span>{{ option }}</span>
+    </li>
+  </ul>
+  
+  <input type="hidden" name="selectedItem" id="selectedItem" value="1">
+</div>
+
+
+
          <div class="mb-3 mt-3">
     <label for="newOption" class="form-label">New option:</label>
     <input v-model="newOption" type="text" class="form-control" placeholder=""/>
     <button @click="addNewOptionClicked">Add</button>
+    <button @click="allOptions=[]">Clear</button>
   </div>
     </div>
   </div>
@@ -85,7 +100,9 @@ export default {
        imageUrl : "assets/img/spanisch/bonitamuyer.jpg"
     },
     newTopic: "",
-    newOption: ""
+    newOption: "",
+    allOptions: ["Farah","Hermann", "Flori"]
+
   };
   },
  watch: {
@@ -128,6 +145,7 @@ export default {
     addNewOptionClicked() {
       console.log("The add new option button was clicked");
       console.log("New option = " + this.newOption );
+      this.allOptions.push(this.newOption);
     }
     
   },
