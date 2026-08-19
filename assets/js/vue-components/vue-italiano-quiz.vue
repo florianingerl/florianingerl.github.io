@@ -233,7 +233,58 @@ export default {
       "Passiv"
     ],
     instruction: "Form the passiv sentence !"
+  },
+
+   {
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/jugadordefutbol.jpg",
+    gapText: "Mia madre {non} sà giocare a calcio e mia sorella {neanche}.",
+    topics: [
+      "Verneinung"
+    ],
+    instruction: "Fill in the gaps with nessun,nessuno/a,niente,neanche,nemmeno,mai,mica,affatto,non,non...più,neppure !"
+  },
+
+   {
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/botella.jpg",
+    gapText: "{Non} bevo qualcosa di molto forte come Wodka e {nemmeno} vino.",
+    topics: [
+      "Verneinung"
+    ],
+    instruction: "Fill in the gaps with nessun,nessuno/a,niente,neanche,nemmeno,mai,mica,affatto,non,non...più,neppure !"
   }
+  ,
+   {
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/34190.gif",
+    gapText: "Il pompiere {non} ha {mai} rifiutato lavorare quando una casa era in fiamme.",
+    topics: [
+      "Verneinung"
+    ],
+    instruction: "Fill in the gaps with nessun,nessuno/a,niente,neanche,nemmeno,mai,mica,affatto,non,non...più,neppure !"
+  },
+   {
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/32850.gif",
+    gapText: "Sai {mica} come si chiama questo topo ? No, {non} mi piacciono {mica} tanto i comics. ",
+    topics: [
+      "Verneinung"
+    ],
+    instruction: "Fill in the gaps with nessun,nessuno/a,niente,neanche,nemmeno,mai,mica,affatto,non,non...più,neppure !"
+  },
+   {
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/96735.jpg",
+    gapText: "Al ladro non gli piace {affatto} lavorare. Quindi preferisce rubare.",
+    topics: [
+      "Verneinung"
+    ],
+    instruction: "Fill in the gaps with nessun,nessuno/a,niente,neanche,nemmeno,mai,mica,affatto,non,non...più,neppure !"
+  }
+
+
+
 
 /*
 		 {
