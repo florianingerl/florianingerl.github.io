@@ -162,6 +162,79 @@ export default {
 			gapText: "Se il uomo tutto a sinistra dice qualcosa, i altri tre cuattro uomi ci credono sempre {}"
 		 },
 
+		  {
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/coche.jpg",
+    gapText: "Ezquiel ha comprato questa rossa macchina. {Questa rossa macchina è stata comprata da Ezquiel.}",
+    topics: [
+      "Passiv"
+    ],
+    instruction: "Form the passiv sentence !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/coche.jpg",
+    gapText: "Ezquiel ha comprato questa rossa macchina. {Questa rossa macchina è stata comprata da Ezquiel.}",
+    topics: [
+      "Passiv"
+    ],
+    instruction: "Form the passiv sentence !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/coche.jpg",
+    gapText: "Ezquiel ha comprato questa rossa macchina. {Questa rossa macchina è stata comprata da Ezquiel.}",
+    topics: [
+      "Passiv"
+    ],
+    instruction: "Form the passiv sentence !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/coche.jpg",
+    gapText: "Ezquiel ha comprato questa rossa macchina. {Questa rossa macchina è stata comprata da Ezquiel.}",
+    topics: [
+      "Passiv"
+    ],
+    instruction: "Form the passiv sentence !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/coche.jpg",
+    gapText: "Ezquiel ha comprato questa rossa macchina. {Questa rossa macchina è stata comprata da Ezquiel.}",
+    topics: [
+      "Passiv"
+    ],
+    instruction: "Form the passiv sentence !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/coche.jpg",
+    gapText: "Ezquiel ha comprato questa rossa macchina. {Questa rossa macchina è stata comprata da Ezquiel.}",
+    topics: [
+      "Passiv"
+    ],
+    instruction: "Form the passiv sentence !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/coche.jpg",
+    gapText: "Ezquiel ha comprato questa rossa macchina. {Questa rossa macchina è stata comprata da Ezquiel.}",
+    topics: [
+      "Passiv"
+    ],
+    instruction: "Form the passiv sentence !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/coche.jpg",
+    gapText: "Ezquiel ha comprato questa rossa macchina. {Questa rossa macchina è stata comprata da Ezquiel.}",
+    topics: [
+      "Passiv"
+    ],
+    instruction: "Form the passiv sentence !"
+  }
+
 /*
 		 {
 		question: "In welcher Situation bist du bewusster?",

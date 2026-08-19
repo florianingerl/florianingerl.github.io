@@ -140,7 +140,8 @@ export default {
 
     addNewTopicClicked(){
     console.log( this.newTopic );
-
+    this.newExercise.topics ??= []; //is executed only when this.newExercise.topics is null or undefined
+      console.log( this.newExercise.topics );
       this.newExercise.topics.push(this.newTopic );
       console.log(  this.newExercise.topics );
     },
