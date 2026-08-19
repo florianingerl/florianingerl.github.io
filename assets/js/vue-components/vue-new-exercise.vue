@@ -1,26 +1,32 @@
 <template>
-<div>
+<div class="container">
    
-  <div>
-    <p>Topics: {{allTopicsString }}</p>
-    <p>
-      New Topic: <input v-model="newTopic" type="text" class="form-control" /> <button @click="addNewTopicClicked">Add</button>
-    </p>
+  <div class="row">
+    <span class="fw-bold">Topics:</span> {{allTopicsString }}
+    <button @click="deleteAllTopics">Clear</button>
   </div>
+
+  <div class="row mb-3">
+  <label for="formGroupExampleInput" class="col-3">New topic:</label>
+  <input v-model="newExercise.newTopic" type="text" class="col-7" id="newTopic" placeholder="Enter a new topic" />
+  <button class="col-2" @click="addNewTopicClicked">Add</button>
+</div>
+   
 
    <div class="mb-3 mt-3">
     <label for="instruction" class="form-label">Instruction:</label>
-    <input v-model="instruction" type="text" class="form-control" id="instruction" placeholder="" name="instruction" >
+    <input v-model="newExercise.instruction" type="text" class="form-control" id="instruction" placeholder="" name="instruction" >
   </div>
 
   <div style="display:flex;">
-    <VueImage :imageUrl="imageUrl"></VueImage>
+    <VueImage :imageUrl="newExercise.imageUrl"></VueImage>
 
-    <textarea rows="3"  v-model="gapText">
+
+    <textarea rows="3"  v-model="newExercise.gapText">
         Flori {is|are} very intelligent.
     </textarea>
   </div>
-
+  <button @click="calcRandomImage">Change image</button>
     <button class="btn-primary btn" @click="newExerciseClicked">Save</button>
 </div>
 
@@ -34,7 +40,7 @@ import VueImage from "./vue-image.vue";
 
 
 export default {
-
+  
   components: {
     
     VueQuestion,
@@ -42,7 +48,7 @@ export default {
     VueImage
   
   },
-  props: [],
+  props: ["questionOfQuiz"],
 
   setup(){
      console.log("The setup  of Vue-New-Exercise function is executed!");
@@ -53,14 +59,16 @@ export default {
   
   data() {
     
-    return {
-       topics : new Set([]),
-       gapText: "",
-       newTopic: "",
-       instruction: "",
-       type: "gapText",
-       imageUrl: "assets/img/spanisch/bonitamuyer.jpg",
-    };
+    return  {
+     newExercise: {
+       topics : [],
+       gapText : "",
+       instruction : "",
+       type : "gapText",
+       imageUrl : "assets/img/spanisch/bonitamuyer.jpg"
+    },
+    newTopic: ""
+  };
   },
  watch: {
     
@@ -68,15 +76,21 @@ export default {
 
   methods: {
 
+    deleteAllTopics() {
+      this.newExercise.topics = [];
+    },
+
     randInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min;
 },
     calcRandomImage() {
-      let allImages = ["22278.jpg", "32850.gif", "34187.gif", "34190.gif", "34203.gif", "36132.gif", "36473.gif", "96735.jpg", "arbol.jpg", "bonitamuyer.jpg", "botella.jpg", "chilis.jpg", "coche.jpg", "fahrraeder.png", "hombres.jpeg", "jugadordefutbol.jpg", "maccina.jpg", "maths2.png", "newlogo.gif", "picknick.png", "piso.jpg", "pisodemoneda.jpg", "volleyball.png"];
+     
+      const allImages =  ["22278.jpg", "32850.gif", "34187.gif", "34190.gif", "34203.gif", "36132.gif", "36473.gif", "96735.jpg", "arbol.jpg", "bonitamuyer.jpg", "botella.jpg", "chilis.jpg", "coche.jpg", "fahrraeder.png", "hombres.jpeg", "jugadordefutbol.jpg", "maccina.jpg", "maths2.png", "newlogo.gif", "picknick.png", "piso.jpg", "pisodemoneda.jpg", "volleyball.png"];
+
       const i = this.randInt(0,allImages.length - 1);
-      this.imageUrl = "assets/img/spanisch/" + allImages[i];
+      this.newExercise.imageUrl = "assets/img/spanisch/" + allImages[i];
 
     },
 
@@ -85,24 +99,20 @@ export default {
       //TODO: Should just emit a signal , so the new exercise is inserted into the quiz
 
       this.$emit('newExerciseCreated', 
-      { topics: Array.from(this.topics),
-        instruction: this.instruction,
-        gapText: this.gapText,
-        imageUrl: this.imageUrl,
-        type: this.type
-
-      } );
+       this.newExercise );
 
     },
 
     addNewTopicClicked(){
-      this.topics.add(this.newTopic );
+      this.newExercise.topics.push(this.newTopic );
     }
     
   },
   mounted() {
     console.log('Vue New Exercise mponent mounted');
+    this.newExercise = this.questionOfQuiz;
     this.calcRandomImage();
+
   } //end of mounted
   ,
 
@@ -110,8 +120,8 @@ export default {
         allTopicsString(){
           let s = "";
           let first = true;
-          if(this.topics){
-          this.topics.forEach( (topic) => {
+          if(this.newExercise.topics){
+          this.newExercise.topics.forEach( (topic) => {
             if(first){
               first = false;
               s = topic;

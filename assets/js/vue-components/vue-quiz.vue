@@ -5,7 +5,7 @@
 <button v-if="!newExercise" @click="newExercise=true">Selber Aufgabe erstellen</button>
 
 <div v-if="newExercise">
-  <VueNewExercise @new-exercise-created="(exercise) => { newExerciseCreated(exercise); }"></VueNewExercise>
+  <VueNewExercise :questionOfQuiz="displayedQuestions[i]" @new-exercise-created="(exercise) => { newExerciseCreated(exercise); }"></VueNewExercise>
   This is visible now</div>
 
 <div v-if="!newExercise">
@@ -116,7 +116,19 @@ export default {
         
       this.newExercise = false;
 
-      console.log ( this.questions );
+      let questionCode = JSON.stringify(this.questions, null, 2) + ",";
+      questionCode = this.modifyKeys(questionCode);
+
+      console.log(questionCode);
+      navigator.clipboard.writeText(questionCode);
+    },
+
+    modifyKeys(questionCode){
+const pattern = /"(\w+)"\s*:/g;
+
+const replaced = questionCode.replace(pattern, "$1:");
+
+return replaced
     },
 
     calcAllTopics() {
