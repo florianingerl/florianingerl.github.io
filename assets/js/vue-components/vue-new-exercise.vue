@@ -155,7 +155,9 @@ export default {
   },
   mounted() {
     console.log('Vue New Exercise mponent mounted');
-    this.newExercise = this.questionOfQuiz;
+    this.newExercise = {
+      ...this.questionOfQuiz
+    };
     this.calcRandomImage();
 
   } //end of mounted

@@ -365,6 +365,25 @@ export default {
 			gapText: "Der Spieler schlägt den Ball. {Der Ball wird von dem Spieler geschlagen.}"
 		 },
 
+		 {
+    topics: [
+      "Konjugation des Verbs sein"
+    ],
+    instruction: "Konjugiere sein !",
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/maccina.jpg",
+    gapText: "Die Nudeln {sind} noch in der Maschine."
+  },
+  {
+    topics: [
+      "Konjugation des Verbs sein"
+    ],
+    instruction: "Konjugiere sein !",
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/botella.jpg",
+    gapText: "Die Flasche {ist} grün."
+  }
+
 
 
 
