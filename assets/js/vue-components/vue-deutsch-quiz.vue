@@ -382,7 +382,38 @@ export default {
     type: "gapText",
     imageUrl: "assets/img/spanisch/botella.jpg",
     gapText: "Die Flasche {ist} grün."
+  },
+    {
+    topics: [
+      "Perfekt"
+    ],
+    instruction: "Konjugiere im Perfekt !",
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/piso.jpg",
+    gapText: "Dank der Putzfrau {ist} der Boden wieder sauber {geworden} (werden)."
   }
+,
+  {
+    topics: [
+      "Perfekt"
+    ],
+    instruction: "Konjugiere im Perfekt !",
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/34203.gif",
+    gapText: "Nachdem der Mann {geschlafen hat} (schlafen), muss er die Straße putzen."
+  },
+
+  {
+    topics: [
+      "Perfekt"
+    ],
+    instruction: "Konjugiere im Perfekt !",
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/maccina.jpg",
+    gapText: "Das Öl {ist} nicht richtig durch die Maschine {geflossen} (fließen}. Deshalb ist sie jetzt verstopft."
+  }
+
+
 
 
 
