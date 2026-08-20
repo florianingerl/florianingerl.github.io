@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Random Small GIF</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 24px; }
+    img { max-width: 100%; height: auto; display: block; margin-top: 16px; }
+    .status { color: #555; }
+  </style>
+</head>
+<body>
+  <div class="status" id="status">Loading a random GIF…</div>
+  <img id="gif" alt="Random GIF" style="display:none;" />
+
+  <script>
+    // --- Put the function here (same as above) ---
+    async function getRandomSmallGifUrl({
+      maxBytes = 500_000,
+      rating = "pg-13",
+      tag = "funny",
+      apiKey = "" // optional; add your GIPHY API key if required
+    } = {}) {
+      const perPage = 25;
+      const page = 0;
+
+      const qs = new URLSearchParams({
+        api_key: apiKey,
+        q: tag,
+        limit: perPage,
+        offset: page * perPage,
+        rating
+      });
+
+      const url = `https://api.giphy.com/v1/gifs/search?${qs.toString()}`;
+
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`GIF API request failed: ${res.status}`);
+
+      const data = await res.json();
+      const items = data?.data ?? [];
+      if (items.length === 0) throw new Error("No GIF results returned.");
+
+      const shuffled = items
+        .map((item) => ({ item, sortKey: Math.random() }))
+        .sort((a, b) => a.sortKey - b.sortKey);
+
+      for (const { item } of shuffled) {
+        const candidates = [];
+
+        if (item?.images?.fixed_height_small?.url) {
+          candidates.push(item.images.fixed_height_small);
+        }
+        if (item?.images?.fixed_width_small?.url) {
+          candidates.push(item.images.fixed_width_small);
+        }
+        if (item?.images?.original?.url) {
+          candidates.push(item.images.original);
+        }
+
+        for (const c of candidates) {
+          const sizeBytes = (typeof c?.size === "number") ? c.size : null;
+          if (sizeBytes === null || sizeBytes <= maxBytes) {
+            return c.url;
+          }
+        }
+      }
+
+      const fallback =
+        items[0]?.images?.fixed_height_small?.url ||
+        items[0]?.images?.fixed_width_small?.url ||
+        items[0]?.images?.original?.url;
+
+      if (!fallback) throw new Error("No usable GIF URL found.");
+      return fallback;
+    }
+
+    // --- Immediately load and display ---
+    (async () => {
+      const statusEl = document.getElementById("status");
+      const imgEl = document.getElementById("gif");
+
+      try {
+        statusEl.textContent = "Picking a random small GIF…";
+        const gifUrl = await getRandomSmallGifUrl({
+          maxBytes: 500_000,
+          rating: "pg-13",
+          tag: "funny",
+          apiKey: "" // put API key here if needed
+        });
+
+        imgEl.src = gifUrl;
+        imgEl.style.display = "block";
+        statusEl.textContent = "Done.";
+      } catch (err) {
+        statusEl.textContent = "Could not load a GIF: " + err.message;
+      }
+    })();
+  </script>
+</body>
+</html>

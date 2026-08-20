@@ -2,11 +2,12 @@
 
 
 
-<button v-if="!newExercise" @click="newExercise=true">Selber Aufgabe erstellen</button>
+<button v-if="!newExercise" @click="newExercise=true; editMode = false">Aufgabe erstellen</button>
+<button v-if="!newExercise" @click="newExercise=true; editMode = true">Aufgabe bearbeiten</button>
 
 <div v-if="newExercise">
-  <VueNewExercise :questionOfQuiz="displayedQuestions[i]" @new-exercise-created="(exercise) => { newExerciseCreated(exercise); }"></VueNewExercise>
-  This is visible now</div>
+  <VueNewExercise :questionOfQuiz="displayedQuestions[i]" :editMode="editMode"  @new-exercise-created="(exercise) => { newExerciseCreated(exercise); }" @cancel-clicked="newExercise=false"></VueNewExercise>
+</div>
 
 <div v-if="!newExercise">
     <select v-model="selectedTopic">
@@ -19,7 +20,7 @@
 
     <VueImage v-if="i < displayedQuestions.length" :imageUrl="displayedQuestions[i].imageUrl">
       <VueMCGaps v-if="displayedQuestions[i].type === 'gapText'" :instruction="displayedQuestions[i].instruction" :gaptext="displayedQuestions[i].gapText" :lg="lg" :key="i"></VueMCGaps>
-      <VueQuestion v-if="displayedQuestions[i].type === 'multiple choice'" :question="displayedQuestions[i]" :lg="lg" @answered-event="calcScore"></VueQuestion>
+      <VueQuestion v-if="displayedQuestions[i].type === 'multiple choice' || displayedQuestions[i].type === 'multipleChoice'" :question="displayedQuestions[i]" :lg="lg" @answered-event="calcScore"></VueQuestion>
     </VueImage>
     <div v-if="i == displayedQuestions.length && lg=='de'">
         Gratulation! Du hast alle Fragen des Quiz beantwortet!
@@ -92,7 +93,8 @@ export default {
        scoreText: "",
        topics : new Set([]),
        selectedTopic : "",
-       newExercise: false
+       newExercise: false,
+       editMode: false
     };
   },
  watch: {
@@ -107,12 +109,19 @@ export default {
 
   methods: {
     newExerciseCreated(exercise){
-        this.questions.push(exercise);
+      console.log("The function newExerciseCreated is executed!");
+      console.log(exercise);
+        if(!this.editMode ) { this.questions.push(exercise);}
+        else { this.questions[this.i] = exercise; }
         exercise.topics.forEach( (topic) => {
           this.topics.add(topic);
         });
-        this.selectedTopic = exercise.topics.length > 0 ? exercise.topics[0] : "";
+        this.selectedTopic = exercise.topics.length > 0 ? exercise.topics[0] : this.selectedTopic;
+        if(!this.editMode){
         this.i = this.displayedQuestions.length - 1;
+        }else {
+          this.i = this.displayedQuestions.findIndex(x => x === exercise);
+        }
         
       this.newExercise = false;
 

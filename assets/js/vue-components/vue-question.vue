@@ -104,6 +104,9 @@ export default {
   mounted() {
     console.log('Vue Question Component mounted');
     this.question2 = this.question;
+    console.log('In mounted function of question');
+    console.log(this.question2);
+    console.log(this.lg);
 
     if(!this.question2){
       this.question2 = 

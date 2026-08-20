@@ -21,9 +21,14 @@
 </div>
    
 
-   <div class="mb-3 mt-3">
+   <div v-if="newExercise.type=='gapText'" class="mb-3 mt-3">
     <label for="instruction" class="form-label">Instruction:</label>
-    <input v-model="newExercise.instruction" type="text" class="form-control" id="instruction" placeholder="" name="instruction" >
+    <input v-model="newExercise.instruction" type="text" class="form-control"  >
+  </div>
+
+  <div v-if="newExercise.type=='multipleChoice'" class="mb-3 mt-3">
+    <label for="question" class="form-label">Question:</label>
+    <input v-model="newExercise.question" type="text" class="form-control">
   </div>
 
   <div style="display:flex;">
@@ -35,9 +40,6 @@
     </textarea>
 
     <div v-if="newExercise.type=='multipleChoice'">
-        Here you should be able to enter the multiple choice exercise.
-
-
         <div class="container py-3" style="max-width: 360px;">
   <ul class="list-group">
     <li v-for="option in allOptions" class="list-group-item d-flex align-items-center gap-2 selectable" data-value="1" role="button">
@@ -58,8 +60,9 @@
   </div>
     </div>
   </div>
-  <button @click="calcRandomImage">Change image</button>
+  <button v-if="!editMode" @click="calcRandomImage">Change image</button>
     <button class="btn-primary btn" @click="newExerciseClicked">Save</button>
+    <button class="btn-primary btn" @click="$emit('cancelClicked')">Cancel</button>
 </div>
 
     
@@ -80,7 +83,7 @@ export default {
     VueImage
   
   },
-  props: ["questionOfQuiz"],
+  props: ["questionOfQuiz", "editMode"],
 
   setup(){
      console.log("The setup  of Vue-New-Exercise function is executed!");
@@ -121,6 +124,7 @@ export default {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 },
     calcRandomImage() {
+      if(this.editMode) return;
      
       const allImages =  ["22278.jpg", "32850.gif", "34187.gif", "34190.gif", "34203.gif", "36132.gif", "36473.gif", "96735.jpg", "arbol.jpg", "bonitamuyer.jpg", "botella.jpg", "chilis.jpg", "coche.jpg", "fahrraeder.png", "hombres.jpeg", "jugadordefutbol.jpg", "maccina.jpg", "maths2.png", "newlogo.gif", "picknick.png", "piso.jpg", "pisodemoneda.jpg", "volleyball.png"];
 
@@ -132,9 +136,23 @@ export default {
     newExerciseClicked(){
       console.log("The button newExercise was clicked!");
       //TODO: Should just emit a signal , so the new exercise is inserted into the quiz
+      if(this.newExercise.type=='multipleChoice'){
+        this.newExercise.options = [];
+        this.allOptions.forEach( (o, i) => {
+          this.newExercise.options.push( { option: o , correct: i == 0 } );
+        } );
+      }
 
+      console.log(this.newExercise );
+
+      try {
       this.$emit('newExerciseCreated', 
        this.newExercise );
+      }catch(e){
+        console.error("emit failed",e);
+      }
+
+       console.log("The event was emitted!");
 
     },
 

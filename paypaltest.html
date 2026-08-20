@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PayPal Zahlung</title>
+</head>
+<body>
+  <h1>Bezahlen</h1>
+
+  <div id="paypal-button-container"></div>
+
+  <script>
+    const CLIENT_ID = "DEINE_PAYPAL_CLIENT_ID";
+    const PRICE = "9.99";
+    const CURRENCY = "EUR";
+
+    // PayPal Checkout Script laden
+    const script = document.createElement("script");
+    script.src = `https://www.paypal.com/sdk/js?client-id=${encodeURIComponent(CLIENT_ID)}&currency=${encodeURIComponent(CURRENCY)}`;
+    script.onload = function () {
+      paypal.Buttons({
+        style: { layout: "vertical" },
+
+        // 1) Order erstellen (serverseitig)
+        createOrder: async function(data, actions) {
+          const res = await fetch("/api/paypal/create-order", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ amount: PRICE, currency: CURRENCY })
+          });
+
+          if (!res.ok) throw new Error("createOrder failed");
+          const { orderId } = await res.json();
+          return orderId;
+        },
+
+        // 2) Capture nach Approval (serverseitig)
+        onApprove: async function(data, actions) {
+          const res = await fetch("/api/paypal/capture-order", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ orderID: data.orderID })
+          });
+
+          if (!res.ok) throw new Error("capture failed");
+          const details = await res.json();
+
+          alert("Zahlung erfolgreich!");
+          console.log(details);
+        },
+
+        onError: function (err) {
+          console.error(err);
+          alert("Fehler bei der Zahlung.");
+        }
+      }).render("#paypal-button-container");
+    };
+
+    document.body.appendChild(script);
+  </script>
+</body>
+</html>
