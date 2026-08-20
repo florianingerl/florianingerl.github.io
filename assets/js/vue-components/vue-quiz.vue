@@ -115,12 +115,11 @@ export default {
         if(!this.editMode ) { this.questions.push(exercise);}
         else {
           let j = this.questions.findIndex( q => q === this.displayedQuestions[this.i] );
+          console.log("i="+this.i + " j="+j);
            this.questions[j] = exercise; 
           }
-        exercise.topics.forEach( (topic) => {
-          this.topics.add(topic);
-        });
-        this.selectedTopic = exercise.topics.length > 0 ? exercise.topics[0] : this.selectedTopic;
+        this.calcAllTopics();
+        this.selectedTopic = exercise.topics.length > 0 ? exercise.topics[0] : null;
         if(!this.editMode){
         this.i = this.displayedQuestions.length - 1;
         }else {
@@ -146,7 +145,7 @@ return replaced
 
     calcAllTopics() {
       console.log("calcAllTopics was called!");
-
+      this.topics = new Set([]);
       this.questions.forEach( (question) => {
         if(question.topics){
         question.topics.forEach( (topic) => { this.topics.add(topic); }  );

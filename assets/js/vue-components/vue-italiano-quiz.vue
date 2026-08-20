@@ -219,6 +219,79 @@ export default {
     ],
     instruction: "Fill in the gaps with nessun,nessuno/a,niente,neanche,nemmeno,mai,mica,affatto,non,non...più,neppure !"
   }
+,
+ {
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/arbol.jpg",
+    gapText: "Sai {mica|niente} come piantare un'albero? Non lo so {mica|nulla} ma ho un seme.",
+    topics: [
+      "Verneinung"
+    ],
+    instruction: "Fill in the gaps !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/botella.jpg",
+    gapText: "Non bevo {niente|nessuno} di forte come la Wodka e {neanche|mica} come il vino.",
+    topics: [
+      "Verneinung"
+    ],
+    instruction: "Fill in the gaps !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/jugadordefutbol.jpg",
+    gapText: "{Nessuno|Niente} può giocare come questo giocatore di calcio.",
+    topics: [
+      "Verneinung"
+    ],
+    instruction: "Fill in the gaps !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/34187.gif",
+    gapText: "Vieni a ascoltare il politico ? No, {non ci vado} perché il politico non racconta mai la verità.",
+    topics: [
+      "Ci"
+    ],
+    instruction: "Reply to the question !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/96735.jpg",
+    gapText: "Vieni con me in una casa dove sono nascosti molti soldi ? No, {non ci vengo} perché non voglio rubare.",
+    topics: [
+      "Ci"
+    ],
+    instruction: "Reply to the question !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/36473.gif",
+    gapText: "Va la donna in Germania ? Sì, {ci va} domani.",
+    topics: [
+      "Ci"
+    ],
+    instruction: "Reply to the question !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/chilis.jpg",
+    gapText: "I chili crescono in Africa ? No, {non ci crescono} lì.",
+    topics: [
+      "Ci"
+    ],
+    instruction: "Reply to the question !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/coche.jpg",
+    gapText: "Vuoì andare in Italia in macchina con me ? Sì, {ci voglio andare}.",
+    topics: [
+      "Ci"
+    ],
+    instruction: "Reply to the question !"
+  }
 
 
 

@@ -411,7 +411,18 @@ export default {
     type: "gapText",
     imageUrl: "assets/img/spanisch/maccina.jpg",
     gapText: "Das Öl {ist} nicht richtig durch die Maschine {geflossen} (fließen}. Deshalb ist sie jetzt verstopft."
+  },
+
+  {
+    topics: [
+      "Perfekt"
+    ],
+    instruction: "Konjugiere im Perfekt !",
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/hombres.jpeg",
+    gapText: "Die Männer {sind} zusammen in den Urlaub {geflogen} (fliegen)."
   }
+
 
 
 
