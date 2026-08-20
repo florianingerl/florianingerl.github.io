@@ -111,8 +111,12 @@ export default {
     newExerciseCreated(exercise){
       console.log("The function newExerciseCreated is executed!");
       console.log(exercise);
+      
         if(!this.editMode ) { this.questions.push(exercise);}
-        else { this.questions[this.i] = exercise; }
+        else {
+          let j = this.questions.findIndex( q => q === this.displayedQuestions[this.i] );
+           this.questions[j] = exercise; 
+          }
         exercise.topics.forEach( (topic) => {
           this.topics.add(topic);
         });
