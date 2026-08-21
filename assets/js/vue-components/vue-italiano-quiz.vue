@@ -491,6 +491,96 @@ export default {
     topics: [
       "Passato semplice"
     ]
+  },
+  {
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/34187.gif",
+    gapText: "il politco, la testa, il brazo, parlare, urlare, il microfono, arrabiato, azurro, blanco, agitato, l'argumento",
+    topics: [
+      "Vocabuli di Ezquiel"
+    ],
+    instruction: "Fai una frase con i vocabuli ché Ezquiel ti ha dato !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/bonitamuyer.jpg",
+    gapText: "la donna, la signora, giovane, bello/a, pollaca, bionda, guardare, sembrare, occhi, orecchi, mani, vertirsi, i capelli, lungo, lunghi, ",
+    topics: [
+      "Vocabuli di Ezquiel"
+    ],
+    instruction: "Fai una frase con i vocabuli ché Ezquiel ti ha dato !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/piso.jpg",
+    gapText: "la sedia, il tavolo, il divano, la lampara, il cuadro, l'immagine, pianta, coperta, tapeto, coperta, finestra, armadio, sole, cielo, aria, spazio, abitare, cuscino, dormire, lavorare, televisione, mangiare, grande, piccolo, bello, verde, arancione, elegante, pulito,   ",
+    topics: [
+      "Vocabuli di Ezquiel"
+    ],
+    instruction: "Fai una frase con i vocabuli ché Ezquiel ti ha dato !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/34203.gif",
+    gapText: "L'uomo, dormire, bere, lavorare, stare=yacer , stanco, giallo, capello=sombrero, i piedi, azurro, rosso, bianco, cemento, sacchi, respirare, grigio, sognare, il sogno, bottiglia, lo stomaco,  ",
+    topics: [
+      "Vocabuli di Ezquiel"
+    ],
+    instruction: "Fai una frase con i vocabuli ché Ezquiel ti ha dato !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/jugadordefutbol.jpg",
+    gapText: "i capelli corti, giovane, la barba, serio, l'allenatore, il giocatore, calcio, pallone, allenarsi=entrenarse, ",
+    topics: [
+      "Vocabuli di Ezquiel"
+    ],
+    instruction: "Fai una frase con i vocabuli ché Ezquiel ti ha dato !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/bonitamuyer.jpg",
+    gapText: "Quando mia nonna {era} (essere) giovane, {era} (essere) bella.",
+    topics: [
+      "Imperfetto"
+    ],
+    instruction: "Konjugiere im Imperfekt !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/34187.gif",
+    gapText: "Il politico {parlava} (parlare) con una voce molto forte.",
+    topics: [
+      "Imperfetto"
+    ],
+    instruction: "Konjugiere im Imperfekt !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/34203.gif",
+    gapText: "Essendo che il suo padrone non lo {guardava}, il muratore {stava} (stare) dormendo.",
+    topics: [
+      "Imperfetto"
+    ],
+    instruction: "Konjugiere im Imperfekt !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/piso.jpg",
+    gapText: "Il sole {lasciava} (lasciare) entrare molta luce.",
+    topics: [
+      "Imperfetto"
+    ],
+    instruction: "Konjugiere im Imperfekt !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/34187.gif",
+    gapText: "Parlando con una voce molto forte, il politico {alzava} (alzare) anche il suo braccio senza pausa.",
+    topics: [
+      "Imperfetto"
+    ],
+    instruction: "Konjugiere im Imperfekt !"
   }
 ],
     };
