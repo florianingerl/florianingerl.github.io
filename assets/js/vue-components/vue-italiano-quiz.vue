@@ -581,6 +581,69 @@ export default {
       "Imperfetto"
     ],
     instruction: "Konjugiere im Imperfekt !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/fahrraeder.png",
+    gapText: "L'uomo e sua moglie {avevano fatto} (fare) un giro lungo e quindi erano stanci.",
+    instruction: "Konjugiere im Plusquamperfekt !",
+    topics: [
+      "Plusquamperfekt"
+    ]
+  },
+  {
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/volleyball.png",
+    gapText: "Anton e i suoi amici stavano giocando con il pallone che gli {aveva offerto} (offrire) suo padre. ",
+    topics: [
+      "Plusquamperfekt"
+    ],
+    instruction: "Konjugiere im Plusquamperfekt !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/34203.gif",
+    gapText: "Questo muratore ha devuto dormire perché {aveva bevuto} (bere) troppo vino.",
+    topics: [
+      "Plusquamperfekt"
+    ],
+    instruction: "Konjugiere im Plusquamperfekt !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/arbol.jpg",
+    gapText: "Quest'albero non anchora aveva frutti perché lo {avevo piantato} (piantare) soltanto due anni fa.",
+    topics: [
+      "Plusquamperfekt"
+    ],
+    instruction: "Konjugiere im Plusquamperfekt !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/34190.gif",
+    gapText: "Questo pompiere è arrivato perché {era stato chiamato} (chiamare-Passiv) .",
+    topics: [
+      "Plusquamperfekt"
+    ],
+    instruction: "Konjugiere im Plusquamperfekt !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/maccina.jpg",
+    gapText: "Non mi piaceva la pasta che {aveva produtta} (produrre) questa macchina.",
+    topics: [
+      "Plusquamperfekt"
+    ],
+    instruction: "Konjugiere im Plusquamperfekt !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/22278.jpg",
+    gapText: "Non mi piaceva la pasta che {aveva produtta} (produrre) questa macchina.",
+    topics: [
+      "Plusquamperfekt"
+    ],
+    instruction: "Konjugiere im Plusquamperfekt !"
   }
 ],
     };
