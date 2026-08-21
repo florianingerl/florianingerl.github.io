@@ -94,7 +94,8 @@ export default {
        topics : new Set([]),
        selectedTopic : "",
        newExercise: false,
-       editMode: false
+       editMode: false,
+       firstModification: true
     };
   },
  watch: {
@@ -133,6 +134,11 @@ export default {
 
       console.log(questionCode);
       navigator.clipboard.writeText(questionCode);
+
+      if(this.firstModification){
+        this.firstModification = false;
+        alert("Please send an email to imelflorianingerl@gmail.com with the contents of your clipboard at the end of all your work if you want it to be permanent!");
+      }
     },
 
     modifyKeys(questionCode){
