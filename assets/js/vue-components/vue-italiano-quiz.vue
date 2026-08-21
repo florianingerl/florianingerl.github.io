@@ -387,7 +387,7 @@ export default {
   {
     type: "gapText",
     imageUrl: "assets/img/spanisch/piso.jpg",
-    gapText: "Mia sorella non {potette} (potere) decidersi di comprare questa case.",
+    gapText: "Mia sorella non {potette} (potere) decidersi di comprare questa casa.",
     instruction: "Conjugate in the simple past !",
     topics: [
       "Passato semplice"
@@ -414,7 +414,79 @@ export default {
   {
     type: "gapText",
     imageUrl: "assets/img/spanisch/jugadordefutbol.jpg",
-    gapText: "Questo giocatore di calcio {tagliò} (tagliare) i capelli se stesso ieri.",
+    gapText: "Questo giocatore di calcio {tolse} (togliere) i capelli se stesso ieri.",
+    instruction: "Conjugate in the simple past !",
+    topics: [
+      "Passato semplice"
+    ]
+  },
+  {
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/volleyball.png",
+    gapText: "Quest'amici {giocarono}(giocare) a volley ieri.",
+    instruction: "Conjugate in the simple past !",
+    topics: [
+      "Passato semplice"
+    ]
+  },
+  {
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/chilis.jpg",
+    gapText: "Anton e suo padre {mangiarono} (mangiare) alcuni chili picanti la settimana passata.",
+    instruction: "Conjugate in the simple past !",
+    topics: [
+      "Passato semplice"
+    ]
+  },
+  {
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/jugadordefutbol.jpg",
+    gapText: "Tutti i giocatori della scuadra {si lavarono} (lavarsi) i occhi per meglio sentire i istruzioni del suo padrone.",
+    instruction: "Conjugate in the simple past !",
+    topics: [
+      "Passato semplice"
+    ]
+  },
+  {
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/arbol.jpg",
+    gapText: "Tutti i arboli {perdettero} (perdere) i suoi foglii ieri.",
+    instruction: "Conjugate in the simple past !",
+    topics: [
+      "Passato semplice"
+    ]
+  },
+  {
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/pisodemoneda.jpg",
+    gapText: "Ieri {perdei} (perdere) tutti i miei soldi nella strada.",
+    instruction: "Conjugate in the simple past !",
+    topics: [
+      "Passato semplice"
+    ]
+  },
+  {
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/hombres.jpeg",
+    gapText: "L'anno passato, quest'uomi {andarono} (andare) insieme in vacanze.",
+    instruction: "Conjugate in the simple past !",
+    topics: [
+      "Passato semplice"
+    ]
+  },
+  {
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/maccina.jpg",
+    gapText: "La pasta {fu} (essere) fatta dalla macchina.",
+    instruction: "Conjugate in the simple past !",
+    topics: [
+      "Passato semplice"
+    ]
+  },
+  {
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/coche.jpg",
+    gapText: "Ieri, {condussi} (condurre) al lavoro con la macchina rossa di mio padre.",
     instruction: "Conjugate in the simple past !",
     topics: [
       "Passato semplice"
