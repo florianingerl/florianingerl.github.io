@@ -644,6 +644,33 @@ export default {
       "Plusquamperfekt"
     ],
     instruction: "Konjugiere im Plusquamperfekt !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/d6b0ce929193df3c242ac34b5654d2ce/9e/a8/V4C87aZUTBT3t7Ku.jpg",
+    gapText: "Il libro che Harry legge ha 300 pagine.{il quale|la quale|i quali|le quali}",
+    topics: [
+      "Relatifpronomen"
+    ],
+    instruction: "Ersetze che durch il quale,la quale,i quali oder le quali !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/925f17378dd1893b674a723c07535afe/1d/9b/RlD7nCgh.jpg",
+    gapText: "Il professor Silente che è il ottimo mago del mundo ha una barba molto lunga. {il quale|la quale|i quali,le quali}",
+    topics: [
+      "Relatifpronomen"
+    ],
+    instruction: "Ersetze che durch il quale,la quale,i quali oder le quali !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/d7aec6f6f171607374b2065c836f92f4/f9/97/dvvZX3qpeuDerxv.jpg",
+    gapText: "I tortellini che il ragazzo non vuole mangiare sono troppo picanti.{i quali|le quali|il quale|la quale}.",
+    topics: [
+      "Relatifpronomen"
+    ],
+    instruction: "Ersetze che durch il quale,la quale,i quali oder le quali !"
   }
 ],
     };
