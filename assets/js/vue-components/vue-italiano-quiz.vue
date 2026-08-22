@@ -671,6 +671,60 @@ export default {
       "Relatifpronomen"
     ],
     instruction: "Ersetze che durch il quale,la quale,i quali oder le quali !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/d7aec6f6f171607374b2065c836f92f4/d7/dd/ur8vjyafdRGn.jpg",
+    gapText: "Harry leggette una lettera di Ron che gli aveva dato il suo gufo Edvige. {la quale|il quale|i quali|le quali}",
+    topics: [
+      "Relatifpronomen"
+    ],
+    instruction: "Ersetze che durch il quale,la quale,i quali oder le quali !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/c3a19a0b747a76e98651f2b9a3cca5ff/97/7f/IhL5kQM0qKhOR.jpg",
+    gapText: "Ci sono cuattro cavalleri sulla scacchiera che possono saltare sopra i altri pezzi.{i quali|le quali|il quale|la quale}",
+    topics: [
+      "Relatifpronomen"
+    ],
+    instruction: "Ersetze che durch il quale,la quale,i quali oder le quali !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/8ce8357c78ea940b9c2015daf05ce1a5/cd/35/V8UulugehPVt74LF6.jpg",
+    gapText: "Crabbe e Goyle che sono i amici di Malfoy non sono molto intelligenti.{i quali|le quali|il quale|la quale}",
+    topics: [
+      "Relatifpronomen"
+    ],
+    instruction: "Ersetze che durch il quale,la quale,i quali oder le quali !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/d6b0ce929193df3c242ac34b5654d2ce/33/4e/cz2ZXNVTD0edMr29IOG.jpg",
+    gapText: "Anton {colui|colei} che è un buono giocatore di calcio non perde mai il pallone.",
+    topics: [
+      "Relatifpronomen"
+    ],
+    instruction: "Colui oder Colei ?"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/c3a19a0b747a76e98651f2b9a3cca5ff/28/ac/c2spneAq48r8Q.jpg",
+    gapText: "CR7 {colui|colei} que sta  ridendo sull'imagine non è più un giocatore di calcio di Real Madrid.",
+    topics: [
+      "Relatifpronomen"
+    ],
+    instruction: "Colui oder Colei ?"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/d6b0ce929193df3c242ac34b5654d2ce/c5/15/Atjl9i06i0RF.jpg",
+    gapText: "La madre {colei|colui} sta parlando con il suo telefono non ha voglia di giocare a calcio con suo figlio.",
+    topics: [
+      "Relatifpronomen"
+    ],
+    instruction: "Colui oder Colei ?"
   }
 ],
     };

@@ -23,7 +23,7 @@ export default {
   data() {
     return {
        questions: 
-  [
+ [
   {
     topics: [
       "Wechselpräpositionen",
@@ -543,6 +543,24 @@ export default {
     type: "gapText",
     imageUrl: "assets/img/spanisch/32850.gif",
     gapText: "Die Maus {kratzt} (kratzen) sich mit der Hand am Kopf."
+  },
+  {
+    topics: [
+      "Mögen oder gern machen"
+    ],
+    instruction: "Traduis ! La femme aime se regarder dans le miroir.",
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/bonitamuyer.jpg",
+    gapText: "{Die Frau schaut sich gern im Spiegel an.}\n"
+  },
+  {
+    topics: [
+      "Mögen oder gern machen"
+    ],
+    instruction: "Traduis ! Selma aime les lunettes de Harry Potter.",
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/d6b0ce929193df3c242ac34b5654d2ce/9e/a8/V4C87aZUTBT3t7Ku.jpg",
+    gapText: "{Selma mag die Brille von Harry Potter.}"
   }
 ],
     };
