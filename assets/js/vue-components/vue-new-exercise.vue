@@ -15,7 +15,7 @@
 <div>
   <label for="type" class="form-label">Type:</label>
   <select v-model="newExercise.type">
-  <option value="gapText" selected>Gap text</option>
+  <option value="gapText">Gap text</option>
   <option value="multipleChoice">Multiple choice</option>
 </select>
 </div>
@@ -36,13 +36,12 @@
 
 
     <textarea v-if="newExercise.type=='gapText'" rows="3"  v-model="newExercise.gapText">
-        Flori {is|are} very intelligent.
     </textarea>
 
     <div v-if="newExercise.type=='multipleChoice'">
         <div class="container py-3" style="max-width: 360px;">
   <ul class="list-group">
-    <li v-for="option in allOptions" class="list-group-item d-flex align-items-center gap-2 selectable" data-value="1" role="button">
+    <li v-for="option in allOptions" :key="option" class="list-group-item d-flex align-items-center gap-2 selectable" data-value="1" role="button">
       <span>{{ option }}</span>
     </li>
   </ul>

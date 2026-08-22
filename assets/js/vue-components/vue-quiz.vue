@@ -4,6 +4,7 @@
 
 <button v-if="!newExercise" @click="newExercise=true; editMode = false">Aufgabe erstellen</button>
 <button v-if="!newExercise" @click="newExercise=true; editMode = true">Aufgabe bearbeiten</button>
+<button @click="deleteExerciseClicked">Aufgabe löschen</button>
 
 <div v-if="newExercise">
   <VueNewExercise :questionOfQuiz="displayedQuestions[i]" :editMode="editMode"  @new-exercise-created="(exercise) => { newExerciseCreated(exercise); }" @cancel-clicked="newExercise=false"></VueNewExercise>
@@ -109,6 +110,17 @@ export default {
   },
 
   methods: {
+    deleteExerciseClicked(){
+      const confirm = window.confirm("Do you really want to delete this question?");
+      if(!confirm){
+        return;
+      }
+      let j = this.questions.findIndex(q => q === this.displayedQuestions[this.i] );
+      if(j != -1){
+        this.questions.splice(j,1);
+      }
+    },
+
     newExerciseCreated(exercise){
       console.log("The function newExerciseCreated is executed!");
       console.log(exercise);
@@ -210,11 +222,17 @@ return replaced
             return true;
         },
      nextExerciseClicked(){
+      if(this.i < this.displayedQuestions.length - 1){
         this.i++;
+      }
+        
         console.log(this.i);
      },
      previousExerciseClicked(){
+      if(this.i > 0){
         this.i--;
+      }
+        
         console.log(this.i);
      },
      jumpForwardClicked(){
