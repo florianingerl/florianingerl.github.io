@@ -59,8 +59,10 @@
   </div>
     </div>
   </div>
+  <!--
   <button v-if="!editMode" @click="calcRandomImage">Change image</button>
-  <button v-if="!editMode" @click="getGifUrlFromKlipy">Change image 2</button>
+  -->
+  Search:<input type="text" v-model="searchString"/><button v-if="!editMode" @click="getGifUrlFromKlipy">Change image</button>
     <button class="btn-primary btn" @click="newExerciseClicked">Save</button>
     <button class="btn-primary btn" @click="$emit('cancelClicked')">Cancel</button>
 </div>
@@ -104,17 +106,26 @@ export default {
     },
     newTopic: "",
     newOption: "",
-    allOptions: ["Farah","Hermann", "Flori"]
+    allOptions: ["Farah","Hermann", "Flori"],
+    searchString: "Harry Potter",
+    searchStringChanged: true,
+    imageUrls: [],
+    k: 0,
+    page: 1,
+    per_page: 10
 
   };
   },
  watch: {
+   searchString(newValue, oldValue){
+    this.searchStringChanged = true;
+   }
     
   },
 
   methods: {
 
-    async findGifUrls(searchTerm) {
+    async findGifUrls() {
   var myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");
 
@@ -126,9 +137,9 @@ var requestOptions = {
 
 const KLIPY_API_KEY = "GblaAUO3H2fVadJMh2BBPfeNpoAcdpI0TQKEx7HGN2GDeCVNpLY9CgEB10yhcnZb";
 let url =  new URL(`https://api.klipy.com/api/v1/${KLIPY_API_KEY}/gifs/search`);
-url.searchParams.set("q", searchTerm);
-url.searchParams.set("page",1);
-url.searchParams.set("per_page",10);
+url.searchParams.set("q", this.searchString);
+url.searchParams.set("page",this.page);
+url.searchParams.set("per_page",this.per_page);
 
   const response = await fetch(url);
 
@@ -166,9 +177,23 @@ url.searchParams.set("per_page",10);
     },
 
     async getGifUrlFromKlipy(){
+      if(!this.searchStringChanged){
+        this.k++;
+        if(this.k < this.imageUrls.length ){
+          this.newExercise.imageUrl = this.imageUrls[this.k];
+          return;
+        }
+        else {
+          this.page++;
+          this.k = 0;
+        }
+      }
+
        console.log("The function getGifUrlFromKlipy was called!");
-       let urls = await this.findGifUrls("Harry Potter");
-       this.newExercise.imageUrl = urls[0]; 
+       this.imageUrls = await this.findGifUrls();
+       this.k = 0;
+       this.searchStringChanged = false;
+       this.newExercise.imageUrl = this.imageUrls[this.k]; 
     },
 
     newExerciseClicked(){
@@ -214,7 +239,7 @@ url.searchParams.set("per_page",10);
     this.newExercise = {
       ...this.questionOfQuiz
     };
-    this.calcRandomImage();
+    //this.calcRandomImage();
 
   } //end of mounted
   ,
