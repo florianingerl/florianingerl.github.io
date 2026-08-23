@@ -725,6 +725,141 @@ export default {
       "Relatifpronomen"
     ],
     instruction: "Colui oder Colei ?"
+  },
+  {
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/jugadordefutbol.jpg",
+    gapText: "Questo giocatore di calcio è giovane {e} (und) può correre.",
+    topics: [
+      "Vokabeln - Nebenordnende Konjunktionen"
+    ],
+    instruction: "Traduis les conjonctions de coordination !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/d6b0ce929193df3c242ac34b5654d2ce/9e/a8/V4C87aZUTBT3t7Ku.jpg",
+    gapText: "Hermine sa come pronunciare questo incantesimo guistamente {e} (und,et) Harry lo sa {anche} (auch,aussi).",
+    topics: [
+      "Vokabeln - Nebenordnende Konjunktionen"
+    ],
+    instruction: "Traduis les conjonctions de coordination !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/e293a233a303a98e471f78d04e13a1b0/27/8b/obhjelvhefyai5I4.jpg",
+    gapText: "A Harry non piacionno {né} le pene che gli dà il professor Piton {né} quando Piton ride sopra i suoi pozioni cattivi.\n(weder noch, ni...ni )",
+    topics: [
+      "Vokabeln - Nebenordnende Konjunktionen"
+    ],
+    instruction: "Traduis les conjonctions de coordination !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/4493325008d34b7bf8cd6813cd5c1619/d6/f7/rxoB9uCZcx3rUaiB.jpg",
+    gapText: "Hermione è molto intelligente {nonché} bella.\n(et en plus, und außerdem)",
+    topics: [
+      "Vokabeln - Nebenordnende Konjunktionen"
+    ],
+    instruction: "Traduis les conjonctions de coordination !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/ce286d05b8e1a47cd4f32b0e1b6dec0e/d7/34/rzjvoOAE.jpg",
+    gapText: "La professora McGonagall non può decidere come penare il suo studente Harry. Gli dare molti compiti {o} non gli dar il permesso di andare al villaggio Hogsmeade.   (oder)",
+    topics: [
+      "Vokabeln - Nebenordnende Konjunktionen"
+    ],
+    instruction: "Traduis les conjonctions de coordination !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/8ce8357c78ea940b9c2015daf05ce1a5/93/3d/VcRI1su5ZNHSblICJD.jpg",
+    gapText: "Harry giocarà il partito di Quidditch {sia} Piton farà il arbito {sia} non lo farà. (Ob .... oder nicht )",
+    topics: [
+      "Vokabeln - Nebenordnende Konjunktionen"
+    ],
+    instruction: "Traduis les conjonctions de coordination !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/a15b48460c436e1e92c85ffc680932cc/56/3b/dXID7uNgYTiWwtp4Hv.jpg",
+    gapText: "Ron vuole essere famoso come il suo amico Harry {ma} non lo è. (aber, mais, but, pero )",
+    topics: [
+      "Vokabeln - Nebenordnende Konjunktionen"
+    ],
+    instruction: "Traduis les conjonctions de coordination !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/4493325008d34b7bf8cd6813cd5c1619/c4/cb/tiRMtfmExo7eLsDGl.jpg",
+    gapText: "{Invece di} lasciare il serpente in pace il cugino Dudley di Harry golpa contra la finestra della gabbia senza pausa.\n(statt, en lugar de, instead of, au lieu de )",
+    topics: [
+      "Vokabeln - Nebenordnende Konjunktionen"
+    ],
+    instruction: "Traduis les conjonctions de coordination !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/39f2394ae36df6e199be9eb7c9fa1012/6a/61/VOtiTITpnF1dizL4EP.jpg",
+    gapText: "Allo zio Vernon non piace la magia, {anzi} la odia. (au contraire, im Gegenteil)",
+    topics: [
+      "Vokabeln - Nebenordnende Konjunktionen"
+    ],
+    instruction: "Traduis les conjonctions de coordination !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/39f2394ae36df6e199be9eb7c9fa1012/d0/8d/l4grzG9bmIv0.jpg",
+    gapText: "Ai Dursley non piace Harry, {tuttavia} gli permettono d'abitare con loro. (Nichtsdestotrotz, still, nevertheless, toutefois )",
+    topics: [
+      "Vokabeln - Nebenordnende Konjunktionen"
+    ],
+    instruction: "Traduis les conjonctions de coordination !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/c3a19a0b747a76e98651f2b9a3cca5ff/cb/92/GqBRMSObsm5EElHikhUq.jpg",
+    gapText: "I Dursley non sono pobri , {infatti} hanno molti soldi. (In fact, en effet, tatsächlich )",
+    topics: [
+      "Vokabeln - Nebenordnende Konjunktionen"
+    ],
+    instruction: "Traduis les conjonctions de coordination !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/d7aec6f6f171607374b2065c836f92f4/98/c0/sVHJW2mIPu5WjM0cm.jpg",
+    gapText: "Petunia è la zia di Harry, {cioè} la sorella di sua madre. (c'est à dire, das heißt )",
+    topics: [
+      "Vokabeln - Nebenordnende Konjunktionen"
+    ],
+    instruction: "Traduis les conjonctions de coordination !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/d7aec6f6f171607374b2065c836f92f4/75/d1/d32T4ZL6k2b4BQ.jpg",
+    gapText: "A Harry non hanno piacuto le parole si sua zia Marge, {quindi} ha lanciato una maldizione a lei. {Folglich, Donc, Also, So)",
+    topics: [
+      "Vokabeln - Nebenordnende Konjunktionen"
+    ],
+    instruction: "Traduis les conjonctions de coordination !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/c3a19a0b747a76e98651f2b9a3cca5ff/49/28/sCgO4A47iyg2g.jpg",
+    gapText: "Gringotts non era più un luogo sicuro per la pietra filosofale,{perciò} ne la hanno salita Harry e Hagrid. (That's why, c'est pourquoi, Deswegen )",
+    topics: [
+      "Vokabeln - Nebenordnende Konjunktionen"
+    ],
+    instruction: "Traduis les conjonctions de coordination !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/c3a19a0b747a76e98651f2b9a3cca5ff/b2/cb/pHCIvPqC12z2wYkd8.jpg",
+    gapText: "Ron ha rotto la sua bacchetta di magia, {quindi} ha bisogna di una nuova. (Folglich, Donc, So , Entonces )",
+    topics: [
+      "Vokabeln - Nebenordnende Konjunktionen"
+    ],
+    instruction: "Traduis les conjonctions de coordination !"
   }
 ],
     };

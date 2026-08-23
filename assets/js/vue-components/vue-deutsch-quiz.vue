@@ -23,7 +23,7 @@ export default {
   data() {
     return {
        questions: 
- [
+[
   {
     topics: [
       "Wechselpräpositionen",
@@ -561,6 +561,40 @@ export default {
     type: "gapText",
     imageUrl: "https://static.klipy.com/ii/d6b0ce929193df3c242ac34b5654d2ce/9e/a8/V4C87aZUTBT3t7Ku.jpg",
     gapText: "{Selma mag die Brille von Harry Potter.}"
+  },
+  {
+    topics: [],
+    instruction: "Konjugiere im Präteritum !",
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/d6b0ce929193df3c242ac34b5654d2ce/9e/a8/V4C87aZUTBT3t7Ku.jpg",
+    gapText: "Harry Potter {studierte} (studieren) in Hogwarts, der besten Schule in England für Hexerei und Zauberei."
+  },
+  {
+    topics: [
+      "Präteritum"
+    ],
+    instruction: "Konjugiere im Präteritum !",
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/935d7ab9d8c6202580a668421940ec81/46/51/7PvlbZzh.jpg",
+    gapText: "Das Baby {schlug} (schlagen) mit der Faust gegen die Wand."
+  },
+  {
+    topics: [
+      "Präteritum"
+    ],
+    instruction: "Konjugiere im Präteritum !",
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/935d7ab9d8c6202580a668421940ec81/92/a6/bIvvaLIU.jpg",
+    gapText: "Die Boxer{bekämpften} (bekämpfen) sich 3 Stunden lang."
+  },
+  {
+    topics: [
+      "Präteritum"
+    ],
+    instruction: "Konjugiere im Präteritum !",
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/d7aec6f6f171607374b2065c836f92f4/4e/2b/cadzuZVup7fOMpPA0OQi.jpg",
+    gapText: "Die Frau {trug} (tragen) rote Boxhandschuhe."
   }
 ],
     };
