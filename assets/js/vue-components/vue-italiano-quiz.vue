@@ -860,6 +860,114 @@ export default {
       "Vokabeln - Nebenordnende Konjunktionen"
     ],
     instruction: "Traduis les conjonctions de coordination !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/4493325008d34b7bf8cd6813cd5c1619/39/4a/Lsbqe2CmgqwM4heXIiss.jpg",
+    gapText: "Quest'uomo sempre lava il suo unico dento {afinché} non lo perda come gli altri. (damit, afin que, so that )",
+    topics: [
+      "Unterordnende Konjunktionen"
+    ],
+    instruction: "Übersetze !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/e1b92bb53e0c9e442408bc677a56c789/cc/b4/YhvT1NU4lFp1ouIXAZ.jpg",
+    gapText: "{Benché }sia notte, Spongebob non è anchora stanco. (Obwohl, Although, Bien que, aunque)",
+    topics: [
+      "Unterordnende Konjunktionen"
+    ],
+    instruction: "Übersetze !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/c3a19a0b747a76e98651f2b9a3cca5ff/8c/8e/3eWDeQGeTKpME7.jpg",
+    gapText: "{Dacché} questo maniaco è libero, tutti sono in peligro. (depuis, seit, since, desde )",
+    topics: [
+      "Unterordnende Konjunktionen"
+    ],
+    instruction: "Übersetze !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/c3a19a0b747a76e98651f2b9a3cca5ff/7b/59/IfO8y4dz4OCD5Mf.jpg",
+    gapText: "{Dopo ché} Sirius s'è transformato in un cane, s'è escapato del prigion di Azkaban. (Nachdem, Après que, After, después)",
+    topics: [
+      "Unterordnende Konjunktionen"
+    ],
+    instruction: "Übersetze !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/4e7bea9f7a3371424e6c16ebc93252fe/d1/de/fBMGBekGb0uUOxFC7cb.jpg",
+    gapText: "Ron et Hermione non aspettano {finché} il serpente li mangii. (Jusqu'à ce que, bis, hasta, until )",
+    topics: [
+      "Unterordnende Konjunktionen"
+    ],
+    instruction: "Übersetze !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/d7aec6f6f171607374b2065c836f92f4/4f/03/p3ZpuQx7hcQJpt.jpg",
+    gapText: "Il gufo ha aperto i sui occhi {perché} vuole vedere tutti i topi. (weil, parce que, porque, because )",
+    topics: [
+      "Unterordnende Konjunktionen"
+    ],
+    instruction: "Übersetze !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/35ccce3d852f7995dd2da910f2abd795/7d/17/4MrBL3lP.jpg",
+    gapText: "Questo gufo non vuole uscire, {piuttosto ché} vuole cerare anche l'altro occo e dormire. (plutôt que, vielmehr)",
+    topics: [
+      "Unterordnende Konjunktionen"
+    ],
+    instruction: "Übersetze !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/a15b48460c436e1e92c85ffc680932cc/c2/0f/w5hkdO90OQDGgP1.jpg",
+    gapText: "{Prima ché} il gato possa mangiare un topo, ne deve trovare uno. (Avant que, Bevor, Before )",
+    topics: [
+      "Unterordnende Konjunktionen"
+    ],
+    instruction: "Übersetze !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/9294a2e836d178ddc22430dd7765727e/62/5d/i4ZkZAT0S2B9wV5LN.jpg",
+    gapText: "Hermione fa sempre i suoi compiti {talché} i professori sono sorpresi dalla sua intelligenzia. (de sorte que)",
+    topics: [
+      "Unterordnende Konjunktionen"
+    ],
+    instruction: "Übersetze !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/d6b0ce929193df3c242ac34b5654d2ce/33/8c/nY7XT7GMPL6kRCzF.jpg",
+    gapText: "{Quando} Hagrid disse a Harry che era un mago, Harry fu molto sorpreso. (Quand, Als, When )",
+    topics: [
+      "Unterordnende Konjunktionen"
+    ],
+    instruction: "Übersetze !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/c3a19a0b747a76e98651f2b9a3cca5ff/85/2e/PHOg318kgMV8RZOXnw.jpg",
+    gapText: "{Mentre} il tren va alla scuola Hogwarts, gli studenti si vestono. (Während,While, Pendant que, Mientras)",
+    topics: [
+      "Unterordnende Konjunktionen"
+    ],
+    instruction: "Übersetze !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/c3a19a0b747a76e98651f2b9a3cca5ff/f1/84/4jvAqLMy4dZPV7Ta.jpg",
+    gapText: "{Ogni volta che} Harry ritorna a Hogwarts dai Dursley, diventa felice. (Chaque fois que, Jedesmal wenn )",
+    topics: [
+      "Unterordnende Konjunktionen"
+    ],
+    instruction: "Übersetze !"
   }
 ],
     };
