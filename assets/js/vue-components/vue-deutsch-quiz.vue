@@ -595,6 +595,78 @@ export default {
     type: "gapText",
     imageUrl: "https://static.klipy.com/ii/d7aec6f6f171607374b2065c836f92f4/4e/2b/cadzuZVup7fOMpPA0OQi.jpg",
     gapText: "Die Frau {trug} (tragen) rote Boxhandschuhe."
+  },
+  {
+    topics: [
+      "Schon, erst oder nur"
+    ],
+    instruction: "Schon, erst oder nur ?",
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/935d7ab9d8c6202580a668421940ec81/46/51/7PvlbZzh.jpg",
+    gapText: "Der Boxer hat {schon} seine Boxhandschuhe angezogen und ist {schon} bereit zum Kampf."
+  },
+  {
+    topics: [
+      "Schon, erst oder nur"
+    ],
+    instruction: "Schon, erst oder nur ?",
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/d7aec6f6f171607374b2065c836f92f4/4e/2b/cadzuZVup7fOMpPA0OQi.jpg",
+    gapText: "Die Boxerin mit den rooten Handschuhen muss {erst} das Finale gewinnen, bevor sie Weltmeisterin ist."
+  },
+  {
+    topics: [
+      "Schon, erst oder nur"
+    ],
+    instruction: "Schon, erst oder nur ?",
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/4e7bea9f7a3371424e6c16ebc93252fe/81/2a/1sXb6kmCCNcGGZhHW1B1.jpg",
+    gapText: "Die grüne Partei hat {nur} 12 Prozent der Stimmen bekommen."
+  },
+  {
+    topics: [
+      "Schon, erst oder nur"
+    ],
+    instruction: "Schon, erst oder nur ?",
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/4e7bea9f7a3371424e6c16ebc93252fe/1c/d8/I8BLx9nGnJVB.jpg",
+    gapText: "Man sollte {erst} heiraten und dann {erst} Kinder kriegen."
+  },
+  {
+    topics: [
+      "Schon, erst oder nur"
+    ],
+    instruction: "Schon, erst oder nur ?",
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/71b2873e478b9d8d0482ea3ec777ba7f/d6/7b/la1zOSdIYzQKVx0B.jpg",
+    gapText: "Obelix sollte sich {erst} die Hände waschen, bevor er zu essen anfängt."
+  },
+  {
+    topics: [
+      "Schon, erst oder nur"
+    ],
+    instruction: "Schon, erst oder nur ?",
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/d7aec6f6f171607374b2065c836f92f4/75/a4/QxwGueIm1NgeZmS3hK6.jpg",
+    gapText: "Idefix hat {nur} einen Helm als Bettersatz ?"
+  },
+  {
+    topics: [
+      "Schon, erst oder nur"
+    ],
+    instruction: "Schon, erst oder nur ?",
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/4e7bea9f7a3371424e6c16ebc93252fe/43/60/LTIQ3WXDNuwOyO3.jpg",
+    gapText: "Miraculix hat {schon} viele Haare verloren."
+  },
+  {
+    topics: [
+      "Schon, erst oder nur"
+    ],
+    instruction: "Schon, erst oder nur ?",
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/4493325008d34b7bf8cd6813cd5c1619/fe/fe/vFr4uKPN54zFCG4.jpg",
+    gapText: "Ronaldo muss {erst} trainieren, bevor er mit seiner Frau essen gehen kann."
   }
 ],
     };
