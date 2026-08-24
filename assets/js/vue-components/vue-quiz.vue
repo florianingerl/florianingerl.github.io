@@ -1,16 +1,37 @@
 <template>
 
+<div class = "row justify-content-between">
+<button v-if="!newExercise" @click="newExercise=true; editMode = false" type="button"  class="col-3 btn btn-success"  data-bs-toggle="tooltip" data-bs-placement="top" title="Add a new exercise">
+        <i class="bi bi-plus-lg" aria-hidden="true"></i>
+      </button>
 
+      <button v-if="!newExercise" @click="newExercise=true; editMode = true"
+        type="button"
+        class="col-3 btn btn-primary"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="Edit the exercise"
+      >
+        <i class="bi bi-pencil-square" aria-hidden="true"></i>
+       
+      </button>
 
-<button v-if="!newExercise" @click="newExercise=true; editMode = false">Aufgabe erstellen</button>
-<button v-if="!newExercise" @click="newExercise=true; editMode = true">Aufgabe bearbeiten</button>
-<button @click="deleteExerciseClicked">Aufgabe löschen</button>
+      <button @click="deleteExerciseClicked"
+        type="button"
+        class="col-3 btn btn-danger"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title="Delete the exercise"
+      >
+        <i class="bi bi-trash" aria-hidden="true"></i>
+      </button>
+</div>
 
 <div v-if="newExercise">
   <VueNewExercise :questionOfQuiz="displayedQuestions[i]" :editMode="editMode"  @new-exercise-created="(exercise) => { newExerciseCreated(exercise); }" @cancel-clicked="newExercise=false"></VueNewExercise>
 </div>
 
-<div v-if="!newExercise">
+<div v-if="!newExercise" class="row">
     <select v-model="selectedTopic">
   <option disabled value="">Bitte wähle ein Thema !</option>
   <option v-for="topic in topics">
