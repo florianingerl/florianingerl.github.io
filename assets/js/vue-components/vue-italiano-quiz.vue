@@ -1085,6 +1085,78 @@ export default {
       "Direkte und indirekte Personalpronomen"
     ],
     instruction: "Find the correct direct or indirect pronoun !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/39f2394ae36df6e199be9eb7c9fa1012/d0/8d/l4grzG9bmIv0.jpg",
+    gapText: "Abbiamo fame. Abbiamo bisogno di la cena. Alora Harry, {falla} (fare) !",
+    topics: [
+      "Direkte und indirekte Personalpronomen"
+    ],
+    instruction: "Find the correct direct or indirect pronoun !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/4493325008d34b7bf8cd6813cd5c1619/bd/62/PT0Xgb62MpCMJMbtliaA.jpg",
+    gapText: "I miei denti hanno bisogno di essere lavato. Alora Harry, {lavalli} (lavare) !",
+    topics: [
+      "Direkte und indirekte Personalpronomen"
+    ],
+    instruction: "Find the correct direct or indirect pronoun !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/jugadordefutbol.jpg",
+    gapText: "Non {conosco} (io) il nome di questo giocatore di calcio.",
+    topics: [
+      "Conoscere o sapere"
+    ],
+    instruction: "Conoscere o sapere ?"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/39f2394ae36df6e199be9eb7c9fa1012/c9/65/Gch0YhNanlbfr.jpg",
+    gapText: "Quello che ha visto i film di Harry Potter {conosce} tutte le persone sull'immagine.",
+    topics: [
+      "Conoscere o sapere"
+    ],
+    instruction: "Conoscere o sapere ?"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/f87f46a2c5aeaeed4c68910815f73eaf/bb/b7/HQbCbnPh.jpg",
+    gapText: "Normalmente, i giocatori di Quidditch non {sanno} giocare a calcio.",
+    topics: [
+      "Conoscere o sapere"
+    ],
+    instruction: "Conoscere o sapere ?"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/f87f46a2c5aeaeed4c68910815f73eaf/bb/b7/HQbCbnPh.jpg",
+    gapText: "Ron gioca meglio a scacchi {che|di} a Quidditch.",
+    topics: [
+      "Comparatif"
+    ],
+    instruction: "Fill in the gaps !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/da290b156d64898341638f3c299e7478/98/ef/eyRt5xjT5n9Y.jpg",
+    gapText: "Il ragazzo sulla sua scopa sta superiore {dei nubi|che i nubi}.",
+    topics: [
+      "Comparatif"
+    ],
+    instruction: "Fill in the gaps !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/39f2394ae36df6e199be9eb7c9fa1012/8a/58/SI2AaejvMWQ4e.jpg",
+    gapText: "Ron è cosi buono {come|quanto} Oliver Wood quando è in forma.",
+    topics: [
+      "Comparatif"
+    ],
+    instruction: "Fill in the gaps !"
   }
 ],
     };
