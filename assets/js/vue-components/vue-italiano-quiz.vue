@@ -968,6 +968,123 @@ export default {
       "Unterordnende Konjunktionen"
     ],
     instruction: "Übersetze !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/jugadordefutbol.jpg",
+    gapText: "{Il} giocatore di calcio si chiama Ivan Botella.",
+    topics: [
+      "Bestimmer Artikel"
+    ],
+    instruction: "Setze den richtigen bestimmten Artikel ein !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/d6b0ce929193df3c242ac34b5654d2ce/9e/a8/V4C87aZUTBT3t7Ku.jpg",
+    gapText: "Harry ha comprato {la} sua bacchetta magica nel negozio de Ollivander.",
+    topics: [
+      "Bestimmer Artikel"
+    ],
+    instruction: "Setze den richtigen bestimmten Artikel ein !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/925f17378dd1893b674a723c07535afe/1d/9b/RlD7nCgh.jpg",
+    gapText: "{Gli} studenti non fanno sempre quello ché ha detto il professor Silente.",
+    topics: [
+      "Bestimmer Artikel"
+    ],
+    instruction: "Setze den richtigen bestimmten Artikel ein !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/35ccce3d852f7995dd2da910f2abd795/d4/3d/4MIz2RXb.jpg",
+    gapText: "{I} capelli di Harry sono neri.",
+    topics: [
+      "Bestimmer Artikel"
+    ],
+    instruction: "Setze den richtigen bestimmten Artikel ein !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/e293a233a303a98e471f78d04e13a1b0/27/8b/obhjelvhefyai5I4.jpg",
+    gapText: "{Lo} studente che il professor Piton preferisce sempre si chiama Draco Malfoy.",
+    topics: [
+      "Bestimmer Artikel"
+    ],
+    instruction: "Setze den richtigen bestimmten Artikel ein !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/71b2873e478b9d8d0482ea3ec777ba7f/0b/2d/p9dRtrVvu9YCj2fHKsp.jpg",
+    gapText: "{L'} amico di Harry si chiama Ronald Weasley.",
+    topics: [
+      "Bestimmer Artikel"
+    ],
+    instruction: "Setze den richtigen bestimmten Artikel ein !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/39f2394ae36df6e199be9eb7c9fa1012/a0/db/PyaHBxeP8agDO.jpg",
+    gapText: "Il segnor Ollivander vende soltanto {le} bacchette magiche che ha fabricate se stesso.",
+    topics: [
+      "Bestimmer Artikel"
+    ],
+    instruction: "Setze den richtigen bestimmten Artikel ein !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/39f2394ae36df6e199be9eb7c9fa1012/d0/8d/l4grzG9bmIv0.jpg",
+    gapText: "Harry non manda mai una lettera ai Dursley. Harry mai manda {loro} una lettera.",
+    topics: [
+      "Direkte und indirekte Personalpronomen"
+    ],
+    instruction: "Find the correct direct or indirect pronoun !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/d6b0ce929193df3c242ac34b5654d2ce/9e/a8/V4C87aZUTBT3t7Ku.jpg",
+    gapText: "Harry lanca un incantesimo a Draco Malfoy. Harry {gli} lanca un incantesimo.",
+    topics: [
+      "Direkte und indirekte Personalpronomen"
+    ],
+    instruction: "Find the correct direct or indirect pronoun !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/4493325008d34b7bf8cd6813cd5c1619/d6/f7/rxoB9uCZcx3rUaiB.jpg",
+    gapText: "Hermione spiega a Harry e Ron come si pronuncia quest'incantesimo. Hermione {lo} spiega a {loro}.",
+    topics: [
+      "Direkte und indirekte Personalpronomen"
+    ],
+    instruction: "Find the correct direct or indirect pronoun !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/c3a19a0b747a76e98651f2b9a3cca5ff/df/d7/bF94xAjupFFMoLYzh.jpg",
+    gapText: "Il famoso giocatore di Quidditch Victor Krum ha chiuso a Hermione se {gli} permetterebbe di andare con {lei} a la fiesta.",
+    topics: [
+      "Direkte und indirekte Personalpronomen"
+    ],
+    instruction: "Find the correct direct or indirect pronoun !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/c3a19a0b747a76e98651f2b9a3cca5ff/56/c1/qb1cfUCF378h.jpg",
+    gapText: "Nelle lezione di pozioni Hermione è seduta vicino a Neville e {lo} aiuta sempre con i suoi pozioni.",
+    topics: [
+      "Direkte und indirekte Personalpronomen"
+    ],
+    instruction: "Find the correct direct or indirect pronoun !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/d6b0ce929193df3c242ac34b5654d2ce/f0/71/474tKmgQdL81c6.jpg",
+    gapText: "Hermione va in un ristorante, ordena una biera e {la} beve.",
+    topics: [
+      "Direkte und indirekte Personalpronomen"
+    ],
+    instruction: "Find the correct direct or indirect pronoun !"
   }
 ],
     };

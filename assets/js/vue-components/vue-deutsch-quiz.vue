@@ -667,6 +667,114 @@ export default {
     type: "gapText",
     imageUrl: "https://static.klipy.com/ii/4493325008d34b7bf8cd6813cd5c1619/fe/fe/vFr4uKPN54zFCG4.jpg",
     gapText: "Ronaldo muss {erst} trainieren, bevor er mit seiner Frau essen gehen kann."
+  },
+  {
+    topics: [
+      "Fragen,bitten,verlangen oder erfordern"
+    ],
+    instruction: "Fragen,bitten,verlangen oder erfodern?",
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/bonitamuyer.jpg",
+    gapText: "Es {erfordert} Mut, diese Frau um ein Date zu {bitten}. Man kann sie höflich {fragen}, ob sie heute Abend Zeit hat, um Essen zu gehen. Aber man kann nicht von ihr {verlangen}, dass sie Ja sagt."
+  },
+  {
+    topics: [
+      "(Sich) fühlen,riechen,stinken,spüren,fühlen"
+    ],
+    instruction: "(Sich) fühlen,riechen,stinken oder spüren?",
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/bonitamuyer.jpg",
+    gapText: "Lisa {fühlt} sich gut. Um nicht zu {stinken}, hat sie gerade eben geduscht und ihre Haare {riechen} noch nach dem Shampoo. Sie {spürt} das Verlangen, ihr Shampoo ihrer Freundin zu empfehlen."
+  },
+  {
+    topics: [
+      "Stellen oder stehen"
+    ],
+    instruction: "Stellen oder stehen ?",
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/bonitamuyer.jpg",
+    gapText: "Die Frau {steht} vor der Kamera. "
+  },
+  {
+    topics: [
+      "Stellen oder stehen"
+    ],
+    instruction: "Stellen oder stehen ?",
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/bonitamuyer.jpg",
+    gapText: "Die Frau {stellt} sich vor die Kamera."
+  },
+  {
+    topics: [
+      "Legen oder liegen"
+    ],
+    instruction: "Legen oder liegen ?",
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/e293a233a303a98e471f78d04e13a1b0/46/8f/xenr5clK6aiVBiPl5q.jpg",
+    gapText: "Nach seiner Rede {legt|liegt} der Politiker das Mikrofon zurück auf den Tisch."
+  },
+  {
+    topics: [
+      "Legen oder liegen"
+    ],
+    instruction: "Legen oder liegen ?",
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/35ccce3d852f7995dd2da910f2abd795/a9/21/6XGGFLgv.jpg",
+    gapText: "Die Antwort {liegt|legt} dem Primer Minister auf der Zunge."
+  },
+  {
+    topics: [
+      "Stellen oder stehen"
+    ],
+    instruction: "Stellen oder stehen ?",
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/935d7ab9d8c6202580a668421940ec81/46/51/7PvlbZzh.jpg",
+    gapText: "Sein Gegner {steht|stellt} vor ihm."
+  },
+  {
+    topics: [
+      "Stellen oder stehen"
+    ],
+    instruction: "Stellen oder stehen ?",
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/4493325008d34b7bf8cd6813cd5c1619/13/55/kpmTcUXmyB0mkifX.jpg",
+    gapText: "Der Trainer hat die Trinkflaschen in die Ecke {gestellt|gestanden}."
+  },
+  {
+    topics: [
+      "Setzen oder sitzen"
+    ],
+    instruction: "Setzen oder sitzen ?",
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/bonitamuyer.jpg",
+    gapText: "Die Frau {setzt|sitzt} sich auf den Stuhl."
+  },
+  {
+    topics: [
+      "Setzen oder sitzen"
+    ],
+    instruction: "Setzen oder sitzen ?",
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/bonitamuyer.jpg",
+    gapText: "Die Frau {sitzt|setzt} auf dem Stuhl."
+  },
+  {
+    topics: [
+      "gehängt oder gehangen"
+    ],
+    instruction: "Gehängt oder gehangen",
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/bonitamuyer.jpg",
+    gapText: "Die Frau hat ihre Jacke in den Schrank {gehängt|gehangen}."
+  },
+  {
+    topics: [
+      "gehängt oder gehangen"
+    ],
+    instruction: "Gehängt oder gehangen",
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/bonitamuyer.jpg",
+    gapText: "Die Jacke der Frau ist im Schrank {gehangen|gehängt}."
   }
 ],
     };
