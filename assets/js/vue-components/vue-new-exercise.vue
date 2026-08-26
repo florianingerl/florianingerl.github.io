@@ -63,8 +63,12 @@
   <button v-if="!editMode" @click="calcRandomImage">Change image</button>
   -->
   Search:<input type="text" v-model="searchString"/><button v-if="!editMode" @click="getGifUrlFromKlipy">Change image</button>
-    <button class="btn-primary btn" @click="newExerciseClicked">Save</button>
-    <button class="btn-primary btn" @click="$emit('cancelClicked')">Cancel</button>
+  
+  <div class="row justify-center">
+     <button class="col btn-primary btn" @click="newExerciseClicked">Save</button>
+    <button class="col btn-primary btn" @click="$emit('cancelClicked')">Cancel</button>
+  </div>
+ 
 </div>
 
     

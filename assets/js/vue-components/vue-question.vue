@@ -56,11 +56,24 @@ export default {
   watch: {
     question(newQuestion, oldQuestion){
       console.log("The watcher was called!");
-      this.question2 = newQuestion;
+      this.updateQuestion();
       
     }
   },
   methods: {
+    updateQuestion(){
+      this.question2 = this.question;
+    this.question2.options.forEach( option => { option.checked = false; });
+    this.shuffle(this.question2.options);
+    },
+shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+},
+
     getOptionsForLg(){
       if(this.lg == undefined || this.lg==='de' || this.lg === 'en' && this.question2.optionsEn == undefined || this.lg === 'fr' && this.question2.optionsFr == undefined){
         console.log("this.question2.options is returned!");
@@ -103,27 +116,7 @@ export default {
   },
   mounted() {
     console.log('Vue Question Component mounted');
-    this.question2 = this.question;
-    console.log('In mounted function of question');
-    console.log(this.question2);
-    console.log(this.lg);
-
-    if(!this.question2){
-      this.question2 = 
-      {
-		question: "Das ist eine Test-Frage aus vue-question.vue?",
-		imageUrl: "assets/img/rawfood/brokolisalat.JPG",
-		type: "multiple choice",
-		options: [{option:"Süßlupinen", correct: false },
-     {option:"Brokoli", correct: false }, 
-     {option:"Karotte", correct: false },
-      {option:"Löwenzahn", correct: true },
-       {option:"Weizen", correct: false }]
-	    };
-    }
-
-    this.question2.options.forEach( option => { option.checked = false; });
-    
+    this.updateQuestion();
   }
 };
 </script>
