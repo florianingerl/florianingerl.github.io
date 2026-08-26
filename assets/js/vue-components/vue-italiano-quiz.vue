@@ -1157,6 +1157,51 @@ export default {
       "Comparatif"
     ],
     instruction: "Fill in the gaps !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/jugadordefutbol.jpg",
+    gapText: "Ieri Ivan Botella ha giocato tanto bene come se {fosse|era} il fratello di Lionel Messi.",
+    topics: [
+      "Konjunktiv oder Indikativ"
+    ],
+    instruction: "Konjunktiv oder Indikativ ?"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/c3a19a0b747a76e98651f2b9a3cca5ff/b4/18/9XnvbbLbLGQ4z3E8XG1.jpg",
+    gapText: "La bacchetta magica scelglie il mago quasi {potesse|può} pensare se stesso.",
+    topics: [
+      "Konjunktiv oder Indikativ"
+    ],
+    instruction: "Konjunktiv oder Indikativ ?"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/c3a19a0b747a76e98651f2b9a3cca5ff/b4/18/9XnvbbLbLGQ4z3E8XG1.jpg",
+    gapText: "Communque {sia|è} la bacchetta magica che sceglie Harry, Harry ha abbastanza soldi nel banco Gringotts per comprarla.",
+    topics: [
+      "Konjunktiv oder Indikativ"
+    ],
+    instruction: "Konjunktiv oder Indikativ ?"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/e293a233a303a98e471f78d04e13a1b0/27/8b/obhjelvhefyai5I4.jpg",
+    gapText: "A Harry non piace il modo in cui lo {pune|puna|punisse} il professore Piton.",
+    topics: [
+      "Konjunktiv oder Indikativ"
+    ],
+    instruction: "Konjunktiv oder Indikativ ?"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/e293a233a303a98e471f78d04e13a1b0/27/8b/obhjelvhefyai5I4.jpg",
+    gapText: "Harry fa i compiti di pocioni come gli {ha|avesse} detto il professore Piton.",
+    topics: [
+      "Konjunktiv oder Indikativ"
+    ],
+    instruction: "Konjunktiv oder Indikativ ?"
   }
 ],
     };
