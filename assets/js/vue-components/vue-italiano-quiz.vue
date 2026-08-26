@@ -1202,6 +1202,105 @@ export default {
       "Konjunktiv oder Indikativ"
     ],
     instruction: "Konjunktiv oder Indikativ ?"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/d6b0ce929193df3c242ac34b5654d2ce/58/88/8XwmLyfZNTESBkOMKNla.jpg",
+    gapText: "Harry teme che il suo gufo Edvige non {ritorni|ritorna}.",
+    topics: [
+      "Konjunktiv oder Indikativ"
+    ],
+    instruction: "Konjunktiv oder Indikativ ?"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/4493325008d34b7bf8cd6813cd5c1619/7b/df/4SVr8VXKG9kPwrQEX.jpg",
+    gapText: "Che i gati non {sappiano|sanno} leggere, tutti lo sanno.",
+    topics: [
+      "Konjunktiv oder Indikativ"
+    ],
+    instruction: "Konjunktiv oder Indikativ ?"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/4493325008d34b7bf8cd6813cd5c1619/7b/df/4SVr8VXKG9kPwrQEX.jpg",
+    gapText: "Tutti sanno che i gati non {sanno|sappiano} leggere.",
+    topics: [
+      "Konjunktiv oder Indikativ"
+    ],
+    instruction: "Konjunktiv oder Indikativ ?"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/4493325008d34b7bf8cd6813cd5c1619/c1/87/dqUExlIf8aYK1KINdbz9.jpg",
+    gapText: "Tutti sanno che i cani {sono|fossero} i megliori amici dei humani.",
+    topics: [
+      "Konjunktiv oder Indikativ"
+    ],
+    instruction: "Konjunktiv oder Indikativ ?"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/4493325008d34b7bf8cd6813cd5c1619/c1/87/dqUExlIf8aYK1KINdbz9.jpg",
+    gapText: "Che i cani {siano|sonno} i melgiori amici dei humani, tutti lo sanno.",
+    topics: [
+      "Konjunktiv oder Indikativ"
+    ],
+    instruction: "Konjunktiv oder Indikativ ?"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/4493325008d34b7bf8cd6813cd5c1619/c1/87/dqUExlIf8aYK1KINdbz9.jpg",
+    gapText: "Nessuno pensava che {posso|possa} insegnare al mio cane come stare in piedi.",
+    topics: [
+      "Konjunktiv oder Indikativ"
+    ],
+    instruction: "Konjunktiv oder Indikativ ?"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/4493325008d34b7bf8cd6813cd5c1619/c1/87/dqUExlIf8aYK1KINdbz9.jpg",
+    gapText: "Che {possa|posso} insegnare al mio cane a stare in piedi, nessuno lo pensava.",
+    topics: [
+      "Konjunktiv oder Indikativ"
+    ],
+    instruction: "Konjunktiv oder Indikativ ?"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/d7aec6f6f171607374b2065c836f92f4/5b/cb/ObR6SQGxZjE7V.jpg",
+    gapText: "Nel supermercato, mi hanno affermato con certezza che le patate {sono|siamo} di qualità bio.",
+    topics: [
+      "Konjunktiv oder Indikativ"
+    ],
+    instruction: "Konjunktiv oder Indikativ ?"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/d7aec6f6f171607374b2065c836f92f4/5b/cb/ObR6SQGxZjE7V.jpg",
+    gapText: "Che le patate {siamo|sono} di qualità bio, mi lo hanno affermato con certezza nel supermercato.",
+    topics: [
+      "Konjunktiv oder Indikativ"
+    ],
+    instruction: "Konjunktiv oder Indikativ ?"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/feea28532d9709f5128558f418c779d0/dc/22/XNuoBiu82NCK7ckAG.jpg",
+    gapText: "Che {sia|sei} un pedone di mele, lo ho intuito perché ci sono sempre mele vicino di te.",
+    topics: [
+      "Konjunktiv oder Indikativ"
+    ],
+    instruction: "Konjunktiv oder Indikativ ?"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/feea28532d9709f5128558f418c779d0/dc/22/XNuoBiu82NCK7ckAG.jpg",
+    gapText: "Ho intuito che {sei|sia} un pedone di mele perché si sono sempre mele vicino di te.",
+    topics: [
+      "Konjunktiv oder Indikativ"
+    ],
+    instruction: "Konjunktiv oder Indikativ ?"
   }
 ],
     };
