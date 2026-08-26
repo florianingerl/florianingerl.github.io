@@ -49,7 +49,6 @@ createApp({
 }).mount('#english-quiz');
 
 
-
 createApp({
   components: {
     VueSerEstarQuiz : Vue.defineAsyncComponent(() =>

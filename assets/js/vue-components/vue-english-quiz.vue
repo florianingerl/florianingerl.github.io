@@ -32,10 +32,7 @@ export default {
 			gapText: "The woman {is|am|are} beautiful."
 		},
 
-		
-
-			{
-				{
+		{
 			topics: ["Conjugation of to be"],
 		    instruction: "Conjugate the verb to be !",
 			type: 'gapText',
@@ -45,10 +42,6 @@ export default {
 
 	
 		
-
-
-
-
 
 ]
     };
