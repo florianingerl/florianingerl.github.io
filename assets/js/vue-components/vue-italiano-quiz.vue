@@ -1301,6 +1301,42 @@ export default {
       "Konjunktiv oder Indikativ"
     ],
     instruction: "Konjunktiv oder Indikativ ?"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/935d7ab9d8c6202580a668421940ec81/71/80/ECiCydNJ.jpg",
+    gapText: "La squadra in verde {ha da} sbrigarsi perché {ha da} segnare un gol nei cinque minuti que rimanno.",
+    topics: [
+      "Obligation personnel et impersonnel"
+    ],
+    instruction: "Avere da + infinitiv "
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/d6b0ce929193df3c242ac34b5654d2ce/33/4e/cz2ZXNVTD0edMr29IOG.jpg",
+    gapText: "{Ho da} amegliorarmi molto per diventare un giocatore nella squadra di Juventus Turin.",
+    topics: [
+      "Obligation personnel et impersonnel"
+    ],
+    instruction: "Avere da + infinitiv "
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/e293a233a303a98e471f78d04e13a1b0/27/8b/obhjelvhefyai5I4.jpg",
+    gapText: "Si {trova|trovanno} un professore in Hogwarts che odia Harry.",
+    topics: [
+      "Si = On"
+    ],
+    instruction: "Choisis la forme correcte !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/d6b0ce929193df3c242ac34b5654d2ce/9e/a8/V4C87aZUTBT3t7Ku.jpg",
+    gapText: "Si {è giovani|sono giovani|è giovane}, si ha molta energia.",
+    topics: [
+      "Si = On"
+    ],
+    instruction: "Choisis la forme correcte !"
   }
 ],
     };
