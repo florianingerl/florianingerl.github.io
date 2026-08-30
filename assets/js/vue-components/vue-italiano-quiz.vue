@@ -1337,6 +1337,87 @@ export default {
       "Si = On"
     ],
     instruction: "Choisis la forme correcte !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/jugadordefutbol.jpg",
+    gapText: "{Ogni} giocatore di questa squadra gioca bene.",
+    topics: [
+      "Ogni,Ognuno/a,Qualche,Alcuni/e"
+    ],
+    instruction: "Ogni,Ognuno/a,Qualche,Alcuni/e"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/d6b0ce929193df3c242ac34b5654d2ce/9e/a8/V4C87aZUTBT3t7Ku.jpg",
+    gapText: "{Alcuni} Babbani odiano i maghi, come por esempio i parenti di Harry.",
+    topics: [
+      "Ogni,Ognuno/a,Qualche,Alcuni/e"
+    ],
+    instruction: "Ogni,Ognuno/a,Qualche,Alcuni/e"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/4493325008d34b7bf8cd6813cd5c1619/ac/b9/zaiDabhmV0D8zJaZxA.jpg",
+    gapText: "{Qualche} gatto sa come stare in piedi.",
+    topics: [
+      "Ogni,Ognuno/a,Qualche,Alcuni/e"
+    ],
+    instruction: "Ogni,Ognuno/a,Qualche,Alcuni/e"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/4493325008d34b7bf8cd6813cd5c1619/ac/b9/zaiDabhmV0D8zJaZxA.jpg",
+    gapText: "{Ognuno} dei miei gatti sa come stare in piedi perché gli l'ho insegnato.",
+    topics: [
+      "Ogni,Ognuno/a,Qualche,Alcuni/e"
+    ],
+    instruction: "Ogni,Ognuno/a,Qualche,Alcuni/e"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/4493325008d34b7bf8cd6813cd5c1619/ac/b9/zaiDabhmV0D8zJaZxA.jpg",
+    gapText: "Può {qualcuno} occuparsi dei  miei gatti quando sarò in vacanze ?",
+    topics: [
+      "Ogni,Ognuno/a,Qualche,Alcuni/e"
+    ],
+    instruction: "Ogni,Ognuno/a,Qualche,Alcuni/e,Qualcuno"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/4493325008d34b7bf8cd6813cd5c1619/ac/b9/zaiDabhmV0D8zJaZxA.jpg",
+    gapText: "{Chi|Che} si occuparà dei miei gatti quando sarò in vacanze ?",
+    topics: [
+      "Pronoms,adjectifs et adverbes interrogatifs"
+    ],
+    instruction: "Choisit le pronom, adjectif ou adverbes interrogatif qui convient !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/4493325008d34b7bf8cd6813cd5c1619/ac/b9/zaiDabhmV0D8zJaZxA.jpg",
+    gapText: "{Quanti|Quante} gatti hai ? Soltanto due.",
+    topics: [
+      "Pronoms,adjectifs et adverbes interrogatifs"
+    ],
+    instruction: "Choisit le pronom, adjectif ou adverbes interrogatif qui convient !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/4493325008d34b7bf8cd6813cd5c1619/ac/b9/zaiDabhmV0D8zJaZxA.jpg",
+    gapText: "{Come|quando} hai insegnato ai tuoi gatti a stare in piedi ?",
+    topics: [
+      "Pronoms,adjectifs et adverbes interrogatifs"
+    ],
+    instruction: "Choisit le pronom, adjectif ou adverbes interrogatif qui convient !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/4493325008d34b7bf8cd6813cd5c1619/ac/b9/zaiDabhmV0D8zJaZxA.jpg",
+    gapText: "{Quanto|qualche} tiempo ci hanno messo i tuoi gatti per imparare a stare in piedi ?",
+    topics: [
+      "Pronoms,adjectifs et adverbes interrogatifs"
+    ],
+    instruction: "Choisit le pronom, adjectif ou adverbes interrogatif qui convient !"
   }
 ],
     };

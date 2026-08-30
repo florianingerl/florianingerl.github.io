@@ -775,6 +775,60 @@ export default {
     type: "gapText",
     imageUrl: "assets/img/spanisch/bonitamuyer.jpg",
     gapText: "Die Jacke der Frau ist im Schrank {gehangen|gehängt}."
+  },
+  {
+    topics: [
+      "Perfekt"
+    ],
+    instruction: "Konjugiere im Perfekt !",
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/d7aec6f6f171607374b2065c836f92f4/89/ec/jk9zROLk7STQJZ70UXD.jpg",
+    gapText: "Pawel {ist} schonmal in einem ähnlichen LKW gefahren."
+  },
+  {
+    topics: [
+      "Perfekt"
+    ],
+    instruction: "Konjugiere im Perfekt !",
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/d7aec6f6f171607374b2065c836f92f4/ee/31/h33ZeOCjrSAbLuq.jpg",
+    gapText: "Der alte Simpson {ist} einen Marathon gelaufen."
+  },
+  {
+    topics: [
+      "Perfekt"
+    ],
+    instruction: "Konjugiere im Perfekt !",
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/35ccce3d852f7995dd2da910f2abd795/67/03/WDOJDAFb.jpg",
+    gapText: "Die Affen {sind} im Pool geschwommen."
+  },
+  {
+    topics: [
+      "Perfekt"
+    ],
+    instruction: "Konjugiere im Perfekt !",
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/35ccce3d852f7995dd2da910f2abd795/67/03/WDOJDAFb.jpg",
+    gapText: "Die Affen {haben} im Pool zusammen eine tolle Zeit gehabt."
+  },
+  {
+    topics: [
+      "Perfekt"
+    ],
+    instruction: "Konjugiere im Perfekt !",
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/d7aec6f6f171607374b2065c836f92f4/ee/31/h33ZeOCjrSAbLuq.jpg",
+    gapText: "Der alte Simpson {hat} während dem ganzen Marathon überhaupt nichts getrunken."
+  },
+  {
+    topics: [
+      "Perfekt"
+    ],
+    instruction: "Konjugiere im Perfekt !",
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/d7aec6f6f171607374b2065c836f92f4/89/ec/jk9zROLk7STQJZ70UXD.jpg",
+    gapText: "Die Fahrer beider Wagen {haben} viel Benzin verbraucht."
   }
 ],
     };
