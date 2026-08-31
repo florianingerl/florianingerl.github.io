@@ -1418,6 +1418,87 @@ export default {
       "Pronoms,adjectifs et adverbes interrogatifs"
     ],
     instruction: "Choisit le pronom, adjectif ou adverbes interrogatif qui convient !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/jugadordefutbol.jpg",
+    gapText: "{Vorrei} (io-volere) essere un bravo giocatore di calcio ma non lo sono.",
+    topics: [
+      "Conditionnel"
+    ],
+    instruction: "Conjugez le verbe en conditionnel !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/d6b0ce929193df3c242ac34b5654d2ce/9e/a8/V4C87aZUTBT3t7Ku.jpg",
+    gapText: "Se fosse un mago, {potrei} (potere-io) volare con la mia scopa in Italia per le vacanze.",
+    topics: [
+      "Conditionnel"
+    ],
+    instruction: "Conjugez le verbe en conditionnel !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/35ccce3d852f7995dd2da910f2abd795/aa/ca/q4qYj2kU.jpg",
+    gapText: "Miei figli {si annegarebbero} (annegarsi) nell'agua perché non sanno nuoare.",
+    topics: [
+      "Conditionnel"
+    ],
+    instruction: "Conjugez le verbe en conditionnel !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/935d7ab9d8c6202580a668421940ec81/e8/c1/xwwRhHkf.jpg",
+    gapText: "Al posto di quest'uomo, {farei} (fare-io) una dieta per perdere peso.",
+    topics: [
+      "Conditionnel"
+    ],
+    instruction: "Conjugez le verbe en conditionnel !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/935d7ab9d8c6202580a668421940ec81/e8/c1/xwwRhHkf.jpg",
+    gapText: "{Avrei} (avere-io) voglia di dargli consigli per diventare meno grosso.",
+    topics: [
+      "Conditionnel"
+    ],
+    instruction: "Conjugez le verbe en conditionnel !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/935d7ab9d8c6202580a668421940ec81/e8/c1/xwwRhHkf.jpg",
+    gapText: "Se {fossi} (essere-io) tanto grosso, non {potrei} (potere-io) più fare un giro in bicicletta lungo.",
+    topics: [
+      "Phrases hypothétiques"
+    ],
+    instruction: "Conjugez le verbe en conditionnel !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/935d7ab9d8c6202580a668421940ec81/e8/c1/xwwRhHkf.jpg",
+    gapText: "Se {avessi} (avere-io) bevuto molto Coca Cola nella mia vità, {sarei} (essere-io) diventato tanto grosso come quest'uomo.",
+    topics: [
+      "Phrases hypothétiques"
+    ],
+    instruction: "Conjugez le verbe en conditionnel !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/935d7ab9d8c6202580a668421940ec81/e8/c1/xwwRhHkf.jpg",
+    gapText: "Quest'uomo grosso credeva che {dansasse} (dansare) bene.",
+    topics: [
+      "Subjonctif imparfait"
+    ],
+    instruction: "Conjugez le verbe au subjonctif imparfait !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/935d7ab9d8c6202580a668421940ec81/e8/c1/xwwRhHkf.jpg",
+    gapText: "Quest'uomo grosso pensava che nessuno lo {vedesse} (vedere) mentre il suo allenamento di danza.",
+    topics: [
+      "Subjonctif imparfait"
+    ],
+    instruction: "Conjugez le verbe au subjonctif imparfait !"
   }
 ],
     };

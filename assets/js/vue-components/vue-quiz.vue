@@ -131,6 +131,66 @@ export default {
   },
 
   methods: {
+    addExercisesFromDB(){
+
+const client = axios.create({
+  baseURL: 'http://localhost:8080',
+});
+
+(async () => {
+  const config = {
+    headers: {
+      Accept: 'application/json',
+    },
+  };
+
+  try {
+    const response = await client.get('/api/exercise', config);
+
+    console.log(response);
+
+    const exercises = response.data;
+
+    exercises.forEach((exercise) => {
+      console.log(exercise.gapText);
+    });
+
+    this.questions.push(...exercises);
+  } catch (err) {
+    console.error(err);
+  }
+})();
+
+    },
+
+    deleteExerciseFromDB(exercise){
+      const client = axios.create({
+  baseURL: 'http://localhost:8080',
+});
+
+async function deleteExercise(id) {
+  try {
+    await client.delete(`/api/exercise/${encodeURIComponent(id)}`);
+
+    console.log('Exercise deleted successfully');
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      console.error(
+        'Delete failed:',
+        error.response?.status,
+        error.response?.data
+      );
+    } else {
+      console.error('Unexpected error:', error);
+    }
+  }
+}
+
+// Example:
+const exerciseId = exercise._id;
+deleteExercise(exerciseId);
+    },
+
     deleteExerciseClicked(){
       const confirm = window.confirm("Do you really want to delete this question?");
       if(!confirm){
@@ -138,6 +198,12 @@ export default {
       }
       let j = this.questions.findIndex(q => q === this.displayedQuestions[this.i] );
       if(j != -1){
+
+        console.log("Exercise to be deleted now:");
+        console.log(this.questions[j]);
+
+        this.deleteExerciseFromDB(this.questions[j]);
+
         this.questions.splice(j,1);
       }
     },
@@ -304,33 +370,8 @@ return replaced
   mounted() {
     console.log('Vue Questions Component mounted');
 
-    if(!this.questions){
-      this.questions = [
-             {
-		question: "Das ist eine Test-Frage aus vue-quiz.vue?",
-		imageUrl: "assets/img/rawfood/brokolisalat.JPG",
-		type: "multiple choice",
-		options: [{option:"Süßlupinen", correct: false },
-     {option:"Brokoli", correct: false }, 
-     {option:"Karotte", correct: false },
-      {option:"Löwenzahn", correct: true },
-       {option:"Weizen", correct: false }]
-	    },
+    this.addExercisesFromDB();
 
-         {
-		question: "Das ist die zweite Test-Frage aus vue-quiz.vue!",
-		imageUrl: "assets/img/rawfood/brokolisalat.JPG",
-		type: "multiple choice",
-		options: [{option:"Süßlupinen", correct: false },
-     {option:"Brokoli", correct: false }, 
-     {option:"Karotte", correct: false },
-      {option:"Löwenzahn", correct: true },
-       {option:"Weizen", correct: false }]
-	    }
-
-       ];
-
-    }
     this.calcAllTopics();
 
   }

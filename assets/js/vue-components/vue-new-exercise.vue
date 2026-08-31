@@ -79,6 +79,8 @@ import VueMCGaps from "./vue-mc-gaps.vue";
 import VueQuestion from "./vue-question.vue";
 import VueImage from "./vue-image.vue";
 
+//import axios from 'axios';
+
 
 export default {
   
@@ -110,8 +112,8 @@ export default {
     },
     newTopic: "",
     newOption: "",
-    allOptions: ["Farah","Hermann", "Flori"],
-    searchString: "Harry Potter",
+    allOptions: [],
+    searchString: "Duck",
     searchStringChanged: true,
     imageUrls: [],
     k: 0,
@@ -200,17 +202,46 @@ url.searchParams.set("per_page",this.per_page);
        this.newExercise.imageUrl = this.imageUrls[this.k]; 
     },
 
+    insertNewExerciseIntoDB(){
+      const client = axios.create({
+  baseURL: 'http://localhost:8080',
+});
+
+(async () => {
+  const config = {
+    headers: {
+      Accept: 'application/json',
+    },
+  };
+
+  try {
+
+    const response = await client.post('/api/exercise', this.newExercise, config);
+
+    console.log(response.data);
+    console.log(response.status);
+    console.log(response.data.json);
+    console.log(response.data.message);
+  } catch (err) {
+    console.log(err);
+  }
+})();
+    },
+
     newExerciseClicked(){
       console.log("The button newExercise was clicked!");
       //TODO: Should just emit a signal , so the new exercise is inserted into the quiz
-      if(this.newExercise.type=='multipleChoice'){
+      console.log(this.newExercise );
+
+      //TODO insert the exercise into the database
+      //this.insertNewExerciseIntoDB();
+
+       if(this.newExercise.type=='multipleChoice'){
         this.newExercise.options = [];
         this.allOptions.forEach( (o, i) => {
           this.newExercise.options.push( { option: o , correct: i == 0 } );
         } );
       }
-
-      console.log(this.newExercise );
 
       try {
       this.$emit('newExerciseCreated', 

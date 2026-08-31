@@ -829,6 +829,78 @@ export default {
     type: "gapText",
     imageUrl: "https://static.klipy.com/ii/d7aec6f6f171607374b2065c836f92f4/89/ec/jk9zROLk7STQJZ70UXD.jpg",
     gapText: "Die Fahrer beider Wagen {haben} viel Benzin verbraucht."
+  },
+  {
+    topics: [
+      "Mögen oder gern machen"
+    ],
+    instruction: "Mögen oder gern machen",
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/d6b0ce929193df3c242ac34b5654d2ce/33/4e/cz2ZXNVTD0edMr29IOG.jpg",
+    gapText: "Ali dribbelt gerne. {Ali mag Dribbeln}"
+  },
+  {
+    topics: [
+      "Mögen oder gern machen"
+    ],
+    instruction: "Traduis ! La femme aime se regarder dans le miroir.",
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/d7aec6f6f171607374b2065c836f92f4/42/88/qxtto1Rv07.jpg",
+    gapText: "Das Mädchen mag Schokolade. (essen) { Das Mädchen isst gerne Schokolade.}\n"
+  },
+  {
+    topics: [
+      "Mögen oder gern machen"
+    ],
+    instruction: "Traduis ! La femme aime se regarder dans le miroir.",
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/8ce8357c78ea940b9c2015daf05ce1a5/3a/bb/6yzLkao7LkD2sWKS4.jpg",
+    gapText: "Er mag Computerspiele. (spielen) {Er spielt gern Computerspiele.}"
+  },
+  {
+    topics: [
+      "Mögen oder gern machen"
+    ],
+    instruction: "Dis-le d'une autre manière avec gerne !",
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/2711dd8a75a85be822d136ec94899b3f/00/dd/cczqaY3azsTw.jpg",
+    gapText: "Die Katze mag Komiks. (lesen) {Die Katze liest gerne Komiks.}"
+  },
+  {
+    topics: [
+      "Mögen oder gern machen"
+    ],
+    instruction: "Dis-le d'une autre manière avec gerne ! Suject + verb + adverbe (gern) + ",
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/d7aec6f6f171607374b2065c836f92f4/3e/ec/NC2TNM6yoJZ8.jpg",
+    gapText: "Der Mann mag Tennis. (spielen) { Er spielt gerne Tennis.}"
+  },
+  {
+    topics: [
+      "Mögen oder gern machen"
+    ],
+    instruction: "Dis-le d'une autre manière avec gerne ! Suject + verb + adverbe (gern) + nom",
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/35ccce3d852f7995dd2da910f2abd795/39/7e/aIfSn7Ul.jpg",
+    gapText: "Die Männer mögen Basketball. (spielen) {Die Männer spielen gerne Basketball.}"
+  },
+  {
+    topics: [
+      "Mögen oder gern machen"
+    ],
+    instruction: "Dis-le d'une autre manière avec gerne ! Suject + verb + adverbe (gern) + nom",
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/f87f46a2c5aeaeed4c68910815f73eaf/e5/b1/OF2DHkRu.jpg",
+    gapText: "Die Frau mag Volleyball. (spielen) { Die Frau spielt gerne Volleyball.}"
+  },
+  {
+    topics: [
+      "Mögen oder gern machen"
+    ],
+    instruction: "Dis-le d'une autre manière avec gerne ! Suject + verb + adverbe (gern) + nom",
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/4493325008d34b7bf8cd6813cd5c1619/e8/54/O0PGx8sQrT5XsRstd.jpg",
+    gapText: "Der Mann mag Fahrrad fahren. {Der Mann fährt gerne Fahrrad.}"
   }
 ],
     };
