@@ -1499,6 +1499,114 @@ export default {
       "Subjonctif imparfait"
     ],
     instruction: "Conjugez le verbe au subjonctif imparfait !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "assets/img/spanisch/jugadordefutbol.jpg",
+    gapText: "{Questo} giocatore di calcio si chiama Ivan Botella.",
+    topics: [
+      "Adjectifs demonstratifs"
+    ],
+    instruction: "Choisis l'adjectif demonstratif qui convient !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/935d7ab9d8c6202580a668421940ec81/60/53/FWY7kkq3.jpg",
+    gapText: "{Quest'} uomo mangia troppo. È la ragione per cui è tanto grosso.",
+    topics: [
+      "Adjectifs demonstratifs"
+    ],
+    instruction: "Choisis l'adjectif demonstratif qui convient !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/4493325008d34b7bf8cd6813cd5c1619/49/d4/q0Iv4WXYtiLK7GQxj92.jpg",
+    gapText: "{Quel} gatto che è su una spaggia in Italia e quindi molto lontano di noi mangia troppo.",
+    topics: [
+      "Adjectifs demonstratifs"
+    ],
+    instruction: "Choisis l'adjectif demonstratif qui convient !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/4493325008d34b7bf8cd6813cd5c1619/6c/03/rNPN95GcTw1jPeSWO.jpg",
+    gapText: "{Questi} gatti sono sopresi di qualcosa.",
+    topics: [
+      "Adjectifs demonstratifs"
+    ],
+    instruction: "Choisis l'adjectif demonstratif qui convient !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/4493325008d34b7bf8cd6813cd5c1619/6c/03/rNPN95GcTw1jPeSWO.jpg",
+    gapText: "Puoì comprare {quei} gatti in un negozio in Saudi Arabia.",
+    topics: [
+      "Adjectifs demonstratifs"
+    ],
+    instruction: "Choisis l'adjectif demonstratif qui convient !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/4493325008d34b7bf8cd6813cd5c1619/66/80/KwFIdLizYqjNlekRNi9.jpg",
+    gapText: "Vedo {quello} gnomo dalla mia camera nel tercer piso.",
+    topics: [
+      "Adjectifs demonstratifs"
+    ],
+    instruction: "Choisis l'adjectif demonstratif qui convient !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/d7aec6f6f171607374b2065c836f92f4/d2/e0/swcvokAVvgDG7.jpg",
+    gapText: "{Quegli} gnomi si nascondono perché hanno paura dei lobi fuori.",
+    topics: [
+      "Adjectifs demonstratifs"
+    ],
+    instruction: "Choisis l'adjectif demonstratif qui convient !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/d6b0ce929193df3c242ac34b5654d2ce/97/c2/VXx5Mz5bIUUJFoc57.jpg",
+    gapText: "{Quel} (lontano) campello fa l'uomo di mezzo metro più alto.",
+    topics: [
+      "Adjectifs demonstratifs"
+    ],
+    instruction: "Choisis l'adjectif demonstratif qui convient !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/2711dd8a75a85be822d136ec94899b3f/56/7c/jB4tEZHdsm0XuDD.jpg",
+    gapText: "L'uomo ha trovato {quei} (lontani) capelli e perché non può decidersi quale mettersi, si è messo tutti.",
+    topics: [
+      "Adjectifs demonstratifs"
+    ],
+    instruction: "Choisis l'adjectif demonstratif qui convient !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/2711dd8a75a85be822d136ec94899b3f/39/ee/YH1e0sDwKTJ7TmU0z3.jpg",
+    gapText: "{Lo} psichologo pensa ai suoi clienti.",
+    topics: [
+      "L'article défini"
+    ],
+    instruction: "Choisis le bon l'article defini !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/e293a233a303a98e471f78d04e13a1b0/a0/77/4O0jRrkQLpzWGjP0.jpg",
+    gapText: "{Gli} amici si abrazano.",
+    topics: [
+      "L'article défini"
+    ],
+    instruction: "Choisis le bon l'article defini !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/d7aec6f6f171607374b2065c836f92f4/fe/ba/ZGy8foIzhE1d.jpg",
+    gapText: "Bob è molto orguloso de{le} sue nuove scope.",
+    topics: [
+      "L'article défini"
+    ],
+    instruction: "Choisis le bon l'article defini !"
   }
 ],
     };
