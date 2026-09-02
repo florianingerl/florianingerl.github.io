@@ -1607,6 +1607,87 @@ export default {
       "L'article défini"
     ],
     instruction: "Choisis le bon l'article defini !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/cfb42878805dcb270f51b28683e7455a/cc/c0/PYog8aVPbhsF.jpg",
+    gapText: "Un tavolo è {di} legno , ma no un pallone.",
+    topics: [
+      "Prépositions"
+    ],
+    instruction: "Choose the correct preposition !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/d7aec6f6f171607374b2065c836f92f4/4c/3a/MSOjhtltGJVSwhXs6z.jpg",
+    gapText: "Questa donna si allena {dalle} sei {alle} sette {per} la mattina.",
+    topics: [
+      "Prépositions"
+    ],
+    instruction: "Choose the correct preposition !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/35ccce3d852f7995dd2da910f2abd795/2a/bf/aqRSxJVP.jpg",
+    gapText: "Il gatto {con} il capello rosso abita {a} Parigi.",
+    topics: [
+      "Prépositions"
+    ],
+    instruction: "Choose the correct preposition !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/c3a19a0b747a76e98651f2b9a3cca5ff/21/47/i4vbQNO8pL1b.jpg",
+    gapText: "Quando ero giovane, andevo sempre {in} Italia {per} le vacanze {con} miei genitori e mia sorella.",
+    topics: [
+      "Prépositions"
+    ],
+    instruction: "Choose the correct preposition !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/f87f46a2c5aeaeed4c68910815f73eaf/d6/3e/ow6IT8L0.jpg",
+    gapText: "La testa {di} ogni animale è sempre {tra} le sue orecchie.",
+    topics: [
+      "Prépositions"
+    ],
+    instruction: "Choose the correct preposition !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/f87f46a2c5aeaeed4c68910815f73eaf/4b/a8/QXhNWfib.jpg",
+    gapText: "Questo ragazzo sta dormendo {nel} suo letto.",
+    topics: [
+      "Prépositions"
+    ],
+    instruction: "Choose the correct preposition !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/4493325008d34b7bf8cd6813cd5c1619/48/c1/iI02sYlsI1lYQOskQP.jpg",
+    gapText: "Quest'uomo ha l'intenzione di smettere di fumare {da} domani.",
+    topics: [
+      "Prépositions"
+    ],
+    instruction: "Choose the correct preposition !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/c3a19a0b747a76e98651f2b9a3cca5ff/28/23/uqHBRHduFIQhD16yw0Q.jpg",
+    gapText: "Quest'uomo impara inglese soltanto {da} una settimana.",
+    topics: [
+      "Prépositions"
+    ],
+    instruction: "Choose the correct preposition !"
+  },
+  {
+    type: "gapText",
+    imageUrl: "https://static.klipy.com/ii/4e7bea9f7a3371424e6c16ebc93252fe/8f/20/1UpM3wfSLeoln3G.jpg",
+    gapText: "Questa donna si arrabia sempre {per} nulla.",
+    topics: [
+      "Prépositions"
+    ],
+    instruction: "Choose the correct preposition !"
   }
 ],
     };
