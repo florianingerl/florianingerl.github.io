@@ -208,6 +208,38 @@ deleteExercise(exerciseId);
       }
     },
 
+    updateExerciseInDB(exercise){
+
+const client = axios.create({
+  baseURL: "http://localhost:8080",
+});
+
+(async () => {
+  const config = {
+    headers: {
+      Accept: "application/json",
+    },
+  };
+
+  try {
+
+    const response = await client.put(
+      `/api/exercise/${exercise._id}`,
+      exercise,
+      config
+    );
+
+    console.log(response.data);
+    console.log(response.status);
+    console.log(response.data.json);
+    console.log(response.data.message);
+  } catch (err) {
+    console.error(err);
+  }
+})();
+
+    },
+
     newExerciseCreated(exercise){
       console.log("The function newExerciseCreated is executed!");
       console.log(exercise);
@@ -217,6 +249,7 @@ deleteExercise(exerciseId);
           let j = this.questions.findIndex( q => q === this.displayedQuestions[this.i] );
           console.log("i="+this.i + " j="+j);
            this.questions[j] = exercise; 
+           this.updateExerciseInDB(exercise);
           }
         this.calcAllTopics();
         this.selectedTopic = exercise.topics.length > 0 ? exercise.topics[0] : null;
