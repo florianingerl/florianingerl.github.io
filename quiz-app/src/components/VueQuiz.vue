@@ -1,5 +1,28 @@
 <template>
   <div>
+    <div class="row justify-content-between">
+      <button v-if="!formOffen" type="button" class="col-3 btn btn-success" title="Add a new exercise" @click="oeffneFormular(false)">
+        <i class="bi bi-plus-lg" aria-hidden="true"></i>
+      </button>
+      <button v-if="!formOffen && aktuelle" type="button" class="col-3 btn btn-primary" title="Edit the exercise" @click="oeffneFormular(true)">
+        <i class="bi bi-pencil-square" aria-hidden="true"></i>
+      </button>
+      <button v-if="!formOffen && aktuelle?._id" type="button" class="col-3 btn btn-danger" title="Delete the exercise" @click="loeschen">
+        <i class="bi bi-trash" aria-hidden="true"></i>
+      </button>
+    </div>
+
+    <div v-if="formOffen">
+      <VueNewExercise
+        :quiz="quiz"
+        :questionOfQuiz="aktuelle"
+        :editMode="editMode"
+        @new-exercise-created="gespeichert"
+        @cancel-clicked="formOffen = false"
+      />
+    </div>
+
+    <div v-else class="row">
     <p v-if="laden">{{ t.laden }}</p>
     <p v-else-if="fehler" class="text-danger">{{ fehler }}</p>
     <template v-else>
@@ -98,15 +121,17 @@
 
       <div v-show="tab === 'tutorial'">...</div>
     </template>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref, watch } from "vue";
+import { computed, nextTick, onMounted, ref, watch } from "vue";
 import VueImage from "./VueImage.vue";
 import VueMCGaps from "./VueMCGaps.vue";
 import VueQuestion from "./VueQuestion.vue";
-import { API_URL, getExercises } from "../api.ts";
+import VueNewExercise from "./VueNewExercise.vue";
+import { API_URL, createExercise, deleteExercise, getExercises, updateExercise } from "../api.ts";
 import type { Exercise, Lang, QuizName } from "../types.ts";
 
 const props = defineProps<{ quiz: QuizName; lg: Lang }>();
@@ -119,6 +144,8 @@ const i = ref(0);
 const scoreText = ref("");
 const selectedTopic = ref("");
 const tab = ref<"exercise" | "tutorial">("exercise");
+const formOffen = ref(false);
+const editMode = ref(false);
 
 // Texte
 interface Texte {
@@ -233,4 +260,43 @@ onMounted(async () => {
         laden.value = false
     }
 })
+
+// Anlegen / bearbeiten / löschen
+function oeffneFormular(bearbeiten: boolean): void {
+  editMode.value = bearbeiten;
+  formOffen.value = true;
+}
+
+async function gespeichert(ex: Exercise): Promise<void> {
+  try {
+    const bearbeiten = editMode.value && !!ex._id;
+    const neu = bearbeiten ? await updateExercise(ex) : await createExercise(ex);
+    if (bearbeiten) {
+      const j = questions.value.findIndex((q) => q._id === neu._id);
+      if (j !== -1) questions.value[j] = neu;
+    } else {
+      questions.value.push(neu);
+    }
+    formOffen.value = false;
+    // Themenfilter aufheben, kurz warten (der Watcher springt auf 0) und dann zur gespeicherten Frage springen
+    selectedTopic.value = "";
+    await nextTick();
+    i.value = Math.max(displayedQuestions.value.findIndex((q) => q._id === neu._id), 0);
+  } catch (e) {
+    alert(`Speichern fehlgeschlagen: ${(e as Error).message}`);
+  }
+}
+
+async function loeschen(): Promise<void> {
+  const q = aktuelle.value;
+  if (!q?._id) return;
+  if (!window.confirm("Do you really want to delete this question?")) return;
+  try {
+    await deleteExercise(q._id);
+    questions.value = questions.value.filter((x) => x._id !== q._id);
+    if (i.value > letzterIndex.value) i.value = letzterIndex.value;
+  } catch (e) {
+    alert(`Löschen fehlgeschlagen: ${(e as Error).message}`);
+  }
+}
 </script>
