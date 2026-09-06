@@ -22,7 +22,7 @@ const props = defineProps<{
 }>();
 
 // Paypal Name
-const PAYPAL_NAME = "HIER_KOMMT_DER_PAYPAL_NAME_REIN";
+const PAYPAL_NAME = "Thomas2112";
 
 const zahlungsLink = computed(() => {
   const basis = `https://paypal.me/${PAYPAL_NAME}`;

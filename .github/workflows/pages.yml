@@ -1,0 +1,48 @@
+name: Seite bauen und veröffentlichen
+
+on:
+  push:
+    branches: [paypal-vue, master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  bauen:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: quiz-app/package-lock.json
+
+      - name: Quiz-App bauen (Typprüfung + Vite)
+        working-directory: quiz-app
+        run: |
+          npm ci
+          npm run build
+          rm -rf node_modules
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+  veroeffentlichen:
+    needs: bauen
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
