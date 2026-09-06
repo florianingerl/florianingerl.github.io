@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Quiz - Entwicklungsseite</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    </head>
+    <body class="container py-4">
+        <h1>Quiz - Entwicklungsseite</h1>
+        <p> Nur zum Entwickeln. Die echte Einbettung passiert in <code>../index.html</code>.</p>
+        <h2>Französisch</h2>
+        <div data-quiz="french" data-lg="de"></div>
+        <h2>Deutsch</h2>
+        <div data-quiz="deutsch" data-lg="de"></div>
+        <h2>Ernährung (Multiple Choice)</h2>
+        <div data-quiz="nutrition" data-lg="de"></div>
+        <h2>Paypal</h2>
+        <div data-paypal="deutsch"></div>
+        <div id = "fullpage" onclick="this.style.display='none';"></div>
+        <script type="module" src="/src/main.ts"></script>
+    </body>
+</html>
