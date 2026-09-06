@@ -110,7 +110,7 @@
             min="0"
             :max="letzterIndex"
             :value="i"
-            style="width: 70px"
+            style="width: 50px"
             @change="gehZu"
           />
           <span> / {{ letzterIndex }}</span>
@@ -162,7 +162,7 @@ interface Texte {
 const texte: Record<Lang, Texte> = {
   de: {
     laden: "Lade Fragen ...",
-    alleThemen: "Alle Themen",
+    alleThemen: "Bitte wähle ein Thema !",
     keineFragen: "Keine Fragen vorhanden.",
     zurueck5: "Gehe 5 Aufgaben zurück",
     zurueck: "Vorige Aufgabe",
@@ -172,7 +172,7 @@ const texte: Record<Lang, Texte> = {
   },
   en: {
     laden: "Loading questions ...",
-    alleThemen: "All topics",
+    alleThemen: "Please choose a topic !",
     keineFragen: "No questions available.",
     zurueck5: "Jump 5 exercises backward",
     zurueck: "Previous exercise",
@@ -182,7 +182,7 @@ const texte: Record<Lang, Texte> = {
   },
   fr: {
     laden: "Chargement des questions ...",
-    alleThemen: "Tous les thèmes",
+    alleThemen: "Choisis un thème !",
     keineFragen: "Aucune question disponible.",
     zurueck5: "Sauter 5 exercices en arrière",
     zurueck: "Question précédente",
