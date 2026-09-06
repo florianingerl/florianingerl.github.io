@@ -25,21 +25,11 @@ const options = {
 
 createApp({
   components: {
-    VueNutritionQuiz : Vue.defineAsyncComponent(() =>
-    loadModule('assets/js/vue-components/vue-nutrition-quiz.vue', options)),
-   
-  
+    VueNutritionQuiz: Vue.defineAsyncComponent(() =>
+      loadModule("assets/js/vue-components/vue-nutrition-quiz.vue", options),
+    ),
   },
-}).mount('#nutritionquiz');
-
-createApp({
-  components: {
-    VueNewExercise : Vue.defineAsyncComponent(() =>
-    loadModule('assets/js/vue-components/vue-new-exercise.vue', options)),
-   
-  
-  },
-}).mount('#nutritionquiz');
+}).mount("#nutritionquiz");
 
 createApp({
   components: {
@@ -82,21 +72,22 @@ createApp({
 
 createApp({
   components: {
-    VueLernenLehrenQuiz : Vue.defineAsyncComponent(() =>
-    loadModule('assets/js/vue-components/vue-lernen-lehren-quiz.vue', options)),
-   
-  
+    VueLernenLehrenQuiz: Vue.defineAsyncComponent(() =>
+      loadModule(
+        "assets/js/vue-components/vue-lernen-lehren-quiz.vue",
+        options,
+      ),
+    ),
   },
-}).mount('#lernenlehren');
+}).mount("#lernenlehren");
 
 createApp({
   components: {
-    VueConciousnessQuiz : Vue.defineAsyncComponent(() =>
-    loadModule('assets/js/vue-components/vue-conciousness-quiz.vue', options)),
-   
-  
+    VueConciousnessQuiz: Vue.defineAsyncComponent(() =>
+      loadModule("assets/js/vue-components/vue-conciousness-quiz.vue", options),
+    ),
   },
-}).mount('#conciousness');
+}).mount("#conciousness");
 
 ["french", "english", "espagnol", "italiano", "deutsch"].forEach((sprache) => {
   createApp({

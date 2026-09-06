@@ -118,7 +118,7 @@ export default {
     VueNewExercise
   
   },
-  props: ['questions', 'name','lg'],
+  props: ['questions', 'name','lg', 'quiz'],
 
   setup(){
      console.log("The setup function is executed!");
@@ -163,7 +163,7 @@ const client = axios.create({
   };
 
   try {
-    const response = await client.get('/api/exercise', config);
+    const response = await client.get('/api/exercise', { ...config, params: { quiz: this.quiz } });
 
     console.log(response);
 
