@@ -1,5 +1,5 @@
 <template>
-    <vue-quiz :lg="lg" :questions="questions"></vue-quiz>
+    <vue-quiz :lg="lg" :questions="questions" name="Lernen-Lehren-Quiz"></vue-quiz>
 </template>
 
 <script>

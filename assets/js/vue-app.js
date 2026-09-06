@@ -97,3 +97,13 @@ createApp({
   
   },
 }).mount('#conciousness');
+
+["french", "english", "espagnol", "italiano", "deutsch"].forEach((sprache) => {
+  createApp({
+    components: {
+      VuePaypal: Vue.defineAsyncComponent(() =>
+        loadModule("assets/js/vue-components/vue-paypal.vue", options),
+      ),
+    },
+  }).mount("#paypal-" + sprache);
+});
