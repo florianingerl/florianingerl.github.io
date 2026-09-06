@@ -35,6 +35,7 @@
 
 	<!-- Template Main CSS File -->
 	<link href="assets/css/style.css" rel="stylesheet">
+	<link href="quiz/quiz.css" rel="stylesheet">
 	<style>
 		.correctimage {
 			background: url("assets/img/PendelFlyerNeu3.png") top center;
@@ -586,7 +587,7 @@
 						<!-- <img src="assets/img/franzoesisch.png" class="img-fluid" alt="" -->
 						  <div id="francais-quiz">
 							
-							<vue-francais-quiz lg="de"></vue-francais-quiz>
+							<div data-quiz="french" data-lg="de"></div>
 				    </div>	
 					</div>
 					<div class="col-lg-6 pt-4 pt-lg-0 order-1 order-lg-1 content">
@@ -603,7 +604,7 @@
 						<p><a href="https://www.youtube.com/watch?v=ba8V3UVpw9Q">Link zu meinen YouTube-Videos zum Französisch-Lernen</a></p>	
 					
 						<p>In einer Probestunde Französisch können wir z.B. Anfänger-Grammatik-Übungen machen. Für den Naturwischenschaftler sind z.B. Relativsätze, Präpositionen,etc... wichtige Themen</p>
-						<div id="paypal-french"><vue-paypal sprache="french"></vue-paypal></div>
+						<div data-paypal="french"></div>
 
 					</div>
 				</div>
@@ -651,7 +652,7 @@
 					<div class="col-lg-6 order-2 order-lg-2" data-aos="fade-left" data-aos-delay="100">
 					<!-- <img src="assets/img/FlyerConditionalSentences.jpg" class="img-fluid" alt=""> -->
 					 <div id="english-quiz">
-						<vue-english-quiz lg="de"></vue-english-quiz>
+						<div data-quiz="english" data-lg="de"></div>
 					 </div>
 							</div>
 					 
@@ -667,7 +668,7 @@
 
 						<p><p>In einer Probestunde Englisch können wir z.B. Anfänger-Grammatik-Übungen machen. Für den Naturwischenschaftler sind z.B. Relativsätze, Präpositionen,etc... wichtige Themen</p></p>
 					
-						<div id="paypal-english"><vue-paypal sprache="english"></vue-paypal></div>
+						<div data-paypal="english"></div>
 
 					</div>
 				</div>
@@ -691,7 +692,7 @@
 						<!-- <img src="assets/img/espagnol.png" class="img-fluid" alt=""> -->
 						 <div id="ser-estar-quiz">
 							
-							<vue-ser-estar-quiz lg="de"></vue-ser-estar-quiz>
+							<div data-quiz="espagnol" data-lg="de"></div>
 				    </div>	
 					</div>
 					<div class="col-lg-6 pt-4 pt-lg-0 order-1 order-lg-1 content">
@@ -701,7 +702,7 @@
 						
 						<p><p>In einer Probestunde Spanisch können wir z.B. Anfänger-Grammatik-Übungen machen. Für den Naturwischenschaftler sind z.B. Relativsätze, Präpositionen,etc... wichtige Themen</p></p>
 						
-						<div id="paypal-espagnol"><vue-paypal sprache="espagnol"></vue-paypal></div>
+						<div data-paypal="espagnol"></div>
 					</div>
 
 			</div>
@@ -719,7 +720,7 @@
 					<div class="col-lg-6 order-2 order-lg-2" data-aos="fade-left" data-aos-delay="100">
 							 <div id="italiano-quiz">
 							
-							<vue-italiano-quiz lg="de"></vue-italiano-quiz>
+							<div data-quiz="italiano" data-lg="de"></div>
 				    </div>	
 						<!-- <img src="assets/img/italienisch/testsurlafamille.png" class="img-fluid" alt=""> -->
 					</div>
@@ -730,7 +731,7 @@
 						
 						<p>In einer Probestunde Italienisch können wir z.B. Anfänger-Grammatik-Übungen machen. Für den Naturwischenschaftler sind z.B. Relativsätze, Präpositionen,etc... wichtige Themen</p>
 				
-						<div id="paypal-italiano"><vue-paypal sprache="italiano"></vue-paypal></div>
+						<div data-paypal="italiano"></div>
 					</div>
 
 			</div>
@@ -749,7 +750,7 @@
 					<div class="col-lg-6 order-2 order-lg-2" data-aos="fade-left" data-aos-delay="100">
 							 <div id="deutsch-quiz">
 							
-							<vue-deutsch-quiz lg="de"></vue-deutsch-quiz>
+							<div data-quiz="deutsch" data-lg="de"></div>
 				    </div>	
 						<!-- <img src="assets/img/deutsch.png" class="img-fluid" alt=""> -->
 					</div>
@@ -763,7 +764,7 @@
 						<p>Hier der Link zu meinen Kurzgeschichten und Grammatikübungen: <a href="https://florianingerl.github.io/uebung.html#/de/deutsch/kurzgeschichten/vogelundeichhoernchen">Kurzgeschichten und Übungen für Deutsch</a></p>
 					
 						<p>In einer Probestunde Deutsch können wir z.B. Grammatik-Übungen machen. Für den Naturwischenschaftler sind z.B. Relativsätze, Präpositionen,etc... wichtige Themen</p>
-						<div id="paypal-deutsch"><vue-paypal sprache="deutsch"></vue-paypal></div>
+						<div data-paypal="deutsch"></div>
 					</div>
 					
 				</div>
@@ -786,7 +787,7 @@
 						<!-- <div id="rohkost"></div> -->
 						<div id="nutritionquiz">
 							
-							<vue-nutrition-quiz lg="de"></vue-nutrition-quiz>
+							<div data-quiz="nutrition" data-lg="de"></div>
 						  </div>
 						  	<div>
 								<iframe width="560" height="315" src="https://www.youtube.com/embed/NaIzFGJDX5M?si=lsSFKXtUcneJY_EA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -851,7 +852,7 @@
 						<!-- <div id="rohkost"></div> -->
 						<div id="lernenlehren">
 							
-							<vue-lernen-lehren-quiz lg="de"></vue-lernen-lehren-quiz>
+							<div data-quiz="lernenlehren" data-lg="de"></div>
 						  </div>
 					</div>
 					<div class="col-lg-3 pt-4 pt-lg-0 order-1 order-lg-1 content">
@@ -877,7 +878,7 @@
 				<div class="row">
 					<div class="col-lg-8 order-2 order-lg-2" data-aos="fade-left" data-aos-delay="100">
 						<div id="conciousness">
-							<vue-conciousness-quiz lg="de"></vue-conciousness-quiz>
+							<div data-quiz="consciousness" data-lg="de"></div>
 						</div>
 					</div>
 					<div class="col-lg-4 pt-4 pt-lg-0 order-1 order-lg-1 content">
@@ -1617,10 +1618,7 @@
 	<script src="chessboardjs-1.0.0/js/devinetteechec.js"></script>
 	<script src="https://apps.elfsight.com/p/platform.js" defer></script>
 
-	<script src="https://unpkg.com/vue@latest"></script>
-	<script src="https://cdn.jsdelivr.net/npm/vue3-sfc-loader"></script>
-	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-	<script src="assets/js/vue-app.js"></script>
+	<script type="module" src="quiz/quiz.js"></script>
 
 	<script>
 		var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
