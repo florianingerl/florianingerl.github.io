@@ -1724,6 +1724,105 @@ export default {
       "Propositions exprimant l'exception"
     ],
     instruction: "Indicativ ou subjonctif ?"
+  },
+  {
+    type: "multipleChoice",
+    imageUrl: "assets/img/spanisch/jugadordefutbol.jpg",
+    gapText: "È un giocatore di calcio ? {Sì|Si}.",
+    topics: [
+      "Konjunktionen"
+    ],
+    question: "Questo giocatore di calcio guardagna molti soldi _____ ha un contratto di Real Madrid.",
+    options: [
+      {
+        option: "perché",
+        correct: true,
+        checked: false
+      },
+      {
+        option: "pero",
+        correct: false,
+        checked: false
+      }
+    ]
+  },
+  {
+    type: "multipleChoice",
+    imageUrl: "https://static.klipy.com/ii/f87f46a2c5aeaeed4c68910815f73eaf/76/49/tGXekHR4.jpg",
+    gapText: "È un giocatore di calcio ? {Sì|Si}.",
+    topics: [
+      "Konjunktionen"
+    ],
+    question: "Quest'imagine è divertita, ____________ è divertissima.",
+    options: [
+      {
+        option: "al contrario",
+        correct: false,
+        checked: false
+      },
+      {
+        option: "infatti",
+        correct: false,
+        checked: false
+      },
+      {
+        option: "anzi",
+        correct: true,
+        checked: true
+      }
+    ],
+    correctlyAnswered: true
+  },
+  {
+    type: "multipleChoice",
+    imageUrl: "https://static.klipy.com/ii/f87f46a2c5aeaeed4c68910815f73eaf/76/49/tGXekHR4.jpg",
+    gapText: "È un giocatore di calcio ? {Sì|Si}.",
+    topics: [
+      "Konjunktionen"
+    ],
+    question: "Questo gatto sa molto su IT, __________ la sua profezione è Softwaredevelopper.",
+    options: [
+      {
+        option: "al contrario",
+        correct: false,
+        checked: false
+      },
+      {
+        option: "infatti",
+        correct: true,
+        checked: false
+      },
+      {
+        option: "anzi",
+        correct: false,
+        checked: false
+      }
+    ],
+    correctlyAnswered: true
+  },
+  {
+    type: "multipleChoice",
+    imageUrl: "https://static.klipy.com/ii/f87f46a2c5aeaeed4c68910815f73eaf/76/49/tGXekHR4.jpg",
+    gapText: "È un giocatore di calcio ? {Sì|Si}.",
+    topics: [
+      "Konjunktionen"
+    ],
+    question: "Questo gatto ha fatto un Master d'Informatica, ________ sa molto su IT.",
+    options: [
+      {
+        option: "quindi",
+        correct: true
+      },
+      {
+        option: "pero",
+        correct: false
+      },
+      {
+        option: "anzi",
+        correct: false
+      }
+    ],
+    correctlyAnswered: true
   }
 ],
     };
