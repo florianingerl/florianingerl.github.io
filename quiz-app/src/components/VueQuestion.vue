@@ -9,7 +9,7 @@
         notcorrect: beantwortet && option.checked && !option.correct,
       }"
     >
-      <input v-model="option.checked" :disabled="beantwortet" type="checkbox" />
+      <input v-model="option.checked" :disabled="beantwortet" type="checkbox" @change="optionChanged" />
       <label>{{ option.option }}</label>
     </div>
     <div class="d-flex flex-row">
@@ -21,7 +21,7 @@
 
 <script setup lang="ts">
 import { computed, onMounted, watch } from "vue";
-import type { Exercise, Lang, Option } from "../types";
+import type { Exercise, Lang, Option } from "../quiz-app/src/types";
 
 const props = defineProps<{ question: Exercise; lg?: Lang }>();
 const emit = defineEmits<{ (e: "answered-event"): void }>();
@@ -61,10 +61,33 @@ function shuffle<T>(arr: T[]): void {
 }
 
 function reset(): void {
+  delete props.question.correctlyAnswered;
   optionen.value.forEach((o) => {
     o.checked = false;
   });
   shuffle(optionen.value);
+}
+
+function isSomethingWronglyChecked(): boolean {
+  let b : boolean = false;
+  optionen.value.forEach((o) => {
+    console.log(o);
+    if (o.checked && !o.correct) b = true; return;
+  });
+  return b;
+}
+
+function optionChanged():void {
+  console.log("OptionChanged is executed");
+  if(isSomethingWronglyChecked())
+  {
+    console.log("isSomethingWronglyChecked is executed!");
+    
+    props.question.correctlyAnswered = false;
+    console.log("Beantwortet = " + beantwortet.value );
+    emit("answered-event");
+    return;
+  }
 }
 
 function validate(): void {
