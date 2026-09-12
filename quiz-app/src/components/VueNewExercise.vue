@@ -62,7 +62,7 @@
 <script setup lang="ts">
 import { onMounted, ref, watch } from 'vue'
 import VueImage from './VueImage.vue'
-import type { Exercise, QuizName } from '../quiz-app/src/types.ts'
+import type { Exercise, QuizName } from '../types.ts'
 
 const props = defineProps<{
   quiz: QuizName
@@ -110,11 +110,11 @@ async function findGifUrls(): Promise<string[]> {
   //const key = import.meta.env.VITE_KLIPY_API_KEY
   
   const key = "GblaAUO3H2fVadJMh2BBPfeNpoAcdpI0TQKEx7HGN2GDeCVNpLY9CgEB10yhcnZb";
-  alert("My key is " + key );
+  /*
   if (!key) {
     alert('Kein Klipy-Schlüssel: VITE_KLIPY_API_KEY in quiz-app/.env eintragen.')
     return []
-  }
+  }*/
   const url = new URL(`https://api.klipy.com/api/v1/${key}/gifs/search`)
   url.searchParams.set('q', searchString.value)
   url.searchParams.set('page', String(page))

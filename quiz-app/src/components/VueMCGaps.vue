@@ -58,7 +58,7 @@
 
 <script setup lang="ts">
 import { onMounted, ref, watch } from "vue";
-import type { Lang } from "../quiz-app/src/types";
+import type { Lang } from "../types";
 
 interface Gap {
   text: string;

@@ -21,7 +21,7 @@
 
 <script setup lang="ts">
 import { computed, onMounted, watch } from "vue";
-import type { Exercise, Lang, Option } from "../quiz-app/src/types";
+import type { Exercise, Lang, Option } from "../types";
 
 const props = defineProps<{ question: Exercise; lg?: Lang }>();
 const emit = defineEmits<{ (e: "answered-event"): void }>();
