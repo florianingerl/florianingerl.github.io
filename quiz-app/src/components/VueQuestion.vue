@@ -78,6 +78,16 @@ function isSomethingWronglyChecked(): boolean {
   return b;
 }
 
+function isEverythingCorrect():boolean {
+  let b : boolean = true;
+  optionen.value.forEach((o) => {
+    console.log(o);
+    if ( (o.checked ?? false) != o.correct) b = false; return;
+  });
+  return b;
+}
+
+
 function optionChanged():void {
   console.log("OptionChanged is executed");
   if(isSomethingWronglyChecked())
@@ -88,6 +98,14 @@ function optionChanged():void {
     console.log("Beantwortet = " + beantwortet.value );
     emit("answered-event");
     return;
+  }
+
+  if(isEverythingCorrect() ){
+    props.question.correctlyAnswered = true;
+    console.log("Beantwortet = " + beantwortet.value );
+    emit("answered-event");
+    return;
+
   }
 }
 

@@ -18,6 +18,7 @@
           </select>
           <input
             v-if="!validated && istLuecke(gap)"
+            @change="onInputChanged"
             v-model="gap.guess"
             type="text"
             :style="{ width: breite(gap) }"
@@ -85,6 +86,28 @@ const istLuecke = (g: Gap): boolean =>
 const optionen = (g: Gap): string[] => (Array.isArray(g.gap) ? g.gap : []);
 const breite = (g: Gap): string =>
   typeof g.gap === "string" ? `${g.gap.length + 2}ch` : "auto";
+
+function isEverythingCorrect(): boolean {
+    /*<li v-for="(innergaps, li) in gaps" :key="li">
+        <span v-for="(gap, gi) in innergaps" :key="gi"> */
+  let b : boolean = true;
+  gaps.value.forEach( (innergaps, li) => {
+     innergaps.forEach( (gap, gi) => {
+        if(gap.gap !== gap.guess){
+          b = false;
+        }
+     });
+  });        
+  return b;
+}
+
+function onInputChanged() {
+  console.log("The function onInputChanged was called!");
+
+  if(isEverythingCorrect() ){
+     validated.value = true;
+  }
+}  
 
 // "La femme {qui|que} tient ..." => Text / Lücken-Paare
 function pareseGapText(data: string): void {
