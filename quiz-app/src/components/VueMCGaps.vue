@@ -91,8 +91,8 @@ function isEverythingCorrect(): boolean {
     /*<li v-for="(innergaps, li) in gaps" :key="li">
         <span v-for="(gap, gi) in innergaps" :key="gi"> */
   let b : boolean = true;
-  gaps.value.forEach( (innergaps, li) => {
-     innergaps.forEach( (gap, gi) => {
+  gaps.value.forEach( (innergaps) => {
+     innergaps.forEach( (gap) => {
         if(gap.gap !== gap.guess){
           b = false;
         }
