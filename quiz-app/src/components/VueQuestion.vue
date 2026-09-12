@@ -15,6 +15,7 @@
     <div class="d-flex flex-row">
       <button @click="validate">{{ t.validate }}</button>
       <button @click="showSolution">{{ t.solution }}</button>
+      <button @click="reset">{{ t.retry }}</button>
     </div>
   </div>
 </template>
@@ -26,10 +27,10 @@ import type { Exercise, Lang, Option } from "../types";
 const props = defineProps<{ question: Exercise; lg?: Lang }>();
 const emit = defineEmits<{ (e: "answered-event"): void }>();
 
-const texte: Record<Lang, { validate: string; solution: string }> = {
-  de: { validate: "Aufgabe überprüfen", solution: "Lösung anzeigen" },
-  en: { validate: "Validate", solution: "Show solution" },
-  fr: { validate: "Valider", solution: "Montre-moi la solution" },
+const texte: Record<Lang, { validate: string; solution: string; retry: string }> = {
+  de: { validate: "Aufgabe überprüfen", solution: "Lösung anzeigen", retry: "Nochmal versuchen" },
+  en: { validate: "Validate", solution: "Show solution", retry: "Retry" },
+  fr: { validate: "Valider", solution: "Montre-moi la solution" , retry: "Essayer encore une fois"},
 };
 const t = computed(() => texte[props.lg ?? "de"]);
 
