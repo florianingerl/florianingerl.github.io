@@ -119,7 +119,37 @@
         <p>Your score: {{ scoreText }}</p>
       </div>
 
-      <div v-show="tab === 'tutorial'">...</div>
+      <div v-show="tab === 'tutorial'">
+        <Editor
+        v-model="editorContent"
+      api-key="zd8r2y1yfgup9e90sv8vooff97xxmjb4wlzp3i4umvcmp3je"
+      :init="{
+        toolbar_mode: 'sliding',
+        plugins: [
+          // Core editing features
+          'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'link', 'lists', 'media', 'searchreplace', 'table', 'visualblocks', 'wordcount',
+          // Premium features
+          'checklist', 'mediaembed', 'casechange', 'formatpainter', 'pageembed', 'a11ychecker', 'tinymcespellchecker', 'permanentpen', 'powerpaste', 'advtable', 'advcode', 'advtemplate', 'tinymceai', 'uploadcare', 'mentions', 'tinycomments', 'tableofcontents', 'footnotes', 'mergetags', 'autocorrect', 'typography', 'inlinecss', 'markdown','importword', 'exportword', 'exportpdf'
+        ],
+        toolbar: 'undo redo | tinymceai-chat tinymceai-quickactions tinymceai-review | blocks fontfamily fontsize | bold italic underline strikethrough | link media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography uploadcare | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+        tinycomments_mode: 'embedded',
+        tinycomments_author: 'Author name',
+        mergetags_list: [
+          { value: 'First.Name', title: 'First Name' },
+          { value: 'Email', title: 'Email' },
+        ],
+        tinymceai_token_provider: provideToken,
+        uploadcare_public_key: 'ec734fc053cde965d0d0',
+      }"
+      initial-value="Welcome to TinyMCE!"
+    />
+<div class="row">
+  <div class="col">
+    <button @click="saveTutorialClicked">Save</button>
+  </div>
+</div>
+
+      </div>
     </template>
     </div>
   </div>
@@ -131,6 +161,7 @@ import VueImage from "./VueImage.vue";
 import VueMCGaps from "./VueMCGaps.vue";
 import VueQuestion from "./VueQuestion.vue";
 import VueNewExercise from "./VueNewExercise.vue";
+import Editor from '@tinymce/tinymce-vue';
 import { API_URL, createExercise, deleteExercise, getExercises, updateExercise } from "../api.ts";
 import type { Exercise, Lang, QuizName } from "../types.ts";
 
@@ -139,6 +170,7 @@ const props = defineProps<{ quiz: QuizName; lg: Lang }>();
 // Zustand
 const questions = ref<Exercise[]>([]);
 const laden = ref(true);
+const editorContent = ref<string>("");
 const fehler = ref("");
 const i = ref(0);
 const scoreText = ref("");
@@ -219,6 +251,17 @@ const indices = computed<number[]>(()=> {
     return a
 })
 
+function saveTutorialClicked(){
+  console.log("Editor content = \n " + editorContent.value );
+  //TODO Save the tutorial in the database !
+}
+
+async function provideToken() {
+    console.log("The token provider was called!");
+    await fetch(`https://demo.api.tiny.cloud/1/zd8r2y1yfgup9e90sv8vooff97xxmjb4wlzp3i4umvcmp3je/auth/random`, { method: "POST", credentials: "include" });
+    return { token: await fetch(`https://demo.api.tiny.cloud/1/zd8r2y1yfgup9e90sv8vooff97xxmjb4wlzp3i4umvcmp3je/jwt/tinymceai`, { credentials: "include" }).then(r => r.text()) };
+}
+
 // Navigation
 function springe (delta: number): void{
     i.value = Math.min(Math.max(i.value + delta , 0 ), letzterIndex.value)
@@ -252,6 +295,7 @@ function calcScore(): void {
 onMounted(async () => {
     try {
         questions.value = await getExercises(props.quiz)
+        console.log( questions.value );
     } catch (e)
     {
         fehler.value = `Fragen konnten nicht geladen werden (${(e as Error).message}). Läuft das Backend unter ${API_URL}?`
