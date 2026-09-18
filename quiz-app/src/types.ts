@@ -19,12 +19,20 @@ export interface Option {
   checked?: boolean;
 }
 
+export interface Topic {
+  _id: string | null ;
+  quiz: QuizName,
+  tutorial: string,
+  title: string
+}
+
+
 export interface Exercise {
   _id?: string;
   quiz: QuizName;
   type: ExerciseType;
   imageUrl: string;
-  topics?: string[];
+  topic?: Topic;
   // gapText
   instruction?: string;
   gapText?: string;
@@ -38,3 +46,4 @@ export interface Exercise {
   // Nur Zur Laufzeit im Browser gesetzt. Wird nicht gespeichert.
   correctlyAnswered?: boolean;
 }
+

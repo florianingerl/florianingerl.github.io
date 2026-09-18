@@ -11,9 +11,11 @@
     "dependencies": {
         "@tinymce/tinymce-vue": "^6.3.0",
         "axios": "^1.7.7",
+        "bootstrap": "^5.3.8",
         "vue": "^3.5.10"
     },
     "devDependencies": {
+        "@types/bootstrap": "^5.2.11",
         "@types/node": "^22.7.5",
         "@vitejs/plugin-vue": "^5.1.4",
         "typescript": "^5.5.3",

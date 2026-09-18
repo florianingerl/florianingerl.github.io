@@ -1,9 +1,9 @@
 import axios from "axios";
-import type { Exercise, QuizName } from "./types";
+import type { Topic, Exercise, QuizName } from "./types";
 
 export const API_URL = import.meta.env.VITE_API_URL ?? "http://localhost:8080";
 
-const client = axios.create({
+export const client = axios.create({
   baseURL: API_URL,
   headers: { Accept: "application/json" },
 });
@@ -19,6 +19,11 @@ function bereinigen(e: Exercise): Exercise {
     optionsEn: ohneChecked(rest.optionsEn),
     optionsFr: ohneChecked(rest.optionsFr),
   };
+}
+
+export async function getAllTopics(quiz: QuizName): Promise<Topic[]> {
+  const r = await client.get<Topic[]>(`/api/topic`, { params: { quiz } });
+  return r.data;
 }
 
 export async function getExercises(quiz: QuizName): Promise<Exercise[]> {

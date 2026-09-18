@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <!--
     <div class="row">
       <span class="fw-bold">Topics:</span> {{ (exercise.topics ?? []).join(', ') }}
       <button @click="exercise.topics = []">Clear</button>
@@ -9,6 +10,13 @@
       <label class="col-3">New topic:</label>
       <input v-model="newTopic" type="text" class="col-7" placeholder="Enter a new topic" />
       <button class="col-2" @click="addTopic">Add</button>
+    </div> -->
+
+    <div class="row"> 
+       <label class="col-3">Topic:</label>
+      <VueTopicDropdown :modelValue="selectedTopic"  :topics="topics" :defaultQuiz="quiz">
+
+      </VueTopicDropdown>
     </div>
 
     <div>
@@ -62,7 +70,13 @@
 <script setup lang="ts">
 import { onMounted, ref, watch } from 'vue'
 import VueImage from './VueImage.vue'
-import type { Exercise, QuizName } from '../types.ts'
+import type { Exercise, QuizName , Topic } from '../types.ts'
+import VueTopicDropdown from './VueTopicDropdown.vue';
+import { getAllTopics } from '../api.ts';
+
+const selectedTopic = ref<Topic | null>(null)
+
+const topics = ref<Topic[]>([])
 
 const props = defineProps<{
   quiz: QuizName
@@ -79,11 +93,10 @@ const exercise = ref<Exercise>({
   quiz: props.quiz,
   type: 'gapText',
   imageUrl: 'assets/img/spanisch/bonitamuyer.jpg',
-  topics: [],
   instruction: '',
   gapText: '',
 })
-const newTopic = ref('')
+
 const newOption = ref('')
 const allOptions = ref<string[]>([])
 
@@ -94,11 +107,6 @@ let imageUrls: string[] = []
 let k = 0
 let page = 1
 
-function addTopic(): void {
-  if (!newTopic.value) return
-  ;(exercise.value.topics ??= []).push(newTopic.value)
-  newTopic.value = ''
-}
 
 function addOption(): void {
   if (!newOption.value) return
@@ -152,7 +160,9 @@ watch(searchString, () => {
   searchStringChanged = true
 })
 
-onMounted(() => {
+onMounted(async () => {
+  topics.value = await getAllTopics(props.quiz);
+
   if (!props.questionOfQuiz) return
   // Beim Bearbeiten wird die Frage mit ihrer _id übernommen, beim Anlegen nur als Vorlage ohne _id
   const { _id, correctlyAnswered: _ca, ...vorlage } = props.questionOfQuiz

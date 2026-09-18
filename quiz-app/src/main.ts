@@ -2,6 +2,9 @@ import { createApp } from "vue";
 import VueQuiz from "./components/VueQuiz.vue";
 import VuePaypal from "./components/vue-paypal.vue";
 import type { Lang, QuizName } from "./types";
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/js/bootstrap.bundle.min.js'
+
 
 // Jeder <div data-quiz="..." auf der Seite bekommt ein eigenes Quiz
 document.querySelectorAll<HTMLElement>("[data-quiz]").forEach((el) => {

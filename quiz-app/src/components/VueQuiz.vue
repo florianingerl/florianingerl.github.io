@@ -1,5 +1,35 @@
 <template>
   <div>
+    <div class="row justify-content-end">
+      <div class="col">
+        <button @click="loginClicked">Login</button>
+      </div>
+      <div class="col">
+       <button type="button" class="btn btn-primary"  @click="openSignUpModal">
+          Sign up
+       </button>
+      </div>
+
+      
+    </div>
+
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="loginModalLabel">Login</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <VueSignUp></VueSignUp>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
     <div class="row justify-content-between">
       <button v-if="!formOffen" type="button" class="col-3 btn btn-success" title="Add a new exercise" @click="oeffneFormular(false)">
         <i class="bi bi-plus-lg" aria-hidden="true"></i>
@@ -28,8 +58,8 @@
     <template v-else>
       <select v-model="selectedTopic">
         <option value="">{{ t.alleThemen }}</option>
-        <option v-for="topic in topics" :key="topic" :value="topic">
-          {{ topic }}
+        <option v-for="topic in topics" :key="topic.title" :value="topic">
+          {{ topic.title }}
         </option>
       </select>
 
@@ -158,12 +188,14 @@
 <script setup lang="ts">
 import { computed, nextTick, onMounted, ref, watch } from "vue";
 import VueImage from "./VueImage.vue";
+import { Modal } from "bootstrap";
+import VueSignUp from "./VueSignUp.vue";
 import VueMCGaps from "./VueMCGaps.vue";
 import VueQuestion from "./VueQuestion.vue";
 import VueNewExercise from "./VueNewExercise.vue";
 import Editor from '@tinymce/tinymce-vue';
 import { API_URL, createExercise, deleteExercise, getExercises, updateExercise } from "../api.ts";
-import type { Exercise, Lang, QuizName } from "../types.ts";
+import type { Exercise, Lang, QuizName, Topic } from "../types.ts";
 
 const props = defineProps<{ quiz: QuizName; lg: Lang }>();
 
@@ -174,7 +206,7 @@ const editorContent = ref<string>("");
 const fehler = ref("");
 const i = ref(0);
 const scoreText = ref("");
-const selectedTopic = ref("");
+const selectedTopic = ref<Topic | null>( null );
 const tab = ref<"exercise" | "tutorial">("exercise");
 const formOffen = ref(false);
 const editMode = ref(false);
@@ -227,16 +259,12 @@ const texte: Record<Lang, Texte> = {
 const t = computed(() => texte[props.lg]);
 
 // Abgeleitete Werte
-const topics = computed<string[]>(() => {
-  const s = new Set<string>();
-  questions.value.forEach((q) => q.topics?.forEach((tp) => s.add(tp)));
-  return [...s];
-});
+const topics = ref<Topic[]>([]);
 
 const displayedQuestions = computed<Exercise[]>(() =>
   selectedTopic.value
     ? questions.value.filter((q) =>
-        (q.topics ?? []).includes(selectedTopic.value),
+        q.topic === selectedTopic.value
       )
     : questions.value,
 );
@@ -250,6 +278,24 @@ const indices = computed<number[]>(()=> {
     for (let k = 0; k < 5 && j < displayedQuestions.value.length; k++, j++) a.push(j)
     return a
 })
+
+function loginClicked(){
+  const element = document.getElementById("loginModal");
+
+  if (element) {
+    const modal = Modal.getOrCreateInstance(element);
+    modal.show();
+  }
+}
+
+function openSignUpModal() {
+  const element = document.getElementById("signUpModal");
+
+  if (element) {
+    const modal = Modal.getOrCreateInstance(element);
+    modal.show();
+  }
+}
 
 function saveTutorialClicked(){
   console.log("Editor content = \n " + editorContent.value );
@@ -323,7 +369,7 @@ async function gespeichert(ex: Exercise): Promise<void> {
     }
     formOffen.value = false;
     // Themenfilter aufheben, kurz warten (der Watcher springt auf 0) und dann zur gespeicherten Frage springen
-    selectedTopic.value = "";
+    selectedTopic.value = null;
     await nextTick();
     i.value = Math.max(displayedQuestions.value.findIndex((q) => q._id === neu._id), 0);
   } catch (e) {
