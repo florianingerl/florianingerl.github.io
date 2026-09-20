@@ -21,6 +21,11 @@ function bereinigen(e: Exercise): Exercise {
   };
 }
 
+export async function createTopic(topic: Topic): Promise<Topic> {
+  const r = await client.post<Topic>(`/api/topic`, topic );
+  return r.data;
+}
+
 export async function getAllTopics(quiz: QuizName): Promise<Topic[]> {
   const r = await client.get<Topic[]>(`/api/topic`, { params: { quiz } });
   return r.data;
@@ -32,7 +37,8 @@ export async function getExercises(quiz: QuizName): Promise<Exercise[]> {
 }
 
 export async function createExercise(e: Exercise): Promise<Exercise> {
-  const r = await client.post<Exercise>(`/api/exercise`, bereinigen(e));
+  e= bereinigen(e);
+  const r = await client.post<Exercise>(`/api/exercise`, {...e, topic: e.topic?._id });
   return r.data;
 }
 

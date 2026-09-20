@@ -194,7 +194,7 @@ import VueMCGaps from "./VueMCGaps.vue";
 import VueQuestion from "./VueQuestion.vue";
 import VueNewExercise from "./VueNewExercise.vue";
 import Editor from '@tinymce/tinymce-vue';
-import { API_URL, createExercise, deleteExercise, getExercises, updateExercise } from "../api.ts";
+import { API_URL, createExercise, deleteExercise, getExercises, updateExercise, getAllTopics, createTopic } from "../api.ts";
 import type { Exercise, Lang, QuizName, Topic } from "../types.ts";
 
 const props = defineProps<{ quiz: QuizName; lg: Lang }>();
@@ -339,6 +339,11 @@ function calcScore(): void {
 
 // Laden aus der Datenbank
 onMounted(async () => {
+    topics.value = await getAllTopics(props.quiz);
+
+    console.log("Here are all the topics from the database for quiz " + props.quiz );
+    console.log(topics.value );
+
     try {
         questions.value = await getExercises(props.quiz)
         console.log( questions.value );
@@ -358,6 +363,14 @@ function oeffneFormular(bearbeiten: boolean): void {
 }
 
 async function gespeichert(ex: Exercise): Promise<void> {
+  console.log("Exercise to be inserted:");
+  console.log(ex);
+
+  if( ex.topic && ex.topic?._id == null ){
+    ex.topic = await createTopic(ex.topic);
+    console.log( "Id of the topic is " + ex.topic._id );
+  }
+
   try {
     const bearbeiten = editMode.value && !!ex._id;
     const neu = bearbeiten ? await updateExercise(ex) : await createExercise(ex);

@@ -12,11 +12,31 @@
       <button class="col-2" @click="addTopic">Add</button>
     </div> -->
 
-    <div class="row"> 
-       <label class="col-3">Topic:</label>
-      <VueTopicDropdown :modelValue="selectedTopic"  :topics="topics" :defaultQuiz="quiz">
+    <div class="row">
+       <label class="col" for="topic">Choose a topic:</label>
 
-      </VueTopicDropdown>
+  <select class="col" id="topic" v-model="exercise.topic">
+    <option disabled value="">Please select one</option>
+
+    <option
+      v-for="topic in topics"
+      :key="topic.title"
+      :value="topic"
+    >
+      {{ topic.title }}
+    </option>
+  </select>
+
+  <label class="col" for="newTopic">New topic:</label>
+   <input class="col"
+    id="newTopic"
+    v-model="newTopic"
+    type="text"
+    placeholder="Enter a new topic"
+  />
+
+  <button class="col" @click="addNewTopicClicked">Add</button>
+
     </div>
 
     <div>
@@ -76,6 +96,7 @@ import { getAllTopics } from '../api.ts';
 
 const selectedTopic = ref<Topic | null>(null)
 
+const newTopic = ref<string>('');
 const topics = ref<Topic[]>([])
 
 const props = defineProps<{
@@ -106,6 +127,23 @@ let searchStringChanged = true
 let imageUrls: string[] = []
 let k = 0
 let page = 1
+
+function addNewTopicClicked(){
+  let topic: Topic = { 
+    _id: null,
+    quiz: props.quiz,
+    title: newTopic.value,
+    tutorial: '' 
+  };
+
+  exercise.value.topic = topic;
+
+  topics.value.push(topic);
+}
+
+function handleTopicAdded(topic: Topic) {
+  topics.value.push(topic);
+}
 
 
 function addOption(): void {
@@ -162,6 +200,10 @@ watch(searchString, () => {
 
 onMounted(async () => {
   topics.value = await getAllTopics(props.quiz);
+
+  console.log("Here are all the topics from the database for quiz " + props.quiz );
+  console.log(topics.value );
+
 
   if (!props.questionOfQuiz) return
   // Beim Bearbeiten wird die Frage mit ihrer _id übernommen, beim Anlegen nur als Vorlage ohne _id
