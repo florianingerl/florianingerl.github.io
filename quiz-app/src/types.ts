@@ -20,7 +20,7 @@ export interface Option {
 }
 
 export interface Topic {
-  _id: string | null ;
+  _id?: string ;
   quiz: QuizName,
   tutorial: string,
   title: string

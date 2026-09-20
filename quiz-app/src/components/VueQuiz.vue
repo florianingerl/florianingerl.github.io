@@ -194,7 +194,7 @@ import VueMCGaps from "./VueMCGaps.vue";
 import VueQuestion from "./VueQuestion.vue";
 import VueNewExercise from "./VueNewExercise.vue";
 import Editor from '@tinymce/tinymce-vue';
-import { API_URL, createExercise, deleteExercise, getExercises, updateExercise, getAllTopics, createTopic } from "../api.ts";
+import { API_URL, createExercise, deleteExercise, getExercises, updateExercise, getAllTopics, createTopic, updateTopic } from "../api.ts";
 import type { Exercise, Lang, QuizName, Topic } from "../types.ts";
 
 const props = defineProps<{ quiz: QuizName; lg: Lang }>();
@@ -297,8 +297,24 @@ function openSignUpModal() {
   }
 }
 
-function saveTutorialClicked(){
+async function saveTutorialClicked(){
   console.log("Editor content = \n " + editorContent.value );
+
+  let ex : Exercise = displayedQuestions.value[i.value];
+
+  console.log(ex);
+
+  if(!ex.topic){
+    alert("The current exercise hasn't got a topic!");
+    return;
+  }
+  console.log("Exercise=" + ex);
+  console.log("Topic:" + ex.topic);
+
+  ex.topic.tutorial = editorContent.value;
+  ex.topic = await updateTopic(ex.topic);
+
+
   //TODO Save the tutorial in the database !
 }
 
@@ -366,7 +382,7 @@ async function gespeichert(ex: Exercise): Promise<void> {
   console.log("Exercise to be inserted:");
   console.log(ex);
 
-  if( ex.topic && ex.topic?._id == null ){
+  if( ex.topic && ex.topic._id === undefined ){
     ex.topic = await createTopic(ex.topic);
     console.log( "Id of the topic is " + ex.topic._id );
   }

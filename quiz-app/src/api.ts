@@ -26,6 +26,17 @@ export async function createTopic(topic: Topic): Promise<Topic> {
   return r.data;
 }
 
+export async function updateTopic(topic: Topic): Promise<Topic> {
+  console.log("Topic is");
+  console.log(topic);
+  if (!topic._id) throw new Error("updateTopic: _id fehlt");
+  const r = await client.put<Topic>(
+    `/api/topic/${encodeURIComponent(topic._id)}`,
+    topic ,
+  );
+  return r.data;
+}
+
 export async function getAllTopics(quiz: QuizName): Promise<Topic[]> {
   const r = await client.get<Topic[]>(`/api/topic`, { params: { quiz } });
   return r.data;

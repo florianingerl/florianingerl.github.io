@@ -91,10 +91,7 @@
 import { onMounted, ref, watch } from 'vue'
 import VueImage from './VueImage.vue'
 import type { Exercise, QuizName , Topic } from '../types.ts'
-import VueTopicDropdown from './VueTopicDropdown.vue';
 import { getAllTopics } from '../api.ts';
-
-const selectedTopic = ref<Topic | null>(null)
 
 const newTopic = ref<string>('');
 const topics = ref<Topic[]>([])
@@ -130,7 +127,6 @@ let page = 1
 
 function addNewTopicClicked(){
   let topic: Topic = { 
-    _id: null,
     quiz: props.quiz,
     title: newTopic.value,
     tutorial: '' 
@@ -138,10 +134,6 @@ function addNewTopicClicked(){
 
   exercise.value.topic = topic;
 
-  topics.value.push(topic);
-}
-
-function handleTopicAdded(topic: Topic) {
   topics.value.push(topic);
 }
 
