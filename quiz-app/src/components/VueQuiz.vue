@@ -194,7 +194,7 @@ import VueMCGaps from "./VueMCGaps.vue";
 import VueQuestion from "./VueQuestion.vue";
 import VueNewExercise from "./VueNewExercise.vue";
 import Editor from '@tinymce/tinymce-vue';
-import { API_URL, createExercise, deleteExercise, getExercises, updateExercise, getAllTopics, createTopic, updateTopic } from "../api.ts";
+import { API_URL, createExercise, deleteExercise, getExercises, updateExercise, getAllTopics, createTopic, updateTopic, getTopic } from "../api.ts";
 import type { Exercise, Lang, QuizName, Topic } from "../types.ts";
 
 const props = defineProps<{ quiz: QuizName; lg: Lang }>();
@@ -311,6 +311,10 @@ async function saveTutorialClicked(){
   console.log("Exercise=" + ex);
   console.log("Topic:" + ex.topic);
 
+  if( typeof ex.topic === "string" ){
+    ex.topic = await getTopic(ex.topic);
+  }
+
   ex.topic.tutorial = editorContent.value;
   ex.topic = await updateTopic(ex.topic);
 
@@ -382,7 +386,7 @@ async function gespeichert(ex: Exercise): Promise<void> {
   console.log("Exercise to be inserted:");
   console.log(ex);
 
-  if( ex.topic && ex.topic._id === undefined ){
+  if( ex.topic && typeof ex.topic !== "string" && ex.topic._id === undefined ){
     ex.topic = await createTopic(ex.topic);
     console.log( "Id of the topic is " + ex.topic._id );
   }

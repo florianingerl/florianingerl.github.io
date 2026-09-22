@@ -32,7 +32,7 @@ export interface Exercise {
   quiz: QuizName;
   type: ExerciseType;
   imageUrl: string;
-  topic?: Topic;
+  topic?: Topic | string; //It's either the id of the topic or the topic itsself
   // gapText
   instruction?: string;
   gapText?: string;

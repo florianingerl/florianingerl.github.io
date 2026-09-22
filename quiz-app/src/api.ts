@@ -26,6 +26,8 @@ export async function createTopic(topic: Topic): Promise<Topic> {
   return r.data;
 }
 
+
+
 export async function updateTopic(topic: Topic): Promise<Topic> {
   console.log("Topic is");
   console.log(topic);
@@ -34,6 +36,11 @@ export async function updateTopic(topic: Topic): Promise<Topic> {
     `/api/topic/${encodeURIComponent(topic._id)}`,
     topic ,
   );
+  return r.data;
+}
+
+export async function getTopic(_id:string):Promise<Topic>{
+  const r = await client.get<Topic>(`/api/topic/:${_id}`);
   return r.data;
 }
 
@@ -49,7 +56,7 @@ export async function getExercises(quiz: QuizName): Promise<Exercise[]> {
 
 export async function createExercise(e: Exercise): Promise<Exercise> {
   e= bereinigen(e);
-  const r = await client.post<Exercise>(`/api/exercise`, {...e, topic: e.topic?._id });
+  const r = await client.post<Exercise>(`/api/exercise`, {...e, topic: !e.topic ? undefined : ( typeof e.topic === "string" ? e.topic : e.topic._id  ) });
   return r.data;
 }
 
