@@ -191,6 +191,7 @@ watch(searchString, () => {
 })
 
 onMounted(async () => {
+  //TODO Why doesn't this work ? It get alls the topics, not only of this quiz
   topics.value = await getAllTopics(props.quiz);
 
   console.log("Here are all the topics from the database for quiz " + props.quiz );
@@ -202,6 +203,7 @@ onMounted(async () => {
   const { _id, correctlyAnswered: _ca, ...vorlage } = props.questionOfQuiz
   exercise.value = { ...vorlage, quiz: props.quiz, ...(props.editMode ? { _id } : {}) }
   allOptions.value = (props.questionOfQuiz.options ?? []).map((o) => o.option)
+  //TODO The topic of the exercise should be the topic of the exercise of the quiz
 })
 </script>
 

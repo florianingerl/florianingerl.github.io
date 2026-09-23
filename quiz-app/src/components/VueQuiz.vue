@@ -263,9 +263,17 @@ const topics = ref<Topic[]>([]);
 
 const displayedQuestions = computed<Exercise[]>(() =>
   selectedTopic.value
-    ? questions.value.filter((q) =>
-        q.topic === selectedTopic.value
-      )
+    ? questions.value.filter((q) => {
+    //TODO 
+    if (selectedTopic.value ){
+    return typeof q.topic === "string" ? q.topic === selectedTopic.value._id : q.topic?._id === selectedTopic.value._id
+    }
+    else {
+      return true;
+    }
+  }
+  
+  )
     : questions.value,
 );
 
