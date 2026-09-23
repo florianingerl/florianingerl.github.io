@@ -1,4 +1,5 @@
 import type { Seite } from "./index";
+import { florian } from "./florian";
 import Nachhilfeangebot from "../abschnitte/fr/Nachhilfeangebot.vue";
 import MatheUni from "../abschnitte/fr/MatheUni.vue";
 import InfoUni from "../abschnitte/fr/InfoUni.vue";
@@ -24,6 +25,7 @@ const fr: Seite = {
   logo: "Demande\u00a0à Florian!",
   knopf: "Écris-moi un message",
   heroBild: "assets/img/AnnonceMathsAvecLaTete.png",
+  flaggen: florian.flaggen,
   menue: [
     {
       titel: "Université",
@@ -70,8 +72,12 @@ const fr: Seite = {
   ],
   kontakt: {
     karteHoehe: "200px",
+    karte: florian.karte,
     adresse: "Adresse:",
     email: "Email:",
+    strasse: florian.strasse,
+    ort: florian.ort,
+    mailadresse: florian.mailadresse,
     absatz:
       "Tu peux utiliser cette formulaire pour me contacter, mais il est préférable si tu me contactes via e-mail et si tu m'envoies assez d'exercices dont on peut parler pendant un cours particulier.",
     formular: {
@@ -86,7 +92,7 @@ const fr: Seite = {
       knopf: "Envoie-moi le message!",
     },
   },
-  fuss: { telefon: "Téléphone:", sozial: true },
+  fuss: { telefon: "Téléphone:", telefonnummer: florian.telefonnummer, mailadresse: florian.mailadresse, sozial: true },
   schach: "fr",
   abschnitte: [
     Nachhilfeangebot, MatheUni, InfoUni, PhysikUni, Ingenieurwesen,

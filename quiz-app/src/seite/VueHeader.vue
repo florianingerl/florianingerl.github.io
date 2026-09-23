@@ -5,7 +5,7 @@
   <header id="header" ref="kopf" class="fixed-top">
     <div class="container d-flex align-items-center">
       <h1 class="logo me-auto">
-        <a href="index.html">{{ seite.logo }}</a>
+        <a :href="seite.start ?? 'index.html'">{{ seite.logo }}</a>
       </h1>
 
       <nav id="navbar" class="navbar order-last order-lg-0" :class="{ 'navbar-mobile': mobil }">
@@ -31,11 +31,8 @@
 
       <a href="#contact" class="get-started-btn">{{ seite.knopf }}</a>
 
-      <div id="selectlanguage" class="ml-[10px] flex flex-col">
-        <a href="index.html"><img src="assets/img/flags/german.png" alt="DE" class="h-[10px]"></a>
-        <a href="indexfranz.html"><img src="assets/img/flags/franceflag.gif" alt="FR" class="h-[10px]"></a>
-        <a href="indexeng.html"><img src="assets/img/flags/englishflag.jpg" alt="ENG" class="h-[10px]"></a>
-        <a href="indexesp.html"><img src="assets/img/flags/spanish.png" alt="ESP" class="h-[10px]"></a>
+      <div v-if="seite.flaggen" id="selectlanguage" class="ml-[10px] flex flex-col">
+        <a v-for="flagge in seite.flaggen" :key="flagge.ziel" :href="flagge.ziel"><img :src="flagge.bild" :alt="flagge.alt" class="h-[10px]"></a>
       </div>
     </div>
   </header>

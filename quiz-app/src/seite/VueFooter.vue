@@ -4,7 +4,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-3 col-md-6 footer-contact">
-            <template v-if="fuss.telefon"><strong>{{ fuss.telefon }}</strong>08142/4607515<br></template> <strong>Email:</strong><a href="mailto:imelflorianingerl@gmail.com">imelflorianingerl@gmail.com</a><br>
+            <template v-if="fuss.telefon"><strong>{{ fuss.telefon }}</strong>{{ fuss.telefonnummer }}<br></template> <strong>Email:</strong><a :href="'mailto:' + fuss.mailadresse">{{ fuss.mailadresse }}</a><br>
           </div>
         </div>
       </div>

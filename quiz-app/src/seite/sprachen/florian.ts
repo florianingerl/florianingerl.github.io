@@ -1,0 +1,14 @@
+// Was auf allen vier Sprachfassungen von Florians Seite gleich ist
+export const florian = {
+  strasse: "Walchenseestraße 6",
+  ort: "82194 Gröbenzell",
+  mailadresse: "imelflorianingerl@gmail.com",
+  telefonnummer: "08142/4607515",
+  karte: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2660.0163910522733!2d11.374625315650785!3d48.18703567922735!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479e78db73d9a311%3A0x292da3a1a19b692b!2sWalchenseestra%C3%9Fe%206%2C%2082194%20Gr%C3%B6benzell!5e0!3m2!1sde!2sde!4v1614258192720!5m2!1sde!2sde",
+  flaggen: [
+    { ziel: "index.html", bild: "assets/img/flags/german.png", alt: "DE" },
+    { ziel: "indexfranz.html", bild: "assets/img/flags/franceflag.gif", alt: "FR" },
+    { ziel: "indexeng.html", bild: "assets/img/flags/englishflag.jpg", alt: "ENG" },
+    { ziel: "indexesp.html", bild: "assets/img/flags/spanish.png", alt: "ESP" },
+  ],
+};

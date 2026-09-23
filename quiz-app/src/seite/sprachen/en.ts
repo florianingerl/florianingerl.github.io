@@ -1,4 +1,5 @@
 import type { Seite } from "./index";
+import { florian } from "./florian";
 import Nachhilfeangebot from "../abschnitte/en/Nachhilfeangebot.vue";
 import MatheUni from "../abschnitte/en/MatheUni.vue";
 import InfoUni from "../abschnitte/en/InfoUni.vue";
@@ -23,6 +24,7 @@ const en: Seite = {
   logo: "Ask Florian!",
   knopf: "Send me a message!",
   heroBild: "assets/img/PendelFlyerEnglischMitKopfUndSchrift.png",
+  flaggen: florian.flaggen,
   menue: [
     {
       titel: "University",
@@ -68,8 +70,12 @@ const en: Seite = {
   ],
   kontakt: {
     karteHoehe: "350px",
+    karte: florian.karte,
     adresse: "Adresse:",
     email: "Email:",
+    strasse: florian.strasse,
+    ort: florian.ort,
+    mailadresse: florian.mailadresse,
     absatz:
       "The best thing to do is to contact me via e-mail and send along a few worksheets that can be discussed in a private lesson. But you can also use the form below.",
     formular: {
@@ -88,7 +94,7 @@ const en: Seite = {
       knopf: "Send message",
     },
   },
-  fuss: { telefon: "Phone:", sozial: true },
+  fuss: { telefon: "Phone:", telefonnummer: florian.telefonnummer, mailadresse: florian.mailadresse, sozial: true },
   schach: "en",
   abschnitte: [
     Nachhilfeangebot, MatheUni, InfoUni, PhysikUni, Ingenieurwesen,

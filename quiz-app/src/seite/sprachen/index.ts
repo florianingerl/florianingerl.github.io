@@ -30,11 +30,24 @@ export interface Formular {
   knopf: string;
 }
 
+// Eine Flagge im Sprachumschalter rechts oben
+export interface Flagge {
+  ziel: string;
+  bild: string;
+  alt: string;
+}
+
 export interface Kontakt {
   karteHoehe: string;
+  // Adresse der Google-Maps-Einbettung, ohne sie bleibt die Karte weg
+  karte?: string;
   containerId?: string;
+  // Beschriftungen
   adresse: string;
   email: string;
+  strasse: string;
+  ort: string;
+  mailadresse: string;
   absatz: string;
   formular: Formular;
 }
@@ -42,14 +55,20 @@ export interface Kontakt {
 export interface Fusszeile {
   // Beschriftung der Telefonnummer, fehlt auf der deutschen Seite
   telefon?: string;
+  telefonnummer?: string;
+  mailadresse: string;
   sozial: boolean;
 }
 
 // Alles, was sich zwischen den Sprachfassungen unterscheidet
 export interface Seite {
   logo: string;
+  // Wohin das Logo führt, sonst index.html
+  start?: string;
   knopf: string;
   heroBild: string;
+  // Sprachumschalter rechts oben, fehlt bei Seiten mit nur einer Sprache
+  flaggen?: Flagge[];
   menue: Gruppe[];
   kontakt: Kontakt;
   fuss: Fusszeile;

@@ -1,4 +1,5 @@
 import type { Seite } from "./index";
+import { florian } from "./florian";
 import Nachhilfeangebot from "../abschnitte/es/Nachhilfeangebot.vue";
 import MatheUni from "../abschnitte/es/MatheUni.vue";
 import InfoUni from "../abschnitte/es/InfoUni.vue";
@@ -23,6 +24,7 @@ const es: Seite = {
   logo: "Pregúntale\u00a0a Florian!",
   knopf: "Escríbeme un mensaje",
   heroBild: "assets/img/ingenieurwesenSpanischMitKopf.png",
+  flaggen: florian.flaggen,
   menue: [
     {
       titel: "Universidad",
@@ -69,8 +71,12 @@ const es: Seite = {
   ],
   kontakt: {
     karteHoehe: "200px",
+    karte: florian.karte,
     adresse: "Dirección:",
     email: "Dirección de correo electrónico:",
+    strasse: florian.strasse,
+    ort: florian.ort,
+    mailadresse: florian.mailadresse,
     absatz:
       "Puedes utilizar este formulario para contactarme, pero es mejor si me contactas por correo electrónico y me envías suficientes ejercicios para que podamos discutir durante una lección privada.",
     formular: {
@@ -85,7 +91,7 @@ const es: Seite = {
       knopf: "Enviar mensaje",
     },
   },
-  fuss: { telefon: "Teléfono:", sozial: true },
+  fuss: { telefon: "Teléfono:", telefonnummer: florian.telefonnummer, mailadresse: florian.mailadresse, sozial: true },
   // das Schachrätsel kennt kein Spanisch und zeigt hier wie bisher Deutsch
   schach: "de",
   abschnitte: [
