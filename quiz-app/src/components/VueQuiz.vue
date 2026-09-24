@@ -42,7 +42,7 @@
       </button>
     </div>
 
-    <div v-if="formOffen">
+    <div v-if="formOffen && tab === 'exercise'">
       <VueNewExercise
         :quiz="quiz"
         :questionOfQuiz="aktuelle"
@@ -149,8 +149,12 @@
         <p>Your score: {{ scoreText }}</p>
       </div>
 
+
       <div v-show="tab === 'tutorial'">
-        <Editor
+        <div style="height: 500px; background-color: antiquewhite;" v-if="!editMode" v-html="currentTutorial">
+        </div>
+
+        <Editor v-if="editMode"
         v-model="editorContent"
       api-key="zd8r2y1yfgup9e90sv8vooff97xxmjb4wlzp3i4umvcmp3je"
       :init="{
@@ -176,6 +180,9 @@
 <div class="row">
   <div class="col">
     <button @click="saveTutorialClicked">Save</button>
+  </div>
+  <div class="col">
+    <button @click="editMode=false;">Cancel</button>
   </div>
 </div>
 
@@ -256,6 +263,9 @@ const texte: Record<Lang, Texte> = {
   },
 };
 
+const currentTutorial = ref<string>();
+  
+
 const t = computed(() => texte[props.lg]);
 
 // Abgeleitete Werte
@@ -314,6 +324,7 @@ async function saveTutorialClicked(){
 
   if(!ex.topic){
     alert("The current exercise hasn't got a topic!");
+    editMode.value = false;
     return;
   }
   console.log("Exercise=" + ex);
@@ -325,6 +336,9 @@ async function saveTutorialClicked(){
 
   ex.topic.tutorial = editorContent.value;
   ex.topic = await updateTopic(ex.topic);
+  alert("The tutorial was inserted into the database!");
+
+  editMode.value = false;
 
 
   //TODO Save the tutorial in the database !
@@ -350,6 +364,26 @@ watch(selectedTopic, () => {
     i.value = 0
 
 })
+
+async function setCurrentTutorial(){
+  let ex : Exercise = displayedQuestions.value[i.value];
+  if(!ex.topic){
+      currentTutorial.value = "<h1>This exercise doesn't have a topic! So you can't write a tutorial!</h1>";
+      return;
+  }
+  if( typeof ex.topic === "string" ){
+    ex.topic = await getTopic(ex.topic);
+  }
+  currentTutorial.value = ex.topic.tutorial;
+}
+
+watch(i, async () => {
+  setCurrentTutorial();
+});
+
+watch(editMode, async() => {
+  setCurrentTutorial();
+});
 
 // Score
 function calcScore(): void {

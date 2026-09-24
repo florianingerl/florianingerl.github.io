@@ -32,15 +32,17 @@ export async function updateTopic(topic: Topic): Promise<Topic> {
   console.log("Topic is");
   console.log(topic);
   if (!topic._id) throw new Error("updateTopic: _id fehlt");
+  console.log("Trying to insert the topic into the database!");
   const r = await client.put<Topic>(
     `/api/topic/${encodeURIComponent(topic._id)}`,
     topic ,
   );
+  console.log("Inserting the topic in the database worked!");
   return r.data;
 }
 
 export async function getTopic(_id:string):Promise<Topic>{
-  const r = await client.get<Topic>(`/api/topic/:${_id}`);
+  const r = await client.get<Topic>(`/api/topic/${_id}`);
   return r.data;
 }
 
