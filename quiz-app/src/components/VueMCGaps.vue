@@ -49,10 +49,12 @@
     <p v-if="lg === 'fr'">
       <button @click="validate">Valider ma solution</button>
       <button @click="showSolution">Montre-moi la solution</button>
+      <button @click="retry">Essayer encore une fois</button>
     </p>
     <p v-else>
       <button @click="validate">Validate</button>
       <button @click="showSolution">Show me the solution</button>
+      <button @click="retry">Retry</button>
     </p>
   </div>
 </template>
@@ -171,6 +173,17 @@ function bigParseGapText(): void {
 function validate(): void {
   validated.value = true;
   props.exercise.correctlyAnswered = isEverythingCorrect();
+  emit("answered-event");
+}
+
+function retry(): void {
+  validated.value = false;
+  gaps.value.forEach((innergaps) =>
+    innergaps.forEach((g) => {
+      g.guess = "";
+    }),
+  );
+  delete props.exercise.correctlyAnswered;
   emit("answered-event");
 }
 
