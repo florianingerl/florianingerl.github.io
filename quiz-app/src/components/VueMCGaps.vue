@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>{{ instruction }}</p>
+    <p>{{ exercise.instruction }}</p>
     <ol style="list-style-type: none">
       <li v-for="(innergaps, li) in gaps" :key="li">
         <span v-for="(gap, gi) in innergaps" :key="gi">
@@ -47,11 +47,11 @@
     </ol>
 
     <p v-if="lg === 'fr'">
-      <button @click="validated = true">Valider ma solution</button>
+      <button @click="validate">Valider ma solution</button>
       <button @click="showSolution">Montre-moi la solution</button>
     </p>
     <p v-else>
-      <button @click="validated = true">Validate</button>
+      <button @click="validate">Validate</button>
       <button @click="showSolution">Show me the solution</button>
     </p>
   </div>
@@ -59,7 +59,7 @@
 
 <script setup lang="ts">
 import { onMounted, ref, watch } from "vue";
-import type { Lang } from "../types";
+import type { Exercise, Lang } from "../types";
 
 interface Gap {
   text: string;
@@ -70,11 +70,13 @@ interface Gap {
 }
 
 const props = defineProps<{
-  gaptext?: string | string[];
-  same?: boolean;
-  lg: Lang;
-  instruction?: string;
+  exercise: Exercise
+  same?: boolean
+  lg: Lang
 }>();
+
+const emit = defineEmits<{ (e: "answered-event"): void }>();
+
 
 const gaps = ref<Gap[][]>([]);
 const validated = ref(false);
@@ -106,6 +108,8 @@ function onInputChanged() {
 
   if(isEverythingCorrect() ){
      validated.value = true;
+     props.exercise.correctlyAnswered = true;
+     emit("answered-event");
   }
 }  
 
@@ -137,7 +141,7 @@ function shuffle(arr: string[]): string[] {
 function bigParseGapText(): void {
   gaps.value = [];
   validated.value = false;
-  const gt = props.gaptext;
+  const gt: string | string[] | undefined = props.exercise.gapText;
   if (Array.isArray(gt)) gt.forEach(pareseGapText);
   else if (gt) pareseGapText(gt);
 
@@ -164,6 +168,12 @@ function bigParseGapText(): void {
   );
 }
 
+function validate(): void {
+  validated.value = true;
+  props.exercise.correctlyAnswered = isEverythingCorrect();
+  emit("answered-event");
+}
+
 function showSolution(): void {
   validated.value = true;
   gaps.value.forEach((inner) =>
@@ -173,7 +183,7 @@ function showSolution(): void {
   );
 }
 
-watch(() => props.gaptext, bigParseGapText, { deep: true });
+watch(() => props.exercise.gapText, bigParseGapText, { deep: true });
 onMounted(bigParseGapText);
 </script>
 

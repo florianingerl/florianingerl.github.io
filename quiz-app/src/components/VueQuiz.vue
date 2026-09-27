@@ -128,21 +128,13 @@
     </ul>
 
     <div v-show="tab === 'exercise'">
-      <VueImage v-if="aktuelle" :imageUrl="aktuelle.imageUrl">
-        <VueMCGaps
-          v-if="aktuelle.type === 'gapText'"
-          :key="aktuelle._id ?? i"
-          :instruction="aktuelle.instruction"
-          :gaptext="aktuelle.gapText"
-          :lg="lg"
-        />
-        <VueQuestion
-          v-else
-          :question="aktuelle"
-          :lg="lg"
-          @answered-event="calcScore"
-        />
-      </VueImage>
+      <VueExercise
+        v-if="aktuelle"
+        :key="aktuelle._id ?? i"
+        :exercise="aktuelle"
+        :lg="lg"
+        @answered-event="calcScore"
+      />
 
       <p v-if="displayedQuestions.length === 0">{{ t.keineFragen }}</p>
 
@@ -208,11 +200,9 @@
 
 <script setup lang="ts">
 import { computed, nextTick, onMounted, ref, watch } from "vue";
-import VueImage from "./VueImage.vue";
 import { Modal } from "bootstrap";
 import VueSignUp from "./VueSignUp.vue";
-import VueMCGaps from "./VueMCGaps.vue";
-import VueQuestion from "./VueQuestion.vue";
+import VueExercise from "./VueExercise.vue";
 import VueNewExercise from "./VueNewExercise.vue";
 import VueNewTopic from "./VueNewTopic.vue";
 import {

@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Corso di verbi pronominali italiani</title>
+
+  <style>
+    :root {
+      --primary: #2563eb;
+      --secondary: #0f766e;
+      --dark: #172033;
+      --text: #334155;
+      --light: #f1f5f9;
+      --white: #ffffff;
+      --success: #166534;
+      --success-bg: #dcfce7;
+      --warning: #92400e;
+      --warning-bg: #fef3c7;
+      --border: #dbe3ee;
+      --shadow: 0 8px 25px rgba(15, 23, 42, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background: #f8fafc;
+    }
+
+    header {
+      background: linear-gradient(135deg, #1d4ed8, #0f766e);
+      color: white;
+      padding: 70px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      margin-bottom: 15px;
+    }
+
+    header p {
+      max-width: 760px;
+      margin: auto;
+      font-size: 1.15rem;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: var(--dark);
+      padding: 12px 20px;
+      text-align: center;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      font-size: 0.95rem;
+    }
+
+    nav a:hover {
+      color: #93c5fd;
+    }
+
+    main {
+      width: min(1100px, 92%);
+      margin: 40px auto;
+    }
+
+    section {
+      margin-bottom: 55px;
+    }
+
+    h2 {
+      color: var(--dark);
+      font-size: 2rem;
+      margin-bottom: 18px;
+      border-left: 6px solid var(--primary);
+      padding-left: 14px;
+    }
+
+    h3 {
+      color: var(--secondary);
+      margin-bottom: 10px;
+    }
+
+    p {
+      margin-bottom: 14px;
+    }
+
+    .intro-box,
+    .tip-box,
+    .exercise-box,
+    .summary-box {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 25px;
+      box-shadow: var(--shadow);
+      margin: 20px 0;
+    }
+
+    .intro-box {
+      border-top: 5px solid var(--primary);
+    }
+
+    .tip-box {
+      background: #ecfeff;
+      border-left: 5px solid var(--secondary);
+    }
+
+    .tip-box strong {
+      color: var(--secondary);
+    }
+
+    .verb-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .verb-card {
+      background: var(--white);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .verb-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.14);
+    }
+
+    .verb-card header {
+      padding: 22px;
+      text-align: left;
+      background: var(--dark);
+    }
+
+    .verb-card header h3 {
+      color: white;
+      font-size: 1.45rem;
+    }
+
+    .verb-card header span {
+      color: #bfdbfe;
+      font-size: 0.95rem;
+    }
+
+    .verb-content {
+      padding: 22px;
+    }
+
+    .meaning {
+      color: var(--primary);
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    .example {
+      background: var(--light);
+      padding: 14px;
+      border-radius: 8px;
+      margin: 15px 0;
+      font-style: italic;
+    }
+
+    .translation {
+      color: #64748b;
+      font-size: 0.94rem;
+    }
+
+    .conjugation {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+      font-size: 0.95rem;
+    }
+
+    .conjugation th,
+    .conjugation td {
+      border: 1px solid var(--border);
+      padding: 9px;
+      text-align: left;
+    }
+
+    .conjugation th {
+      background: #e0e7ff;
+      color: var(--dark);
+    }
+
+    .highlight {
+      color: var(--primary);
+      font-weight: bold;
+    }
+
+    .comparison {
+      overflow-x: auto;
+      background: var(--white);
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+    }
+
+    .comparison table {
+      width: 100%;
+      min-width: 700px;
+      border-collapse: collapse;
+    }
+
+    .comparison th,
+    .comparison td {
+      padding: 15px;
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+    }
+
+    .comparison th {
+      background: var(--dark);
+      color: white;
+    }
+
+    .comparison tr:nth-child(even) {
+      background: #f8fafc;
+    }
+
+    .exercise {
+      margin: 18px 0;
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #ffffff;
+    }
+
+    .exercise p {
+      font-weight: bold;
+      color: var(--dark);
+    }
+
+    .answer {
+      color: var(--success);
+      background: var(--success-bg);
+      padding: 12px;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+
+    .warning {
+      color: var(--warning);
+      background: var(--warning-bg);
+      padding: 14px;
+      border-radius: 8px;
+      margin-top: 15px;
+    }
+
+    ul,
+    ol {
+      margin: 12px 0 12px 25px;
+    }
+
+    li {
+      margin-bottom: 7px;
+    }
+
+    .summary-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 12px;
+      list-style: none;
+      margin: 0;
+    }
+
+    .summary-list li {
+      background: var(--light);
+      padding: 14px;
+      border-radius: 8px;
+    }
+
+    footer {
+      background: var(--dark);
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+      margin-top: 60px;
+    }
+
+    @media (max-width: 650px) {
+      nav a {
+        display: inline-block;
+        margin: 4px 6px;
+        font-size: 0.85rem;
+      }
+
+      header {
+        padding: 50px 18px;
+      }
+
+      h2 {
+        font-size: 1.6rem;
+      }
+
+      .verb-card header {
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header id="inizio">
+    <h1>I verbi pronominali italiani</h1>
+    <p>
+      Impara a usare espressioni come <strong>andarsene</strong>,
+      <strong>farcela</strong>, <strong>smetterla</strong>,
+      <strong>fregarsene</strong>, <strong>prendersela</strong> e
+      <strong>cavarsela</strong>.
+    </p>
+  </header>
+
+  <nav>
+    <a href="#introduzione">Introduzione</a>
+    <a href="#verbi">Verbi</a>
+    <a href="#confronto">Confronto</a>
+    <a href="#esercizi">Esercizi</a>
+    <a href="#riepilogo">Riepilogo</a>
+  </nav>
+
+  <main>
+
+    <section id="introduzione">
+      <h2>1. Che cosa sono i verbi pronominali?</h2>
+
+      <div class="intro-box">
+        <p>
+          I verbi pronominali sono verbi accompagnati da una o più particelle
+          pronominali, come <strong>mi</strong>, <strong>ti</strong>,
+          <strong>si</strong>, <strong>ne</strong> o <strong>la</strong>.
+        </p>
+
+        <p>
+          Il loro significato spesso cambia rispetto al verbo originale.
+          Per esempio:
+        </p>
+
+        <ul>
+          <li><strong>andare</strong> = recarsi in un luogo</li>
+          <li><strong>andarsene</strong> = andare via</li>
+          <li><strong>fare</strong> = realizzare o compiere qualcosa</li>
+          <li><strong>farcela</strong> = riuscire</li>
+        </ul>
+      </div>
+
+      <div class="tip-box">
+        <strong>Attenzione:</strong>
+        le particelle fanno parte del significato del verbo. Non bisogna
+        tradurle sempre separatamente.
+      </div>
+
+      <h3>La struttura generale</h3>
+
+      <p>
+        Le particelle cambiano in base alla persona:
+      </p>
+
+      <table class="conjugation">
+        <thead>
+          <tr>
+            <th>Persona</th>
+            <th>Pronome</th>
+            <th>Esempio con “farcela”</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>io</td>
+            <td>mi</td>
+            <td>Io <span class="highlight">ce la faccio</span></td>
+          </tr>
+          <tr>
+            <td>tu</td>
+            <td>ti</td>
+            <td>Tu <span class="highlight">ce la fai</span></td>
+          </tr>
+          <tr>
+            <td>lui / lei</td>
+            <td>se</td>
+            <td>Lui <span class="highlight">ce la fa</span></td>
+          </tr>
+          <tr>
+            <td>noi</td>
+            <td>ce</td>
+            <td>Noi <span class="highlight">ce la facciamo</span></td>
+          </tr>
+          <tr>
+            <td>voi</td>
+            <td>ve</td>
+            <td>Voi <span class="highlight">ce la fate</span></td>
+          </tr>
+          <tr>
+            <td>loro</td>
+            <td>se</td>
+            <td>Loro <span class="highlight">ce la fanno</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="verbi">
+      <h2>2. I principali verbi pronominali</h2>
+
+      <div class="verb-grid">
+
+        <article class="verb-card">
+          <header>
+            <h3>Andarsene</h3>
+            <span>andare + si + ne</span>
+          </header>
+
+          <div class="verb-content">
+            <p class="meaning">Significato: andare via, lasciare un luogo.</p>
+
+            <div class="example">
+              Me ne vado, perché è tardi.
+              <div class="translation">Vado via perché è tardi.</div>
+            </div>
+
+            <table class="conjugation">
+              <tr><th>Persona</th><th>Forma</th></tr>
+              <tr><td>io</td><td>me ne vado</td></tr>
+              <tr><td>tu</td><td>te ne vai</td></tr>
+              <tr><td>lui / lei</td><td>se ne va</td></tr>
+              <tr><td>noi</td><td>ce ne andiamo</td></tr>
+              <tr><td>voi</td><td>ve ne andate</td></tr>
+              <tr><td>loro</td><td>se ne vanno</td></tr>
+            </table>
+
+            <p class="warning">
+              Al passato prossimo si usa <strong>essere</strong>:
+              “Me ne sono andato” oppure “Me ne sono andata”.
+            </p>
+          </div>
+        </article>
+
+        <article class="verb-card">
+          <header>
+            <h3>Farcela</h3>
+            <span>fare + ce + la</span>
+          </header>
+
+          <div class="verb-content">
+            <p class="meaning">Significato: riuscire.</p>
+
+            <div class="example">
+              Non ti preoccupare: ce la farai!
+              <div class="translation">Riuscirai!</div>
+            </div>
+
+            <table class="conjugation">
+              <tr><th>Persona</th><th>Forma</th></tr>
+              <tr><td>io</td><td>ce la faccio</td></tr>
+              <tr><td>tu</td><td>ce la fai</td></tr>
+              <tr><td>lui / lei</td><td>ce la fa</td></tr>
+              <tr><td>noi</td><td>ce la facciamo</td></tr>
+              <tr><td>voi</td><td>ce la fate</td></tr>
+              <tr><td>loro</td><td>ce la fanno</td></tr>
+            </table>
+
+            <p class="warning">
+              La forma negativa è molto comune:
+              “Non ce la faccio più!”
+            </p>
+          </div>
+        </article>
+
+        <article class="verb-card">
+          <header>
+            <h3>Smetterla</h3>
+            <span>smettere + la</span>
+          </header>
+
+          <div class="verb-content">
+            <p class="meaning">Significato: smettere di fare qualcosa.</p>
+
+            <div class="example">
+              Smettila di lamentarti!
+              <div class="translation">Smetti di lamentarti!</div>
+            </div>
+
+            <table class="conjugation">
+              <tr><th>Persona</th><th>Forma</th></tr>
+              <tr><td>io</td><td>la smetto</td></tr>
+              <tr><td>tu</td><td>la smetti</td></tr>
+              <tr><td>lui / lei</td><td>la smette</td></tr>
+              <tr><td>noi</td><td>la smettiamo</td></tr>
+              <tr><td>voi</td><td>la smettete</td></tr>
+              <tr><td>loro</td><td>la smettono</td></tr>
+            </table>
+
+            <p class="warning">
+              “Smettila!” può sembrare brusco. In un contesto educato è meglio
+              dire: “Potresti smettere, per favore?”
+            </p>
+          </div>
+        </article>
+
+        <article class="verb-card">
+          <header>
+            <h3>Fregarsene</h3>
+            <span>fregare + si + ne</span>
+          </header>
+
+          <div class="verb-content">
+            <p class="meaning">Significato: non interessarsi, non preoccuparsi.</p>
+
+            <div class="example">
+              Me ne frego di quello che dicono.
+              <div class="translation">Non mi interessa quello che dicono.</div>
+            </div>
+
+            <table class="conjugation">
+              <tr><th>Persona</th><th>Forma</th></tr>
+              <tr><td>io</td><td>me ne frego</td></tr>
+              <tr><td>tu</td><td>te ne freghi</td></tr>
+              <tr><td>lui / lei</td><td>se ne frega</td></tr>
+              <tr><td>noi</td><td>ce ne freghiamo</td></tr>
+              <tr><td>voi</td><td>ve ne fregate</td></tr>
+              <tr><td>loro</td><td>se ne fregano</td></tr>
+            </table>
+
+            <p class="warning">
+              È un’espressione informale e talvolta volgare. In situazioni
+              formali usa “non mi interessa” o “non mi preoccupo”.
+            </p>
+          </div>
+        </article>
+
+        <article class="verb-card">
+          <header>
+            <h3>Prendersela</h3>
+            <span>prendere + si + la</span>
+          </header>
+
+          <div class="verb-content">
+            <p class="meaning">Significato: offendersi o arrabbiarsi.</p>
+
+            <div class="example">
+              Non prendertela: stavo solo scherzando.
+              <div class="translation">Non offenderti: stavo solo scherzando.</div>
+            </div>
+
+            <table class="conjugation">
+              <tr><th>Persona</th><th>Forma</th></tr>
+              <tr><td>io</td><td>me la prendo</td></tr>
+              <tr><td>tu</td><td>te la prendi</td></tr>
+              <tr><td>lui / lei</td><td>se la prende</td></tr>
+              <tr><td>noi</td><td>ce la prendiamo</td></tr>
+              <tr><td>voi</td><td>ve la prendete</td></tr>
+              <tr><td>loro</td><td>se la prendono</td></tr>
+            </table>
+
+            <p class="warning">
+              L’espressione “prendersela con qualcuno” significa arrabbiarsi
+              con qualcuno: “Se l’è presa con me”.
+            </p>
+          </div>
+        </article>
+
+        <article class="verb-card">
+          <header>
+            <h3>Cavarsela</h3>
+            <span>cavare + si + la</span>
+          </header>
+
+          <div class="verb-content">
+            <p class="meaning">Significato: riuscire a gestire una situazione.</p>
+
+            <div class="example">
+              Anche senza aiuto, me la cavo bene.
+              <div class="translation">Riesco a gestire bene la situazione.</div>
+            </div>
+
+            <table class="conjugation">
+              <tr><th>Persona</th><th>Forma</th></tr>
+              <tr><td>io</td><td>me la cavo</td></tr>
+              <tr><td>tu</td><td>te la cavi</td></tr>
+              <tr><td>lui / lei</td><td>se la cava</td></tr>
+              <tr><td>noi</td><td>ce la caviamo</td></tr>
+              <tr><td>voi</td><td>ve la cavate</td></tr>
+              <tr><td>loro</td><td>se la cavano</td></tr>
+            </table>
+
+            <p class="warning">
+              “Cavarsela” può indicare anche una situazione difficile:
+              “Come te la cavi con l’italiano?”
+            </p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="confronto">
+      <h2>3. Confronto tra i verbi</h2>
+
+      <div class="comparison">
+        <table>
+          <thead>
+            <tr>
+              <th>Verbo</th>
+              <th>Significato</th>
+              <th>Esempio</th>
+              <th>Registro</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>andarsene</td>
+              <td>andare via</td>
+              <td>Me ne vado a casa.</td>
+              <td>Neutro</td>
+            </tr>
+            <tr>
+              <td>farcela</td>
+              <td>riuscire</td>
+              <td>Ce la posso fare.</td>
+              <td>Neutro</td>
+            </tr>
+            <tr>
+              <td>smetterla</td>
+              <td>smettere</td>
+              <td>Smettila di gridare.</td>
+              <td>Informale</td>
+            </tr>
+            <tr>
+              <td>fregarsene</td>
+              <td>non interessarsi</td>
+              <td>Me ne frego.</td>
+              <td>Informale / forte</td>
+            </tr>
+            <tr>
+              <td>prendersela</td>
+              <td>offendersi</td>
+              <td>Non te la prendere.</td>
+              <td>Informale</td>
+            </tr>
+            <tr>
+              <td>cavarsela</td>
+              <td>gestire una situazione</td>
+              <td>Me la cavo bene.</td>
+              <td>Neutro</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="esercizi">
+      <h2>4. Esercizi</h2>
+
+      <div class="exercise-box">
+
+        <div class="exercise">
+          <p>1. Completa: “È tardi. Io ________ a casa.”</p>
+          <div class="answer">Risposta: me ne vado</div>
+        </div>
+
+        <div class="exercise">
+          <p>2. Completa: “Non ________ più! Sono molto stanco.”</p>
+          <div class="answer">Risposta: ce la faccio</div>
+        </div>
+
+        <div class="exercise">
+          <p>3. Completa: “________ di fare rumore!”</p>
+          <div class="answer">Risposta: Smettila</div>
+        </div>
+
+        <div class="exercise">
+          <p>4. Completa: “Non ________: non volevo offenderti.”</p>
+          <div class="answer">Risposta: prendertela</div>
+        </div>
+
+        <div class="exercise">
+          <p>5. Completa: “Come ________ con il nuovo lavoro?”</p>
+          <div class="answer">Risposta: te la cavi</div>
+        </div>
+
+        <div class="exercise">
+          <p>6. Trasforma la frase usando “fregarsene”:</p>
+          <p>“A Marco non interessa quello che pensa la gente.”</p>
+          <div class="answer">Risposta: Marco se ne frega di quello che pensa la gente.</div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="riepilogo">
+      <h2>5. Riepilogo finale</h2>
+
+      <div class="summary-box">
+        <ul class="summary-list">
+          <li><strong>Andarsene:</strong> andare via</li>
+          <li><strong>Farcela:</strong> riuscire</li>
+          <li><strong>Smetterla:</strong> smettere di fare qualcosa</li>
+          <li><strong>Fregarsene:</strong> non interessarsi</li>
+          <li><strong>Prendersela:</strong> offendersi o arrabbiarsi</li>
+          <li><strong>Cavarsela:</strong> gestire una situazione</li>
+        </ul>
+
+        <div class="tip-box" style="margin-top: 25px;">
+          <strong>Metodo per imparare:</strong>
+          memorizza ogni verbo insieme a una frase completa, non soltanto
+          con la traduzione. Per esempio:
+          <em>“Non te la prendere”</em>,
+          <em>“Ce la posso fare”</em>,
+          <em>“Me ne vado”</em>.
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Corso di italiano: i verbi pronominali</p>
+    <p>Impara una frase alla volta e usala in un contesto reale.</p>
+  </footer>
+
+</body>
+</html>

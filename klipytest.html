@@ -1,0 +1,68 @@
+<html>
+<head>
+    <title>Klipy Test</title>
+    <style>
+        img {
+            width: 300px;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+
+    <img id="hpi" alt="No image was found!">
+
+<script>
+  async function findGifUrls(searchTerm, apiKey, limit = 10) {
+    const url = new URL("https://api.klipy.com/v1/gifs/search");
+
+    url.searchParams.set("q", searchTerm);
+    url.searchParams.set("key", apiKey);
+    url.searchParams.set("limit", limit);
+
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error(`Klipy request failed: ${response.status}`);
+    }
+
+    console.log(response);
+
+    const result = await response.json();
+
+    return result.data
+      .map(gif => gif.url || gif.images?.original?.url)
+      .filter(Boolean);
+  }
+
+  async function loadGif() {
+    try {
+      console.log("The function is called!");
+
+      const urls = await findGifUrls(
+        "Harry Potter",
+        "GblaAUO3H2fVadJMh2BBPfeNpoAcdpI0TQKEx7HGN2GDeCVNpLY9CgEB10yhcnZb",
+        10
+      );
+
+      if (urls.length === 0) {
+        console.log("No GIF was found.");
+        return;
+      }
+
+      document.getElementById("hpi").src = urls[0];
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  window.addEventListener("load", loadGif);
+</script>
+
+
+    
+
+</body>
+
+
+</html>
