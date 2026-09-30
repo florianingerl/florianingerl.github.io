@@ -1,0 +1,1 @@
+It would be ok to write the function getRandomImageUrlFromFacile in the following way: 
