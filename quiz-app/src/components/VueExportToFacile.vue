@@ -73,14 +73,23 @@
             id="exportCookie"
             v-model="cookie"
             class="form-control form-control-sm"
-            rows="2"
-            placeholder="sessionid=…; sessionid2=…; PHPSESSID=…"
+            rows="3"
+            placeholder="auteur_cookies=flori10; sessionid=…; sessionid2=…; PHPSESSID=…"
           ></textarea>
           <div class="form-text">
-            A browser never sends a cookie that a website has set for
-            JavaScript, and the *facile.com cookies are SameSite=Lax, so they
-            are not attached to a cross-site POST. The export therefore only
-            works if you are logged in to {{ domain }} in this browser.
+            <strong>Copy the whole cookie, not just the session cookies.</strong>
+            On *facile.com the cookie that identifies you is
+            <code>auteur_cookies</code>. Without it the site ignores
+            <code>sessionid</code>, <code>sessionid2</code> and
+            <code>PHPSESSID</code> and shows the anonymous page.
+            <br />
+            How to get it: open {{ domain }}, log in, open DevTools → Network →
+            click any request to {{ domain }} → copy the whole
+            <code>cookie</code> line from "Request Headers". The easiest way is
+            to reload the test page once so a new request appears.
+            <br />
+            Your own server forwards the cookie, because a browser is not allowed
+            to set a cookie for another website.
           </div>
 
           <h2 class="fs-6 mt-3">
@@ -159,7 +168,7 @@
 <script setup lang="ts">
 import { computed, nextTick, onMounted, ref, watch } from "vue";
 import { Modal } from "bootstrap";
-import { getAllExercises, getTopic } from "../api.ts";
+import { exportToFacile, getAllExercises, getTopic } from "../api.ts";
 import VueImage from "./VueImage.vue";
 import type {
   Exercise,
@@ -285,7 +294,10 @@ function absoluteUrl(url: string): string {
 
 function alsBild(ex: Exercise): string {
   if (!ex.imageUrl) return "";
-  return `<img href="${absoluteUrl(ex.imageUrl)}"></img> `;
+  // <img> ist ein Void-Element: es braucht src statt href und darf keinen
+  // schliessenden Tag haben. Mit href und </img> zeigte die Seite gar nichts an.
+  const url = absoluteUrl(ex.imageUrl).replace(/&/g, "&amp;").replace(/"/g, "&quot;");
+  return `<img src="${url}"> `;
 }
 
 function ohneLuecken(text: string): string {
@@ -439,44 +451,51 @@ async function exportieren(): Promise<void> {
   }
 
   const gefuellt = fuelleAufMindestzahl(gewaehlte);
-  const url = `https://www.${seite}/cgi2/myexam/edit2.php?id=${TEST_ID}`;
   const sitzungscookie = cookie.value.trim();
+
+  if (sitzungscookie === "") {
+    fehler.value = "Bitte den Session-Cookie aus den DevTools einfügen!";
+    return;
+  }
 
   meldung.value = "Export läuft ...";
 
   try {
-    const antwort = await fetch(url, {
-      method: "POST",
-      credentials: "include",
-      headers: {
-        accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "content-type": "application/x-www-form-urlencoded",
-        // Der Browser lässt diesen Header weg. Er steht nur als Erinnerung daran,
-        // welche Sitzung aus den DevTools kopiert wurde.
-        ...(sitzungscookie ? { cookie: sitzungscookie } : {}),
-      },
+    const antwort = await exportToFacile({
+      site: seite,
+      testId: TEST_ID,
+      cookie: sitzungscookie,
       body: baueBody(gewaehlte),
     });
 
-    const text = await antwort.text();
-
-    if (/Connectez-vous|Please log in|Merci de vous connecter/i.test(text)) {
+    if (antwort.angemeldet === false) {
       meldung.value = "";
-      fehler.value = `${seite} hat den Test nicht gespeichert: Du bist dort nicht angemeldet. Bitte in diesem Browser auf ${seite} anmelden und es nochmal versuchen.`;
+      fehler.value =
+        antwort.message ??
+        `Die Seite ${seite} hat den Test nicht gespeichert, weil der Cookie abgelaufen ist. Bitte dort neu anmelden und den Cookie neu kopieren.`;
       return;
     }
 
     if (!antwort.ok) {
       meldung.value = "";
-      fehler.value = `${seite} hat mit HTTP ${antwort.status} geantwortet.`;
+      fehler.value = antwort.message ?? `${seite} hat den Export abgelehnt.`;
       return;
     }
 
     const art = typen.find((x) => x.wert === uebungstyp.value) ?? typen[0];
-    meldung.value = `Der Test ${TEST_ID} auf ${seite} wurde mit ${gefuellt.length} Fragen und dem Typ ${art.seitentyp} aktualisiert.`;
+    const bestaetigt = antwort.gespeichert
+      ? "Die Seite hat den Test gespeichert."
+      : "Die Seite hat den Test angenommen, aber nicht bestätigt. Bitte kurz auf der Seite prüfen, ob die Fragen übernommen wurden.";
+    meldung.value = `Test ${TEST_ID} auf ${seite}: ${gefuellt.length} Fragen, Typ ${art.seitentyp}. ${bestaetigt}`;
   } catch (e) {
     meldung.value = "";
-    fehler.value = `Export fehlgeschlagen: ${(e as Error).message}`;
+    // Bei einem 4xx/5xx wirft axios, und die brauchbare Meldung steckt in der
+    // Antwort des Servers, nicht in e.message. Ohne das bleibt nur "400".
+    const servertext = (e as { response?: { data?: { message?: string } } }).response?.data
+      ?.message;
+    fehler.value = servertext
+      ? `Export fehlgeschlagen: ${servertext}`
+      : `Export fehlgeschlagen: ${(e as Error).message}`;
   }
 }
 

@@ -64,7 +64,7 @@ Exercise in my database:
 }
 
 On anglaisfacile.com
-q = <img href="https://static.klipy.com/ii/f87f46a2c5aeaeed4c68910815f73eaf/b3/71/IvGpjFm5.jpg"></img>* female duck is it dreaming of ?
+q = <img src="https://static.klipy.com/ii/f87f46a2c5aeaeed4c68910815f73eaf/b3/71/IvGpjFm5.jpg">* female duck is it dreaming of ?
 r = What
 
 

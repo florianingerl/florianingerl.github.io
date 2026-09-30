@@ -62,6 +62,30 @@ export async function getAllExercises(quiz: QuizName): Promise<Exercise[]> {
   return getExercises(quiz);
 }
 
+// Antwort des eigenen Servers, wenn er den Export an *facile.com weitergeleitet hat.
+export interface ExportFacileAntwort {
+  ok: boolean;
+  angemeldet?: boolean;
+  gespeichert?: boolean;
+  status?: number;
+  seite?: string;
+  testId?: string;
+  bytes?: number;
+  message?: string;
+}
+
+// Der Browser darf das Cookie-Header nicht setzen und die *facile.com-Seiten
+// schicken keine CORS-Header. Deshalb geht der Export über den eigenen Server.
+export async function exportToFacile(params: {
+  site: string;
+  testId: number;
+  cookie: string;
+  body: string;
+}): Promise<ExportFacileAntwort> {
+  const r = await client.post<ExportFacileAntwort>("/api/exportfacile", params);
+  return r.data;
+}
+
 export async function createExercise(e: Exercise): Promise<Exercise> {
   e= bereinigen(e);
   const r = await client.post<Exercise>(`/api/exercise`, {...e, topic: !e.topic ? undefined : ( typeof e.topic === "string" ? e.topic : e.topic._id  ) });
