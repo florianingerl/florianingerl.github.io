@@ -1,0 +1,500 @@
+<template>
+  <div
+    ref="dialog"
+    class="modal fade"
+    id="exportFacileModal"
+    tabindex="-1"
+    aria-labelledby="exportFacileModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exportFacileModalLabel">
+            Export to {{ domain }}
+          </h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+
+        <div class="modal-body">
+          <p class="text-muted">
+            Topic:
+            <span class="badge text-bg-secondary">
+              {{ topicDaten?.title ?? "…" }}
+            </span>
+            · Test-ID: {{ TEST_ID }}
+          </p>
+
+          <fieldset>
+            <legend class="fs-6">Type of exercise</legend>
+            <div v-for="typ in typen" :key="typ.wert" class="form-check">
+              <input
+                :id="'uebungstyp-' + typ.wert"
+                v-model="uebungstyp"
+                class="form-check-input"
+                type="radio"
+                name="uebungstyp"
+                :value="typ.wert"
+              />
+              <label class="form-check-label" :for="'uebungstyp-' + typ.wert">
+                {{ typ.label }}
+              </label>
+            </div>
+          </fieldset>
+
+          <div class="row g-2 my-1">
+            <div class="col">
+              <label class="form-label" for="exportTitel">Title</label>
+              <input
+                id="exportTitel"
+                v-model="titel"
+                class="form-control form-control-sm"
+                type="text"
+              />
+            </div>
+            <div class="col-2">
+              <label class="form-label" for="exportAuteur">Author</label>
+              <input
+                id="exportAuteur"
+                v-model="auteur"
+                class="form-control form-control-sm"
+                type="text"
+              />
+            </div>
+          </div>
+
+          <label class="form-label" for="exportCookie">Session cookie</label>
+          <textarea
+            id="exportCookie"
+            v-model="cookie"
+            class="form-control form-control-sm"
+            rows="2"
+            placeholder="sessionid=…; sessionid2=…; PHPSESSID=…"
+          ></textarea>
+          <div class="form-text">
+            A browser never sends a cookie that a website has set for
+            JavaScript, and the *facile.com cookies are SameSite=Lax, so they
+            are not attached to a cross-site POST. The export therefore only
+            works if you are logged in to {{ domain }} in this browser.
+          </div>
+
+          <h2 class="fs-6 mt-3">
+            Exercises ({{ gewaehlteAnzahl }} of {{ kandidaten.length }} selected)
+          </h2>
+
+          <p v-if="laden">{{ t }}</p>
+          <p v-if="fehler" class="text-danger">{{ fehler }}</p>
+          <p v-else-if="!laden && kandidaten.length === 0" class="text-muted">
+            No exercise of this topic matches the selected type of exercise.
+          </p>
+
+          <ul v-else class="list-group" style="max-height: 40vh; overflow-y: auto">
+            <li class="list-group-item">
+              <input
+                id="alleAuswaehlen"
+                v-model="alleAusgewaehlt"
+                class="form-check-input"
+                type="checkbox"
+              />
+              <label class="form-check-label" for="alleAuswaehlen">
+                <strong>Select All</strong>
+              </label>
+            </li>
+            <li
+              v-for="(ex, index) in kandidaten"
+              :key="ex._id ?? index"
+              class="list-group-item d-flex align-items-start gap-2"
+            >
+              <input
+                v-model="ausgewaehlt[index]"
+                class="form-check-input mt-1"
+                type="checkbox"
+              />
+              <div class="flex-grow-1">
+                <div>
+                  <small class="text-muted">{{ ex.type }}</small>
+                </div>
+                <VueImage v-if="ex.imageUrl" :imageUrl="ex.imageUrl" class="export-bild" />
+                <div class="font-monospace small">
+                  q = {{ fragenAntworten[index]?.q }}
+                </div>
+                <div class="font-monospace small">
+                  r = {{ fragenAntworten[index]?.r }}
+                </div>
+              </div>
+            </li>
+          </ul>
+
+          <p v-if="hinweis" class="text-muted small mt-2">{{ hinweis }}</p>
+          <p v-if="meldung" class="text-success">{{ meldung }}</p>
+        </div>
+
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            :disabled="gewaehlteAnzahl === 0"
+            @click="exportieren"
+          >
+            Export to {{ domain }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { computed, nextTick, onMounted, ref, watch } from "vue";
+import { Modal } from "bootstrap";
+import { getAllExercises, getTopic } from "../api.ts";
+import VueImage from "./VueImage.vue";
+import type {
+  Exercise,
+  ExportTestType,
+  FrageAntwort,
+  Lang,
+  QuizName,
+  Topic,
+} from "../types.ts";
+
+// Der bestehende Test auf *facile.com, der geändert wird.
+const TEST_ID = 131777;
+
+// Ein Test auf *facile.com braucht mindestens so viele Fragen.
+const MINDESTZAHL = 10;
+
+// Die *facile.com-Seite zu jedem Quiz. Für die übrigen Quizzes gibt es keine Seite.
+const SEITEN: Partial<Record<QuizName, string>> = {
+  french: "francaisfacile.com",
+  english: "anglaisfacile.com",
+  espagnol: "espagnolfacile.com",
+  italiano: "italienfacile.com",
+  deutsch: "allemandfacile.com",
+};
+
+// Die Nummern der Testarten stehen in choice.php auf *facile.com.
+const typen: { wert: ExportTestType; label: string; seitentyp: string }[] = [
+  { wert: "trous", label: "1.1) Test à trous", seitentyp: "0" },
+  {
+    wert: "optionsDifferents",
+    label: "1.2) Test avec des options différents pour chaque question",
+    seitentyp: "3",
+  },
+  {
+    wert: "optionsGleich",
+    label: "1.3) Test avec les mêmes options pour chaque question",
+    seitentyp: "1",
+  },
+];
+
+const texte: Record<Lang, string> = {
+  de: "Lade die Aufgaben des Themas ...",
+  en: "Loading the exercises of the topic ...",
+  fr: "Chargement des exercices du thème ...",
+};
+
+const props = defineProps<{
+  quiz: QuizName;
+  topic: Topic | string | undefined;
+  lg: Lang;
+}>();
+
+const emit = defineEmits<{ (e: "cancel-clicked"): void }>();
+
+const t = computed(() => texte[props.lg]);
+const domain = computed(() => SEITEN[props.quiz] ?? "…");
+
+const dialog = ref<HTMLElement | null>(null);
+const topicDaten = ref<Topic | undefined>(undefined);
+const alleAufgaben = ref<Exercise[]>([]);
+const kandidaten = ref<Exercise[]>([]);
+const ausgewaehlt = ref<boolean[]>([]);
+const uebungstyp = ref<ExportTestType>("trous");
+const titel = ref("");
+const auteur = ref("flori10");
+const cookie = ref("");
+const laden = ref(true);
+const fehler = ref("");
+const meldung = ref("");
+const hinweis = ref("");
+
+// Zwischenspeicher, damit die Liste nicht bei jedem Rendern neu gerechnet wird.
+const fragenAntworten = computed<(FrageAntwort | null)[]>(() =>
+  kandidaten.value.map(frageAntwortBauen),
+);
+
+const gewaehlteAnzahl = computed(
+  () => ausgewaehlt.value.filter((a) => a).length,
+);
+
+const alleAusgewaehlt = computed({
+  get: () =>
+    kandidaten.value.length > 0 &&
+    gewaehlteAnzahl.value === kandidaten.value.length,
+  set: (wert: boolean) => {
+    ausgewaehlt.value = kandidaten.value.map(() => wert);
+  },
+});
+
+// "La femme {qui|que} tient ..." => [["qui", "que"]]
+function luecken(gapText: string): string[][] {
+  const gefunden: string[][] = [];
+  for (const treffer of gapText.matchAll(/\{([^{}]*)\}/g)) {
+    gefunden.push(treffer[1].split("|"));
+  }
+  return gefunden;
+}
+
+// Eine Lücke ohne "|" ist eine Freitext-Lücke, sonst eine Auswahllücke.
+function istAuswahlluecke(lueckenDesTextes: string[][]): boolean {
+  return lueckenDesTextes.length > 0 && lueckenDesTextes[0].length > 1;
+}
+
+function passtZurTestart(ex: Exercise, art: ExportTestType): boolean {
+  if (ex.type === "multipleChoice") return art !== "trous";
+
+  const gefunden = luecken(ex.gapText ?? "");
+  if (gefunden.length === 0) return false;
+  // Nur 1.3) nimmt auch Aufgaben mit mehreren Lücken.
+  if (gefunden.length > 1) return art === "optionsGleich";
+  // Eine Auswahllücke gehört zu 1.2) und 1.3), eine Freitextlücke zu 1.1) und 1.3).
+  return art === "optionsGleich" || istAuswahlluecke(gefunden) === (art === "optionsDifferents");
+}
+
+function absoluteUrl(url: string): string {
+  if (/^https?:\/\//i.test(url)) return url;
+  try {
+    return new URL(url, document.baseURI).href;
+  } catch {
+    return url;
+  }
+}
+
+function alsBild(ex: Exercise): string {
+  if (!ex.imageUrl) return "";
+  return `<img href="${absoluteUrl(ex.imageUrl)}"></img> `;
+}
+
+function ohneLuecken(text: string): string {
+  return text.replace(/\{[^{}]*\}/g, "*").replace(/_{2,}/g, "*").trim();
+}
+
+// Die erste Option muss die richtige sein, deshalb kommt sie nach vorne.
+function optionenMitRichtigerVorne(ex: Exercise): string[] {
+  const alle = (ex.options ?? []).map((o) => o.option);
+  const richtige = (ex.options ?? [])
+    .filter((o) => o.correct)
+    .map((o) => o.option);
+  return [...richtige, ...alle.filter((o) => !richtige.includes(o))];
+}
+
+function frageAntwortBauen(ex: Exercise): FrageAntwort | null {
+  if (ex.type === "multipleChoice") {
+    const text = ohneLuecken(ex.question ?? ex.gapText ?? "");
+    if (text === "") return null;
+    return { q: alsBild(ex) + text, r: optionenMitRichtigerVorne(ex).join("|") };
+  }
+
+  const gefunden = luecken(ex.gapText ?? "");
+  if (gefunden.length === 0) return null;
+  return {
+    q: alsBild(ex) + ohneLuecken(ex.gapText ?? ""),
+    r: gefunden[0].join("|"),
+  };
+}
+
+function fuelleAufMindestzahl(fragen: FrageAntwort[]): FrageAntwort[] {
+  if (fragen.length === 0) return [];
+  const gefuellt: FrageAntwort[] = [];
+  for (let i = 0; i < MINDESTZAHL; i++) {
+    gefuellt.push(fragen[Math.min(i, fragen.length - 1)]);
+  }
+  return gefuellt;
+}
+
+function baueBody(fragen: FrageAntwort[]): string {
+  const gefuellt = fuelleAufMindestzahl(fragen);
+  const seite = typen.find((x) => x.wert === uebungstyp.value) ?? typen[0];
+  const testtitel = titel.value.trim();
+  const felder = new URLSearchParams();
+
+  felder.set("statut", "r");
+  felder.set("top2", "");
+  felder.set("auteur2", auteur.value.trim());
+  felder.set("liaison2", "#adverbe#conjonction#");
+  felder.set("casier", `clone du test ${TEST_ID}`);
+  felder.set("anciensite", "0001");
+  felder.set("yenamarre", "0001");
+  felder.set("genre", "g");
+  felder.set("difficulte", "2");
+  felder.set("type", seite.seitentyp);
+  felder.set("titre", testtitel);
+  felder.set("titreenglish", testtitel);
+  felder.set("ancientitreenglish", testtitel);
+  felder.set("numero", "0");
+  felder.set("message_textarea", topicDaten.value?.tutorial ?? "");
+  felder.set("confirmer", "0");
+
+  gefuellt.forEach((frage, index) => {
+    const nummer = index + 1;
+    felder.set(`q${nummer}`, frage.q);
+    felder.set(`r${nummer}`, frage.r);
+    felder.set(`e${nummer}`, "");
+  });
+
+  felder.set("mychoice", String(gefuellt.length));
+  felder.set("grander", "");
+  felder.set("nol2", "");
+  felder.set("vieuxconfirm", "0");
+  felder.set("forcer2", "");
+  felder.set("enbaspage", "");
+  felder.set("enbas", "");
+
+  return felder.toString();
+}
+
+// Nur die Aufgaben, die zur gewählten Testart und zum geladenen Topic passen.
+function filtereNachTestart(): void {
+  const topicId = topicDaten.value?._id;
+  kandidaten.value = alleAufgaben.value.filter(
+    (ex) =>
+      (typeof ex.topic === "string"
+        ? ex.topic === topicId
+        : ex.topic?._id === topicId) &&
+      passtZurTestart(ex, uebungstyp.value),
+  );
+  ausgewaehlt.value = kandidaten.value.map(() => true);
+  hinweis.value =
+    gewaehlteAnzahl.value < MINDESTZAHL
+      ? `Du hast weniger als ${MINDESTZAHL} Aufgaben gewählt. Die fehlenden werden beim Export Kopien der letzten Aufgabe.`
+      : "";
+}
+
+async function ladeKandidaten(): Promise<void> {
+  laden.value = true;
+  fehler.value = "";
+  hinweis.value = "";
+
+  if (!SEITEN[props.quiz]) {
+    fehler.value = `Für das Quiz "${props.quiz}" gibt es keine *facile.com-Seite.`;
+    laden.value = false;
+    return;
+  }
+
+  if (!props.topic) {
+    fehler.value = "Die aktuelle Aufgabe hat kein Topic! Bitte zuerst ein Thema wählen.";
+    laden.value = false;
+    return;
+  }
+
+  try {
+    topicDaten.value =
+      typeof props.topic === "string"
+        ? await getTopic(props.topic)
+        : props.topic;
+    titel.value = topicDaten.value.title;
+
+    alleAufgaben.value = await getAllExercises(props.quiz);
+    filtereNachTestart();
+  } catch (e) {
+    fehler.value = `Die Aufgaben konnten nicht geladen werden: ${(e as Error).message}`;
+    kandidaten.value = [];
+    ausgewaehlt.value = [];
+  } finally {
+    laden.value = false;
+  }
+}
+
+async function exportieren(): Promise<void> {
+  fehler.value = "";
+  meldung.value = "";
+  hinweis.value = "";
+
+  const seite = SEITEN[props.quiz];
+  if (!seite) {
+    fehler.value = `Für das Quiz "${props.quiz}" gibt es keine *facile.com-Seite.`;
+    return;
+  }
+
+  const gewaehlte = kandidaten.value
+    .map((ex, index) => (ausgewaehlt.value[index] ? frageAntwortBauen(ex) : null))
+    .filter((f): f is FrageAntwort => f !== null);
+
+  if (gewaehlte.length === 0) {
+    fehler.value = "Bitte mindestens eine Aufgabe auswählen!";
+    return;
+  }
+
+  const gefuellt = fuelleAufMindestzahl(gewaehlte);
+  const url = `https://www.${seite}/cgi2/myexam/edit2.php?id=${TEST_ID}`;
+  const sitzungscookie = cookie.value.trim();
+
+  meldung.value = "Export läuft ...";
+
+  try {
+    const antwort = await fetch(url, {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "content-type": "application/x-www-form-urlencoded",
+        // Der Browser lässt diesen Header weg. Er steht nur als Erinnerung daran,
+        // welche Sitzung aus den DevTools kopiert wurde.
+        ...(sitzungscookie ? { cookie: sitzungscookie } : {}),
+      },
+      body: baueBody(gewaehlte),
+    });
+
+    const text = await antwort.text();
+
+    if (/Connectez-vous|Please log in|Merci de vous connecter/i.test(text)) {
+      meldung.value = "";
+      fehler.value = `${seite} hat den Test nicht gespeichert: Du bist dort nicht angemeldet. Bitte in diesem Browser auf ${seite} anmelden und es nochmal versuchen.`;
+      return;
+    }
+
+    if (!antwort.ok) {
+      meldung.value = "";
+      fehler.value = `${seite} hat mit HTTP ${antwort.status} geantwortet.`;
+      return;
+    }
+
+    const art = typen.find((x) => x.wert === uebungstyp.value) ?? typen[0];
+    meldung.value = `Der Test ${TEST_ID} auf ${seite} wurde mit ${gefuellt.length} Fragen und dem Typ ${art.seitentyp} aktualisiert.`;
+  } catch (e) {
+    meldung.value = "";
+    fehler.value = `Export fehlgeschlagen: ${(e as Error).message}`;
+  }
+}
+
+watch(uebungstyp, filtereNachTestart);
+
+onMounted(async () => {
+  await nextTick();
+  await ladeKandidaten();
+
+  if (!dialog.value) return;
+  const modal = Modal.getOrCreateInstance(dialog.value);
+  dialog.value.addEventListener("hidden.bs.modal", () => emit("cancel-clicked"));
+  modal.show();
+});
+</script>
+
+<style scoped>
+.export-bild :deep(img) {
+  height: 60px;
+}
+</style>

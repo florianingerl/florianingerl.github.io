@@ -99,9 +99,7 @@
       </option>
     </select>
 
-    <div class="row">
-      Current topic: {{ currentTopic }}
-    </div>
+  
     <ul class="nav nav-tabs" role="tablist">
       <li class="nav-item" role="presentation">
         <button
@@ -182,6 +180,15 @@
     </div> <!-- End of <div v-if= " tab === 'exercise'"></div>-->
 
     <div v-show="tab === 'tutorial'">
+      <div class="row">
+      <VueTopicDisplayer class="col" :topic="aktuelle?.topic" />
+
+      
+      <div class="col">
+        <button @click="exportToFrancaisFacileClicked">Export to francaisfacile.com</button>
+      </div>
+    </div>
+
       <div
         v-if="!formOffen"
         style="height: 500px; background-color: antiquewhite;"
@@ -195,6 +202,14 @@
         @tutorial-saved="formOffen = false; tutorialGespeichert($event)"
       />
     </div>
+
+    <VueExportToFacile
+      v-if="exportOffen"
+      :quiz="quiz"
+      :topic="aktuelle?.topic"
+      :lg="lg"
+      @cancel-clicked="exportOffen = false"
+    />
   </div>
 </template>
 
@@ -203,8 +218,10 @@ import { computed, nextTick, onMounted, ref, watch } from "vue";
 import { Modal } from "bootstrap";
 import VueSignUp from "./VueSignUp.vue";
 import VueExercise from "./VueExercise.vue";
+import VueTopicDisplayer from "./VueTopicDisplayer.vue";
 import VueNewExercise from "./VueNewExercise.vue";
 import VueNewTopic from "./VueNewTopic.vue";
+import VueExportToFacile from "./VueExportToFacile.vue";
 import {
   API_URL,
   createExercise,
@@ -229,6 +246,7 @@ const selectedTopic = ref<Topic | null>(null);
 const tab = ref<"exercise" | "tutorial">("exercise");
 const formOffen = ref(false);
 const editMode = ref(false);
+const exportOffen = ref(false);
 
 // Texte
 interface Texte {
@@ -279,10 +297,6 @@ const currentTutorial = ref<string>();
 
 const t = computed(() => texte[props.lg]);
 
-const currentTopic = computed(() => {
-  return "This is the current topic !";
-});
-
 // Abgeleitete Werte
 const topics = ref<Topic[]>([]);
 
@@ -316,6 +330,10 @@ const indices = computed<number[]>(() => {
     a.push(j);
   return a;
 });
+
+function exportToFrancaisFacileClicked(): void {
+  exportOffen.value = true;
+}
 
 function loginClicked() {
   const element = document.getElementById("loginModal");

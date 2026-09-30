@@ -2,8 +2,8 @@
   <div>
     <p>{{ exercise.instruction }}</p>
     <ol style="list-style-type: none">
-      <li v-for="(innergaps, li) in gaps" :key="li">
-        <span v-for="(gap, gi) in innergaps" :key="gi">
+      <li>
+        <span v-for="(gap, gi) in gaps" :key="gi">
           {{ gap.text }}
           <select
             v-if="istAuswahl(gap)"
@@ -80,7 +80,7 @@ const props = defineProps<{
 const emit = defineEmits<{ (e: "answered-event"): void }>();
 
 
-const gaps = ref<Gap[][]>([]);
+const gaps = ref<Gap[]>([]);
 const validated = ref(false);
 
 const istAuswahl = (g: Gap): boolean =>
@@ -92,16 +92,12 @@ const breite = (g: Gap): string =>
   typeof g.gap === "string" ? `${g.gap.length + 2}ch` : "auto";
 
 function isEverythingCorrect(): boolean {
-    /*<li v-for="(innergaps, li) in gaps" :key="li">
-        <span v-for="(gap, gi) in innergaps" :key="gi"> */
   let b : boolean = true;
-  gaps.value.forEach( (innergaps) => {
-     innergaps.forEach( (gap) => {
-        if(gap.gap !== gap.guess){
-          b = false;
-        }
-     });
-  });        
+  gaps.value.forEach( (gap) => {
+     if(gap.gap !== gap.guess){
+       b = false;
+     }
+  });
   return b;
 }
 
@@ -116,7 +112,7 @@ function onInputChanged() {
 }  
 
 // "La femme {qui|que} tient ..." => Text / Lücken-Paare
-function pareseGapText(data: string): void {
+function parseGapText(data: string): void {
   if (!data.endsWith("}")) data += "{}";
   const result: Gap[] = [];
   let i = 0;
@@ -133,41 +129,31 @@ function pareseGapText(data: string): void {
     });
     i++;
   }
-  gaps.value.push(result);
+  gaps.value = result;
+  validated.value = false;
+
+  //TODO: Same = bool could be added to Exercise in the database. And a checkbox for it could be added in VueNewExercise
+  // same = true => alle Auswahl-Lücken bekommen dieselbe Gesamtliste (für Geschichten)
+  const alloptions: string[] = [];
+  if (props.same) {
+    gaps.value.forEach((g) => {
+      if (Array.isArray(g.gap))
+        g.gap.forEach((o) => {
+          if (o !== "" && !alloptions.includes(o)) alloptions.push(o);
+        });
+    });
+  }
+
+  gaps.value.forEach((g) => {
+    // die erste Option ist immer die richtige... daher merken, bevor es gemischt wird.
+    g.solution = Array.isArray(g.gap) ? g.gap[0] : g.gap;
+    if (Array.isArray(g.gap))
+      g.gap = props.same ? [...alloptions] : shuffle(g.gap);
+  });
 }
 
 function shuffle(arr: string[]): string[] {
   return [...arr].sort(() => 0.5 - Math.random());
-}
-
-function bigParseGapText(): void {
-  gaps.value = [];
-  validated.value = false;
-  const gt: string | string[] | undefined = props.exercise.gapText;
-  if (Array.isArray(gt)) gt.forEach(pareseGapText);
-  else if (gt) pareseGapText(gt);
-
-  // same = true => alle Auswahl-Lücken bekommen dieselbe Gesamtliste (für Geschichten)
-  const alloptions: string[] = [];
-  if (props.same) {
-    gaps.value.forEach((inner) =>
-      inner.forEach((g) => {
-        if (Array.isArray(g.gap))
-          g.gap.forEach((o) => {
-            if (o !== "" && !alloptions.includes(o)) alloptions.push(o);
-          });
-      }),
-    );
-  }
-
-  gaps.value.forEach((inner) =>
-    inner.forEach((g) => {
-      // die erste Option ist immer die richtige... daher merken, bevor es gemischt wird.
-      g.solution = Array.isArray(g.gap) ? g.gap[0] : g.gap;
-      if (Array.isArray(g.gap))
-        g.gap = props.same ? [...alloptions] : shuffle(g.gap);
-    }),
-  );
 }
 
 function validate(): void {
@@ -178,26 +164,28 @@ function validate(): void {
 
 function retry(): void {
   validated.value = false;
-  gaps.value.forEach((innergaps) =>
-    innergaps.forEach((g) => {
-      g.guess = "";
-    }),
-  );
+  gaps.value.forEach((g) => {
+    g.guess = "";
+  });
   delete props.exercise.correctlyAnswered;
   emit("answered-event");
 }
 
 function showSolution(): void {
   validated.value = true;
-  gaps.value.forEach((inner) =>
-    inner.forEach((g) => {
-      g.guess = g.solution ?? "";
-    }),
-  );
+  gaps.value.forEach((g) => {
+    g.guess = g.solution ?? "";
+  });
 }
 
-watch(() => props.exercise.gapText, bigParseGapText, { deep: true });
-onMounted(bigParseGapText);
+watch(
+  () => props.exercise.gapText,
+  (gt) => {
+    if (gt) parseGapText(gt);
+  },
+  { deep: true },
+);
+onMounted(() => parseGapText(props.exercise.gapText ?? ""));
 </script>
 
 <style scoped>

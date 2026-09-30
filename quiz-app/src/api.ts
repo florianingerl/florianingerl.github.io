@@ -56,6 +56,12 @@ export async function getExercises(quiz: QuizName): Promise<Exercise[]> {
   return r.data;
 }
 
+// Liefert alle Aufgaben des Quizzes. Das Topic wird bewusst nicht mitgeschickt,
+// sondern im Frontend gefiltert.
+export async function getAllExercises(quiz: QuizName): Promise<Exercise[]> {
+  return getExercises(quiz);
+}
+
 export async function createExercise(e: Exercise): Promise<Exercise> {
   e= bereinigen(e);
   const r = await client.post<Exercise>(`/api/exercise`, {...e, topic: !e.topic ? undefined : ( typeof e.topic === "string" ? e.topic : e.topic._id  ) });

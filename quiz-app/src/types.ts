@@ -12,6 +12,20 @@ export type Lang = "de" | "en" | "fr";
 
 export type ExerciseType = "gapText" | "multipleChoice";
 
+// 1.1) Test à trous, 1.2) Test avec des options différents, 1.3) Test avec les mêmes options
+export type ExportTestType =
+  | "trous"
+  | "optionsDifferents"
+  | "optionsGleich";
+
+// Ein Test auf *facile.com besteht aus Fragen (q) mit einem Stern als Lücke
+// und Antworten (r). Bei den Antworten trennt das Pipe-Zeichen die Optionen,
+// die erste Option ist immer die richtige.
+export interface FrageAntwort {
+  q: string;
+  r: string;
+}
+
 export interface Option {
   option: string;
   correct: boolean;
