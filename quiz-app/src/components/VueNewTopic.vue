@@ -34,7 +34,8 @@ const editorContent = ref<string>('')
 // Entspricht ungefaehr der Toolbar von TinyMCE: Formatierung, Listen, Links,
 // Tabellen, Bilder, Zeichentabelle und Quelltext.
 const joditOptionen = {
-  height: 400,
+  // Gleiche Hoehe wie die Tutorial-Anzeige, mit Rollbalken bei zu viel Text.
+  height: 167,
   allowResizeY: true,
   buttons: [
     'bold', 'italic', 'underline', 'strikethrough',

@@ -191,7 +191,7 @@
 
       <div
         v-if="!formOffen"
-        style="height: 500px; background-color: antiquewhite;"
+        style="height: 167px; overflow-y: auto; background-color: antiquewhite;"
         v-html="currentTutorial"
       ></div>
 

@@ -59,3 +59,13 @@ onBeforeUnmount(() => {
   editor = null
 })
 </script>
+
+<style scoped>
+/* Die von Jodit selbst erzeugten Elemente tragen keine scoped-Kennung, deshalb
+   greift :deep() auf sie zu. So bleibt die Editorflaeche bei fester Hoehe und
+   bekommt einen Rollbalken, statt den Kasten zu strecken. */
+.jodit-editor :deep(.jodit-editor__area) {
+  overflow-y: auto;
+  max-height: 100%;
+}
+</style>
