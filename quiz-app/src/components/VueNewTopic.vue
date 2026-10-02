@@ -44,7 +44,6 @@ const joditOptionen = {
     '|', 'alignLeft', 'alignCenter', 'alignRight', 'alignJustify',
     '|', 'unorderedList', 'orderedList', 'outdent', 'indent',
     '|', 'link', 'unlink', 'image', 'table', 'hr', 'source',
-    '|', 'randomFacileImage',
   ],
 }
 
