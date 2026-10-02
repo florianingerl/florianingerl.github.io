@@ -373,6 +373,10 @@ watch(selectedTopic, () => {
 });
 
 async function setCurrentTutorial() {
+  if(displayedQuestions.value.length == 0){
+    currentTutorial.value = "";
+    return;
+  }
   let ex: Exercise = displayedQuestions.value[i.value];
   if (!ex.topic) {
     currentTutorial.value =
@@ -429,6 +433,8 @@ onMounted(async () => {
   } finally {
     laden.value = false;
   }
+
+  setCurrentTutorial();
 });
 
 // Anlegen / bearbeiten / löschen
