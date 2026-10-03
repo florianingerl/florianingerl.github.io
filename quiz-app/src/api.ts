@@ -30,6 +30,12 @@ export function fehlerText(e: unknown, ersatz: string): string {
   return e instanceof Error ? e.message : ersatz;
 }
 
+// 401 heisst: kein oder kein gueltiges Token mehr. Das Token des Servers gilt
+// nur eine Stunde, also muss dann erneut angemeldet werden.
+export function istNichtAngemeldet(e: unknown): boolean {
+  return axios.isAxiosError(e) && e.response?.status === 401;
+}
+
 // Laufzeitfelder werden entfernt, bevor etwas an den Server geht.
 function bereinigen(e: Exercise): Exercise {
   const ohneChecked = (opts?: Exercise["options"]) =>

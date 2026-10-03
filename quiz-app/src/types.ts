@@ -37,7 +37,10 @@ export interface Topic {
   _id?: string ;
   quiz: QuizName,
   tutorial: string,
-  title: string
+  title: string,
+  // _id des Benutzers, der das Topic angelegt hat. Der Server setzt das beim
+  // Speichern selbst, es kann also nicht veraendert werden.
+  user?: string
 }
 
 // Angemeldeter Benutzer. Das Passwort schickt der Server nie mit.
@@ -68,6 +71,9 @@ export interface Exercise {
   options?: Option[];
   optionsEn?: Option[];
   optionsFr?: Option[];
+  // _id des Benutzers, der die Aufgabe angelegt hat. Der Server setzt das beim
+  // Speichern selbst, es kann also nicht veraendert werden.
+  user?: string;
   // Nur Zur Laufzeit im Browser gesetzt. Wird nicht gespeichert.
   correctlyAnswered?: boolean;
 }

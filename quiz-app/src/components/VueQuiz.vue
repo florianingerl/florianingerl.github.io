@@ -253,6 +253,7 @@ import {
   createExercise,
   deleteExercise,
   getExercises,
+  istNichtAngemeldet,
   updateExercise,
   getAllTopics,
   createTopic,
@@ -394,6 +395,15 @@ function abmelden(): void {
   loginEmail.value = "";
 }
 
+// Das Token des Servers gilt nur eine Stunde. Wer dann noch gespeichert oder
+// geloescht hat, bekommt wieder den Login-Dialog.
+function sitzungAbgelaufen(e: unknown): boolean {
+  if (!istNichtAngemeldet(e)) return false;
+  auth.abmelden();
+  dialogOeffnen("login");
+  return true;
+}
+
 
 // Navigation
 function springe(delta: number): void {
@@ -522,6 +532,7 @@ async function gespeichert(ex: Exercise): Promise<void> {
       0
     );
   } catch (e) {
+    if (sitzungAbgelaufen(e)) return;
     alert(`Speichern fehlgeschlagen: ${(e as Error).message}`);
   }
 }
@@ -539,6 +550,7 @@ async function loeschen(): Promise<void> {
     questions.value = questions.value.filter((x) => x._id !== q._id);
     if (i.value > letzterIndex.value) i.value = letzterIndex.value;
   } catch (e) {
+    if (sitzungAbgelaufen(e)) return;
     alert(`Löschen fehlgeschlagen: ${(e as Error).message}`);
   }
 }
