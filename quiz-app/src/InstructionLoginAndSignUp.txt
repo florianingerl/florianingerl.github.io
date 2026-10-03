@@ -11,3 +11,12 @@ In any case, you might use the Pinia store for storing the user.
 When the user is logged in, the SignUp and Login buttons should become invisible and at their place,
 should appear a button to logout and a button so that this user can modify his profile or his settings and maybe a label, that says "Logged in with email"
 If the user is not logged in, you shouldn't be able to create new exercises or tutorials or edit or delete existing ones.
+The endpoints you find in routes.ts // Auth routes
+router.post("/api/register", AuthController.register);
+router.post("/api/login", AuthController.login);
+router.get(
+  "/api/auth/user",
+  authMiddleware,
+  AuthController.getAuthenticatedUser
+);
+of my backend server.

@@ -1,36 +1,86 @@
 <template>
   <div>
   
-    <div class="row justify-content-between">
-      <button
-        v-if="!formOffen"
-        type="button"
-        class="col-3 btn btn-success"
-        title="Add a new exercise"
-        @click="oeffneFormular(false)"
-      >
-        <i class="bi bi-plus-lg" aria-hidden="true"></i>
-      </button>
-      <button
-        v-if="!formOffen && aktuelle"
-        type="button"
-        class="col-3 btn btn-primary"
-        title="Edit the exercise"
-        @click="oeffneFormular(true)"
-      >
-        <i class="bi bi-pencil-square" aria-hidden="true"></i>
-      </button>
-      <button
-        v-if="!formOffen && aktuelle?._id"
-        type="button"
-        class="col-3 btn btn-danger"
-        title="Delete the exercise"
-        @click="loeschen"
-      >
-        <i class="bi bi-trash" aria-hidden="true"></i>
-      </button>
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+      <div class="d-flex flex-wrap align-items-center gap-2">
+        <button
+          v-if="auth.angemeldet && !formOffen"
+          type="button"
+          class="btn btn-success"
+          title="Add a new exercise"
+          @click="oeffneFormular(false)"
+        >
+          <i class="bi bi-plus-lg" aria-hidden="true"></i>
+        </button>
+        <button
+          v-if="auth.angemeldet && !formOffen && aktuelle"
+          type="button"
+          class="btn btn-primary"
+          title="Edit the exercise"
+          @click="oeffneFormular(true)"
+        >
+          <i class="bi bi-pencil-square" aria-hidden="true"></i>
+        </button>
+        <button
+          v-if="auth.angemeldet && !formOffen && aktuelle?._id"
+          type="button"
+          class="btn btn-danger"
+          title="Delete the exercise"
+          @click="loeschen"
+        >
+          <i class="bi bi-trash" aria-hidden="true"></i>
+        </button>
+        <span v-if="!auth.angemeldet" class="text-muted">
+          Log in to create, edit or delete exercises and tutorials.
+        </span>
+      </div>
+
+      <div class="d-flex flex-wrap align-items-center gap-2">
+        <template v-if="auth.angemeldet">
+          <span class="badge text-bg-success">
+            Logged in with {{ auth.email }}
+          </span>
+          <button
+            type="button"
+            class="btn btn-outline-secondary btn-sm"
+            title="Modify your profile or your settings"
+            @click="dialogOeffnen('profile')"
+          >
+            <i class="bi bi-person-gear me-1" aria-hidden="true"></i>
+            Profile
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-danger btn-sm"
+            @click="abmelden"
+          >
+            <i class="bi bi-box-arrow-right me-1" aria-hidden="true"></i>
+            Logout
+          </button>
+        </template>
+        <template v-else>
+          <button
+            type="button"
+            class="btn btn-outline-primary btn-sm"
+            @click="dialogOeffnen('signup')"
+          >
+            <i class="bi bi-person-plus me-1" aria-hidden="true"></i>
+            Sign up
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary btn-sm"
+            @click="dialogOeffnen('login')"
+          >
+            <i class="bi bi-box-arrow-in-right me-1" aria-hidden="true"></i>
+            Login
+          </button>
+        </template>
+      </div>
     </div>
 
+    <!-- Solange kein Dialog offen ist, wird das Quiz gezeigt. -->
+    <template v-if="dialog === null">
     <div v-if="formOffen && tab === 'exercise'">
       <VueNewExercise
         :quiz="quiz"
@@ -162,6 +212,29 @@
       :lg="lg"
       @cancel-clicked="exportOffen = false"
     />
+    </template>
+
+    <!-- Ist ein Dialog offen, ist die restliche Oberflaeche unsichtbar. -->
+    <VueSignUp
+      v-else-if="dialog === 'signup'"
+      dialog
+      @signed-up="nachRegistrierung"
+      @cancel-clicked="dialog = null"
+    />
+
+    <VueLogin
+      v-else-if="dialog === 'login'"
+      :email="loginEmail"
+      @logged-in="dialog = null"
+      @cancel-clicked="dialog = null"
+    />
+
+    <VueProfile
+      v-else-if="dialog === 'profile'"
+      @saved="dialog = null"
+      @cancel-clicked="dialog = null"
+      @logout-clicked="abmelden"
+    />
   </div>
 </template>
 
@@ -172,6 +245,9 @@ import VueTopicDisplayer from "./VueTopicDisplayer.vue";
 import VueNewExercise from "./VueNewExercise.vue";
 import VueNewTopic from "./VueNewTopic.vue";
 import VueExportToFacile from "./VueExportToFacile.vue";
+import VueSignUp from "./VueSignUp.vue";
+import VueLogin from "./VueLogin.vue";
+import VueProfile from "./VueProfile.vue";
 import {
   API_URL,
   createExercise,
@@ -182,9 +258,19 @@ import {
   createTopic,
   getTopic
 } from "../api.ts";
+import { useAuthStore } from "../stores/auth";
 import type { Exercise, Lang, QuizName, Topic } from "../types.ts";
 
 const props = defineProps<{ quiz: QuizName; lg: Lang }>();
+
+// Anmeldung. Ohne Anmeldung darf nichts angelegt, geaendert oder geloescht
+// werden, deshalb pruefen die Schaltflaechen unten auf auth.angemeldet.
+const auth = useAuthStore();
+
+// Welcher Dialog gerade an der Stelle des Quiz steht (null = keiner).
+type DialogArt = "signup" | "login" | "profile";
+const dialog = ref<DialogArt | null>(null);
+const loginEmail = ref<string>("");
 
 // Zustand
 const questions = ref<Exercise[]>([]);
@@ -285,6 +371,29 @@ function exportToFrancaisFacileClicked(): void {
   exportOffen.value = true;
 }
 
+// Anmeldung ---------------------------------------------------------
+
+// Beim Oeffnen eines Dialogs werden die Formulare geschlossen, damit sie nicht
+// mit veralteten Daten im Hintergrund weiterlaufen.
+function dialogOeffnen(art: DialogArt): void {
+  formOffen.value = false;
+  exportOffen.value = false;
+  dialog.value = art;
+}
+
+// Nach dem Registrieren direkt den Login-Dialog zeigen und die Adresse
+// uebernehmen, damit sie nicht noch einmal getippt werden muss.
+function nachRegistrierung(email: string): void {
+  loginEmail.value = email;
+  dialog.value = "login";
+}
+
+function abmelden(): void {
+  auth.abmelden();
+  dialog.value = null;
+  loginEmail.value = "";
+}
+
 
 // Navigation
 function springe(delta: number): void {
@@ -351,6 +460,9 @@ function calcScore(): void {
 
 // Laden aus der Datenbank
 onMounted(async () => {
+  // Eine auf der letzten Seite begonnene Anmeldung fortsetzen.
+  auth.sitzungWiederherstellen();
+
   topics.value = await getAllTopics(props.quiz);
 
   console.log(
@@ -372,6 +484,10 @@ onMounted(async () => {
 
 // Anlegen / bearbeiten / löschen
 function oeffneFormular(bearbeiten: boolean): void {
+  if (!auth.angemeldet) {
+    dialogOeffnen("login");
+    return;
+  }
   editMode.value = bearbeiten;
   formOffen.value = true;
 }
@@ -411,6 +527,10 @@ async function gespeichert(ex: Exercise): Promise<void> {
 }
 
 async function loeschen(): Promise<void> {
+  if (!auth.angemeldet) {
+    dialogOeffnen("login");
+    return;
+  }
   const q = aktuelle.value;
   if (!q?._id) return;
   if (!window.confirm("Do you really want to delete this question?")) return;

@@ -1,5 +1,6 @@
 import axios from "axios";
-import type { Topic, Exercise, QuizName } from "./types";
+import type { Topic, Exercise, QuizName, User } from "./types";
+import { getToken } from "./authToken";
 
 export const API_URL = import.meta.env.VITE_API_URL ?? "http://localhost:8080";
 
@@ -7,6 +8,27 @@ export const client = axios.create({
   baseURL: API_URL,
   headers: { Accept: "application/json" },
 });
+
+// Das Backend liest das Token aus dem Header "x-auth-token" (siehe
+// authMiddleware im Server), deshalb wird es hier bei jeder Anfrage mitgeschickt.
+client.interceptors.request.use((config) => {
+  const token = getToken();
+  if (token) config.headers.set("x-auth-token", token);
+  return config;
+});
+
+// Fehlermeldungen der API sind meist brauchbarer als der Text von axios
+// ("Request failed with status code 400"), deshalb wird bevorzugt die
+// "message" aus der Antwort des Servers genommen.
+export function fehlerText(e: unknown, ersatz: string): string {
+  if (axios.isAxiosError(e)) {
+    const daten = e.response?.data as { message?: string } | undefined;
+    if (daten?.message) return daten.message;
+    if (e.code === "ERR_NETWORK") return `No connection to the server at ${API_URL}.`;
+    return e.message;
+  }
+  return e instanceof Error ? e.message : ersatz;
+}
 
 // Laufzeitfelder werden entfernt, bevor etwas an den Server geht.
 function bereinigen(e: Exercise): Exercise {
@@ -103,4 +125,47 @@ export async function updateExercise(e: Exercise): Promise<Exercise> {
 
 export async function deleteExercise(id: string): Promise<void> {
   await client.delete(`/api/exercise/${encodeURIComponent(id)}`);
+}
+
+// Anmeldung -------------------------------------------------------
+
+// Antwort von /api/register und /api/login. Beide schicken das Token im Feld
+// "token" mit. Der Benutzer wird danach noch einmal ohne Passwort geholt.
+export interface AuthAntwort {
+  message: string;
+  token: string;
+  user: User;
+}
+
+export async function register(data: {
+  name: string;
+  email: string;
+  password: string;
+}): Promise<AuthAntwort> {
+  const r = await client.post<AuthAntwort>("/api/register", data);
+  return r.data;
+}
+
+export async function login(data: {
+  email: string;
+  password: string;
+}): Promise<AuthAntwort> {
+  const r = await client.post<AuthAntwort>("/api/login", data);
+  return r.data;
+}
+
+// GET /api/auth/user haengt an authMiddleware und liefert den Benutzer
+// ohne Passwort.
+export async function getAuthenticatedUser(): Promise<User> {
+  const r = await client.get<User>("/api/auth/user");
+  return r.data;
+}
+
+// PUT /api/user/:id aendert nur die uebergebenen Felder.
+export async function updateUser(id: string, daten: Partial<User>): Promise<User> {
+  const r = await client.put<User>(
+    `/api/user/${encodeURIComponent(id)}`,
+    daten
+  );
+  return r.data;
 }

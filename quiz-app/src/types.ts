@@ -40,6 +40,17 @@ export interface Topic {
   title: string
 }
 
+// Angemeldeter Benutzer. Das Passwort schickt der Server nie mit.
+export interface User {
+  _id?: string;
+  name: string;
+  email: string;
+  role?: string;
+  isAdmin?: boolean;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
 
 export interface Exercise {
   _id?: string;

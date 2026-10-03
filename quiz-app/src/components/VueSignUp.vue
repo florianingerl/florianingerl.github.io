@@ -1,6 +1,9 @@
 <!-- VueSignUp.vue -->
 <template>
-  <div class="signup-page d-flex align-items-center justify-content-center min-vh-100">
+  <div
+    class="d-flex align-items-center justify-content-center"
+    :class="dialog ? 'auth-dialog' : 'signup-page min-vh-100'"
+  >
     <div class="card signup-card border-0 shadow-lg">
       <div class="card-body p-4 p-md-5">
         <div class="text-center mb-4">
@@ -115,19 +118,31 @@
             {{ successMessage }}
           </div>
 
-          <button
-            type="submit"
-            class="btn btn-primary w-100 py-2 fw-semibold"
-            :disabled="isSubmitting"
-          >
-            <span
-              v-if="isSubmitting"
-              class="spinner-border spinner-border-sm me-2"
-              aria-hidden="true"
-            ></span>
+          <div class="d-flex gap-2">
+            <button
+              type="submit"
+              class="btn btn-primary flex-fill py-2 fw-semibold"
+              :disabled="isSubmitting"
+            >
+              <span
+                v-if="isSubmitting"
+                class="spinner-border spinner-border-sm me-2"
+                aria-hidden="true"
+              ></span>
 
-            {{ isSubmitting ? 'Creating account...' : 'Create account' }}
-          </button>
+              {{ isSubmitting ? 'Creating account...' : 'Create account' }}
+            </button>
+
+            <button
+              v-if="dialog"
+              type="button"
+              class="btn btn-outline-secondary py-2 fw-semibold"
+              :disabled="isSubmitting"
+              @click="emit('cancel-clicked')"
+            >
+              Cancel
+            </button>
+          </div>
         </form>
       </div>
     </div>
@@ -136,7 +151,8 @@
 
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
-import { client } from '../api'
+import { fehlerText } from '../api'
+import { useAuthStore } from '../stores/auth'
 
 interface SignUpForm {
   name: string
@@ -149,6 +165,25 @@ interface FormErrors {
   email: string
   password: string
 }
+
+// true, wenn das Formular als Dialog in der Quiz-Oberflaeche erscheint.
+const props = withDefaults(
+  defineProps<{
+    dialog?: boolean
+  }>(),
+  {
+    dialog: false
+  }
+)
+
+const emit = defineEmits<{
+  // Wird nach einem erfolgreichen Registrieren ausgeloest, damit der Aufrufer
+  // den Login-Dialog anzeigen kann.
+  (e: 'signed-up', email: string): void
+  (e: 'cancel-clicked'): void
+}>()
+
+const auth = useAuthStore()
 
 const form = reactive<SignUpForm>({
   name: '',
@@ -210,25 +245,24 @@ async function submitForm(): Promise<void> {
   isSubmitting.value = true
 
   try {
-    const data = {
+    await auth.registrieren({
       name: form.name,
       email: form.email,
       password: form.password
-    }
+    })
 
-    await client.post('/api/register', data)
-
-    successMessage.value = 'Your account has been created successfully.'
+    const email = form.email
+    successMessage.value = 'Your account has been created successfully. Please log in now.'
 
     form.name = ''
-    form.email = ''
     form.password = ''
+    // Die E-Mail-Adresse bleibt stehen, damit sie im Login-Dialog uebernommen
+    // werden kann. Auf einer eigenen Seite ist das Formular danach leer.
+    if (!props.dialog) form.email = ''
+
+    emit('signed-up', email)
   } catch (error: unknown) {
-    if (error instanceof Error) {
-      errorMessage.value = error.message
-    } else {
-      errorMessage.value = 'Unable to connect to the server.'
-    }
+    errorMessage.value = fehlerText(error, 'Unable to connect to the server.')
   } finally {
     isSubmitting.value = false
   }
@@ -241,6 +275,11 @@ async function submitForm(): Promise<void> {
   background:
     linear-gradient(135deg, rgba(13, 110, 253, 0.12), transparent 50%),
     #f8f9fa;
+  padding: 1rem;
+}
+
+/* Als Dialog gibt es keinen Hintergrund und keine randlose Hoehe. */
+.auth-dialog {
   padding: 1rem;
 }
 

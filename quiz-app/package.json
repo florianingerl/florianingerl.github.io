@@ -12,6 +12,7 @@
         "axios": "^1.7.7",
         "bootstrap": "^5.3.8",
         "jodit": "^4.17.1",
+        "pinia": "^4.0.3",
         "vue": "^3.5.10"
     },
     "devDependencies": {
