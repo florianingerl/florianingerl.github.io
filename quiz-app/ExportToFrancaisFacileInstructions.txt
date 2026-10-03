@@ -67,6 +67,34 @@ On anglaisfacile.com
 q = <img src="https://static.klipy.com/ii/f87f46a2c5aeaeed4c68910815f73eaf/b3/71/IvGpjFm5.jpg">* female duck is it dreaming of ?
 r = What
 
+Update:
+When the img url is already from the domain anglaisfacile.com and ends with number.jpg or number.gif, 
+then 
+
+q = {number.jpg} rest of question 
+
+should be the question. Example:
+From my database:
+{
+  _id: ObjectId('6abdf93f2204b4912a0b9880'),
+  quiz: 'english',
+  type: 'gapText',
+  imageUrl: 'https://www.anglaisfacile.com/cgi2/myexam/images2/26255.gif',
+  topic: ObjectId('6abdf93f2204b4912a0b987e'),
+  instruction: 'Choisis entre l\'adjectif et l\'adverbe !',
+  gapText: 'The man is playing his instrument so {passionately|passionate} that he has completely forgotten anything else.',
+  options: [],
+  optionsEn: [],
+  optionsFr: [],
+  createdAt: ISODate('2026-09-06T20:47:13.146Z'),
+  updatedAt: ISODate('2026-09-06T20:47:13.146Z'),
+  __v: NumberInt('0')
+}
+
+On facile:
+q = {26255.gif} The man is playing his instrument so * that he has completely forgotten anything else.
+r = passionately|passionate
+
 
 To create a test with "Test avec menu délourant - les mêmes options pour chaque question", you have to do the following:
 Tests from the database:

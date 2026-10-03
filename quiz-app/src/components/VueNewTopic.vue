@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { onMounted, ref, watch } from "vue";
 import VueJoditEditor from "./VueJoditEditor.vue";
 import { getTopic, updateTopic } from "../api.ts";
 import type { Exercise, Topic } from "../types.ts";
@@ -46,6 +46,38 @@ const joditOptionen = {
     '|', 'link', 'unlink', 'image', 'table', 'hr', 'source',
   ],
 }
+
+async function updateEditorContent(): Promise<void> {
+  const ex = props.questionOfQuiz
+  if (!ex) {
+    editorContent.value = "No exercise and thus no topic to be edited!"
+    return
+  }
+  if (!ex.topic) {
+    editorContent.value = ""
+    return
+  }
+
+  try {
+    const topic =
+      typeof ex.topic === 'string' ? await getTopic(ex.topic) : ex.topic
+    editorContent.value = topic.tutorial ?? ''
+  } catch (e) {
+    console.error("The topic couldn't be loaded:", e)
+    editorContent.value = ''
+  }
+}
+
+onMounted(() => {
+  updateEditorContent()
+})
+
+watch(
+  () => props.questionOfQuiz,
+  () => {
+    updateEditorContent()
+  }
+)
 
 async function saveTutorialClicked(): Promise<void> {
   const ex = props.questionOfQuiz

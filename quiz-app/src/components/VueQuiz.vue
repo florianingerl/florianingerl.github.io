@@ -1,54 +1,6 @@
 <template>
   <div>
-    <div class="row justify-content-end">
-      <div class="col">
-        <button @click="loginClicked">Login</button>
-      </div>
-      <div class="col">
-        <button
-          type="button"
-          class="btn btn-primary"
-          @click="openSignUpModal"
-        >
-          Sign up
-        </button>
-      </div>
-    </div>
-
-    <div
-      class="modal fade"
-      id="loginModal"
-      tabindex="-1"
-      aria-labelledby="loginModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="loginModalLabel">Login</h1>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <VueSignUp></VueSignUp>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
+  
     <div class="row justify-content-between">
       <button
         v-if="!formOffen"
@@ -215,8 +167,6 @@
 
 <script setup lang="ts">
 import { computed, nextTick, onMounted, ref, watch } from "vue";
-import { Modal } from "bootstrap";
-import VueSignUp from "./VueSignUp.vue";
 import VueExercise from "./VueExercise.vue";
 import VueTopicDisplayer from "./VueTopicDisplayer.vue";
 import VueNewExercise from "./VueNewExercise.vue";
@@ -335,23 +285,6 @@ function exportToFrancaisFacileClicked(): void {
   exportOffen.value = true;
 }
 
-function loginClicked() {
-  const element = document.getElementById("loginModal");
-
-  if (element) {
-    const modal = Modal.getOrCreateInstance(element);
-    modal.show();
-  }
-}
-
-function openSignUpModal() {
-  const element = document.getElementById("signUpModal");
-
-  if (element) {
-    const modal = Modal.getOrCreateInstance(element);
-    modal.show();
-  }
-}
 
 // Navigation
 function springe(delta: number): void {
