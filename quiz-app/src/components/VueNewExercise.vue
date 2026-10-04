@@ -78,10 +78,10 @@
     </div>
 
     Search: <input v-model="searchString" type="text" />
-    <button v-if="!editMode" @click="nextImage">Change image</button>
+    <button @click="nextImage">Change image</button>
 
     <div>
-      <button class="btn btn-secondary" v-if="!editMode" @click="randomFacileImage">
+      <button class="btn btn-secondary" @click="randomFacileImage">
         Random image from *facile.com
       </button>
       <p v-if="randomImageFailed" class="text-danger">{{ randomImageFailed }}</p>
