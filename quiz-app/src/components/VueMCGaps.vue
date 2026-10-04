@@ -7,6 +7,7 @@
           {{ gap.text }}
           <select
             v-if="istAuswahl(gap)"
+            @change="onInputChanged"
             v-model="gap.guess"
             :disabled="validated"
             :class="{
