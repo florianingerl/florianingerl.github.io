@@ -40,7 +40,7 @@ export function istNichtAngemeldet(e: unknown): boolean {
 function bereinigen(e: Exercise): Exercise {
   const ohneChecked = (opts?: Exercise["options"]) =>
     opts?.map(({ option, correct }) => ({ option, correct }));
-  const { correctlyAnswered: weg, ...rest } = e;
+  const { correctlyAnswered: weg, gaps: auchWeg, ...rest } = e;
   return {
     ...rest,
     options: ohneChecked(rest.options),

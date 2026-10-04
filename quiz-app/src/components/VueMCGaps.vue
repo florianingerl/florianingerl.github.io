@@ -3,7 +3,7 @@
     <p>{{ exercise.instruction }}</p>
     <ol style="list-style-type: none">
       <li>
-        <span v-for="(gap, gi) in gaps" :key="gi">
+        <span v-for="(gap, gi) in exercise.gaps ?? []" :key="gi">
           {{ gap.text }}
           <select
             v-if="istAuswahl(gap)"
@@ -19,8 +19,7 @@
           </select>
           <input
             v-if="!validated && istLuecke(gap)"
-            @change="onInputChanged"
-            v-model="gap.guess"
+            @input="onGapInput(gap, $event)"
             type="text"
             :style="{ width: breite(gap) }"
           />
@@ -62,15 +61,7 @@
 
 <script setup lang="ts">
 import { onMounted, ref, watch } from "vue";
-import type { Exercise, Lang } from "../types";
-
-interface Gap {
-  text: string;
-  // string = Freitext-Lücke, string[] = Auswahl-Lücke
-  gap: string | string[];
-  guess: string;
-  solution?: string;
-}
+import type { Exercise, Gap, Lang } from "../types";
 
 const props = defineProps<{
   exercise: Exercise
@@ -81,7 +72,6 @@ const props = defineProps<{
 const emit = defineEmits<{ (e: "answered-event"): void }>();
 
 
-const gaps = ref<Gap[]>([]);
 const validated = ref(false);
 
 const istAuswahl = (g: Gap): boolean =>
@@ -94,12 +84,19 @@ const breite = (g: Gap): string =>
 
 function isEverythingCorrect(): boolean {
   let b : boolean = true;
-  gaps.value.forEach( (gap) => {
+  (props.exercise.gaps ?? []).forEach( (gap) => {
      if(gap.gap !== gap.guess){
        b = false;
      }
   });
   return b;
+}
+
+function onGapInput(gap: Gap, event: Event): void {
+  const input = event.target;
+  if (!(input instanceof HTMLInputElement)) return;
+  gap.guess = input.value;
+  onInputChanged();
 }
 
 function onInputChanged() {
@@ -114,6 +111,14 @@ function onInputChanged() {
 
 // "La femme {qui|que} tient ..." => Text / Lücken-Paare
 function parseGapText(data: string): void {
+  validated.value = props.exercise.correctlyAnswered !== undefined;
+
+  // Das gapText ist schon geparst (die Lücken stehen dann in props.exercise.gaps),
+  // also die Eingaben des Nutzers unangetastet lassen.
+  if (props.exercise.gaps) {
+    return;
+  }
+
   if (!data.endsWith("}")) data += "{}";
   const result: Gap[] = [];
   let i = 0;
@@ -130,14 +135,13 @@ function parseGapText(data: string): void {
     });
     i++;
   }
-  gaps.value = result;
-  validated.value = false;
+  props.exercise.gaps = result;
 
   //TODO: Same = bool could be added to Exercise in the database. And a checkbox for it could be added in VueNewExercise
   // same = true => alle Auswahl-Lücken bekommen dieselbe Gesamtliste (für Geschichten)
   const alloptions: string[] = [];
   if (props.same) {
-    gaps.value.forEach((g) => {
+    props.exercise.gaps.forEach((g) => {
       if (Array.isArray(g.gap))
         g.gap.forEach((o) => {
           if (o !== "" && !alloptions.includes(o)) alloptions.push(o);
@@ -145,7 +149,7 @@ function parseGapText(data: string): void {
     });
   }
 
-  gaps.value.forEach((g) => {
+  props.exercise.gaps.forEach((g) => {
     // die erste Option ist immer die richtige... daher merken, bevor es gemischt wird.
     g.solution = Array.isArray(g.gap) ? g.gap[0] : g.gap;
     if (Array.isArray(g.gap))
@@ -165,7 +169,7 @@ function validate(): void {
 
 function retry(): void {
   validated.value = false;
-  gaps.value.forEach((g) => {
+  props.exercise.gaps?.forEach((g) => {
     g.guess = "";
   });
   delete props.exercise.correctlyAnswered;
@@ -174,7 +178,7 @@ function retry(): void {
 
 function showSolution(): void {
   validated.value = true;
-  gaps.value.forEach((g) => {
+  props.exercise.gaps?.forEach((g) => {
     g.guess = g.solution ?? "";
   });
 }

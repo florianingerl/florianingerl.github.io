@@ -297,7 +297,7 @@ onMounted(async () => {
 
   if (!props.questionOfQuiz) return
   // Beim Bearbeiten wird die Frage mit ihrer _id übernommen, beim Anlegen nur als Vorlage ohne _id
-  const { _id, correctlyAnswered: _ca, ...vorlage } = props.questionOfQuiz
+  const { _id, correctlyAnswered: _ca, gaps: _g, ...vorlage } = props.questionOfQuiz
   exercise.value = { ...vorlage, quiz: props.quiz, ...(props.editMode ? { _id } : {}) }
   allOptions.value = (props.questionOfQuiz.options ?? []).map((o) => o.option)
   //TODO The topic of the exercise should be the topic of the exercise of the quiz

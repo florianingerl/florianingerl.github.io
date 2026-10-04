@@ -33,6 +33,16 @@ export interface Option {
   checked?: boolean;
 }
 
+// Ein Element einer gapText-Aufgabe. Entsteht beim Parsen des gapText und
+// haengt am Exercise, damit die Antworten beim Wechseln zurueck bleiben.
+export interface Gap {
+  text: string;
+  // string = Freitext-Lücke, string[] = Auswahl-Lücke
+  gap: string | string[];
+  guess: string;
+  solution?: string;
+}
+
 export interface Topic {
   _id?: string ;
   quiz: QuizName,
@@ -76,5 +86,8 @@ export interface Exercise {
   user?: string;
   // Nur Zur Laufzeit im Browser gesetzt. Wird nicht gespeichert.
   correctlyAnswered?: boolean;
+  // Nur zur Laufzeit im Browser: das geparste gapText mit den bereits
+  // ausgefuellten Luecken. Wird nicht gespeichert.
+  gaps?: Gap[];
 }
 
