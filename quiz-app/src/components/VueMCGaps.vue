@@ -84,8 +84,8 @@ const breite = (g: Gap): string =>
 
 function isEverythingCorrect(): boolean {
   let b : boolean = true;
-  (props.exercise.gaps ?? []).forEach( (gap) => {
-     if(gap.gap !== gap.guess){
+  (props.exercise.gaps ?? []).forEach( (gap : Gap) => {
+     if(gap.solution !== gap.guess){
        b = false;
      }
   });
