@@ -187,7 +187,12 @@
 
       
       <div class="col">
-        <button @click="exportToFrancaisFacileClicked">Export to francaisfacile.com</button>
+        <button
+          v-if="darfExportieren"
+          @click="exportToFrancaisFacileClicked"
+        >
+          Export to francaisfacile.com
+        </button>
       </div>
     </div>
 
@@ -206,7 +211,7 @@
     </div>
 
     <VueExportToFacile
-      v-if="exportOffen"
+      v-if="exportOffen && darfExportieren"
       :quiz="quiz"
       :topic="aktuelle?.topic"
       :lg="lg"
@@ -264,9 +269,18 @@ import type { Exercise, Lang, QuizName, Topic } from "../types.ts";
 
 const props = defineProps<{ quiz: QuizName; lg: Lang }>();
 
+// Nur diesem Benutzer wird der Export-Button angezeigt. Die Grossschreibung
+// wird ignoriert, damit die Schreibweise des Kontos keine Rolle spielt.
+const EXPORT_EMAIL = "imelflorianingerl@gmail.com";
+
 // Anmeldung. Ohne Anmeldung darf nichts angelegt, geaendert oder geloescht
 // werden, deshalb pruefen die Schaltflaechen unten auf auth.angemeldet.
 const auth = useAuthStore();
+
+// Der Export gehoert nur dem unten genannten Benutzer.
+const darfExportieren = computed(
+  () => auth.angemeldet && auth.email.trim().toLowerCase() === EXPORT_EMAIL
+);
 
 // Welcher Dialog gerade an der Stelle des Quiz steht (null = keiner).
 type DialogArt = "signup" | "login" | "profile";
@@ -369,6 +383,7 @@ const indices = computed<number[]>(() => {
 });
 
 function exportToFrancaisFacileClicked(): void {
+  if (!darfExportieren.value) return;
   exportOffen.value = true;
 }
 
