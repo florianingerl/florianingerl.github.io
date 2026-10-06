@@ -1,6 +1,8 @@
 <template>
   <div>
     
+    <label for="topic-title">Titel</label>
+    <input id="topic-title" type="text" v-model="topicTitle" />
     <VueJoditEditor v-model="editorContent" :options="joditOptionen" />
     <div class="row">
       <div class="col">
@@ -30,6 +32,7 @@ const emit = defineEmits<{
 }>()
 
 const editorContent = ref<string>('')
+const topicTitle = ref<string>('')
 
 // Entspricht ungefaehr der Toolbar von TinyMCE: Formatierung, Listen, Links,
 // Tabellen, Bilder, Zeichentabelle und Quelltext.
@@ -51,10 +54,12 @@ async function updateEditorContent(): Promise<void> {
   const ex = props.questionOfQuiz
   if (!ex) {
     editorContent.value = "No exercise and thus no topic to be edited!"
+    topicTitle.value = ''
     return
   }
   if (!ex.topic) {
     editorContent.value = ""
+    topicTitle.value = ''
     return
   }
 
@@ -62,9 +67,11 @@ async function updateEditorContent(): Promise<void> {
     const topic =
       typeof ex.topic === 'string' ? await getTopic(ex.topic) : ex.topic
     editorContent.value = topic.tutorial ?? ''
+    topicTitle.value = topic.title ?? ''
   } catch (e) {
     console.error("The topic couldn't be loaded:", e)
     editorContent.value = ''
+    topicTitle.value = ''
   }
 }
 
@@ -91,7 +98,7 @@ async function saveTutorialClicked(): Promise<void> {
   try {
     const geladen =
       typeof ex.topic === 'string' ? await getTopic(ex.topic) : ex.topic
-    const topic: Topic = { ...geladen, tutorial: editorContent.value }
+    const topic: Topic = { ...geladen, tutorial: editorContent.value, title: topicTitle.value }
     const gespeichert = await updateTopic(topic)
     alert("The tutorial was inserted into the database!")
     emit('tutorial-saved', gespeichert)

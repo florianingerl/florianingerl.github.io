@@ -75,7 +75,7 @@ export async function getTopic(_id:string):Promise<Topic>{
 }
 
 export async function getAllTopics(quiz: QuizName): Promise<Topic[]> {
-  const r = await client.get<Topic[]>(`/api/topic`, { params: { quiz } });
+  const r = await client.get<Topic[]>(`/api/topic/${encodeURIComponent(quiz)}`);
   return r.data;
 }
 

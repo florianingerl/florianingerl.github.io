@@ -1,0 +1,39 @@
+A want a new type of exercise, a matching exercise !
+In the mongodb database, it should look like
+{
+sentences: [{part1: "He is fat,", part2: "because he eats too much."}, {part 1:"He is thinn,", part2:"since the doesn't eat enough."}]
+
+}
+
+The exercise should be displayd in the user interface as follows:
+On the left hand side, there are all the first parts of the sentences and on the right side, there are all the second parts of the sentences.
+
+Say that there are at most 5 sentences for an exercise!
+So let's have five colors ["red","green","blue","orange","yellow"]
+
+Now the user can click on a sentence on the left or right hand side and that part of the sentence becomes red. Then the user can click on 
+part of a sentence on the other side and that becomes then also red, indicating that the user has matched those two parts.
+
+The next two parts, that the user matches, should become green and so on.
+
+Selecting a part and then clicking on it again should deselect and uncolour it. 
+
+There should also be a button reset, to reset everything !
+
+Of course, all the first parts should be shuffled before being displayed on the left hand side, and all the second parts of the sentences 
+should be shuffled before being displayed on the right hand side. 
+
+Maybe you can display each part of a sentence in a box with black border.
+
+What the user matches should be saved in the exercise under a field called guessedSentences of type TwoPartSentences[] ?
+where TwoPartSentences is a TypeScript-type with fields part1: String and part2: String .
+
+If the validate button, is clicked by the user, the parts that were matched correctly are linked by a green arrow and the parts that
+weren't matched correctly are linked by a red arrow !
+
+The show solution button, should link the parts correctly by a black arrow . 
+
+Please write an own VueComponent , say VueMatching.vue for this kind of exercise.
+
+In VueNewExercise, the type "matching" must be added. If matching is selected, there should the possibility to choose an image
+and to enter part1 and part2 for at most 5 sentences and at least 2 sentences.

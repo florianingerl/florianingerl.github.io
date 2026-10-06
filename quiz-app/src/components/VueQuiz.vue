@@ -2,7 +2,7 @@
   <div>
   
     <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
-      <div class="d-flex flex-wrap align-items-center gap-2">
+      <div v-if="dialog === null" class="d-flex flex-wrap align-items-center gap-2">
         <button
           v-if="auth.angemeldet && !formOffen"
           type="button"
@@ -37,10 +37,11 @@
 
       <div class="d-flex flex-wrap align-items-center gap-2">
         <template v-if="auth.angemeldet">
-          <span class="badge text-bg-success">
+          <span v-if="dialog === null" class="badge text-bg-success">
             Logged in with {{ auth.email }}
           </span>
           <button
+            v-if="dialog === null"
             type="button"
             class="btn btn-outline-secondary btn-sm"
             title="Modify your profile or your settings"
@@ -94,12 +95,25 @@
     <p v-if="laden">{{ t.laden }}</p>
     <p v-if="fehler" class="text-danger">{{ fehler }}</p>
 
-    <select v-model="selectedTopic">
-      <option value="">{{ t.alleThemen }}</option>
-      <option v-for="topic in topics" :key="topic.title" :value="topic">
-        {{ topic.title }}
-      </option>
-    </select>
+    <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+      <label for="topicFilter" class="form-label mb-0">
+        Filter for topic:
+      </label>
+      <select id="topicFilter" v-model="filter.topicId">
+        <option value="">{{ t.alleThemen }}</option>
+        <option v-for="topic in topics" :key="topic._id" :value="topic._id">
+          {{ topic.title }}
+        </option>
+      </select>
+      <button
+        type="button"
+        class="btn btn-outline-secondary btn-sm"
+        title="Show filtering options"
+        @click="dialogOeffnen('filter')"
+      >
+        <i class="bi bi-funnel" aria-hidden="true"></i>
+      </button>
+    </div>
 
   
     <ul class="nav nav-tabs" role="tablist">
@@ -240,6 +254,14 @@
       @cancel-clicked="dialog = null"
       @logout-clicked="abmelden"
     />
+
+    <VueFilterDialog
+      v-else-if="dialog === 'filter'"
+      :quiz="quiz"
+      :topics="topics"
+      :creators="creators"
+      @cancel-clicked="dialog = null"
+    />
   </div>
 </template>
 
@@ -253,6 +275,7 @@ import VueExportToFacile from "./VueExportToFacile.vue";
 import VueSignUp from "./VueSignUp.vue";
 import VueLogin from "./VueLogin.vue";
 import VueProfile from "./VueProfile.vue";
+import VueFilterDialog from "./VueFilterDialog.vue";
 import {
   API_URL,
   createExercise,
@@ -265,6 +288,7 @@ import {
   getTopic
 } from "../api.ts";
 import { useAuthStore } from "../stores/auth";
+import { useFilterStore } from "../stores/filter";
 import type { Exercise, Lang, QuizName, Topic } from "../types.ts";
 
 const props = defineProps<{ quiz: QuizName; lg: Lang }>();
@@ -283,9 +307,14 @@ const darfExportieren = computed(
 );
 
 // Welcher Dialog gerade an der Stelle des Quiz steht (null = keiner).
-type DialogArt = "signup" | "login" | "profile";
+type DialogArt = "signup" | "login" | "profile" | "filter";
 const dialog = ref<DialogArt | null>(null);
 const loginEmail = ref<string>("");
+
+// Filter der Aufgaben. Die Werte liegen im Store, damit sie den Dialog
+// ueberleben und pro Quiz getrennt gespeichert sind.
+const filterStore = useFilterStore();
+const filter = filterStore.filterFor(props.quiz);
 
 // Zustand
 const questions = ref<Exercise[]>([]);
@@ -293,7 +322,6 @@ const laden = ref(true);
 const fehler = ref("");
 const i = ref(0);
 const scoreText = ref("");
-const selectedTopic = ref<Topic | null>(null);
 const tab = ref<"exercise" | "tutorial">("exercise");
 const formOffen = ref(false);
 const editMode = ref(false);
@@ -351,19 +379,51 @@ const t = computed(() => texte[props.lg]);
 // Abgeleitete Werte
 const topics = ref<Topic[]>([]);
 
+// Alle Benutzer, die mindestens eine dieser Aufgaben erstellt haben.
+const creators = computed<string[]>(() => {
+  const ids = new Set<string>();
+  questions.value.forEach((q) => {
+    if (q.user) ids.add(q.user);
+  });
+  return [...ids].sort();
+});
+
+// Alle Stellen einer Aufgabe, in denen das Suchwort vorkommen darf: das
+// Topic, die Anweisung, der Lückentext, die Frage(n) und die Optionen.
+function suchTexte(q: Exercise): string[] {
+  const titel =
+    typeof q.topic === "string"
+      ? topics.value.find((t) => t._id === q.topic)?.title ?? ""
+      : q.topic?.title ?? "";
+  return [
+    titel,
+    q.instruction ?? "",
+    q.gapText ?? "",
+    q.question ?? "",
+    q.questionEn ?? "",
+    q.questionFr ?? "",
+    ...(q.options ?? []).map((o) => o.option),
+    ...(q.optionsEn ?? []).map((o) => o.option),
+    ...(q.optionsFr ?? []).map((o) => o.option),
+  ];
+}
+
+function norm(s: string): string {
+  return filter.caseSensitive ? s : s.toLowerCase();
+}
+
+// Frontend-Filterung: Theme, Ersteller und Suchwort werden hier angewandt.
 const displayedQuestions = computed<Exercise[]>(() =>
-  selectedTopic.value
-    ? questions.value.filter((q) => {
-        //TODO
-        if (selectedTopic.value) {
-          return typeof q.topic === "string"
-            ? q.topic === selectedTopic.value._id
-            : q.topic?._id === selectedTopic.value._id;
-        } else {
-          return true;
-        }
-      })
-    : questions.value
+  questions.value.filter((q) => {
+    if (filter.topicId) {
+      const id = typeof q.topic === "string" ? q.topic : q.topic?._id;
+      if (id !== filter.topicId) return false;
+    }
+    if (filter.creator && q.user !== filter.creator) return false;
+    if (filter.word && !suchTexte(q).some((s) => norm(s).includes(norm(filter.word))))
+      return false;
+    return true;
+  })
 );
 
 const aktuelle = computed<Exercise | undefined>(
@@ -435,9 +495,15 @@ function gehZu(e: Event): void {
     i.value = u;
 }
 
-watch(selectedTopic, () => {
-  i.value = 0;
-});
+// Bei jeder Filteraenderung wieder bei der ersten Aufgabe beginnen und das
+// Tutorial der neuen aktuellen Aufgabe nachladen.
+watch(
+  () => [filter.topicId, filter.creator, filter.word, filter.caseSensitive],
+  () => {
+    i.value = 0;
+    setCurrentTutorial();
+  }
+);
 
 async function setCurrentTutorial() {
   if(displayedQuestions.value.length == 0){
@@ -539,8 +605,8 @@ async function gespeichert(ex: Exercise): Promise<void> {
     }
     editMode.value = false;
     formOffen.value = false;
-    // Themenfilter aufheben, kurz warten (der Watcher springt auf 0) und dann zur gespeicherten Frage springen
-    selectedTopic.value = null;
+    // Filter aufheben, kurz warten (der Watcher springt auf 0) und dann zur gespeicherten Frage springen
+    filterStore.reset(props.quiz);
     await nextTick();
     i.value = Math.max(
       displayedQuestions.value.findIndex((q) => q._id === neu._id),

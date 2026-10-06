@@ -27,9 +27,24 @@
             <span class="badge text-bg-secondary">
               {{ topicDaten?.title ?? "ÔÇª" }}
             </span>
-            ┬À Test-ID: {{ TEST_ID }}
           </p>
-
+          <label class="form-label" for="exportTestId">
+            Test-ID of the test on {{ domain }} that will be changed
+          </label>
+          <input
+            id="exportTestId"
+            v-model="testId"
+            class="form-control form-control-sm"
+            type="number"
+            min="1"
+            step="1"
+            placeholder="131777"
+          />
+          <small class="form-text d-block">
+            Open the test on {{ domain }}. The number at the end of its address
+            is its ID. The questions chosen below replace the questions of
+            that test.
+          </small>
           <fieldset>
             <legend class="fs-6">Type of exercise</legend>
             <div v-for="typ in typen" :key="typ.wert" class="form-check">
@@ -154,7 +169,7 @@
           <button
             type="button"
             class="btn btn-primary"
-            :disabled="gewaehlteAnzahl === 0"
+            :disabled="gewaehlteAnzahl === 0 || !testIdNum"
             @click="exportieren"
           >
             Export to {{ domain }}
@@ -179,8 +194,14 @@ import type {
   Topic,
 } from "../types.ts";
 
-// Der bestehende Test auf *facile.com, der ge├ñndert wird.
-const TEST_ID = 131777;
+// Der Test auf *facile.com, der bei jedem Export neu eingegeben wird.
+
+// Der Test, der auf *facile.com geändert wird.
+const testId = ref("");
+const testIdNum = computed(() => {
+  const nummer = Number(testId.value.trim());
+  return Number.isInteger(nummer) && nummer > 0 ? nummer : null;
+});
 
 // Ein Test auf *facile.com braucht mindestens so viele Fragen.
 const MINDESTZAHL = 10;
@@ -337,7 +358,7 @@ function fuelleAufMindestzahl(fragen: FrageAntwort[]): FrageAntwort[] {
   return gefuellt;
 }
 
-function baueBody(fragen: FrageAntwort[]): string {
+function baueBody(fragen: FrageAntwort[], testIdNummer: number): string {
   const gefuellt = fuelleAufMindestzahl(fragen);
   const seite = typen.find((x) => x.wert === uebungstyp.value) ?? typen[0];
   const testtitel = titel.value.trim();
@@ -347,7 +368,7 @@ function baueBody(fragen: FrageAntwort[]): string {
   felder.set("top2", "");
   felder.set("auteur2", auteur.value.trim());
   felder.set("liaison2", "#adverbe#conjonction#");
-  felder.set("casier", `clone du test ${TEST_ID}`);
+  felder.set("casier", `clone du test ${testIdNummer}`);
   felder.set("anciensite", "0001");
   felder.set("yenamarre", "0001");
   felder.set("genre", "g");
@@ -434,6 +455,11 @@ async function exportieren(): Promise<void> {
   fehler.value = "";
   meldung.value = "";
   hinweis.value = "";
+  const testIdNummer = testIdNum.value;
+  if (testIdNummer === null) {
+    fehler.value = "Bitte eine Test-ID eingeben!";
+    return;
+  }
 
   const seite = SEITEN[props.quiz];
   if (!seite) {
@@ -463,9 +489,9 @@ async function exportieren(): Promise<void> {
   try {
     const antwort = await exportToFacile({
       site: seite,
-      testId: TEST_ID,
+      testId: testIdNummer,
       cookie: sitzungscookie,
-      body: baueBody(gewaehlte),
+      body: baueBody(gewaehlte, testIdNummer),
     });
 
     if (antwort.angemeldet === false) {
@@ -486,7 +512,7 @@ async function exportieren(): Promise<void> {
     const bestaetigt = antwort.gespeichert
       ? "Die Seite hat den Test gespeichert."
       : "Die Seite hat den Test angenommen, aber nicht best├ñtigt. Bitte kurz auf der Seite pr├╝fen, ob die Fragen ├╝bernommen wurden.";
-    meldung.value = `Test ${TEST_ID} auf ${seite}: ${gefuellt.length} Fragen, Typ ${art.seitentyp}. ${bestaetigt}`;
+    meldung.value = `Test ${testIdNummer} auf ${seite}: ${gefuellt.length} Fragen, Typ ${art.seitentyp}. ${bestaetigt}`;
   } catch (e) {
     meldung.value = "";
     // Bei einem 4xx/5xx wirft axios, und die brauchbare Meldung steckt in der
