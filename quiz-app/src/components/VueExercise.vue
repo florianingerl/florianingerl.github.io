@@ -9,6 +9,12 @@
         :lg="lg"
         @answered-event="emit('answered-event')"
       />
+      <VueMatching
+        v-else-if="exercise.type === 'matching'"
+        :exercise="exercise"
+        :lg="lg"
+        @answered-event="emit('answered-event')"
+      />
       <VueQuestion
         v-else
         :question="exercise"
@@ -22,6 +28,7 @@
 <script setup lang="ts">
 import VueImage from './VueImage.vue'
 import VueMCGaps from './VueMCGaps.vue'
+import VueMatching from './VueMatching.vue'
 import VueQuestion from './VueQuestion.vue'
 import VueTopicDisplayer from './VueTopicDisplayer.vue'
 import type { Exercise, Lang } from '../types.ts'

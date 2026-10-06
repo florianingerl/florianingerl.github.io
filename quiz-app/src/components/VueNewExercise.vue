@@ -44,10 +44,11 @@
       <select v-model="exercise.type">
         <option value="gapText">Gap text</option>
         <option value="multipleChoice">Multiple choice</option>
+        <option value="matching">Matching</option>
       </select>
     </div>
 
-    <div v-if="exercise.type === 'gapText'" class="mb-3 mt-3">
+    <div v-if="exercise.type !== 'multipleChoice'" class="mb-3 mt-3">
       <label class="form-label">Instruction:</label>
       <input v-model="exercise.instruction" type="text" class="form-control" />
     </div>
@@ -74,6 +75,34 @@
           <button @click="addOption">Add</button>
           <button @click="allOptions = []">Clear</button>
         </div>
+      </div>
+
+      <div v-if="exercise.type === 'matching'" class="mb-3 mt-3">
+        <p>Sentences (at least 2, at most 5):</p>
+        <div
+          v-for="(s, i) in sentences"
+          :key="i"
+          class="row mb-2 align-items-center"
+        >
+          <label class="col-form-label col-sm-1">Part 1:</label>
+          <input v-model="s.part1" type="text" class="form-control col" />
+          <label class="col-form-label col-sm-1">Part 2:</label>
+          <input v-model="s.part2" type="text" class="form-control col" />
+          <button
+            v-if="sentences.length > 2"
+            class="col-sm-1 btn btn-secondary"
+            @click="sentences.splice(i, 1)"
+          >
+            Remove
+          </button>
+        </div>
+        <button
+          v-if="sentences.length < 5"
+          class="btn btn-secondary"
+          @click="sentences.push({ part1: '', part2: '' })"
+        >
+          Add sentence
+        </button>
       </div>
     </div>
 
@@ -177,7 +206,7 @@ export async function findRandomImageUrlOnFacile(): Promise<string> {
 <script setup lang="ts">
 import { onMounted, ref, watch } from 'vue'
 import VueImage from './VueImage.vue'
-import type { Exercise, QuizName , Topic } from '../types.ts'
+import type { Exercise, QuizName , Topic, TwoPartSentences } from '../types.ts'
 import { getAllTopics } from '../api.ts';
 
 const newTopic = ref<string>('');
@@ -204,6 +233,11 @@ const exercise = ref<Exercise>({
 
 const newOption = ref('')
 const allOptions = ref<string[]>([])
+// Zwei leere Zeilen als Minimum, maximal 5 Saelze.
+const sentences = ref<TwoPartSentences[]>([
+  { part1: '', part2: '' },
+  { part1: '', part2: '' },
+])
 const randomImageFailed = ref('')
 
 // Bildsuche über Klipy
@@ -280,6 +314,20 @@ function save(): void {
   if (exercise.value.type === 'multipleChoice') {
     exercise.value.options = allOptions.value.map((o, i) => ({ option: o, correct: i === 0 }))
   }
+  if (exercise.value.type === 'matching') {
+    const gefuellt = sentences.value.filter(
+      (s) => s.part1.trim() !== '' && s.part2.trim() !== '',
+    )
+    if (gefuellt.length < 2 || gefuellt.length > 5) {
+      alert('A matching exercise needs between 2 and 5 complete sentences.')
+      return
+    }
+    exercise.value.sentences = gefuellt.map((s) => ({ part1: s.part1, part2: s.part2 }))
+    delete exercise.value.guessedSentences
+  } else {
+    delete exercise.value.sentences
+    delete exercise.value.guessedSentences
+  }
   emit('new-exercise-created', exercise.value)
 }
 
@@ -297,9 +345,12 @@ onMounted(async () => {
 
   if (!props.questionOfQuiz) return
   // Beim Bearbeiten wird die Frage mit ihrer _id übernommen, beim Anlegen nur als Vorlage ohne _id
-  const { _id, correctlyAnswered: _ca, gaps: _g, ...vorlage } = props.questionOfQuiz
+  const { _id, correctlyAnswered: _ca, gaps: _g, guessedSentences: _gs, ...vorlage } = props.questionOfQuiz
   exercise.value = { ...vorlage, quiz: props.quiz, ...(props.editMode ? { _id } : {}) }
   allOptions.value = (props.questionOfQuiz.options ?? []).map((o) => o.option)
+  if (props.questionOfQuiz.sentences?.length) {
+    sentences.value = props.questionOfQuiz.sentences.map((s) => ({ ...s }))
+  }
   //TODO The topic of the exercise should be the topic of the exercise of the quiz
 })
 </script>

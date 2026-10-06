@@ -389,7 +389,8 @@ const creators = computed<string[]>(() => {
 });
 
 // Alle Stellen einer Aufgabe, in denen das Suchwort vorkommen darf: das
-// Topic, die Anweisung, der Lückentext, die Frage(n) und die Optionen.
+// Topic, die Anweisung, der Lückentext, die Frage(n), die Optionen und die
+// Sätze einer matching-Aufgabe.
 function suchTexte(q: Exercise): string[] {
   const titel =
     typeof q.topic === "string"
@@ -405,6 +406,7 @@ function suchTexte(q: Exercise): string[] {
     ...(q.options ?? []).map((o) => o.option),
     ...(q.optionsEn ?? []).map((o) => o.option),
     ...(q.optionsFr ?? []).map((o) => o.option),
+    ...(q.sentences ?? []).flatMap((s) => [s.part1, s.part2]),
   ];
 }
 

@@ -10,7 +10,7 @@ export type QuizName =
 
 export type Lang = "de" | "en" | "fr";
 
-export type ExerciseType = "gapText" | "multipleChoice";
+export type ExerciseType = "gapText" | "multipleChoice" | "matching";
 
 // 1.1) Test à trous, 1.2) Test avec des options différents, 1.3) Test avec les mêmes options
 export type ExportTestType =
@@ -41,6 +41,12 @@ export interface Gap {
   gap: string | string[];
   guess: string;
   solution?: string;
+}
+
+// Die beiden Haelften eines Satzes in einer matching-Aufgabe.
+export interface TwoPartSentences {
+  part1: string;
+  part2: string;
 }
 
 export interface Topic {
@@ -81,6 +87,11 @@ export interface Exercise {
   options?: Option[];
   optionsEn?: Option[];
   optionsFr?: Option[];
+  // matching
+  // Die Saelte der Aufgabe. part1 steht links, part2 rechts.
+  sentences?: TwoPartSentences[];
+  // Was der Benutzer zusammengeklickt hat, in der Reihenfolge der Paare.
+  guessedSentences?: TwoPartSentences[];
   // _id des Benutzers, der die Aufgabe angelegt hat. Der Server setzt das beim
   // Speichern selbst, es kann also nicht veraendert werden.
   user?: string;
