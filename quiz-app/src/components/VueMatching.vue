@@ -32,6 +32,18 @@
         />
       </svg>
 
+      <!-- Eine Schere am Fuss jedes Pfeils trennt die Verbindung auf. -->
+      <button
+        v-for="(p, i) in pfeile"
+        :key="'s' + i"
+        type="button"
+        class="schere"
+        :style="{ left: p.sx + 'px', top: p.sy + 'px' }"
+        @click="entfernePaar(i)"
+      >
+        ✂
+      </button>
+
       <div class="spalte">
         <div
           v-for="(t, i) in links"
@@ -78,8 +90,7 @@ const props = defineProps<{
 
 const emit = defineEmits<{ (e: "answered-event"): void }>();
 
-// Reihenfolge der Paarfamilben: das erste Paar wird rot, das zweite gruen usw.
-const FARBEN = ["lightcoral", "lightgreen", "lightskyblue", "lightsalmon"];
+// Diese Farben stehen fuer die Pfeile nach dem Pruefen: gruen = richtig, rot = falsch.
 const pfeilFarben = ["green", "red", "black"];
 
 const texte: Record<
@@ -107,19 +118,26 @@ const texte: Record<
 const links = ref<string[]>([]);
 const rechts = ref<string[]>([]);
 
-// Das angeklickte Teil, das noch keinem Paar gehoert (rote Farbe, gestrichelt).
+// Das angeklickte Teil, das noch keinem Paar gehoert (gestrichelt).
 const auswahl = ref<{ seite: "l" | "r"; text: string } | null>(null);
 
-// Ob schon geprueft oder die Loesung angezeigt wurde. Dann werden die Pfeile gezeichnet.
+// Ob schon geprueft oder die Loesung angezeigt wurde.
 const geprueft = ref(false);
 const pfeilModus = ref<"validate" | "solution" | null>(null);
 
 const wurzel = ref<HTMLElement | null>(null);
 const boxen = ref<Record<string, HTMLElement>>({});
 const groesse = ref({ b: 0, h: 0 });
-const pfeile = ref<
-  { x1: number; y1: number; x2: number; y2: number; farbe: string }[]
->([]);
+interface Pfeil {
+  x1: number;
+  y1: number;
+  x2: number;
+  y2: number;
+  farbe: string;
+  sx: number;
+  sy: number;
+}
+const pfeile = ref<Pfeil[]>([]);
 
 const beantwortet = (): boolean => props.exercise.correctlyAnswered !== undefined;
 
@@ -151,12 +169,11 @@ function paarIndex(seite: "l" | "r", text: string): number {
   );
 }
 
+// Die Kasten werden nicht eingefaerbt; nur die Auswahl wird gestrichelt.
 function kastenStil(seite: "l" | "r", text: string): Record<string, string> {
-  const i = paarIndex(seite, text);
-  if (i >= 0) return { backgroundColor: FARBEN[i % FARBEN.length] };
   if (auswahl.value?.seite === seite && auswahl.value.text === text)
-    return { backgroundColor: "white", borderStyle: "dashed" };
-  return { backgroundColor: "white" };
+    return { borderStyle: "dashed" };
+  return {};
 }
 
 function istVollstaendig(): boolean {
@@ -195,9 +212,16 @@ function klick(seite: "l" | "r", text: string): void {
   geschaetzte().push(paar);
   auswahl.value = null;
 
-  // Sind alle Teile verknuepft, wird automatisch geprueft.
-  if (istVollstaendig()) validate();
-  else naechsteBild();
+  // Sind alle Teile verknuepft und alles richtig, wird automatisch geprueft.
+  if (istVollstaendig()) {
+    const alleRichtig = geschaetzte().every((p) =>
+      saetze().some((s) => s.part1 === p.part1 && s.part2 === p.part2),
+    );
+    if (alleRichtig) validate();
+    else naechsteBild();
+  } else {
+    naechsteBild();
+  }
 }
 
 function validate(): void {
@@ -238,8 +262,21 @@ function retry(): void {
   loescheAlles();
 }
 
+// Die Schere trennt eine Verbindung wieder auf.
+function entfernePaar(i: number): void {
+  const g = geschaetzte();
+  if (i < 0 || i >= g.length) return;
+  g.splice(i, 1);
+  delete props.exercise.correctlyAnswered;
+  geprueft.value = false;
+  pfeilModus.value = null;
+  auswahl.value = null;
+  emit("answered-event");
+  naechsteBild();
+}
+
 function pfeilFarbe(p: TwoPartSentences): string {
-  if (pfeilModus.value === "solution") return "black";
+  if (pfeilModus.value !== "validate") return "black";
   const richtig = saetze().some(
     (s) => s.part1 === p.part1 && s.part2 === p.part2,
   );
@@ -252,11 +289,6 @@ function berechne(): void {
   const r = w.getBoundingClientRect();
   groesse.value = { b: r.width, h: r.height };
 
-  if (!geprueft.value) {
-    pfeile.value = [];
-    return;
-  }
-
   pfeile.value = geschaetzte()
     .map((p) => {
       const li = boxen.value["l:" + p.part1];
@@ -264,15 +296,24 @@ function berechne(): void {
       if (!li || !re) return null;
       const a = li.getBoundingClientRect();
       const b = re.getBoundingClientRect();
+      const x1 = a.right - r.left;
+      const y1 = a.top + a.height / 2 - r.top;
+      const x2 = b.left - r.left - 2;
+      const y2 = b.top + b.height / 2 - r.top;
       return {
-        x1: a.right - r.left,
-        y1: a.top + a.height / 2 - r.top,
-        x2: b.left - r.left - 2,
-        y2: b.top + b.height / 2 - r.top,
+        x1,
+        y1,
+        x2,
+        y2,
         farbe: pfeilFarbe(p),
+        sx: x1 + 14,
+        sy: y1,
       };
     })
-    .filter((p): p is { x1: number; y1: number; x2: number; y2: number; farbe: string } => p !== null);
+    .filter(
+      (p): p is Pfeil =>
+        p !== null,
+    );
 }
 
 function naechsteBild(): void {
@@ -321,5 +362,23 @@ onBeforeUnmount(() => window.removeEventListener("resize", berechne));
   padding: 6px 10px;
   cursor: pointer;
   user-select: none;
+}
+.schere {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #888;
+  border-radius: 50%;
+  background: white;
+  font-size: 12px;
+  line-height: 1;
+  cursor: pointer;
+  user-select: none;
+  z-index: 2;
 }
 </style>
