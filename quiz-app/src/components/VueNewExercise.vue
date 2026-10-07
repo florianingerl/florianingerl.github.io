@@ -45,6 +45,7 @@
         <option value="gapText">Gap text</option>
         <option value="multipleChoice">Multiple choice</option>
         <option value="matching">Matching</option>
+        <option value="wordOrder">Word order</option>
       </select>
     </div>
 
@@ -103,6 +104,11 @@
         >
           Add sentence
         </button>
+      </div>
+
+      <div v-if="exercise.type === 'wordOrder'" class="mb-3 mt-3">
+        <label class="form-label">Sentence (it will be shown shuffled):</label>
+        <input v-model="wordOrderSentence" type="text" class="form-control" />
       </div>
     </div>
 
@@ -233,6 +239,8 @@ const exercise = ref<Exercise>({
 
 const newOption = ref('')
 const allOptions = ref<string[]>([])
+// Der Satz einer word-order-Aufgabe.
+const wordOrderSentence = ref('')
 // Zwei leere Zeilen als Minimum, maximal 5 Saelze.
 const sentences = ref<TwoPartSentences[]>([
   { part1: '', part2: '' },
@@ -328,6 +336,17 @@ function save(): void {
     delete exercise.value.sentences
     delete exercise.value.guessedSentences
   }
+  if (exercise.value.type === 'wordOrder') {
+    const satz = wordOrderSentence.value.trim()
+    if (!satz) {
+      alert('Please write the sentence for the word order exercise.')
+      return
+    }
+    // Nur der Satz selbst wird gespeichert, das Mischen passiert im Browser.
+    exercise.value.wordorder = { sentence: satz }
+  } else {
+    delete exercise.value.wordorder
+  }
   emit('new-exercise-created', exercise.value)
 }
 
@@ -345,12 +364,13 @@ onMounted(async () => {
 
   if (!props.questionOfQuiz) return
   // Beim Bearbeiten wird die Frage mit ihrer _id übernommen, beim Anlegen nur als Vorlage ohne _id
-  const { _id, correctlyAnswered: _ca, gaps: _g, guessedSentences: _gs, ...vorlage } = props.questionOfQuiz
+  const { _id, correctlyAnswered: _ca, gaps: _g, guessedSentences: _gs, wordorder: _wo, ...vorlage } = props.questionOfQuiz
   exercise.value = { ...vorlage, quiz: props.quiz, ...(props.editMode ? { _id } : {}) }
   allOptions.value = (props.questionOfQuiz.options ?? []).map((o) => o.option)
   if (props.questionOfQuiz.sentences?.length) {
     sentences.value = props.questionOfQuiz.sentences.map((s) => ({ ...s }))
   }
+  wordOrderSentence.value = props.questionOfQuiz.wordorder?.sentence ?? ''
   //TODO The topic of the exercise should be the topic of the exercise of the quiz
 })
 </script>

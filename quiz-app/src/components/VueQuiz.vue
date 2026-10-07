@@ -407,6 +407,7 @@ function suchTexte(q: Exercise): string[] {
     ...(q.optionsEn ?? []).map((o) => o.option),
     ...(q.optionsFr ?? []).map((o) => o.option),
     ...(q.sentences ?? []).flatMap((s) => [s.part1, s.part2]),
+    q.wordorder?.sentence ?? "",
   ];
 }
 

@@ -60,7 +60,6 @@
     </div>
 
     <p>
-      <button @click="reset">{{ texte[lg].reset }}</button>
       <button @click="validate">{{ texte[lg].validate }}</button>
       <button @click="showSolution">{{ texte[lg].solution }}</button>
       <button @click="retry">{{ texte[lg].retry }}</button>
@@ -80,27 +79,24 @@ const props = defineProps<{
 const emit = defineEmits<{ (e: "answered-event"): void }>();
 
 // Reihenfolge der Paarfamilben: das erste Paar wird rot, das zweite gruen usw.
-const FARBEN = ["red", "green", "blue", "orange", "yellow"];
+const FARBEN = ["lightcoral", "lightgreen", "lightskyblue", "lightsalmon"];
 const pfeilFarben = ["green", "red", "black"];
 
 const texte: Record<
   Lang,
-  { reset: string; validate: string; solution: string; retry: string }
+  { validate: string; solution: string; retry: string }
 > = {
   en: {
-    reset: "Reset",
     validate: "Validate",
     solution: "Show me the solution",
     retry: "Retry",
   },
   de: {
-    reset: "Zurücksetzen",
     validate: "Prüfen",
     solution: "Zeig mir die Lösung",
     retry: "Nochmal versuchen",
   },
   fr: {
-    reset: "Réinitialiser",
     validate: "Valider ma solution",
     solution: "Montre-moi la solution",
     retry: "Essayer encore une fois",
@@ -159,7 +155,7 @@ function kastenStil(seite: "l" | "r", text: string): Record<string, string> {
   const i = paarIndex(seite, text);
   if (i >= 0) return { backgroundColor: FARBEN[i % FARBEN.length] };
   if (auswahl.value?.seite === seite && auswahl.value.text === text)
-    return { backgroundColor: "red", borderStyle: "dashed" };
+    return { backgroundColor: "white", borderStyle: "dashed" };
   return { backgroundColor: "white" };
 }
 
@@ -236,10 +232,6 @@ function loescheAlles(): void {
   pfeilModus.value = null;
   delete props.exercise.correctlyAnswered;
   emit("answered-event");
-}
-
-function reset(): void {
-  loescheAlles();
 }
 
 function retry(): void {

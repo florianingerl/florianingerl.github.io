@@ -10,7 +10,7 @@ export type QuizName =
 
 export type Lang = "de" | "en" | "fr";
 
-export type ExerciseType = "gapText" | "multipleChoice" | "matching";
+export type ExerciseType = "gapText" | "multipleChoice" | "matching" | "wordOrder";
 
 // 1.1) Test à trous, 1.2) Test avec des options différents, 1.3) Test avec les mêmes options
 export type ExportTestType =
@@ -47,6 +47,14 @@ export interface Gap {
 export interface TwoPartSentences {
   part1: string;
   part2: string;
+}
+
+// Eine word-order-Aufgabe: der Satz, der rekonstruiert werden muss.
+// shuffledSentence und guess sind nur Laufzeitfelder und werden nicht gespeichert.
+export interface WordOrderSentence {
+  sentence: string;
+  shuffledSentence?: string[];
+  guess?: string;
 }
 
 export interface Topic {
@@ -92,6 +100,8 @@ export interface Exercise {
   sentences?: TwoPartSentences[];
   // Was der Benutzer zusammengeklickt hat, in der Reihenfolge der Paare.
   guessedSentences?: TwoPartSentences[];
+  // word order
+  wordorder?: WordOrderSentence;
   // _id des Benutzers, der die Aufgabe angelegt hat. Der Server setzt das beim
   // Speichern selbst, es kann also nicht veraendert werden.
   user?: string;

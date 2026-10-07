@@ -43,6 +43,10 @@ function bereinigen(e: Exercise): Exercise {
   const { correctlyAnswered: weg, gaps: auchWeg, ...rest } = e;
   return {
     ...rest,
+    // shuffledSentence und guess einer word-order-Aufgabe bleiben im Browser.
+    wordorder: rest.wordorder
+      ? { sentence: rest.wordorder.sentence }
+      : rest.wordorder,
     options: ohneChecked(rest.options),
     optionsEn: ohneChecked(rest.optionsEn),
     optionsFr: ohneChecked(rest.optionsFr),
