@@ -9,19 +9,21 @@
       type="text"
       :value="exercise.wordorder?.guess ?? ''"
       :disabled="beantwortet"
+      :style="inputStyle"
       @input="beiEingabe"
     />
 
     <p>
-      <button @click="retry">{{ texte[lg].retry }}</button>
+     
       <button @click="validate">{{ texte[lg].validate }}</button>
       <button @click="showSolution">{{ texte[lg].solution }}</button>
+       <button @click="retry">{{ texte[lg].retry }}</button>
     </p>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, watch } from "vue";
+import { computed, onMounted, watch , ref} from "vue";
 import type { Exercise, Lang } from "../types";
 
 const props = defineProps<{
@@ -57,9 +59,15 @@ const woerter = computed<string[]>(
   () => props.exercise.wordorder?.shuffledSentence ?? [],
 );
 
+const showSolutionWasClicked = ref<boolean>(false);
+
 const beantwortet = computed<boolean>(
   () => props.exercise.correctlyAnswered !== undefined,
 );
+
+const inputStyle = computed(() => ({
+  color: (props.exercise.correctlyAnswered === undefined || showSolutionWasClicked.value ) ? 'black' : ( props.exercise.correctlyAnswered ? 'green' : 'red')
+}))
 
 function mischen(arr: string[]): string[] {
   const a = [...arr];
@@ -110,12 +118,14 @@ function validate(): void {
 }
 
 function retry(): void {
+  showSolutionWasClicked.value = false;
   props.exercise.correctlyAnswered = undefined;
   if (props.exercise.wordorder) props.exercise.wordorder.guess = undefined;
   emit("answered-event");
 }
 
 function showSolution(): void {
+  showSolutionWasClicked.value = true;
   const w = props.exercise.wordorder;
   if (!w) return;
   w.guess = w.sentence;
