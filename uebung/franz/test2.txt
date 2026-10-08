@@ -1,2 +1,0 @@
-Tu ne devrais manger {que} si tu as {faim}.
-{Sinon}, tu deviendras {malade}.
