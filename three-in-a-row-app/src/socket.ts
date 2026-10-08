@@ -3,7 +3,7 @@ import { io, type Socket } from "socket.io-client";
 let socket: Socket | null = null;
 
 export function socketUrl(): string {
-  return (import.meta.env.VITE_SOCKET_URL as string | undefined) ?? "http://localhost:3001";
+  return (import.meta.env.VITE_SOCKET_URL as string | undefined) ?? "http://localhost:8080";
 }
 
 export function getSocket(): Socket {
