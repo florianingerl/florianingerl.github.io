@@ -24,10 +24,19 @@ jobs:
         with:
           node-version: "22"
           cache: npm
-          cache-dependency-path: quiz-app/package-lock.json
+          cache-dependency-path: |
+            quiz-app/package-lock.json
+            three-in-a-row-app/package-lock.json
 
       - name: Quiz-App bauen (Typprüfung + Vite)
         working-directory: quiz-app
+        run: |
+          npm ci
+          npm run build
+          rm -rf node_modules
+
+      - name: Three-in-a-row bauen (Typprüfung + Vite)
+        working-directory: three-in-a-row-app
         run: |
           npm ci
           npm run build

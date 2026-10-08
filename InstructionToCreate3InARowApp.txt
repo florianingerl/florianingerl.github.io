@@ -1,0 +1,35 @@
+I want to have a game programmed. Please include it in the same way
+into my website as quiz-app. Frontend with Vue3 and backend with express and socket.io !
+The game is called Three-in-a-row ! It plays itself on a 8x8 chess board.
+It plays itself with two players, one player receives the white, the other one the black pieces.
+Each player only has a knight, a bishop and a rook. Capturing is not allowed in this game. Otherwise
+the pieces can move like in ordinary chess.
+The players move in turn and a player has won, if he managed to put his knight, bishop and rook all directly next to each other in either a row
+or in a column. The order of the pieces doesn't matter.
+The backend server should be programmed with express and socket.io .
+One of the players starts a new training or playing session and can send a link to that session to the other player
+which can then join.
+In the beginning the 3 pieces for each color should be placed randomly on the board. There should also be a "New game"-button
+which starts a new game where the 3 pieces are placed randomly on the board, but the white and black ones should be far away from each other
+so neither player can win immediately.
+When creating a new training or playing session or when joining one, the player has to enter his name.
+Above the board, there is a nice black filled circle and next to it (in black) the name of the player who is black.
+Below the board, there should be a nice white filled circle and next to it (in white) the name of the white player. Make sure that
+the white writing an the white circle is really visible by choosing an appropriate background color.
+If it's white's turn, the white filled circle should be surrounded by a non-filled circle of the same color with a radius that is a tiny bit bigger.
+Respectively if it is black's turn.
+There should also be a button to switch colors.
+A player can move by dragging an dropping the piece.
+If the player drops the piece and this is not a legal move, the sound of the whistle of a referee should be played 
+and the piece should be put back to its original position.
+Otherwise the turn changes, via the backend server, the other played is informed about the new move and an arrow drawn on the board indicates,
+from which square to which square the other player has just moved. 
+Next to the board, the moves of the game should be written down in short algebraic notation (e.g. Nb5 if the night moves to b5)
+and above that notation form, all the other data from the game saved in pgn-notation should be displayed (who plays when against who, who won, original position as fen, etc..)
+Use the Portable Game Notation from normal chess to save the game. The original position must of course be given by a Fen string.
+There should also be a menu bar on top with a file menu and inside a Save menu item and a Load menu item.
+Once one of the players has won, the result (1-0, 0-1) is displayed next to the board in the notation and the board and the dragging-and-dropping of the pieces
+should be disabled. Also if it's the turn of the other player, the dragging-and-dropping should be disabled.
+
+
+

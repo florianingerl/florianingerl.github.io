@@ -36,6 +36,7 @@
 	<!-- Template Main CSS File -->
 	<link href="assets/css/style.css" rel="stylesheet">
 	<link href="quiz/quiz.css" rel="stylesheet">
+<link href="three-in-a-row/three-in-a-row.css" rel="stylesheet">
 	<style>
 		.correctimage {
 			background: url("assets/img/PendelFlyerNeu3.png") top center;
@@ -909,6 +910,29 @@
 			</div>
 		</section>
 
+		<section id="threeinarow" class="about">
+			<div class="container" data-aos="fade-up">
+				<div class="section-title">
+
+					<p>Three-in-a-row</p>
+				</div>
+
+
+				<div class="row">
+					<div class="col-lg-8 order-2 order-lg-2" data-aos="fade-left" data-aos-delay="100">
+						<div data-three-in-a-row></div>
+					</div>
+					<div class="col-lg-4 pt-4 pt-lg-0 order-1 order-lg-1 content">
+						<p>Three-in-a-row ist ein Schachspiel f&uuml;r zwei Spieler auf einem 8x8-Brett. Jeder
+							hat nur einen Springer, einen L&auml;ufer und einen Turm - geschlagen wird nicht
+							gezogen. Wer seine drei Figuren direkt nebeneinander in einer Reihe oder Spalte
+							platziert, gewinnt. Lege eine Partie an und schicke den Link deinem Gegenspieler!</p>
+					</div>
+				</div>
+
+			</div>
+		</section>
+
 		<section id="websitenundflyer" class="about">
 			<div class="container" data-aos="fade-up">
 				<div class="section-title">
@@ -1620,6 +1644,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 	<script type="module" src="quiz/quiz.js"></script>
+	<script type="module" src="three-in-a-row/three-in-a-row.js"></script>
 
 	<script>
 		var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
