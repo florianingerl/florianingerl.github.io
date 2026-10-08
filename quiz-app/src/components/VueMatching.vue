@@ -232,6 +232,7 @@ function validate(): void {
   props.exercise.correctlyAnswered = alleRichtig;
   pfeilModus.value = "validate";
   emit("answered-event");
+  naechsteBild();
 }
 
 function showSolution(): void {
@@ -244,6 +245,7 @@ function showSolution(): void {
   if (props.exercise.correctlyAnswered === undefined)
     props.exercise.correctlyAnswered = false;
   emit("answered-event");
+  naechsteBild();
 }
 
 function loescheAlles(): void {
@@ -252,6 +254,7 @@ function loescheAlles(): void {
   pfeilModus.value = null;
   delete props.exercise.correctlyAnswered;
   emit("answered-event");
+  naechsteBild();
 }
 
 function retry(): void {
