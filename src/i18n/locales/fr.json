@@ -1,0 +1,231 @@
+{
+  "meta": {
+    "title": "Frag Florian - Cours particuliers pour l'université et le lycée en maths, physique, informatique, ingénierie, chimie, français, anglais et espagnol",
+    "description": "Cours particuliers de maths, physique, informatique, ingénierie, chimie et langues pour l'université et le lycée"
+  },
+  "languageBar": {
+    "label": "Choisir la langue"
+  },
+  "nav": {
+    "logo": "Frag Florian!",
+    "uni": "Université",
+    "school": "Lycée",
+    "life": "Vie, apprendre et enseigner",
+    "prices": "Prix et d'autres infos",
+    "about": "Sur moi",
+    "contact": "Écris-moi un message",
+    "items": {
+      "uniMath": "Mathématique",
+      "uniInformatics": "Informatique",
+      "uniPhysics": "Physique",
+      "uniEngineering": "Sciences d'ingénieur",
+      "uniChemistry": "Chimie",
+      "schoolMath": "Mathématique",
+      "schoolPhysics": "Physique",
+      "schoolInformatics": "Informatique",
+      "schoolChemistry": "Chimie",
+      "schoolFrench": "Français",
+      "schoolEnglish": "Anglais",
+      "schoolSpanish": "Espagnol",
+      "schoolItalian": "Italien",
+      "schoolGerman": "Allemand",
+      "lifeSprouts": "Nourriture",
+      "lifeReiki": "Reiki",
+      "lifeLearnTeach": "Apprendre et enseigner",
+      "lifeConsciousness": "Conscience",
+      "lifeChess": "Échec",
+      "lifeWebsites": "Websites",
+      "pricesPayment": "Prix, rendez-vous et paiement",
+      "pricesLesson": "Méthode d'enseignement",
+      "pricesTutorial": "Cours particuliers en groupe",
+      "pricesOnline": "Cours particuliers en ligne",
+      "pricesPresential": "Cours particuliers en présentiel",
+      "pricesFeedbacks": "Feedbacks",
+      "pricesLinks": "Liens",
+      "pricesImpressum": "Mentions légales",
+      "aboutMe": "Sur moi",
+      "aboutWhy": "Pourquoi des cours particuliers avec Florian ?",
+      "aboutFeedbacks": "Feedbacks",
+      "aboutLinks": "Liens"
+    }
+  },
+  "backToTop": "Haut de page",
+  "sections": {
+    "nachhilfeangebot": {
+      "title": "Mon offre de tutorat",
+      "body": "<p>Tu as besoin d'aide en maths, physique, informatique ou ingénierie pour tes études ? Ou en français ou en anglais pour l'école ? Alors je peux certainement t'aider en tant que Master de mathématiques et d'informatique avec mention très bien, avec mon diplôme d'enseignant en physique, avec mon expérience professionnelle d'un an en tant que développeur de logiciels et en tant que tuteur de longue date de nombreux cours de mathématiques au LMU à Munich.</p><p>Peu importe que tu fasses tes études en mathématiques, physique ou informatique en tant que matière principale ou secondaire et que tu aies besoin d'aide pour des problèmes de preuve ou de calcul. Dès que tu m'as envoyé suffisamment d'exercices pour une séance de tutorat à imelflorianingerl{'@'}gmail.com, nous pouvons prendre rendez-vous.</p><p>Bien que je sois avant tout un prof de sciences (maths, physique, informatique, ingénierie), je suis aussi passionné de langues, de contacts et de littérature et je donne souvent des cours de sciences à des Français, Canadiens, Américains et Anglais. C'est pourquoi je peux aussi très bien t'aider en langues étrangères, en français et en anglais.</p><p>Toutes les autres conditions pour le tutorat, telles que les sujets possibles, la prise de rendez-vous, la technologie pour le tutorat en ligne, les prix et les conditions d'annulation se trouvent plus bas sur le site.</p>"
+    },
+    "matheuni": {
+      "title": "Mathématique",
+      "imageAlt": "Image illustrant les mathématiques : un exemple convexe",
+      "body": "<p>Tu sais calculer, mais tu ne sais pas démontrer quoi que ce soit. Dans un cours particulier, nous pouvons faire les deux choses.</p><p>Voilà une liste de matières et de titres de cours avec des exemples de séances de tutorat en lesquelles je m'y connais: Algèbre linéaire 1+2 (<a href='Pdfs/LinAlg/LinAlg1.pdf'>1</a>,<a href='Pdfs/LinAlg/LinAlg2.pdf'>2</a>, <a href='Pdfs/LinAlg/LinAlg3.pdf'>3</a> , <a href='Pdfs/LinAlg/LinAlg4.pdf'>4</a>), Analyse 1 (<a href='Pdfs/Ana1/Ana1.pdf'>1</a>,<a href='Pdfs/Ana1/Ana2.pdf'>2</a>, <a href='Pdfs/Ana1/Ana3.pdf'>3</a>, <a href='Pdfs/Ana1/Ana4.pdf'>4</a>), Topologie et calcul différentiel de plusieurs variables (<a href='Pdfs/Ana2/ana21.pdf'>1</a>,<a href='Pdfs/Ana2/ana22.pdf'>2</a>, <a href='Pdfs/Ana2/ana23.pdf'>3</a>, <a href='Pdfs/Ana2/ana24.pdf'>4</a>, <a href='Pdfs/Ana2/ana25.pdf'>5</a>), Théorie de la mesure et calcul intégral de plusieurs variables (<a href='Pdfs/MaßInttheorie/Maß1.pdf'>1</a>, <a href='Pdfs/MaßInttheorie/Maß2.pdf'>2</a>, <a href='Pdfs/MaßInttheorie/Maß3.pdf'>3</a>, <a href='Pdfs/MaßInttheorie/Maß4.pdf'>4</a>), Numérique 1+2 (<a href='Pdfs/Numerik/Numerik1.pdf'>1</a>, <a href='Pdfs/Numerik/Numerik2.pdf'>2</a>, <a href='Pdfs/Numerik/Numerik3.pdf'>3</a>, <a href='Pdfs/Numerik/Numerik4.pdf'>4</a>), Stochastique (<a href='Pdfs/Stochastik/Sto1.pdf'>1</a>, <a href='Pdfs/Stochastik/Sto2.pdf'>2</a>, <a href='Pdfs/Stochastik/Sto3.pdf'>3</a>, <a href='Pdfs/Stochastik/Sto4.pdf'>4</a>, <a href='Pdfs/Stochastik/Sto5.pdf'>5</a>), Analyse Complexe 1+2 (<a href='Pdfs/Funktionentheorie/FT1.pdf'>1</a>, <a href='Pdfs/Funktionentheorie/FT2.pdf'>2</a> ), Équations différentielles ordinaires (<a href='Pdfs/Diffglen/ODE1.pdf'>1</a>, <a href='Pdfs/Diffglen/ODE2.pdf'>2</a>, <a href='Pdfs/Diffglen/ODE3.pdf'>3</a>, <a href='Pdfs/Diffglen/ODE4.pdf'>4</a>, <a href='Pdfs/Diffglen/ODE5.pdf'>5</a>), Équations différentielles partielles (<a href='Pdfs/PartielleDGLs/Nachhilfe Eren 22.2.2022.pdf'>1</a>, <a href='Pdfs/PartielleDGLs/Nachhilfe Guo 28.8.2022.pdf'>2</a> ), Théorie des probabilités (<a href='Pdfs/Wtheorie/Wtheorie1.pdf'>1</a>, <a href='Pdfs/Wtheorie/Wtheorie2.pdf'>2</a>, <a href='Pdfs/Wtheorie/Wtheorie3.pdf'>3</a>), Analyse fonctionnelle 1+2, Algèbre (<a href='Pdfs/Algebra/Algebra1.pdf'>1</a>, <a href='Pdfs/Algebra/Algebra2.pdf'>2</a>, <a href='Pdfs/Algebra/Algebra3.pdf'>3</a>, <a href='Pdfs/Algebra/Algebra4.pdf'>4</a>, <a href='Pdfs/Algebra/Algebra5.pdf'>5</a>, <a href='Pdfs/Algebra/Algebra6.pdf'>6</a>), Théorie algébrique des nombres (<a href='Pdfs/AlgebraischeZahlentheorie/Nachhilfe Moritz 7.8.2025.pdf'>1</a>), Algèbre supérieure, Logique (<a href='Pdfs/Logik/Logik1.pdf'>1</a>, <a href='Pdfs/Logik/Logik2.pdf'>2</a>, <a href='Pdfs/Logik/Logik3.pdf'>3</a>, <a href='Pdfs/Logik/Logik4.pdf'>4</a>), Optimisation (<a href='Pdfs/Optimierung/Optimierung1.pdf'>1</a>,<a href='Pdfs/Optimierung/Optimierung2.pdf'>2</a>), Processus stochastiques (<a href='Pdfs/StochastischeProzesse/Nachhilfe Patrick 4.9. Teil 1.JPG'>1</a>,<a href='Pdfs/StochastischeProzesse/Nachhilfe Patrick 4.9. Teil 2.JPG'>2</a>,<a href='Pdfs/StochastischeProzesse/Nachhilfe Patrick 4.9. Teil 3.JPG'>3</a>), Statistiques (<a href='Pdfs/Statistik/Statistik1.pdf'>1</a>, <a href='Pdfs/Statistik/Statistik2.pdf'>2</a>, <a href='Pdfs/Statistik/Statistik3.pdf'>3</a>, <a href='Pdfs/Statistik/Statistik4.pdf'>4</a>), Théorie des Graphs (<a href='Pdfs/Graphentheorie/GT1.pdf'>1</a>), Mathématiques assistées par ordinateur (avec R, Python, Matlab), Géométrie et topologie des surfaces (<a href='Pdfs/Geometrie/Geo1.pdf'>1</a>)</p>"
+    },
+    "infouni": {
+      "title": "Informatique",
+      "imageAlt": "Image illustrant l'informatique",
+      "imageAlt2": "Image illustrant la programmation",
+      "body": "<p>Tu as des problèmes avec la grammaire de l'informatique théorique? Je peux t'aider.</p><p>Voilà une liste des matières et des titres de cours avec des exemples de séances de tutorat en lesquelles je m'y connais bien: Langages formels et complexité (<a href='FormaleSprachen/FS1.pdf'>1</a>,<a href='Pdfs/FormaleSprachen/FS2.pdf'>2</a> , <a href='Pdfs/FormaleSprachen/FS3.pdf'>3</a>, <a href='Pdfs/FormaleSprachen/FS4.pdf'>4</a>, <a href='Pdfs/PumpingEigenschaft.pdf'>5</a>), Introduction à l'Informatique Théoretique (<a href='Pdfs/TheoretischeInformatik/TH1.pdf'>1</a>, <a href='Pdfs/TheoretischeInformatik/TH2.pdf'>2</a>, <a href='Pdfs/TheoretischeInformatik/TH3.pdf'>3</a>, <a href='Pdfs/TheoretischeInformatik/TH4.pdf'>4</a>, <a href='Pdfs/TheoretischeInformatik/TH5.pdf'>5</a>), Structures de Données et Algorithmes (<a href='Pdfs/AlgoDat/AlgoDat1.pdf'>1</a>, <a href='Pdfs/AlgoDat/AlgoDat2.pdf'>2</a>, <a href='Pdfs/AlgoDat/AlgoDat3.pdf'>3</a>, <a href='Pdfs/AlgoDat/AlgoDat4.pdf'>4</a>, <a href='Pdfs/AlgoDat/AlgoDat5.pdf'>5</a>, <a href='Pdfs/AlgoDat/AlgoDat6.pdf'>6</a>), Théorie de la Complexité ( <a href='Pdfs/Komplexitaetstheorie/Komplexitaet1.pdf'>1</a>), Introduction à la Programmation (<a href='Pdfs/Programmierung/ListUndStack.pdf'>1</a>,<a href='Pdfs/LineareListe.pdf'>2</a>, <a href='Pdfs/Programmierung/Programmierung2.pdf'>3</a>), Programmation fonctionnelle avec Haskell (<a href='Pdfs/Haskell/Nachhilfe Marvin 15.6.2022.pdf'>1</a>, <a href='Pdfs/Haskell/Nachhilfe Marvin 17.6.2022.pdf'>2</a>, <a href='Pdfs/Haskell/Nachhilfe Nissa 2.7.2022.pdf'>3</a>), Technologies web, systèmes de bases de données (<a href='Pdfs/Datenbanksysteme/Nachhilfe Marcel 25.4.2023.pdf'>1</a>, <a href='Pdfs/Datenbanksysteme/DBS1.pdf'>2</a>, <a href='Pdfs/Datenbanksysteme/Nachhilfe Henry 10.2.2023.pdf'>3</a>, <a href='Pdfs/Datenbanksysteme/Nachhilfe Henry 21.2.2023.pdf'>4</a>), Information Theory (<a href='Pdfs/InformationTheory/Nachhilfe Lea 5.12.2023.pdf'>1</a>, <a href='Pdfs/InformationTheory/Nachhilfe Lea 7.12.2023.pdf'>2</a>, <a href='Pdfs/InformationTheory/Nachhilfe Lea 10.12.2023.pdf'>3</a>, <a href='Pdfs/InformationTheory/Nachhilfe Lea 12.1.2024.pdf'>4</a>), Théorie de la programmation (<a href='Pdfs/TheorieDerProgrammierung/Nachhilfe Max 11.10.2022.pdf'>1</a>,<a href='Pdfs/TheorieDerProgrammierung/Nachhilfe Max 12.10.2022.pdf'>2</a>), Architecture des ordinateurs(<a href='Pdfs/Rechnerarchitektur/Nachhilfe Seli 3.9.2022.pdf'>1</a>, <a href='Pdfs/Rechnerarchitektur/Nachhilfe Seli 10.5.2022.pdf'>2</a>, <a href='Pdfs/Rechnerarchitektur/Nachhilfe Mirjam 30.12.2021.pdf'>3</a>, <a href='Pdfs/Rechnerarchitektur/Nachhilfe Mirjam 12.12.2021.pdf'>4</a>, <a href='Pdfs/Rechnerarchitektur/Nachhilfe Mirjam 21.10.2021.pdf'>5</a>), Systèmes distribués, structures discrètes (<a href='Pdfs/DiskreteStrukturen/Diskret1.pdf'>1</a>, <a href='Pdfs/DiskreteStrukturen/Diskret2.pdf'>2</a>, <a href='Pdfs/DiskreteStrukturen/Diskret3.pdf'>3</a>, <a href='Pdfs/DiskreteStrukturen/Diskret4.pdf'>4</a>), Logique pour les Informaticiens (<a href='Pdfs/Logik/Logik5.pdf'>1</a>), Systèmes intelligents (avec Prolog) (<a href='Pdfs/IntelligenteSysteme/Nachhilfe Felix 25.9.2022.pdf'>1</a>), Informatique Graphique (<a href='Pdfs/Computergraphik/graphik1.png'>1</a>, <a href='Pdfs/Computergraphik/graphik2.png'>2</a>), Systèmes réactifs (<a href='Pdfs/ReaktiveSysteme/Nachhilfe Alex 27.3.2024.pdf'>1</a>, <a href='Pdfs/ReaktiveSysteme/Nachhilfe Alex Steffen 23.4.2024.pdf'>2</a>, <a href='Pdfs/ReaktiveSysteme/Nachhilfe Alex Steffen 25.4.2024.pdf'>3</a>), Data Analysis and Visualisation in R (<a href='Pdfs/DataAnalysisR/Nachhilfe Henry 9.4.2024.pdf'>1</a>,<a href='Pdfs/DataAnalysisR/Nachhilfe Henry 6.4.2024.pdf'>2</a>,<a href='Pdfs/DataAnalysisR/Nachhilfe Henry 4.4.2024.pdf'>3</a>)</p>",
+      "body2": "<p>Aussi je peux très bien t'aider en programmation (Java, C#, C/C++, Haskell, Python, Rust, Prolog, OCaml, R) et en programmation web (Html, CSS, JavaScript,PHP,MySQL, NodeJS, VueJS, TypeScript, AngularJS, MongoDB ). Nous utiliserions Eclipse, IntelliJ ou Visual Studio (Code) comme environnement de développement avec le <a href='https://plugins.jetbrains.com/plugin/14225-codetogether'>CodeTogether-Plugin</a>, qui permet le Pair-Programming.</p>"
+    },
+    "physikuni": {
+      "title": "Physique",
+      "imageAlt": "Image illustrant la physique",
+      "body": "<p>Comme un bon physicien théoricien, tu ne dois faire qu'un nombre pair d'erreurs de signe. Je t'expliquerai tout le reste.</p><p>Dans un cours particulier, on peut faire: Mécanique (<a href='Pdfs/Mechanik/M1.pdf'>1</a>, <a href='Pdfs/Mechanik/M2.pdf'>2</a>, <a href='Pdfs/Mechanik/M3.pdf'>3</a>, <a href='Pdfs/Mechanik/Nachhilfe Ksenija 1.12.2021.pdf'>4</a>, <a href='Pdfs/Mechanik/Nachhilfe Steven 9.5.2021.pdf'>5</a>), Électromagnétisme (<a href='Pdfs/Elektromagnetismus/Nachhilfe Nick 5.5.2021.pdf'>1</a>, <a href='Pdfs/Elektromagnetismus/Nachhilfe Suganya 21.9.2021.pdf'>2</a>, <a href='Pdfs/Elektromagnetismus/Nachhilfe Suganya 22.9.2021.pdf'>3</a>, <a href='Pdfs/Elektromagnetismus/Nachhilfe Nick 5.7.2021.pdf'>4</a>, <a href='Pdfs/Elektromagnetismus/Nachhilfe Shir 4.7.2021.pdf'>5</a>, <a href='Pdfs/Elektromagnetismus/Nachhilfe Shir 11.7.2021.pdf'>6</a>, <a href='Pdfs/Elektromagnetismus/Nachhilfe Shir 16.6.2021.pdf'>7</a>), Vagues électromagnétiques et Optique (<a href='Pdfs/WellenUndOptik/Optik1.pdf'>1</a>,<a href='Pdfs/WellenUndOptik/Optik2.pdf'>2</a>, <a href='Pdfs/WellenUndOptik/Optik3.pdf'>3</a>, <a href='Pdfs/WellenUndOptik/Optik4.pdf'>4</a>,<a href='Pdfs/WellenUndOptik/Optik5.pdf'>5</a>,<a href='Pdfs/WellenUndOptik/Nachhilfe Tuba 2.12.2021.pdf'>6</a>), Thermodynamique (<a href='Pdfs/Thermodynamik/Nachhilfe Wei Liu 22.9.2022.pdf'>1</a>), Théorie de la Relativité, Physique Atomique, Physique Nucléaire et des Particules, Physique du Solide (<a href='Pdfs/Festkörperphysik/Nachhilfe Suganya 20.9.2021.pdf'>1</a>) , Mécanique théorique (<a href='Pdfs/TheoretischeMechanik/Nachhilfe Wei Liu 28.9.2022.pdf'>1</a>), Électrodynamique (<a href='Pdfs/Elektrodynamik/ED1.pdf'>1</a>, <a href='Pdfs/Elektrodynamik/Nachhilfe Nick 31.5.2021.pdf'>2</a>), Mécanique Quantique (<a href='Pdfs/QM/QM1.pdf'>1</a>, <a href='Pdfs/QM/QM2.pdf'>2</a>, <a href='Pdfs/QM/QM3.pdf'>3</a>, <a href='Pdfs/QM/QM4.pdf'>4</a>) et Thermodynamique/Physique Statistique (<a href='Pdfs/Thermodynamik/TD1.pdf'>1</a>, <a href='Pdfs/Thermodynamik/TD2.pdf'>2</a>,<a href='Pdfs/Thermodynamik/Nachhilfe Wei Liu 22.9.2022.pdf'>3</a>)</p>"
+    },
+    "ingenieurwesen": {
+      "title": "Science d'ingénieur",
+      "imageAlt": "Image illustrant les sciences de l'ingénieur",
+      "body": "<p>Quand j'étais aux États-Unis il y a quelques années, j'ai appris que \"German Engineering\" est admiré là-bas.</p><p>Dans un cours particulier, on peut faire: Mécanique technique (<a href='Pdfs/TechnischeMechanik/Nachhilfe Balbine 15.12.2021.pdf'>1</a>, <a href='Pdfs/TechnischeMechanik/Nachhilfe Hicham 31.12.2021.pdf'>2</a>), Électrotechnique (<a href='Pdfs/Elektrotechnik/Nachhilfe Raphael 26.10.2022.pdf'>1</a>, <a href='Pdfs/Elektrotechnik/Nachhilfe Shir 4.7.2021.pdf'>2</a>, <a href='Pdfs/Elektrotechnik/Nachhilfe Shir 11.7.2021.pdf'>3</a>), Technique des circuits (<a href='Pdfs/Schaltungstechnik/Nachhilfe Christopher 20.4.2024.pdf'>1</a>, <a href='Pdfs/Schaltungstechnik/Nachhilfe Christopher 28.4.2024.pdf'>2</a>), Automatique, mesure et mécanique des fluides (<a href='Pdfs/Strömungslehre/SL1.pdf'>1</a>, <a href='Pdfs/Strömungslehre/Nachhilfe Gwendolin 30.10.2021.pdf'>2</a>, <a href='Pdfs/Strömungslehre/Nachhilfe Wei Liu 27.3.2022.pdf'>3</a>), Traitement du signal (<a href='Pdfs/Signalverarbeitung/Nachhilfe Son 11.8.2024 Teil 2.pdf'>1</a>,<a href='Pdfs/Signalverarbeitung/Nachhilfe Nguyen 11.8.2024.pdf'>2</a>), Éléments de machines, calcul de structures, dessin technique</p>"
+    },
+    "chemie": {
+      "title": "Chimie",
+      "imageAlt": "Image illustrant la chimie : la thermochimie",
+      "body": "<p>Je me suis enseigné la chimie moi-même en espagnol et je peux résoudre les exercices de chimie jusqu'au bac et pour les premiers semestres.</p>"
+    },
+    "matheschule": {
+      "title": "Mathématique",
+      "imageAlt": "Image illustrant les mathématiques pour le lycée",
+      "body": "<p>En maths, tu n'as en fait besoin que de trouver la bonne équation puis de la résoudre, sans te tromper dans le calcul.</p>"
+    },
+    "physikschule": {
+      "title": "Physique",
+      "imageAlt": "Image illustrant la physique pour le lycée",
+      "body": "<p>N'aie pas peur de la physique. Avec F = ma, on va déjà assez loin ici.</p>"
+    },
+    "infoschule": {
+      "title": "Informatique",
+      "imageAlt": "Image illustrant l'informatique pour le lycée",
+      "body": "<p>Un ordinateur ne peut certes rien ressentir et ne peut pas penser lui-même, mais il peut par exemple trier quelque chose très vite. C'est pourquoi c'est très utile dans la vie de savoir comment on programme un algorithme et que la souris d'ordinateur ne mord pas.</p>"
+    },
+    "chemieschule": {
+      "title": "Chimie",
+      "imageAlt": "Image illustrant la chimie : la thermochimie",
+      "body": "<p>Je me suis enseigné la chimie moi-même en espagnol et je peux résoudre les exercices de chimie jusqu'au bac et pour les premiers semestres.</p>"
+    },
+    "franzoesisch": {
+      "title": "Français",
+      "body": "<p>Tu ne peux rien dire en fran&ccedil;ais à part que \"Bonjour\"? Je peux t'aider! Cela veut dire: je peux t'aider si tu ne sais rien dire en français à part \"Bonjour\".</p><p>Dans un cours particulier, on pourrait faire: Grammaire (<a href='Pdfs/Französisch/Grammaire/Cours de soutien Marie 27.8.2024 Dont Duquel.pdf'>1</a>, <a href='Pdfs/Französisch/Nachhilfe Französisch Viola 23.4.2023.pdf'>2</a>,<a href='Pdfs/Französisch/DirekteUndIndirektePronomenUndEn.pdf'>3</a>), production écrite (<a href='Pdfs/Französisch/Cours de soutien Marie 3.4.2024 Lion.pdf'>1</a>, <a href='Pdfs/Französisch/Cours de soutien Marie 17.04.2024 - Kopie.pdf'>2</a>, <a href='Pdfs/Französisch/Cours de soutien Marie 30.4.2024 Indianer.pdf'>3</a>. <a href='Pdfs/Französisch/Cours de soutien Marie chat 14.5.2024.pdf'>4</a>), compréhension orale, compréhension d'un texte ou conversation (<a href='Pdfs/Französisch/Konversation/JeuDeConversationBeziehungImFluss.txt'>1</a>, <a href='Pdfs/Französisch/Konversation/JeuDeConversationQuestions.txt'>2</a>, <a href='Pdfs/Französisch/Konversation/JeuDeConversationQuareOreilles.txt'>3</a>, <a href='Pdfs/Französisch/Konversation/JeuDeKonversationPereOuMere.txt'>4</a>, <a href='Pdfs/Französisch/Konversation/JeuDeConversationObservateurALInterieur.txt'>5</a>).</p><p>Voir aussi mes tests sur <a href='https://www.francaisfacile.com/cgi2/myexam/mestests.php?qui=flori10&amp;quoi=0002&amp;popu=1'>FrancaisFacile.com</a></p><p>Et voilà le lien pour mon profil sur <a href='https://www.superprof.de/nachhilfe-franzosisch-von-einem-mathenachhilfelehrer-der-auch-vielen-franzosischen-studenten-nachhilfe-gibt.html'>Superprof</a></p><p>Et le lien pour mes brèves histoires et mes exercices de grammaire: <a href='https://florianingerl.github.io/uebung.html#/fr/french/breveshistoires/deuxgamins'>Mes brèves histoires et exercices de grammaire</a></p><p><a href='https://www.youtube.com/watch?v=ba8V3UVpw9Q'>Lien vers mes vidéos YouTube pour apprendre le français</a></p><p>Lors d'un cours d'essai de français, nous pouvons par exemple faire des exercices de grammaire pour débutants. Pour l'étudiant en sciences, des sujets importants sont par exemple les propositions relatives, les prépositions, etc...</p>"
+    },
+    "englisch": {
+      "title": "Anglais",
+      "body": "<p>You've got the nose full of English? Ne dis pas ça! Dis plutôt \"I'm fed up with English\" et viens t'exercer pendant la séance de tutorat.</p><p>In a private lesson we could practice: Grammar (<a href='Pdfs/English/Grammar/CreateOwnTestOnFrancaisFacileExercise.txt'>1</a>,<a href='Pdfs/English/Grammar/Tuition Anna 30.5.2024 Grammar Had better or should.pdf'>2</a>), text production (<a href='Pdfs/English/Love story lions Tuition Anna 12.4.2024.pdf'>1</a>,<a href='Pdfs/English/Tuition English Anna 5.4.2024.pdf'>2</a>, <a href='Pdfs/English/Tuition Anna 26.4.2024 Turtoises.pdf'>3</a>, <a href='Pdfs/English/Nachhilfe Anna 17.5.2024 Detective story cat.pdf'>4</a>), conversation (<a href='Pdfs/English/Konversation/BeziehungImFluss.txt'>1</a>, <a href='Pdfs/English/Konversation/Questions.txt'>2</a>, <a href='Pdfs/English/Konversation/FourEarsExercise.txt'>3</a>) and more...</p><p>Here are my tests on <a href='https://www.anglaisfacile.com/cgi2/myexam/mestests.php?qui=flori10&amp;quoi=0001&amp;popu=1'>anglaisfacile.com</a></p><p>Here are my short stories and grammar exercises: <a href='https://florianingerl.github.io/uebung.html#/en/english/shortstories/laraandherbird'>My short stories and grammar exercises</a></p><p>Lors d'un cours d'essai d'anglais, nous pouvons par exemple faire des exercices de grammaire pour débutants. Pour l'étudiant en sciences, des sujets importants sont par exemple les propositions relatives, les prépositions, etc...</p>"
+    },
+    "spanisch": {
+      "title": "Espagnol",
+      "body": "<p>¿No sabes hablar ni escribir español? Puedo ayudarte.</p><p>Aquí están mis pruebas sobre <a href='https://www.espagnolfacile.com/cgi2/myexam/mestests.php?qui=flori10&amp;quoi=9998&amp;popu=1'>espagnolfacile.com</a></p><p>Lors d'un cours d'essai d'espagnol, nous pouvons par exemple faire des exercices de grammaire pour débutants. Pour l'étudiant en sciences, des sujets importants sont par exemple les propositions relatives, les prépositions, etc...</p>"
+    },
+    "italienisch": {
+      "title": "Italien",
+      "body": "<p>Non sai parlare italiano ? Posso aiutarti.</p><p>Ecco i miei esercizi di grammatica da <a href='https://www.italien-facile.com/cgi2/myexam/mestests.php?qui=flori10&amp;quoi=9995&amp;popu=1'>Italien-facile.com</a></p><p>Lors d'un cours d'essai d'italien, nous pouvons par exemple faire des exercices de grammaire pour débutants. Pour l'étudiant en sciences, des sujets importants sont par exemple les propositions relatives, les prépositions, etc...</p>"
+    },
+    "deutsch": {
+      "title": "Allemand (langue étrangère)",
+      "subtitle": "Price for a class in German 10euro/60min (cheaper than on Preply)",
+      "body": "<p>Tu veux développer plus de créativité en écrivant de petites histoires en allemand ? Ou tu veux pouvoir tenir des conversations plus fluides ? Alors je peux t'aider de manière optimale en tant que germanophone natif, auteur de nombreuses nouvelles (publiées sur ce site web) et prof de cours particuliers de longue date de nombreux élèves et étudiants parlant allemand, français, anglais et espagnol.</p><p>Lors d'une séance de cours, nous pouvons faire : grammaire, écriture d'histoires/production de texte (<a href='https://florianingerl.github.io/uebung.html#/de/deutsch/kurzgeschichten/vogelundeichhoernchen'>1</a>, <a href='https://florianingerl.github.io/uebung.html#/de/deutsch/kurzgeschichten/vogelmarcia'>2</a>, <a href='https://florianingerl.github.io/uebung.html#/de/deutsch/kurzgeschichten/katzemagfisch'>3</a>, <a href='Pdfs/Deutsch/Nachhilfe Vanessa 15.4.2024 Geschichte über Löwen.pdf'>4</a>, <a href='Pdfs/Deutsch/Nachhilfe Vanessa 13.5.2024 Katzengeschichte.pdf'>5</a>, <a href='Pdfs/Deutsch/Geschichtenschreiben mit Vanessa 22.4.2024.pdf'>6</a>, <a href='Pdfs/Deutsch/Nachhilfe Vanessa 29.4.2024 Indianergeschichte.pdf'>7</a>, <a href='Pdfs/Deutsch/Geschichte mit Philip 15.4.2025.pdf'>8</a>), conversation (<a href='Pdfs/Deutsch/Konversation/Beziehung im Fluss.txt'>8</a>, <a href='Pdfs/Deutsch/Konversation/Fragen.txt'>9</a>, <a href='Pdfs/Deutsch/Konversation/VierOhrenModell.txt'>10</a>)</p><p>Voici aussi mes tests sur <a href='https://www.allemandfacile.com/cgi2/myexam/mestests.php?qui=flori10&amp;quoi=9997&amp;popu=1'>allemandfacile.com</a></p><p>Voici le lien vers mes nouvelles et exercices de grammaire : <a href='https://florianingerl.github.io/uebung.html#/de/deutsch/kurzgeschichten/vogelundeichhoernchen'>Nouvelles et exercices pour l'allemand</a></p><p>Lors d'un cours d'essai d'allemand, nous pouvons par exemple faire des exercices de grammaire. Pour l'étudiant en sciences, des sujets importants sont par exemple les propositions relatives, les prépositions, etc...</p>"
+    },
+    "ernaehrung": {
+      "title": "Nourriture",
+      "videoTitle": "Vidéo YouTube sur les germes et l'alimentation saine",
+      "body": "<p>Avec une alimentation saine à base de germes frais, tout devient intéressant et motivant.</p><p>Lors d'un cours d'essai « Apprendre plus longtemps avec les germes », nous résolvons ensemble le quiz que j'ai créé avec le conseiller en santé <a href='https://www.normennauber.de/'>Normen Nauber</a>.</p>"
+    },
+    "reiki": {
+      "title": "Reiki",
+      "imageAlt": "Image illustrant le Reiki",
+      "body": "<p>Tu veux améliorer ta santé et tu crois à l'énergie guérissante de tes propres mains ?</p><p>Reiki est l'énergie universelle de la vie, qui peut couler de tes mains vers ton eau, tes légumes, tes germes, ta famille et tes amis.</p><p>En tant que maître Reiki diplômé, je propose des initiations au Reiki 1.er degré. Si ça t'intéresse, écris-moi un email.</p>"
+    },
+    "lernenundlehren": {
+      "title": "Apprendre et enseigner",
+      "body": "<p>Comment apprendre au mieux une langue étrangère, une matière scientifique ou à s'en sortir dans la vie ? Réponse : le mieux est toujours avec la motivation d'enseigner à d'autres aussi ce que tu as appris. Le quiz à droite donne des conseils à ce sujet.</p>"
+    },
+    "bewusstsein": {
+      "title": "Conscience",
+      "body": "<p>À partir de mes quelques pensées relativement conscientes en 30 ans de survie, j'ai créé à droite un quiz sur le sujet.</p>"
+    },
+    "schach": {
+      "title": "Échec",
+      "body": "<p>L'échec est bon pour la capacité d'imagination. Les exercices à droite viennent d'une époque où je donnais encore des cours d'échecs à l'école primaire.</p>"
+    },
+    "threeinarow": {
+      "title": "Three-in-a-row",
+      "body": "<p>Three-in-a-row est un jeu d'échecs pour deux joueurs sur un plateau 8x8. Chacun n'a qu'un cavalier, un fou et une tour - les pièces ne sont pas mangées, on les déplace seulement. Celui qui place ses trois pièces directement l'une à côté de l'autre dans une rangée ou une colonne gagne. Crée une partie et envoie le lien à ton adversaire !</p>"
+    },
+    "websitenundflyer": {
+      "title": "Programmation web",
+      "imageAlt": "Flyer sur la programmation web",
+      "body": "<p>Je peux te proposer des conseils et un coup de démarrage pour ton propre site web ou pour un projet universitaire de programmation web. Je programme des sites web basés sur HTML,CSS et JavaScript. Plus concrètement, je peux t'aider avec :</p><ul><li>Programmation de sites statiques/du frontend (Html, CSS, JavaScript, Bootstrap, Tailwind, VueJS, ReactJS, AngularJS)</li><li>Programmation de sites dynamiques (NodeJS, PHP, Java Servlets /JSP)</li><li>Bases de données (MySQL, MongoDB)</li><li>Responsive Web-Design</li><li>Wordpress</li><li>Édition d'images (avec GIMP ou Paint)</li><li>Hébergement (par exemple gratuit sur GitHub ou Netlify)</li><li>Légal</li><li>Traduction (en anglais et en français)</li></ul><p>Voici le lien vers mes vidéos YouTube de programmation web : <a href='https://www.youtube.com/playlist?list=PLXtAUIpzAbA4pfKdKdlwwJpugJY-tdn5E'>Ma chaîne YouTube</a></p>"
+    },
+    "preise": {
+      "title": "Prix, rendez-vous et paiement",
+      "body": "<h3>Prix</h3><p>4*30 pour un forfait d'apprentissage de 4*60min</p><p>35 euros pour un cours individuel de 60min</p><p>Forfait tout ou rien : 500 euros pour un examen réussi / 0 euros sinon</p><p>4*20 euros pour un forfait d'apprentissage de 4*60min en français, anglais, allemand, espagnol ou italien</p><p>30 euros pour un cours individuel de 60min en langues</p><p>Si la séance de cours a duré plus de 60 min, la formule suivante s'applique :<br> Prix = Durée / (60 min) * (Prix pour 60 min)</p><p>Si le cours était plus court que 60 min (par exemple parce que tu n'avais plus le temps ou plus d'exercices), il coûte quand même autant que pour 60 min</p><h3>Forfait d'apprentissage de 4 heures</h3><p>Tu peux obtenir le prix le moins cher pour un forfait de 4*60 min si tu as suffisamment d'exercices intéressants pour au moins une heure par semaine. Je suis disponible tous les jours de la semaine de 8h à 21h et je peux t'aider dans de nombreuses matières. !!! Attention !!! Si pour une raison quelconque tu ne peux pas ou que tu n'en as pas besoin pendant une semaine, l'argent serait quand même dû. Sinon, les mêmes conditions d'annulation que ci-dessous s'appliquent à chacun des 4 rendez-vous d'un paquet.</p><h3>Forfait tout ou rien</h3><p>Avec le forfait tout ou rien, nous nous préparons ensemble à un examen à une date précise. Si tu réussis cet examen, nous sommes tous heureux. Si tu ne le réussis pas, tu ne récupères ton argent que si tu peux m'envoyer les photos de ta copie ratée lors de la consultation des copies.</p><h3>Prise de rendez-vous, paiement et conditions d'annulation</h3><p>Je fixe le premier rendez-vous uniquement par e-mail, les suivants aussi par Skype. Je travaille du lundi au dimanche de 8h à 21h. Le processus de prise de rendez-vous est le suivant :</p><ol><li>Tu m'envoies tes exercices et tes notes de cours</li><li>Si je connais ces exercices, je te fais savoir que tu peux maintenant envoyer l'argent à l'avance (via Paypal avec l'option \"Envoyer de l'argent à vos proches\"* ou par virement bancaire avec capture d'écran). Indique dans l'intitulé ton nom et tes préférences de rendez-vous, par exemple quelque chose comme \"Cours de maths Elif souhaité le mercredi 11.1 à partir de 15h jusqu'à 21h ou le samedi 12.1 entre 8h et 12h ou samedi et dimanche toute la journée\"</li><li>Après réception du versement à l'avance, je te donne une confirmation de rendez-vous selon tes préférences (si c'est possible) ou je te propose moi-même 2-3 rendez-vous pour les prochains jours</li><li>Nous nous réjouissons de notre rencontre et tu peux m'envoyer des exercices/notes de cours manquants ou supplémentaires, ou me demander du bon matériel d'apprentissage.</li></ol><p><span style='font-weight: bold; text-transform: uppercase'>!!! Attention aux conditions d'annulation, pas de report de rendez-vous !!!</span> En cas d'annulation de rendez-vous (à tout moment avant le cours), de problèmes techniques (par exemple une connexion Internet instable pendant plus de 10 min, l'impossibilité d'utiliser Skype ou Zoom) ou de plus de 10 minutes de retard de ton côté, les honoraires restent dus et je ne suis plus tenu d'attendre - quelle que soit la durée du rendez-vous réservé.</p><p>En cas d'annulation de dernière minute ou de panne technique de mon côté, tu reçois un autre rendez-vous dans les plus brefs délais ou ton argent.</p><p>*Sans l'option \"Envoyer de l'argent à vos proches\", il y a 2 euros de frais pour Paypal.</p>"
+    },
+    "unterrichtsmethode": {
+      "title": "Méthode d'enseignement",
+      "imageAlt": "Image illustrant la chouette comme professeure de cours particuliers",
+      "body": "<p>Parmi les exercices que tu m'as envoyés, nous en choisissons les plus beaux. Pour les explications, j'utilise des schémas, des mots, des règles générales et des théorèmes (de tes notes de cours), des couleurs, des formules, des exemples et à la fin l'exercice s'explique lui-même par sa solution et son interprétation dans le contexte et par la vérification.</p><p>Lors du cours, ce qui m'importe est une relation ouverte, à égalité et dans le flux, où nous apprenons le plus possible pour réussir facilement tes examens. Pour cela, je connais (ou tu connais) les notions et définitions qui apparaissent dans les énoncés, ou je peux les retrouver rapidement. Le cours devient passionnant avec beaucoup de pensées personnelles, créatives et présentes, et quand aucun de nous deux n'a préparé les exercices au-delà des grandes lignes de solution.</p><p>Après une séance de cours, chacun réfléchit et retient par lui-même ce qu'il a appris et ce qu'il aurait pu faire mieux. Avec assez de motivation, de besoin et d'exercices associés, nous pouvons fixer très rapidement un nouveau rendez-vous.</p>"
+    },
+    "tutorium": {
+      "title": "Cours particuliers en groupe",
+      "imageAlt": "Image illustrant la chouette comme professeure de cours particuliers",
+      "body": "<p>Dans le cadre du tutoriel, tu bénéficies aussi d'un soutien individuel pour tes exercices, car il y a au maximum 5 élèves présents. Si tu as seulement besoin d'approches/idées/indices pour tes exercices à certains endroits, que tu peux travailler avec cela et que tu souhaites profiter de l'énergie d'apprentissage d'un groupe, c'est idéal pour toi.</p><p>Le tutoriel a pour l'instant toujours lieu le samedi de 18h45 à 19h45.</p><p>Tu reçois de ma part par e-mail un lien vers le whiteboard Miro et un lien d'invitation vers une réunion Teams si tu t'es inscrit à l'avance.</p><p>Les autres participants au tutoriel étudient aussi les maths, l'informatique, la physique ou les sciences de l'ingénieur. Dès que tu ne trouves plus le chemin sur l'un de tes exercices, tu appuies sur le bouton Hey du whiteboard Miro et tu obtiens de l'aide.</p>"
+    },
+    "online": {
+      "title": "Cours particulier en ligne",
+      "imageAlt": "Whiteboard Miro pendant le cours particulier en ligne",
+      "body": "<p>Pour les cours particuliers en ligne, j'utilise Skype ou Zoom. Si tu as des préférences à ce sujet, tu peux le mentionner. En plus, j'utilise le <a href='https://miro.com/online-whiteboard/'>Miro-Online-Whiteboard</a>, avec lequel on peut écrire quelque chose ensemble. Un whiteboard bien rempli ressemblerait à ceci : <a href='Pdfs/Beispielwhiteboard.pdf'>Exemple de whiteboard</a></p>"
+    },
+    "praesenz": {
+      "title": "Cours particuliers en présentiel",
+      "imageAlt": "Cours particuliers en présentiel au bureau",
+      "body": "<p>Les cours particuliers en présentiel ont lieu dans mon bureau au Walchenseestraße 6 à Gröbenzell sans aucune restriction. Par beau temps, nous pouvons aussi sortir. Tu es le bienvenu tant que tu apportes suffisamment d'exercices intéressants.</p><p>Si tu es élève de l'école primaire ou du secondaire, que tu n'es pas encore mobile et que tu as besoin de cours en présentiel, je viens volontiers chez toi contre un supplément.</p>"
+    },
+    "feedbacks": {
+      "title": "Feedbacks",
+      "imageAlt": "Photo de Markus",
+      "markus": "<h3>Markus (<a href='https://www.tandemgraubuenden.ch/'>www.tandemgraubuenden.ch</a>)</h3><p>Pour me préparer à l'examen de maths et d'informatique de la filière Mobile Robotic, j'ai réservé des cours particuliers chez Florian. Nous avons passé ensemble en revue les exercices. Dans mon cas, les cours ont lieu en ligne via Skype, ce qui fonctionne à merveille. Florian explique les exercices de manière très efficace et claire, car il connaît parfaitement la matière. Même les exercices les plus difficiles, il a su me les expliquer - sans perdre de temps. Je recommande vivement ses cours particuliers.</p>",
+      "images": [
+        "Capture d'écran d'un témoignage de Dominika",
+        "Capture d'écran d'un témoignage de Jeanette et Viola",
+        "Photo d'étudiants",
+        "Capture d'écran d'un témoignage en français",
+        "Capture d'écran d'un témoignage de Eyana"
+      ]
+    },
+    "links": {
+      "title": "Liens",
+      "body": "<ol><li><a href='uebung.html#/french'>Ma page d'exercices</a> pour le français, l'anglais, l'allemand et l'informatique</li><li><a href='https://florianloveslanguages.netlify.app/'>Lien vers ma nouvelle page d'exercices</a></li><li><a href='https://www.francaisfacile.com/cgi2/myexam/mestests.php?qui=flori10'>Mes tests de français, d'anglais, d'allemand et d'espagnol sur FrancaisFacile.com</a></li><li><a href='https://preply.com/de/nachhilfelehrer/6189560'>Lien vers le profil de ma professeure d'espagnol d'Équateur sur Preply</a></li><li><a href='https://mariefaure.fr/'>Site web de mon ancienne professeure de français</a></li><li>Lien vers mon conseiller en santé : <a href='https://www.normennauber.de/'>Normen Nauber</a></li></ol>"
+    },
+    "impressum": {
+      "title": "Mentions légales",
+      "body": "<h4>Informations selon § 5 TMG</h4><p>Frag Florian <br> Florian Ingerl <br> Walchenseestraße 6, 82194 Gröbenzell <br></p><h4>Contact</h4><p>E-Mail: imelflorianingerl{'@'}gmail.com <br></p>"
+    },
+    "uebermich": {
+      "title": "Sur moi",
+      "imageAlt": "Photo de Florian",
+      "list": "<ul style='list-style-type: disc;'><li>Master de mathématiques et d'informatique avec mention très bien à l'université LMU de Munich</li><li>1.er examen d'État pour l'enseignement dans un Gymnasium en physique et en mathématiques</li><li>Tuteur pendant >5 ans de nombreux cours de maths et de physique à l'université LMU de Munich</li><li>Bac en anglais, français et allemand au Gymnasium Puchheim (deux classes sautées)</li><li>Demi-année comme professeur de maths et de physique au Gymnasium Gröbenzell et Olching</li><li>Depuis octobre 2020 tuteur privé, indépendant et à temps plein pour des étudiants parlant allemand, français et anglais</li><li>1 an d'expérience professionnelle en tant que développeur de logiciels</li><li>Formation de professeur de yoga chez Sivananda Yoga en 2018</li><li>Formation de maître Reiki en 2024</li><li>engagé, ambitieux et ouvert aux relations</li></ul>",
+      "imageAlt2": "Florian faisant le poirier",
+      "body2": "<p>Je suis né en 1993, fils d'un technicien en électricité et d'une conseillère en alimentation. J'ai également été profondément marqué par mon grand-père, qui se nourrissait en partie de légumes du potager et en partie de pissenlits afin de pouvoir léguer plus d'argent à ses petits-enfants pour leurs études.<br>J'ai aussi beaucoup appris de ma tante et de mon oncle, qui - parce qu'ils étaient professeurs d'histoire et de langues - savaient toujours raconter plein d'histoires amusantes. <br>Je m'intéresse moi-même à tout ce qui touche aux maths, aux sciences, à la technologie, à la langue, à l'alimentation et aux relations, cette dernière chose au grand plaisir de ma coach en relations et de mes professeures d'anglais, de français et d'espagnol, qui gagnent une fortune avec moi.<br>À tout ce qu'il est possible d'apprendre intellectuellement, je fais moi-même pour contrebalancer beaucoup de yoga, de sport et de promenades en forêt, et je te le recommande aussi comme préparation à un examen.</p>"
+    },
+    "warumnachhilfe": {
+      "title": "Pourquoi des cours particuliers avec Florian ?",
+      "body": "<ul style='list-style-type: circle;'><li>Je te transmets les connaissances, astuces et conseils que m'ont apportés mes nombreux élèves de cours particuliers ainsi que leurs exercices et leurs notes de cours d'universités germanophones et francophones</li><li>Je suis toujours en bonne santé (voir mon <a href='#ernaehrung'>quiz sur l'alimentation</a>), fiable, ponctuel, préparé, engagé et disponible.</li><li>Indépendant, spontané (rendez-vous pour demain et après-demain), structuré et ouvert aux relations</li></ul>"
+    }
+  },
+  "contact": {
+    "mapTitle": "Carte avec l'adresse Walchenseestraße 6 à Gröbenzell",
+    "addressTitle": "Adresse:",
+    "addressLine1": "Walchenseestraße 6",
+    "addressLine2": "82194 Gröbenzell",
+    "emailTitle": "Email:",
+    "intro": "<p>Le mieux est que tu me contactes par e-mail et que tu m'envoies tout de suite quelques feuilles d'exercices dont on pourrait discuter lors d'une séance de cours. Mais tu peux aussi utiliser ce formulaire de contact.</p>",
+    "form": {
+      "name": "Ton nom",
+      "email": "Ton Email",
+      "subject": "Objet",
+      "message": "Message",
+      "submit": "Envoie-moi le message!"
+    }
+  },
+  "footer": {
+    "email": "Email"
+  }
+}

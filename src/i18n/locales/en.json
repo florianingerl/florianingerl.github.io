@@ -1,0 +1,231 @@
+{
+  "meta": {
+    "title": "Frag Florian - Tutoring for university and school in Maths, Physics, Computer Science, Engineering, Chemistry, French, English and Spanish",
+    "description": "Tutoring in Maths, Physics, Computer Science, Engineering, Chemistry and languages for university and school"
+  },
+  "languageBar": {
+    "label": "Choose language"
+  },
+  "nav": {
+    "logo": "Frag Florian!",
+    "uni": "University",
+    "school": "High School",
+    "life": "Life, Learning and Teaching",
+    "prices": "Prices and other info",
+    "about": "About me",
+    "contact": "Send me a message!",
+    "items": {
+      "uniMath": "Mathematics",
+      "uniInformatics": "Computer science",
+      "uniPhysics": "Physics",
+      "uniEngineering": "Engineering",
+      "uniChemistry": "Chemistry",
+      "schoolMath": "Mathematics",
+      "schoolPhysics": "Physics",
+      "schoolInformatics": "Computer science",
+      "schoolChemistry": "Chemistry",
+      "schoolFrench": "French",
+      "schoolEnglish": "English",
+      "schoolSpanish": "Spanish",
+      "schoolItalian": "Italian",
+      "schoolGerman": "German",
+      "lifeSprouts": "Nutrition",
+      "lifeReiki": "Reiki",
+      "lifeLearnTeach": "Learning and Teaching",
+      "lifeConsciousness": "Consciousness",
+      "lifeChess": "Chess",
+      "lifeWebsites": "Websites",
+      "pricesPayment": "Prices, appointments and payment",
+      "pricesLesson": "Teaching method",
+      "pricesTutorial": "Tutorial/Group lessons",
+      "pricesOnline": "Online-Tutoring",
+      "pricesPresential": "In-person tutoring",
+      "pricesFeedbacks": "Feedback",
+      "pricesLinks": "Links",
+      "pricesImpressum": "Legal Notice",
+      "aboutMe": "About me",
+      "aboutWhy": "Why get tutoring from Florian?",
+      "aboutFeedbacks": "Feedback",
+      "aboutLinks": "Links"
+    }
+  },
+  "backToTop": "Back to top",
+  "sections": {
+    "nachhilfeangebot": {
+      "title": "My tutoring offer",
+      "body": "<p>Do you need help in Maths, Physics, Computer Science or Engineering for your studies? Or in French or English for school? Then I can surely help you as a Maths and Computer Science master, with my teaching degree in physics, with my 1-year professional experience as a software developer and as a long-standing tutor of many math lectures at the LMU in Munich.</p><p>It doesn't matter whether you study Maths, Physics or Computer Science as a major or minor subject and whether you need help with proves or arithmetic problems. As soon as you have emailed me enough tasks for a tutoring session to imelflorianingerl{'@'}gmail.com, we can make an appointment.</p><p>Although I am actually a STEM tutor, I am also enthusiastic about languages, contact and literature and often give STEM tutoring to French people, Canadians, Americans and English people. That is why I can also support you well in the foreign languages French and English.</p><p>For further information about possible topics, making appointments, technology used for the tutoring sessions, prices and cancellation policy, please scroll down!</p>"
+    },
+    "matheuni": {
+      "title": "Mathematics",
+      "imageAlt": "Illustration of mathematics: a convex example",
+      "body": "<p>You are good at calculating, but you can't prove anything? In a private lesson, we can do both.</p><p>Here is a list of topics I am familiar with: Linear Algebra 1+2 (<a href='Pdfs/LinAlg/LinAlg1.pdf'>1</a>,<a href='Pdfs/LinAlg/LinAlg2.pdf'>2</a>, <a href='Pdfs/LinAlg/LinAlg3.pdf'>3</a> , <a href='Pdfs/LinAlg/LinAlg4.pdf'>4</a>), Analysis 1 (<a href='Pdfs/Ana1/Ana1.pdf'>1</a>,<a href='Pdfs/Ana1/Ana2.pdf'>2</a>, <a href='Pdfs/Ana1/Ana3.pdf'>3</a>, <a href='Pdfs/Ana1/Ana4.pdf'>4</a>), Analysis 2 (<a href='Pdfs/Ana2/ana21.pdf'>1</a>,<a href='Pdfs/Ana2/ana22.pdf'>2</a>, <a href='Pdfs/Ana2/ana23.pdf'>3</a>, <a href='Pdfs/Ana2/ana24.pdf'>4</a>, <a href='Pdfs/Ana2/ana25.pdf'>5</a>), Analysis 3 (<a href='Pdfs/MaßInttheorie/Maß1.pdf'>1</a>, <a href='Pdfs/MaßInttheorie/Maß2.pdf'>2</a>, <a href='Pdfs/MaßInttheorie/Maß3.pdf'>3</a>, <a href='Pdfs/MaßInttheorie/Maß4.pdf'>4</a>), Numeric 1+2 (<a href='Pdfs/Numerik/Numerik1.pdf'>1</a>, <a href='Pdfs/Numerik/Numerik2.pdf'>2</a>, <a href='Pdfs/Numerik/Numerik3.pdf'>3</a>, <a href='Pdfs/Numerik/Numerik4.pdf'>4</a>), Stochastics (<a href='Pdfs/Stochastik/Sto1.pdf'>1</a>, <a href='Pdfs/Stochastik/Sto2.pdf'>2</a>, <a href='Pdfs/Stochastik/Sto3.pdf'>3</a>, <a href='Pdfs/Stochastik/Sto4.pdf'>4</a>, <a href='Pdfs/Stochastik/Sto5.pdf'>5</a>), Complex Analysis 1+2 (<a href='Pdfs/Funktionentheorie/FT1.pdf'>1</a>, <a href='Pdfs/Funktionentheorie/FT2.pdf'>2</a> ), Ordinary Differential Equations (<a href='Pdfs/Diffglen/ODE1.pdf'>1</a>, <a href='Pdfs/Diffglen/ODE2.pdf'>2</a>, <a href='Pdfs/Diffglen/ODE3.pdf'>3</a>, <a href='Pdfs/Diffglen/ODE4.pdf'>4</a>, <a href='Pdfs/Diffglen/ODE5.pdf'>5</a>), Partial Differential Equations (<a href='Pdfs/PartielleDGLs/Nachhilfe Eren 22.2.2022.pdf'>1</a>, <a href='Pdfs/PartielleDGLs/Nachhilfe Guo 28.8.2022.pdf'>2</a> ), Probability Theory (<a href='Pdfs/Wtheorie/Wtheorie1.pdf'>1</a>, <a href='Pdfs/Wtheorie/Wtheorie2.pdf'>2</a>, <a href='Pdfs/Wtheorie/Wtheorie3.pdf'>3</a>), Functional Analysis 1+2, Algebra (<a href='Pdfs/Algebra/Algebra1.pdf'>1</a>, <a href='Pdfs/Algebra/Algebra2.pdf'>2</a>, <a href='Pdfs/Algebra/Algebra3.pdf'>3</a>, <a href='Pdfs/Algebra/Algebra4.pdf'>4</a>, <a href='Pdfs/Algebra/Algebra5.pdf'>5</a>, <a href='Pdfs/Algebra/Algebra6.pdf'>6</a>), Algebraic Number Theory (<a href='Pdfs/AlgebraischeZahlentheorie/Nachhilfe Moritz 7.8.2025.pdf'>1</a>), Higher Algebra, Logic (<a href='Pdfs/Logik/Logik1.pdf'>1</a>, <a href='Pdfs/Logik/Logik2.pdf'>2</a>, <a href='Pdfs/Logik/Logik3.pdf'>3</a>, <a href='Pdfs/Logik/Logik4.pdf'>4</a>), Optimisation (<a href='Pdfs/Optimierung/Optimierung1.pdf'>1</a>,<a href='Pdfs/Optimierung/Optimierung2.pdf'>2</a>), Stochastic Processes (<a href='Pdfs/StochastischeProzesse/Nachhilfe Patrick 4.9. Teil 1.JPG'>1</a>,<a href='Pdfs/StochastischeProzesse/Nachhilfe Patrick 4.9. Teil 2.JPG'>2</a>,<a href='Pdfs/StochastischeProzesse/Nachhilfe Patrick 4.9. Teil 3.JPG'>3</a>), Statistics (<a href='Pdfs/Statistik/Statistik1.pdf'>1</a>, <a href='Pdfs/Statistik/Statistik2.pdf'>2</a>, <a href='Pdfs/Statistik/Statistik3.pdf'>3</a>, <a href='Pdfs/Statistik/Statistik4.pdf'>4</a>), Graph Theory (<a href='Pdfs/Graphentheorie/GT1.pdf'>1</a>), Computer-assisted Mathematics (with R, Python, Matlab), Geometry and Topology of Surfaces (<a href='Pdfs/Geometrie/Geo1.pdf'>1</a>)</p>"
+    },
+    "infouni": {
+      "title": "Computer science",
+      "imageAlt": "Illustration of computer science",
+      "imageAlt2": "Illustration of programming",
+      "body": "<p>Have you got problems with the grammar of theoretical computer science? Then I can help you!</p><p>Here is a list of the topics with examples of private lessons that I am familiar with: Formal Languages and Complexity (<a href='FormaleSprachen/FS1.pdf'>1</a>,<a href='Pdfs/FormaleSprachen/FS2.pdf'>2</a> , <a href='Pdfs/FormaleSprachen/FS3.pdf'>3</a>, <a href='Pdfs/FormaleSprachen/FS4.pdf'>4</a>, <a href='Pdfs/PumpingEigenschaft.pdf'>5</a>), Introduction to Theoretical Computer Science (<a href='Pdfs/TheoretischeInformatik/TH1.pdf'>1</a>, <a href='Pdfs/TheoretischeInformatik/TH2.pdf'>2</a>, <a href='Pdfs/TheoretischeInformatik/TH3.pdf'>3</a>, <a href='Pdfs/TheoretischeInformatik/TH4.pdf'>4</a>, <a href='Pdfs/TheoretischeInformatik/TH5.pdf'>5</a>), Algorithms and Data Structures (<a href='Pdfs/AlgoDat/AlgoDat1.pdf'>1</a>, <a href='Pdfs/AlgoDat/AlgoDat2.pdf'>2</a>, <a href='Pdfs/AlgoDat/AlgoDat3.pdf'>3</a>, <a href='Pdfs/AlgoDat/AlgoDat4.pdf'>4</a>, <a href='Pdfs/AlgoDat/AlgoDat5.pdf'>5</a>, <a href='Pdfs/AlgoDat/AlgoDat6.pdf'>6</a>), Computational Complexity Theory ( <a href='Pdfs/Komplexitaetstheorie/Komplexitaet1.pdf'>1</a>), Introduction to programming (<a href='Pdfs/Programmierung/ListUndStack.pdf'>1</a>,<a href='Pdfs/LineareListe.pdf'>2</a>, <a href='Pdfs/Programmierung/Programmierung2.pdf'>3</a>), Functional programming with Haskell (<a href='Pdfs/Haskell/Nachhilfe Marvin 15.6.2022.pdf'>1</a>, <a href='Pdfs/Haskell/Nachhilfe Marvin 17.6.2022.pdf'>2</a>, <a href='Pdfs/Haskell/Nachhilfe Nissa 2.7.2022.pdf'>3</a>), Web technologies, Database systems (<a href='Pdfs/Datenbanksysteme/Nachhilfe Marcel 25.4.2023.pdf'>1</a>, <a href='Pdfs/Datenbanksysteme/DBS1.pdf'>2</a>, <a href='Pdfs/Datenbanksysteme/Nachhilfe Henry 10.2.2023.pdf'>3</a>, <a href='Pdfs/Datenbanksysteme/Nachhilfe Henry 21.2.2023.pdf'>4</a>), Information Theory (<a href='Pdfs/InformationTheory/Nachhilfe Lea 5.12.2023.pdf'>1</a>, <a href='Pdfs/InformationTheory/Nachhilfe Lea 7.12.2023.pdf'>2</a>, <a href='Pdfs/InformationTheory/Nachhilfe Lea 10.12.2023.pdf'>3</a>, <a href='Pdfs/InformationTheory/Nachhilfe Lea 12.1.2024.pdf'>4</a>), Theory of Programming (<a href='Pdfs/TheorieDerProgrammierung/Nachhilfe Max 11.10.2022.pdf'>1</a>,<a href='Pdfs/TheorieDerProgrammierung/Nachhilfe Max 12.10.2022.pdf'>2</a>), Computer Architecture(<a href='Pdfs/Rechnerarchitektur/Nachhilfe Seli 3.9.2022.pdf'>1</a>, <a href='Pdfs/Rechnerarchitektur/Nachhilfe Seli 10.5.2022.pdf'>2</a>, <a href='Pdfs/Rechnerarchitektur/Nachhilfe Mirjam 30.12.2021.pdf'>3</a>, <a href='Pdfs/Rechnerarchitektur/Nachhilfe Mirjam 12.12.2021.pdf'>4</a>, <a href='Pdfs/Rechnerarchitektur/Nachhilfe Mirjam 21.10.2021.pdf'>5</a>), Distributed Systems, Discrete Structures (<a href='Pdfs/DiskreteStrukturen/Diskret1.pdf'>1</a>, <a href='Pdfs/DiskreteStrukturen/Diskret2.pdf'>2</a>, <a href='Pdfs/DiskreteStrukturen/Diskret3.pdf'>3</a>, <a href='Pdfs/DiskreteStrukturen/Diskret4.pdf'>4</a>), Logic for Computer Scientists (<a href='Pdfs/Logik/Logik5.pdf'>1</a>), Intelligent Systems (with Prolog) (<a href='Pdfs/IntelligenteSysteme/Nachhilfe Felix 25.9.2022.pdf'>1</a>), Computer graphics (<a href='Pdfs/Computergraphik/graphik1.png'>1</a>, <a href='Pdfs/Computergraphik/graphik2.png'>2</a>), Reactive Systems (<a href='Pdfs/ReaktiveSysteme/Nachhilfe Alex 27.3.2024.pdf'>1</a>, <a href='Pdfs/ReaktiveSysteme/Nachhilfe Alex Steffen 23.4.2024.pdf'>2</a>, <a href='Pdfs/ReaktiveSysteme/Nachhilfe Alex Steffen 25.4.2024.pdf'>3</a>), Data Analysis and Visualisation in R (<a href='Pdfs/DataAnalysisR/Nachhilfe Henry 9.4.2024.pdf'>1</a>,<a href='Pdfs/DataAnalysisR/Nachhilfe Henry 6.4.2024.pdf'>2</a>,<a href='Pdfs/DataAnalysisR/Nachhilfe Henry 4.4.2024.pdf'>3</a>)</p>",
+      "body2": "<p>I can also help you well with programming (Java, C#, C/C++, Haskell, Python, Rust, Prolog, OCaml, R) and web programming (Html, CSS, JavaScript,PHP,MySQL, NodeJS, VueJS, TypeScript, AngularJS, MongoDB ). For that, we would use Eclipse, IntelliJ or Visual Studio (Code) as the IDE together with the <a href='https://plugins.jetbrains.com/plugin/14225-codetogether'>CodeTogether-plugin</a>, which enables pair programming.</p>"
+    },
+    "physikuni": {
+      "title": "Physics",
+      "imageAlt": "Illustration of physics",
+      "body": "<p>As a good theoretical physicist, you are only allowed to make an even number of sign errors. I will explain you the rest.</p><p>In a private lesson, we can do the following: Mechanics (<a href='Pdfs/Mechanik/M1.pdf'>1</a>, <a href='Pdfs/Mechanik/M2.pdf'>2</a>, <a href='Pdfs/Mechanik/M3.pdf'>3</a>, <a href='Pdfs/Mechanik/Nachhilfe Ksenija 1.12.2021.pdf'>4</a>, <a href='Pdfs/Mechanik/Nachhilfe Steven 9.5.2021.pdf'>5</a>), Electromagnetism (<a href='Pdfs/Elektromagnetismus/Nachhilfe Nick 5.5.2021.pdf'>1</a>, <a href='Pdfs/Elektromagnetismus/Nachhilfe Suganya 21.9.2021.pdf'>2</a>, <a href='Pdfs/Elektromagnetismus/Nachhilfe Suganya 22.9.2021.pdf'>3</a>, <a href='Pdfs/Elektromagnetismus/Nachhilfe Nick 5.7.2021.pdf'>4</a>, <a href='Pdfs/Elektromagnetismus/Nachhilfe Shir 4.7.2021.pdf'>5</a>, <a href='Pdfs/Elektromagnetismus/Nachhilfe Shir 11.7.2021.pdf'>6</a>, <a href='Pdfs/Elektromagnetismus/Nachhilfe Shir 16.6.2021.pdf'>7</a>), Electromagnetic waves and optics (<a href='Pdfs/WellenUndOptik/Optik1.pdf'>1</a>,<a href='Pdfs/WellenUndOptik/Optik2.pdf'>2</a>, <a href='Pdfs/WellenUndOptik/Optik3.pdf'>3</a>, <a href='Pdfs/WellenUndOptik/Optik4.pdf'>4</a>,<a href='Pdfs/WellenUndOptik/Optik5.pdf'>5</a>,<a href='Pdfs/WellenUndOptik/Nachhilfe Tuba 2.12.2021.pdf'>6</a>), Thermodynamics (<a href='Pdfs/Thermodynamik/Nachhilfe Wei Liu 22.9.2022.pdf'>1</a>), Relativity Theory, Atom Physics, Nuclear and Particle Physics, Solid State Physics (<a href='Pdfs/Festkörperphysik/Nachhilfe Suganya 20.9.2021.pdf'>1</a>) , Theoretical Mechanics (<a href='Pdfs/TheoretischeMechanik/Nachhilfe Wei Liu 28.9.2022.pdf'>1</a>), Electrodynamics (<a href='Pdfs/Elektrodynamik/ED1.pdf'>1</a>, <a href='Pdfs/Elektrodynamik/Nachhilfe Nick 31.5.2021.pdf'>2</a>), Quantum Mechanics (<a href='Pdfs/QM/QM1.pdf'>1</a>, <a href='Pdfs/QM/QM2.pdf'>2</a>, <a href='Pdfs/QM/QM3.pdf'>3</a>, <a href='Pdfs/QM/QM4.pdf'>4</a>) and Thermodynamics/Statistical Physics (<a href='Pdfs/Thermodynamik/TD1.pdf'>1</a>, <a href='Pdfs/Thermodynamik/TD2.pdf'>2</a>,<a href='Pdfs/Thermodynamik/Nachhilfe Wei Liu 22.9.2022.pdf'>3</a>)</p>"
+    },
+    "ingenieurwesen": {
+      "title": "Engineering",
+      "imageAlt": "Illustration of engineering",
+      "body": "<p>When I was in the USA a few years ago, I noticed that \"German Engineering\" is admired there.</p><p>In a private lesson, we can do: Mechanical Engineering (<a href='Pdfs/TechnischeMechanik/Nachhilfe Balbine 15.12.2021.pdf'>1</a>, <a href='Pdfs/TechnischeMechanik/Nachhilfe Hicham 31.12.2021.pdf'>2</a>), Electrical Engineering (<a href='Pdfs/Elektrotechnik/Nachhilfe Raphael 26.10.2022.pdf'>1</a>, <a href='Pdfs/Elektrotechnik/Nachhilfe Shir 4.7.2021.pdf'>2</a>, <a href='Pdfs/Elektrotechnik/Nachhilfe Shir 11.7.2021.pdf'>3</a>), Circuit Technology (<a href='Pdfs/Schaltungstechnik/Nachhilfe Christopher 20.4.2024.pdf'>1</a>, <a href='Pdfs/Schaltungstechnik/Nachhilfe Christopher 28.4.2024.pdf'>2</a>), Control Engineering, Measurement Engineering and Mechanics of Fluids (<a href='Pdfs/Strömungslehre/SL1.pdf'>1</a>, <a href='Pdfs/Strömungslehre/Nachhilfe Gwendolin 30.10.2021.pdf'>2</a>, <a href='Pdfs/Strömungslehre/Nachhilfe Wei Liu 27.3.2022.pdf'>3</a>), Signal Processing (<a href='Pdfs/Signalverarbeitung/Nachhilfe Son 11.8.2024 Teil 2.pdf'>1</a>,<a href='Pdfs/Signalverarbeitung/Nachhilfe Nguyen 11.8.2024.pdf'>2</a>), Machine Elements, Structural Analysis, Technical Drawing</p>"
+    },
+    "chemie": {
+      "title": "Chemistry",
+      "imageAlt": "Illustration of chemistry: thermochemistry",
+      "body": "<p>I taught myself chemistry in Spanish and can solve the chemistry exercises up to high school level and for the first semesters at university.</p>"
+    },
+    "matheschule": {
+      "title": "Mathematics",
+      "imageAlt": "Illustration of mathematics for school",
+      "body": "<p>In Maths, all you need to do is set up the right equation and then solve it without miscalculating.</p>"
+    },
+    "physikschule": {
+      "title": "Physics",
+      "imageAlt": "Illustration of physics for school",
+      "body": "<p>Don't be afraid of Physics. With F = m * a, you will get pretty far.</p>"
+    },
+    "infoschule": {
+      "title": "Computer science",
+      "imageAlt": "Illustration of computer science for school",
+      "body": "<p>It's true that a computer can't feel anything and can't think for itself. But it can sort something very quickly. That's why it's useful in life to know that a computer mouse doesn't bite and how to program an algorithm.</p>"
+    },
+    "chemieschule": {
+      "title": "Chemistry",
+      "imageAlt": "Illustration of chemistry: thermochemistry",
+      "body": "<p>I taught myself chemistry in Spanish and can solve the chemistry exercises up to high school level and for the first semesters at university.</p>"
+    },
+    "franzoesisch": {
+      "title": "French",
+      "body": "<p>Tu ne peux rien dire en fran&ccedil;ais à part que \"Bonjour\"? Je peux t'aider! That means: I can help you if you can't say anything in French except \"Bonjour\".</p><p>In a private lesson we could do: Grammar (<a href='Pdfs/Französisch/Grammaire/Cours de soutien Marie 27.8.2024 Dont Duquel.pdf'>1</a>, <a href='Pdfs/Französisch/Nachhilfe Französisch Viola 23.4.2023.pdf'>2</a>,<a href='Pdfs/Französisch/DirekteUndIndirektePronomenUndEn.pdf'>3</a>), written production (<a href='Pdfs/Französisch/Cours de soutien Marie 3.4.2024 Lion.pdf'>1</a>, <a href='Pdfs/Französisch/Cours de soutien Marie 17.04.2024 - Kopie.pdf'>2</a>, <a href='Pdfs/Französisch/Cours de soutien Marie 30.4.2024 Indianer.pdf'>3</a>. <a href='Pdfs/Französisch/Cours de soutien Marie chat 14.5.2024.pdf'>4</a>), oral comprehension, comprehension of a text or conversation (<a href='Pdfs/Französisch/Konversation/JeuDeConversationBeziehungImFluss.txt'>1</a>, <a href='Pdfs/Französisch/Konversation/JeuDeConversationQuestions.txt'>2</a>, <a href='Pdfs/Französisch/Konversation/JeuDeConversationQuareOreilles.txt'>3</a>, <a href='Pdfs/Französisch/Konversation/JeuDeKonversationPereOuMere.txt'>4</a>, <a href='Pdfs/Französisch/Konversation/JeuDeConversationObservateurALInterieur.txt'>5</a>).</p><p>Also see my tests on <a href='https://www.francaisfacile.com/cgi2/myexam/mestests.php?qui=flori10&amp;quoi=0002&amp;popu=1'>FrancaisFacile.com</a></p><p>And here is the link to my profile on <a href='https://www.superprof.de/nachhilfe-franzosisch-von-einem-mathenachhilfelehrer-der-auch-vielen-franzosischen-studenten-nachhilfe-gibt.html'>Superprof</a></p><p>And here is the link to my short stories and grammar exercises: <a href='https://florianingerl.github.io/uebung.html#/fr/french/breveshistoires/deuxgamins'>My short stories and grammar exercises</a></p><p><a href='https://www.youtube.com/watch?v=ba8V3UVpw9Q'>Link to my YouTube videos for learning French</a></p><p>In a trial French lesson we can, for example, do beginner grammar exercises. For the science student, relative clauses, prepositions, etc. are important topics.</p>"
+    },
+    "englisch": {
+      "title": "English",
+      "body": "<p>You've got the nose full of English? Don't say that! Say \"I'm fed up with English\" instead and come practice in the tutoring.</p><p>In a private lesson we could practice: Grammar (<a href='Pdfs/English/Grammar/CreateOwnTestOnFrancaisFacileExercise.txt'>1</a>,<a href='Pdfs/English/Grammar/Tuition Anna 30.5.2024 Grammar Had better or should.pdf'>2</a>), text production (<a href='Pdfs/English/Love story lions Tuition Anna 12.4.2024.pdf'>1</a>,<a href='Pdfs/English/Tuition English Anna 5.4.2024.pdf'>2</a>, <a href='Pdfs/English/Tuition Anna 26.4.2024 Turtoises.pdf'>3</a>, <a href='Pdfs/English/Nachhilfe Anna 17.5.2024 Detective story cat.pdf'>4</a>), conversation (<a href='Pdfs/English/Konversation/BeziehungImFluss.txt'>1</a>, <a href='Pdfs/English/Konversation/Questions.txt'>2</a>, <a href='Pdfs/English/Konversation/FourEarsExercise.txt'>3</a>) and more...</p><p>Here are my tests on <a href='https://www.anglaisfacile.com/cgi2/myexam/mestests.php?qui=flori10&amp;quoi=0001&amp;popu=1'>anglaisfacile.com</a></p><p>Here are my short stories and grammar exercises: <a href='https://florianingerl.github.io/uebung.html#/en/english/shortstories/laraandherbird'>My short stories and grammar exercises</a></p><p>In a trial English lesson we can, for example, do beginner grammar exercises. For the science student, relative clauses, prepositions, etc. are important topics.</p>"
+    },
+    "spanisch": {
+      "title": "Spanish",
+      "body": "<p>Can't you speak or write Spanish? I can help you.</p><p>Here are my tests on <a href='https://www.espagnolfacile.com/cgi2/myexam/mestests.php?qui=flori10&amp;quoi=9998&amp;popu=1'>espagnolfacile.com</a></p><p>In a trial Spanish lesson we can, for example, do beginner grammar exercises. For the science student, relative clauses, prepositions, etc. are important topics.</p>"
+    },
+    "italienisch": {
+      "title": "Italian",
+      "body": "<p>Can't you speak Italian? I can help you.</p><p>Here are my grammar exercises from <a href='https://www.italien-facile.com/cgi2/myexam/mestests.php?qui=flori10&amp;quoi=9995&amp;popu=1'>Italien-facile.com</a></p><p>In a trial Italian lesson we can, for example, do beginner grammar exercises. For the science student, relative clauses, prepositions, etc. are important topics.</p>"
+    },
+    "deutsch": {
+      "title": "German (as a foreign language)",
+      "subtitle": "Price for a class in German 10euro/60min (cheaper than on Preply)",
+      "body": "<p>Do you want to develop more creativity by writing short stories in German? Or do you want to be able to have more fluent conversations? Then I, as a native German speaker, author of many short stories (published on this website) and long-standing tutor of many German-, French-, English- and Spanish-speaking pupils and students, can help you optimally.</p><p>In a tutoring session we can do: Grammar, writing stories/text production (<a href='https://florianingerl.github.io/uebung.html#/de/deutsch/kurzgeschichten/vogelundeichhoernchen'>1</a>, <a href='https://florianingerl.github.io/uebung.html#/de/deutsch/kurzgeschichten/vogelmarcia'>2</a>, <a href='https://florianingerl.github.io/uebung.html#/de/deutsch/kurzgeschichten/katzemagfisch'>3</a>, <a href='Pdfs/Deutsch/Nachhilfe Vanessa 15.4.2024 Geschichte über Löwen.pdf'>4</a>, <a href='Pdfs/Deutsch/Nachhilfe Vanessa 13.5.2024 Katzengeschichte.pdf'>5</a>, <a href='Pdfs/Deutsch/Geschichtenschreiben mit Vanessa 22.4.2024.pdf'>6</a>, <a href='Pdfs/Deutsch/Nachhilfe Vanessa 29.4.2024 Indianergeschichte.pdf'>7</a>, <a href='Pdfs/Deutsch/Geschichte mit Philip 15.4.2025.pdf'>8</a>), Conversation (<a href='Pdfs/Deutsch/Konversation/Beziehung im Fluss.txt'>8</a>, <a href='Pdfs/Deutsch/Konversation/Fragen.txt'>9</a>, <a href='Pdfs/Deutsch/Konversation/VierOhrenModell.txt'>10</a>)</p><p>Here are also my tests on <a href='https://www.allemandfacile.com/cgi2/myexam/mestests.php?qui=flori10&amp;quoi=9997&amp;popu=1'>allemandfacile.com</a></p><p>Here is the link to my short stories and grammar exercises: <a href='https://florianingerl.github.io/uebung.html#/de/deutsch/kurzgeschichten/vogelundeichhoernchen'>Short stories and exercises for German</a></p><p>In a trial German lesson we can, for example, do grammar exercises. For the science student, relative clauses, prepositions, etc. are important topics.</p>"
+    },
+    "ernaehrung": {
+      "title": "Nutrition",
+      "videoTitle": "YouTube video about sprouts and healthy nutrition",
+      "body": "<p>With a healthy diet with fresh sprouts, everything becomes interesting and motivating.</p><p>In a trial lesson \"Learning longer with sprouts\", we solve together the quiz that I created together with the health adviser <a href='https://www.normennauber.de/'>Normen Nauber</a>.</p>"
+    },
+    "reiki": {
+      "title": "Reiki",
+      "imageAlt": "Illustration of Reiki",
+      "body": "<p>Do you want to improve your health and do you believe in the healing energy of your own hands?</p><p>Reiki is the universal life energy that can flow through your hands into your water, vegetables, sprouts, family and friends.</p><p>As a trained Reiki master, I offer initiations to Reiki level 1. If you are interested, send me an email.</p>"
+    },
+    "lernenundlehren": {
+      "title": "Learning and Teaching",
+      "body": "<p>What is the best way to learn a foreign language, a STEM subject or how to get along in life? Answer: Always best with the motivation to teach your learned knowledge to others. The quiz on the right gives tips on this.</p>"
+    },
+    "bewusstsein": {
+      "title": "Consciousness",
+      "body": "<p>From my few, more or less conscious thoughts in 30 years of survival, I have put together a quiz on the topic on the right.</p>"
+    },
+    "schach": {
+      "title": "Chess",
+      "body": "<p>Chess is good for spatial awareness. The problems on the right are from a time when I was still giving chess lessons in elementary school.</p>"
+    },
+    "threeinarow": {
+      "title": "Three-in-a-row",
+      "body": "<p>Three-in-a-row is a chess game for two players on an 8x8 board. Each player has only one knight, one bishop and one rook - pieces are not captured, only moved. Whoever places their three pieces directly next to each other in a row or column wins. Start a game and send the link to your opponent!</p>"
+    },
+    "websitenundflyer": {
+      "title": "Websites",
+      "imageAlt": "Flyer about web programming",
+      "body": "<p>I can offer you advice and start-up help for your own website or for a university project in web programming. I program websites based on HTML, CSS and JavaScript. More specifically, I can support you with:</p><ul><li>Programming of static websites/of the frontend (Html, CSS, JavaScript, Bootstrap, Tailwind, VueJS, ReactJS, AngularJS)</li><li>Programming of dynamic websites (NodeJS, PHP, Java Servlets /JSP)</li><li>Databases (MySQL, MongoDB)</li><li>Responsive Web-Design</li><li>Wordpress</li><li>Image editing (with GIMP or Paint)</li><li>Hosting (e.g. for free on GitHub or Netlify)</li><li>Legal matters</li><li>Translation (into English and French)</li></ul><p>Here is the link to my YouTube videos about web programming: <a href='https://www.youtube.com/playlist?list=PLXtAUIpzAbA4pfKdKdlwwJpugJY-tdn5E'>My YouTube channel</a></p>"
+    },
+    "preise": {
+      "title": "Prices, appointments and payment",
+      "body": "<h3>Prices</h3><p>4*30 for a 4*60min learning package</p><p>35 euros for a 60min individual lesson</p><p>All-or-nothing package: 500 euros for a passed exam / 0 euros otherwise</p><p>4*20 euros for a 4*60min learning package in French, English, German, Spanish or Italian</p><p>30 euros for a 60min individual lesson in languages</p><p>If the tutoring session lasted longer than 60 min, the following formula applies:<br> Price = Duration / (60 min) * (Price for 60 min)</p><p>If the tutoring session was shorter than 60 min (e.g. because you had no time or no more exercises), it still costs as much as for 60 min</p><h3>4-hour learning package</h3><p>You can get the discounted price for a 4*60 min learning package if you have enough great exercises for at least one hour per week. I am available every day of the week from 8 a.m. to 9 p.m. and I can help you in a great many subjects. !!! Caution !!! If for any reason you can't make it in a week or have no need, the money would still be due. Otherwise, the same cancellation conditions as below apply to each of the 4 appointments of a package.</p><h3>All-or-nothing package</h3><p>With the all-or-nothing package, we prepare together for an exam on a specific date. If you pass this exam, we will all be happy. If you don't pass it, you only get your money back if you can send me the pictures of your failed exam from the exam inspection.</p><h3>Making appointments, payment and cancellation conditions</h3><p>I only make a first appointment via email, further ones also via Skype. I work Monday to Sunday from 8 a.m. to 9 p.m. The process of making an appointment is as follows:</p><ol><li>You send me your exercises and your associated theory script</li><li>If I am familiar with exercises like these, I will let you know and you can transfer the money in advance (via Paypal with the \"Send money to friends\" option* or by bank transfer and screenshot). In the subject line, please also include your name and your appointment preferences, for example something like \"Math tutoring Elif desired on Wed 11.1 from 3 p.m. to 9 p.m. or Sat 12.1 between 8 a.m. and 12 p.m. or Saturday and Sunday the whole day\"</li><li>After I receive the advance payment, I will give you a confirmation of the appointment according to your preferences (if it suits me) or I will make 2-3 appointment suggestions for the next few days myself</li><li>We are looking forward to our appointment and you may send any missing or additional exercises/scripts or ask me for good learning material.</li></ol><p><span style='font-weight: bold; text-transform: uppercase'>!!! Attention cancellation conditions , No rescheduling !!!</span> In the case of a cancellation (at any time beforehand), technical problems (e.g. unstable internet for more than 10 min or the inability to use Skype or Zoom) or a delay of more than 10 minutes on your part, the fee is due and there is no further waiting time on my part - regardless of the duration of the booked appointment.</p><p>In the event of short-term cancellations or a technical failure on my part, you will receive a prompt replacement appointment or your money back.</p><p>*Without the \"Send money to a friend\" option, there is a 2 euro fee for Paypal.</p>"
+    },
+    "unterrichtsmethode": {
+      "title": "Teaching method",
+      "imageAlt": "Illustration: owl as a tutor",
+      "body": "<p>From the exercises that you send me, we choose the best ones. For explanations I use sketches, words, general rules and theorems (from your script), colors, formulas, examples and in the end, the task will explain itself through its solution and its interpretation in the factual context and its validation.</p><p>In tutoring, an open relationship at eye level and in the flow is important to me, where we learn as much as possible to pass your exams with ease. To make this possible, I know the terms and definitions that appear in the exercise statements (or maybe you do) or I can look them up quickly. Tutoring becomes exciting with many of our own, creative and present thoughts and when none of us has thought more about the exercises as preparation than the rough solution approaches.</p><p>After a tutoring session, we each reflect on and store for ourselves what we have learned and what we could have done better. With enough motivation, need and suitable exercises, we can arrange a new appointment quite promptly.</p>"
+    },
+    "tutorium": {
+      "title": "Tutorial/Group lessons",
+      "imageAlt": "Illustration: owl as a tutor",
+      "body": "<p>In the tutorial group, you also get individual support for your exercises, because at most 5 pupils are present. If you only need occasional starting points/ideas/hints for your exercises, can work with them and would like to benefit from the learning energy of a group, this is ideal for you.</p><p>For the time being, the tutorial group always takes place on Saturdays from 18:45 - 19:45.</p><p>You will receive a Miro whiteboard link and an invitation link to a Teams meeting by email from me if you have registered in advance.</p><p>The other participants in the tutorial group also study Maths, Computer Science, Physics or Engineering. As soon as you get stuck on one of your exercises, you press the Hey button on the Miro whiteboard and get help.</p>"
+    },
+    "online": {
+      "title": "Online-Tutoring",
+      "imageAlt": "Miro whiteboard in online tutoring",
+      "body": "<p>For the online tutoring, I use Skype or Zoom. If you have preferences, you can mention them. In addition, I use the <a href='https://miro.com/online-whiteboard/'>Miro-Online-Whiteboard</a>, which we can use to collaborate. A full whiteboard would look like this: <a href='Pdfs/Beispielwhiteboard.pdf'>Example-Whiteboard</a></p>"
+    },
+    "praesenz": {
+      "title": "In-person tutoring",
+      "imageAlt": "In-person tutoring in the office",
+      "body": "<p>In-person tutoring takes place in my office at Walchenseestraße 6 in Gröbenzell without any restrictions. When the weather is nice, we can also go outside. You are very welcome as long as you bring enough great exercises.</p><p>If you are an elementary or middle school pupil and are not yet mobile and need in-person tutoring, I am happy to come to your home for an extra charge.</p>"
+    },
+    "feedbacks": {
+      "title": "Feedback",
+      "imageAlt": "Photo of Markus",
+      "markus": "<h3>Markus (<a href='https://www.tandemgraubuenden.ch/'>www.tandemgraubuenden.ch</a>)</h3><p>To prepare myself for the maths and computer science exam in the Mobile Robotic degree program, I booked tutoring with Florian. We went through the exercises together. In my case, the lessons take place online via Skype, which works perfectly. Florian can explain the tasks very efficiently and clearly because he knows the subject matter very well. Even the most difficult tasks he could explain to me - without losing time. I can highly recommend his tutoring.</p>",
+      "images": [
+        "Screenshot of feedback from Dominika",
+        "Screenshot of feedback from Jeanette and Viola",
+        "Photo of students",
+        "Screenshot of a French feedback",
+        "Screenshot of feedback from Eyana"
+      ]
+    },
+    "links": {
+      "title": "Links",
+      "body": "<ol><li><a href='uebung.html#/french'>My exercise page</a> for French, English, German and Computer Science</li><li><a href='https://florianloveslanguages.netlify.app/'>Link to my new exercise page</a></li><li><a href='https://www.francaisfacile.com/cgi2/myexam/mestests.php?qui=flori10'>My French, English, German and Spanish tests on FrancaisFacile.com</a></li><li><a href='https://preply.com/de/nachhilfelehrer/6189560'>Link to the profile of my Spanish tutor from Ecuador on Preply</a></li><li><a href='https://mariefaure.fr/'>Website of my former French tutor</a></li><li>Link to my health adviser: <a href='https://www.normennauber.de/'>Normen Nauber</a></li></ol>"
+    },
+    "impressum": {
+      "title": "Legal Notice",
+      "body": "<h4>Information according to § 5 TMG</h4><p>Frag Florian <br> Florian Ingerl <br> Walchenseestraße 6, 82194 Gröbenzell <br></p><h4>Contact</h4><p>Email: imelflorianingerl{'@'}gmail.com <br></p>"
+    },
+    "uebermich": {
+      "title": "About me",
+      "imageAlt": "Photo of Florian",
+      "list": "<ul style='list-style-type: disc;'><li>Mathematics and Computer Science Master at the LMU in Munich with top marks</li><li>1st State Examination for teaching Physics and Mathematics in High School</li><li>&gt;5 years tutor of many Mathematics and Physics lectures at the LMU in Munich</li><li>High School diploma in English, French and German at the Gymnasium Puchheim (skipped two grades)</li><li>1/2 year teacher at the High School of Gröbenzell and Olching for Mathematics and Physics</li><li>Since October 2020 private, independent full-time tutor for German-, French- and English-speaking students</li><li>1 year professional experience as a software developer</li><li>Yoga teacher training at Sivananda Yoga 2018</li><li>Reiki Master training 2024</li><li>committed, ambitious and sociable</li></ul>",
+      "imageAlt2": "Florian doing a headstand",
+      "body2": "<p>I was born in 1993 as the son of an electrical engineer and a nutritionist. I was also deeply influenced by my grandfather, who partially lived on home-grown vegetables and partially on dandelions in order to be able to pass on more money to his grandchildren for their studies.<br>I also learned a lot from my aunt and my uncle, who - because they were history and language teachers - always knew how to tell plenty of entertaining things. <br>I myself am interested in everything that has to do with mathematics, natural science, technology, language, nutrition and relationships, the latter very much to the delight of my relationship trainer and my English, French and Spanish tutors, who earn a fortune from me.<br>With all that is intellectually possible to learn, I myself do a lot of yoga, sport and forest walks as a balance and I also recommend that to you as preparation for an exam.</p>"
+    },
+    "warumnachhilfe": {
+      "title": "Why get tutoring from Florian?",
+      "body": "<ul style='list-style-type: circle;'><li>I pass on to you the knowledge, tricks and tips that many tutoring pupils and their exercises and scripts from German- and French-speaking universities have taught me</li><li>I am always healthy (see my <a href='#ernaehrung'>Nutrition quiz</a>), reliable, punctual, prepared, committed and available.</li><li>Independent, spontaneous (appointments for tomorrow and the day after), structured and sociable</li></ul>"
+    }
+  },
+  "contact": {
+    "mapTitle": "Map with the address Walchenseestraße 6 in Gröbenzell",
+    "addressTitle": "Address:",
+    "addressLine1": "Walchenseestraße 6",
+    "addressLine2": "82194 Gröbenzell",
+    "emailTitle": "Email:",
+    "intro": "<p>The best thing to do is to contact me via e-mail and send along a few worksheets that can be discussed in a private lesson. But you can also use the form below.</p>",
+    "form": {
+      "name": "Your name",
+      "email": "Your mail",
+      "subject": "Subject",
+      "message": "Message",
+      "submit": "Send message"
+    }
+  },
+  "footer": {
+    "email": "Email"
+  }
+}

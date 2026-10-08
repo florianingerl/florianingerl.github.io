@@ -24,23 +24,17 @@ jobs:
         with:
           node-version: "22"
           cache: npm
-          cache-dependency-path: |
-            quiz-app/package-lock.json
-            three-in-a-row-app/package-lock.json
 
-      - name: Quiz-App bauen (Typprüfung + Vite)
-        working-directory: quiz-app
-        run: |
-          npm ci
-          npm run build
-          rm -rf node_modules
+      - name: Abhängigkeiten installieren
+        run: npm ci
 
-      - name: Three-in-a-row bauen (Typprüfung + Vite)
-        working-directory: three-in-a-row-app
+      - name: App bauen (Typprüfung + Vite)
+        run: npm run build
+
+      - name: Build ins Checkout kopieren
         run: |
-          npm ci
-          npm run build
-          rm -rf node_modules
+          cp -r dist/. .
+          rm -rf node_modules dist
 
       - uses: actions/upload-pages-artifact@v3
         with:
