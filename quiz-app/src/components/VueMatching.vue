@@ -122,7 +122,6 @@ const rechts = ref<string[]>([]);
 const auswahl = ref<{ seite: "l" | "r"; text: string } | null>(null);
 
 // Ob schon geprueft oder die Loesung angezeigt wurde.
-const geprueft = ref(false);
 const pfeilModus = ref<"validate" | "solution" | null>(null);
 
 const wurzel = ref<HTMLElement | null>(null);
@@ -231,7 +230,6 @@ function validate(): void {
       saetze().some((s) => s.part1 === p.part1 && s.part2 === p.part2),
     );
   props.exercise.correctlyAnswered = alleRichtig;
-  geprueft.value = true;
   pfeilModus.value = "validate";
   emit("answered-event");
 }
@@ -242,7 +240,6 @@ function showSolution(): void {
     part1: s.part1,
     part2: s.part2,
   }));
-  geprueft.value = true;
   pfeilModus.value = "solution";
   if (props.exercise.correctlyAnswered === undefined)
     props.exercise.correctlyAnswered = false;
@@ -252,7 +249,6 @@ function showSolution(): void {
 function loescheAlles(): void {
   auswahl.value = null;
   props.exercise.guessedSentences = [];
-  geprueft.value = false;
   pfeilModus.value = null;
   delete props.exercise.correctlyAnswered;
   emit("answered-event");
@@ -268,7 +264,6 @@ function entfernePaar(i: number): void {
   if (i < 0 || i >= g.length) return;
   g.splice(i, 1);
   delete props.exercise.correctlyAnswered;
-  geprueft.value = false;
   pfeilModus.value = null;
   auswahl.value = null;
   emit("answered-event");
@@ -322,8 +317,8 @@ function naechsteBild(): void {
 
 function init(): void {
   auswahl.value = null;
-  geprueft.value = props.exercise.correctlyAnswered !== undefined;
-  pfeilModus.value = geprueft.value ? "validate" : null;
+  pfeilModus.value =
+    props.exercise.correctlyAnswered !== undefined ? "validate" : null;
   if (!props.exercise.guessedSentences) props.exercise.guessedSentences = [];
   links.value = mischen(saetze().map((s) => s.part1));
   rechts.value = mischen(saetze().map((s) => s.part2));
