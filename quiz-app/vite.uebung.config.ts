@@ -28,8 +28,8 @@ export default defineConfig({
         // Bibliotheken und Bausteine getrennt, die Übungen je Sprache in einer Datei
         manualChunks(id) {
           if (id.includes("node_modules")) return "vendor";
-          if (id.includes("/src/uebung/bausteine/") || id.includes("plugin-vue")) return "bausteine";
-          const sprache = id.match(/\/src\/uebung\/inhalte\/([a-z]+)\//);
+          if (id.includes("/src/uebung/atoms/") || id.includes("plugin-vue")) return "bausteine";
+          const sprache = id.match(/\/src\/uebung\/pages\/([a-z]+)\//);
           if (sprache) return sprache[1];
         },
       },

@@ -31,7 +31,7 @@ export default defineConfig({
         manualChunks(id) {
           if (id.includes("node_modules")) return "vendor";
           if (id.includes("/src/components/")) return "quiz";
-          if (id.includes("/src/seite/Vue")) return "bausteine";
+          if (id.includes("/src/seite/atoms/")) return "bausteine";
         },
       },
     },

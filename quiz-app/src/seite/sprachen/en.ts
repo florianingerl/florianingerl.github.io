@@ -1,23 +1,23 @@
 import type { Seite } from "./index";
 import { florian } from "./florian";
-import Nachhilfeangebot from "../abschnitte/en/Nachhilfeangebot.vue";
-import MatheUni from "../abschnitte/en/MatheUni.vue";
-import InfoUni from "../abschnitte/en/InfoUni.vue";
-import PhysikUni from "../abschnitte/en/PhysikUni.vue";
-import Ingenieurwesen from "../abschnitte/en/Ingenieurwesen.vue";
-import MatheSchule from "../abschnitte/en/MatheSchule.vue";
-import PhysikSchule from "../abschnitte/en/PhysikSchule.vue";
-import InfoSchule from "../abschnitte/en/InfoSchule.vue";
-import Franzoesisch from "../abschnitte/en/Franzoesisch.vue";
-import German from "../abschnitte/en/German.vue";
-import Ernaehrung from "../abschnitte/en/Ernaehrung.vue";
-import Bewusstsein from "../abschnitte/en/Bewusstsein.vue";
-import Schach from "../abschnitte/en/Schach.vue";
-import WebsitenUndFlyer from "../abschnitte/en/WebsitenUndFlyer.vue";
-import Preise from "../abschnitte/en/Preise.vue";
-import Unterrichtsmethode from "../abschnitte/en/Unterrichtsmethode.vue";
-import Online from "../abschnitte/en/Online.vue";
-import UeberMich from "../abschnitte/en/UeberMich.vue";
+import Nachhilfeangebot from "../organisms/en/Nachhilfeangebot.vue";
+import MatheUni from "../organisms/en/MatheUni.vue";
+import InfoUni from "../organisms/en/InfoUni.vue";
+import PhysikUni from "../organisms/en/PhysikUni.vue";
+import Ingenieurwesen from "../organisms/en/Ingenieurwesen.vue";
+import MatheSchule from "../organisms/en/MatheSchule.vue";
+import PhysikSchule from "../organisms/en/PhysikSchule.vue";
+import InfoSchule from "../organisms/en/InfoSchule.vue";
+import Franzoesisch from "../organisms/en/Franzoesisch.vue";
+import German from "../organisms/en/German.vue";
+import Ernaehrung from "../organisms/en/Ernaehrung.vue";
+import Bewusstsein from "../organisms/en/Bewusstsein.vue";
+import Schach from "../organisms/en/Schach.vue";
+import WebsitenUndFlyer from "../organisms/en/WebsitenUndFlyer.vue";
+import Preise from "../organisms/en/Preise.vue";
+import Unterrichtsmethode from "../organisms/en/Unterrichtsmethode.vue";
+import Online from "../organisms/en/Online.vue";
+import UeberMich from "../organisms/en/UeberMich.vue";
 
 // Englische Startseite (indexeng.html)
 const en: Seite = {

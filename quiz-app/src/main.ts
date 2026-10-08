@@ -1,6 +1,6 @@
 import { createApp } from "vue";
-import VueQuiz from "./components/VueQuiz.vue";
-import VuePaypal from "./components/vue-paypal.vue";
+import VueQuiz from "./components/molecules/VueQuiz.vue";
+import VuePaypal from "./components/molecules/vue-paypal.vue";
 import type { Lang, QuizName } from "./types";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'

@@ -23,7 +23,7 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { grossesBild } from "./bausteine/bild";
+import { grossesBild } from "./bild";
 
 // Auf schmalen Bildschirmen klappt das Menü erst nach einem Klick auf die Balken auf
 const responsive = ref(false);

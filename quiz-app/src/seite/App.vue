@@ -21,10 +21,10 @@
 import { onMounted, ref } from "vue";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import VueHeader from "./VueHeader.vue";
-import VueHero from "./VueHero.vue";
-import VueFooter from "./VueFooter.vue";
-import VueContact from "./VueContact.vue";
+import VueHeader from "./atoms/VueHeader.vue";
+import VueHero from "./atoms/VueHero.vue";
+import VueFooter from "./atoms/VueFooter.vue";
+import VueContact from "./atoms/VueContact.vue";
 import type { Seite } from "./sprachen";
 
 // Texte, Menü und Abschnitte der Sprache, die seite.ts geladen hat
