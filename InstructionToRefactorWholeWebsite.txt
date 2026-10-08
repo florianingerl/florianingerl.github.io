@@ -1,0 +1,28 @@
+I want the whole frontend to become one single Vue3 vite application.
+Only my German website in index.html matters. You can forget about indexfranz.html and
+indexeng.html and indexesp.html
+Each section of my current website should become one Vue component and also the Navbar and the HeroSection should become their
+own Vue component. The picture of my hero section should stay the same.
+
+At the very top of the website, you should be able to choose the language.
+Languages should be German,English,French,Spanish,Italian .
+Please use this library https://vue-i18n.intlify.dev/ to handle the internationalisation and tranlate my German website as best as you can.
+The directory structure in the src folder should be the same as in 
+floriloveslanguages (You find this Vue3 app in the same directory as website).
+In particular, the Vue components should be split into atoms (don't have any other Vue component in their template), molecules and organisms.
+This comes from the Atomic Design-Methodik for a Vue3 Vite web application. 
+And of course have seperate folders for the Vue components needed for the quizzes and for the three-in-a-row game .
+
+For the styling, use bootstrap ! 
+Respect these web design guidlines please:
+
+Web design is the combination of visual design, usability, content, and technology. A good webpage should be:
+
+Clear: Visitors immediately understand its purpose.
+Consistent: Colors, spacing, buttons, and typography follow a common style.
+Responsive: It works well on phones, tablets, and desktops.
+Accessible: Text is readable, controls are usable, and images have descriptions.
+Fast: Avoid unnecessary images, animations, and complex code.
+
+Please go ahead an implement those changes !
+I think I have commited everything on GitHub, so that I can revert to that state if I am not happy with the result.
