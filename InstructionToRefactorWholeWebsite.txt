@@ -26,3 +26,6 @@ Fast: Avoid unnecessary images, animations, and complex code.
 
 Please go ahead an implement those changes !
 I think I have commited everything on GitHub, so that I can revert to that state if I am not happy with the result.
+
+After you have done all the refactoring, please tell me what I need to do, so that the website is automatically built on GitHub,
+when I push the latest changes !
