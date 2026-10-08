@@ -36,7 +36,7 @@ export async function lade(sprache: Sprache): Promise<void> {
   i18n.global.setLocaleMessage(sprache, modul.nachrichten);
   seite.value = modul.default;
   i18n.global.locale.value = sprache;
-  document.documentElement.lang = sprache;
+  document.documentElement.lang = sprache === "vorlage" ? "de" : sprache;
   document.title = i18n.global.t("titel");
   try {
     localStorage.setItem(MERKER, sprache);

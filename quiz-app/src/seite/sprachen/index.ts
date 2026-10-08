@@ -2,7 +2,8 @@ import type { Component } from "vue";
 import type { Lang } from "../../types";
 
 // Welche Sprachen eine Hülle anbietet, steht als data-sprachen am <div id="app">, die erste ist die Vorgabe.
-export type Sprache = "de" | "en" | "es" | "fr";
+// "vorlage" ist die Beispielseite für weitere Nachhilfelehrer (vorlage.html).
+export type Sprache = "de" | "en" | "es" | "fr" | "vorlage";
 
 export interface Eintrag {
   titel: string;
@@ -84,4 +85,5 @@ export const lader: Record<Sprache, () => Promise<Sprachmodul>> = {
   en: () => import("./en"),
   es: () => import("./es"),
   fr: () => import("./fr"),
+  vorlage: () => import("./vorlage"),
 };
