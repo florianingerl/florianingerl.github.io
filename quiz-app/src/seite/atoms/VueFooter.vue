@@ -4,7 +4,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-3 col-md-6 footer-contact">
-            <template v-if="fuss.telefon"><strong>{{ fuss.telefon }}</strong>{{ fuss.telefonnummer }}<br></template> <strong>Email:</strong><a :href="'mailto:' + fuss.mailadresse">{{ fuss.mailadresse }}</a><br>
+            <template v-if="fuss.telefonnummer"><strong>{{ t("fuss.telefon") }}</strong>{{ fuss.telefonnummer }}<br></template> <strong>Email:</strong><a :href="'mailto:' + fuss.mailadresse">{{ fuss.mailadresse }}</a><br>
           </div>
         </div>
       </div>
@@ -20,7 +20,9 @@
 </template>
 
 <script setup lang="ts">
+import { useI18n } from "vue-i18n";
 import type { Fusszeile } from "../sprachen";
 
 defineProps<{ fuss: Fusszeile }>();
+const { t } = useI18n();
 </script>

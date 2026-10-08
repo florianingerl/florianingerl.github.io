@@ -1,4 +1,4 @@
-import type { Seite } from "./index";
+import type { Nachrichten, Seite } from "./index";
 import { florian } from "./florian";
 import Nachhilfeangebot from "../organisms/fr/Nachhilfeangebot.vue";
 import MatheUni from "../organisms/fr/MatheUni.vue";
@@ -22,10 +22,7 @@ import UeberMich from "../organisms/fr/UeberMich.vue";
 
 // Französische Startseite (indexfranz.html)
 const fr: Seite = {
-  logo: "Demande\u00a0à Florian!",
-  knopf: "Écris-moi un message",
   heroBild: "assets/img/AnnonceMathsAvecLaTete.png",
-  flaggen: florian.flaggen,
   menue: [
     {
       titel: "Université",
@@ -73,26 +70,17 @@ const fr: Seite = {
   kontakt: {
     karteHoehe: "200px",
     karte: florian.karte,
-    adresse: "Adresse:",
-    email: "Email:",
     strasse: florian.strasse,
     ort: florian.ort,
     mailadresse: florian.mailadresse,
-    absatz:
-      "Tu peux utiliser cette formulaire pour me contacter, mais il est préférable si tu me contactes via e-mail et si tu m'envoies assez d'exercices dont on peut parler pendant un cours particulier.",
     formular: {
       action: "https://api.web3forms.com/submit",
       accessKey: "aaa027db-e72d-41d2-9b3b-7603e4908475",
       weiterleitung: "https://florianingerl.github.io/formsubmissionconfirmation.html",
       botcheck: true,
-      name: "Ton nom",
-      mail: "Ton Email",
-      betreff: "Subject",
-      nachricht: "Message",
-      knopf: "Envoie-moi le message!",
     },
   },
-  fuss: { telefon: "Téléphone:", telefonnummer: florian.telefonnummer, mailadresse: florian.mailadresse, sozial: true },
+  fuss: { telefonnummer: florian.telefonnummer, mailadresse: florian.mailadresse, sozial: true },
   schach: "fr",
   abschnitte: [
     Nachhilfeangebot, MatheUni, InfoUni, PhysikUni, Ingenieurwesen,
@@ -100,6 +88,22 @@ const fr: Seite = {
     Ernaehrung, Bewusstsein, Schach, WebsitenUndFlyer,
     Preise, Tutorium, MethodeEnseignement, Online, UeberMich,
   ],
+};
+
+// Oberflächentexte dieser Sprache, vue-i18n reicht sie per t("...") an die Bausteine
+export const nachrichten: Nachrichten = {
+  titel: "Demande à Florian - Cours particuliers pour l'université ou l'lycée en mathématiques, physique, informatique, anglais et allemand",
+  logo: "Demande\u00a0à Florian!",
+  knopf: "Écris-moi un message",
+  kontakt: { adresse: "Adresse:", email: "Email:", absatz: "Tu peux utiliser cette formulaire pour me contacter, mais il est préférable si tu me contactes via e-mail et si tu m'envoies assez d'exercices dont on peut parler pendant un cours particulier." },
+  formular: {
+    name: "Ton nom",
+    mail: "Ton Email",
+    betreff: "Subject",
+    nachricht: "Message",
+    knopf: "Envoie-moi le message!",
+  },
+  fuss: { telefon: "Téléphone:" },
 };
 
 export default fr;

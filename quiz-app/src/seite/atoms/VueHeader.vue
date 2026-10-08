@@ -5,7 +5,7 @@
   <header id="header" ref="kopf" class="fixed-top">
     <div class="container d-flex align-items-center">
       <h1 class="logo me-auto">
-        <a :href="seite.start ?? 'index.html'">{{ seite.logo }}</a>
+        <a :href="seite.start ?? 'index.html'">{{ t("logo") }}</a>
       </h1>
 
       <nav id="navbar" class="navbar order-last order-lg-0" :class="{ 'navbar-mobile': mobil }">
@@ -29,10 +29,11 @@
         <i class="bi mobile-nav-toggle" :class="mobil ? 'bi-x' : 'bi-list'" @click="mobil = !mobil"></i>
       </nav>
 
-      <a href="#contact" class="get-started-btn">{{ seite.knopf }}</a>
+      <a href="#contact" class="get-started-btn">{{ t("knopf") }}</a>
 
-      <div v-if="seite.flaggen" id="selectlanguage" class="ml-[10px] flex flex-col">
-        <a v-for="flagge in seite.flaggen" :key="flagge.ziel" :href="flagge.ziel"><img :src="flagge.bild" :alt="flagge.alt" class="h-[10px]"></a>
+      <!-- Sprachumschalter, nur wenn die Hülle mehr als eine Sprache anbietet; ein Klick wechselt ohne Neuladen -->
+      <div v-if="angeboten.length > 1" id="selectlanguage" class="ml-[10px] flex flex-col">
+        <a v-for="sprache in angeboten" :key="sprache" :href="'?lang=' + sprache" @click.prevent="lade(sprache)"><img :src="flaggen[sprache]?.bild" :alt="flaggen[sprache]?.alt" class="h-[10px]"></a>
       </div>
     </div>
   </header>
@@ -40,9 +41,13 @@
 
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
+import { useI18n } from "vue-i18n";
 import type { Seite } from "../sprachen";
+import { flaggen } from "../sprachen/flaggen";
+import { angeboten, lade } from "../sprache";
 
 defineProps<{ seite: Seite }>();
+const { t } = useI18n();
 
 const kopf = ref<HTMLElement>();
 const hoehe = ref(0);

@@ -1,4 +1,4 @@
-import type { Seite } from "./index";
+import type { Nachrichten, Seite } from "./index";
 import { florian } from "./florian";
 import Nachhilfeangebot from "../organisms/es/Nachhilfeangebot.vue";
 import MatheUni from "../organisms/es/MatheUni.vue";
@@ -21,10 +21,7 @@ import UeberMich from "../organisms/es/UeberMich.vue";
 
 // Spanische Startseite (indexesp.html)
 const es: Seite = {
-  logo: "Pregúntale\u00a0a Florian!",
-  knopf: "Escríbeme un mensaje",
   heroBild: "assets/img/ingenieurwesenSpanischMitKopf.png",
-  flaggen: florian.flaggen,
   menue: [
     {
       titel: "Universidad",
@@ -72,26 +69,17 @@ const es: Seite = {
   kontakt: {
     karteHoehe: "200px",
     karte: florian.karte,
-    adresse: "Dirección:",
-    email: "Dirección de correo electrónico:",
     strasse: florian.strasse,
     ort: florian.ort,
     mailadresse: florian.mailadresse,
-    absatz:
-      "Puedes utilizar este formulario para contactarme, pero es mejor si me contactas por correo electrónico y me envías suficientes ejercicios para que podamos discutir durante una lección privada.",
     formular: {
       action: "https://api.web3forms.com/submit",
       accessKey: "aaa027db-e72d-41d2-9b3b-7603e4908475",
       weiterleitung: "https://florianingerl.github.io/formsubmissionconfirmation.html",
       botcheck: true,
-      name: "Tu nombre",
-      mail: "Tu email",
-      betreff: "Asunto",
-      nachricht: "Mensaje",
-      knopf: "Enviar mensaje",
     },
   },
-  fuss: { telefon: "Teléfono:", telefonnummer: florian.telefonnummer, mailadresse: florian.mailadresse, sozial: true },
+  fuss: { telefonnummer: florian.telefonnummer, mailadresse: florian.mailadresse, sozial: true },
   // das Schachrätsel kennt kein Spanisch und zeigt hier wie bisher Deutsch
   schach: "de",
   abschnitte: [
@@ -100,6 +88,22 @@ const es: Seite = {
     Ernaehrung, Bewusstsein, Schach, WebsitenUndFlyer,
     Preise, MethodeEnseignement, Online, UeberMich,
   ],
+};
+
+// Oberflächentexte dieser Sprache, vue-i18n reicht sie per t("...") an die Bausteine
+export const nachrichten: Nachrichten = {
+  titel: "Pregúntale a Florian - Clases particulares para la universidad en matemáticas, física, informática e ingenería",
+  logo: "Pregúntale\u00a0a Florian!",
+  knopf: "Escríbeme un mensaje",
+  kontakt: { adresse: "Dirección:", email: "Dirección de correo electrónico:", absatz: "Puedes utilizar este formulario para contactarme, pero es mejor si me contactas por correo electrónico y me envías suficientes ejercicios para que podamos discutir durante una lección privada." },
+  formular: {
+    name: "Tu nombre",
+    mail: "Tu email",
+    betreff: "Asunto",
+    nachricht: "Mensaje",
+    knopf: "Enviar mensaje",
+  },
+  fuss: { telefon: "Teléfono:" },
 };
 
 export default es;

@@ -1,4 +1,4 @@
-import type { Seite } from "./index";
+import type { Nachrichten, Seite } from "./index";
 import { florian } from "./florian";
 import Nachhilfeangebot from "../organisms/de/Nachhilfeangebot.vue";
 import MatheUni from "../organisms/de/MatheUni.vue";
@@ -34,10 +34,7 @@ import WarumNachhilfeBeiFlorian from "../organisms/de/WarumNachhilfeBeiFlorian.v
 
 // Deutsche Startseite (index.html)
 const de: Seite = {
-  logo: "Frag Florian!",
-  knopf: "Schreib mir eine Nachricht",
   heroBild: "assets/img/PendelFlyerNeu3.png",
-  flaggen: florian.flaggen,
   menue: [
     {
       titel: "Uni",
@@ -106,23 +103,14 @@ const de: Seite = {
     karteHoehe: "200px",
     karte: florian.karte,
     containerId: "schreibmirnachricht",
-    adresse: "Adresse:",
-    email: "Email:",
     strasse: florian.strasse,
     ort: florian.ort,
     mailadresse: florian.mailadresse,
-    absatz:
-      "Am besten du kontaktierst mich via E-Mail und schickst gleich ein paar Aufgabenblätter mit, die man in einer Nachhilfestunde besprechen könnte. Aber du kannst auch dieses Kontaktformular benutzen.",
     formular: {
       action: "https://api.web3forms.com/submit",
       accessKey: "aaa027db-e72d-41d2-9b3b-7603e4908475",
       weiterleitung: "https://florianingerl.github.io/formsubmissionconfirmation.html",
       botcheck: true,
-      name: "Dein Name",
-      mail: "Deine Email",
-      betreff: "Betreff",
-      nachricht: "Nachricht",
-      knopf: "Nachricht senden",
     },
   },
   fuss: { mailadresse: florian.mailadresse, sozial: false },
@@ -135,6 +123,22 @@ const de: Seite = {
     Preise, Unterrichtsmethode, Tutorium, Online, Praesenz, Feedbacks, Links, Impressum,
     UeberMich, WarumNachhilfeBeiFlorian,
   ],
+};
+
+// Oberflächentexte dieser Sprache, vue-i18n reicht sie per t("...") an die Bausteine
+export const nachrichten: Nachrichten = {
+  titel: "Frag Florian - Nachhilfe für die Uni und die Schule in Mathe, Physik, Informatik, Ingenieurwesen, Chemie, Französisch, Englisch und Spanisch",
+  logo: "Frag Florian!",
+  knopf: "Schreib mir eine Nachricht",
+  kontakt: { adresse: "Adresse:", email: "Email:", absatz: "Am besten du kontaktierst mich via E-Mail und schickst gleich ein paar Aufgabenblätter mit, die man in einer Nachhilfestunde besprechen könnte. Aber du kannst auch dieses Kontaktformular benutzen." },
+  formular: {
+    name: "Dein Name",
+    mail: "Deine Email",
+    betreff: "Betreff",
+    nachricht: "Nachricht",
+    knopf: "Nachricht senden",
+  },
+  fuss: {},
 };
 
 export default de;

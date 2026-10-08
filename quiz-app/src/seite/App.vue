@@ -1,13 +1,15 @@
 <template>
-  <VueHeader :seite="seite" />
-  <VueHero :bild="seite.heroBild" />
+  <template v-if="seite">
+    <VueHeader :seite="seite" />
+    <VueHero :bild="seite.heroBild" />
 
-  <main id="main">
-    <component :is="abschnitt" v-for="(abschnitt, i) in seite.abschnitte" :key="i" />
-    <VueContact :kontakt="seite.kontakt" />
-  </main>
+    <main id="main">
+      <component :is="abschnitt" v-for="(abschnitt, i) in seite.abschnitte" :key="i" />
+      <VueContact :kontakt="seite.kontakt" />
+    </main>
 
-  <VueFooter :fuss="seite.fuss" />
+    <VueFooter :fuss="seite.fuss" />
+  </template>
 
   <div v-if="!geladen" id="preloader"></div>
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center" :class="{ active: weitUnten }">
@@ -18,17 +20,14 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
+import { nextTick, onMounted, ref, watch } from "vue";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import VueHeader from "./atoms/VueHeader.vue";
 import VueHero from "./atoms/VueHero.vue";
 import VueFooter from "./atoms/VueFooter.vue";
 import VueContact from "./atoms/VueContact.vue";
-import type { Seite } from "./sprachen";
-
-// Texte, Menü und Abschnitte der Sprache, die seite.ts geladen hat
-defineProps<{ seite: Seite }>();
+import { seite } from "./sprache";
 
 // Der Ladekreis verschwindet, sobald die Seite mit allen Bildern da ist.
 const geladen = ref(document.readyState === "complete");
@@ -50,5 +49,11 @@ onMounted(() => {
   pruefeScroll();
   // Abschnitte gleiten beim Scrollen herein
   AOS.init({ duration: 1000, easing: "ease-in-out", once: true, mirror: false });
+});
+
+// Nach einem Sprachwechsel stehen neue Abschnitte im Dokument, AOS muss sie erst kennenlernen.
+watch(seite, async () => {
+  await nextTick();
+  AOS.refreshHard();
 });
 </script>

@@ -14,6 +14,12 @@ export default defineConfig({
     }),
   ],
   base: "./",
+  // vue-i18n soll nur die Composition-API mitbringen, nicht die alte Options-API
+  define: {
+    __VUE_I18N_FULL_INSTALL__: true,
+    __VUE_I18N_LEGACY_API__: false,
+    __INTLIFY_PROD_DEVTOOLS__: false,
+  },
   build: {
     // seite.ts wartet mit await auf die Sprachdatei, das können erst Browser ab 2021
     target: "es2022",

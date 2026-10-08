@@ -1,4 +1,4 @@
-import type { Seite } from "./index";
+import type { Nachrichten, Seite } from "./index";
 import { florian } from "./florian";
 import Nachhilfeangebot from "../organisms/en/Nachhilfeangebot.vue";
 import MatheUni from "../organisms/en/MatheUni.vue";
@@ -21,10 +21,7 @@ import UeberMich from "../organisms/en/UeberMich.vue";
 
 // Englische Startseite (indexeng.html)
 const en: Seite = {
-  logo: "Ask Florian!",
-  knopf: "Send me a message!",
   heroBild: "assets/img/PendelFlyerEnglischMitKopfUndSchrift.png",
-  flaggen: florian.flaggen,
   menue: [
     {
       titel: "University",
@@ -71,30 +68,15 @@ const en: Seite = {
   kontakt: {
     karteHoehe: "350px",
     karte: florian.karte,
-    adresse: "Adresse:",
-    email: "Email:",
     strasse: florian.strasse,
     ort: florian.ort,
     mailadresse: florian.mailadresse,
-    absatz:
-      "The best thing to do is to contact me via e-mail and send along a few worksheets that can be discussed in a private lesson. But you can also use the form below.",
     formular: {
       action: "https://getform.io/f/bddcb2ba-fb16-4fa3-baf2-aabd7227b87a",
       botcheck: false,
-      name: "Your name",
-      mail: "Your mail",
-      nachricht: "Message",
-      roboterFrage: {
-        hinweis: "Please answer the following question so that I know that you aren't a roboter.",
-        frage: "What is 3+4?",
-        antwort: "7",
-        fehler: "Please tell me the result of 3+4",
-      },
-      gesendet: "Your message was sent! Thanks!",
-      knopf: "Send message",
     },
   },
-  fuss: { telefon: "Phone:", telefonnummer: florian.telefonnummer, mailadresse: florian.mailadresse, sozial: true },
+  fuss: { telefonnummer: florian.telefonnummer, mailadresse: florian.mailadresse, sozial: true },
   schach: "en",
   abschnitte: [
     Nachhilfeangebot, MatheUni, InfoUni, PhysikUni, Ingenieurwesen,
@@ -102,6 +84,29 @@ const en: Seite = {
     Ernaehrung, Bewusstsein, Schach, WebsitenUndFlyer,
     Preise, Unterrichtsmethode, Online, UeberMich,
   ],
+};
+
+// Oberflächentexte dieser Sprache, vue-i18n reicht sie per t("...") an die Bausteine
+export const nachrichten: Nachrichten = {
+  titel: "Ask Florian - Tutoring in maths, informatics, physics, German, French for univerity and school",
+  logo: "Ask Florian!",
+  knopf: "Send me a message!",
+  kontakt: { adresse: "Adresse:", email: "Email:", absatz: "The best thing to do is to contact me via e-mail and send along a few worksheets that can be discussed in a private lesson. But you can also use the form below." },
+  formular: {
+    name: "Your name",
+    mail: "Your mail",
+    nachricht: "Message",
+    knopf: "Send message",
+    gesendet: "Your message was sent! Thanks!",
+    // kleine Rechenfrage gegen Roboter
+    roboter: {
+      hinweis: "Please answer the following question so that I know that you aren't a roboter.",
+      frage: "What is 3+4?",
+      antwort: "7",
+      fehler: "Please tell me the result of 3+4",
+    },
+  },
+  fuss: { telefon: "Phone:" },
 };
 
 export default en;
