@@ -155,12 +155,12 @@
       <ul class="pagination">
         <li class="page-item">
           <button class="page-link" :title="t.zurueck5" @click="springe(-5)">
-            <i class="fa fa-fast-backward" aria-hidden="true"></i>
+            <i class="bi bi-chevron-double-left" aria-hidden="true"></i>
           </button>
         </li>
         <li class="page-item">
           <button class="page-link" :title="t.zurueck" @click="springe(-1)">
-            <i class="fa fa-backward" aria-hidden="true"></i>
+            <i class="bi bi-chevron-left" aria-hidden="true"></i>
           </button>
         </li>
         <li
@@ -173,12 +173,12 @@
         </li>
         <li class="page-item">
           <button class="page-link" :title="t.weiter" @click="springe(1)">
-            <i class="fa fa-forward" aria-hidden="true"></i>
+            <i class="bi bi-chevron-right" aria-hidden="true"></i>
           </button>
         </li>
         <li class="page-item">
           <button class="page-link" :title="t.weiter5" @click="springe(5)">
-            <i class="fa fa-fast-forward" aria-hidden="true"></i>
+            <i class="bi bi-chevron-double-right" aria-hidden="true"></i>
           </button>
         </li>
         <input

@@ -1,0 +1,6 @@
+I want the following in my hero section:
+
+I have a background image with given dimensions.
+
+And I have my head as an svg image.
+
