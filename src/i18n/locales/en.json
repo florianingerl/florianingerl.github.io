@@ -156,7 +156,9 @@
     },
     "preise": {
       "title": "Prices, appointments and payment",
-      "body": "<h3>Prices</h3><p>4*30 for a 4*60min learning package</p><p>35 euros for a 60min individual lesson</p><p>All-or-nothing package: 500 euros for a passed exam / 0 euros otherwise</p><p>4*20 euros for a 4*60min learning package in French, English, German, Spanish or Italian</p><p>30 euros for a 60min individual lesson in languages</p><p>If the tutoring session lasted longer than 60 min, the following formula applies:<br> Price = Duration / (60 min) * (Price for 60 min)</p><p>If the tutoring session was shorter than 60 min (e.g. because you had no time or no more exercises), it still costs as much as for 60 min</p><h3>4-hour learning package</h3><p>You can get the discounted price for a 4*60 min learning package if you have enough great exercises for at least one hour per week. I am available every day of the week from 8 a.m. to 9 p.m. and I can help you in a great many subjects. !!! Caution !!! If for any reason you can't make it in a week or have no need, the money would still be due. Otherwise, the same cancellation conditions as below apply to each of the 4 appointments of a package.</p><h3>All-or-nothing package</h3><p>With the all-or-nothing package, we prepare together for an exam on a specific date. If you pass this exam, we will all be happy. If you don't pass it, you only get your money back if you can send me the pictures of your failed exam from the exam inspection.</p><h3>Making appointments, payment and cancellation conditions</h3><p>I only make a first appointment via email, further ones also via Skype. I work Monday to Sunday from 8 a.m. to 9 p.m. The process of making an appointment is as follows:</p><ol><li>You send me your exercises and your associated theory script</li><li>If I am familiar with exercises like these, I will let you know and you can transfer the money in advance (via Paypal with the \"Send money to friends\" option* or by bank transfer and screenshot). In the subject line, please also include your name and your appointment preferences, for example something like \"Math tutoring Elif desired on Wed 11.1 from 3 p.m. to 9 p.m. or Sat 12.1 between 8 a.m. and 12 p.m. or Saturday and Sunday the whole day\"</li><li>After I receive the advance payment, I will give you a confirmation of the appointment according to your preferences (if it suits me) or I will make 2-3 appointment suggestions for the next few days myself</li><li>We are looking forward to our appointment and you may send any missing or additional exercises/scripts or ask me for good learning material.</li></ol><p><span style='font-weight: bold; text-transform: uppercase'>!!! Attention cancellation conditions , No rescheduling !!!</span> In the case of a cancellation (at any time beforehand), technical problems (e.g. unstable internet for more than 10 min or the inability to use Skype or Zoom) or a delay of more than 10 minutes on your part, the fee is due and there is no further waiting time on my part - regardless of the duration of the booked appointment.</p><p>In the event of short-term cancellations or a technical failure on my part, you will receive a prompt replacement appointment or your money back.</p><p>*Without the \"Send money to a friend\" option, there is a 2 euro fee for Paypal.</p>"
+      "body": "<h3>Prices</h3><p>4*30 for a 4*60min learning package</p><p>35 euros for a 60min individual lesson</p><p>All-or-nothing package: e.g. 500 euros for a passed exam in 5 weeks / 0 euros otherwise</p><p>4*20 euros for a 4*60min learning package in French, English, German, Spanish or Italian</p><p>30 euros for a 60min individual lesson in languages</p><p>If the tutoring session lasted longer than 60 min, the following formula applies:<br> Price = Duration / (60 min) * (Price for 60 min)</p><p>If the tutoring session was shorter than 60 min (e.g. because you had no time or no more exercises), it still costs as much as for 60 min</p><h3>4-hour learning package</h3><p>You can get the discounted price for a 4*60 min learning package if you have enough great exercises for at least one hour per week. I am available every day of the week from 8 a.m. to 9 p.m. and I can help you in a great many subjects. !!! Caution !!! If for any reason you can't make it in a week or have no need, the money would still be due. Otherwise, the same cancellation conditions as below apply to each of the 4 appointments of a package.</p>",
+      "allesOderNichts": "<h3>All-or-nothing package</h3><p>With the all-or-nothing package, we prepare together for an exam on a specific date. If you pass this exam, we will all be happy. If you don't pass it, you get your money back if you can send me the pictures of your failed exam from the exam inspection.</p><p>The exact details of your <em>all-or-nothing package</em> we will agree by contract for both of us, to be signed.</p>",
+      "termin": "<h3>Making appointments, payment and cancellation conditions</h3><p>I only make a first appointment via email, further ones also via Skype. I work Monday to Sunday from 8 a.m. to 9 p.m. The process of making an appointment is as follows:</p><ol><li>You send me your exercises and your associated theory script</li><li>If I am familiar with exercises like these, I will let you know and you can transfer the money in advance (via Paypal with the \"Send money to friends\" option* or by bank transfer and screenshot). In the subject line, please also include your name and your appointment preferences, for example something like \"Math tutoring Elif desired on Wed 11.1 from 3 p.m. to 9 p.m. or Sat 12.1 between 8 a.m. and 12 p.m. or Saturday and Sunday the whole day\"</li><li>After I receive the advance payment, I will give you a confirmation of the appointment according to your preferences (if it suits me) or I will make 2-3 appointment suggestions for the next few days myself</li><li>We are looking forward to our appointment and you may send any missing or additional exercises/scripts or ask me for good learning material.</li></ol><p><span style='font-weight: bold; text-transform: uppercase'>!!! Attention cancellation conditions , No rescheduling !!!</span> In the case of a cancellation (at any time beforehand), technical problems (e.g. unstable internet for more than 10 min or the inability to use Skype or Zoom) or a delay of more than 10 minutes on your part, the fee is due and there is no further waiting time on my part - regardless of the duration of the booked appointment.</p><p>In the event of short-term cancellations or a technical failure on my part, you will receive a prompt replacement appointment or your money back.</p><p>*Without the \"Send money to a friend\" option, there is a 2 euro fee for Paypal.</p>"
     },
     "unterrichtsmethode": {
       "title": "Teaching method",
@@ -227,5 +229,30 @@
   },
   "footer": {
     "email": "Email"
+  },
+  "contract": {
+    "openButton": "Create contract now",
+    "dialogTitle": "All-or-nothing package: create contract",
+    "examDate": "Date of the exam",
+    "institution": "School, college, university or other institution",
+    "institutionHint": "e.g. Institut français for DELF or Goethe-Institut for German",
+    "studentName": "Full name and address",
+    "studentNameHint": "You can leave all of this blank if you only want a non-binding price estimate. Later you can enter your real data, sign the contract and send it to me!",
+    "goal": "Goal",
+    "goalHint": "e.g. passing the exam or grade 3",
+    "subject": "Subject",
+    "subjectHint": "e.g. maths, electrical engineering or French",
+    "contractLanguage": "Language of the contract",
+    "priceLabel": "Calculated price",
+    "weeksLabel": "Weeks until the exam",
+    "priceFormula": "Price = weeks until the exam × (4×15 € for languages, otherwise 4×30 €) + 100 €",
+    "pricePending": "Please enter the exam date and subject to calculate the price.",
+    "createButton": "Create contract as file",
+    "closeButton": "Close",
+    "downloadPdf": "Download as PDF",
+    "downloadWord": "Download as Word",
+    "downloadRtf": "Download as RTF",
+    "requiredError": "Please fill in exam date, subject, goal and institution so the contract can be created.",
+    "filesReady": "Your contract is ready. Download it in one of the following formats:"
   }
 }
