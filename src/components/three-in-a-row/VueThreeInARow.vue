@@ -185,7 +185,8 @@ function saveGame() {
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
-  URL.revokeObjectURL(url);
+  // Nicht synchron widerrufen, sonst kann Chrome den Download verwerfen.
+  window.setTimeout(() => URL.revokeObjectURL(url), 60_000);
 }
 
 function loadGame() {

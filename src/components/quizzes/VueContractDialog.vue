@@ -76,17 +76,17 @@ function createFiles(): void {
 	generated.value = true;
 }
 
-function download(format: "pdf" | "doc" | "rtf"): void {
+async function download(format: "pdf" | "doc" | "rtf"): Promise<void> {
 	const lang = form.contractLang;
 	const blocks = buildContract(lang, buildFields());
 	const name = contractFilename(lang, form.date, format);
 	if (format === "pdf") {
-		downloadBlob(createContractPdf(blocks, blocks[0].text), name);
+		await downloadBlob(createContractPdf(blocks, blocks[0].text), name);
 	} else if (format === "doc") {
 		const html = contractToHtml(blocks);
-		downloadBlob(new Blob(["\ufeff", html], { type: "application/msword" }), name);
+		await downloadBlob(new Blob(["\ufeff", html], { type: "application/msword" }), name);
 	} else {
-		downloadBlob(new Blob([contractToRtf(blocks)], { type: "application/rtf" }), name);
+		await downloadBlob(new Blob([contractToRtf(blocks)], { type: "application/rtf" }), name);
 	}
 }
 </script>

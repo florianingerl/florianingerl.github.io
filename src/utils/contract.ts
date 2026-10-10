@@ -926,15 +926,63 @@ export function createContractPdf(
   return doc.output("blob");
 }
 
-export function downloadBlob(blob: Blob, filename: string): void {
+// ---------------------------------------------------------------------------
+// Datei-Download. Chrome blockiert blob-Downloads unter Umstaenden mit
+// "Du musst die Berechtigung haben, um diese Datei herunterzuladen" (z. B.
+// wenn die automatischen Downloads der Seite blockiert sind, oder weil die
+// blob-URL zu frueh widerrufen wird). Deshalb bevorzugen wir die File System
+// Access API (nativer "Speichern unter"-Dialog), die nicht am Download-System
+// haengt, und fallen sonst auf den klassischen Anchor-Download zurueck.
+// ---------------------------------------------------------------------------
+interface SaveFilePickerHandle {
+  createWritable: () => Promise<{
+    write: (data: Blob) => Promise<void>;
+    close: () => Promise<void>;
+  }>;
+}
+
+type SaveFilePicker = (options: {
+  suggestedName?: string;
+  types?: { description: string; accept: Record<string, string[]> }[];
+}) => Promise<SaveFilePickerHandle>;
+
+const MIME_BY_EXT: Record<string, { mime: string; description: string }> = {
+  pdf: { mime: "application/pdf", description: "PDF-Dokument" },
+  doc: { mime: "application/msword", description: "Word-Dokument" },
+  rtf: { mime: "application/rtf", description: "RTF-Dokument" },
+};
+
+export async function downloadBlob(blob: Blob, filename: string): Promise<void> {
+  const picker = (window as unknown as { showSaveFilePicker?: SaveFilePicker }).showSaveFilePicker;
+  if (typeof picker === "function") {
+    const ext = filename.slice(filename.lastIndexOf(".") + 1).toLowerCase();
+    const info = MIME_BY_EXT[ext];
+    const types = info ? [{ description: info.description, accept: { [info.mime]: ["." + ext] } }] : undefined;
+    try {
+      const handle = await picker.call(window, { suggestedName: filename, types });
+      const writable = await handle.createWritable();
+      await writable.write(blob);
+      await writable.close();
+      return;
+    } catch (err) {
+      // Abbruch durch den Nutzer: nichts weiter tun.
+      if (err instanceof DOMException && err.name === "AbortError") return;
+      // Jeder andere Fehler (API hier nicht erlaubt): klassischer Download.
+    }
+  }
+
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
   a.download = filename;
+  a.rel = "noopener";
+  a.style.display = "none";
   document.body.appendChild(a);
   a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
+  a.remove();
+  // Die Objekt-URL darf NICHT synchron widerrufen werden: Chrome startet den
+  // Download asynchron und verwirft ihn sonst ("keine Berechtigung").
+  window.setTimeout(() => URL.revokeObjectURL(url), 60_000);
 }
 
 export function contractFilename(
