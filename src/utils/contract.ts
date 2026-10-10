@@ -61,7 +61,11 @@ export function isALangue(fach: string): boolean {
 
 // ---------------------------------------------------------------------------
 // Preisberechnung
-//   Preis = Wochen bis zur Pruefung * (isALangue(fach) ? 4*15 : 4*30) + 100
+//   Preis = Wochen bis zur Pruefung (Gleitkommazahl) *
+//           (isALangue(fach) ? 3*15 : 3*30) + 100
+// Die 100 Euro am Ende sind das Risiko-Entgelt: falls der Schueler sein Ziel
+// nicht erreicht, muss ich das Geld zurueckzahlen. Die Formel geht von 3
+// Nachhilfestunden a 60 min pro Woche aus - eine grobe Richtlinie, nicht fix.
 // ---------------------------------------------------------------------------
 export interface PriceResult {
   weeks: number;
@@ -78,7 +82,7 @@ export function weeksUntilExam(
   if (Number.isNaN(exam.getTime())) return 0;
   const start = new Date(today.getFullYear(), today.getMonth(), today.getDate());
   const diffMs = exam.getTime() - start.getTime();
-  return Math.max(0, Math.ceil(diffMs / (7 * 24 * 60 * 60 * 1000)));
+  return Math.max(0, diffMs / (7 * 24 * 60 * 60 * 1000));
 }
 
 export function computePrice(
@@ -88,8 +92,8 @@ export function computePrice(
 ): PriceResult {
   const weeks = weeksUntilExam(examDate, today);
   const isLanguage = isALangue(subject);
-  const ratePerWeek = isLanguage ? 4 * 15 : 4 * 30;
-  const price = weeks * ratePerWeek + 100;
+  const ratePerWeek = isLanguage ? 3 * 15 : 3 * 30;
+  const price = Math.round(weeks * ratePerWeek + 100);
   return { weeks, isLanguage, price };
 }
 

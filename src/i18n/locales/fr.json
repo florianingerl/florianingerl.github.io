@@ -245,7 +245,7 @@
     "contractLanguage": "Langue du contrat",
     "priceLabel": "Prix calculé",
     "weeksLabel": "Semaines jusqu'à l'examen",
-    "priceFormula": "Prix = semaines jusqu'à l'examen × (4×15 € pour les langues, sinon 4×30 €) + 100 €",
+    "priceFormula": "Prix = nombre de semaines jusqu'à l'examen × (3×15 € pour les langues, sinon 3×30 €) + 100 €",
     "pricePending": "Saisis la date de l'examen et la matière pour calculer le prix.",
     "createButton": "Créer le contrat sous forme de fichier",
     "closeButton": "Fermer",
@@ -253,6 +253,8 @@
     "downloadWord": "Télécharger en Word",
     "downloadRtf": "Télécharger en RTF",
     "requiredError": "Veuillez remplir la date de l'examen, la matière, l'objectif et l'institution pour que le contrat puisse être créé.",
-    "filesReady": "Ton contrat est prêt. Télécharge-le dans l'un des formats suivants :"
+    "filesReady": "Ton contrat est prêt. Télécharge-le dans l'un des formats suivants :",
+    "priceRisk": "Les 100 € à la fin couvrent mon risque que tu n'atteignes pas ton objectif à l'examen et que je doive te rembourser l'argent.",
+    "priceAssumption": "La formule part du principe que nous ferons 3 heures de cours de 60 minutes par semaine. Ces 3 heures ne sont toutefois pas fixes, mais seulement une ligne directrice approximative : nous ferons autant d'heures par semaine que nécessaire."
   }
 }

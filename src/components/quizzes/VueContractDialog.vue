@@ -135,7 +135,7 @@ function download(format: "pdf" | "doc" | "rtf"): void {
 					<div class="alert alert-info mb-2">
 						<template v-if="canCompute">
 							<div>
-								<strong>{{ t('contract.weeksLabel') }}:</strong> {{ price.weeks }}
+								<strong>{{ t('contract.weeksLabel') }}:</strong> {{ price.weeks.toFixed(1) }}
 								<span v-if="price.isLanguage" class="text-muted">({{ t('contract.subject') }}: {{ form.subject }})</span>
 							</div>
 							<div class="fs-5">
@@ -144,7 +144,11 @@ function download(format: "pdf" | "doc" | "rtf"): void {
 						</template>
 						<div v-else>{{ t('contract.pricePending') }}</div>
 					</div>
-					<div class="form-text mb-3">{{ t('contract.priceFormula') }}</div>
+					<div class="form-text mb-3">
+						<div>{{ t('contract.priceFormula') }}</div>
+						<div class="mt-1">{{ t('contract.priceAssumption') }}</div>
+						<div class="mt-1">{{ t('contract.priceRisk') }}</div>
+					</div>
 
 					<div v-if="error" class="alert alert-danger">{{ error }}</div>
 

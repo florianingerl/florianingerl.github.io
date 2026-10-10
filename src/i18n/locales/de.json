@@ -245,7 +245,7 @@
     "contractLanguage": "Sprache für den Vertrag",
     "priceLabel": "Berechneter Preis",
     "weeksLabel": "Wochen bis zur Prüfung",
-    "priceFormula": "Preis = Wochen bis zur Prüfung × (4×15 € für Sprachen, sonst 4×30 €) + 100 €",
+    "priceFormula": "Preis = Anzahl der Wochen bis zur Prüfung × (3×15 € für Sprachen, sonst 3×30 €) + 100 €",
     "pricePending": "Bitte Datum der Prüfung und Fach eingeben, um den Preis zu berechnen.",
     "createButton": "Vertrag als Datei erstellen",
     "closeButton": "Schließen",
@@ -253,6 +253,8 @@
     "downloadWord": "Als Word herunterladen",
     "downloadRtf": "Als RTF herunterladen",
     "requiredError": "Bitte fülle Prüfungsdatum, Fach, Ziel und Institution aus, damit der Vertrag erstellt werden kann.",
-    "filesReady": "Dein Vertrag ist bereit. Lade ihn in einem der folgenden Formate herunter:"
+    "filesReady": "Dein Vertrag ist bereit. Lade ihn in einem der folgenden Formate herunter:",
+    "priceRisk": "Die 100 € am Ende sind für mein Risiko, dass du dein Ziel in der Prüfung nicht erreichst und ich dir das Geld zurückzahlen muss.",
+    "priceAssumption": "Die Formel geht davon aus, dass wir 3 Nachhilfestunden à 60 Minuten pro Woche machen. Diese 3 Stunden sind aber nicht fix, sondern nur eine grobe Richtlinie: Wir machen so viele Stunden pro Woche, wie es notwendig ist."
   }
 }
