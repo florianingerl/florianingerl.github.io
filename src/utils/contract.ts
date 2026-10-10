@@ -23,6 +23,13 @@ export interface ContractBlock {
   text: string;
 }
 
+// Schriftgroessen (Mustervertrag 3): Titel 18 pt, Ueberschriften 16.5 pt,
+// Fliesstext 12 pt. Der Zeilenabstand ist immer grosszuegig (>= 1.5 Zeilen),
+// damit keine Zeile die naechste ueberlappt.
+const FS_TITLE = 18;
+const FS_HEADING = 16.5;
+const FS_BODY = 12;
+
 // ---------------------------------------------------------------------------
 // Sprachen: erkennt, ob ein Fach eine Sprache ist (fuer den guenstigeren Preis).
 // Die Namen werden in allen Sprachen der Website erkannt, Gross-/Kleinschreibung
@@ -101,9 +108,9 @@ export function computePrice(
 }
 
 // ---------------------------------------------------------------------------
-// Vertragstexte in allen Sprachen - orientiert am neuen Mustervertrag
-// (MustervertragAllesOderNichtsPaket2). Die Platzhalter <...> werden durch die
-// eingegebenen Daten ersetzt, **...** kennzeichnet Fettschrift.
+// Vertragstexte in allen Sprachen - orientiert am formatierten Mustervertrag 3.
+// Fett wird gelassen, was im Mustervertrag fett ist (Platzhalter und die
+// Felder der Unterschriften), **...** kennzeichnet Fettschrift.
 // ---------------------------------------------------------------------------
 const EURO = (n: number): string => `${n} €`;
 
@@ -113,6 +120,14 @@ const BLANK = "__".repeat(13);
 const BLANK_ADRESSE = "__".repeat(28);
 const BLANK_SIGN = "__".repeat(22);
 
+function sigSchueler(f: ContractFields): ContractBlock[] {
+  return [
+    { kind: "sig", text: `**Vorname:** ${f.firstName.trim() || BLANK}` },
+    { kind: "sig", text: `**Nachname:** ${f.lastName.trim() || BLANK}` },
+    { kind: "sig", text: `**Adresse:** ${f.address.trim() || BLANK_ADRESSE}` },
+  ];
+}
+
 const CONTRACT_BUILDERS: Record<AppLocale, Builder> = {
   de: (f) => {
     const fn = f.firstName.trim() || "…";
@@ -121,7 +136,7 @@ const CONTRACT_BUILDERS: Record<AppLocale, Builder> = {
         kind: "title",
         text: `Vertrag für ein Alles-oder-Nichts-Paket zwischen ${fn} und Florian`,
       },
-      { kind: "para", text: `Hallo ${fn},` },
+      { kind: "para", text: `Hallo **${fn}**,` },
       {
         kind: "para",
         text: "im Folgenden schreibe ich dir meine Bedingungen für das Alles-oder-Nichts-Paket.",
@@ -131,16 +146,17 @@ const CONTRACT_BUILDERS: Record<AppLocale, Builder> = {
         kind: "para",
         text:
           `Das Paket kostet dich **${EURO(f.price)}**. Das Geld ist im Voraus zu bezahlen. ` +
-          `Dafür bereiten wir uns mit 60-minütigen Nachhilfestunden auf die ${f.subject}-Prüfung ` +
-          `der ${f.institution} am **${f.date}** vor. Du erhältst so viele Stunden, wie du ` +
-          `brauchst; **2–6 Stunden pro Woche** bis zur Klausur sind eine grobe Richtlinie.`,
+          `Dafür bereiten wir uns mit 60-minütigen Nachhilfestunden auf die **${f.subject}**-Prüfung ` +
+          `der **${f.institution}** am **${f.date}** vor. Du erhältst so viele Stunden, wie du ` +
+          `brauchst; 2–6 Stunden pro Woche bis zur Klausur sind eine grobe Richtlinie.`,
       },
       { kind: "heading", text: "2. Rückzahlung" },
       {
         kind: "para",
         text:
           `Nur in einem einzigen Fall bin ich verpflichtet, das Geld zurückzuzahlen: Du zeigst mir ` +
-          `Bilder der korrigierten Prüfung mit dem nicht erreichten Ziel (${f.goal}) aus der Einsicht.`,
+          `Bilder der korrigierten Prüfung mit dem nicht erreichten Ziel (**${f.goal}**) aus der ` +
+          `Einsicht.`,
       },
       {
         kind: "para",
@@ -152,12 +168,12 @@ const CONTRACT_BUILDERS: Record<AppLocale, Builder> = {
       },
       {
         kind: "item",
-        text: `du die Prüfung schreibst, dein Ziel (${f.goal}) nicht erreichst und dann keine Bilder von der Einsicht liefern kannst;`,
+        text: `du die Prüfung schreibst, dein Ziel (**${f.goal}**) nicht erreichst und dann keine Bilder von der Einsicht liefern kannst;`,
       },
       {
         kind: "item",
         text:
-          "auf den Bildern der nicht korrigierten Prüfung mit dem nicht erreichten Ziel das Datum, " +
+          "auf den Bildern der korrigierten Prüfung mit dem nicht erreichten Ziel das Datum, " +
           "der Name oder die Schule/Hochschule/Universität nicht sichtbar sind, sodass es sich um " +
           "eine andere Prüfung handeln könnte;",
       },
@@ -165,7 +181,7 @@ const CONTRACT_BUILDERS: Record<AppLocale, Builder> = {
         kind: "item",
         text:
           "auf den Bildern der Einsicht nicht sichtbar ist, dass du versucht hast, die Aufgaben zu " +
-          "lösen (d. h. es ist nicht möglich, sich krank zur Klausur zu schleppen, nur den Namen " +
+          "lösen (d. h. es ist nicht möglich, sich krank zur Prüfung zu schleppen, nur den Namen " +
           "darauf zu schreiben und dann Bilder leerer Seiten zu schicken).",
       },
       { kind: "heading", text: "3. Absagen und Nichterscheinen" },
@@ -173,7 +189,7 @@ const CONTRACT_BUILDERS: Record<AppLocale, Builder> = {
         kind: "para",
         text:
           "Jedes Absagen oder Nichterscheinen bei einem gemeinsam vereinbarten 60-minütigen " +
-          "Nachhilfetermin ist mit **30 Euro extra** zu bezahlen.",
+          "Nachhilfetermin ist mit 30 Euro extra zu bezahlen.",
       },
       {
         kind: "para",
@@ -187,8 +203,8 @@ const CONTRACT_BUILDERS: Record<AppLocale, Builder> = {
         kind: "para",
         text:
           `Eine Stornierung von deiner Seite nach Zahlung des Geldes ist nicht möglich. Das ganze ` +
-          `Geld gibt es nur zurück, wenn Bilder der Prüfung mit dem nicht erreichten Ziel (${f.goal}) ` +
-          `aus der Einsicht geliefert werden (siehe oben).`,
+          `Geld gibt es nur zurück, wenn Bilder der korrigierten Prüfung mit dem nicht erreichten ` +
+          `Ziel (**${f.goal}**) aus der Einsicht geliefert werden (siehe oben).`,
       },
       {
         kind: "para",
@@ -207,17 +223,15 @@ const CONTRACT_BUILDERS: Record<AppLocale, Builder> = {
           "Rücküberweisung des Geldes ab.",
       },
       { kind: "para", text: "Mit freundlichen Grüßen" },
-      { kind: "para", text: "**Florian Ingerl**" },
-      { kind: "heading", text: "Angaben und Unterschriften" },
+      { kind: "para", text: "Florian Ingerl" },
+      { kind: "heading", text: "6. Angaben und Unterschriften" },
       { kind: "para", text: "**Schüler:**" },
-      { kind: "sig", text: `**Vorname:** ${f.firstName.trim() || BLANK}` },
-      { kind: "sig", text: `**Nachname:** ${f.lastName.trim() || BLANK}` },
-      { kind: "sig", text: `**Adresse:** ${f.address.trim() || BLANK_ADRESSE}` },
+      ...sigSchueler(f),
       {
         kind: "para",
         text:
           `Ich akzeptiere die oben genannten Bedingungen des Alles-oder-Nichts-Lernpakets für die ` +
-          `Prüfung am **${f.date}** in ${f.subject} an der ${f.institution}.`,
+          `Prüfung am **${f.date}** in **${f.subject}** an der **${f.institution}**.`,
       },
       { kind: "sig", text: `**Unterschrift des Schülers:** ${BLANK_SIGN}` },
       { kind: "para", text: "**Lehrer:**" },
@@ -235,7 +249,7 @@ const CONTRACT_BUILDERS: Record<AppLocale, Builder> = {
         kind: "title",
         text: `Contract for an all-or-nothing package between ${fn} and Florian`,
       },
-      { kind: "para", text: `Hello ${fn},` },
+      { kind: "para", text: `Hello **${fn}**,` },
       {
         kind: "para",
         text: "below I set out my terms for the all-or-nothing package.",
@@ -245,16 +259,16 @@ const CONTRACT_BUILDERS: Record<AppLocale, Builder> = {
         kind: "para",
         text:
           `The package will cost you **${EURO(f.price)}**. The money must be paid in advance. In ` +
-          `return, we prepare with 60-minute tutoring sessions for the ${f.subject} exam at ` +
-          `${f.institution} on **${f.date}**. You receive as many hours as you need; ` +
-          `**2–6 hours per week** until the exam is a rough guideline.`,
+          `return, we prepare with 60-minute tutoring sessions for the **${f.subject}** exam at ` +
+          `**${f.institution}** on **${f.date}**. You receive as many hours as you need; ` +
+          `2–6 hours per week until the exam is a rough guideline.`,
       },
       { kind: "heading", text: "2. Refund" },
       {
         kind: "para",
         text:
           `Only in one single case am I obliged to refund the money: you show me pictures of the ` +
-          `corrected exam with the goal not reached (${f.goal}) from the exam inspection.`,
+          `corrected exam with the goal not reached (**${f.goal}**) from the exam inspection.`,
       },
       {
         kind: "para",
@@ -266,33 +280,33 @@ const CONTRACT_BUILDERS: Record<AppLocale, Builder> = {
       },
       {
         kind: "item",
-        text: `you sit the exam, do not reach your goal (${f.goal}) and then cannot provide pictures from the inspection;`,
+        text: `you sit the exam, do not reach your goal (**${f.goal}**) and then cannot provide pictures from the inspection;`,
       },
       {
         kind: "item",
         text:
           "the date, the name or the school/college/university are not visible on the pictures of " +
-          "the uncorrected exam with the goal not reached, so that it could be a different exam;",
+          "the corrected exam with the goal not reached, so that it could be a different exam;",
       },
       {
         kind: "item",
         text:
-          "the pictures from the inspection do not show that you tried to solve the tasks (that is, " +
-          "it is not possible to drag yourself to the exam while ill, only write your name on it and " +
-          "then send pictures of blank pages).",
+          "the pictures from the inspection do not show that you tried to solve the tasks (that " +
+          "is, it is not possible to drag yourself to the exam while ill, only write your name on " +
+          "it and then send pictures of blank pages).",
       },
       { kind: "heading", text: "3. Cancellations and non-appearance" },
       {
         kind: "para",
         text:
-          "Every cancellation or non-appearance at a mutually agreed 60-minute tutoring appointment " +
-          "must be paid extra at **30 euros**.",
+          "Every cancellation or non-appearance at a mutually agreed 60-minute tutoring " +
+          "appointment must be paid extra at 30 euros.",
       },
       {
         kind: "para",
         text:
-          "If, at the latest, the second missed session is not paid extra, I may decide to charge the " +
-          "hours so far at 30 euros each, cancel the package and refund the remaining money, or " +
+          "If, at the latest, the second missed session is not paid extra, I may decide to charge " +
+          "the hours so far at 30 euros each, cancel the package and refund the remaining money, or " +
           "continue the cooperation anyway.",
       },
       { kind: "heading", text: "4. Cancellation" },
@@ -300,8 +314,8 @@ const CONTRACT_BUILDERS: Record<AppLocale, Builder> = {
         kind: "para",
         text:
           `Cancellation on your part after payment of the money is not possible. The full money is ` +
-          `refunded only if pictures of the exam with the goal not reached (${f.goal}) from the ` +
-          `inspection are provided (see above).`,
+          `refunded only if pictures of the corrected exam with the goal not reached (**${f.goal}**) ` +
+          `from the inspection are provided (see above).`,
       },
       {
         kind: "para",
@@ -318,8 +332,8 @@ const CONTRACT_BUILDERS: Record<AppLocale, Builder> = {
           "decline the contract by transferring the money back.",
       },
       { kind: "para", text: "Kind regards" },
-      { kind: "para", text: "**Florian Ingerl**" },
-      { kind: "heading", text: "Details and signatures" },
+      { kind: "para", text: "Florian Ingerl" },
+      { kind: "heading", text: "6. Details and signatures" },
       { kind: "para", text: "**Student:**" },
       { kind: "sig", text: `**First name:** ${f.firstName.trim() || BLANK}` },
       { kind: "sig", text: `**Last name:** ${f.lastName.trim() || BLANK}` },
@@ -328,7 +342,7 @@ const CONTRACT_BUILDERS: Record<AppLocale, Builder> = {
         kind: "para",
         text:
           `I accept the above terms of the all-or-nothing learning package for the exam on ` +
-          `**${f.date}** in ${f.subject} at ${f.institution}.`,
+          `**${f.date}** in **${f.subject}** at **${f.institution}**.`,
       },
       { kind: "sig", text: `**Signature of the student:** ${BLANK_SIGN}` },
       { kind: "para", text: "**Teacher:**" },
@@ -346,7 +360,7 @@ const CONTRACT_BUILDERS: Record<AppLocale, Builder> = {
         kind: "title",
         text: `Contrat pour un forfait tout ou rien entre ${fn} et Florian`,
       },
-      { kind: "para", text: `Bonjour ${fn},` },
+      { kind: "para", text: `Bonjour **${fn}**,` },
       {
         kind: "para",
         text: "ci-dessous, je t'expose mes conditions pour le forfait tout ou rien.",
@@ -357,8 +371,8 @@ const CONTRACT_BUILDERS: Record<AppLocale, Builder> = {
         text:
           `Le forfait te coûtera **${EURO(f.price)}**. Ce montant doit être payé à l'avance. En ` +
           `échange, nous nous préparons, par des cours particuliers de 60 minutes, à l'examen de ` +
-          `${f.subject} à ${f.institution} le **${f.date}**. Tu reçois autant d'heures que ` +
-          `nécessaire ; **2 à 6 heures par semaine** jusqu'à la copie sont une ligne directrice ` +
+          `**${f.subject}** à **${f.institution}** le **${f.date}**. Tu reçois autant d'heures que ` +
+          `nécessaire ; 2 à 6 heures par semaine jusqu'à la copie sont une ligne directrice ` +
           `approximative.`,
       },
       { kind: "heading", text: "2. Remboursement" },
@@ -366,8 +380,8 @@ const CONTRACT_BUILDERS: Record<AppLocale, Builder> = {
         kind: "para",
         text:
           `Dans un seul cas je suis obligé de rembourser l'argent : tu me montres les photos de la ` +
-          `copie corrigée avec l'objectif non atteint (${f.goal}) prises lors de la consultation ` +
-          `des copies.`,
+          `copie corrigée avec l'objectif non atteint (**${f.goal}**) prises lors de la ` +
+          `consultation des copies.`,
       },
       {
         kind: "para",
@@ -379,14 +393,14 @@ const CONTRACT_BUILDERS: Record<AppLocale, Builder> = {
       },
       {
         kind: "item",
-        text: `tu passes la copie, tu n'atteins pas ton objectif (${f.goal}) et tu ne peux ensuite fournir aucune photo de la consultation ;`,
+        text: `tu passes la copie, tu n'atteins pas ton objectif (**${f.goal}**) et tu ne peux ensuite fournir aucune photo de la consultation ;`,
       },
       {
         kind: "item",
         text:
           "la date, le nom ou l'école/collège/université ne sont pas visibles sur les photos de la " +
-          "copie non corrigée avec l'objectif non atteint, de sorte qu'il pourrait s'agir d'une " +
-          "autre copie ;",
+          "copie corrigée avec l'objectif non atteint, de sorte qu'il pourrait s'agir d'une autre " +
+          "copie ;",
       },
       {
         kind: "item",
@@ -400,7 +414,7 @@ const CONTRACT_BUILDERS: Record<AppLocale, Builder> = {
         kind: "para",
         text:
           "Chaque annulation ou absence à un rendez-vous de cours de 60 minutes convenu ensemble " +
-          "doit être payée en plus, à hauteur de **30 euros**.",
+          "doit être payée en plus, à hauteur de 30 euros.",
       },
       {
         kind: "para",
@@ -415,7 +429,7 @@ const CONTRACT_BUILDERS: Record<AppLocale, Builder> = {
         text:
           `Une annulation de ta part après le paiement du montant n'est pas possible. L'argent ` +
           `n'est entièrement remboursé que si des photos de la copie avec l'objectif non atteint ` +
-          `(${f.goal}) issues de la consultation sont fournies (voir ci-dessus).`,
+          `(**${f.goal}**) issues de la consultation sont fournies (voir ci-dessus).`,
       },
       {
         kind: "para",
@@ -433,8 +447,8 @@ const CONTRACT_BUILDERS: Record<AppLocale, Builder> = {
           "remboursant l'argent.",
       },
       { kind: "para", text: "Cordialement" },
-      { kind: "para", text: "**Florian Ingerl**" },
-      { kind: "heading", text: "Informations et signatures" },
+      { kind: "para", text: "Florian Ingerl" },
+      { kind: "heading", text: "6. Informations et signatures" },
       { kind: "para", text: "**Élève :**" },
       { kind: "sig", text: `**Prénom :** ${f.firstName.trim() || BLANK}` },
       { kind: "sig", text: `**Nom :** ${f.lastName.trim() || BLANK}` },
@@ -443,7 +457,7 @@ const CONTRACT_BUILDERS: Record<AppLocale, Builder> = {
         kind: "para",
         text:
           `J'accepte les conditions ci-dessus du forfait tout ou rien pour l'examen du ` +
-          `**${f.date}** en ${f.subject} à ${f.institution}.`,
+          `**${f.date}** en **${f.subject}** à **${f.institution}**.`,
       },
       { kind: "sig", text: `**Signature de l'élève :** ${BLANK_SIGN}` },
       { kind: "para", text: "**Enseignant :**" },
@@ -461,7 +475,7 @@ const CONTRACT_BUILDERS: Record<AppLocale, Builder> = {
         kind: "title",
         text: `Contrato para un paquete todo o nada entre ${fn} y Florian`,
       },
-      { kind: "para", text: `Hola ${fn},` },
+      { kind: "para", text: `Hola **${fn}**,` },
       {
         kind: "para",
         text: "a continuación te expongo mis condiciones para el paquete todo o nada.",
@@ -472,16 +486,16 @@ const CONTRACT_BUILDERS: Record<AppLocale, Builder> = {
         text:
           `El paquete te costará **${EURO(f.price)}**. Este dinero debe pagarse por adelantado. A ` +
           `cambio, nos preparamos con clases particulares de 60 minutos para el examen de ` +
-          `${f.subject} en ${f.institution} el **${f.date}**. Recibes tantas horas como ` +
-          `necesites; **de 2 a 6 horas por semana** hasta el examen son una pauta aproximada.`,
+          `**${f.subject}** en **${f.institution}** el **${f.date}**. Recibes tantas horas como ` +
+          `necesites; 2 a 6 horas por semana hasta el examen son una pauta aproximada.`,
       },
       { kind: "heading", text: "2. Reembolso" },
       {
         kind: "para",
         text:
           `Solo en un único caso estoy obligado a devolver el dinero: me muestras las fotos del ` +
-          `examen corregido con el objetivo no alcanzado (${f.goal}) realizadas en la consulta del ` +
-          `examen.`,
+          `examen corregido con el objetivo no alcanzado (**${f.goal}**) realizadas en la consulta ` +
+          `del examen.`,
       },
       {
         kind: "para",
@@ -493,13 +507,13 @@ const CONTRACT_BUILDERS: Record<AppLocale, Builder> = {
       },
       {
         kind: "item",
-        text: `haces el examen, no alcanzas tu objetivo (${f.goal}) y luego no puedes aportar fotos de la consulta;`,
+        text: `haces el examen, no alcanzas tu objetivo (**${f.goal}**) y luego no puedes aportar fotos de la consulta;`,
       },
       {
         kind: "item",
         text:
-          "en las fotos del examen no corregido con el objetivo no alcanzado no se ven la fecha, " +
-          "el nombre o la escuela/colegio/universidad, de modo que podría tratarse de otro examen;",
+          "en las fotos del examen corregido con el objetivo no alcanzado no se ven la fecha, el " +
+          "nombre o la escuela/colegio/universidad, de modo que podría tratarse de otro examen;",
       },
       {
         kind: "item",
@@ -513,7 +527,7 @@ const CONTRACT_BUILDERS: Record<AppLocale, Builder> = {
         kind: "para",
         text:
           "Cada cancelación o ausencia en una cita de clase de 60 minutos acordada conjuntamente " +
-          "debe pagarse aparte, a razón de **30 euros**.",
+          "debe pagarse aparte, a razón de 30 euros.",
       },
       {
         kind: "para",
@@ -527,8 +541,8 @@ const CONTRACT_BUILDERS: Record<AppLocale, Builder> = {
         kind: "para",
         text:
           `Una cancelación por tu parte tras el pago del dinero no es posible. El dinero solo se ` +
-          `devuelve íntegramente si se aportan fotos del examen con el objetivo no alcanzado ` +
-          `(${f.goal}) de la consulta (véase arriba).`,
+          `devuelve íntegramente si se aportan fotos del examen corregido con el objetivo no ` +
+          `alcanzado (**${f.goal}**) de la consulta (véase arriba).`,
       },
       {
         kind: "para",
@@ -546,8 +560,8 @@ const CONTRACT_BUILDERS: Record<AppLocale, Builder> = {
           "contrato devolviendo el dinero.",
       },
       { kind: "para", text: "Un saludo" },
-      { kind: "para", text: "**Florian Ingerl**" },
-      { kind: "heading", text: "Datos y firmas" },
+      { kind: "para", text: "Florian Ingerl" },
+      { kind: "heading", text: "6. Datos y firmas" },
       { kind: "para", text: "**Alumno/a:**" },
       { kind: "sig", text: `**Nombre:** ${f.firstName.trim() || BLANK}` },
       { kind: "sig", text: `**Apellidos:** ${f.lastName.trim() || BLANK}` },
@@ -556,7 +570,7 @@ const CONTRACT_BUILDERS: Record<AppLocale, Builder> = {
         kind: "para",
         text:
           `Acepto las condiciones anteriores del paquete todo o nada para el examen del ` +
-          `**${f.date}** de ${f.subject} en ${f.institution}.`,
+          `**${f.date}** de **${f.subject}** en **${f.institution}**.`,
       },
       { kind: "sig", text: `**Firma del alumno/a:** ${BLANK_SIGN}` },
       { kind: "para", text: "**Profesor:**" },
@@ -574,7 +588,7 @@ const CONTRACT_BUILDERS: Record<AppLocale, Builder> = {
         kind: "title",
         text: `Contratto per un pacchetto tutto o nulla tra ${fn} e Florian`,
       },
-      { kind: "para", text: `Ciao ${fn},` },
+      { kind: "para", text: `Ciao **${fn}**,` },
       {
         kind: "para",
         text: "qui di seguito ti scrivo le mie condizioni per il pacchetto tutto o nulla.",
@@ -584,17 +598,17 @@ const CONTRACT_BUILDERS: Record<AppLocale, Builder> = {
         kind: "para",
         text:
           `Il pacchetto ti costerà **${EURO(f.price)}**. Questo importo va pagato in anticipo. In ` +
-          `cambio ci prepariamo, con lezioni di 60 minuti, all'esame di ${f.subject} presso ` +
-          `${f.institution} il **${f.date}**. Ricevi tutte le ore di cui hai bisogno; ` +
-          `**2–6 ore a settimana** fino alla prova sono una linea guida approssimativa.`,
+          `cambio ci prepariamo, con lezioni di 60 minuti, all'esame di **${f.subject}** presso ` +
+          `**${f.institution}** il **${f.date}**. Ricevi tutte le ore di cui hai bisogno; ` +
+          `2–6 ore a settimana fino alla prova sono una linea guida approssimativa.`,
       },
       { kind: "heading", text: "2. Rimborso" },
       {
         kind: "para",
         text:
           `In un solo caso sono obbligato a rimborsare il denaro: mi mostri le foto della prova ` +
-          `corretta con l'obiettivo non raggiunto (${f.goal}) scattate durante la consultazione ` +
-          `delle prove.`,
+          `corretta con l'obiettivo non raggiunto (**${f.goal}**) scattate durante la ` +
+          `consultazione delle prove.`,
       },
       {
         kind: "para",
@@ -606,12 +620,12 @@ const CONTRACT_BUILDERS: Record<AppLocale, Builder> = {
       },
       {
         kind: "item",
-        text: `sostieni la prova, non raggiungi il tuo obiettivo (${f.goal}) e poi non puoi fornire foto della consultazione;`,
+        text: `sostieni la prova, non raggiungi il tuo obiettivo (**${f.goal}**) e poi non puoi fornire foto della consultazione;`,
       },
       {
         kind: "item",
         text:
-          "nelle foto della prova non corretta con l'obiettivo non raggiunto non sono visibili la " +
+          "nelle foto della prova corretta con l'obiettivo non raggiunto non sono visibili la " +
           "data, il nome o la scuola/college/università, cosicché potrebbe trattarsi di un'altra " +
           "prova;",
       },
@@ -627,7 +641,7 @@ const CONTRACT_BUILDERS: Record<AppLocale, Builder> = {
         kind: "para",
         text:
           "Ogni disdetta o assenza a un appuntamento di lezione di 60 minuti concordato insieme va " +
-          "pagata in aggiunta, a **30 euro**.",
+          "pagata in aggiunta, a 30 euro.",
       },
       {
         kind: "para",
@@ -641,8 +655,8 @@ const CONTRACT_BUILDERS: Record<AppLocale, Builder> = {
         kind: "para",
         text:
           `Un annullamento da parte tua dopo il pagamento del denaro non è possibile. Il denaro ` +
-          `viene restituito per intero solo se vengono fornite foto della prova con l'obiettivo ` +
-          `non raggiunto (${f.goal}) tratte dalla consultazione (vedi sopra).`,
+          `viene restituito per intero solo se vengono fornite foto della prova corretta con ` +
+          `l'obiettivo non raggiunto (**${f.goal}**) tratte dalla consultazione (vedi sopra).`,
       },
       {
         kind: "para",
@@ -660,8 +674,8 @@ const CONTRACT_BUILDERS: Record<AppLocale, Builder> = {
           "contrario, rifiuto il contratto restituendo il denaro.",
       },
       { kind: "para", text: "Cordiali saluti" },
-      { kind: "para", text: "**Florian Ingerl**" },
-      { kind: "heading", text: "Dati e firme" },
+      { kind: "para", text: "Florian Ingerl" },
+      { kind: "heading", text: "6. Dati e firme" },
       { kind: "para", text: "**Studente/studentessa:**" },
       { kind: "sig", text: `**Nome:** ${f.firstName.trim() || BLANK}` },
       { kind: "sig", text: `**Cognome:** ${f.lastName.trim() || BLANK}` },
@@ -670,7 +684,7 @@ const CONTRACT_BUILDERS: Record<AppLocale, Builder> = {
         kind: "para",
         text:
           `Accetto le condizioni di cui sopra del pacchetto tutto o nulla per l'esame del ` +
-          `**${f.date}** in ${f.subject} presso ${f.institution}.`,
+          `**${f.date}** in **${f.subject}** presso **${f.institution}**.`,
       },
       { kind: "sig", text: `**Firma dello studente/della studentessa:** ${BLANK_SIGN}` },
       { kind: "para", text: "**Insegnante:**" },
@@ -691,6 +705,7 @@ export function buildContract(
 
 // ---------------------------------------------------------------------------
 // Ausgabe: HTML (fuer Word), RTF und PDF - mit **fett**-Unterstuetzung.
+// Zeilenabstaende sind immer grosszuegig gewaehlt, damit nichts ueberlappt.
 // ---------------------------------------------------------------------------
 function escapeHtml(s: string): string {
   return s
@@ -719,12 +734,12 @@ export function contractToHtml(blocks: ContractBlock[]): string {
 <html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word">
 <head><meta charset="utf-8"><title>Alles-oder-Nichts-Paket</title>
 <style>
-  body { font-family: "Times New Roman", Times, serif; font-size: 11pt; line-height: 1.45; }
-  h1 { font-size: 16pt; text-align: center; }
-  p { margin: 0 0 8pt 0; text-align: justify; }
-  p.heading { font-weight: bold; margin-top: 10pt; }
-  p.item { margin-left: 18pt; }
-  p.sig { margin: 12pt 0; }
+  body { font-family: "Times New Roman", Times, serif; font-size: 12pt; line-height: 1.6; color: #000; }
+  h1 { font-size: 18pt; font-weight: bold; text-align: center; margin: 0 0 14pt 0; }
+  p { margin: 0 0 10pt 0; text-align: justify; }
+  p.heading { font-size: 16.5pt; font-weight: bold; margin: 14pt 0 8pt 0; text-align: left; }
+  p.item { margin-left: 20pt; }
+  p.sig { margin: 14pt 0; }
 </style>
 </head>
 <body>
@@ -763,6 +778,12 @@ function inlineRtf(s: string): string {
   return out;
 }
 
+// Zeilenabstand als Vielfaches der Einzelzeile (240 = eine Zeile). Grosszuegig
+// gewaehlt (1.5x), damit sich Zeilen nie ueberlappen.
+const SL_BODY = "\\sl360\\slmult1";
+const SL_HEADING = "\\sl460\\slmult1";
+const SL_TITLE = "\\sl520\\slmult1";
+
 export function contractToRtf(blocks: ContractBlock[]): string {
   const header =
     "{\\rtf1\\ansi\\ansicpg1252\\deff0" +
@@ -772,18 +793,18 @@ export function contractToRtf(blocks: ContractBlock[]): string {
     .map((b) => {
       const text = inlineRtf(b.text);
       if (b.kind === "title") {
-        return `\\pard\\qc\\b\\fs32\\f0 ${text}\\par\\b0\\fs22 `;
+        return `\\pard\\qc\\sa240\\sb120 ${SL_TITLE}\\f0\\fs${FS_TITLE * 2}\\b ${text}\\b0\\par`;
       }
       if (b.kind === "heading") {
-        return `\\pard\\qj\\sa200\\sl276\\slmult1\\f0\\fs22\\b ${text}\\b0\\par`;
+        return `\\pard\\qj\\sa200\\sb200 ${SL_HEADING}\\f0\\fs${FS_HEADING * 2}\\b ${text}\\b0\\par`;
       }
       if (b.kind === "item") {
-        return `\\pard\\li720\\fi-360\\sa120\\sl276\\slmult1\\f0\\fs22 \\bullet  ${text}\\par`;
+        return `\\pard\\li720\\fi-360\\sa120 ${SL_BODY}\\f0\\fs${FS_BODY * 2} \\bullet  ${text}\\par`;
       }
       if (b.kind === "sig") {
-        return `\\pard\\sa160\\sl276\\slmult1\\f0\\fs22 ${text}\\par`;
+        return `\\pard\\sa180 ${SL_BODY}\\f0\\fs${FS_BODY * 2} ${text}\\par`;
       }
-      return `\\pard\\qj\\sa160\\sl276\\slmult1\\f0\\fs22 ${text}\\par`;
+      return `\\pard\\qj\\sa180 ${SL_BODY}\\f0\\fs${FS_BODY * 2} ${text}\\par`;
     })
     .join("\n");
   return `${header}\n${content}\n}`;
@@ -791,7 +812,7 @@ export function contractToRtf(blocks: ContractBlock[]): string {
 
 // ---------------------------------------------------------------------------
 // PDF: Zeilen ziehen sich beim Umbrechen mit, fette Teilstuecke werden in der
-// Schrift "times bold" gesetzt.
+// Schrift "times bold" gesetzt. Zeilenabstand = 1.5x Schriftgroesse.
 // ---------------------------------------------------------------------------
 interface StyledWord {
   w: string;
@@ -828,29 +849,31 @@ export function createContractPdf(
   const pw = doc.internal.pageSize.getWidth();
   const ph = doc.internal.pageSize.getHeight();
   const maxW = pw - margin * 2;
-  const lh = 16;
   const bottom = ph - margin;
   let y = margin;
 
   doc.setProperties({ title: title.replace(/\*\*/g, "") });
 
+  const lineHeight = (fs: number): number => Math.ceil(fs * 1.5);
+
   const drawParagraph = (
     text: string,
     opts: { fontSize?: number; bold?: boolean; center?: boolean } = {}
   ): void => {
-    const fs = opts.fontSize ?? 11;
+    const fs = opts.fontSize ?? FS_BODY;
+    const lh = lineHeight(fs);
     doc.setFont("times", opts.bold ? "bold" : "normal");
     doc.setFontSize(fs);
 
     if (opts.center) {
       const wrapped = doc.splitTextToSize(text, maxW);
-      const txtH = wrapped.length * lh * 1.15;
+      const txtH = wrapped.length * lh;
       if (y + txtH > bottom) {
         doc.addPage();
         y = margin;
       }
       doc.text(wrapped, pw / 2, y, { align: "center" });
-      y += txtH + 6;
+      y += txtH + 12;
       return;
     }
 
@@ -883,17 +906,16 @@ export function createContractPdf(
           x += spaceW;
         }
       }
-      y += 2;
+      y += 3;
     }
     y += 6;
   };
 
   for (const b of blocks) {
     if (b.kind === "title") {
-      drawParagraph(b.text, { fontSize: 16, bold: true, center: true });
-      y += 6;
+      drawParagraph(b.text, { fontSize: FS_TITLE, bold: true, center: true });
     } else if (b.kind === "heading") {
-      drawParagraph(b.text, { bold: true });
+      drawParagraph(b.text, { fontSize: FS_HEADING, bold: true });
       y += 4;
     } else {
       drawParagraph((b.kind === "item" ? "\u2022  " : "") + b.text);
