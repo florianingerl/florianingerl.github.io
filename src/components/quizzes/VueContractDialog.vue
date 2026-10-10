@@ -19,7 +19,9 @@ const emit = defineEmits<{ (e: "close"): void }>();
 const form = reactive({
 	date: "",
 	institution: "",
-	name: "",
+	firstName: "",
+	lastName: "",
+	address: "",
 	goal: "",
 	subject: "",
 	contractLang: "de" as AppLocale,
@@ -40,7 +42,9 @@ function formatDate(iso: string): string {
 
 function buildFields(): ContractFields {
 	return {
-		name: form.name,
+		firstName: form.firstName,
+		lastName: form.lastName,
+		address: form.address,
 		subject: form.subject,
 		goal: form.goal,
 		institution: form.institution,
@@ -106,9 +110,19 @@ function download(format: "pdf" | "doc" | "rtf"): void {
 					</div>
 
 					<div class="mb-3">
-						<label class="form-label" for="contract-name">{{ t('contract.studentName') }}</label>
-						<textarea id="contract-name" v-model="form.name" class="form-control" rows="2"></textarea>
-						<div class="form-text">{{ t('contract.studentNameHint') }}</div>
+						<label class="form-label" for="contract-first-name">{{ t('contract.firstName') }}</label>
+						<input id="contract-first-name" v-model="form.firstName" type="text" class="form-control" />
+					</div>
+
+					<div class="mb-3">
+						<label class="form-label" for="contract-last-name">{{ t('contract.lastName') }}</label>
+						<input id="contract-last-name" v-model="form.lastName" type="text" class="form-control" />
+					</div>
+
+					<div class="mb-3">
+						<label class="form-label" for="contract-address">{{ t('contract.address') }}</label>
+						<textarea id="contract-address" v-model="form.address" class="form-control" rows="2"></textarea>
+						<div class="form-text">{{ t('contract.nameHint') }}</div>
 					</div>
 
 					<div class="mb-3">

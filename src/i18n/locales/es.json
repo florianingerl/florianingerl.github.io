@@ -236,8 +236,6 @@
     "examDate": "Fecha del examen",
     "institution": "Escuela, colegio, universidad u otra institución",
     "institutionHint": "p. ej. Institut français para el DELF o Goethe-Institut para el alemán",
-    "studentName": "Nombre completo y dirección",
-    "studentNameHint": "Puedes dejar todo esto en blanco si solo quieres calcular el precio sin compromiso. Más tarde podrás introducir tus datos reales, firmar el contrato y enviármelo.",
     "goal": "Objetivo",
     "goalHint": "p. ej. aprobar el examen o nota 3",
     "subject": "Asignatura",
@@ -255,6 +253,10 @@
     "requiredError": "Rellena la fecha del examen, la asignatura, el objetivo y la institución para que se pueda crear el contrato.",
     "filesReady": "Tu contrato está listo. Descárgalo en uno de los siguientes formatos:",
     "priceRisk": "Los 100 € del final cubren mi riesgo de que no alcances tu objetivo en el examen y tenga que devolverte el dinero.",
-    "priceAssumption": "La fórmula parte de que haremos 3 horas de clase de 60 minutos por semana. Sin embargo, esas 3 horas no son fijas, sino solo una pauta aproximada: haremos tantas horas por semana como sea necesario."
+    "priceAssumption": "La fórmula parte de que haremos 3 horas de clase de 60 minutos por semana. Sin embargo, esas 3 horas no son fijas, sino solo una pauta aproximada: haremos tantas horas por semana como sea necesario.",
+    "firstName": "Nombre del alumno/a",
+    "lastName": "Apellidos del alumno/a",
+    "address": "Dirección del alumno/a",
+    "nameHint": "No necesitas indicar aquí tu nombre, tus apellidos y tu dirección si solo quieres calcular el precio sin compromiso. Más tarde podrás introducir aquí tus datos reales, firmar el contrato y enviármelo."
   }
 }

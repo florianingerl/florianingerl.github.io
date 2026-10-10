@@ -236,8 +236,6 @@
     "examDate": "Datum der Prüfung",
     "institution": "Schule, Hochschule, Universität oder andere Institution",
     "institutionHint": "z.B. Institut français für DELF oder Goethe-Institut für Deutsch",
-    "studentName": "Vollständiger Name und Adresse",
-    "studentNameHint": "Du kannst hier alles leer lassen, wenn du nur unverbindlich den Preis berechnen lassen willst. Später kannst du hier deine richtigen Daten eingeben, den Vertrag unterschreiben und ihn mir zuschicken!",
     "goal": "Ziel",
     "goalHint": "z.B. Bestehen der Prüfung oder Note 3",
     "subject": "Fach",
@@ -255,6 +253,10 @@
     "requiredError": "Bitte fülle Prüfungsdatum, Fach, Ziel und Institution aus, damit der Vertrag erstellt werden kann.",
     "filesReady": "Dein Vertrag ist bereit. Lade ihn in einem der folgenden Formate herunter:",
     "priceRisk": "Die 100 € am Ende sind für mein Risiko, dass du dein Ziel in der Prüfung nicht erreichst und ich dir das Geld zurückzahlen muss.",
-    "priceAssumption": "Die Formel geht davon aus, dass wir 3 Nachhilfestunden à 60 Minuten pro Woche machen. Diese 3 Stunden sind aber nicht fix, sondern nur eine grobe Richtlinie: Wir machen so viele Stunden pro Woche, wie es notwendig ist."
+    "priceAssumption": "Die Formel geht davon aus, dass wir 3 Nachhilfestunden à 60 Minuten pro Woche machen. Diese 3 Stunden sind aber nicht fix, sondern nur eine grobe Richtlinie: Wir machen so viele Stunden pro Woche, wie es notwendig ist.",
+    "firstName": "Vorname des Schülers",
+    "lastName": "Nachname des Schülers",
+    "address": "Adresse des Schülers",
+    "nameHint": "Vorname, Nachname und Adresse musst du hier nicht angeben, wenn du nur unverbindlich den Preis ermitteln willst. Später kannst du hier deine richtigen Daten eintragen, den Vertrag unterschreiben und ihn mir zurückschicken!"
   }
 }

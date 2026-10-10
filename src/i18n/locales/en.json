@@ -236,8 +236,6 @@
     "examDate": "Date of the exam",
     "institution": "School, college, university or other institution",
     "institutionHint": "e.g. Institut français for DELF or Goethe-Institut for German",
-    "studentName": "Full name and address",
-    "studentNameHint": "You can leave all of this blank if you only want a non-binding price estimate. Later you can enter your real data, sign the contract and send it to me!",
     "goal": "Goal",
     "goalHint": "e.g. passing the exam or grade 3",
     "subject": "Subject",
@@ -255,6 +253,10 @@
     "requiredError": "Please fill in exam date, subject, goal and institution so the contract can be created.",
     "filesReady": "Your contract is ready. Download it in one of the following formats:",
     "priceRisk": "The 100 € at the end cover my risk that you do not reach your goal in the exam and I have to refund the money.",
-    "priceAssumption": "The formula assumes that we will do 3 tutoring hours of 60 minutes per week. These 3 hours are not fixed, however, but only a rough guideline: we will do as many hours per week as necessary."
+    "priceAssumption": "The formula assumes that we will do 3 tutoring hours of 60 minutes per week. These 3 hours are not fixed, however, but only a rough guideline: we will do as many hours per week as necessary.",
+    "firstName": "First name of the student",
+    "lastName": "Last name of the student",
+    "address": "Address of the student",
+    "nameHint": "You do not need to enter your first name, last name and address if you only want a non-binding price estimate. Later you can enter your real data here, sign the contract and send it back to me!"
   }
 }

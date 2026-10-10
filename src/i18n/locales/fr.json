@@ -236,8 +236,6 @@
     "examDate": "Date de l'examen",
     "institution": "École, collège, université ou autre institution",
     "institutionHint": "p. ex. Institut français pour le DELF ou Goethe-Institut pour l'allemand",
-    "studentName": "Nom complet et adresse",
-    "studentNameHint": "Tu peux tout laisser vide ici si tu veux seulement une estimation non contraignante du prix. Plus tard, tu pourras saisir tes vraies données, signer le contrat et me l'envoyer !",
     "goal": "Objectif",
     "goalHint": "p. ex. réussir l'examen ou note 3",
     "subject": "Matière",
@@ -255,6 +253,10 @@
     "requiredError": "Veuillez remplir la date de l'examen, la matière, l'objectif et l'institution pour que le contrat puisse être créé.",
     "filesReady": "Ton contrat est prêt. Télécharge-le dans l'un des formats suivants :",
     "priceRisk": "Les 100 € à la fin couvrent mon risque que tu n'atteignes pas ton objectif à l'examen et que je doive te rembourser l'argent.",
-    "priceAssumption": "La formule part du principe que nous ferons 3 heures de cours de 60 minutes par semaine. Ces 3 heures ne sont toutefois pas fixes, mais seulement une ligne directrice approximative : nous ferons autant d'heures par semaine que nécessaire."
+    "priceAssumption": "La formule part du principe que nous ferons 3 heures de cours de 60 minutes par semaine. Ces 3 heures ne sont toutefois pas fixes, mais seulement une ligne directrice approximative : nous ferons autant d'heures par semaine que nécessaire.",
+    "firstName": "Prénom de l'élève",
+    "lastName": "Nom de l'élève",
+    "address": "Adresse de l'élève",
+    "nameHint": "Tu n'as pas besoin d'indiquer ici ton prénom, ton nom et ton adresse si tu veux seulement une estimation non contraignante du prix. Plus tard, tu pourras saisir tes vraies données, signer le contrat et me le renvoyer !"
   }
 }
