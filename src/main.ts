@@ -7,7 +7,7 @@ import { i18n, readStoredLocale } from "./i18n";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import "bootstrap";
 import "aos/dist/aos.css";
 import "../assets/css/style.css";
 
