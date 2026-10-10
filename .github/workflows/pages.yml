@@ -31,14 +31,9 @@ jobs:
       - name: App bauen (Typprüfung + Vite)
         run: npm run build
 
-      - name: Build ins Checkout kopieren
-        run: |
-          cp -r dist/. .
-          rm -rf node_modules dist
-
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: dist
 
   veroeffentlichen:
     needs: bauen

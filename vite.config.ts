@@ -1,12 +1,41 @@
-import { defineConfig } from "vite";
+import { defineConfig, type Plugin } from "vite";
 import vue from "@vitejs/plugin-vue";
 import path from "node:path";
+import fs from "node:fs";
 
-// Die ganze Website ist jetzt eine einzige Vue3 + Vite Anwendung.
-// Gebaut wird nach dist/, das auf GitHub Pages über den Workflow
-// .github/workflows/pages.yml auf die Wurzel der Seite kopiert wird.
+// Diese Dateien werden zur Laufzeit über echte URLs angesprochen (z.B.
+// <img src="assets/img/...">, Links zu PDFs oder das Schachbrett). Vite
+// kann sie deshalb nicht bündeln, sie werden unverändert in den Build
+// nach dist/ kopiert. Dadurch verhält sich `npm run start` (vite preview)
+// genauso wie die veröffentlichte Seite auf GitHub Pages.
+const STATIC_PATHS = [
+  "assets",
+  "Pdfs",
+  "chessboardjs-1.0.0",
+  "formsubmissionconfirmation.html",
+];
+
+function staticCopy(): Plugin {
+  return {
+    name: "static-copy",
+    apply: "build",
+    closeBundle() {
+      const dist = path.resolve(__dirname, "dist");
+      for (const entry of STATIC_PATHS) {
+        const from = path.resolve(__dirname, entry);
+        if (fs.existsSync(from)) {
+          fs.cpSync(from, path.join(dist, entry), { recursive: true });
+        }
+      }
+      // GitHub Pages würde sonst Jekyll ausführen; damit liefert es
+      // Dateien (vor allem solche mit Unterstrichen) garantiert aus.
+      fs.writeFileSync(path.join(dist, ".nojekyll"), "");
+    },
+  };
+}
+
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [vue(), staticCopy()],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
