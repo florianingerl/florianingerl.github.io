@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, reactive, ref } from "vue";
+import { computed, nextTick, reactive, ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
 import {
 	buildContract,
@@ -29,6 +29,14 @@ const form = reactive({
 
 const generated = ref(false);
 const error = ref("");
+const bodyRef = ref<HTMLElement | null>(null);
+
+watch(generated, async (isReady) => {
+	if (!isReady) return;
+	await nextTick();
+	const el = bodyRef.value;
+	if (el) el.scrollTo({ top: el.scrollHeight, behavior: "smooth" });
+});
 
 const price = computed(() => computePrice(form.subject, form.date));
 const canCompute = computed(() => form.date !== "" && form.subject.trim() !== "");
@@ -97,7 +105,7 @@ function download(format: "pdf" | "doc" | "rtf"): void {
 					></button>
 				</div>
 
-				<div class="contract-body">
+				<div ref="bodyRef" class="contract-body">
 					<div class="mb-3">
 						<label class="form-label" for="contract-date">{{ t('contract.examDate') }}</label>
 						<input id="contract-date" v-model="form.date" type="date" class="form-control" />
