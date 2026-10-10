@@ -1,0 +1,4 @@
+In VueQuiz.vue, can you display the score of the
+user in the following way:
+
+Only the displayedQuestions should be taken into account here:

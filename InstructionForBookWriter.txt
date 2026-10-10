@@ -1,0 +1,58 @@
+I Please write a VueBookWriter.vue component for me !
+At the beginning there should be only one JoditEditor to write the first
+paragraph of the book.
+After this JoditEditor there is a button, and if clicked, a new quiz is added after the first paragraph
+and below the quiz, there should be a button, and if that is clicked another JoditEditor should appear for the
+second paragraph and below that paragraph , another button to add another quiz.
+
+If a JoditEditor looses focus, the respective paragraph should become a <div vhtml="what has just been written in the Jodit editor"></div>
+The paragraph should be either pushed to the paragraphs of the book or updated.
+Next to the <div vhtml="..."></div>, there should be an edit button , and if clicked, the JoditEditor 
+appears once more.
+
+So a book is made up of paragraphs and between those paragraphs there are quizzes.
+
+So how should things be saved in the database ?
+
+type Book {
+    _id: Types.ObjectId,
+    paragraphs: String[],
+    quizzes: Types.ObjectId []
+}
+
+type Quiz {
+    _id: Types.ObjectId,
+    website: String,
+    book: Types.ObjectId ?,
+    language: String //This can also be a Fach(=German), i.e. Mathematik, Spanisch, Französisch, Englisch
+
+}
+
+type Exercise {
+    _id: Types.ObjectId,
+    quiz: Types.ObjectId,
+    language: String //oder Fach
+    topic: Types.ObjectId ?
+}
+
+type Topic {
+    _id: Types.ObjectId,
+    language: String //oder Fach und nicht language
+}
+
+How do you add a quiz inside the Jodit editor ??
+You move the cursor to the position where you want the quiz inserted 
+and you can right-click on the mouse, in the context menu, the option
+add quiz here should appear. If clicked, the Jodit editor should be replaced by
+two <div vthml="..."></div> with a quiz in between of them.
+
+The VueBookWriter.vue component can be part of a book store.
+The book store has a <h1></h1> heading with the name of this book store. (that is 
+a property of this VueComponent, another property is the language).
+Below that all the books for that Language are listed in a DropDown menu.
+
+The book that is selected in the dropdown menu should be displayed in a div with fixed height (e.g 400 px)
+and vertical scrollbars and there should be a button to switch to fullscreen mode (this mode can 
+be left again by pressing Esc) 
+There should be buttons for Adding a new book, editing an existing one or deleting an existing book.
+
