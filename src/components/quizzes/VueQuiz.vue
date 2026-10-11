@@ -594,12 +594,17 @@ async function gespeichert(ex: Exercise): Promise<void> {
   console.log("Exercise to be inserted:");
   console.log(ex);
 
-  if (ex.topic && typeof ex.topic !== "string" && ex.topic._id === undefined) {
-    ex.topic = await createTopic(ex.topic);
-    console.log("Id of the topic is " + ex.topic._id);
-  }
+  // Ein neues Thema (noch ohne _id) wird zuerst angelegt. Erst danach kann die
+  // Aufgabe mit der _id des Themas gespeichert werden.
+  const neuesThema =
+    !!ex.topic && typeof ex.topic !== "string" && ex.topic._id === undefined;
 
   try {
+    if (neuesThema && ex.topic && typeof ex.topic !== "string") {
+      ex.topic = await createTopic(ex.topic);
+      console.log("Id of the topic is " + ex.topic._id);
+    }
+
     const bearbeiten = editMode.value && !!ex._id;
     const neu = bearbeiten
       ? await updateExercise(ex)
@@ -612,8 +617,22 @@ async function gespeichert(ex: Exercise): Promise<void> {
     }
     editMode.value = false;
     formOffen.value = false;
+
+    // Die bisherige Auswahl im Thema-Dropdown merken, damit sie sich beim
+    // Aktualisieren der Liste nicht aendert.
+    const gewaehltesThema = filter.topicId;
+
     // Filter aufheben, kurz warten (der Watcher springt auf 0) und dann zur gespeicherten Frage springen
     filterStore.reset(props.quiz);
+
+    // Wurde ein neues Thema angelegt, die Themenliste erneut aus der Datenbank
+    // laden, damit das neue Thema im Filter-Dropdown erscheint. Es steht am
+    // Ende der Liste. Die Auswahl wird danach wiederhergestellt.
+    if (neuesThema) {
+      topics.value = await getAllTopics(props.quiz);
+      filter.topicId = gewaehltesThema;
+    }
+
     await nextTick();
     i.value = Math.max(
       displayedQuestions.value.findIndex((q) => q._id === neu._id),

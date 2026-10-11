@@ -1,0 +1,13 @@
+When a new exercise with a new topic is created, the new topic
+doesn't show up in the Topics-Filter-Dropdown menu. (But it should show up there! So this is a bug )
+The selection in this Topics-Filter-Dropdown menu should not change, but the last element in the list
+of topics that can be filtered for should be the new topic.
+
+I think in VueQuiz, it reacts to <VueNewExercise @newExerciseCreated="Here, it must be checked whether the topic of the exercise is new! Then this topic must be inserted into the database. And then the Filter-For-Topic-Dropdown-menu needs to be updated. The selection should not change. But the function getTopicsForQuizName( quizName) must be called again to fetch all the topics from the database."></VueNewExercise>
+
+Then please test this behaviour with VueTestUtils and mock the backend server's getTopicsForQuizName function with
+the library MSW. Maybe the MSW server has internally an attribute of Type Topic[] containing originally 3 elements.
+It mocks also the backend server's function addTopic, so the new topic is pushed to the end of the list of topics.
+and getTopicsForQuizName returns that internal array.
+
+Go ahead ! Implement, commit and push !
