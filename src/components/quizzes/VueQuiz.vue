@@ -141,7 +141,7 @@
       </li>
     </ul>
 
-    <div v-show="tab === 'exercise'">
+    <div v-show="tab === 'exercise' && !formOffen">
       <VueExercise
         v-if="aktuelle"
         :key="aktuelle._id ?? i"
