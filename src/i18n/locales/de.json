@@ -231,7 +231,7 @@
     "email": "Email"
   },
   "contract": {
-    "openButton": "Jetzt Vertrag erstellen",
+    "openButton": "Jetzt Vertrag erstellen oder unverbindlich Preis berechnen lassen",
     "dialogTitle": "Alles-oder-Nichts-Paket: Vertrag erstellen",
     "examDate": "Datum der Prüfung",
     "institution": "Schule, Hochschule, Universität oder andere Institution",

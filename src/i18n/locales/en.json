@@ -231,7 +231,7 @@
     "email": "Email"
   },
   "contract": {
-    "openButton": "Create contract now",
+    "openButton": "Create contract now or get a non-binding price quote",
     "dialogTitle": "All-or-nothing package: create contract",
     "examDate": "Date of the exam",
     "institution": "School, college, university or other institution",

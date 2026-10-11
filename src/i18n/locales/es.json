@@ -231,7 +231,7 @@
     "email": "Email"
   },
   "contract": {
-    "openButton": "Crear contrato ahora",
+    "openButton": "Crear contrato ahora o solicitar un presupuesto sin compromiso",
     "dialogTitle": "Paquete todo o nada: crear contrato",
     "examDate": "Fecha del examen",
     "institution": "Escuela, colegio, universidad u otra institución",

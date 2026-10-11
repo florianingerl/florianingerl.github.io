@@ -231,7 +231,7 @@
     "email": "Email"
   },
   "contract": {
-    "openButton": "Créer le contrat maintenant",
+    "openButton": "Créer le contrat maintenant ou obtenir un devis sans engagement",
     "dialogTitle": "Forfait tout ou rien : créer le contrat",
     "examDate": "Date de l'examen",
     "institution": "École, collège, université ou autre institution",
