@@ -359,6 +359,39 @@ function fuelleAufMindestzahl(fragen: FrageAntwort[]): FrageAntwort[] {
   return gefuellt;
 }
 
+// *facile.com ist eine alte ISO-8859-1-Seite. URLSearchParams kodiert Akzente
+// als UTF-8 (%C3%A9 fuer "é"); die Seite liest daraus "Ã©" (Mojibake). Jede
+// Prozentfolge mit einem Byte >= 0x80 wird deshalb aus UTF-8 dekodiert und als
+// ISO-8859-1 neu kodiert. Reine ASCII-Folgen bleiben unveraendert.
+function alsIso8859Formular(urlencoded: string): string {
+  return urlencoded.replace(/(?:%[0-9A-Fa-f]{2})+/g, (lauf) => {
+    const bytes = (lauf.match(/%[0-9A-Fa-f]{2}/g) ?? []).map((b) =>
+      parseInt(b.slice(1), 16),
+    );
+
+    if (bytes.every((b) => b < 0x80)) return lauf;
+
+    let text: string;
+    try {
+      text = decodeURIComponent(lauf);
+    } catch {
+      return lauf;
+    }
+
+    let ergebnis = "";
+    for (const zeichen of text) {
+      const punkt = zeichen.codePointAt(0) ?? 0;
+      // Zeichen ausserhalb ISO-8859-1 kommen auf der Seite nicht vor; sie
+      // bleiben als UTF-8 stehen, damit nichts verloren geht.
+      ergebnis +=
+        punkt <= 0xff
+          ? "%" + punkt.toString(16).toUpperCase().padStart(2, "0")
+          : encodeURIComponent(zeichen);
+    }
+    return ergebnis;
+  });
+}
+
 function baueBody(fragen: FrageAntwort[], testIdNummer: number): string {
   const gefuellt = fuelleAufMindestzahl(fragen);
   const seite = typen.find((x) => x.wert === uebungstyp.value) ?? typen[0];
@@ -396,9 +429,8 @@ function baueBody(fragen: FrageAntwort[], testIdNummer: number): string {
   felder.set("forcer2", "");
   felder.set("enbaspage", "");
   felder.set("enbas", "");
-
-  return felder.toString();
-}
+  return alsIso8859Formular(felder.toString());
+}
 
 // Nur die Aufgaben, die zur gew├ñhlten Testart und zum geladenen Topic passen.
 function filtereNachTestart(): void {
