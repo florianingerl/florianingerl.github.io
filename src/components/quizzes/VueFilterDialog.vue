@@ -17,6 +17,36 @@
         </div>
 
         <div class="mb-3">
+          <span class="form-label fw-semibold d-block">Show exercises:</span>
+
+          <div class="form-check">
+            <input
+              id="scope-quiz"
+              v-model="filter.scope"
+              type="radio"
+              class="form-check-input"
+              value="quiz"
+            />
+            <label for="scope-quiz" class="form-check-label">
+              Only the exercises of this quiz
+            </label>
+          </div>
+
+          <div class="form-check">
+            <input
+              id="scope-subject"
+              v-model="filter.scope"
+              type="radio"
+              class="form-check-input"
+              value="subject"
+            />
+            <label for="scope-subject" class="form-check-label">
+              All exercises for the same subject
+            </label>
+          </div>
+        </div>
+
+        <div class="mb-3">
           <label for="filter-topic" class="form-label fw-semibold">
             Filter for topic:
           </label>

@@ -13,7 +13,18 @@ export interface Book {
   paragraphs: string[];
   // _id der Quizze in der Reihenfolge, in der sie im Buch erscheinen.
   quizzes: string[];
+  // Der Buchladen, zu dem das Buch gehoert.
+  store?: string;
   // _id des Benutzers, der das Buch angelegt hat. Setzt der Server selbst.
+  user?: string;
+}
+
+// Ein Buchladen buendelt die Buecher einer Sprach-/Fachseite.
+export interface BookStore {
+  _id?: string;
+  name: string;
+  subject: string;
+  website: string;
   user?: string;
 }
 

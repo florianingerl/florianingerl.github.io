@@ -5,8 +5,10 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import { API_URL } from "@/api";
 import { server } from "@/mocks/server";
 import { useAuthStore } from "@/stores/auth";
+import { useFilterStore } from "@/stores/filter";
 import type { Exercise, QuizName, Topic, User } from "@/types/quiz";
 import VueNewExercise from "./VueNewExercise.vue";
+import VueExercise from "./VueExercise.vue";
 import VueQuiz from "./VueQuiz.vue";
 
 const QUIZ: QuizName = "english";
@@ -37,6 +39,11 @@ describe("VueQuiz: neues Thema erscheint im Topic-Filter-Dropdown", () => {
     ];
 
     server.use(
+      http.get(`${API_URL}/api/quiz`, () =>
+        HttpResponse.json([
+          { _id: "q1", website: "web", subject: QUIZ, name: QUIZ },
+        ]),
+      ),
       http.get(`${API_URL}/api/topic/:quiz`, () => HttpResponse.json(themen)),
       http.post(`${API_URL}/api/topic`, async ({ request }) => {
         const body = (await request.json()) as Topic;
@@ -97,5 +104,95 @@ describe("VueQuiz: neues Thema erscheint im Topic-Filter-Dropdown", () => {
     expect((wrapper.get("#topicFilter").element as HTMLSelectElement).value).toBe(
       "t2",
     );
+  });
+});
+
+// Aufgaben werden nach dem Fach (subject) geladen und angezeigt. Der Filter
+// "Only the exercises of this quiz" (Voreinstellung) blendet Aufgaben anderer
+// Quizze des Faches aus; "All exercises for the same subject" zeigt sie an.
+describe("VueQuiz: Aufgaben des Faches werden geladen und nach Umfang gefiltert", () => {
+  beforeEach(() => {
+    server.use(
+      http.get(`${API_URL}/api/quiz`, () =>
+        HttpResponse.json([
+          { _id: "q1", website: "web", subject: QUIZ, name: QUIZ },
+        ]),
+      ),
+      http.get(`${API_URL}/api/topic/:quiz`, () =>
+        HttpResponse.json([
+          { _id: "t1", subject: QUIZ, title: "Topic 1", tutorial: "" },
+        ]),
+      ),
+      // Zwei Aufgaben desselben Faches: eine dieses Quizzes (q1), eine eines
+      // anderen Quizzes (q2) desselben Faches.
+      http.get(`${API_URL}/api/exercise`, () =>
+        HttpResponse.json<Exercise[]>([
+          {
+            _id: "e1",
+            quiz: "q1",
+            subject: QUIZ,
+            topic: "t1",
+            type: "gapText",
+            imageUrl: "",
+            instruction: "Fill the gap",
+            gapText: "a {b} c",
+          },
+          {
+            _id: "e2",
+            quiz: "q2",
+            subject: QUIZ,
+            type: "gapText",
+            imageUrl: "",
+            instruction: "Second exercise",
+            gapText: "x {y} z",
+          },
+        ]),
+      ),
+    );
+  });
+
+  async function mountQuiz() {
+    const pinia = createPinia();
+    setActivePinia(pinia);
+    const wrapper = mount(VueQuiz, {
+      props: { quiz: QUIZ, lg: "en" },
+      global: { plugins: [pinia] },
+      shallow: true,
+    });
+    await flushPromises();
+    return wrapper;
+  }
+
+  function aktuellAngezeigt(wrapper: ReturnType<typeof mount>) {
+    return wrapper.findComponent(VueExercise).props("exercise") as Exercise;
+  }
+
+  it("ueberlaesst den Umfang dem Filter", async () => {
+    const wrapper = await mountQuiz();
+
+    // Eine Aufgabe dieses Quizzes ist sichtbar (Voreinstellung "this quiz"),
+    // die des anderen Quizzes ist ausgeblendet. Die Seitenzahl zeigt 1 Aufgabe.
+    expect(aktuellAngezeigt(wrapper)).toMatchObject({ _id: "e1" });
+    expect(wrapper.text()).not.toContain("No questions available.");
+    expect(wrapper.get('input[type="number"]').attributes("max")).toBe("0");
+
+    // Umstellung auf "ganzes Fach" zeigt beide Aufgaben (2 Seiten).
+    const filterStore = useFilterStore();
+    filterStore.filterFor("q1").scope = "subject";
+    await flushPromises();
+
+    expect(wrapper.get('input[type="number"]').attributes("max")).toBe("1");
+
+    // Zur zweiten Aufgabe blattern, es ist die des anderen Quizzes.
+    await wrapper
+      .get('button[title="Next exercise"]')
+      .trigger("click");
+    expect(aktuellAngezeigt(wrapper)).toMatchObject({ _id: "e2" });
+  });
+
+  it("zeigt die Hinweis-Meldung, wenn keine Aufgaben da sind", async () => {
+    server.use(http.get(`${API_URL}/api/exercise`, () => HttpResponse.json([])));
+    const wrapper = await mountQuiz();
+    expect(wrapper.text()).toContain("No questions available.");
   });
 });

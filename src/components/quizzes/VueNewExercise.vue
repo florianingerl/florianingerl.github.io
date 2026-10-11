@@ -236,6 +236,7 @@ const emit = defineEmits<{
 
 const exercise = ref<Exercise>({
   quiz: props.quiz,
+  subject: props.subject,
   type: 'gapText',
   imageUrl: 'assets/img/spanisch/bonitamuyer.jpg',
   instruction: '',
@@ -262,9 +263,10 @@ let page = 1
 
 function addNewTopicClicked(){
   let topic: Topic = { 
-    subject: props.subject ?? props.quiz,
+    subject: props.subject ?? (props.quiz || ''),
     title: newTopic.value,
-    tutorial: '' 
+    tutorial: '' ,
+    quiz: props.quiz || undefined,
   };
 
   exercise.value.topic = topic;
@@ -371,7 +373,12 @@ onMounted(async () => {
   if (!props.questionOfQuiz) return
   // Beim Bearbeiten wird die Frage mit ihrer _id übernommen, beim Anlegen nur als Vorlage ohne _id
   const { _id, correctlyAnswered: _ca, gaps: _g, guessedSentences: _gs, wordorder: _wo, ...vorlage } = props.questionOfQuiz
-  exercise.value = { ...vorlage, quiz: props.quiz, ...(props.editMode ? { _id } : {}) }
+  exercise.value = {
+    ...vorlage,
+    quiz: props.quiz,
+    subject: props.subject ?? vorlage.subject,
+    ...(props.editMode ? { _id } : {}),
+  }
   allOptions.value = (props.questionOfQuiz.options ?? []).map((o) => o.option)
   if (props.questionOfQuiz.sentences?.length) {
     sentences.value = props.questionOfQuiz.sentences.map((s) => ({ ...s }))

@@ -1,6 +1,6 @@
 import axios from "axios";
 import type { Topic, Exercise, QuizName, Quiz, User } from "@/types/quiz";
-import type { Book } from "@/types/book";
+import type { Book, BookStore } from "@/types/book";
 import { getToken } from "@/authToken";
 
 export const API_URL = import.meta.env.VITE_API_URL ?? "http://localhost:8080";
@@ -88,16 +88,36 @@ export async function getAllTopics(quiz: QuizName | string): Promise<Topic[]> {
 }
 
 // "quiz" ist der Name eines Website-Quizzes (z.B. "deutsch") oder die _id
-// eines Buch-Quizzes. Der Server unterscheidet beides selbst.
-export async function getExercises(quiz: QuizName | string): Promise<Exercise[]> {
-  const r = await client.get<Exercise[]>(`/api/exercise`, { params: { quiz } });
+// eines Buch-Quizzes; "subject" ist eine Sprache oder ein Fach (z.B.
+// "deutsch", "nutrition"). Der Server entscheidet selbst, wonach gefiltert
+// wird: Mit "subject" kommen alle Aufgaben des Faches, mit "quiz" nur die
+// Aufgaben dieses Quizzes.
+export async function getExercises(
+  quiz?: QuizName | string,
+  subject?: string,
+): Promise<Exercise[]> {
+  const params: Record<string, string> = {};
+  if (quiz) params.quiz = quiz;
+  if (subject) params.subject = subject;
+  const r = await client.get<Exercise[]>(`/api/exercise`, { params });
   return r.data;
+}
+
+// Liefert alle Aufgaben eines Faches (Sprache/Fach), nicht nur die eines
+// einzelnen Quizzes.
+export async function getExercisesBySubject(
+  subject: string,
+): Promise<Exercise[]> {
+  return getExercises(undefined, subject);
 }
 
 // Liefert alle Aufgaben des Quizzes. Das Topic wird bewusst nicht mitgeschickt,
 // sondern im Frontend gefiltert.
-export async function getAllExercises(quiz: QuizName | string): Promise<Exercise[]> {
-  return getExercises(quiz);
+export async function getAllExercises(
+  quiz?: QuizName | string,
+  subject?: string,
+): Promise<Exercise[]> {
+  return getExercises(quiz, subject);
 }
 
 // Antwort des eigenen Servers, wenn er den Export an *facile.com weitergeleitet hat.
@@ -181,8 +201,34 @@ export async function getQuiz(id: string): Promise<Quiz> {
   return r.data;
 }
 
+// Das Website-Quiz zu einer Sprache/einem Fach (z.B. "deutsch"). Damit erfaehrt
+// der Browser die _id des Quizzes, um zwischen "alle Aufgaben des Faches" und
+// "nur Aufgaben dieses Quizzes" unterscheiden zu koennen.
+export async function getQuizByName(
+  subject: string,
+): Promise<Quiz | undefined> {
+  const r = await client.get<Quiz[]>(`/api/quiz`, {
+    params: { website: "web", subject },
+  });
+  return r.data[0];
+}
+
 export async function createQuiz(quiz: Quiz): Promise<Quiz> {
   const r = await client.post<Quiz>(`/api/quiz`, quiz);
+  return r.data;
+}
+
+// Buchlaeden (VueBookStore) ----------------------------------------
+
+export async function getBookStores(subject: string): Promise<BookStore[]> {
+  const r = await client.get<BookStore[]>(`/api/bookstore`, {
+    params: { subject },
+  });
+  return r.data;
+}
+
+export async function createBookStore(store: BookStore): Promise<BookStore> {
+  const r = await client.post<BookStore>(`/api/bookstore`, store);
   return r.data;
 }
 

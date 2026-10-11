@@ -281,7 +281,9 @@ import {
   createExercise,
   deleteExercise,
   getExercises,
+  getExercisesBySubject,
   getQuiz,
+  getQuizByName,
   istNichtAngemeldet,
   updateExercise,
   getAllTopics,
@@ -316,29 +318,33 @@ const dialog = ref<DialogArt | null>(null);
 const loginEmail = ref<string>("");
 
 // Filter der Aufgaben. Die Werte liegen im Store, damit sie den Dialog
-// ueberleben und pro Quiz getrennt gespeichert sind. Bei einem Buch-Quizz
-// dient die Sprache des Quiz als Schluessel, bis das Quiz geladen ist.
+// ueberleben und pro Quiz getrennt gespeichert sind. Der Schluessel ist bei
+// einem Buch-Quizz dessen _id, sonst der Name des Website-Quizzes.
 const filterStore = useFilterStore();
-const quizSchluessel = ref<string>(props.quiz ?? "");
+const quizSchluessel = ref<string>(props.quizId ?? props.quiz ?? "");
 const filter = computed(() => filterStore.filterFor(quizSchluessel.value));
 
-// Das geladene Buch-Quizz (nur wenn quizId gesetzt ist).
+// Das geladene Quiz-Dokument. Bei einem Buch-Quizz steckt es hinter der quizId,
+// bei einem Website-Quizz wird es ueber sein Fach (props.quiz) nachgeschlagen.
 const geladenesQuiz = ref<Quiz | null>(null);
 
+// Sprache oder Fach des angezeigten Quizzes (z.B. "deutsch", "nutrition").
+const subject = computed(() => geladenesQuiz.value?.subject ?? props.quiz ?? "");
+// Die _id des angezeigten Quizzes, wenn bekannt. Sie entscheidet beim Filter
+// "Only the exercises of this quiz" darueber, welche Aufgaben zu diesem Quiz
+// gehoeren.
+const currentQuizId = computed(
+  () => geladenesQuiz.value?._id ?? props.quizId ?? "",
+);
+
 // Womit das Formular neue Aufgaben speichert bzw. welche Themen es anbietet:
-// bei einem Buch-Quizz die _id bzw. die Sprache des Quiz, sonst der Quiz-Name.
-const formQuiz = computed(() =>
-  props.quizId ? geladenesQuiz.value?._id ?? props.quizId : props.quiz ?? "",
-);
-const formSubject = computed(() =>
-  props.quizId ? geladenesQuiz.value?.language ?? "" : props.quiz ?? "",
-);
-// Von wo Themen und Aufgaben geladen werden.
-const topicsVon = computed(() =>
-  props.quizId ? geladenesQuiz.value?.language ?? "" : props.quiz ?? "",
-);
-const exercisesVon = computed(() => props.quizId ?? props.quiz ?? "");
-// Der Export gibt es nur fuer die Website-Quizze.
+// die _id des Quizzes (Website- und Buch-Quizz), sonst dessen Name.
+const formQuiz = computed(() => currentQuizId.value || props.quiz || "");
+const formSubject = computed(() => subject.value);
+// Von wo Themen geladen werden: alle Themen des Faches.
+const topicsVon = computed(() => subject.value);
+// Der Export gibt es nur fuer die Website-Quizze. Von dort werden die Aufgaben
+// ueber den Quiz-Namen nachgeschlagen.
 const exportQuiz = computed<QuizName>(() => props.quiz ?? "deutsch");
 
 // Zustand
@@ -440,17 +446,25 @@ function norm(s: string): string {
   return filter.value.caseSensitive ? s : s.toLowerCase();
 }
 
-// Frontend-Filterung: Theme, Ersteller und Suchwort werden hier angewandt.
+// Frontend-Filterung: Quiz-Umfang ("nur dieses Quiz" oder "ganzes Fach"),
+// Theme, Ersteller und Suchwort werden hier angewandt.
 const displayedQuestions = computed<Exercise[]>(() =>
   questions.value.filter((q) => {
-    if (filter.value.topicId) {
-      const id = typeof q.topic === "string" ? q.topic : q.topic?._id;
-      if (id !== filter.value.topicId) return false;
+    const f = filter.value;
+    // Ohne bekannte Quiz-_id (z.B. noch nicht migrierte Daten) entfaellt die
+    // Einschraenkung auf dieses Quiz, damit weiterhin Aufgaben zu sehen sind.
+    if (f.scope === "quiz" && currentQuizId.value) {
+      const quizId = typeof q.quiz === "string" ? q.quiz : q.quiz?._id;
+      if (quizId !== currentQuizId.value) return false;
     }
-    if (filter.value.creator && q.user !== filter.value.creator) return false;
+    if (f.topicId) {
+      const id = typeof q.topic === "string" ? q.topic : q.topic?._id;
+      if (id !== f.topicId) return false;
+    }
+    if (f.creator && q.user !== f.creator) return false;
     if (
-      filter.value.word &&
-      !suchTexte(q).some((s) => norm(s).includes(norm(filter.value.word)))
+      f.word &&
+      !suchTexte(q).some((s) => norm(s).includes(norm(f.word)))
     )
       return false;
     return true;
@@ -530,6 +544,7 @@ function gehZu(e: Event): void {
 // Tutorial der neuen aktuellen Aufgabe nachladen.
 watch(
   () => [
+    filter.value.scope,
     filter.value.topicId,
     filter.value.creator,
     filter.value.word,
@@ -590,22 +605,29 @@ onMounted(async () => {
   // Eine auf der letzten Seite begonnene Anmeldung fortsetzen.
   auth.sitzungWiederherstellen();
 
-  // Bei einem Buch-Quizz zuerst das Quiz-Dokument laden; daraus kommen die
-  // Sprache (fuer die Themen) und der Filter-Schluessel.
+  // Zuerst das Quiz-Dokument laden: Bei einem Buch-Quizz ueber seine _id, bei
+  // einem Website-Quizz ueber sein Fach. Daraus kommen die Sprache/fach (fuer
+  // die Themen und Aufgaben) und die _id (fuer den Filter "nur dieses Quiz").
   if (props.quizId) {
     try {
       geladenesQuiz.value = await getQuiz(props.quizId);
-      quizSchluessel.value = geladenesQuiz.value?.language ?? props.quizId;
+    } catch (e) {
+      fehler.value = `Das Quiz konnte nicht geladen werden (${(e as Error).message}). Läuft das Backend unter ${API_URL}?`;
+    }
+  } else if (props.quiz) {
+    try {
+      geladenesQuiz.value = (await getQuizByName(props.quiz)) ?? null;
     } catch (e) {
       fehler.value = `Das Quiz konnte nicht geladen werden (${(e as Error).message}). Läuft das Backend unter ${API_URL}?`;
     }
   }
+  quizSchluessel.value = props.quizId ?? currentQuizId.value ?? props.quiz ?? "";
 
   try {
     topics.value = await getAllTopics(topicsVon.value);
 
     console.log(
-      "Here are all the topics from the database for quiz " + topicsVon.value
+      "Here are all the topics from the database for subject " + topicsVon.value
     );
     console.log(topics.value);
   } catch (e) {
@@ -613,7 +635,11 @@ onMounted(async () => {
   }
 
   try {
-    questions.value = await getExercises(exercisesVon.value);
+    // Alle Aufgaben des Faches laden; der Filter entscheidet danach, ob nur die
+    // Aufgaben dieses Quizzes uebrig bleiben.
+    questions.value = subject.value
+      ? await getExercisesBySubject(subject.value)
+      : await getExercises(props.quiz);
     console.log(questions.value);
   } catch (e) {
     fehler.value = `Fragen konnten nicht geladen werden (${(e as Error).message}). Läuft das Backend unter ${API_URL}?`;

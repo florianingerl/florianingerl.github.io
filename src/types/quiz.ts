@@ -59,18 +59,19 @@ export interface WordOrderSentence {
 
 export interface Topic {
   _id?: string ;
-  // Sprache oder Fach, z.B. "deutsch" oder "Mathematik". Frueher hiess das
-  // Feld "quiz", deshalb ist der URL-Parameter der API unveraendert geblieben.
+  // Sprache oder Fach, z.B. "deutsch" oder "Mathematik".
   subject: string,
   tutorial: string,
   title: string,
+  // Das Quiz, in dem das Thema angelegt wurde (dessen _id).
+  quiz?: string,
   // _id des Benutzers, der das Topic angelegt hat. Der Server setzt das beim
   // Speichern selbst, es kann also nicht veraendert werden.
   user?: string
 }
 
 // Ein Quiz gehoert zu einer Website ("web", die Sprach-/Fachseiten) oder zu
-// einem Buch ("book"). Die Website-Quizze heissen wie ihre Seite ("french",
+// einem Buch ("book"). Die Website-Quizze heissen wie ihr Fach ("french",
 // "english", "deutsch", ...); ein Buch-Quizz haengt an einem Buch und an einer
 // Sprache oder einem Fach.
 export interface Quiz {
@@ -80,8 +81,8 @@ export interface Quiz {
   book?: string;
   // Anzeige-Name, z.B. "Wortschatz: Sterne".
   name?: string;
-  // Sprache oder Fach, z.B. "deutsch" oder "Mathematik".
-  language: string;
+  // Sprache oder Fach, z.B. "deutsch" oder "Mathematik". Freier String.
+  subject: string;
   // _id des Benutzers, der das Quiz angelegt hat. Setzt der Server selbst.
   user?: string;
 }
@@ -104,7 +105,7 @@ export interface Exercise {
   // Name). Aufgaben eines Buch-Quizzes zeigen auf die _id des Buch-Quizzes.
   quiz: string | Quiz;
   // Sprache oder Fach, z.B. "deutsch". Setzt der Server aus dem Quiz.
-  language?: string;
+  subject?: string;
   type: ExerciseType;
   imageUrl: string;
   topic?: Topic | string; //It's either the id of the topic or the topic itsself

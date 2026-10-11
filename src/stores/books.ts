@@ -65,7 +65,7 @@ export const useBookStore = defineStore("books", () => {
   // bekommt das Quiz trotzdem eine lokale Id, damit es im Editor angezeigt
   // werden kann.
   async function neuesQuiz(subject: string, bookId?: string): Promise<Quiz> {
-    const entwurf: Quiz = { website: "book", book: bookId, language: subject };
+    const entwurf: Quiz = { website: "book", book: bookId, subject };
     try {
       const quiz = await createQuiz(entwurf);
       quizNachladen(quiz);

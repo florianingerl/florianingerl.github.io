@@ -4,6 +4,9 @@ import { defineStore } from "pinia";
 // Filterkriterien fuer die Anzeige der Aufgaben eines Quizzes. Die Filterung
 // selbst erfolgt im Frontend (siehe displayedQuestions in VueQuiz.vue).
 export interface QuizFilter {
+  // "quiz" = nur Aufgaben dieses Quizzes, "subject" = alle Aufgaben desselben
+  // Faches (Sprache/Fach). Voreinstellung ist "quiz".
+  scope: "quiz" | "subject";
   // _id des Topics oder "" fuer alle Topics
   topicId: string;
   // _id des Benutzers, der die Aufgabe erstellt hat, oder "" fuer alle
@@ -21,6 +24,7 @@ export const useFilterStore = defineStore("filter", () => {
   function filterFor(quiz: string): QuizFilter {
     if (!filters[quiz]) {
       filters[quiz] = {
+        scope: "quiz",
         topicId: "",
         creator: "",
         word: "",
@@ -32,6 +36,7 @@ export const useFilterStore = defineStore("filter", () => {
 
   function reset(quiz: string): void {
     const f = filterFor(quiz);
+    f.scope = "quiz";
     f.topicId = "";
     f.creator = "";
     f.word = "";
