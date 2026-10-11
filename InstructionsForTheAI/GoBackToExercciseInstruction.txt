@@ -1,0 +1,22 @@
+I want the following functionality: 
+When I have answered a gapText exercise , 
+then switch to another exercise, and then go back , 
+the gaps for this exercise should still be filled ! 
+So when returning to the exercise, it must be: 
+validated.value = props.exercise.correctlyAnswered !== undefined; 
+props.exercise.correctlyAnswered should have its old value (which is 
+already implemented correctly I think ).
+
+I think that the gaps array of type Gap[] must be saved within the exercise !
+So the type Exercise in types.ts must get an additional field gaps of type Gap[]? (so this field can be undefined,
+in fact, it is undefined as long as the exercise hasn't been parsed yet) This field should of course not!!! come into the database !
+
+So I think that it might be possible to get rid of the reactive property gaps in VueMCGaps
+and instead just have props.exercise.value.gaps and work with that.
+
+If the gapText from the database is already parsed, no need to do it again. So on the very top of the
+function parseGapText in VueMCGaps.vue 
+we could write
+if( props.exercise.value.gaps ){
+    return;
+}

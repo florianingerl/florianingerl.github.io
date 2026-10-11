@@ -1,0 +1,12 @@
+I want the exercise validated if everything is correct once the
+the last letter of the correct solution has been typed or pasted into the gap.
+
+Currently @change is only executed, when Enter is pressed while in the text box.
+
+I want line 22 of MCGaps replaced by something like
+
+@input = "(event : Event) {  const input = event.target as HTMLInputElement; gap.guess = input.value; onInputChanged(); }"
+
+but I am not sure whether this would compile.
+
+Can you implement the functionality for me one way or another !
