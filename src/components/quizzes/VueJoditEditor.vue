@@ -58,6 +58,12 @@ onBeforeUnmount(() => {
   editor?.destruct()
   editor = null
 })
+
+// Zugriff auf die Jodit-Instanz, z.B. um den Text an der Cursor-Position zu
+// teilen (siehe VueBookWriter.vue).
+defineExpose({
+  getEditor: () => editor,
+})
 </script>
 
 <style scoped>

@@ -1,5 +1,6 @@
 import axios from "axios";
 import type { Topic, Exercise, QuizName, User } from "@/types/quiz";
+import type { Book, BookExercise, BookQuiz, BookTopic } from "@/types/book";
 import { getToken } from "@/authToken";
 
 export const API_URL = import.meta.env.VITE_API_URL ?? "http://localhost:8080";
@@ -135,6 +136,62 @@ export async function updateExercise(e: Exercise): Promise<Exercise> {
 
 export async function deleteExercise(id: string): Promise<void> {
   await client.delete(`/api/exercise/${encodeURIComponent(id)}`);
+}
+
+// Buecher (VueBookWriter / VueBookStore) ---------------------------
+
+export async function getBooks(subject: string): Promise<Book[]> {
+  const r = await client.get<Book[]>(`/api/book`, { params: { subject } });
+  return r.data;
+}
+
+export async function getBook(id: string): Promise<Book> {
+  const r = await client.get<Book>(`/api/book/${encodeURIComponent(id)}`);
+  return r.data;
+}
+
+export async function createBook(book: Book): Promise<Book> {
+  const r = await client.post<Book>(`/api/book`, book);
+  return r.data;
+}
+
+export async function updateBook(book: Book): Promise<Book> {
+  if (!book._id) throw new Error("updateBook: _id fehlt");
+  const r = await client.put<Book>(
+    `/api/book/${encodeURIComponent(book._id)}`,
+    book,
+  );
+  return r.data;
+}
+
+export async function deleteBook(id: string): Promise<void> {
+  await client.delete(`/api/book/${encodeURIComponent(id)}`);
+}
+
+export async function getBookQuiz(id: string): Promise<BookQuiz> {
+  const r = await client.get<BookQuiz>(
+    `/api/bookquiz/${encodeURIComponent(id)}`,
+  );
+  return r.data;
+}
+
+export async function createBookQuiz(quiz: BookQuiz): Promise<BookQuiz> {
+  const r = await client.post<BookQuiz>(`/api/bookquiz`, quiz);
+  return r.data;
+}
+
+export async function getBookExercises(quizId: string): Promise<BookExercise[]> {
+  const r = await client.get<BookExercise[]>(`/api/bookexercise`, {
+    params: { quiz: quizId },
+  });
+  return r.data;
+}
+
+export async function getBookTopics(subject: string): Promise<BookTopic[]> {
+  const r = await client.get<BookTopic[]>(`/api/booktopic`, {
+    params: { subject },
+  });
+  return r.data;
 }
 
 // Anmeldung -------------------------------------------------------
