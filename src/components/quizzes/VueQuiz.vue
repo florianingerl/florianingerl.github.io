@@ -236,7 +236,6 @@
     <!-- Ist ein Dialog offen, ist die restliche Oberflaeche unsichtbar. -->
     <VueSignUp
       v-else-if="dialog === 'signup'"
-      dialog
       @signed-up="nachRegistrierung"
       @cancel-clicked="dialog = null"
     />

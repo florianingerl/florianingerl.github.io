@@ -194,11 +194,12 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
   // Falls die Komponente (z.B. nach erfolgreicher Anmeldung) entfernt wird,
-  // waehrend das Modal noch offen ist, Reste von Bootstrap aufraeumen.
+  // waehrend das Modal noch offen ist, nur das eigene Backdrop aufraeumen.
   modal?.dispose()
   modal = null
-  document.body.classList.remove('modal-open')
-  document.querySelectorAll('.modal-backdrop').forEach((el) => el.remove())
+  if (!document.querySelector('.modal.show')) {
+    document.body.classList.remove('modal-open')
+  }
 })
 
 function clearErrors(): void {

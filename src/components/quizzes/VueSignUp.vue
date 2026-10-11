@@ -1,156 +1,179 @@
-<!-- VueSignUp.vue -->
+<!-- Registrierdialog als Bootstrap-Modal. Er wird geoeffnet, sobald die
+     Komponente eingebunden ist, und meldet ueber "cancel-clicked", wenn er
+     geschlossen wird. Nach erfolgreicher Registrierung wird "signed-up"
+     gemeldet, damit der Aufrufer den Login-Dialog zeigen kann. -->
 <template>
-  <div
-    class="d-flex align-items-center justify-content-center"
-    :class="dialog ? 'auth-dialog' : 'signup-page min-vh-100'"
-  >
-    <div class="card signup-card border-0 shadow-lg">
-      <div class="card-body p-4 p-md-5">
-        <div class="text-center mb-4">
-          <div class="signup-icon mx-auto mb-3">
-            <i class="bi bi-person-plus-fill"></i>
-          </div>
-
-          <h1 class="h3 fw-bold mb-2">Create your account</h1>
-          <p class="text-muted mb-0">
-            Sign up with your name, email and password.
-          </p>
-        </div>
-
-        <form @submit.prevent="submitForm" novalidate>
-          <div class="mb-3">
-            <label for="name" class="form-label fw-semibold">
-              Name
-            </label>
-
-            <div class="input-group">
-              <span class="input-group-text bg-light">
-                <i class="bi bi-person"></i>
-              </span>
-
-              <input
-                id="name"
-                v-model.trim="form.name"
-                type="text"
-                class="form-control"
-                :class="{ 'is-invalid': errors.name }"
-                placeholder="Your name"
-                autocomplete="name"
-                required
-              />
-
-              <div v-if="errors.name" class="invalid-feedback">
-                {{ errors.name }}
-              </div>
-            </div>
-          </div>
-
-          <div class="mb-3">
-            <label for="email" class="form-label fw-semibold">
-              Email address
-            </label>
-
-            <div class="input-group">
-              <span class="input-group-text bg-light">
-                <i class="bi bi-envelope"></i>
-              </span>
-
-              <input
-                id="email"
-                v-model.trim="form.email"
-                type="email"
-                class="form-control"
-                :class="{ 'is-invalid': errors.email }"
-                placeholder="you@example.com"
-                autocomplete="email"
-                required
-              />
-
-              <div v-if="errors.email" class="invalid-feedback">
-                {{ errors.email }}
-              </div>
-            </div>
-          </div>
-
-          <div class="mb-4">
-            <label for="password" class="form-label fw-semibold">
-              Password
-            </label>
-
-            <div class="input-group">
-              <span class="input-group-text bg-light">
-                <i class="bi bi-lock"></i>
-              </span>
-
-              <input
-                id="password"
-                v-model="form.password"
-                :type="showPassword ? 'text' : 'password'"
-                class="form-control"
-                :class="{ 'is-invalid': errors.password }"
-                placeholder="Your password"
-                autocomplete="new-password"
-                required
-              />
-
-              <button
-                type="button"
-                class="btn btn-outline-secondary"
-                :aria-label="showPassword ? 'Hide password' : 'Show password'"
-                @click="showPassword = !showPassword"
-              >
-                <i :class="showPassword ? 'bi bi-eye-slash' : 'bi bi-eye'"></i>
-              </button>
-
-              <div v-if="errors.password" class="invalid-feedback">
-                {{ errors.password }}
-              </div>
-            </div>
-          </div>
-
-          <div v-if="errorMessage" class="alert alert-danger" role="alert">
-            <i class="bi bi-exclamation-triangle me-2"></i>
-            {{ errorMessage }}
-          </div>
-
-          <div v-if="successMessage" class="alert alert-success" role="alert">
-            <i class="bi bi-check-circle me-2"></i>
-            {{ successMessage }}
-          </div>
-
-          <div class="d-flex gap-2">
-            <button
-              type="submit"
-              class="btn btn-primary flex-fill py-2 fw-semibold"
-              :disabled="isSubmitting"
-            >
-              <span
-                v-if="isSubmitting"
-                class="spinner-border spinner-border-sm me-2"
-                aria-hidden="true"
-              ></span>
-
-              {{ isSubmitting ? 'Creating account...' : 'Create account' }}
-            </button>
+  <Teleport to="body">
+    <div
+      ref="dialog"
+      class="modal fade"
+      id="signupModal"
+      tabindex="-1"
+      aria-labelledby="signupModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="signupModalLabel">
+              Create your account
+            </h1>
 
             <button
-              v-if="dialog"
               type="button"
-              class="btn btn-outline-secondary py-2 fw-semibold"
-              :disabled="isSubmitting"
-              @click="emit('cancel-clicked')"
-            >
-              Cancel
-            </button>
+              class="btn-close"
+              aria-label="Close"
+              @click="schliessen"
+            ></button>
           </div>
-        </form>
+
+          <div class="modal-body">
+            <div class="text-center mb-4">
+              <div class="signup-icon mx-auto mb-3">
+                <i class="bi bi-person-plus-fill"></i>
+              </div>
+
+              <p class="text-muted mb-0">
+                Sign up with your name, email and password.
+              </p>
+            </div>
+
+            <form @submit.prevent="submitForm" novalidate>
+              <div class="mb-3">
+                <label for="name" class="form-label fw-semibold">
+                  Name
+                </label>
+
+                <div class="input-group">
+                  <span class="input-group-text bg-light">
+                    <i class="bi bi-person"></i>
+                  </span>
+
+                  <input
+                    id="name"
+                    v-model.trim="form.name"
+                    type="text"
+                    class="form-control"
+                    :class="{ 'is-invalid': errors.name }"
+                    placeholder="Your name"
+                    autocomplete="name"
+                    required
+                  />
+
+                  <div v-if="errors.name" class="invalid-feedback">
+                    {{ errors.name }}
+                  </div>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label for="email" class="form-label fw-semibold">
+                  Email address
+                </label>
+
+                <div class="input-group">
+                  <span class="input-group-text bg-light">
+                    <i class="bi bi-envelope"></i>
+                  </span>
+
+                  <input
+                    id="email"
+                    v-model.trim="form.email"
+                    type="email"
+                    class="form-control"
+                    :class="{ 'is-invalid': errors.email }"
+                    placeholder="you@example.com"
+                    autocomplete="email"
+                    required
+                  />
+
+                  <div v-if="errors.email" class="invalid-feedback">
+                    {{ errors.email }}
+                  </div>
+                </div>
+              </div>
+
+              <div class="mb-4">
+                <label for="password" class="form-label fw-semibold">
+                  Password
+                </label>
+
+                <div class="input-group">
+                  <span class="input-group-text bg-light">
+                    <i class="bi bi-lock"></i>
+                  </span>
+
+                  <input
+                    id="password"
+                    v-model="form.password"
+                    :type="showPassword ? 'text' : 'password'"
+                    class="form-control"
+                    :class="{ 'is-invalid': errors.password }"
+                    placeholder="Your password"
+                    autocomplete="new-password"
+                    required
+                  />
+
+                  <button
+                    type="button"
+                    class="btn btn-outline-secondary"
+                    :aria-label="showPassword ? 'Hide password' : 'Show password'"
+                    @click="showPassword = !showPassword"
+                  >
+                    <i :class="showPassword ? 'bi bi-eye-slash' : 'bi bi-eye'"></i>
+                  </button>
+
+                  <div v-if="errors.password" class="invalid-feedback">
+                    {{ errors.password }}
+                  </div>
+                </div>
+              </div>
+
+              <div v-if="errorMessage" class="alert alert-danger" role="alert">
+                <i class="bi bi-exclamation-triangle me-2"></i>
+                {{ errorMessage }}
+              </div>
+
+              <div v-if="successMessage" class="alert alert-success" role="alert">
+                <i class="bi bi-check-circle me-2"></i>
+                {{ successMessage }}
+              </div>
+
+              <div class="d-flex gap-2">
+                <button
+                  type="submit"
+                  class="btn btn-primary flex-fill py-2 fw-semibold"
+                  :disabled="isSubmitting"
+                >
+                  <span
+                    v-if="isSubmitting"
+                    class="spinner-border spinner-border-sm me-2"
+                    aria-hidden="true"
+                  ></span>
+
+                  {{ isSubmitting ? 'Creating account...' : 'Create account' }}
+                </button>
+
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary py-2 fw-semibold"
+                  :disabled="isSubmitting"
+                  @click="schliessen"
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+  </Teleport>
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from 'vue'
+import { onBeforeUnmount, onMounted, reactive, ref } from 'vue'
+import { Modal } from 'bootstrap'
 import { fehlerText } from '@/api'
 import { useAuthStore } from '@/stores/auth'
 
@@ -166,16 +189,6 @@ interface FormErrors {
   password: string
 }
 
-// true, wenn das Formular als Dialog in der Quiz-Oberflaeche erscheint.
-const props = withDefaults(
-  defineProps<{
-    dialog?: boolean
-  }>(),
-  {
-    dialog: false
-  }
-)
-
 const emit = defineEmits<{
   // Wird nach einem erfolgreichen Registrieren ausgeloest, damit der Aufrufer
   // den Login-Dialog anzeigen kann.
@@ -184,6 +197,9 @@ const emit = defineEmits<{
 }>()
 
 const auth = useAuthStore()
+
+const dialog = ref<HTMLElement | null>(null)
+let modal: Modal | null = null
 
 const form = reactive<SignUpForm>({
   name: '',
@@ -201,6 +217,29 @@ const isSubmitting = ref<boolean>(false)
 const showPassword = ref<boolean>(false)
 const errorMessage = ref<string>('')
 const successMessage = ref<string>('')
+
+// Schliesst das Modal. Danach wird "hidden.bs.modal" ausgeloest und
+// "cancel-clicked" gemeldet.
+function schliessen(): void {
+  modal?.hide()
+}
+
+onMounted(() => {
+  if (!dialog.value) return
+  modal = Modal.getOrCreateInstance(dialog.value)
+  dialog.value.addEventListener('hidden.bs.modal', () => emit('cancel-clicked'))
+  modal.show()
+})
+
+onBeforeUnmount(() => {
+  // Falls die Komponente (z.B. nach erfolgreicher Registrierung) entfernt wird,
+  // waehrend das Modal noch offen ist, nur das eigene Backdrop aufraeumen.
+  modal?.dispose()
+  modal = null
+  if (!document.querySelector('.modal.show')) {
+    document.body.classList.remove('modal-open')
+  }
+})
 
 function clearErrors(): void {
   errors.name = ''
@@ -257,8 +296,7 @@ async function submitForm(): Promise<void> {
     form.name = ''
     form.password = ''
     // Die E-Mail-Adresse bleibt stehen, damit sie im Login-Dialog uebernommen
-    // werden kann. Auf einer eigenen Seite ist das Formular danach leer.
-    if (!props.dialog) form.email = ''
+    // werden kann.
 
     emit('signed-up', email)
   } catch (error: unknown) {
@@ -269,26 +307,7 @@ async function submitForm(): Promise<void> {
 }
 </script>
 
-
 <style scoped>
-.signup-page {
-  background:
-    linear-gradient(135deg, rgba(13, 110, 253, 0.12), transparent 50%),
-    #f8f9fa;
-  padding: 1rem;
-}
-
-/* Als Dialog gibt es keinen Hintergrund und keine randlose Hoehe. */
-.auth-dialog {
-  padding: 1rem;
-}
-
-.signup-card {
-  width: 100%;
-  max-width: 440px;
-  border-radius: 1rem;
-}
-
 .signup-icon {
   width: 64px;
   height: 64px;
