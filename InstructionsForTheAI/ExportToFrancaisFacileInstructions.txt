@@ -271,4 +271,42 @@ and please create an own VueComponent for the modal dialog that should appear. T
 should also come into this VueComponent.
 
 
+A multiple choice exercise where the question contains a gap 
+(at least three underscores directly next to each other is considered to be a gap)
+must be transformed as follows when uploaded to facile:
+
+Example:
+Exercise from database:
+
+{
+  _id: ObjectId('6ac8805a1edf92aad186b028'),
+  quiz: 'italiano',
+  type: 'multipleChoice',
+  imageUrl: 'https://static.klipy.com/ii/8ce8357c78ea940b9c2015daf05ce1a5/d6/02/YVqhkt0dHHFda.jpg',
+  topic: ObjectId('6ac87abc129c961fee86b01d'),
+  user: ObjectId('6ac13ec8ad4b9e599155b16e'),
+  instruction: 'Scegli la congiunzione giusta!',
+  options: [
+    {
+      option: 'anzi',
+      correct: true
+    },
+    {
+      option: 'quindi',
+      correct: false
+    },
+    {
+      option: 'sebbene',
+      correct: false
+    }
+  ],
+  createdAt: ISODate('2026-10-09T05:49:14.269Z'),
+  updatedAt: ISODate('2026-10-10T12:58:42.319Z'),
+  __v: NumberInt('0'),
+  question: 'Non è triste. ___, è molto felice del regalo.'
+}
+
+Has to become when exported to facile:
+q = Non è triste. *, è molto felice del regalo.
+r = anzi|quindi|sebbene if it's "Plusieurs réponses differents pour chaque question" and r = anzi if it's "Test à trou" or "Test avec plusieurs réponses identiques"
 

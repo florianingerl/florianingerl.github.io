@@ -349,9 +349,20 @@ function optionenMitRichtigerVorne(ex: Exercise): string[] {
 
 function frageAntwortBauen(ex: Exercise): FrageAntwort | null {
   if (ex.type === "multipleChoice") {
-    const text = ohneLuecken(ex.question ?? ex.gapText ?? "");
+    const frage = ex.question ?? ex.gapText ?? "";
+    const text = ohneLuecken(frage);
     if (text === "") return null;
-    return { q: alsBild(ex) + text, r: optionenMitRichtigerVorne(ex).join("|") };
+    // Enthaelt die Frage eine Luecke (mindestens drei Unterstriche), dann steht
+    // bei "Test avec les mêmes options" (1.3) nur die richtige Antwort im Feld
+    // r; sonst (1.2) stehen alle Optionen darin, die richtige zuerst.
+    const antwort =
+      uebungstyp.value !== "optionsDifferents" && /_{3,}/.test(frage)
+        ? (ex.options ?? [])
+            .filter((o) => o.correct)
+            .map((o) => o.option)
+            .join("|")
+        : optionenMitRichtigerVorne(ex).join("|");
+    return { q: alsBild(ex) + text, r: antwort };
   }
 
   const gefunden = luecken(ex.gapText ?? "");
