@@ -36,9 +36,8 @@
             id="exportTestId"
             v-model="testId"
             class="form-control form-control-sm"
-            type="number"
-            min="1"
-            step="1"
+            type="text"
+
             placeholder="131777"
           />
           <small class="form-text d-block">
