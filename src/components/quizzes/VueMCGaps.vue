@@ -11,8 +11,8 @@
             v-model="gap.guess"
             :disabled="validated"
             :class="{
-              notcorrect: validated && gap.guess !== gap.solution,
-              correct: validated && gap.guess === gap.solution,
+              notcorrect: validated && !istRichtig(gap),
+              correct: validated && istRichtig(gap),
             }"
           >
             <option v-for="op in optionen(gap)" :key="op">{{ op }}</option>
@@ -26,19 +26,19 @@
           <span
             v-if="validated && istLuecke(gap)"
             :class="{
-              notcorrect: gap.guess !== gap.gap,
-              correct: gap.guess === gap.gap,
+              notcorrect: !istRichtig(gap),
+              correct: istRichtig(gap),
             }"
           >
             {{ gap.guess }}</span
           >
           <span
-            v-if="validated && istLuecke(gap) && gap.gap !== gap.guess"
+            v-if="validated && istLuecke(gap) && !istRichtig(gap)"
             class="correct"
-            >{{ gap.gap }}</span
+            >{{ gap.solution }}</span
           >
           <span
-            v-if="validated && istAuswahl(gap) && gap.guess !== gap.solution"
+            v-if="validated && istAuswahl(gap) && !istRichtig(gap)"
             class="correct"
             >{{ gap.solution }}</span
           >
@@ -82,12 +82,18 @@ const optionen = (g: Gap): string[] => (Array.isArray(g.gap) ? g.gap : []);
 const breite = (g: Gap): string =>
   typeof g.gap === "string" ? `${g.gap.length + 2}ch` : "auto";
 
+// Eine Lücke kann mehrere richtige Antworten haben. Sie stehen in der Lösung
+// durch ein Paragraphenzeichen getrennt, z.B. "that§which". Eine leere Lösung
+// bedeutet, dass es nichts auszufüllen gibt.
+const istRichtig = (g: Gap): boolean =>
+  !g.solution || g.solution.split("§").includes(g.guess);
+
 function isEverythingCorrect(): boolean {
-  let b : boolean = true;
-  (props.exercise.gaps ?? []).forEach( (gap : Gap) => {
-     if(gap.solution !== gap.guess){
-       b = false;
-     }
+  let b: boolean = true;
+  (props.exercise.gaps ?? []).forEach((gap: Gap) => {
+    if (!istRichtig(gap)) {
+      b = false;
+    }
   });
   return b;
 }
@@ -179,7 +185,8 @@ function retry(): void {
 function showSolution(): void {
   validated.value = true;
   props.exercise.gaps?.forEach((g) => {
-    g.guess = g.solution ?? "";
+    // Bei mehreren richtigen Antworten (getrennt durch §) die erste einsetzen.
+    g.guess = (g.solution ?? "").split("§")[0];
   });
 }
 

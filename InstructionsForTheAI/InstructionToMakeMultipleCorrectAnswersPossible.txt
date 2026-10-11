@@ -1,0 +1,36 @@
+I want to allow multiple correct answers for a gapText-Exercise !
+
+Example for a gapText-Exercise:
+
+The duck, {that§which} you see in the picture, wears a hat.
+
+The paragraph sign § means that both that and which are correct solutions to this gapText Exercise.
+
+You don't need to change anything with this Type
+export interface Gap {
+  text: string;
+  // string = Freitext-Lücke, string[] = Auswahl-Lücke
+  gap: string | string[];
+  guess: string;
+  solution?: string;
+}
+
+For above example, gap would be the string "that§which" and the solution would also be
+"that§which" once the gapText Exercise has been parsed.
+
+Only the validation of the exercise needs to change !
+
+So the function isEverythingCorrect in VueMCGaps needs to change to:
+
+function isEverythingCorrect(): boolean {
+  let b : boolean = true;
+  (props.exercise.gaps ?? []).forEach( (gap : Gap) => {
+
+    if(!gap.solution || ! gap.solution.split('§').contains(gap.guess) ){
+       b = false;
+     }
+  });
+  return b;
+}
+
+Can you correct all my errors, implement it, commit and push it !
