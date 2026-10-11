@@ -1,4 +1,5 @@
-import { defineConfig, type Plugin } from "vite";
+import { defineConfig } from "vitest/config";
+import type { Plugin } from "vite";
 import vue from "@vitejs/plugin-vue";
 import path from "node:path";
 import fs from "node:fs";
@@ -47,5 +48,13 @@ export default defineConfig({
     // Pdfs, Vendor-Dateien der alten Seite) landen.
     assetsDir: "static",
     emptyOutDir: true,
+  },
+  // Unit-Tests: Vitest mit jsdom (kein echter Browser), Vue SFCs werden über
+  // das vue()-Plugin oben kompiliert. Die Playwright-E2E-Tests liegen in e2e/
+  // und werden von playwright.config.ts gesteuert, nicht von Vitest.
+  test: {
+    environment: "jsdom",
+    include: ["src/**/*.{test,spec}.{ts,tsx}"],
+    exclude: ["node_modules/**", "e2e/**", "dist/**"],
   },
 });

@@ -1,0 +1,13 @@
+Can you set up tests for this Vue3 frontend please !
+I want to use Vitest, Vue Test Utils and Playwright, so please add them all to package.json (intall them).
+
+You can create a Dummy Vue-Component simply to demonstrate the use of both VueTestUtils and Playwright.
+So create a Dummy Vue-Component with some dummy example functionality and write example tests with VueTestUtils and Playwright to test
+this dummy functionality.
+
+Then also demonstrate how to test isolated functions ! For that purpose, create a folder utils (if it doesn't exist already) and write 
+a function multiply in there and then test this function with ViTest.
+
+The tests should be executed before every commit and if they don't pass, nothing should be commited.
+
+Go ahead ! Implement, commit and push !
