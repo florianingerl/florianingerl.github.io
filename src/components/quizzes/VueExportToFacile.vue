@@ -212,7 +212,7 @@ const SEITEN: Partial<Record<QuizName, string>> = {
   french: "francaisfacile.com",
   english: "anglaisfacile.com",
   espagnol: "espagnolfacile.com",
-  italiano: "italienfacile.com",
+  italiano: "italien-facile.com",
   deutsch: "allemandfacile.com",
 };
 
