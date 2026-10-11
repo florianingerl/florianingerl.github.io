@@ -123,6 +123,7 @@
         :key="selectedBook._id"
         :book="selectedBook"
         :subject="subject"
+        :lg="lg"
         @login="dialog = 'login'"
         @signup="dialog = 'signup'"
         @logout="abmelden"
@@ -159,8 +160,12 @@ import VueSignUp from "@/components/quizzes/VueSignUp.vue";
 import { useAuthStore } from "@/stores/auth";
 import { useBookStore } from "@/stores/books";
 import { useBookCollab } from "./useBookCollab";
+import type { Lang } from "@/types/quiz";
 
-const props = defineProps<{ name: string; subject: string }>();
+const props = withDefaults(
+  defineProps<{ name: string; subject: string; lg?: Lang }>(),
+  { lg: "de" },
+);
 
 const auth = useAuthStore();
 const store = useBookStore();
@@ -261,17 +266,17 @@ function zusammenarbeitStarten(): void {
   }
   collabMessage.value =
     "Collaboration link has been copied to your clipboard. Send the link to anyone you want to write a book with!";
-  startSession(auth.user?.name || auth.email);
+  startSession(selectedBook.value?._id, auth.user?.name || auth.email);
 }
 
 function zusammenarbeitBeitreten(id: string): void {
   if (joinBookId) selectedId.value = joinBookId;
-  joinSession(id, auth.user?.name || auth.email);
+  joinSession(id, joinBookId ?? selectedId.value ?? "", auth.user?.name || auth.email);
 }
 
 function alsGastBeitreten(): void {
   if (!joinId || !guestName.value) return;
-  joinSession(joinId, guestName.value);
+  joinSession(joinId, joinBookId ?? "", guestName.value);
 }
 
 async function linkKopieren(): Promise<void> {

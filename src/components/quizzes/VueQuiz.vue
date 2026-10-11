@@ -84,7 +84,8 @@
     <template v-if="dialog === null">
     <div v-if="formOffen && tab === 'exercise'">
       <VueNewExercise
-        :quiz="quiz"
+        :quiz="formQuiz"
+        :subject="formSubject"
         :questionOfQuiz="aktuelle"
         :editMode="editMode"
         @new-exercise-created="gespeichert"
@@ -225,8 +226,8 @@
     </div>
 
     <VueExportToFacile
-      v-if="exportOffen && darfExportieren"
-      :quiz="quiz"
+      v-if="exportOffen && darfExportieren && !props.quizId"
+      :quiz="exportQuiz"
       :topic="aktuelle?.topic"
       :lg="lg"
       @cancel-clicked="exportOffen = false"
@@ -256,7 +257,7 @@
 
     <VueFilterDialog
       v-else-if="dialog === 'filter'"
-      :quiz="quiz"
+      :quiz="quizSchluessel"
       :topics="topics"
       :creators="creators"
       @cancel-clicked="dialog = null"
@@ -280,6 +281,7 @@ import {
   createExercise,
   deleteExercise,
   getExercises,
+  getQuiz,
   istNichtAngemeldet,
   updateExercise,
   getAllTopics,
@@ -288,9 +290,12 @@ import {
 } from "@/api";
 import { useAuthStore } from "@/stores/auth";
 import { useFilterStore } from "@/stores/filter";
-import type { Exercise, Lang, QuizName, Topic } from "@/types/quiz";
+import type { Exercise, Lang, Quiz, QuizName, Topic } from "@/types/quiz";
 
-const props = defineProps<{ quiz: QuizName; lg: Lang }>();
+// "quiz" ist der Name eines Website-Quizzes (z.B. "deutsch"). Buch-Quizzes
+// haben keine eigene Seite, sondern werden ueber ihre _id geladen ("quizId");
+// ihre Sprache/Fach steckt dann im Quiz-Dokument.
+const props = defineProps<{ quiz?: QuizName; quizId?: string; lg: Lang }>();
 
 // Nur diesem Benutzer wird der Export-Button angezeigt. Die Grossschreibung
 // wird ignoriert, damit die Schreibweise des Kontos keine Rolle spielt.
@@ -311,9 +316,30 @@ const dialog = ref<DialogArt | null>(null);
 const loginEmail = ref<string>("");
 
 // Filter der Aufgaben. Die Werte liegen im Store, damit sie den Dialog
-// ueberleben und pro Quiz getrennt gespeichert sind.
+// ueberleben und pro Quiz getrennt gespeichert sind. Bei einem Buch-Quizz
+// dient die Sprache des Quiz als Schluessel, bis das Quiz geladen ist.
 const filterStore = useFilterStore();
-const filter = filterStore.filterFor(props.quiz);
+const quizSchluessel = ref<string>(props.quiz ?? "");
+const filter = computed(() => filterStore.filterFor(quizSchluessel.value));
+
+// Das geladene Buch-Quizz (nur wenn quizId gesetzt ist).
+const geladenesQuiz = ref<Quiz | null>(null);
+
+// Womit das Formular neue Aufgaben speichert bzw. welche Themen es anbietet:
+// bei einem Buch-Quizz die _id bzw. die Sprache des Quiz, sonst der Quiz-Name.
+const formQuiz = computed(() =>
+  props.quizId ? geladenesQuiz.value?._id ?? props.quizId : props.quiz ?? "",
+);
+const formSubject = computed(() =>
+  props.quizId ? geladenesQuiz.value?.language ?? "" : props.quiz ?? "",
+);
+// Von wo Themen und Aufgaben geladen werden.
+const topicsVon = computed(() =>
+  props.quizId ? geladenesQuiz.value?.language ?? "" : props.quiz ?? "",
+);
+const exercisesVon = computed(() => props.quizId ?? props.quiz ?? "");
+// Der Export gibt es nur fuer die Website-Quizze.
+const exportQuiz = computed<QuizName>(() => props.quiz ?? "deutsch");
 
 // Zustand
 const questions = ref<Exercise[]>([]);
@@ -411,18 +437,21 @@ function suchTexte(q: Exercise): string[] {
 }
 
 function norm(s: string): string {
-  return filter.caseSensitive ? s : s.toLowerCase();
+  return filter.value.caseSensitive ? s : s.toLowerCase();
 }
 
 // Frontend-Filterung: Theme, Ersteller und Suchwort werden hier angewandt.
 const displayedQuestions = computed<Exercise[]>(() =>
   questions.value.filter((q) => {
-    if (filter.topicId) {
+    if (filter.value.topicId) {
       const id = typeof q.topic === "string" ? q.topic : q.topic?._id;
-      if (id !== filter.topicId) return false;
+      if (id !== filter.value.topicId) return false;
     }
-    if (filter.creator && q.user !== filter.creator) return false;
-    if (filter.word && !suchTexte(q).some((s) => norm(s).includes(norm(filter.word))))
+    if (filter.value.creator && q.user !== filter.value.creator) return false;
+    if (
+      filter.value.word &&
+      !suchTexte(q).some((s) => norm(s).includes(norm(filter.value.word)))
+    )
       return false;
     return true;
   })
@@ -500,7 +529,12 @@ function gehZu(e: Event): void {
 // Bei jeder Filteraenderung wieder bei der ersten Aufgabe beginnen und das
 // Tutorial der neuen aktuellen Aufgabe nachladen.
 watch(
-  () => [filter.topicId, filter.creator, filter.word, filter.caseSensitive],
+  () => [
+    filter.value.topicId,
+    filter.value.creator,
+    filter.value.word,
+    filter.value.caseSensitive,
+  ],
   () => {
     i.value = 0;
     setCurrentTutorial();
@@ -556,11 +590,22 @@ onMounted(async () => {
   // Eine auf der letzten Seite begonnene Anmeldung fortsetzen.
   auth.sitzungWiederherstellen();
 
+  // Bei einem Buch-Quizz zuerst das Quiz-Dokument laden; daraus kommen die
+  // Sprache (fuer die Themen) und der Filter-Schluessel.
+  if (props.quizId) {
+    try {
+      geladenesQuiz.value = await getQuiz(props.quizId);
+      quizSchluessel.value = geladenesQuiz.value?.language ?? props.quizId;
+    } catch (e) {
+      fehler.value = `Das Quiz konnte nicht geladen werden (${(e as Error).message}). Läuft das Backend unter ${API_URL}?`;
+    }
+  }
+
   try {
-    topics.value = await getAllTopics(props.quiz);
+    topics.value = await getAllTopics(topicsVon.value);
 
     console.log(
-      "Here are all the topics from the database for quiz " + props.quiz
+      "Here are all the topics from the database for quiz " + topicsVon.value
     );
     console.log(topics.value);
   } catch (e) {
@@ -568,7 +613,7 @@ onMounted(async () => {
   }
 
   try {
-    questions.value = await getExercises(props.quiz);
+    questions.value = await getExercises(exercisesVon.value);
     console.log(questions.value);
   } catch (e) {
     fehler.value = `Fragen konnten nicht geladen werden (${(e as Error).message}). Läuft das Backend unter ${API_URL}?`;
@@ -619,17 +664,17 @@ async function gespeichert(ex: Exercise): Promise<void> {
 
     // Die bisherige Auswahl im Thema-Dropdown merken, damit sie sich beim
     // Aktualisieren der Liste nicht aendert.
-    const gewaehltesThema = filter.topicId;
+    const gewaehltesThema = filter.value.topicId;
 
     // Filter aufheben, kurz warten (der Watcher springt auf 0) und dann zur gespeicherten Frage springen
-    filterStore.reset(props.quiz);
+    filterStore.reset(quizSchluessel.value);
 
     // Wurde ein neues Thema angelegt, die Themenliste erneut aus der Datenbank
     // laden, damit das neue Thema im Filter-Dropdown erscheint. Es steht am
     // Ende der Liste. Die Auswahl wird danach wiederhergestellt.
     if (neuesThema) {
-      topics.value = await getAllTopics(props.quiz);
-      filter.topicId = gewaehltesThema;
+      topics.value = await getAllTopics(topicsVon.value);
+      filter.value.topicId = gewaehltesThema;
     }
 
     await nextTick();

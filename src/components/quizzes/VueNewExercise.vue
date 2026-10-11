@@ -219,7 +219,12 @@ const newTopic = ref<string>('');
 const topics = ref<Topic[]>([])
 
 const props = defineProps<{
-  quiz: QuizName
+  // Name eines Website-Quizzes (z.B. "deutsch") oder - bei einem Buch-Quizz -
+  // dessen _id. Gespeichert wird die Aufgabe mit diesem Wert als quiz.
+  quiz: QuizName | string
+  // Sprache oder Fach. Bei einem Buch-Quizz wird daraus das Thema (subject)
+  // der Aufgabe und der Filter fuer die Themen-Dropdown-Liste.
+  subject?: string
   questionOfQuiz?: Exercise
   editMode: boolean
 }>()
@@ -257,7 +262,7 @@ let page = 1
 
 function addNewTopicClicked(){
   let topic: Topic = { 
-    quiz: props.quiz,
+    subject: props.subject ?? props.quiz,
     title: newTopic.value,
     tutorial: '' 
   };
@@ -355,10 +360,11 @@ watch(searchString, () => {
 })
 
 onMounted(async () => {
-  //TODO Why doesn't this work ? It get alls the topics, not only of this quiz
-  topics.value = await getAllTopics(props.quiz);
+  // Die Themen werden nach Sprache/Fach gefiltert; bei Buch-Quizzen ist das
+  // nicht der Quiz-Name, sondern das Fach (subject).
+  topics.value = await getAllTopics(props.subject ?? props.quiz);
 
-  console.log("Here are all the topics from the database for quiz " + props.quiz );
+  console.log("Here are all the topics from the database for quiz " + (props.subject ?? props.quiz) );
   console.log(topics.value );
 
 

@@ -19,7 +19,7 @@ function neueAufgabe(themaTitel: string): Exercise {
     imageUrl: "",
     instruction: "Fill the gap",
     gapText: "a {b} c",
-    topic: { quiz: QUIZ, title: themaTitel, tutorial: "" },
+    topic: { subject: QUIZ, title: themaTitel, tutorial: "" },
   };
 }
 
@@ -31,9 +31,9 @@ describe("VueQuiz: neues Thema erscheint im Topic-Filter-Dropdown", () => {
 
   beforeEach(() => {
     themen = [
-      { _id: "t1", quiz: QUIZ, title: "Topic 1", tutorial: "" },
-      { _id: "t2", quiz: QUIZ, title: "Topic 2", tutorial: "" },
-      { _id: "t3", quiz: QUIZ, title: "Topic 3", tutorial: "" },
+      { _id: "t1", subject: QUIZ, title: "Topic 1", tutorial: "" },
+      { _id: "t2", subject: QUIZ, title: "Topic 2", tutorial: "" },
+      { _id: "t3", subject: QUIZ, title: "Topic 3", tutorial: "" },
     ];
 
     server.use(

@@ -1,7 +1,13 @@
 <!-- Editor fuer ein Buch: Absaetze und dazwischen eingefuegte Quizze.
-     Ein Absatz wird als JoditEditor bearbeitet und beim Verlassen des Feldes
-     zu einem <div v-html="..."></div>. Ueber jedem Absatz und jedem Quiz
-     stehen die Anmelde-Knoepfe (siehe VueBookAccountBar). -->
+     Angemeldete Benutzer sehen immer den JoditEditor (es gibt keine
+     "Bearbeiten"-Knoepfe mehr) und speichern mit Strg+S. Solange es
+     ungespeicherte Aenderungen gibt, steht ueber allen JoditEditoren und allen
+     Quizzen ein Stern (*). Nicht angemeldete Benutzer sehen die Absaetze nur
+     als Text.
+     Die Zusammenarbeit (socket.io) schickt ausschliesslich die Inhalte der
+     JoditEditoren - die Absaetze - hin und her. In den Quizzen wird nicht
+     zusammengearbeitet, ein Buch-Quizz ist ein normales Quiz und wird mit dem
+     bestehenden VueQuiz angezeigt. -->
 <template>
   <div class="book-writer">
     <div
@@ -20,53 +26,38 @@
         @collaborate="emit('collaborate')"
       />
 
+      <!-- Ein Stern ueber jedem Editor und jedem Quiz, solange ungespeicherte
+           Aenderungen da sind. Strg+S speichert alles und die Sterne verschwinden. -->
+      <p
+        v-if="ungespeichert"
+        class="unsaved-star mb-1"
+        title="Unsaved changes. Press Ctrl+S to save."
+      >
+        *
+      </p>
+
       <template v-if="block.kind === 'paragraph'">
+        <VueJoditEditor
+          v-if="editable"
+          :ref="(el) => setzeEditorRef(block.id, el)"
+          :model-value="block.html"
+          @update:modelValue="geaendert(block, $event)"
+        />
+        <div v-else class="book-paragraph" v-html="block.html"></div>
+
         <div
-          v-if="editable && block.editing"
-          class="book-editor"
-          @focusout="beiFokusVerlust(block, $event)"
+          v-if="editable"
+          class="d-flex flex-wrap justify-content-between gap-2 mt-2"
         >
-          <VueJoditEditor
-            :ref="(el) => setzeEditorRef(block.id, el)"
-            v-model="block.html"
-            @update:modelValue="broadcast"
-          />
-          <div class="d-flex flex-wrap justify-content-between gap-2 mt-2">
-            <button
-              type="button"
-              class="btn btn-outline-secondary btn-sm"
-              title="Insert a quiz where the cursor is"
-              @click="quizAnCursor(block)"
-            >
-              <i class="bi bi-list-check me-1" aria-hidden="true"></i>
-              Insert quiz at cursor position
-            </button>
-            <button
-              type="button"
-              class="btn btn-success btn-sm"
-              title="Add a quiz below this paragraph"
-              @click="quizHinzufuegen(block)"
-            >
-              <i class="bi bi-plus-lg me-1" aria-hidden="true"></i>
-              Add Quiz
-            </button>
-          </div>
-        </div>
-
-        <div v-else class="d-flex align-items-start gap-2">
-          <div class="book-paragraph flex-grow-1" v-html="block.html"></div>
           <button
-            v-if="editable"
             type="button"
-            class="btn btn-outline-primary btn-sm"
-            title="Edit the paragraph"
-            @click="editieren(block)"
+            class="btn btn-outline-secondary btn-sm"
+            title="Insert a quiz where the cursor is"
+            @click="quizAnCursor(block)"
           >
-            <i class="bi bi-pencil-square" aria-hidden="true"></i>
+            <i class="bi bi-list-check me-1" aria-hidden="true"></i>
+            Insert quiz at cursor position
           </button>
-        </div>
-
-        <div v-if="editable && !block.editing" class="mt-1">
           <button
             type="button"
             class="btn btn-success btn-sm"
@@ -80,11 +71,7 @@
       </template>
 
       <template v-else>
-        <VueBookQuiz
-          v-if="block.quizId"
-          :quiz-id="block.quizId"
-          :subject="subject"
-        />
+        <VueQuiz v-if="block.quizId" :quiz-id="block.quizId" :lg="lg" />
         <div v-if="editable" class="mt-1">
           <button
             type="button"
@@ -100,8 +87,7 @@
     </div>
 
     <p v-if="blocks.length === 0" class="text-muted">
-      <template v-if="editable">Start writing the first paragraph below.</template>
-      <template v-else>This book has no content yet.</template>
+      This book has no content yet.
     </p>
   </div>
 </template>
@@ -109,11 +95,12 @@
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import VueJoditEditor from "@/components/quizzes/VueJoditEditor.vue";
+import VueQuiz from "@/components/quizzes/VueQuiz.vue";
 import VueBookAccountBar from "./VueBookAccountBar.vue";
-import VueBookQuiz from "./VueBookQuiz.vue";
 import { useBookStore } from "@/stores/books";
 import { useAuthStore } from "@/stores/auth";
 import { useBookCollab } from "./useBookCollab";
+import type { Lang } from "@/types/quiz";
 import type { Book } from "@/types/book";
 
 // Nur die Teile von Jodit, die hier gebraucht werden: das DOM-Element, der
@@ -128,11 +115,15 @@ interface UiBlock {
   id: number;
   kind: "paragraph" | "quiz";
   html: string;
-  editing: boolean;
   quizId?: string;
+  // True, solange der Inhalt (noch) nicht mit Strg+S gespeichert wurde.
+  unsaved: boolean;
 }
 
-const props = defineProps<{ book: Book; subject: string }>();
+const props = withDefaults(
+  defineProps<{ book: Book; subject: string; lg?: Lang }>(),
+  { lg: "de" },
+);
 
 const emit = defineEmits<{
   (e: "login"): void;
@@ -158,6 +149,10 @@ let naechsteId = 1;
 const editorRefs = new Map<number, unknown>();
 const blockRefs = new Map<number, HTMLElement>();
 
+// Stern ueber allen Editoren und allen Quizzen, solange es ungespeicherte
+// Aenderungen gibt (Strg+S speichert alles und entfernt die Sterne).
+const ungespeichert = computed(() => blocks.value.some((b) => b.unsaved));
+
 // Das Buch in eine Liste aus Absatz- und Quiz-Bloecken umwandeln. Zwischen zwei
 // Absaetzen steht hoechstens ein Quiz, daher die Reihenfolge Absatz, Quiz,
 // Absatz, Quiz, ...
@@ -176,7 +171,7 @@ function aufbauen(buch: Book): void {
 }
 
 function block(kind: "paragraph" | "quiz", html: string, quizId?: string): UiBlock {
-  return { id: naechsteId++, kind, html, editing: false, quizId };
+  return { id: naechsteId++, kind, html, unsaved: false, quizId };
 }
 
 watch(
@@ -188,27 +183,18 @@ watch(
   { immediate: true },
 );
 
-// Beim Anmelden den ersten Absatz anlegen (falls das Buch noch leer ist).
+// Beim Anmelden einen ersten Absatz anlegen (falls das Buch noch leer ist).
 watch(editable, (an) => {
   if (an) sicherstellenErsterAbsatz();
-  else blocks.value.forEach((b) => (b.editing = false));
 });
 
 function sicherstellenErsterAbsatz(): void {
   if (editable.value && blocks.value.length === 0) {
     blocks.value.push(block("paragraph", ""));
-    blocks.value[0].editing = true;
   }
 }
 
-// Immer nur ein Absatz gleichzeitig bearbeiten.
-function editieren(block: UiBlock): void {
-  if (!editable.value) return;
-  blocks.value.forEach((b) => (b.editing = false));
-  block.editing = true;
-}
-
-// --- Speichern ------------------------------------------------------
+// --- Inhalt aendern und speichern ----------------------------------
 
 function absaetze(): string[] {
   return blocks.value.filter((b) => b.kind === "paragraph").map((b) => b.html);
@@ -220,6 +206,15 @@ function quizIds(): string[] {
     .map((b) => b.quizId as string);
 }
 
+// Eine Aenderung in einem Absatz merken, als ungespeichert markieren und die
+// neuen Absaetze an die anderen Teilnehmer der Schreib-Sitzung schicken.
+function geaendert(block: UiBlock, html: string): void {
+  block.html = html;
+  block.unsaved = true;
+  broadcast();
+}
+
+// Strg+S speichert das ganze Buch; danach verschwinden alle Sterne.
 async function speichern(): Promise<void> {
   if (!editable.value) return;
   const aktualisiert: Book = {
@@ -229,38 +224,30 @@ async function speichern(): Promise<void> {
   };
   const gespeichert = await store.speichern(aktualisiert);
   emit("book-updated", gespeichert);
+  blocks.value.forEach((b) => (b.unsaved = false));
 }
 
-// Beim Verlassen des Editors (Fokus weg) den Absatz zum <div> machen und
-// speichern. Bleibt der Fokus im Editor (z.B. Klick auf einen Knopf darunter),
-// bleibt der Absatz in Bearbeitung.
-function beiFokusVerlust(block: UiBlock, e: FocusEvent): void {
-  const wrap = e.currentTarget as HTMLElement | null;
-  const next = e.relatedTarget as Node | null;
-  if (wrap && next && wrap.contains(next)) return;
-  void schliesseAbsatz(block);
-}
-
-async function schliesseAbsatz(block: UiBlock): Promise<void> {
-  if (!block.editing) return;
-  block.editing = false;
-  await speichern();
+function beiTaste(e: KeyboardEvent): void {
+  if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "s") {
+    e.preventDefault();
+    void speichern();
+  }
 }
 
 // --- Quiz einfuegen -------------------------------------------------
 
 // Ein Quiz unterhalb des Absatzes anfuegen und darunter einen neuen, leeren
-// Absatz zum Weiterschreiben oeffnen.
+// Absatz zum Weiterschreiben oeffnen. Gespeichert wird alles mit Strg+S.
 async function quizHinzufuegen(block: UiBlock): Promise<void> {
   const index = blocks.value.indexOf(block);
   if (index === -1) return;
-  block.editing = false;
   const quiz = await store.neuesQuiz(props.subject, props.book._id);
   const quizBlock = block2("quiz", quiz._id);
   const neuerAbsatz = block2("paragraph", "");
-  neuerAbsatz.editing = true;
+  quizBlock.unsaved = true;
+  neuerAbsatz.unsaved = true;
   blocks.value.splice(index + 1, 0, quizBlock, neuerAbsatz);
-  await speichern();
+  broadcast();
   await scrolleZu(neuerAbsatz.id);
 }
 
@@ -271,13 +258,14 @@ async function quizAnCursor(block: UiBlock): Promise<void> {
   if (index === -1) return;
   const { before, after } = teileAnCursor(block);
   block.html = before;
-  block.editing = false;
+  block.unsaved = true;
   const quiz = await store.neuesQuiz(props.subject, props.book._id);
   const quizBlock = block2("quiz", quiz._id);
   const nachher = block2("paragraph", after);
-  nachher.editing = true;
+  quizBlock.unsaved = true;
+  nachher.unsaved = true;
   blocks.value.splice(index + 1, 0, quizBlock, nachher);
-  await speichern();
+  broadcast();
   await scrolleZu(nachher.id);
 }
 
@@ -286,7 +274,7 @@ function block2(kind: "paragraph" | "quiz", htmlOrId?: string): UiBlock {
     id: naechsteId++,
     kind,
     html: kind === "paragraph" ? htmlOrId ?? "" : "",
-    editing: false,
+    unsaved: false,
     quizId: kind === "quiz" ? htmlOrId : undefined,
   };
 }
@@ -330,15 +318,36 @@ function absatzNachQuiz(block: UiBlock): void {
   if (index === -1) return;
   const naechster = blocks.value[index + 1];
   if (naechster && naechster.kind === "paragraph") {
-    editieren(naechster);
     void scrolleZu(naechster.id);
     return;
   }
   const neu = block2("paragraph", "");
-  neu.editing = true;
+  neu.unsaved = true;
   blocks.value.splice(index + 1, 0, neu);
+  broadcast();
   void scrolleZu(neu.id);
 }
+
+// --- Zusammenarbeit (nur die Jodit-Inhalte) -------------------------
+
+// Aenderungen an die anderen Teilnehmer einer Schreib-Sitzung schicken. Es
+// werden nur die Absaetze (Jodit-Inhalte) weitergegeben, nie die Quizze.
+function broadcast(): void {
+  sendUpdate({ paragraphs: absaetze() });
+}
+
+// Aenderungen anderer Teilnehmer uebernehmen. Auch hier gilt: Es kommen nur
+// die Absaetze zurueck, die Quizze bleiben unveraendert.
+onUpdate((payload) => {
+  const p = payload as { paragraphs?: string[] } | null;
+  if (!p?.paragraphs) return;
+  let i = 0;
+  for (const b of blocks.value) {
+    if (b.kind !== "paragraph") continue;
+    if (i < p.paragraphs.length) b.html = p.paragraphs[i] ?? "";
+    i++;
+  }
+});
 
 // --- Hilfsfunktionen ------------------------------------------------
 
@@ -358,30 +367,6 @@ function setzeBlockRef(id: number, el: unknown): void {
   else blockRefs.delete(id);
 }
 
-// Aenderungen an die anderen Teilnehmer einer Schreib-Sitzung schicken.
-function broadcast(): void {
-  sendUpdate({ paragraphs: absaetze(), quizzes: quizIds() });
-}
-
-// Aenderungen anderer Teilnehmer uebernehmen.
-onUpdate((payload) => {
-  const p = payload as { paragraphs?: string[]; quizzes?: string[] } | null;
-  if (!p) return;
-  aufbauen({
-    ...props.book,
-    paragraphs: p.paragraphs ?? props.book.paragraphs,
-    quizzes: p.quizzes ?? props.book.quizzes,
-  });
-});
-
-// Strg+S speichert das Buch.
-function beiTaste(e: KeyboardEvent): void {
-  if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "s") {
-    e.preventDefault();
-    void speichern();
-  }
-}
-
 onMounted(() => window.addEventListener("keydown", beiTaste));
 onBeforeUnmount(() => window.removeEventListener("keydown", beiTaste));
 </script>
@@ -396,9 +381,11 @@ onBeforeUnmount(() => window.removeEventListener("keydown", beiTaste));
   padding: 0.75rem;
   background: #fff;
 }
-.book-editor {
-  border: 1px solid #0d6efd;
-  border-radius: 0.375rem;
-  padding: 0.5rem;
+.unsaved-star {
+  color: #dc3545;
+  font-weight: 700;
+  font-size: 1.25rem;
+  line-height: 1;
+  margin-bottom: 0.25rem;
 }
 </style>

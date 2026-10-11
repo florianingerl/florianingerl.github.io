@@ -1,6 +1,6 @@
 import axios from "axios";
-import type { Topic, Exercise, QuizName, User } from "@/types/quiz";
-import type { Book, BookExercise, BookQuiz, BookTopic } from "@/types/book";
+import type { Topic, Exercise, QuizName, Quiz, User } from "@/types/quiz";
+import type { Book } from "@/types/book";
 import { getToken } from "@/authToken";
 
 export const API_URL = import.meta.env.VITE_API_URL ?? "http://localhost:8080";
@@ -79,19 +79,24 @@ export async function getTopic(_id:string):Promise<Topic>{
   return r.data;
 }
 
-export async function getAllTopics(quiz: QuizName): Promise<Topic[]> {
+// Der zweite Parameter heisst heute "subject" statt "quiz", der URL-Parameter
+// der API bleibt aber derselbe (:quizName), damit alte Seiten weiter
+// funktionieren.
+export async function getAllTopics(quiz: QuizName | string): Promise<Topic[]> {
   const r = await client.get<Topic[]>(`/api/topic/${encodeURIComponent(quiz)}`);
   return r.data;
 }
 
-export async function getExercises(quiz: QuizName): Promise<Exercise[]> {
+// "quiz" ist der Name eines Website-Quizzes (z.B. "deutsch") oder die _id
+// eines Buch-Quizzes. Der Server unterscheidet beides selbst.
+export async function getExercises(quiz: QuizName | string): Promise<Exercise[]> {
   const r = await client.get<Exercise[]>(`/api/exercise`, { params: { quiz } });
   return r.data;
 }
 
 // Liefert alle Aufgaben des Quizzes. Das Topic wird bewusst nicht mitgeschickt,
 // sondern im Frontend gefiltert.
-export async function getAllExercises(quiz: QuizName): Promise<Exercise[]> {
+export async function getAllExercises(quiz: QuizName | string): Promise<Exercise[]> {
   return getExercises(quiz);
 }
 
@@ -139,6 +144,9 @@ export async function deleteExercise(id: string): Promise<void> {
 }
 
 // Buecher (VueBookWriter / VueBookStore) ---------------------------
+//
+// Ein Buch-Quizz ist ein normales Quiz-Dokument (website === "book"). Es wird
+// mit POST /api/quiz angelegt und mit GET /api/quiz/:id geladen.
 
 export async function getBooks(subject: string): Promise<Book[]> {
   const r = await client.get<Book[]>(`/api/book`, { params: { subject } });
@@ -168,29 +176,13 @@ export async function deleteBook(id: string): Promise<void> {
   await client.delete(`/api/book/${encodeURIComponent(id)}`);
 }
 
-export async function getBookQuiz(id: string): Promise<BookQuiz> {
-  const r = await client.get<BookQuiz>(
-    `/api/bookquiz/${encodeURIComponent(id)}`,
-  );
+export async function getQuiz(id: string): Promise<Quiz> {
+  const r = await client.get<Quiz>(`/api/quiz/${encodeURIComponent(id)}`);
   return r.data;
 }
 
-export async function createBookQuiz(quiz: BookQuiz): Promise<BookQuiz> {
-  const r = await client.post<BookQuiz>(`/api/bookquiz`, quiz);
-  return r.data;
-}
-
-export async function getBookExercises(quizId: string): Promise<BookExercise[]> {
-  const r = await client.get<BookExercise[]>(`/api/bookexercise`, {
-    params: { quiz: quizId },
-  });
-  return r.data;
-}
-
-export async function getBookTopics(subject: string): Promise<BookTopic[]> {
-  const r = await client.get<BookTopic[]>(`/api/booktopic`, {
-    params: { subject },
-  });
+export async function createQuiz(quiz: Quiz): Promise<Quiz> {
+  const r = await client.post<Quiz>(`/api/quiz`, quiz);
   return r.data;
 }
 

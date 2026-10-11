@@ -17,7 +17,7 @@ vi.mock("bootstrap", () => ({
 
 const THEMA: Topic = {
   _id: "top1",
-  quiz: "italiano",
+  subject: "italiano",
   title: "Congiunzioni",
   tutorial: "",
 };

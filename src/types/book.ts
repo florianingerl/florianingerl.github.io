@@ -17,37 +17,6 @@ export interface Book {
   user?: string;
 }
 
-// Ein Quiz gehoert zu einer Website (hier "book") und zu einem Buch.
-export interface BookQuiz {
-  _id?: string;
-  website: string;
-  book?: string;
-  // Sprache oder Fach, z.B. "deutsch" oder "Mathematik".
-  subject: string;
-  title?: string;
-}
-
-// Eine Aufgabe innerhalb eines Quiz.
-export interface BookExercise {
-  _id?: string;
-  quiz: string;
-  // Sprache oder Fach, z.B. "deutsch" oder "Mathematik".
-  subject: string;
-  // _id eines Themas oder das Thema selbst.
-  topic?: string | BookTopic;
-  instruction?: string;
-  question?: string;
-  options?: string[];
-  correct?: number;
-}
-
-export interface BookTopic {
-  _id?: string;
-  subject: string;
-  tutorial: string;
-  title: string;
-}
-
 // Ein Block im Editor: entweder ein Absatz oder ein Quiz. Nur zur Anzeige,
 // gespeichert wird wieder die Trennung in paragraphs und quizzes.
 export interface BookBlock {

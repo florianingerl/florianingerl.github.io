@@ -105,10 +105,11 @@
 <script setup lang="ts">
 import { useAuthStore } from "@/stores/auth";
 import { useFilterStore } from "@/stores/filter";
-import type { QuizName, Topic } from "@/types/quiz";
+import type { Topic } from "@/types/quiz";
 
 const props = defineProps<{
-  quiz: QuizName;
+  // Quiz-Name (Website-Quiz) oder Sprache/Fach (Buch-Quizz) als Filter-Schluessel.
+  quiz: string;
   topics: Topic[];
   // Alle Benutzer-IDs, die mindestens eine der Aufgaben erstellt haben
   creators: string[];

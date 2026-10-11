@@ -47,20 +47,23 @@ function ensureSocket(): Socket {
   return socket;
 }
 
-function baueLink(id: string): string {
+function baueLink(id: string, buchId?: string): string {
   const basis = `${window.location.origin}${window.location.pathname}`;
-  return `${basis}?bookSession=${encodeURIComponent(id)}`;
+  return `${basis}?bookSession=${encodeURIComponent(id)}${
+    buchId ? `&book=${encodeURIComponent(buchId)}` : ""
+  }`;
 }
 
 const collaborating = computed(() => sessionId.value !== null);
 
-// Eine neue Sitzung anlegen. Der Name wird fuer die Farb-Legende mitgeschickt.
-function startSession(name: string): void {
+// Eine neue Sitzung anlegen. Das Buch, an dem geschrieben wird, und der Name
+// werden fuer die Farb-Legende und den Einladungslink mitgeschickt.
+function startSession(bookId: string | undefined, name: string): void {
   fehler.value = "";
   angemeldetAls = name;
   ensureSocket().timeout(8000).emit(
     "book:createSession",
-    { name },
+    { bookId, name },
     (err: Error | null, res: { sessionId?: string; participants?: CollaborationUser[]; error?: string }) => {
       if (err) {
         fehler.value = `The collaboration server could not be reached (${socketUrl()}).`;
@@ -73,19 +76,19 @@ function startSession(name: string): void {
       if (res?.sessionId) {
         sessionId.value = res.sessionId;
         participants.value = res.participants ?? [];
-        link.value = baueLink(res.sessionId);
+        link.value = baueLink(res.sessionId, bookId);
       }
     },
   );
 }
 
 // Einer bestehenden Sitzung beitreten.
-function joinSession(id: string, name: string): void {
+function joinSession(id: string, bookId: string | undefined, name: string): void {
   fehler.value = "";
   angemeldetAls = name;
   ensureSocket().timeout(8000).emit(
     "book:join",
-    { sessionId: id, name },
+    { sessionId: id, bookId, name },
     (err: Error | null, res: { participants?: CollaborationUser[]; error?: string }) => {
       if (err) {
         fehler.value = `The collaboration server could not be reached (${socketUrl()}).`;
@@ -97,7 +100,7 @@ function joinSession(id: string, name: string): void {
       }
       sessionId.value = id;
       participants.value = res?.participants ?? [];
-      link.value = baueLink(id);
+      link.value = baueLink(id, bookId);
     },
   );
 }

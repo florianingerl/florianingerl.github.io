@@ -27,7 +27,7 @@ const lg = computed(() => quizLang(locale.value));
 
 	<section id="deutschbuecher" class="about">
 		<div class="container" data-aos="fade-up">
-			<VueBookStore name="Flori's German books" subject="deutsch" />
+			<VueBookStore name="Flori's German books" subject="deutsch" :lg="lg" />
 		</div>
 	</section>
 </template>

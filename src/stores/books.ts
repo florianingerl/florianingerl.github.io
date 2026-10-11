@@ -2,39 +2,26 @@ import { ref } from "vue";
 import { defineStore } from "pinia";
 import {
   createBook,
-  createBookQuiz,
+  createQuiz,
   deleteBook,
-  getBookExercises,
-  getBookQuiz,
   getBooks,
+  getQuiz,
   updateBook,
 } from "@/api";
-import type { Book, BookExercise, BookQuiz } from "@/types/book";
-import {
-  DUMMY_BOOK,
-  DUMMY_EXERCISES,
-  DUMMY_QUIZZES,
-} from "@/components/book/bookDummy";
+import type { Book } from "@/types/book";
+import type { Quiz } from "@/types/quiz";
+import { DUMMY_BOOK } from "@/components/book/bookDummy";
 
-// Der Buchladen laedt Buecher, Quizze und Aufgaben von der API. Ist der Server
+// Der Buchladen laedt Buecher und (Buch-)Quizze von der API. Ist der Server
 // nicht erreichbar (oder liefert keine Buecher), wird fuer das Fach "deutsch"
 // das Beispiel-Buch aus bookDummy.ts gezeigt, damit der Laden auch ohne Backend
-// sichtbar ist.
+// sichtbar ist. Die Aufgaben eines Buch-Quizzes laedt VueQuiz selbst ueber die
+// normale Aufgaben-API.
 export const useBookStore = defineStore("books", () => {
   const books = ref<Book[]>([]);
-  const quizzes = ref<Record<string, BookQuiz>>({});
-  const exercises = ref<Record<string, BookExercise[]>>({});
+  const quizzes = ref<Record<string, Quiz>>({});
   const laden = ref(false);
   const fehler = ref("");
-
-  // Quizze und Aufgaben des Beispiel-Buchs direkt im Speicher anlegen, damit
-  // auch ohne API-Aufruf eine Anzeige moeglich ist.
-  for (const quiz of DUMMY_QUIZZES) {
-    if (quiz._id) {
-      quizzes.value[quiz._id] = quiz;
-      exercises.value[quiz._id] = DUMMY_EXERCISES[quiz._id] ?? [];
-    }
-  }
 
   function dummyAufnehmen(subject: string): void {
     if (subject !== DUMMY_BOOK.subject) return;
@@ -58,15 +45,15 @@ export const useBookStore = defineStore("books", () => {
     }
   }
 
-  function quizNachladen(quiz: BookQuiz): void {
+  function quizNachladen(quiz: Quiz): void {
     if (!quiz._id) return;
     quizzes.value[quiz._id] = quiz;
   }
 
-  async function loadQuiz(quizId: string): Promise<BookQuiz | undefined> {
+  async function loadQuiz(quizId: string): Promise<Quiz | undefined> {
     if (quizzes.value[quizId]) return quizzes.value[quizId];
     try {
-      const quiz = await getBookQuiz(quizId);
+      const quiz = await getQuiz(quizId);
       quizNachladen(quiz);
       return quiz;
     } catch {
@@ -74,32 +61,18 @@ export const useBookStore = defineStore("books", () => {
     }
   }
 
-  async function loadExercises(quizId: string): Promise<BookExercise[]> {
-    if (exercises.value[quizId]) return exercises.value[quizId];
+  // Ein neues Buch-Quizz anlegen. Schlaegt die API fehl (kein Backend),
+  // bekommt das Quiz trotzdem eine lokale Id, damit es im Editor angezeigt
+  // werden kann.
+  async function neuesQuiz(subject: string, bookId?: string): Promise<Quiz> {
+    const entwurf: Quiz = { website: "book", book: bookId, language: subject };
     try {
-      const liste = await getBookExercises(quizId);
-      exercises.value[quizId] = liste;
-      return liste;
-    } catch {
-      const leer: BookExercise[] = [];
-      exercises.value[quizId] = leer;
-      return leer;
-    }
-  }
-
-  // Ein neues Quiz anlegen. Schlaegt die API fehl (kein Backend), bekommt das
-  // Quiz trotzdem eine lokale Id, damit es im Editor angezeigt werden kann.
-  async function neuesQuiz(subject: string, bookId?: string): Promise<BookQuiz> {
-    const entwurf: BookQuiz = { website: "book", book: bookId, subject };
-    try {
-      const quiz = await createBookQuiz(entwurf);
+      const quiz = await createQuiz(entwurf);
       quizNachladen(quiz);
-      if (quiz._id) exercises.value[quiz._id] = [];
       return quiz;
     } catch {
-      const lokal: BookQuiz = { ...entwurf, _id: `lokal-${Date.now()}` };
+      const lokal: Quiz = { ...entwurf, _id: `lokal-${Date.now()}` };
       quizNachladen(lokal);
-      if (lokal._id) exercises.value[lokal._id] = [];
       return lokal;
     }
   }
@@ -138,12 +111,10 @@ export const useBookStore = defineStore("books", () => {
   return {
     books,
     quizzes,
-    exercises,
     laden,
     fehler,
     loadBooks,
     loadQuiz,
-    loadExercises,
     neuesQuiz,
     speichern,
     entfernen,
