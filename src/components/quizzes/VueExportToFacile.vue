@@ -216,6 +216,18 @@ const SEITEN: Partial<Record<QuizName, string>> = {
   deutsch: "allemandfacile.com",
 };
 
+// Die Nummern des Auswahlfelds "yenamarre" ("Site de publication", wo der Test
+// veroeffentlicht wird) auf edit2.php. Darueber ordnet *facile.com den Test der
+// richtigen Seite zu: 0001 anglaisfacile.com, 0002 francaisfacile.com,
+// 9997 allemandfacile.com, 9998 espagnolfacile.com, 9995 italien-facile.com.
+const SEITENNUMMERN: Partial<Record<QuizName, string>> = {
+  english: "0001",
+  french: "0002",
+  deutsch: "9997",
+  espagnol: "9998",
+  italiano: "9995",
+};
+
 // Die Nummern der Testarten stehen in choice.php auf *facile.com.
 const typen: { wert: ExportTestType; label: string; seitentyp: string }[] = [
   { wert: "trous", label: "1.1) Test ├á trous", seitentyp: "0" },
@@ -404,7 +416,7 @@ function baueBody(fragen: FrageAntwort[], testIdNummer: number): string {
   felder.set("liaison2", "#adverbe#conjonction#");
   felder.set("casier", `clone du test ${testIdNummer}`);
   felder.set("anciensite", "0001");
-  felder.set("yenamarre", "0001");
+  felder.set("yenamarre", SEITENNUMMERN[props.quiz] ?? "0001");
   felder.set("genre", "g");
   felder.set("difficulte", "2");
   felder.set("type", seite.seitentyp);
