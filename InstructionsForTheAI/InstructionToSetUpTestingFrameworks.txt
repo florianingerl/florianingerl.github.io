@@ -10,4 +10,8 @@ a function multiply in there and then test this function with ViTest.
 
 The tests should be executed before every commit and if they don't pass, nothing should be commited.
 
+I want to use the library Mock Service Worker (MSW) to mock the behaviour of endpoints in VueTestUtils-Tests.
+Can you add some dummy functionality ( which includes a request to another server ) and then write a test, where you mock
+the behaviour of that other server simply to demonstrate the use of the MSW-library.
+
 Go ahead ! Implement, commit and push !

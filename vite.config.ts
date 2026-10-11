@@ -56,5 +56,7 @@ export default defineConfig({
     environment: "jsdom",
     include: ["src/**/*.{test,spec}.{ts,tsx}"],
     exclude: ["node_modules/**", "e2e/**", "dist/**"],
+    // Startet den MSW-Server (Mock Service Worker) für alle Unit-Tests.
+    setupFiles: ["src/test/setup.ts"],
   },
 });
