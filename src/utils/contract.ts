@@ -237,7 +237,7 @@ const CONTRACT_BUILDERS: Record<AppLocale, Builder> = {
       { kind: "para", text: "**Lehrer:**" },
       { kind: "sig", text: "**Vorname:** Florian" },
       { kind: "sig", text: "**Nachname:** Ingerl" },
-      { kind: "sig", text: "**Adresse:** Rainerstraße 6a, 82178 Puchheim" },
+      { kind: "sig", text: "**Adresse:** Rainerstraße 6a, 82178 Puchheim, Deutschland" },
       { kind: "sig", text: `**Unterschrift des Lehrers:** ${BLANK_SIGN}` },
     ];
   },
@@ -348,7 +348,7 @@ const CONTRACT_BUILDERS: Record<AppLocale, Builder> = {
       { kind: "para", text: "**Teacher:**" },
       { kind: "sig", text: "**First name:** Florian" },
       { kind: "sig", text: "**Last name:** Ingerl" },
-      { kind: "sig", text: "**Address:** Rainerstraße 6a, 82178 Puchheim" },
+      { kind: "sig", text: "**Address:** Rainerstraße 6a, 82178 Puchheim, Germany" },
       { kind: "sig", text: `**Signature of the teacher:** ${BLANK_SIGN}` },
     ];
   },
@@ -463,7 +463,7 @@ const CONTRACT_BUILDERS: Record<AppLocale, Builder> = {
       { kind: "para", text: "**Enseignant :**" },
       { kind: "sig", text: "**Prénom :** Florian" },
       { kind: "sig", text: "**Nom :** Ingerl" },
-      { kind: "sig", text: "**Adresse :** Rainerstraße 6a, 82178 Puchheim" },
+      { kind: "sig", text: "**Adresse :** Rainerstraße 6a, 82178 Puchheim, Allemagne" },
       { kind: "sig", text: `**Signature de l'enseignant :** ${BLANK_SIGN}` },
     ];
   },
@@ -576,7 +576,7 @@ const CONTRACT_BUILDERS: Record<AppLocale, Builder> = {
       { kind: "para", text: "**Profesor:**" },
       { kind: "sig", text: "**Nombre:** Florian" },
       { kind: "sig", text: "**Apellidos:** Ingerl" },
-      { kind: "sig", text: "**Dirección:** Rainerstraße 6a, 82178 Puchheim" },
+      { kind: "sig", text: "**Dirección:** Rainerstraße 6a, 82178 Puchheim, Alemania" },
       { kind: "sig", text: `**Firma del profesor:** ${BLANK_SIGN}` },
     ];
   },
@@ -690,7 +690,7 @@ const CONTRACT_BUILDERS: Record<AppLocale, Builder> = {
       { kind: "para", text: "**Insegnante:**" },
       { kind: "sig", text: "**Nome:** Florian" },
       { kind: "sig", text: "**Cognome:** Ingerl" },
-      { kind: "sig", text: "**Indirizzo:** Rainerstraße 6a, 82178 Puchheim" },
+      { kind: "sig", text: "**Indirizzo:** Rainerstraße 6a, 82178 Puchheim, Germania" },
       { kind: "sig", text: `**Firma dell'insegnante:** ${BLANK_SIGN}` },
     ];
   },

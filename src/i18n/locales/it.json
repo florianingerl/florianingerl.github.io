@@ -178,7 +178,7 @@
     "praesenz": {
       "title": "Ripetizioni in presenza",
       "imageAlt": "Ripetizioni in presenza in ufficio",
-      "body": "<p>Le ripetizioni in presenza si svolgono nel mio ufficio in Walchenseestraße 6 a Gröbenzell senza alcuna restrizione. Con bel tempo possiamo anche uscire. Sei il benvenuto purché tu porti abbastanza buoni esercizi.</p><p>Se sei uno studente della scuola primaria o della scuola secondaria di primo grado e non ti puoi ancora spostare ma hai bisogno di ripetizioni in presenza, vengo volentieri da te a casa con un sovrapprezzo.</p>"
+      "body": "<p>Le ripetizioni in presenza si svolgono nel mio ufficio in Rainerstraße 6a a Puchheim senza alcuna restrizione. Con bel tempo possiamo anche uscire. Sei il benvenuto purché tu porti abbastanza buoni esercizi.</p><p>Se sei uno studente della scuola primaria o della scuola secondaria di primo grado e non ti puoi ancora spostare ma hai bisogno di ripetizioni in presenza, vengo volentieri da te a casa con un sovrapprezzo.</p>"
     },
     "feedbacks": {
       "title": "Feedback",
@@ -198,7 +198,7 @@
     },
     "impressum": {
       "title": "Note legali",
-      "body": "<h4>Informazioni ai sensi del § 5 TMG</h4><p>Frag Florian <br> Florian Ingerl <br> Walchenseestraße 6, 82194 Gröbenzell <br></p><h4>Contatti</h4><p>E-Mail: imelflorianingerl{'@'}gmail.com <br></p>"
+      "body": "<h4>Informazioni ai sensi del § 5 TMG</h4><p>Frag Florian <br> Florian Ingerl <br> Rainerstraße 6a, 82178 Puchheim, Germania <br></p><h4>Contatti</h4><p>E-Mail: imelflorianingerl{'@'}gmail.com <br></p>"
     },
     "uebermich": {
       "title": "Chi sono",
@@ -213,10 +213,10 @@
     }
   },
   "contact": {
-    "mapTitle": "Mappa con l'indirizzo Walchenseestraße 6 a Gröbenzell",
+    "mapTitle": "Mappa con l'indirizzo Rainerstraße 6a a Puchheim",
     "addressTitle": "Indirizzo:",
-    "addressLine1": "Walchenseestraße 6",
-    "addressLine2": "82194 Gröbenzell",
+    "addressLine1": "Rainerstraße 6a",
+    "addressLine2": "82178 Puchheim, Germania",
     "emailTitle": "Email:",
     "intro": "<p>Il meglio è contattarmi via email mandandomi subito qualche foglio di esercizi che si potrebbe discutere in una lezione. Ma puoi anche usare questo modulo di contatto.</p>",
     "form": {

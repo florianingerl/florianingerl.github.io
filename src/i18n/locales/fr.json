@@ -178,7 +178,7 @@
     "praesenz": {
       "title": "Cours particuliers en présentiel",
       "imageAlt": "Cours particuliers en présentiel au bureau",
-      "body": "<p>Les cours particuliers en présentiel ont lieu dans mon bureau au Walchenseestraße 6 à Gröbenzell sans aucune restriction. Par beau temps, nous pouvons aussi sortir. Tu es le bienvenu tant que tu apportes suffisamment d'exercices intéressants.</p><p>Si tu es élève de l'école primaire ou du secondaire, que tu n'es pas encore mobile et que tu as besoin de cours en présentiel, je viens volontiers chez toi contre un supplément.</p>"
+      "body": "<p>Les cours particuliers en présentiel ont lieu dans mon bureau au Rainerstraße 6a à Puchheim sans aucune restriction. Par beau temps, nous pouvons aussi sortir. Tu es le bienvenu tant que tu apportes suffisamment d'exercices intéressants.</p><p>Si tu es élève de l'école primaire ou du secondaire, que tu n'es pas encore mobile et que tu as besoin de cours en présentiel, je viens volontiers chez toi contre un supplément.</p>"
     },
     "feedbacks": {
       "title": "Feedbacks",
@@ -198,7 +198,7 @@
     },
     "impressum": {
       "title": "Mentions légales",
-      "body": "<h4>Informations selon § 5 TMG</h4><p>Frag Florian <br> Florian Ingerl <br> Walchenseestraße 6, 82194 Gröbenzell <br></p><h4>Contact</h4><p>E-Mail: imelflorianingerl{'@'}gmail.com <br></p>"
+      "body": "<h4>Informations selon § 5 TMG</h4><p>Frag Florian <br> Florian Ingerl <br> Rainerstraße 6a, 82178 Puchheim, Allemagne <br></p><h4>Contact</h4><p>E-Mail: imelflorianingerl{'@'}gmail.com <br></p>"
     },
     "uebermich": {
       "title": "Sur moi",
@@ -213,10 +213,10 @@
     }
   },
   "contact": {
-    "mapTitle": "Carte avec l'adresse Walchenseestraße 6 à Gröbenzell",
+    "mapTitle": "Carte avec l'adresse Rainerstraße 6a à Puchheim",
     "addressTitle": "Adresse:",
-    "addressLine1": "Walchenseestraße 6",
-    "addressLine2": "82194 Gröbenzell",
+    "addressLine1": "Rainerstraße 6a",
+    "addressLine2": "82178 Puchheim, Allemagne",
     "emailTitle": "Email:",
     "intro": "<p>Le mieux est que tu me contactes par e-mail et que tu m'envoies tout de suite quelques feuilles d'exercices dont on pourrait discuter lors d'une séance de cours. Mais tu peux aussi utiliser ce formulaire de contact.</p>",
     "form": {

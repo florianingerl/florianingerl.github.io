@@ -178,7 +178,7 @@
     "praesenz": {
       "title": "In-person tutoring",
       "imageAlt": "In-person tutoring in the office",
-      "body": "<p>In-person tutoring takes place in my office at Walchenseestraße 6 in Gröbenzell without any restrictions. When the weather is nice, we can also go outside. You are very welcome as long as you bring enough great exercises.</p><p>If you are an elementary or middle school pupil and are not yet mobile and need in-person tutoring, I am happy to come to your home for an extra charge.</p>"
+      "body": "<p>In-person tutoring takes place in my office at Rainerstraße 6a in Puchheim without any restrictions. When the weather is nice, we can also go outside. You are very welcome as long as you bring enough great exercises.</p><p>If you are an elementary or middle school pupil and are not yet mobile and need in-person tutoring, I am happy to come to your home for an extra charge.</p>"
     },
     "feedbacks": {
       "title": "Feedback",
@@ -198,7 +198,7 @@
     },
     "impressum": {
       "title": "Legal Notice",
-      "body": "<h4>Information according to § 5 TMG</h4><p>Frag Florian <br> Florian Ingerl <br> Walchenseestraße 6, 82194 Gröbenzell <br></p><h4>Contact</h4><p>Email: imelflorianingerl{'@'}gmail.com <br></p>"
+      "body": "<h4>Information according to § 5 TMG</h4><p>Frag Florian <br> Florian Ingerl <br> Rainerstraße 6a, 82178 Puchheim, Germany <br></p><h4>Contact</h4><p>Email: imelflorianingerl{'@'}gmail.com <br></p>"
     },
     "uebermich": {
       "title": "About me",
@@ -213,10 +213,10 @@
     }
   },
   "contact": {
-    "mapTitle": "Map with the address Walchenseestraße 6 in Gröbenzell",
+    "mapTitle": "Map with the address Rainerstraße 6a in Puchheim",
     "addressTitle": "Address:",
-    "addressLine1": "Walchenseestraße 6",
-    "addressLine2": "82194 Gröbenzell",
+    "addressLine1": "Rainerstraße 6a",
+    "addressLine2": "82178 Puchheim, Germany",
     "emailTitle": "Email:",
     "intro": "<p>The best thing to do is to contact me via e-mail and send along a few worksheets that can be discussed in a private lesson. But you can also use the form below.</p>",
     "form": {

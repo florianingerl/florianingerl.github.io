@@ -178,7 +178,7 @@
     "praesenz": {
       "title": "Präsenz-Nachhilfe",
       "imageAlt": "Präsenz-Nachhilfe im Büro",
-      "body": "<p>Präsenz-Nachhilfe findet in meinem Büro in der Walchenseestraße 6 in Gröbenzell ohne irgendwelche Einschränkungen statt. Bei schönem Wetter können wir auch raus gehen. Du bist herzlich willkommen solange du nur genügend tolle Aufgaben mitbringst.</p><p>Wenn du als Schüler der Grundschule oder der Unterstufe noch nicht mobil bist und Präsenznachhilfe brauchst, komme ich gerne gegen Aufpreis zu dir nach Hause.</p>"
+      "body": "<p>Präsenz-Nachhilfe findet in meinem Büro in der Rainerstraße 6a in Puchheim ohne irgendwelche Einschränkungen statt. Bei schönem Wetter können wir auch raus gehen. Du bist herzlich willkommen solange du nur genügend tolle Aufgaben mitbringst.</p><p>Wenn du als Schüler der Grundschule oder der Unterstufe noch nicht mobil bist und Präsenznachhilfe brauchst, komme ich gerne gegen Aufpreis zu dir nach Hause.</p>"
     },
     "feedbacks": {
       "title": "Feedbacks",
@@ -198,7 +198,7 @@
     },
     "impressum": {
       "title": "Impressum",
-      "body": "<h4>Angaben gemäß § 5 TMG</h4><p>Frag Florian <br> Florian Ingerl <br> Walchenseestraße 6, 82194 Gröbenzell <br></p><h4>Kontakt</h4><p>E-Mail: imelflorianingerl{'@'}gmail.com <br></p>"
+      "body": "<h4>Angaben gemäß § 5 TMG</h4><p>Frag Florian <br> Florian Ingerl <br> Rainerstraße 6a, 82178 Puchheim, Deutschland <br></p><h4>Kontakt</h4><p>E-Mail: imelflorianingerl{'@'}gmail.com <br></p>"
     },
     "uebermich": {
       "title": "Über mich",
@@ -213,10 +213,10 @@
     }
   },
   "contact": {
-    "mapTitle": "Karte mit der Adresse Walchenseestraße 6 in Gröbenzell",
+    "mapTitle": "Karte mit der Adresse Rainerstraße 6a in Puchheim",
     "addressTitle": "Adresse:",
-    "addressLine1": "Walchenseestraße 6",
-    "addressLine2": "82194 Gröbenzell",
+    "addressLine1": "Rainerstraße 6a",
+    "addressLine2": "82178 Puchheim, Deutschland",
     "emailTitle": "Email:",
     "intro": "<p>Am besten du kontaktierst mich via E-Mail und schickst gleich ein paar Aufgabenblätter mit, die man in einer Nachhilfestunde besprechen könnte. Aber du kannst auch dieses Kontaktformular benutzen.</p>",
     "form": {

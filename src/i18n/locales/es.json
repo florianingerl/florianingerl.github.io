@@ -178,7 +178,7 @@
     "praesenz": {
       "title": "Clases presenciales",
       "imageAlt": "Clases presenciales en la oficina",
-      "body": "<p>Las clases presenciales se realizan sin ninguna restricción en mi oficina de la Walchenseestraße 6 en Gröbenzell. Con buen tiempo también podemos salir. Eres bienvenido siempre que traigas suficientes tareas interesantes.</p><p>Si como alumno de primaria o de la etapa inferior aún no te puedes desplazar y necesitas clases presenciales, vengo encantado a tu casa por un coste adicional.</p>"
+      "body": "<p>Las clases presenciales se realizan sin ninguna restricción en mi oficina de la Rainerstraße 6a en Puchheim. Con buen tiempo también podemos salir. Eres bienvenido siempre que traigas suficientes tareas interesantes.</p><p>Si como alumno de primaria o de la etapa inferior aún no te puedes desplazar y necesitas clases presenciales, vengo encantado a tu casa por un coste adicional.</p>"
     },
     "feedbacks": {
       "title": "Opiniones",
@@ -198,7 +198,7 @@
     },
     "impressum": {
       "title": "Aviso legal",
-      "body": "<h4>Información conforme al § 5 TMG</h4><p>Frag Florian <br> Florian Ingerl <br> Walchenseestraße 6, 82194 Gröbenzell <br></p><h4>Contacto</h4><p>E-Mail: imelflorianingerl{'@'}gmail.com <br></p>"
+      "body": "<h4>Información conforme al § 5 TMG</h4><p>Frag Florian <br> Florian Ingerl <br> Rainerstraße 6a, 82178 Puchheim, Alemania <br></p><h4>Contacto</h4><p>E-Mail: imelflorianingerl{'@'}gmail.com <br></p>"
     },
     "uebermich": {
       "title": "Acerca de mí",
@@ -213,10 +213,10 @@
     }
   },
   "contact": {
-    "mapTitle": "Mapa con la dirección Walchenseestraße 6 en Gröbenzell",
+    "mapTitle": "Mapa con la dirección Rainerstraße 6a en Puchheim",
     "addressTitle": "Dirección:",
-    "addressLine1": "Walchenseestraße 6",
-    "addressLine2": "82194 Gröbenzell",
+    "addressLine1": "Rainerstraße 6a",
+    "addressLine2": "82178 Puchheim, Alemania",
     "emailTitle": "Correo electrónico:",
     "intro": "<p>Lo mejor es que me contactes por correo electrónico y me envíes de inmediato algunas hojas de tareas que podríamos tratar en una clase de tutoría. Pero también puedes usar este formulario de contacto.</p>",
     "form": {
