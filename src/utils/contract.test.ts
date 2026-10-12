@@ -3,6 +3,7 @@ import {
   buildContract,
   computePrice,
   createContractPdf,
+  downloadBlob,
   type ContractFields,
 } from "./contract";
 
@@ -137,5 +138,69 @@ describe("createContractPdf Layout", () => {
     const blob = createContractPdf(blocks, blocks[0].text);
     expect(blob).toBeInstanceOf(Blob);
     expectNoOverlappingLines(collectBaselines());
+  });
+});
+
+describe("downloadBlob: Oeffnen & stilles Speichern ohne Dialog", () => {
+  const createObjectURL = vi.fn(() => "blob:fake-url");
+  const revokeObjectURL = vi.fn();
+
+  beforeEach(() => {
+    Object.defineProperty(URL, "createObjectURL", {
+      configurable: true,
+      value: createObjectURL,
+    });
+    Object.defineProperty(URL, "revokeObjectURL", {
+      configurable: true,
+      value: revokeObjectURL,
+    });
+    createObjectURL.mockClear();
+    revokeObjectURL.mockClear();
+  });
+
+  it("oeffnet eine PDF im Viewer (neuer Tab) und speichert sie still im Download-Ordner", async () => {
+    vi.useFakeTimers();
+    const open = vi.spyOn(window, "open").mockReturnValue(null);
+    const click = vi
+      .spyOn(HTMLAnchorElement.prototype, "click")
+      .mockImplementation(() => {});
+    try {
+      await downloadBlob(
+        new Blob(["%PDF-1.3"], { type: "application/pdf" }),
+        "Alles-oder-Nichts-Paket_de_2027-05-10.pdf"
+      );
+      expect(createObjectURL).toHaveBeenCalledTimes(1);
+      expect(open).toHaveBeenCalledWith("blob:fake-url", "_blank", "noopener");
+      expect(click).toHaveBeenCalledTimes(1);
+      await vi.advanceTimersByTimeAsync(60_000);
+      expect(revokeObjectURL).toHaveBeenCalledWith("blob:fake-url");
+    } finally {
+      vi.useRealTimers();
+      open.mockRestore();
+      click.mockRestore();
+    }
+  });
+
+  it("laedt RTF- und Word-Dateien still herunter, ohne sie in einem Tab zu oeffnen", async () => {
+    const open = vi.spyOn(window, "open");
+    const click = vi
+      .spyOn(HTMLAnchorElement.prototype, "click")
+      .mockImplementation(() => {});
+    try {
+      await downloadBlob(
+        new Blob(["{\\rtf1"], { type: "application/rtf" }),
+        "Alles-oder-Nichts-Paket_de_2027-05-10.rtf"
+      );
+      await downloadBlob(
+        new Blob(["<html></html>"], { type: "application/msword" }),
+        "Alles-oder-Nichts-Paket_de_2027-05-10.doc"
+      );
+      expect(open).not.toHaveBeenCalled();
+      expect(click).toHaveBeenCalledTimes(2);
+      expect(createObjectURL).toHaveBeenCalledTimes(2);
+    } finally {
+      open.mockRestore();
+      click.mockRestore();
+    }
   });
 });
