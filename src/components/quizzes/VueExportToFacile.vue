@@ -182,8 +182,10 @@
 </template>
 
 <script setup lang="ts">
-import { computed, nextTick, onMounted, ref, watch } from "vue";
-import { Modal } from "bootstrap";
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from "vue";
+import { Modal } from "bootstrap";
+
+import { modalScrollSperreEntfernen } from "@/utils/modalScroll";
 import { exportToFacile, getAllExercises, getTopic } from "@/api";
 import VueImage from "./VueImage.vue";
 import type {
@@ -260,7 +262,9 @@ const emit = defineEmits<{ (e: "cancel-clicked"): void }>();
 const t = computed(() => texte[props.lg]);
 const domain = computed(() => SEITEN[props.quiz] ?? "ÔÇª");
 
-const dialog = ref<HTMLElement | null>(null);
+const dialog = ref<HTMLElement | null>(null);
+
+let modal: Modal | null = null;
 const topicDaten = ref<Topic | undefined>(undefined);
 const alleAufgaben = ref<Exercise[]>([]);
 const kandidaten = ref<Exercise[]>([]);
@@ -586,11 +590,20 @@ watch(uebungstyp, filtereNachTestart);
 onMounted(async () => {
   await nextTick();
   await ladeKandidaten();
-
-  if (!dialog.value) return;
-  const modal = Modal.getOrCreateInstance(dialog.value);
-  dialog.value.addEventListener("hidden.bs.modal", () => emit("cancel-clicked"));
-  modal.show();
+if (!dialog.value) return;
+
+  modal = Modal.getOrCreateInstance(dialog.value);
+  dialog.value.addEventListener("hidden.bs.modal", () => emit("cancel-clicked"));
+  modal.show();
+
+});
+
+onBeforeUnmount(() => {
+  // Falls das Modal entfernt wird, waehrend es noch offen ist, den body
+  // aufraeumen, damit die Seite scrollbar bleibt (siehe modalScroll.ts).
+  modal?.dispose();
+  modal = null;
+  modalScrollSperreEntfernen();
 });
 </script>
 

@@ -173,9 +173,10 @@
 
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, reactive, ref } from 'vue'
+import { useAuthStore } from "@/stores/auth";
+import { modalScrollSperreEntfernen } from "@/utils/modalScroll";
 import { Modal } from 'bootstrap'
 import { fehlerText } from '@/api'
-import { useAuthStore } from '@/stores/auth'
 
 interface SignUpForm {
   name: string
@@ -233,12 +234,11 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
   // Falls die Komponente (z.B. nach erfolgreicher Registrierung) entfernt wird,
-  // waehrend das Modal noch offen ist, nur das eigene Backdrop aufraeumen.
+  // waehrend das Modal noch offen ist, den body trotzdem aufraeumen, damit die
+  // Seite scrollbar bleibt (siehe modalScroll.ts).
   modal?.dispose()
   modal = null
-  if (!document.querySelector('.modal.show')) {
-    document.body.classList.remove('modal-open')
-  }
+  modalScrollSperreEntfernen()
 })
 
 function clearErrors(): void {

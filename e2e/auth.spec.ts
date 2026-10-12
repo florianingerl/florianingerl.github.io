@@ -20,6 +20,25 @@ async function mockBackend(page: Page): Promise<void> {
   });
 }
 
+// Nach dem Schliessen darf keinerlei Scroll-Sperre am body zurueckbleiben:
+// Ein haengen gebliebenes Modal wuerde die Klasse "modal-open" und damit
+// "overflow: hidden" hinterlassen (siehe src/utils/modalScroll.ts). Bootstrap
+// entfernt die Klasse erst am Ende der Ausblend-Transition, deshalb wird kurz
+// darauf gewartet.
+async function expectPageScrollable(page: Page): Promise<void> {
+  await expect
+    .poll(
+      () =>
+        page.evaluate(() => ({
+          modalOpen: document.body.classList.contains("modal-open"),
+          overflow: getComputedStyle(document.body).overflow,
+          backdrop: document.querySelectorAll(".modal-backdrop").length,
+        })),
+      { timeout: 3000 }
+    )
+    .toEqual({ modalOpen: false, overflow: "visible", backdrop: 0 });
+}
+
 test.beforeEach(async ({ page }) => {
   await mockBackend(page);
 });
@@ -39,6 +58,7 @@ test.describe("Login dialog", () => {
     await closeButton.click();
 
     await expect(modal).toBeHidden();
+    await expectPageScrollable(page);
   });
 });
 
@@ -57,5 +77,6 @@ test.describe("Sign up dialog", () => {
     await closeButton.click();
 
     await expect(modal).toBeHidden();
+    await expectPageScrollable(page);
   });
 });
