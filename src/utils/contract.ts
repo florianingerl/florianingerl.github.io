@@ -878,27 +878,31 @@ export function createContractPdf(
     }
 
     const spaceW = doc.getTextWidth(" ");
-    let x = margin;
     const right = margin + maxW;
-    for (const line of text.split("\n")) {
-      if (line.trim() === "") {
-        y += lh;
-        continue;
+    let x = margin;
+    // Jede Zeile liegt auf einem grosszuegigen 1.5x-Raster (lineHeight). Am
+    // Ende eines Absatzes springt die naechste Grundlinie um eine volle
+    // Zeilenhoehe weiter. Dadurch koennen sich Zeilen verschiedener Absaetze
+    // und Schriftgroessen nie ueberlappen, egal wie gross die Schrift ist.
+    const newLine = (): void => {
+      y += lh;
+      if (y > bottom) {
+        doc.addPage();
+        y = margin;
       }
       x = margin;
+    };
+    for (const [index, line] of text.split("\n").entries()) {
+      if (line.trim() === "") {
+        newLine();
+        continue;
+      }
+      if (index > 0) newLine();
       for (const w of parseStyledWords(line)) {
         doc.setFont("times", w.bold ? "bold" : "normal");
         doc.setFontSize(fs);
         const wordW = doc.getTextWidth(w.w + " ");
-        if (w.w !== " " && x + wordW > right) {
-          x = margin;
-          y += lh;
-          if (y > bottom) {
-            doc.addPage();
-            y = margin;
-            x = margin;
-          }
-        }
+        if (w.w !== " " && x + wordW > right) newLine();
         if (w.w !== " ") {
           doc.text(w.w, x, y);
           x += doc.getTextWidth(w.w) + spaceW;
@@ -906,20 +910,24 @@ export function createContractPdf(
           x += spaceW;
         }
       }
-      y += 3;
     }
-    y += 6;
+    y += lh;
   };
 
   for (const b of blocks) {
+    if (y > bottom) {
+      doc.addPage();
+      y = margin;
+    }
     if (b.kind === "title") {
       drawParagraph(b.text, { fontSize: FS_TITLE, bold: true, center: true });
     } else if (b.kind === "heading") {
+      y += 8;
       drawParagraph(b.text, { fontSize: FS_HEADING, bold: true });
-      y += 4;
+      y += 6;
     } else {
       drawParagraph((b.kind === "item" ? "\u2022  " : "") + b.text);
-      if (b.kind === "sig") y += 6;
+      y += b.kind === "sig" ? 6 : 4;
     }
   }
 
