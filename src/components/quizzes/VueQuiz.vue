@@ -96,7 +96,7 @@
     <p v-if="laden">{{ t.laden }}</p>
     <p v-if="fehler" class="text-danger">{{ fehler }}</p>
 
-    <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+    <div v-show="!formOffen" class="d-flex flex-wrap align-items-center gap-2 mb-3">
       <label for="topicFilter" class="form-label mb-0">
         Filter for topic:
       </label>
@@ -117,7 +117,7 @@
     </div>
 
   
-    <ul class="nav nav-tabs" role="tablist">
+    <ul class="nav nav-tabs" role="tablist" v-show="!formOffen">
       <li class="nav-item" role="presentation">
         <button
           class="nav-link"
