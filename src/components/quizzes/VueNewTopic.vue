@@ -3,16 +3,17 @@
     
     <label for="topic-title">Titel</label>
     <input id="topic-title" type="text" v-model="topicTitle" />
-    <VueJoditEditor v-model="editorContent" :options="joditOptionen" />
+    <VueJoditEditor v-model="editorContent" :options="joditOptionen" ref="editorRef" />
+    <button type="button" @click="insertRandomFacileImage" class="mt-2 mb-2">
+      Zufälliges Bild von anglaisfacile.com einfügen
+    </button>
     <div class="row">
-      <div class="col">
         <button @click="saveTutorialClicked">Save</button>
       </div>
       <div class="col">
         <button @click="emit('cancel-clicked')">Cancel</button>
       </div>
     </div>
-  </div>
 </template>
 
 <script setup lang="ts">
@@ -21,6 +22,7 @@ import VueJoditEditor from "./VueJoditEditor.vue";
 import { getTopic, updateTopic } from "@/api";
 import type { Exercise, Topic } from "@/types/quiz";
 import "jodit/es2021/jodit.min.css";
+import { findRandomImageUrlOnFacile } from "./VueNewExercise.vue";
 
 const props = defineProps<{
   questionOfQuiz?: Exercise
@@ -33,6 +35,7 @@ const emit = defineEmits<{
 
 const editorContent = ref<string>('')
 const topicTitle = ref<string>('')
+const editorRef = ref<InstanceType<typeof VueJoditEditor> | null>(null)
 
 // Entspricht ungefaehr der Toolbar von TinyMCE: Formatierung, Listen, Links,
 // Tabellen, Bilder, Zeichentabelle und Quelltext.
@@ -85,6 +88,20 @@ watch(
     updateEditorContent()
   }
 )
+
+async function insertRandomFacileImage(): Promise<void> {
+  try {
+    const url = await findRandomImageUrlOnFacile()
+    const editor = editorRef.value?.getEditor?.()
+    if (editor) {
+      editor.selection.insertHTML(`<img src="${url}" />`)
+    } else {
+      editorContent.value = editorContent.value + `<img src="${url}" />`
+    }
+  } catch (e) {
+    alert(`Bild konnte nicht eingefügt werden: ${(e as Error).message}`)
+  }
+}
 
 async function saveTutorialClicked(): Promise<void> {
   const ex = props.questionOfQuiz
