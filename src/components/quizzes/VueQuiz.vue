@@ -196,7 +196,7 @@
       <p>Your score: {{ scoreText }}</p>
     </div> <!-- End of <div v-if= " tab === 'exercise'"></div>-->
 
-    <div v-show="tab === 'tutorial'">
+    <div v-show="tab === 'tutorial' && !formOffen">
       <div class="row">
       <VueTopicDisplayer class="col" :topic="aktuelle?.topic" />
 
