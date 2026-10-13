@@ -1,10 +1,14 @@
 <script setup lang="ts">
+import { computed } from "vue";
 import { useI18n } from "vue-i18n";
+import { quizLang } from "@/i18n";
 import ASectionTitle from "@/components/atoms/ASectionTitle.vue";
 import ASectionImage from "@/components/atoms/ASectionImage.vue";
 import ARichText from "@/components/atoms/ARichText.vue";
+import VueQuiz from "@/components/quizzes/VueQuiz.vue";
 
-const { t } = useI18n();
+const { t, locale } = useI18n();
+const lg = computed(() => quizLang(locale.value));
 </script>
 
 <template>
@@ -27,6 +31,12 @@ const { t } = useI18n();
 				</div>
 				<div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
 					<ARichText :html="t('sections.infouni.body2')" />
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-12">
+					<VueQuiz quiz="informatics" :lg="lg" />
 				</div>
 			</div>
 		</div>

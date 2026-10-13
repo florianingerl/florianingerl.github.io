@@ -330,6 +330,72 @@ describe("VueQuiz: Web-Programming-Quiz laedt Destructuring-Thema und Aufgaben",
   });
 });
 
+// Das Informatik-Quiz (Fach "informatics") laedt das Thema
+// "UML - Aktivit\u00e4tsdiagramme" und die dazugehoerigen Multiple-Choice-Aufgaben,
+// die auf dem Wikipedia-Artikel ueber Aktivit\u00e4tsdiagramme beruhen.
+describe("VueQuiz: Informatik-Quiz laedt UML-Aktivit\u00e4tsdiagramm-Thema und Aufgaben", () => {
+  const INFO: QuizName = "informatics";
+  const WIKI = "https://de.wikipedia.org/wiki/Aktivit%C3%A4tsdiagramm";
+
+  beforeEach(() => {
+    server.use(
+      http.get(`${API_URL}/api/quiz`, () =>
+        HttpResponse.json([
+          { _id: "qi", website: "web", subject: INFO, name: "Informatik" },
+        ]),
+      ),
+      http.get(`${API_URL}/api/topic/:quiz`, () =>
+        HttpResponse.json([
+          {
+            _id: "ti",
+            subject: INFO,
+            title: "UML - Aktivit\u00e4tsdiagramme",
+            tutorial: `<a href="${WIKI}">Wikipedia-Artikel \u00fcber Aktivit\u00e4tsdiagramme</a>`,
+          },
+        ]),
+      ),
+      http.get(`${API_URL}/api/exercise`, () =>
+        HttpResponse.json<Exercise[]>([
+          {
+            _id: "ei1",
+            quiz: "qi",
+            subject: INFO,
+            topic: "ti",
+            type: "multipleChoice",
+            imageUrl:
+              "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Uml-Activity-Beispiel3_Deutsch.svg/500px-Uml-Activity-Beispiel3_Deutsch.svg.png",
+            instruction: "W\u00e4hle die richtige Antwort.",
+            question:
+              "Was wird mit einem Aktivit\u00e4tsdiagramm meist beschrieben?",
+            options: [
+              { option: "der Ablauf eines Anwendungsfalls", correct: true },
+              { option: "die Struktur einer Klasse", correct: false },
+              { option: "die Sichtbarkeit von Attributen", correct: false },
+            ],
+          },
+        ]),
+      ),
+    );
+  });
+
+  it("zeigt die Multiple-Choice-Aufgabe des Faches informatics an", async () => {
+    const pinia = createPinia();
+    setActivePinia(pinia);
+    const wrapper = mount(VueQuiz, {
+      props: { quiz: INFO, lg: "de" },
+      global: { plugins: [pinia] },
+      shallow: true,
+    });
+    await flushPromises();
+
+    const aufgabe = wrapper
+      .findComponent(VueExercise)
+      .props("exercise") as Exercise;
+    expect(aufgabe).toMatchObject({ _id: "ei1", type: "multipleChoice" });
+    expect(wrapper.text()).not.toContain("Keine Fragen vorhanden.");
+  });
+});
+
 // Der Vollbild-Knopf neben An- bzw. Abmelden schaltet das Quiz in den
 // Vollbildmodus. jsdom kennt die Fullscreen-API nicht, darum wird sie gestubbt.
 describe("VueQuiz: Vollbildmodus", () => {
