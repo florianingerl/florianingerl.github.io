@@ -2,7 +2,7 @@ import { flushPromises, mount } from "@vue/test-utils";
 import { createPinia, setActivePinia } from "pinia";
 import { http, HttpResponse } from "msw";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { API_URL } from "@/api";
+import { API_URL, getAllExercises } from "@/api";
 import { server } from "@/mocks/server";
 import { useAuthStore } from "@/stores/auth";
 import { useFilterStore } from "@/stores/filter";
@@ -422,5 +422,177 @@ describe("VueQuiz: Vollbildmodus", () => {
     document.dispatchEvent(new Event("fullscreenchange"));
     await flushPromises();
     expect(wrapper.find('[title="Fullscreen"]').exists()).toBe(true);
+  });
+});
+
+// Ohne Anmeldung duerfen die drei Knoepfe zum Anlegen, Bearbeiten und Loeschen
+// nicht sichtbar sein; stattdessen steht dort der Anmelde-Hinweis.
+describe("VueQuiz: nicht angemeldet", () => {
+  beforeEach(() => {
+    server.use(
+      http.get(`${API_URL}/api/quiz`, () =>
+        HttpResponse.json([
+          { _id: "q1", website: "web", subject: QUIZ, name: QUIZ },
+        ]),
+      ),
+      http.get(`${API_URL}/api/topic/:quiz`, () =>
+        HttpResponse.json([
+          { _id: "t1", subject: QUIZ, title: "Topic 1", tutorial: "" },
+        ]),
+      ),
+      http.get(`${API_URL}/api/exercise`, () =>
+        HttpResponse.json<Exercise[]>([
+          {
+            _id: "e1",
+            quiz: "q1",
+            subject: QUIZ,
+            topic: "t1",
+            type: "gapText",
+            imageUrl: "",
+            instruction: "Fill the gap",
+            gapText: "a {b} c",
+          },
+        ]),
+      ),
+    );
+  });
+
+  it("zeigt statt der drei Knoepfe den Anmelde-Hinweis", async () => {
+    const pinia = createPinia();
+    setActivePinia(pinia);
+    const wrapper = mount(VueQuiz, {
+      props: { quiz: QUIZ, lg: "en" },
+      global: { plugins: [pinia] },
+      shallow: true,
+    });
+    await flushPromises();
+
+    // Sicher abgemeldet: kein Token, kein Benutzer.
+    const auth = useAuthStore();
+    auth.abmelden();
+    await flushPromises();
+
+    expect(wrapper.find('[title="Add a new exercise"]').exists()).toBe(false);
+    expect(wrapper.find('[title="Edit the exercise"]').exists()).toBe(false);
+    expect(wrapper.find('[title="Delete the exercise"]').exists()).toBe(false);
+    expect(wrapper.text()).toContain(
+      "Log in to create, edit or delete exercises and tutorials.",
+    );
+  });
+});
+
+// Eine Multiple-Choice-Aufgabe wird ueber das Formular angelegt, gespeichert
+// und danach ueber die API (getAllExercises) wieder geladen. So wird geprueft,
+// dass die erste Option als die richtige Antwort in der Datenbank landet.
+describe("VueQuiz: Multiple-Choice-Aufgabe anlegen (Server-Roundtrip)", () => {
+  let aufgaben: Exercise[];
+
+  beforeEach(() => {
+    aufgaben = [];
+    server.use(
+      http.get(`${API_URL}/api/quiz`, () =>
+        HttpResponse.json([
+          { _id: "q1", website: "web", subject: QUIZ, name: QUIZ },
+        ]),
+      ),
+      http.get(`${API_URL}/api/topic/:quiz`, () =>
+        HttpResponse.json([
+          { _id: "t1", subject: QUIZ, title: "Topic 1", tutorial: "" },
+        ]),
+      ),
+      http.get(`${API_URL}/api/exercise`, () => HttpResponse.json(aufgaben)),
+      http.post(`${API_URL}/api/exercise`, async ({ request }) => {
+        const body = (await request.json()) as Exercise;
+        const neu = { ...body, _id: `e${aufgaben.length + 1}` };
+        aufgaben.push(neu);
+        return HttpResponse.json(neu, { status: 201 });
+      }),
+    );
+  });
+
+  it("speichert die erste Option als richtige Antwort", async () => {
+    const pinia = createPinia();
+    setActivePinia(pinia);
+    const wrapper = mount(VueQuiz, {
+      props: { quiz: QUIZ, lg: "en" },
+      global: {
+        plugins: [pinia],
+        // Nur das Aufgaben-Formular wird echt gebraucht; die uebrigen Kinder
+        // (u.a. der Jodit-Editor in VueNewTopic) sind fuer den Test unnoetig.
+        stubs: {
+          VueNewTopic: true,
+          VueExercise: true,
+          VueTopicDisplayer: true,
+          VueExportToFacile: true,
+          VueSignUp: true,
+          VueLogin: true,
+          VueProfile: true,
+          VueFilterDialog: true,
+        },
+      },
+    });
+    await flushPromises();
+
+    const auth = useAuthStore();
+    auth.token = "test-token";
+    auth.user = { name: "Tester", email: "tester@example.com" } as User;
+    await flushPromises();
+
+    // Das Formular zum Anlegen einer Aufgabe oeffnen.
+    await wrapper.get('[title="Add a new exercise"]').trigger("click");
+    await flushPromises();
+
+    const formular = wrapper.findComponent(VueNewExercise);
+    const selecte = formular.findAll("select");
+    // selecte[0] = Thema, selecte[1] = Typ.
+    await selecte[1].setValue("multipleChoice");
+
+    // Thema "Topic 1" auswaehlen (Option 0 ist "Please select one").
+    const themenSelect = selecte[0].element as HTMLSelectElement;
+    themenSelect.selectedIndex = 1;
+    await selecte[0].trigger("change");
+    await flushPromises();
+
+    // Die Frage eintippen (erstes Textfeld mit Klasse "form-control"; das Feld
+    // "New option" und "Image url" kommen spaeter im DOM).
+    const frageFeld = formular.findAll("input.form-control")[0];
+    await frageFeld.setValue("Wie heisst die Hauptstadt von Frankreich?");
+
+    // Drei Optionen anlegen; die erste ist die richtige.
+    const optionsBox = formular
+      .findAll("div.mb-3.mt-3")
+      .find((d) => d.text().includes("New option"))!;
+    const optionsFeld = optionsBox.find('input[type="text"]');
+    const hinzufuegen = optionsBox
+      .findAll("button")
+      .find((b) => b.text().trim() === "Add")!;
+    for (const option of ["Paris", "Rom", "Madrid"]) {
+      await optionsFeld.setValue(option);
+      await hinzufuegen.trigger("click");
+    }
+
+    // Speichern; das loest den POST an die gemockte Datenbank aus.
+    const speichern = formular
+      .findAll("button")
+      .find((b) => b.text().trim() === "Save")!;
+    await speichern.trigger("click");
+    await flushPromises();
+
+    // Vom Server erneut laden und die zuletzt angelegte Aufgabe pruefen.
+    const geladen = await getAllExercises(QUIZ);
+    const letzte = geladen[geladen.length - 1];
+    expect(geladen).toHaveLength(1);
+    expect(letzte).toMatchObject({
+      quiz: "q1",
+      subject: QUIZ,
+      type: "multipleChoice",
+      question: "Wie heisst die Hauptstadt von Frankreich?",
+      topic: "t1",
+    });
+    expect(letzte.options).toEqual([
+      { option: "Paris", correct: true },
+      { option: "Rom", correct: false },
+      { option: "Madrid", correct: false },
+    ]);
   });
 });
