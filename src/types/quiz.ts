@@ -9,7 +9,8 @@ export type QuizName =
   | "consciousness"
   | "mathematics"
   | "webprogramming"
-  | "informatics";
+  | "informatics"
+  | "physics";
 
 export type Lang = "de" | "en" | "fr";
 
