@@ -122,6 +122,24 @@
       <p v-if="randomImageFailed" class="text-danger">{{ randomImageFailed }}</p>
     </div>
 
+    <div class="mt-2 mb-2">
+      <label class="form-label" for="imageUrlInput">Image url</label>
+      <div class="input-group">
+        <input
+          id="imageUrlInput"
+          v-model="imageUrlInput"
+          type="text"
+          class="form-control"
+          placeholder="https://..."
+          @paste="imagePasted"
+        />
+        <button class="btn btn-secondary" type="button" @click="applyImageUrl">
+          Get image
+        </button>
+      </div>
+      <p v-if="imageUrlMessage" class="text-danger">{{ imageUrlMessage }}</p>
+    </div>
+
     <div class="row justify-center">
       <button class="col btn-primary btn" @click="save">Save</button>
       <button class="col btn-primary btn" @click="emit('cancel-clicked')">Cancel</button>
@@ -130,6 +148,8 @@
 </template>
 
 <script lang="ts">
+import { API_URL, uploadImage } from '@/api'
+
 // Die Bilder der *facile.com-Tests liegen unter dieser Adresse.
 const FACILE_BILDER_URL = 'https://www.anglaisfacile.com/cgi2/myexam/images2/'
 
@@ -207,13 +227,60 @@ export async function findRandomImageUrlOnFacile(): Promise<string> {
   }
   throw new Error('Kein Bild unter ' + FACILE_BILDER_URL + ' gefunden')
 }
+
+// Sucht in den Daten einer Zwischenablage (Strg+V) ein Bild. Text wird
+// durchgelassen (null), damit die Eingabe normal weiter funktioniert.
+export function dateiAusZwischenablage(
+  daten: DataTransfer | null | undefined,
+): File | null {
+  if (!daten) return null
+  for (const datei of Array.from<File>(daten.files ?? [])) {
+    if (datei.type.startsWith('image/')) return datei
+  }
+  for (const element of Array.from<DataTransferItem>(daten.items ?? [])) {
+    if (element.kind === 'file' && element.type.startsWith('image/')) {
+      const datei = element.getAsFile()
+      if (datei) return datei
+    }
+  }
+  return null
+}
+
+// Liest eine Datei als Data-URL ("data:image/png;base64,..."), so wie sie der
+// Server erwartet.
+function dateiAlsDatenUrl(datei: File): Promise<string> {
+  return new Promise<string>((resolve, reject) => {
+    const leser = new FileReader()
+    leser.onload = () => resolve(String(leser.result))
+    leser.onerror = () => reject(new Error('The pasted image could not be read.'))
+    leser.readAsDataURL(datei)
+  })
+}
+
+// Macht aus der Antwort des Servers eine URL, die der Browser laden kann.
+// Bilder, die unser Server ausliefert, werden immer ueber API_URL geladen
+// (auch wenn der Server hinter dem Proxy nur http gemeldet hat); eine fremde,
+// absolute URL bleibt unveraendert.
+export function bildUrl(url: string): string {
+  const pfad = url.replace(/^https?:\/\/[^/]+/i, '')
+  if (pfad.startsWith('/api/image/')) return `${API_URL}${pfad}`
+  return /^https?:\/\//i.test(url) ? url : `${API_URL}${url}`
+}
+
+// Schickt ein eingefuegtes Bild an den Server (der das Tageslimit prueft) und
+// liefert die vollstaendige URL des gespeicherten Bildes zurueck.
+export async function uploadPastedImage(datei: File): Promise<string> {
+  const datenUrl = await dateiAlsDatenUrl(datei)
+  const antwort = await uploadImage(datenUrl)
+  return bildUrl(antwort.url)
+}
 </script>
 
 <script setup lang="ts">
 import { onMounted, ref, watch } from 'vue'
 import VueImage from './VueImage.vue'
 import type { Exercise, QuizName , Topic, TwoPartSentences } from '@/types/quiz'
-import { getAllTopics } from '@/api';
+import { fehlerText, getAllTopics } from '@/api';
 
 const newTopic = ref<string>('');
 const topics = ref<Topic[]>([])
@@ -253,6 +320,11 @@ const sentences = ref<TwoPartSentences[]>([
   { part1: '', part2: '' },
 ])
 const randomImageFailed = ref('')
+
+// Das Textfeld neben dem Label "Image url". Es nimmt eine eingegebene oder
+// eingefuegte Bild-Adresse auf; ein eingefuegtes Bild wird hochgeladen.
+const imageUrlInput = ref('')
+const imageUrlMessage = ref('')
 
 // Bildsuche über Klipy
 const searchString = ref('Duck')
@@ -322,6 +394,30 @@ async function randomFacileImage(): Promise<void> {
     exercise.value.imageUrl = await findRandomImageUrlOnFacile()
   } catch (e) {
     randomImageFailed.value = (e as Error).message
+  }
+}
+
+// Uebernimmt die eingetippte/eingefuegte Adresse als Bild der Aufgabe.
+function applyImageUrl(): void {
+  const url = imageUrlInput.value.trim()
+  if (!url) return
+  imageUrlMessage.value = ''
+  exercise.value.imageUrl = url
+}
+
+// Ein Bild aus der Zwischenablage wird erst an den Server geschickt und dann
+// als Bild der Aufgabe uebernommen. Reiner Text wird normal eingefuegt.
+async function imagePasted(event: ClipboardEvent): Promise<void> {
+  const datei = dateiAusZwischenablage(event.clipboardData)
+  if (!datei) return
+  event.preventDefault()
+  imageUrlMessage.value = ''
+  try {
+    const url = await uploadPastedImage(datei)
+    exercise.value.imageUrl = url
+    imageUrlInput.value = url
+  } catch (e) {
+    imageUrlMessage.value = fehlerText(e, 'The image could not be uploaded.')
   }
 }
 

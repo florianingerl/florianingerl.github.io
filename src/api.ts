@@ -163,6 +163,21 @@ export async function deleteExercise(id: string): Promise<void> {
   await client.delete(`/api/exercise/${encodeURIComponent(id)}`);
 }
 
+// Ein Bild aus der Zwischenablage wird als Data-URL ("data:image/png;base64,...")
+// an den Server geschickt. Er speichert es und antwortet mit der URL, unter der
+// es abrufbar ist. "remaining" ist die Anzahl der heute noch erlaubten Uploads
+// (-1 = kein Limit).
+export interface ImageUploadAntwort {
+  id: string;
+  url: string;
+  remaining: number;
+}
+
+export async function uploadImage(dataUrl: string): Promise<ImageUploadAntwort> {
+  const r = await client.post<ImageUploadAntwort>("/api/image", { dataUrl });
+  return r.data;
+}
+
 // Buecher (VueBookWriter / VueBookStore) ---------------------------
 //
 // Ein Buch-Quizz ist ein normales Quiz-Dokument (website === "book"). Es wird
