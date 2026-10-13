@@ -17,8 +17,9 @@ const lg = computed(() => quizLang(locale.value));
 			<ASectionTitle :title="t('sections.infouni.title')" />
 
 			<div class="row">
+				<!-- Das Quiz ersetzt das obere Bild der Sektion. -->
 				<div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
-					<ASectionImage src="assets/img/infouni2.PNG" :alt="t('sections.infouni.imageAlt')" />
+					<VueQuiz quiz="informatics" :lg="lg" />
 				</div>
 				<div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
 					<ARichText :html="t('sections.infouni.body')" />
@@ -31,12 +32,6 @@ const lg = computed(() => quizLang(locale.value));
 				</div>
 				<div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
 					<ARichText :html="t('sections.infouni.body2')" />
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-12">
-					<VueQuiz quiz="informatics" :lg="lg" />
 				</div>
 			</div>
 		</div>

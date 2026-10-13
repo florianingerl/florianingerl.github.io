@@ -13,16 +13,11 @@ const lg = computed(() => quizLang(locale.value));
 	<MSectionTextImage
 		id="physikuni"
 		:title="t('sections.physikuni.title')"
-		image-src="assets/img/physikuni.png"
-		:image-alt="t('sections.physikuni.imageAlt')"
 		:body-html="t('sections.physikuni.body')"
 	>
-		<template #after>
-			<div class="row">
-				<div class="col-12">
-					<VueQuiz quiz="physics" :lg="lg" />
-				</div>
-			</div>
+		<!-- Das Quiz ersetzt das Bild der Sektion. -->
+		<template #image>
+			<VueQuiz quiz="physics" :lg="lg" />
 		</template>
 	</MSectionTextImage>
 </template>
