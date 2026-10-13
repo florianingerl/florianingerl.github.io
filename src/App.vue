@@ -1,8 +1,15 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref } from "vue";
+import { computed, onBeforeUnmount, onMounted, ref } from "vue";
+import { useRoute } from "vue-router";
 import AOS from "aos";
 import ONavBar from "@/components/organisms/ONavBar.vue";
 import OFooter from "@/components/organisms/OFooter.vue";
+
+// Auf der Whiteboard-Seite soll nur die Sprachauswahl und die Menueleiste
+// sichtbar sein, der Rest der Oberflaeche (Fusszeile, Nach-oben-Knopf)
+// verschwindet.
+const route = useRoute();
+const isWhiteboard = computed(() => route.name === "whiteboard");
 
 const behindHeader = ref<HTMLElement | null>(null);
 const backToTopActive = ref(false);
@@ -44,9 +51,10 @@ onBeforeUnmount(() => {
 
 	<RouterView />
 
-	<OFooter />
+	<OFooter v-if="!isWhiteboard" />
 
 	<a
+		v-if="!isWhiteboard"
 		href="#"
 		class="back-to-top d-flex align-items-center justify-content-center"
 		:class="{ active: backToTopActive }"

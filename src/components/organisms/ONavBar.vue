@@ -8,69 +8,87 @@ const { t } = useI18n();
 const mobileOpen = ref(false);
 
 type NavLink = { key: string; href: string };
-type NavGroup = { key: string; href: string; items: NavLink[] };
+// "group" ist ein Aufklapp-Menue, "link" ein einfacher Menuepunkt (ohne
+// Untermenue), z.B. der Punkt "Whiteboard".
+type NavEntry = {
+	kind: "group" | "link";
+	key: string;
+	href: string;
+	items?: NavLink[];
+};
 
-const groups: NavGroup[] = [
+const entries: NavEntry[] = [
 	{
+		kind: "group",
 		key: "uni",
-		href: "#matheuni",
+		href: "/#matheuni",
 		items: [
-			{ key: "uniMath", href: "#matheuni" },
-			{ key: "uniInformatics", href: "#infouni" },
-			{ key: "uniPhysics", href: "#physikuni" },
-			{ key: "uniEngineering", href: "#ingenieurwesen" },
-			{ key: "uniChemistry", href: "#chemie" },
+			{ key: "uniMath", href: "/#matheuni" },
+			{ key: "uniInformatics", href: "/#infouni" },
+			{ key: "uniPhysics", href: "/#physikuni" },
+			{ key: "uniEngineering", href: "/#ingenieurwesen" },
+			{ key: "uniChemistry", href: "/#chemie" },
 		],
 	},
 	{
+		kind: "group",
 		key: "school",
-		href: "#matheschule",
+		href: "/#matheschule",
 		items: [
-			{ key: "schoolMath", href: "#matheschule" },
-			{ key: "schoolPhysics", href: "#physikschule" },
-			{ key: "schoolInformatics", href: "#infoschule" },
-			{ key: "schoolChemistry", href: "#chemieschule" },
-			{ key: "schoolFrench", href: "#franzoesisch" },
-			{ key: "schoolEnglish", href: "#englisch" },
-			{ key: "schoolSpanish", href: "#spanisch" },
-			{ key: "schoolItalian", href: "#italienisch" },
-			{ key: "schoolGerman", href: "#deutsch" },
+			{ key: "schoolMath", href: "/#matheschule" },
+			{ key: "schoolPhysics", href: "/#physikschule" },
+			{ key: "schoolInformatics", href: "/#infoschule" },
+			{ key: "schoolChemistry", href: "/#chemieschule" },
+			{ key: "schoolFrench", href: "/#franzoesisch" },
+			{ key: "schoolEnglish", href: "/#englisch" },
+			{ key: "schoolSpanish", href: "/#spanisch" },
+			{ key: "schoolItalian", href: "/#italienisch" },
+			{ key: "schoolGerman", href: "/#deutsch" },
 		],
 	},
 	{
+		kind: "group",
 		key: "life",
-		href: "#ernaehrung",
+		href: "/#ernaehrung",
 		items: [
-			{ key: "lifeSprouts", href: "#ernaehrung" },
-			{ key: "lifeReiki", href: "#reiki" },
-			{ key: "lifeLearnTeach", href: "#lernenundlehren" },
-			{ key: "lifeConsciousness", href: "#bewusstsein" },
-			{ key: "lifeChess", href: "#schach" },
-			{ key: "lifeWebsites", href: "#websitenundflyer" },
+			{ key: "lifeSprouts", href: "/#ernaehrung" },
+			{ key: "lifeReiki", href: "/#reiki" },
+			{ key: "lifeLearnTeach", href: "/#lernenundlehren" },
+			{ key: "lifeConsciousness", href: "/#bewusstsein" },
+			{ key: "lifeChess", href: "/#schach" },
+			{ key: "lifeWebsites", href: "/#websitenundflyer" },
 		],
 	},
 	{
+		kind: "group",
 		key: "prices",
-		href: "#preise",
+		href: "/#preise",
 		items: [
-			{ key: "pricesPayment", href: "#preise" },
-			{ key: "pricesLesson", href: "#unterrichtsmethode" },
-			{ key: "pricesTutorial", href: "#tutorium" },
-			{ key: "pricesOnline", href: "#online" },
-			{ key: "pricesPresential", href: "#praesenz" },
-			{ key: "pricesFeedbacks", href: "#feedbacks" },
-			{ key: "pricesLinks", href: "#links" },
-			{ key: "pricesImpressum", href: "#impressum" },
+			{ key: "pricesPayment", href: "/#preise" },
+			{ key: "pricesLesson", href: "/#unterrichtsmethode" },
+			{ key: "pricesTutorial", href: "/#tutorium" },
+			{ key: "pricesOnline", href: "/#online" },
+			{ key: "pricesPresential", href: "/#praesenz" },
+			{ key: "pricesFeedbacks", href: "/#feedbacks" },
+			{ key: "pricesLinks", href: "/#links" },
+			{ key: "pricesImpressum", href: "/#impressum" },
 		],
 	},
+	// Direktlinks (ohne Untermenue). "Whiteboard" steht links neben "About me".
 	{
+		kind: "link",
+		key: "whiteboard",
+		href: "/whiteboard",
+	},
+	{
+		kind: "group",
 		key: "about",
-		href: "#uebermich",
+		href: "/#uebermich",
 		items: [
-			{ key: "aboutMe", href: "#uebermich" },
-			{ key: "aboutWhy", href: "#warumnachhilfebeiflorian" },
-			{ key: "aboutFeedbacks", href: "#feedbacks" },
-			{ key: "aboutLinks", href: "#links" },
+			{ key: "aboutMe", href: "/#uebermich" },
+			{ key: "aboutWhy", href: "/#warumnachhilfebeiflorian" },
+			{ key: "aboutFeedbacks", href: "/#feedbacks" },
+			{ key: "aboutLinks", href: "/#links" },
 		],
 	},
 ];
@@ -103,13 +121,20 @@ function onGroupClick(event: MouseEvent): void {
 					:class="{ 'navbar-mobile': mobileOpen }"
 				>
 					<ul>
-						<li v-for="group in groups" :key="group.key" class="dropdown">
-							<a :href="group.href" @click="onGroupClick">
-								<span>{{ t("nav." + group.key) }}</span>
-								<i class="bi bi-chevron-down"></i>
+						<li
+							v-for="entry in entries"
+							:key="entry.key"
+							:class="{ dropdown: entry.kind === 'group' }"
+						>
+							<a
+								:href="entry.href"
+								@click="entry.kind === 'group' ? onGroupClick($event) : undefined"
+							>
+								<span>{{ t("nav." + entry.key) }}</span>
+								<i v-if="entry.kind === 'group'" class="bi bi-chevron-down"></i>
 							</a>
-							<ul>
-								<li v-for="item in group.items" :key="item.key">
+							<ul v-if="entry.kind === 'group'">
+								<li v-for="item in entry.items ?? []" :key="item.key">
 									<a :href="item.href">{{ t("nav.items." + item.key) }}</a>
 								</li>
 							</ul>
