@@ -7,7 +7,8 @@ export type QuizName =
   | "nutrition"
   | "lernenlehren"
   | "consciousness"
-  | "mathematics";
+  | "mathematics"
+  | "webprogramming";
 
 export type Lang = "de" | "en" | "fr";
 

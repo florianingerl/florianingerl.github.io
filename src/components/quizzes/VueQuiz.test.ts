@@ -262,3 +262,70 @@ describe("VueQuiz: Mathematik-Quiz laedt Thema 'Gruppen' und Aufgaben", () => {
     expect(wrapper.text()).not.toContain("Keine Fragen vorhanden.");
   });
 });
+
+// Das Web-Programming-Quiz (Fach "webprogramming") laedt das Thema
+// "TypeScript - destructuring expressions" und die Multiple-Choice-Aufgaben,
+// die auf dem Medium-Artikel ueber ES6-Destructuring beruhen.
+describe("VueQuiz: Web-Programming-Quiz laedt Destructuring-Thema und Aufgaben", () => {
+  const WEB: QuizName = "webprogramming";
+  const ARTIKEL =
+    "https://medium.com/@taitasciore/es6-destructuring-in-depth-when-using-typescript-bdf7c899768a";
+
+  beforeEach(() => {
+    server.use(
+      http.get(`${API_URL}/api/quiz`, () =>
+        HttpResponse.json([
+          { _id: "qw", website: "web", subject: WEB, name: "Web programming" },
+        ]),
+      ),
+      http.get(`${API_URL}/api/topic/:quiz`, () =>
+        HttpResponse.json([
+          {
+            _id: "tw",
+            subject: WEB,
+            title: "TypeScript - destructuring expressions",
+            tutorial: `<a href="${ARTIKEL}">Tutorial about destructuring expresions</a>`,
+          },
+        ]),
+      ),
+      http.get(`${API_URL}/api/exercise`, () =>
+        HttpResponse.json<Exercise[]>([
+          {
+            _id: "ew1",
+            quiz: "qw",
+            subject: WEB,
+            topic: "tw",
+            type: "multipleChoice",
+            imageUrl:
+              "https://miro.medium.com/v2/resize:fit:1400/1*CyOusrkRxuYbXG0klN2xiw.png",
+            instruction: "W\u00e4hle die richtige Antwort.",
+            question:
+              "Wie entpackt man die Eigenschaften id und title eines Objekts res in gleichnamige Variablen?",
+            options: [
+              { option: "const { id, title } = res;", correct: true },
+              { option: "const [id, title] = res;", correct: false },
+              { option: "const { id: title } = res;", correct: false },
+            ],
+          },
+        ]),
+      ),
+    );
+  });
+
+  it("zeigt die Multiple-Choice-Aufgabe des Faches webprogramming an", async () => {
+    const pinia = createPinia();
+    setActivePinia(pinia);
+    const wrapper = mount(VueQuiz, {
+      props: { quiz: WEB, lg: "de" },
+      global: { plugins: [pinia] },
+      shallow: true,
+    });
+    await flushPromises();
+
+    const aufgabe = wrapper
+      .findComponent(VueExercise)
+      .props("exercise") as Exercise;
+    expect(aufgabe).toMatchObject({ _id: "ew1", type: "multipleChoice" });
+    expect(wrapper.text()).not.toContain("Keine Fragen vorhanden.");
+  });
+});
