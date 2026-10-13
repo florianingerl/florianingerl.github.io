@@ -52,6 +52,32 @@ describe("bildGroesseImVollbild", () => {
     ).toEqual({ breite: 0, hoehe: 0 });
   });
 
+  it("zieht die reservierte Hoehe (z.B. fuer die Paginierung) ab", () => {
+    // Hochkantbild (1:2). Von 1000px verfuegbarer Hoehe sind 44px fuer die
+    // Paginierung reserviert, es bleiben 956px. Die Breite folgt dem Verhaeltnis.
+    expect(
+      bildGroesseImVollbild({
+        viewportBreite: 2000,
+        verfuegbareHoehe: 1000,
+        bildBreite: 800,
+        bildHoehe: 1600,
+        reservierteHoehe: 44,
+      }),
+    ).toEqual({ breite: 478, hoehe: 956 });
+  });
+
+  it("liefert Nullgroessen, wenn die reservierte Hoehe alles aufbraucht", () => {
+    expect(
+      bildGroesseImVollbild({
+        viewportBreite: 2000,
+        verfuegbareHoehe: 40,
+        bildBreite: 800,
+        bildHoehe: 1600,
+        reservierteHoehe: 40,
+      }),
+    ).toEqual({ breite: 0, hoehe: 0 });
+  });
+
   it("beruecksichtigt einen eigenen Mindestplatz", () => {
     expect(
       bildGroesseImVollbild({

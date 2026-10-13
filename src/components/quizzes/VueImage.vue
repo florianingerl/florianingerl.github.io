@@ -1,11 +1,15 @@
 <template>
   <div class="d-flex flex-row">
-    <img
-      v-if="imageUrl"
-      class="vue-image__img"
-      :src="imageUrl"
-      @click="imageClicked"
-    />
+    <div class="d-flex flex-column align-items-start">
+      <img
+        v-if="imageUrl"
+        class="vue-image__img"
+        :src="imageUrl"
+        @click="imageClicked"
+      />
+      <!-- Direkt unter dem Bild: z.B. die Paginierung zum Blaettern. -->
+      <slot name="pagination"></slot>
+    </div>
     <slot></slot>
   </div>
 </template>

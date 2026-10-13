@@ -6,6 +6,9 @@
 // Bleiben rechts neben dem Bild weniger als MINDEST_PLATZ_RECHTS Pixel uebrig,
 // wird die Breite auf (Viewportbreite - MINDEST_PLATZ_RECHTS) begrenzt. Die
 // Hoehe folgt dann wieder dem Seitenverhaeltnis.
+//
+// Von der verfuegbaren Hoehe wird die reservierte Hoehe abgezogen. So bleibt
+// unter dem Bild Platz fuer die Paginierung, die direkt darunter steht.
 
 export const MINDEST_PLATZ_RECHTS = 400;
 
@@ -20,6 +23,9 @@ export interface VollbildMasse {
   bildHoehe: number;
   // So viele Pixel muessen rechts neben dem Bild frei bleiben.
   mindestPlatzRechts?: number;
+  // Hoehe, die vorher abgezogen wird, damit z.B. die Paginierung direkt unter
+  // dem Bild in ihrer bevorzugten Hoehe Platz hat.
+  reservierteHoehe?: number;
 }
 
 export interface BildGroesse {
@@ -34,10 +40,11 @@ export function bildGroesseImVollbild({
   bildBreite,
   bildHoehe,
   mindestPlatzRechts = MINDEST_PLATZ_RECHTS,
+  reservierteHoehe = 0,
 }: VollbildMasse): BildGroesse {
   if (bildBreite <= 0 || bildHoehe <= 0) return { breite: 0, hoehe: 0 };
 
-  const hoehe = Math.max(0, verfuegbareHoehe);
+  const hoehe = Math.max(0, verfuegbareHoehe - Math.max(0, reservierteHoehe));
   const verhaeltnis = bildBreite / bildHoehe;
 
   // Zuerst die verfuegbare Hoehe ausfuellen.

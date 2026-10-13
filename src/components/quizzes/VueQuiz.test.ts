@@ -156,7 +156,17 @@ describe("VueQuiz: Aufgaben des Faches werden geladen und nach Umfang gefiltert"
     setActivePinia(pinia);
     const wrapper = mount(VueQuiz, {
       props: { quiz: QUIZ, lg: "en" },
-      global: { plugins: [pinia] },
+      global: {
+        plugins: [pinia],
+        // Der gestubbte Aufgaben-Bereich rendert die Paginierung (benannter
+        // Slot), damit sich damit blaettern laesst.
+        stubs: {
+          VueExercise: {
+            template: '<div><slot name="pagination" /></div>',
+            props: ["exercise", "lg"],
+          },
+        },
+      },
       shallow: true,
     });
     await flushPromises();

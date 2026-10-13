@@ -3,6 +3,9 @@
     <VueTopicDisplayer :topic="exercise.topic" />
 
     <VueImage :imageUrl="exercise.imageUrl">
+      <template #pagination>
+        <slot name="pagination"></slot>
+      </template>
       <VueMCGaps
         v-if="exercise.type === 'gapText'"
         :exercise="exercise"

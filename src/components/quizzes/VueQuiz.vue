@@ -161,49 +161,52 @@
         :exercise="aktuelle"
         :lg="lg"
         @answered-event="calcScore"
-      />
+      >
+        <!-- Die Paginierung steht direkt unter dem Aufgabenbild. -->
+        <template #pagination>
+          <ul class="pagination">
+            <li class="page-item">
+              <button class="page-link" :title="t.zurueck5" @click="springe(-5)">
+                <i class="bi bi-chevron-double-left" aria-hidden="true"></i>
+              </button>
+            </li>
+            <li class="page-item">
+              <button class="page-link" :title="t.zurueck" @click="springe(-1)">
+                <i class="bi bi-chevron-left" aria-hidden="true"></i>
+              </button>
+            </li>
+            <li
+              v-for="q in indices"
+              :key="q"
+              class="page-item"
+              :class="{ active: q === i }"
+            >
+              <button class="page-link" @click="i = q">{{ q }}</button>
+            </li>
+            <li class="page-item">
+              <button class="page-link" :title="t.weiter" @click="springe(1)">
+                <i class="bi bi-chevron-right" aria-hidden="true"></i>
+              </button>
+            </li>
+            <li class="page-item">
+              <button class="page-link" :title="t.weiter5" @click="springe(5)">
+                <i class="bi bi-chevron-double-right" aria-hidden="true"></i>
+              </button>
+            </li>
+            <input
+              type="number"
+              min="0"
+              :max="letzterIndex"
+              :value="i"
+              style="width: 50px"
+              @change="gehZu"
+            />
+            <span> / {{ letzterIndex }}</span>
+          </ul>
+        </template>
+      </VueExercise>
 
       <p v-if="displayedQuestions.length === 0">{{ t.keineFragen }}</p>
-
-      <ul class="pagination">
-        <li class="page-item">
-          <button class="page-link" :title="t.zurueck5" @click="springe(-5)">
-            <i class="bi bi-chevron-double-left" aria-hidden="true"></i>
-          </button>
-        </li>
-        <li class="page-item">
-          <button class="page-link" :title="t.zurueck" @click="springe(-1)">
-            <i class="bi bi-chevron-left" aria-hidden="true"></i>
-          </button>
-        </li>
-        <li
-          v-for="q in indices"
-          :key="q"
-          class="page-item"
-          :class="{ active: q === i }"
-        >
-          <button class="page-link" @click="i = q">{{ q }}</button>
-        </li>
-        <li class="page-item">
-          <button class="page-link" :title="t.weiter" @click="springe(1)">
-            <i class="bi bi-chevron-right" aria-hidden="true"></i>
-          </button>
-        </li>
-        <li class="page-item">
-          <button class="page-link" :title="t.weiter5" @click="springe(5)">
-            <i class="bi bi-chevron-double-right" aria-hidden="true"></i>
-          </button>
-        </li>
-        <input
-          type="number"
-          min="0"
-          :max="letzterIndex"
-          :value="i"
-          style="width: 50px"
-          @change="gehZu"
-        />
-        <span> / {{ letzterIndex }}</span>
-      </ul>
 
       <p>Your score: {{ scoreText }}</p>
     </div> <!-- End of <div v-if= " tab === 'exercise'"></div>-->
@@ -410,8 +413,11 @@ function vollbildGeaendert(): void {
 }
 
 // Im Vollbildmodus soll das Aufgabenbild die verfuegbare Hoehe ausfuellen,
-// ohne das Seitenverhaeltnis zu verzerren. Rechts neben dem Bild bleiben
-// mindestens 400px fuer die Antwortmoeglichkeiten.
+// ohne das Seitenverhaeltnis zu verzerren. Dabei bleibt unter dem Bild Platz
+// fuer die Paginierung, die dort in ihrer bevorzugten Hoehe steht. Rechts neben
+// dem Bild bleiben mindestens 400px fuer die Antwortmoeglichkeiten.
+const PAGINIERUNG_ABSTAND = 8;
+
 function vollbildGroesseAnpassen(): void {
   const root = quizRoot.value;
   if (!root || !istVollbild.value) return;
@@ -428,6 +434,12 @@ function vollbildGroesseAnpassen(): void {
   }
   if (!img.naturalWidth || !img.naturalHeight) return;
 
+  // Die Paginierung steht direkt unter dem Bild und behaelt ihre Hoehe.
+  const pagination = root.querySelector<HTMLElement>(".pagination");
+  const reservierteHoehe = pagination
+    ? pagination.offsetHeight + PAGINIERUNG_ABSTAND
+    : 0;
+
   const rootRect = root.getBoundingClientRect();
   const imgRect = img.getBoundingClientRect();
   const verfuegbareHoehe = root.clientHeight - (imgRect.top - rootRect.top);
@@ -437,6 +449,7 @@ function vollbildGroesseAnpassen(): void {
     verfuegbareHoehe,
     bildBreite: img.naturalWidth,
     bildHoehe: img.naturalHeight,
+    reservierteHoehe,
   });
 
   img.style.width = `${breite}px`;
