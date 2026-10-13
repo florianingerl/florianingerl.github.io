@@ -329,3 +329,98 @@ describe("VueQuiz: Web-Programming-Quiz laedt Destructuring-Thema und Aufgaben",
     expect(wrapper.text()).not.toContain("Keine Fragen vorhanden.");
   });
 });
+
+// Der Vollbild-Knopf neben An- bzw. Abmelden schaltet das Quiz in den
+// Vollbildmodus. jsdom kennt die Fullscreen-API nicht, darum wird sie gestubbt.
+describe("VueQuiz: Vollbildmodus", () => {
+  beforeEach(() => {
+    // jsdom kennt keinen Vollbildmodus: neutraler Ausgangszustand.
+    Object.defineProperty(document, "fullscreenElement", {
+      configurable: true,
+      get: () => null,
+    });
+    server.use(
+      http.get(`${API_URL}/api/quiz`, () =>
+        HttpResponse.json([
+          { _id: "q1", website: "web", subject: QUIZ, name: QUIZ },
+        ]),
+      ),
+      http.get(`${API_URL}/api/topic/:quiz`, () => HttpResponse.json([])),
+      http.get(`${API_URL}/api/exercise`, () => HttpResponse.json([])),
+    );
+  });
+
+  async function mountQuiz() {
+    const pinia = createPinia();
+    setActivePinia(pinia);
+    const wrapper = mount(VueQuiz, {
+      props: { quiz: QUIZ, lg: "en" },
+      global: { plugins: [pinia] },
+      shallow: true,
+    });
+    await flushPromises();
+    return wrapper;
+  }
+
+  it("schaltet den Vollbildmodus ein und wieder aus", async () => {
+    const requestFullscreen = vi.fn().mockResolvedValue(undefined);
+    const exitFullscreen = vi.fn().mockResolvedValue(undefined);
+    Object.defineProperty(HTMLElement.prototype, "requestFullscreen", {
+      configurable: true,
+      writable: true,
+      value: requestFullscreen,
+    });
+    Object.defineProperty(Document.prototype, "exitFullscreen", {
+      configurable: true,
+      writable: true,
+      value: exitFullscreen,
+    });
+
+    const wrapper = await mountQuiz();
+
+    const hinein = wrapper.get('[title="Fullscreen"]');
+    await hinein.trigger("click");
+    expect(requestFullscreen).toHaveBeenCalledTimes(1);
+
+    // Der Browser meldet, dass das Quiz jetzt im Vollbild ist.
+    Object.defineProperty(document, "fullscreenElement", {
+      configurable: true,
+      get: () => wrapper.element,
+    });
+    document.dispatchEvent(new Event("fullscreenchange"));
+    await flushPromises();
+
+    const heraus = wrapper.get('[title="Leave fullscreen"]');
+    await heraus.trigger("click");
+    expect(exitFullscreen).toHaveBeenCalledTimes(1);
+  });
+
+  it("setzt das Icon zurueck, wenn der Browser per ESC den Vollbildmodus verlaesst", async () => {
+    const requestFullscreen = vi.fn().mockResolvedValue(undefined);
+    Object.defineProperty(HTMLElement.prototype, "requestFullscreen", {
+      configurable: true,
+      writable: true,
+      value: requestFullscreen,
+    });
+
+    const wrapper = await mountQuiz();
+    await wrapper.get('[title="Fullscreen"]').trigger("click");
+
+    Object.defineProperty(document, "fullscreenElement", {
+      configurable: true,
+      get: () => wrapper.element,
+    });
+    document.dispatchEvent(new Event("fullscreenchange"));
+    await flushPromises();
+    expect(wrapper.find('[title="Leave fullscreen"]').exists()).toBe(true);
+
+    // ESC: fullscreenElement verschwindet und der Browser meldet die Aenderung.
+    Object.defineProperty(document, "fullscreenElement", {
+      configurable: true,
+      get: () => null,
+    });
+    document.dispatchEvent(new Event("fullscreenchange"));
+    await flushPromises();
+    expect(wrapper.find('[title="Fullscreen"]').exists()).toBe(true);
+  });
+});

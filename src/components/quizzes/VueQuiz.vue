@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div ref="quizRoot">
   
     <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
       <div v-if="dialog === null" class="d-flex flex-wrap align-items-center gap-2">
@@ -77,6 +77,18 @@
             Login
           </button>
         </template>
+        <button
+          type="button"
+          class="btn btn-outline-secondary btn-sm"
+          :title="istVollbild ? t.vollbildBeenden : t.vollbild"
+          @click="vollbildUmschalten"
+        >
+          <i
+            class="bi"
+            :class="istVollbild ? 'bi-fullscreen-exit' : 'bi-arrows-fullscreen'"
+            aria-hidden="true"
+          ></i>
+        </button>
       </div>
     </div>
 
@@ -266,7 +278,14 @@
 </template>
 
 <script setup lang="ts">
-import { computed, nextTick, onMounted, ref, watch } from "vue";
+import {
+  computed,
+  nextTick,
+  onBeforeUnmount,
+  onMounted,
+  ref,
+  watch,
+} from "vue";
 import VueExercise from "./VueExercise.vue";
 import VueTopicDisplayer from "./VueTopicDisplayer.vue";
 import VueNewExercise from "./VueNewExercise.vue";
@@ -358,6 +377,30 @@ const formOffen = ref(false);
 const editMode = ref(false);
 const exportOffen = ref(false);
 
+// Vollbildmodus: Der Knopf neben An- bzw. Abmelden schaltet das Quiz in den
+// Vollbildmodus. Der Browser verlaesst ihn mit ESC und meldet das ueber das
+// fullscreenchange-Ereignis.
+const quizRoot = ref<HTMLElement | null>(null);
+const istVollbild = ref(false);
+
+async function vollbildUmschalten(): Promise<void> {
+  const el = quizRoot.value;
+  if (!el) return;
+  try {
+    if (document.fullscreenElement) {
+      await document.exitFullscreen();
+    } else {
+      await el.requestFullscreen();
+    }
+  } catch {
+    // Erlaubt der Browser keinen Vollbildmodus, bleibt die Anzeige unveraendert.
+  }
+}
+
+function vollbildGeaendert(): void {
+  istVollbild.value = document.fullscreenElement === quizRoot.value;
+}
+
 // Texte
 interface Texte {
   laden: string;
@@ -367,6 +410,8 @@ interface Texte {
   zurueck: string;
   weiter: string;
   weiter5: string;
+  vollbild: string;
+  vollbildBeenden: string;
   score: (richtig: number, beantwortet: number) => string;
 }
 
@@ -379,6 +424,8 @@ const texte: Record<Lang, Texte> = {
     zurueck: "Vorige Aufgabe",
     weiter: "Nächste Aufgabe",
     weiter5: "Gehe 5 Aufgaben weiter",
+    vollbild: "Vollbildmodus",
+    vollbildBeenden: "Vollbildmodus beenden",
     score: (r, b) => `Du hast ${r} von ${b} Fragen richtig beantwortet`,
   },
   en: {
@@ -389,6 +436,8 @@ const texte: Record<Lang, Texte> = {
     zurueck: "Previous exercise",
     weiter: "Next exercise",
     weiter5: "Jump 5 exercises forward",
+    vollbild: "Fullscreen",
+    vollbildBeenden: "Leave fullscreen",
     score: (r, b) => `You have answered ${r} of ${b} questions correctly.`,
   },
   fr: {
@@ -399,6 +448,8 @@ const texte: Record<Lang, Texte> = {
     zurueck: "Question précédente",
     weiter: "Question suivante",
     weiter5: "Sauter 5 questions",
+    vollbild: "Plein écran",
+    vollbildBeenden: "Quitter le plein écran",
     score: (r, b) => `Tu as répondu à ${r} parmi ${b} questions correctement.`,
   },
 };
@@ -648,6 +699,14 @@ onMounted(async () => {
   }
 
   setCurrentTutorial();
+});
+
+// Den Vollbildzustand verfolgen, damit das Icon und die Beschriftung passen.
+onMounted(() => {
+  document.addEventListener("fullscreenchange", vollbildGeaendert);
+});
+onBeforeUnmount(() => {
+  document.removeEventListener("fullscreenchange", vollbildGeaendert);
 });
 
 // Anlegen / bearbeiten / löschen
