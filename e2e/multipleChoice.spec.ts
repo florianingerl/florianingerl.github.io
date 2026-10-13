@@ -6,7 +6,10 @@ const corsHeaders = {
   "access-control-allow-methods": "*",
 };
 
-async function mockBackend(page: Page): Promise<void> {
+async function mockBackend(
+  page: Page,
+  seedExercises: Array<Record<string, unknown>> = [],
+): Promise<void> {
   const quiz = {
     _id: "q-english",
     website: "web",
@@ -14,7 +17,7 @@ async function mockBackend(page: Page): Promise<void> {
     name: "English",
   };
   const user = { _id: "u1", name: "E2E Tester", email: "e2e@example.com" };
-  const createdExercises: Array<Record<string, unknown>> = [];
+  const createdExercises: Array<Record<string, unknown>> = [...seedExercises];
 
   await page.addInitScript(() => {
     localStorage.setItem("quiz-app-token", "e2e-token");
@@ -128,5 +131,33 @@ test.describe("multiple choice: erstellen und loesen", () => {
     const maus = optionRow(section, "Maus");
     await maus.locator('input[type="checkbox"]').check();
     await expect(maus).toHaveClass(/notcorrect/);
+  });
+
+  test("Altdaten mit mehreren richtigen Optionen: richtige Antwort gruen", async ({
+    page,
+  }) => {
+    await mockBackend(page, [
+      {
+        _id: "ex-legacy",
+        quiz: "q-english",
+        subject: "english",
+        type: "multipleChoice",
+        imageUrl: "",
+        question: "Was ist Reiki?",
+        options: [
+          { option: "Reiki", correct: true },
+          { option: "Kaffee", correct: true },
+          { option: "Zucker", correct: false },
+        ],
+      },
+    ]);
+    await page.goto("/");
+
+    await page.locator('.language-bar a[title="English"]').click();
+
+    const section = page.locator("#englisch");
+    const reiki = optionRow(section, "Reiki");
+    await reiki.locator('input[type="checkbox"]').check();
+    await expect(reiki).toHaveClass(/correct/);
   });
 });

@@ -61,7 +61,28 @@ function shuffle<T>(arr: T[]): void {
   }
 }
 
+// Im Quiz ist genau eine Option richtig. Aeltere Aufgaben in der Datenbank
+// haben aber teils mehrere als richtig markierte Optionen; dann bleibt eine
+// richtig angekreuzte Antwort ohne Rueckmeldung. Deshalb bleibt nur die erste
+// als richtig markierte Option richtig (sonst die erste Option).
+function normalizeCorrect(): void {
+  const listen = [
+    props.question.options,
+    props.question.optionsEn,
+    props.question.optionsFr,
+  ];
+  for (const liste of listen) {
+    if (!liste || liste.length === 0) continue;
+    let ersteRichtige = liste.findIndex((o) => o.correct === true);
+    if (ersteRichtige === -1) ersteRichtige = 0;
+    liste.forEach((o, i) => {
+      o.correct = i === ersteRichtige;
+    });
+  }
+}
+
 function reset(): void {
+  normalizeCorrect();
   delete props.question.correctlyAnswered;
   optionen.value.forEach((o) => {
     o.checked = false;

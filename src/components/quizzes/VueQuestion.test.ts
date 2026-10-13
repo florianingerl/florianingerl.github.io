@@ -43,6 +43,32 @@ describe("VueQuestion: multiple choice Validierung", () => {
     expect(box!.element.closest("div")!.classList.contains("notcorrect")).toBe(false);
   });
 
+  it("faerbt auch bei mehreren als richtig markierten Optionen gruen", async () => {
+    // Altdaten in der Datenbank enthalten z.B. "Was ist Reiki?" mit zwei
+    // richtigen Optionen. Der User erwartet, dass das Ankreuzen einer richtigen
+    // Antwort gruen wird.
+    const ex = reactive<Exercise>({
+      quiz: "nutrition",
+      type: "multipleChoice",
+      imageUrl: "",
+      question: "Was ist Reiki?",
+      options: [
+        { option: "A", correct: true },
+        { option: "B", correct: true },
+        { option: "C", correct: false },
+      ],
+    });
+    const wrapper = mount(VueQuestion, { props: { question: ex, lg: "de" } });
+    await nextTick();
+
+    const box = checkBoxFor(wrapper, "A");
+    expect(box).toBeTruthy();
+    await box!.setValue(true);
+
+    expect(ex.correctlyAnswered).toBe(true);
+    expect(box!.element.closest("div")!.classList.contains("correct")).toBe(true);
+  });
+
   it("faerbt eine falsche Antwort rot", async () => {
     const ex = reactive<Exercise>(exercise());
     const wrapper = mount(VueQuestion, { props: { question: ex, lg: "en" } });

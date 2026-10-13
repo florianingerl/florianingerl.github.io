@@ -1,6 +1,6 @@
 import { flushPromises, mount } from "@vue/test-utils";
 import { http, HttpResponse } from "msw";
-import { beforeEach, describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { API_URL } from "@/api";
 import { server } from "@/mocks/server";
 import type { Exercise } from "@/types/quiz";
@@ -121,5 +121,22 @@ describe("VueNewExercise: multiple choice anlegen", () => {
       { option: "Maus", correct: false },
       { option: "Hose", correct: false },
     ]);
+  });
+
+  it("speichert keine Multiple-Choice-Aufgabe ohne Optionen", async () => {
+    const alertSpy = vi.spyOn(window, "alert").mockImplementation(() => {});
+    const wrapper = await mountForm();
+
+    const typSelect = wrapper.findAll("select")[1];
+    await typSelect.setValue("multipleChoice");
+
+    const save = wrapper
+      .findAll("button")
+      .find((b) => b.text().trim() === "Save");
+    await save!.trigger("click");
+
+    expect(alertSpy).toHaveBeenCalled();
+    expect(wrapper.emitted("new-exercise-created")).toBeFalsy();
+    alertSpy.mockRestore();
   });
 });

@@ -423,6 +423,10 @@ async function imagePasted(event: ClipboardEvent): Promise<void> {
 
 function save(): void {
   if (exercise.value.type === 'multipleChoice') {
+    if (allOptions.value.length < 2) {
+      alert('A multiple choice exercise needs at least two options (the first one is the correct one).')
+      return
+    }
     exercise.value.options = allOptions.value.map((o, i) => ({ option: o, correct: i === 0 }))
   }
   if (exercise.value.type === 'matching') {
