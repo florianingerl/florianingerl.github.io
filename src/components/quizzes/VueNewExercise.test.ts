@@ -3,6 +3,7 @@ import { http, HttpResponse } from "msw";
 import { beforeEach, describe, expect, it } from "vitest";
 import { API_URL } from "@/api";
 import { server } from "@/mocks/server";
+import type { Exercise } from "@/types/quiz";
 import VueImage from "./VueImage.vue";
 import VueNewExercise, { bildUrl, uploadPastedImage } from "./VueNewExercise.vue";
 
@@ -85,5 +86,40 @@ describe("VueNewExercise: benutzerdefiniertes Bild", () => {
     expect(bildUrl("https://example.com/x.jpg")).toBe(
       "https://example.com/x.jpg",
     );
+  });
+});
+
+describe("VueNewExercise: multiple choice anlegen", () => {
+  it("speichert nur die erste Option als richtig", async () => {
+    const wrapper = await mountForm();
+
+    const typSelect = wrapper.findAll("select")[1];
+    await typSelect.setValue("multipleChoice");
+
+    const optionsBox = wrapper.findAll("div.mb-3.mt-3")[1];
+    const optionInput = optionsBox.find('input[type="text"]');
+    const addButton = optionsBox
+      .findAll("button")
+      .find((b) => b.text().trim() === "Add");
+
+    const optionen = ["Haus", "Maus", "Hose"];
+    for (const o of optionen) {
+      await optionInput.setValue(o);
+      await addButton!.trigger("click");
+    }
+
+    const save = wrapper
+      .findAll("button")
+      .find((b) => b.text().trim() === "Save");
+    await save!.trigger("click");
+
+    const emitted = wrapper.emitted("new-exercise-created");
+    expect(emitted).toBeTruthy();
+    const ex = emitted![0][0] as Exercise;
+    expect(ex.options).toEqual([
+      { option: "Haus", correct: true },
+      { option: "Maus", correct: false },
+      { option: "Hose", correct: false },
+    ]);
   });
 });
