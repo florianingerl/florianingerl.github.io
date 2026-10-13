@@ -196,3 +196,69 @@ describe("VueQuiz: Aufgaben des Faches werden geladen und nach Umfang gefiltert"
     expect(wrapper.text()).toContain("No questions available.");
   });
 });
+
+// Das Mathematik-Quiz (Fach "mathematics") laedt das Thema "Gruppen" und die
+// dazugehoerigen Multiple-Choice-Aufgaben, die auf dem Wikipedia-Artikel ueber
+// Gruppen beruhen.
+describe("VueQuiz: Mathematik-Quiz laedt Thema 'Gruppen' und Aufgaben", () => {
+  const MATHE: QuizName = "mathematics";
+  const WIKI = "https://de.wikipedia.org/wiki/Gruppe_(Mathematik)";
+
+  beforeEach(() => {
+    server.use(
+      http.get(`${API_URL}/api/quiz`, () =>
+        HttpResponse.json([
+          { _id: "qm", website: "web", subject: MATHE, name: "Mathematics" },
+        ]),
+      ),
+      http.get(`${API_URL}/api/topic/:quiz`, () =>
+        HttpResponse.json([
+          {
+            _id: "tg",
+            subject: MATHE,
+            title: "Gruppen",
+            tutorial: `<a href="${WIKI}">Wikipedia-Artikel \u00fcber Gruppen</a>`,
+          },
+        ]),
+      ),
+      http.get(`${API_URL}/api/exercise`, () =>
+        HttpResponse.json<Exercise[]>([
+          {
+            _id: "em1",
+            quiz: "qm",
+            subject: MATHE,
+            topic: "tg",
+            type: "multipleChoice",
+            imageUrl:
+              "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Rubik%27s_cube.svg/500px-Rubik%27s_cube.svg.png",
+            instruction: "W\u00e4hle die richtige Antwort.",
+            question:
+              "Welche der folgenden Strukturen ist bez\u00fcglich der angegebenen Verkn\u00fcpfung eine Gruppe?",
+            options: [
+              { option: "(\u2124, +)", correct: true },
+              { option: "(\u2124, \u00b7)", correct: false },
+              { option: "(\u2115, +)", correct: false },
+            ],
+          },
+        ]),
+      ),
+    );
+  });
+
+  it("zeigt die Multiple-Choice-Aufgabe des Faches mathematics an", async () => {
+    const pinia = createPinia();
+    setActivePinia(pinia);
+    const wrapper = mount(VueQuiz, {
+      props: { quiz: MATHE, lg: "de" },
+      global: { plugins: [pinia] },
+      shallow: true,
+    });
+    await flushPromises();
+
+    const aufgabe = wrapper
+      .findComponent(VueExercise)
+      .props("exercise") as Exercise;
+    expect(aufgabe).toMatchObject({ _id: "em1", type: "multipleChoice" });
+    expect(wrapper.text()).not.toContain("Keine Fragen vorhanden.");
+  });
+});
