@@ -298,9 +298,9 @@ describe("VueQuiz: Web-Programming-Quiz laedt Destructuring-Thema und Aufgaben",
             type: "multipleChoice",
             imageUrl:
               "https://miro.medium.com/v2/resize:fit:1400/1*CyOusrkRxuYbXG0klN2xiw.png",
-            instruction: "W\u00e4hle die richtige Antwort.",
+            instruction: "Choose the correct answer.",
             question:
-              "Wie entpackt man die Eigenschaften id und title eines Objekts res in gleichnamige Variablen?",
+              "How do you unpack the properties id and title of an object res into variables with the same names?",
             options: [
               { option: "const { id, title } = res;", correct: true },
               { option: "const [id, title] = res;", correct: false },
