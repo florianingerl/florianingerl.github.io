@@ -1,5 +1,5 @@
 <template>
-  <div ref="quizRoot">
+  <div ref="quizRoot" :class="{ 'quiz-vollbild': istVollbild }">
   
     <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
       <div v-if="dialog === null" class="d-flex flex-wrap align-items-center gap-2">
@@ -311,6 +311,7 @@ import {
 } from "@/api";
 import { useAuthStore } from "@/stores/auth";
 import { useFilterStore } from "@/stores/filter";
+import { bildGroesseImVollbild } from "@/utils/vollbild";
 import type { Exercise, Lang, Quiz, QuizName, Topic } from "@/types/quiz";
 
 // "quiz" ist der Name eines Website-Quizzes (z.B. "deutsch"). Buch-Quizzes
@@ -399,6 +400,62 @@ async function vollbildUmschalten(): Promise<void> {
 
 function vollbildGeaendert(): void {
   istVollbild.value = document.fullscreenElement === quizRoot.value;
+  void nextTick(() => {
+    if (istVollbild.value) {
+      vollbildGroesseAnpassen();
+    } else {
+      vollbildGroesseZuruecksetzen();
+    }
+  });
+}
+
+// Im Vollbildmodus soll das Aufgabenbild die verfuegbare Hoehe ausfuellen,
+// ohne das Seitenverhaeltnis zu verzerren. Rechts neben dem Bild bleiben
+// mindestens 400px fuer die Antwortmoeglichkeiten.
+function vollbildGroesseAnpassen(): void {
+  const root = quizRoot.value;
+  if (!root || !istVollbild.value) return;
+  const img = root.querySelector<HTMLImageElement>(".vue-image__img");
+  if (!img) return;
+
+  // Noch nicht geladene Bilder haben keine Naturgroesse; dann warten wir auf
+  // das load-Ereignis und passen die Groesse danach an.
+  if (!img.complete) {
+    img.addEventListener("load", () => vollbildGroesseAnpassen(), {
+      once: true,
+    });
+    return;
+  }
+  if (!img.naturalWidth || !img.naturalHeight) return;
+
+  const rootRect = root.getBoundingClientRect();
+  const imgRect = img.getBoundingClientRect();
+  const verfuegbareHoehe = root.clientHeight - (imgRect.top - rootRect.top);
+
+  const { breite, hoehe } = bildGroesseImVollbild({
+    viewportBreite: window.innerWidth,
+    verfuegbareHoehe,
+    bildBreite: img.naturalWidth,
+    bildHoehe: img.naturalHeight,
+  });
+
+  img.style.width = `${breite}px`;
+  img.style.height = `${hoehe}px`;
+}
+
+// Beim Verlassen des Vollbildmodus wieder die normale Darstellung herstellen.
+function vollbildGroesseZuruecksetzen(): void {
+  const root = quizRoot.value;
+  if (!root) return;
+  root.querySelectorAll<HTMLImageElement>(".vue-image__img").forEach((img) => {
+    img.style.width = "";
+    img.style.height = "";
+  });
+}
+
+// Aendert sich die Fenstergroesse, wird die Bildgroesse neu berechnet.
+function beiFensterGroesse(): void {
+  if (istVollbild.value) vollbildGroesseAnpassen();
 }
 
 // Texte
@@ -704,9 +761,11 @@ onMounted(async () => {
 // Den Vollbildzustand verfolgen, damit das Icon und die Beschriftung passen.
 onMounted(() => {
   document.addEventListener("fullscreenchange", vollbildGeaendert);
+  window.addEventListener("resize", beiFensterGroesse);
 });
 onBeforeUnmount(() => {
   document.removeEventListener("fullscreenchange", vollbildGeaendert);
+  window.removeEventListener("resize", beiFensterGroesse);
 });
 
 // Anlegen / bearbeiten / löschen
@@ -791,3 +850,24 @@ async function loeschen(): Promise<void> {
   }
 }
 </script>
+
+<style scoped>
+/* Im Vollbildmodus nimmt das Quiz den ganzen Bildschirm ein und behaelt
+   dieselben Farben (Hintergrund und Textfarbe) wie in der normalen Ansicht. */
+.quiz-vollbild {
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+  background-color: #fff;
+  color: #444444;
+}
+
+.quiz-vollbild:fullscreen {
+  width: 100vw;
+  height: 100vh;
+}
+
+.quiz-vollbild::backdrop {
+  background-color: #fff;
+}
+</style>

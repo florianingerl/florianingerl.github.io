@@ -1,6 +1,11 @@
 <template>
   <div class="d-flex flex-row">
-    <img v-if="imageUrl" :src="imageUrl" @click="imageClicked" />
+    <img
+      v-if="imageUrl"
+      class="vue-image__img"
+      :src="imageUrl"
+      @click="imageClicked"
+    />
     <slot></slot>
   </div>
 </template>

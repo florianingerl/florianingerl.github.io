@@ -489,6 +489,36 @@ describe("VueQuiz: Vollbildmodus", () => {
     await flushPromises();
     expect(wrapper.find('[title="Fullscreen"]').exists()).toBe(true);
   });
+
+  it("haengt die Vollbild-Klasse nur im Vollbildmodus an das Quiz", async () => {
+    const requestFullscreen = vi.fn().mockResolvedValue(undefined);
+    Object.defineProperty(HTMLElement.prototype, "requestFullscreen", {
+      configurable: true,
+      writable: true,
+      value: requestFullscreen,
+    });
+
+    const wrapper = await mountQuiz();
+    expect(wrapper.element.classList.contains("quiz-vollbild")).toBe(false);
+
+    await wrapper.get('[title="Fullscreen"]').trigger("click");
+    Object.defineProperty(document, "fullscreenElement", {
+      configurable: true,
+      get: () => wrapper.element,
+    });
+    document.dispatchEvent(new Event("fullscreenchange"));
+    await flushPromises();
+    expect(wrapper.element.classList.contains("quiz-vollbild")).toBe(true);
+
+    // Beim Verlassen des Vollbildmodus wird die Klasse wieder entfernt.
+    Object.defineProperty(document, "fullscreenElement", {
+      configurable: true,
+      get: () => null,
+    });
+    document.dispatchEvent(new Event("fullscreenchange"));
+    await flushPromises();
+    expect(wrapper.element.classList.contains("quiz-vollbild")).toBe(false);
+  });
 });
 
 // Ohne Anmeldung duerfen die drei Knoepfe zum Anlegen, Bearbeiten und Loeschen
