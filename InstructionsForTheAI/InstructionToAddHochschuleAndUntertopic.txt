@@ -30,3 +30,20 @@ In the Advanced-filter dialog, you should now also be able to select the school.
 
 Go ahead ! Implement his, test it and then commit and push it !
 
+It looks very nice, when the current topic is displayed. If the selected topic is clicked,
+the tree should become visible. But it should become visible like the menus in my menu bar do,
+it shouldn't push away anything else in the user interface, it should be just over the other stuff
+until the user has chosen his topic.
+Change this please also in the VueNewExercise component.
+
+
+And if a topic is edited, if this topic has no parent,
+you should be able to enter a school for the topic.
+(So add a label and an input of type text for the school)
+in the VueNewTopic dialog.
+If the topic has a parent, the input of type text shouldn't be
+editable but should only display the school of the oldest ancestor!
+
+Go ahead ! Implement it, text it and then commit and push it !
+
+

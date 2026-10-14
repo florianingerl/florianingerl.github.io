@@ -230,6 +230,7 @@
       <VueNewTopic
         v-if="formOffen"
         :questionOfQuiz="aktuelle"
+        :topics="topics"
         @cancel-clicked="formOffen = false"
         @tutorial-saved="formOffen = false; tutorialGespeichert($event)"
       />
@@ -708,6 +709,9 @@ watch(i, async () => {
 function tutorialGespeichert(topic: Topic): void {
   const j = questions.value.findIndex((q) => q._id === aktuelle.value?._id);
   if (j !== -1) questions.value[j].topic = topic;
+  // Auch die Themenliste aktualisieren, damit z.B. die Schule im Baum stimmt.
+  const k = topics.value.findIndex((t) => t._id === topic._id);
+  if (k !== -1) topics.value[k] = topic;
   setCurrentTutorial();
 }
 

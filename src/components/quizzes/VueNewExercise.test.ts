@@ -3,7 +3,7 @@ import { http, HttpResponse } from "msw";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { API_URL } from "@/api";
 import { server } from "@/mocks/server";
-import type { Exercise } from "@/types/quiz";
+import type { Exercise, Topic } from "@/types/quiz";
 import VueImage from "./VueImage.vue";
 import VueNewExercise, { bildUrl, uploadPastedImage } from "./VueNewExercise.vue";
 
@@ -138,5 +138,66 @@ describe("VueNewExercise: multiple choice anlegen", () => {
     expect(alertSpy).toHaveBeenCalled();
     expect(wrapper.emitted("new-exercise-created")).toBeFalsy();
     alertSpy.mockRestore();
+  });
+});
+
+describe("VueNewExercise: Themen-Baum als Menue", () => {
+  beforeEach(() => {
+    server.use(
+      http.get(`${API_URL}/api/topic/english`, () =>
+        HttpResponse.json<Topic[]>([
+          {
+            _id: "et",
+            subject: "english",
+            title: "Elektrotechnik",
+            tutorial: "",
+            school: "Uni Aachen",
+          },
+          {
+            _id: "dio",
+            subject: "english",
+            title: "Dioden",
+            tutorial: "",
+            parentId: "et",
+          },
+        ]),
+      ),
+    );
+  });
+
+  function baumOffen(wrapper: ReturnType<typeof mount>): boolean {
+    const style = wrapper.get(".topic-tree-overlay").attributes("style") ?? "";
+    return !style.includes("display: none");
+  }
+
+  it("zeigt den Baum erst nach Klick und uebernimmt das gewaehlte Thema", async () => {
+    // Hier wird der echte (nicht gestubbte) Baum gebraucht.
+    const wrapper = mount(VueNewExercise, {
+      props: { quiz: "english", editMode: false },
+    });
+    await flushPromises();
+
+    const knopf = wrapper.get(".topic-picker > button");
+    expect(knopf.text()).toContain("Choose a topic");
+    expect(baumOffen(wrapper)).toBe(false);
+
+    await knopf.trigger("click");
+    expect(baumOffen(wrapper)).toBe(true);
+
+    const knoten = wrapper
+      .findAll(".p-treenode-content")
+      .find((n) => n.text().includes("Elektrotechnik"));
+    expect(knoten).toBeTruthy();
+    await knoten!.trigger("click");
+    await flushPromises();
+
+    // Das Menue ist zu, der Knopf zeigt "Schule - Pfad" und die Schule des
+    // aeltesten Vorfahren ist im "New topic"-Feld eingetragen (deaktiviert).
+    expect(baumOffen(wrapper)).toBe(false);
+    expect(knopf.text()).toContain("Uni Aachen - Elektrotechnik");
+
+    const schulFeld = wrapper.get("#newTopicSchool").element as HTMLInputElement;
+    expect(schulFeld.disabled).toBe(true);
+    expect(schulFeld.value).toBe("Uni Aachen");
   });
 });
