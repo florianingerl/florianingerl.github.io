@@ -1,0 +1,32 @@
+The datastructure topic should change to
+type Topic {
+    _id: ObjectId,
+    title: string,
+    tutorial: string,
+    school?: string //school can be Hochschule Regensburg oder LMU München oder 9.Klasse Gymnasium Bayern
+    ... (the other field that are already there)
+}
+So I want the additional field for school !
+
+There can also be subtopics, e.g.
+if topic.title == "Elektrotechnik->Dioden->Zehnerdiode" then the parent topic of Zehnerdiode is Dioden whose parent topic
+in return is Elektrotechnik. 
+When filtering now for a topic, the topics should be displayed in a tree !
+Use https://v3.primevue.org/tree/ for this maybe.
+Add a few dummy topics to the database (for Quiz Spanish for example), so I can see and test the tree properly.
+If the topic to be filtered for is chosen, only this topic and its school should be displayed as a string (example: Uni Aachen - Elektrotechnik->Dioden->Zehnerdiode should be diplayed if the topic Elektrotechnik has school "Uni Aachen" ).
+If clicked, the tree should be displayed with only the path to the selected topic not collapsed.
+In VueNewExercise, the topic of the exercise can be chosen also in the
+tree. If one topic is selected from that tree, "Add new topic" adds that topic
+as a child topic to the topic selected in the tree. If nothing is selected in the
+tree, then you also need to be able to enter the school , and not only the topic title for the new topic to add.
+So maybe place a label "School" and next to it an input of type text and under that
+a label "Title" and next to it  an input of type text and underneath that centered a button to add the topic.
+All these element in a div which has a black border with rounded corners and Heading "New topic".
+If a topic is already selected in the tree, the input for "School" should be disabled, but set "oldest ancestor topic".school .
+The newly added topic gets added to the tree and is selected as the topic for the exercise.
+
+In the Advanced-filter dialog, you should now also be able to select the school.
+
+Go ahead ! Implement his, test it and then commit and push it !
+

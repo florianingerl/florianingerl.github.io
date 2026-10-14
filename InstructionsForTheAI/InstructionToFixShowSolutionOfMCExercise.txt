@@ -1,0 +1,3 @@
+For a multiple choice exercise, the functionality of the
+"Show solution" button doesn't work any more.
+When the show solution button is pressed , 

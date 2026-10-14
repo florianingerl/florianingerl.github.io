@@ -1,41 +1,51 @@
 <template>
   <div class="container">
-    <!--
+
     <div class="row">
-      <span class="fw-bold">Topics:</span> {{ (exercise.topics ?? []).join(', ') }}
-      <button @click="exercise.topics = []">Clear</button>
+      <label class="col" for="topic">Choose a topic (from tree):</label>
     </div>
 
-    <div class="row mb-3">
-      <label class="col-3">New topic:</label>
-      <input v-model="newTopic" type="text" class="col-7" placeholder="Enter a new topic" />
-      <button class="col-2" @click="addTopic">Add</button>
-    </div> -->
+    <div class="row">
+      <div class="col-12 mt-3">
+        <Tree 
+          :value="treeNodes" 
+          selectionMode="single" 
+          v-model:selectionKeys="selectionKeys"
+          v-model:expandedKeys="expandedKeys"
+          @nodeSelect="onNodeSelect"
+          @nodeUnselect="onNodeUnselect"
+        />
+      </div>
+    </div>
 
     <div class="row">
-       <label class="col" for="topic">Choose a topic:</label>
-
-  <select class="col" id="topic" v-model="exercise.topic">
-    <option disabled value="">Please select one</option>
-
-    <option
-      v-for="topic in topics"
-      :key="topic.title"
-      :value="topic"
-    >
-      {{ topic.title }}
-    </option>
-  </select>
-
-  <label class="col" for="newTopic">New topic:</label>
-   <input class="col"
-    id="newTopic"
-    v-model="newTopic"
-    type="text"
-    placeholder="Enter a new topic"
-  />
-
-  <button class="col" @click="addNewTopicClicked">Add</button>
+      <div class="col-12 mt-3 p-3 border border-dark rounded">
+        <h5>New topic</h5>
+        <div class="input-group mb-2">
+          <label class="input-group-text" for="newTopicSchool">School</label>
+          <input
+            id="newTopicSchool"
+            v-model="newTopicSchool"
+            type="text"
+            class="form-control"
+            :disabled="!!selectedNode"
+            placeholder="e.g. Hochschule Regensburg, LMU Muenchen, 9.Klasse Gymnasium Bayern"
+          />
+        </div>
+        <div class="input-group mb-2">
+          <label class="input-group-text" for="newTopicTitle">Title</label>
+          <input
+            id="newTopicTitle"
+            v-model="newTopic"
+            type="text"
+            class="form-control"
+            placeholder="Enter a new topic"
+          />
+        </div>
+        <div class="text-center">
+          <button class="btn btn-primary" @click="addNewTopicClicked">Add new topic</button>
+        </div>
+      </div>
 
     </div>
 
@@ -277,13 +287,20 @@ export async function uploadPastedImage(datei: File): Promise<string> {
 </script>
 
 <script setup lang="ts">
-import { onMounted, ref, watch } from 'vue'
+import { onMounted, ref, watch, computed } from 'vue'
 import VueImage from './VueImage.vue'
 import type { Exercise, QuizName , Topic, TwoPartSentences } from '@/types/quiz'
 import { fehlerText, getAllTopics } from '@/api';
+import Tree from 'primevue/tree';
+import { buildTopicTree, oldestAncestorSchool } from '@/utils/topicTree';
 
 const newTopic = ref<string>('');
+const newTopicSchool = ref<string>('');
 const topics = ref<Topic[]>([])
+// PrimeVue erwartet beim single-Modus ein Objekt { [key]: true }.
+const selectionKeys = ref<Record<string, boolean>>({});
+const selectedNode = ref<Topic | null>(null);
+const expandedKeys = ref<Record<string, boolean>>({});
 
 const props = defineProps<{
   // Name eines Website-Quizzes (z.B. "deutsch") oder - bei einem Buch-Quizz -
@@ -334,16 +351,35 @@ let k = 0
 let page = 1
 
 function addNewTopicClicked(){
-  let topic: Topic = { 
+  if (!newTopic.value.trim()) {
+    alert('Please enter a title for the new topic.')
+    return
+  }
+  let parentId: string | undefined = undefined;
+  let schoolValue = newTopicSchool.value;
+
+  if (selectedNode.value) {
+    // Ist ein Thema im Baum ausgewaehlt, wird das neue Thema ein Unterthema
+    // davon und erbt die Schule des aeltesten Vorfahren.
+    parentId = selectedNode.value._id;
+    schoolValue = oldestAncestorSchool(topics.value, parentId);
+  }
+
+  const topic: Topic = {
     subject: props.subject ?? (props.quiz || ''),
-    title: newTopic.value,
-    tutorial: '' ,
+    title: newTopic.value.trim(),
+    tutorial: '',
     quiz: props.quiz || undefined,
+    school: schoolValue || undefined,
+    parentId: parentId,
   };
 
   exercise.value.topic = topic;
-
   topics.value.push(topic);
+  selectionKeys.value = {};
+  selectedNode.value = null;
+  newTopic.value = '';
+  newTopicSchool.value = '';
 }
 
 
@@ -471,7 +507,7 @@ onMounted(async () => {
 
 
   if (!props.questionOfQuiz) return
-  // Beim Bearbeiten wird die Frage mit ihrer _id übernommen, beim Anlegen nur als Vorlage ohne _id
+  // Beim Bearbeiten wird die Frage mit ihrer _id über­nomen, beim Anlegen nur als Vorlage ohne _id
   const { _id, correctlyAnswered: _ca, gaps: _g, guessedSentences: _gs, wordorder: _wo, ...vorlage } = props.questionOfQuiz
   exercise.value = {
     ...vorlage,
@@ -486,6 +522,21 @@ onMounted(async () => {
   wordOrderSentence.value = props.questionOfQuiz.wordorder?.sentence ?? ''
   //TODO The topic of the exercise should be the topic of the exercise of the quiz
 })
+
+const treeNodes = computed(() => buildTopicTree(topics.value));
+
+function onNodeSelect(node: { data?: Topic }) {
+  if (node.data) {
+    selectedNode.value = node.data;
+    exercise.value.topic = node.data;
+    newTopicSchool.value = oldestAncestorSchool(topics.value, node.data._id);
+  }
+}
+
+function onNodeUnselect() {
+  selectedNode.value = null;
+  newTopicSchool.value = '';
+}
 </script>
 
 <style scoped>

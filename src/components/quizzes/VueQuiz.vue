@@ -112,12 +112,7 @@
       <label for="topicFilter" class="form-label mb-0">
         Filter for topic:
       </label>
-      <select id="topicFilter" v-model="filter.topicId">
-        <option value="">{{ t.alleThemen }}</option>
-        <option v-for="topic in topics" :key="topic._id" :value="topic._id">
-          {{ topic.title }}
-        </option>
-      </select>
+      <VueTopicFilter v-model="filter.topicId" :topics="topics" />
       <button
         type="button"
         class="btn btn-outline-secondary btn-sm"
@@ -298,6 +293,7 @@ import VueSignUp from "./VueSignUp.vue";
 import VueLogin from "./VueLogin.vue";
 import VueProfile from "./VueProfile.vue";
 import VueFilterDialog from "./VueFilterDialog.vue";
+import VueTopicFilter from "./VueTopicFilter.vue";
 import {
   API_URL,
   createExercise,
@@ -315,6 +311,7 @@ import {
 import { useAuthStore } from "@/stores/auth";
 import { useFilterStore } from "@/stores/filter";
 import { bildGroesseImVollbild } from "@/utils/vollbild";
+import { oldestAncestorSchool } from "@/utils/topicTree";
 import type { Exercise, Lang, Quiz, QuizName, Topic } from "@/types/quiz";
 
 // "quiz" ist der Name eines Website-Quizzes (z.B. "deutsch"). Buch-Quizzes
@@ -581,6 +578,15 @@ const displayedQuestions = computed<Exercise[]>(() =>
     if (f.topicId) {
       const id = typeof q.topic === "string" ? q.topic : q.topic?._id;
       if (id !== f.topicId) return false;
+    }
+    if (f.school) {
+      const id = typeof q.topic === "string" ? q.topic : q.topic?._id;
+      const schule = id
+        ? oldestAncestorSchool(topics.value, id)
+        : typeof q.topic === "object"
+          ? q.topic?.school ?? ""
+          : "";
+      if (schule !== f.school) return false;
     }
     if (f.creator && q.user !== f.creator) return false;
     if (

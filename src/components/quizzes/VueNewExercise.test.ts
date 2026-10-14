@@ -93,7 +93,7 @@ describe("VueNewExercise: multiple choice anlegen", () => {
   it("speichert nur die erste Option als richtig", async () => {
     const wrapper = await mountForm();
 
-    const typSelect = wrapper.findAll("select")[1];
+    const typSelect = wrapper.findAll("select")[0];
     await typSelect.setValue("multipleChoice");
 
     const optionsBox = wrapper.findAll("div.mb-3.mt-3")[1];
@@ -127,7 +127,7 @@ describe("VueNewExercise: multiple choice anlegen", () => {
     const alertSpy = vi.spyOn(window, "alert").mockImplementation(() => {});
     const wrapper = await mountForm();
 
-    const typSelect = wrapper.findAll("select")[1];
+    const typSelect = wrapper.findAll("select")[0];
     await typSelect.setValue("multipleChoice");
 
     const save = wrapper

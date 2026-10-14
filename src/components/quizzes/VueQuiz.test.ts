@@ -10,6 +10,7 @@ import type { Exercise, QuizName, Topic, User } from "@/types/quiz";
 import VueNewExercise from "./VueNewExercise.vue";
 import VueExercise from "./VueExercise.vue";
 import VueQuiz from "./VueQuiz.vue";
+import VueTopicFilter from "./VueTopicFilter.vue";
 
 const QUIZ: QuizName = "english";
 
@@ -84,9 +85,11 @@ describe("VueQuiz: neues Thema erscheint im Topic-Filter-Dropdown", () => {
     await wrapper.get('[title="Add a new exercise"]').trigger("click");
     await flushPromises();
 
-    // Ein bestehendes Thema auswaehlen: 1x "alle Themen" + 3 Themen.
-    await wrapper.get("#topicFilter").setValue("t2");
-    expect(wrapper.findAll("#topicFilter option")).toHaveLength(4);
+    // Ein bestehendes Thema filtern (der Themenfilter ist jetzt ein Baum).
+    const filterStore = useFilterStore();
+    filterStore.filterFor(QUIZ).topicId = "t2";
+    await flushPromises();
+    expect(filterStore.filterFor(QUIZ).topicId).toBe("t2");
 
     // Eine neue Aufgabe mit einem neuen Thema speichern.
     const formular = wrapper.findComponent(VueNewExercise);
@@ -95,15 +98,15 @@ describe("VueQuiz: neues Thema erscheint im Topic-Filter-Dropdown", () => {
 
     // getTopicsForQuizName wird erneut aufgerufen und liefert 4 Themen.
     await vi.waitFor(() => {
-      expect(wrapper.findAll("#topicFilter option")).toHaveLength(5);
+      const themen = wrapper
+        .findComponent(VueTopicFilter)
+        .props("topics") as Topic[];
+      expect(themen).toHaveLength(4);
+      expect(themen[themen.length - 1].title).toBe("Topic 4");
     });
 
-    const optionen = wrapper.findAll("#topicFilter option");
-    expect(optionen[optionen.length - 1].text()).toBe("Topic 4");
     // Die Auswahl bleibt "Topic 2".
-    expect((wrapper.get("#topicFilter").element as HTMLSelectElement).value).toBe(
-      "t2",
-    );
+    expect(filterStore.filterFor(QUIZ).topicId).toBe("t2");
   });
 });
 
@@ -650,18 +653,23 @@ describe("VueQuiz: Multiple-Choice-Aufgabe anlegen (Server-Roundtrip)", () => {
 
     const formular = wrapper.findComponent(VueNewExercise);
     const selecte = formular.findAll("select");
-    // selecte[0] = Thema, selecte[1] = Typ.
-    await selecte[1].setValue("multipleChoice");
+    // Der Themenfilter ist jetzt ein Baum, es bleibt nur der Typ-Select.
+    await selecte[0].setValue("multipleChoice");
 
-    // Thema "Topic 1" auswaehlen (Option 0 ist "Please select one").
-    const themenSelect = selecte[0].element as HTMLSelectElement;
-    themenSelect.selectedIndex = 1;
-    await selecte[0].trigger("change");
+    // Thema "Topic 1" im Baum auswaehlen.
+    const themenKnoten = formular
+      .findAll(".p-treenode-content")
+      .find((n) => n.text().includes("Topic 1"));
+    expect(themenKnoten).toBeTruthy();
+    await themenKnoten!.trigger("click");
     await flushPromises();
 
-    // Die Frage eintippen (erstes Textfeld mit Klasse "form-control"; das Feld
-    // "New option" und "Image url" kommen spaeter im DOM).
-    const frageFeld = formular.findAll("input.form-control")[0];
+    // Die Frage eintippen (das Eingabefeld im Kasten mit der Beschriftung
+    // "Question"; "New topic" hat eigene form-control-Felder).
+    const frageBox = formular
+      .findAll("div.mb-3.mt-3")
+      .find((d) => d.text().includes("Question"))!;
+    const frageFeld = frageBox.find("input.form-control");
     await frageFeld.setValue("Wie heisst die Hauptstadt von Frankreich?");
 
     // Drei Optionen anlegen; die erste ist die richtige.

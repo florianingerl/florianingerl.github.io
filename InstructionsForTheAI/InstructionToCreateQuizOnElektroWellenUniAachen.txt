@@ -1,0 +1,15 @@
+In this folder C:\Users\imelf\Documents\NachhilfePhysikUni\Daniils\EDEW_Klausuren_F2012_bis_H2025\EDEW_Klausuren_F2012_bis_H2025, there are a lot of pdf with exercises on
+"Elektromagnetische Wellen".
+So in my "Physik"-quiz for the university, please add the topic
+"Uni Aachen - Elektromagnetische Wellen" into the database.
+
+Then scan the exercises for the "Fachbegriffe", find tutorials with pictures for the "Fachbegriffe" on the web.
+If you have found a tutorial with pictures, create multiple choice exercises for the explanations next to the pictures 
+(i.e. set exercise.imageUrl to the picture and the question of the exercise should be about the explanation next to it)
+
+Everything, that you insert now into the database should be in the language of the tutorial you have found on the web.
+You can use German and English.
+
+A tutorial is not necessary, but you can insert one into the database as well (in German).
+
+Go ahead ! Insert everything into the database !

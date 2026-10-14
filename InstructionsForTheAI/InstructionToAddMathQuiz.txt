@@ -1,0 +1,14 @@
+In my mathematics section for the univerity.
+Can you add a quiz for mathematics to the user interface and to the database !
+
+Then create a topic "Gruppen". 
+And then please create exercises of type multiple choice for that topic, that can be solved
+by someone, who has read this wikipedia page: https://de.wikipedia.org/wiki/Gruppe_(Mathematik)
+When creating exercises on "Zyklische Gruppen", you can take the image on the wikipedia page that is displayed
+in the section on "Zyklische Gruppen".
+For all the other exercises, take as image the image on the very top of the article (showing a dice).
+
+As tutorial for the topic, simply test topic.tutorial="<a href="https://de.wikipedia.org/wiki/Gruppe_(Mathematik)">Wikipedia-Artikel über Gruppen</a>
+
+Go ahead ! Please implement, test, commit and then push "
+

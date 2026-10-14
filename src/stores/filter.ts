@@ -9,6 +9,8 @@ export interface QuizFilter {
   scope: "quiz" | "subject";
   // _id des Topics oder "" fuer alle Topics
   topicId: string;
+  // Schulname (z.B. "LMU München") oder "" fuer alle Schulen
+  school: string;
   // _id des Benutzers, der die Aufgabe erstellt hat, oder "" fuer alle
   creator: string;
   // Nach diesem Wort wird in der Aufgabe gesucht, "" bedeutet kein Suchwort
@@ -26,6 +28,7 @@ export const useFilterStore = defineStore("filter", () => {
       filters[quiz] = {
         scope: "quiz",
         topicId: "",
+        school: "",
         creator: "",
         word: "",
         caseSensitive: false,
@@ -38,6 +41,7 @@ export const useFilterStore = defineStore("filter", () => {
     const f = filterFor(quiz);
     f.scope = "quiz";
     f.topicId = "";
+    f.school = "";
     f.creator = "";
     f.word = "";
     f.caseSensitive = false;

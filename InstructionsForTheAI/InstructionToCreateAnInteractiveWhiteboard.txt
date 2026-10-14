@@ -1,0 +1,14 @@
+In the menu on top of my webage, left to About me, should be another menu
+called "Whiteboard". If clicked, only the language choosing and the menu bar should take visible.
+The rest of the user interface should have disappeared.
+To program use , use the Vue Router https://router.vuejs.org/guide/
+
+So maybe put my webpage below the menu, into an own component called HomeView (with corresponding path "/") and also create a new
+whiteboard component called WhiteboardView (with corresponding path "/whiteboard" ) .
+
+On the top, if the Whitebord menu item is chosen, the link is to "/whiteboad", and if any other menu iitem is chosen, the link should lead to
+"/#respectivesection" ).
+
+In the WhiteboardView, there should be one green and centered button visible and "Create new whitepaper" written on it.
+
+Go ahead ! Please implement, test, and then commit and push it !

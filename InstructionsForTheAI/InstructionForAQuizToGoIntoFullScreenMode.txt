@@ -1,0 +1,27 @@
+For a quiz, it should be possible to display it in FullScreen mode.
+Can you add a button with a nice icon on it (that indicates go into Fullscreen mode) next to the login button (if that visible) or
+next to the logout button (if that is visible) please ! If that button is clicked, the VueQuiz component should go into FullScreen mode
+and the FullScreen mode should be exited when the user presses ESC.
+
+Go ahead ! Please implement that, test it, and then commit and push it !
+
+After having gone into fullscreen mode, the quiz should occupy all the width of the screen (viewport).
+The image should occupy all the vertical space it can get and the width of the picture is then such that the proportions of the image
+aren't changed.
+If then not at least 400 px remain on the right hand side next to the image, then set picture width = width of viewport - 400px;
+And the height of the imgage should be such, that the proportions of the image aren't altered.
+
+The colors of everything in the quiz should be the same in FullScreen-mode and in Non-Full-Screen mode, including the background color !
+
+Got ahead implement it, test it , and then commit and push !
+
+Update:
+While preserving its proportions, the image should get as much height as possible, but still leaving enough space for the <ul class="pagination"></ul>
+to display itsself with its perferred height. This <ul class="pagination"></ul> is good for navigating between exercises.
+
+Then if the stuff on the right hand side of the image doesn't have at least 400px width, the image should only get
+( viewport/screen.width - 400px ) width and the height of the image should be such that its proportions are preserved.
+
+The <ul class="pagination"></ul> should also be directly under the image.
+
+Go ahead ! Implement it, test it, and then commit and push it !

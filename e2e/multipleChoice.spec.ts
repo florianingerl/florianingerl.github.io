@@ -58,6 +58,10 @@ async function mockBackend(
   });
 }
 
+function typeSelect(section: Locator): Locator {
+  return section.locator('div:has(> label:text-is("Type:")) > select');
+}
+
 function optionRow(section: Locator, text: string): Locator {
   return section
     .locator('div:has(> input[type="checkbox"])')
@@ -74,7 +78,7 @@ test.describe("multiple choice: erstellen und loesen", () => {
     const section = page.locator("#englisch");
     await section.getByTitle("Add a new exercise").click();
 
-    await section.locator("select").nth(1).selectOption("multipleChoice");
+    await typeSelect(section).selectOption("multipleChoice");
 
     const optionsBox = section.locator("div.mb-3.mt-3").nth(1);
     const newOptionInput = optionsBox.locator('input[type="text"]');
@@ -108,7 +112,7 @@ test.describe("multiple choice: erstellen und loesen", () => {
     const section = page.locator("#englisch");
     await section.getByTitle("Add a new exercise").click();
 
-    await section.locator("select").nth(1).selectOption("multipleChoice");
+    await typeSelect(section).selectOption("multipleChoice");
 
     const optionsBox = section.locator("div.mb-3.mt-3").nth(1);
     const newOptionInput = optionsBox.locator('input[type="text"]');

@@ -1,0 +1,16 @@
+A new bug has come into being.
+The three buttons for creating a new exercise and for editing or deleting an existing one are now visible
+although no user is logged in !
+If no user is logged in, the label "Log in to create, edit or delete exercises and tutorials" should be visible instead of the 
+three buttons.
+Please write a test first that reproduces this error.
+
+Then fix the bug, test it, and then commit and push it !
+
+Can you test, whether the creation of a new exercise of type "multipeChoice" works.
+I.e. using VueTestUtils create a new exercise of type multipleChoice. The first option is of course the correct one.
+Then click on Save, then getAllTheExercises for that topic from the database and check whether the last one
+of these exercises is the exercise just created and whether the correct answer is the correct one.
+
+Commit and push the tests please, whether they pass or not.
+If they don't pass, please fix the bug, test again, and only then commit and push 1

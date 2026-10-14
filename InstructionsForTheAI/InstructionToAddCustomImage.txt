@@ -1,0 +1,7 @@
+Underneath the "Random image from Facile"-button, there should be a label "Image url", then a text input (into which you can enter or paste the url of an image), and next to the text input a button
+to get this image, which is then updated in the <img></img> element. In this input element, you can also paste an image in the clipboard,
+which is then uploaded to my backend server and given a url, which is returned as an answer. But this functionality should be limited
+to 2 images per day for the same user. Except for the user with the Email imelflorianingerl@gmail.com, who has no limit.
+
+Go ahead, please implement, test, commit and push this functionality !
+

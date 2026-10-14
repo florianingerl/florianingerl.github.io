@@ -1,0 +1,11 @@
+The validation of an exercise of type multiiple choice doesn't work any more.
+
+Can you please try to reproduce the error.
+You create an exercise of type multiple choice in the GUI. There the first option should be the only
+correct one, all the other options should be false.
+Then try to solve that exercise in the GUI by checking the checkbox with the correct answer.
+Verify, that the background of this option has become green.
+Thent try whether checking a false checkbox also works, i.e. check a wrong answer and verify, that
+the background of this option has become red.
+
+If you can reproduce this bug, find out the cause of it, explain it to me, fix it, test again, and then commit and push !

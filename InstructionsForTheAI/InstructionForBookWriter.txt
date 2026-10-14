@@ -27,21 +27,23 @@ type Quiz {
     website: String,
     book: Types.ObjectId ?,
     language: String //This can also be a Fach(=German) or subject, i.e. Mathematik, Spanisch, Französisch, Englisch
-
+    ....
 }
 
 type Exercise {
     _id: Types.ObjectId,
     quiz: Types.ObjectId,
     language: String //oder Fach or subject
-    topic: Types.ObjectId ?
+    topic: Types.ObjectId ?,
+    ...
 }
 
 type Topic {
     _id: Types.ObjectId,
     language: String //oder Fach or subject und nicht language, Yes please call this field subject
     tutorial: String,
-    title: String
+    title: String,
+    ....
 }
 
 How do you add a quiz inside the Jodit editor ??

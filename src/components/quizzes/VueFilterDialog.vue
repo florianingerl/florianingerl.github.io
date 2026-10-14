@@ -47,20 +47,30 @@
         </div>
 
         <div class="mb-3">
-          <label for="filter-topic" class="form-label fw-semibold">
-            Filter for topic:
+          <label for="filter-school" class="form-label fw-semibold">
+            Filter for school:
           </label>
 
-          <select id="filter-topic" v-model="filter.topicId" class="form-select">
-            <option value="">All topics</option>
-            <option
-              v-for="topic in topics"
-              :key="topic._id"
-              :value="topic._id"
-            >
-              {{ topic.title }}
+          <select
+            id="filter-school"
+            v-model="filter.school"
+            class="form-select"
+          >
+            <option value="">All schools</option>
+            <option v-for="s in schools" :key="s" :value="s">
+              {{ s }}
             </option>
           </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Filter for topic:</label>
+
+          <VueTopicFilter v-model="filter.topicId" :topics="topics" />
+
+          <div class="form-text">
+            Only the exercises of the chosen topic are shown.
+          </div>
         </div>
 
         <div class="mb-3">
@@ -133,9 +143,11 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from "vue";
 import { useAuthStore } from "@/stores/auth";
 import { useFilterStore } from "@/stores/filter";
 import type { Topic } from "@/types/quiz";
+import VueTopicFilter from "./VueTopicFilter.vue";
 
 const props = defineProps<{
   // Quiz-Name (Website-Quiz) oder Sprache/Fach (Buch-Quizz) als Filter-Schluessel.
@@ -152,6 +164,15 @@ const emit = defineEmits<{
 const auth = useAuthStore();
 const filterStore = useFilterStore();
 const filter = filterStore.filterFor(props.quiz);
+
+// Alle vorkommenden Schulen, alphabetisch sortiert, fuer die Auswahlliste.
+const schools = computed(() => {
+  const set = new Set<string>();
+  props.topics.forEach((t) => {
+    if (t.school) set.add(t.school);
+  });
+  return [...set].sort();
+});
 
 // Die eigene Adresse ist freundlicher als die technische Benutzer-ID.
 function creatorLabel(id: string): string {

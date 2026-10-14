@@ -62,16 +62,18 @@ export interface WordOrderSentence {
 }
 
 export interface Topic {
-  _id?: string ;
+  _id?: string;
   // Sprache oder Fach, z.B. "deutsch" oder "Mathematik".
-  subject: string,
-  tutorial: string,
-  title: string,
+  subject: string;
+  tutorial: string;
+  title: string;
   // Das Quiz, in dem das Thema angelegt wurde (dessen _id).
-  quiz?: string,
+  quiz?: string;
   // _id des Benutzers, der das Topic angelegt hat. Der Server setzt das beim
   // Speichern selbst, es kann also nicht veraendert werden.
-  user?: string
+  user?: string;
+  school?: string; // school can be Hochschule Regensburg oder LMU München oder 9.Klasse Gymnasium Bayern
+  parentId?: string; // for hierarchical topics
 }
 
 // Ein Quiz gehoert zu einer Website ("web", die Sprach-/Fachseiten) oder zu
