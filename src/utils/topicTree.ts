@@ -52,12 +52,3 @@ export function topicPathString(topics: Topic[], id: string): string {
     .map((t) => t.title)
     .join("->");
 }
-
-// Die Schule des aeltesten Vorfahren eines Themas (oder dessen eigene Schule,
-// falls es keinen Vorfahren mit Schule gibt).
-export function oldestAncestorSchool(topics: Topic[], id: string | undefined): string {
-  if (!id) return "";
-  const pfad = findTopicPath(topics, id);
-  const mitSchule = pfad.find((t) => !!t.school);
-  return mitSchule?.school ?? "";
-}

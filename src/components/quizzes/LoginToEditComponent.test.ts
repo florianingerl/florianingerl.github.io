@@ -29,9 +29,9 @@ describe("LoginToEditComponent: angemeldet", () => {
     auth.user = { name: "Tester", email: "tester@example.com" } as User;
     await wrapper.vm.$nextTick();
 
-    expect(wrapper.get('[title="Add a new exercise"]').exists()).toBe(true);
-    expect(wrapper.get('[title="Edit the exercise"]').exists()).toBe(true);
-    expect(wrapper.get('[title="Delete the exercise"]').exists()).toBe(true);
+    expect(wrapper.find('[title="Add a new exercise"]').exists()).toBe(true);
+    expect(wrapper.find('[title="Edit the exercise"]').exists()).toBe(true);
+    expect(wrapper.find('[title="Delete the exercise"]').exists()).toBe(true);
     expect(wrapper.text()).toContain("You are logged in as tester@example.com");
 
     // Der Anmelde-Hinweis und die Anmelde-Knoepfe sind ausgeblendet.

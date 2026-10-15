@@ -33,19 +33,35 @@
     </div>
 
     <div class="row">
+      <div class="col-12 mt-3 d-flex flex-wrap align-items-center gap-2">
+        <label class="form-label mb-0" for="exerciseSchool">School</label>
+        <select
+          id="exerciseSchool"
+          v-model="gewaehlteSchule"
+          class="form-select w-auto"
+        >
+          <option value="">No school</option>
+          <option v-for="s in schulen" :key="s._id" :value="s._id">
+            {{ s.name }}
+          </option>
+        </select>
+        <label class="form-label mb-0" for="newSchoolName">New school</label>
+        <input
+          id="newSchoolName"
+          v-model="neueSchule"
+          type="text"
+          class="form-control w-auto"
+          placeholder="e.g. Hochschule Regensburg"
+        />
+        <button type="button" class="btn btn-primary" @click="schuleAnlegen">
+          Add
+        </button>
+      </div>
+    </div>
+
+    <div class="row">
       <div class="col-12 mt-3 p-3 border border-dark rounded">
         <h5>New topic</h5>
-        <div class="input-group mb-2">
-          <label class="input-group-text" for="newTopicSchool">School</label>
-          <input
-            id="newTopicSchool"
-            v-model="newTopicSchool"
-            type="text"
-            class="form-control"
-            :disabled="!!selectedNode"
-            placeholder="e.g. Hochschule Regensburg, LMU Muenchen, 9.Klasse Gymnasium Bayern"
-          />
-        </div>
         <div class="input-group mb-2">
           <label class="input-group-text" for="newTopicTitle">Title</label>
           <input
@@ -64,8 +80,8 @@
     </div>
 
     <div>
-      <label class="form-label">Type:</label>
-      <select v-model="exercise.type">
+      <label class="form-label" for="exercise-type">Type:</label>
+      <select id="exercise-type" v-model="exercise.type">
         <option value="gapText">Gap text</option>
         <option value="multipleChoice">Multiple choice</option>
         <option value="matching">Matching</option>
@@ -303,14 +319,22 @@ export async function uploadPastedImage(datei: File): Promise<string> {
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref, watch, computed } from 'vue'
 import VueImage from './VueImage.vue'
-import type { Exercise, QuizName , Topic, TwoPartSentences } from '@/types/quiz'
-import { fehlerText, getAllTopics } from '@/api';
+import type { Exercise, QuizName , School, Topic, TwoPartSentences } from '@/types/quiz'
+import { createSchool, fehlerText, getAllTopics } from '@/api';
 import Tree from 'primevue/tree';
-import { buildTopicTree, oldestAncestorSchool, topicPathString } from '@/utils/topicTree';
+import { buildTopicTree, topicPathString } from '@/utils/topicTree';
 
 const newTopic = ref<string>('');
-const newTopicSchool = ref<string>('');
 const topics = ref<Topic[]>([])
+// Die Schulen aus der Datenbank, aus denen die Schule der Aufgabe gewaehlt
+// wird. Die Liste kommt vom Quiz (props.schools); eine hier neu angelegte
+// Schule wird zusaetzlich in diese eigene Liste aufgenommen, damit sie sofort
+// in der Auswahl steht.
+const schulen = ref<School[]>([])
+// _id der gewaehlten Schule oder "" fuer "keine Schule".
+const gewaehlteSchule = ref<string>('');
+// Der Name im Feld "New school".
+const neueSchule = ref<string>('');
 // PrimeVue erwartet beim single-Modus ein Objekt { [key]: true }.
 const selectionKeys = ref<Record<string, boolean>>({});
 const selectedNode = ref<Topic | null>(null);
@@ -328,12 +352,47 @@ const props = defineProps<{
   subject?: string
   questionOfQuiz?: Exercise
   editMode: boolean
+  // Alle Schulen, die in der Datenbank stehen (vom Quiz geladen).
+  schools?: School[]
 }>()
 
 const emit = defineEmits<{
   (e: 'new-exercise-created', exercise: Exercise): void
+  (e: 'school-created', school: School): void
   (e: 'cancel-clicked'): void
 }>()
+
+// Die Schulliste des Quiz uebernehmen; neue Schulen (siehe unten) kommen nur
+// dann dazu, wenn kein Quiz die Liste liefert (z.B. in Tests).
+watch(
+  () => props.schools ?? [],
+  (liste) => {
+    schulen.value = [...liste]
+  },
+  { immediate: true, deep: true },
+)
+
+// Legt die im Feld "New school" eingetippte Schule an, waehlt sie aus und
+// macht sie zur Schule dieser Aufgabe. Der Server liefert eine schon
+// vorhandene Schule mit demselben Namen zurueck, statt sie doppelt anzulegen.
+async function schuleAnlegen(): Promise<void> {
+  const name = neueSchule.value.trim()
+  if (!name) {
+    alert('Please enter a name for the new school.')
+    return
+  }
+  try {
+    const schule = await createSchool(name)
+    if (!schulen.value.some((s) => s._id === schule._id)) {
+      schulen.value.push(schule)
+    }
+    gewaehlteSchule.value = schule._id ?? ''
+    neueSchule.value = ''
+    emit('school-created', schule)
+  } catch (e) {
+    alert(`The school could not be saved: ${fehlerText(e, 'unknown error')}`)
+  }
+}
 
 const exercise = ref<Exercise>({
   quiz: props.quiz,
@@ -373,13 +432,11 @@ function addNewTopicClicked(){
     return
   }
   let parentId: string | undefined = undefined;
-  let schoolValue = newTopicSchool.value;
 
   if (selectedNode.value) {
     // Ist ein Thema im Baum ausgewaehlt, wird das neue Thema ein Unterthema
-    // davon und erbt die Schule des aeltesten Vorfahren.
+    // davon.
     parentId = selectedNode.value._id;
-    schoolValue = oldestAncestorSchool(topics.value, parentId);
   }
 
   const topic: Topic = {
@@ -387,7 +444,6 @@ function addNewTopicClicked(){
     title: newTopic.value.trim(),
     tutorial: '',
     quiz: props.quiz || undefined,
-    school: schoolValue || undefined,
     parentId: parentId,
   };
 
@@ -396,7 +452,6 @@ function addNewTopicClicked(){
   selectionKeys.value = {};
   selectedNode.value = null;
   newTopic.value = '';
-  newTopicSchool.value = '';
   treeOffen.value = false;
 }
 
@@ -476,6 +531,7 @@ async function imagePasted(event: ClipboardEvent): Promise<void> {
 }
 
 function save(): void {
+  exercise.value.school = gewaehlteSchule.value || undefined
   if (exercise.value.type === 'multipleChoice') {
     if (allOptions.value.length < 2) {
       alert('A multiple choice exercise needs at least two options (the first one is the correct one).')
@@ -538,33 +594,34 @@ onMounted(async () => {
     sentences.value = props.questionOfQuiz.sentences.map((s) => ({ ...s }))
   }
   wordOrderSentence.value = props.questionOfQuiz.wordorder?.sentence ?? ''
+  // Die Schule der bearbeiteten Aufgabe auswaehlen. Der Server schickt sie als
+  // Dokument mit, gespeichert wird aber die _id.
+  const schule = props.questionOfQuiz.school
+  gewaehlteSchule.value =
+    typeof schule === 'string' ? schule : schule?._id ?? ''
   //TODO The topic of the exercise should be the topic of the exercise of the quiz
 })
 
 const treeNodes = computed(() => buildTopicTree(topics.value));
 
-// "Schule - Wurzel->...->Thema" des aktuell fuer die Aufgabe gewaehlten Themas.
+// "Wurzel->...->Thema" des aktuell fuer die Aufgabe gewaehlten Themas.
 const selectedTopicLabel = computed(() => {
   const t = exercise.value.topic;
   if (!t || typeof t === 'string') return '';
-  if (!t._id) return t.school ? `${t.school} - ${t.title}` : t.title;
-  const schule = oldestAncestorSchool(topics.value, t._id);
-  const pfad = topicPathString(topics.value, t._id);
-  return schule ? `${schule} - ${pfad}` : pfad;
+  if (!t._id) return t.title;
+  return topicPathString(topics.value, t._id);
 });
 
 function onNodeSelect(node: { data?: Topic }) {
   if (node.data) {
     selectedNode.value = node.data;
     exercise.value.topic = node.data;
-    newTopicSchool.value = oldestAncestorSchool(topics.value, node.data._id);
     treeOffen.value = false;
   }
 }
 
 function onNodeUnselect() {
   selectedNode.value = null;
-  newTopicSchool.value = '';
 }
 
 // Klick ausserhalb schliesst das aufgeklappte Themen-Menue.

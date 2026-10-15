@@ -1,5 +1,5 @@
 import axios from "axios";
-import type { Topic, Exercise, QuizName, Quiz, User } from "@/types/quiz";
+import type { Topic, Exercise, QuizName, Quiz, User, School } from "@/types/quiz";
 import type { Book, BookStore } from "@/types/book";
 import { getToken } from "@/authToken";
 
@@ -52,6 +52,14 @@ function bereinigen(e: Exercise): Exercise {
     optionsEn: ohneChecked(rest.optionsEn),
     optionsFr: ohneChecked(rest.optionsFr),
   };
+}
+
+// Ein Feld wie "topic" oder "school" ist entweder ein Objekt mit _id (so
+// schickt es der Server mit populate) oder schon eine _id/ein Name. Zum
+// Speichern reduziert der Server das auf die _id.
+function referenzId(x: { _id?: string } | string | undefined): string | undefined {
+  if (!x) return undefined;
+  return typeof x === "string" ? x : x._id;
 }
 
 export async function createTopic(topic: Topic): Promise<Topic> {
@@ -146,21 +154,39 @@ export async function exportToFacile(params: {
 
 export async function createExercise(e: Exercise): Promise<Exercise> {
   e= bereinigen(e);
-  const r = await client.post<Exercise>(`/api/exercise`, {...e, topic: !e.topic ? undefined : ( typeof e.topic === "string" ? e.topic : e.topic._id  ) });
+  const r = await client.post<Exercise>(`/api/exercise`, { ...e, topic: referenzId(e.topic), school: referenzId(e.school) });
   return r.data;
 }
 
 export async function updateExercise(e: Exercise): Promise<Exercise> {
   if (!e._id) throw new Error("updateExercise: _id fehlt");
+  const bereinigt = bereinigen(e);
   const r = await client.put<Exercise>(
     `/api/exercise/${encodeURIComponent(e._id)}`,
-    bereinigen(e),
+    { ...bereinigt, topic: referenzId(bereinigt.topic), school: referenzId(bereinigt.school) },
   );
   return r.data;
 }
 
 export async function deleteExercise(id: string): Promise<void> {
   await client.delete(`/api/exercise/${encodeURIComponent(id)}`);
+}
+
+// Schulen (Auswahlliste fuer die Schule einer Aufgabe) ------------
+
+// Alle Schulen, die schon einmal verwendet wurden. Der Server sortiert sie
+// nach Namen. Der Name einer Schule ist eindeutig.
+export async function getSchools(): Promise<School[]> {
+  const r = await client.get<School[]>(`/api/school`);
+  return r.data;
+}
+
+// Legt eine Schule an und liefert sie zurueck. Existiert schon eine Schule mit
+// diesem Namen, liefert der Server diese (statt einen Fehler), damit zweimal
+// Anlegen nicht schadet.
+export async function createSchool(name: string): Promise<School> {
+  const r = await client.post<School>(`/api/school`, { name });
+  return r.data;
 }
 
 // Ein Bild aus der Zwischenablage wird als Data-URL ("data:image/png;base64,...")

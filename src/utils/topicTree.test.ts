@@ -3,7 +3,6 @@ import type { Topic } from "@/types/quiz";
 import {
   buildTopicTree,
   findTopicPath,
-  oldestAncestorSchool,
   topicPathString,
 } from "./topicTree";
 
@@ -15,7 +14,6 @@ const themen: Topic[] = [
     subject: "elektrotechnik",
     title: "Elektrotechnik",
     tutorial: "",
-    school: "Uni Aachen",
   },
   {
     _id: "dio",
@@ -43,7 +41,6 @@ const themen: Topic[] = [
     subject: "mathematics",
     title: "Lineare Algebra",
     tutorial: "",
-    school: "LMU Muenchen",
   },
 ];
 
@@ -77,15 +74,7 @@ describe("topicTree", () => {
     );
   });
 
-  it("nimmt die Schule des aeltesten Vorfahren", () => {
-    expect(oldestAncestorSchool(themen, "zeh")).toBe("Uni Aachen");
-    // Ein Thema innerhalb der Hierarchie hat selbst keine Schule.
-    expect(themen.find((t) => t._id === "dio")!.school).toBeUndefined();
-  });
-
-  it("gibt bei unbekannter Id einen leeren Pfad und keine Schule zurueck", () => {
+  it("gibt bei unbekannter Id einen leeren Pfad zurueck", () => {
     expect(findTopicPath(themen, "gibt-es-nicht")).toEqual([]);
-    expect(oldestAncestorSchool(themen, "gibt-es-nicht")).toBe("");
-    expect(oldestAncestorSchool(themen, undefined)).toBe("");
   });
 });

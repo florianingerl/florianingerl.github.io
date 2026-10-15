@@ -47,23 +47,6 @@
         </div>
 
         <div class="mb-3">
-          <label for="filter-school" class="form-label fw-semibold">
-            Filter for school:
-          </label>
-
-          <select
-            id="filter-school"
-            v-model="filter.school"
-            class="form-select"
-          >
-            <option value="">All schools</option>
-            <option v-for="s in schools" :key="s" :value="s">
-              {{ s }}
-            </option>
-          </select>
-        </div>
-
-        <div class="mb-3">
           <label class="form-label fw-semibold">Filter for topic:</label>
 
           <VueTopicFilter v-model="filter.topicId" :topics="topics" />
@@ -143,7 +126,6 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
 import { useAuthStore } from "@/stores/auth";
 import { useFilterStore } from "@/stores/filter";
 import type { Topic } from "@/types/quiz";
@@ -164,15 +146,6 @@ const emit = defineEmits<{
 const auth = useAuthStore();
 const filterStore = useFilterStore();
 const filter = filterStore.filterFor(props.quiz);
-
-// Alle vorkommenden Schulen, alphabetisch sortiert, fuer die Auswahlliste.
-const schools = computed(() => {
-  const set = new Set<string>();
-  props.topics.forEach((t) => {
-    if (t.school) set.add(t.school);
-  });
-  return [...set].sort();
-});
 
 // Die eigene Adresse ist freundlicher als die technische Benutzer-ID.
 function creatorLabel(id: string): string {

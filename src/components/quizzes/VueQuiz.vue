@@ -39,7 +39,9 @@
         :subject="formSubject"
         :questionOfQuiz="aktuelle"
         :editMode="editMode"
+        :schools="schools"
         @new-exercise-created="gespeichert"
+        @school-created="schuleHinzugefuegt"
         @cancel-clicked="formOffen = false"
       />
     </div>
@@ -47,20 +49,14 @@
     <p v-if="laden">{{ t.laden }}</p>
     <p v-if="fehler" class="text-danger">{{ fehler }}</p>
 
-    <div v-show="!formOffen" class="d-flex flex-wrap align-items-center gap-2 mb-3">
-      <label for="topicFilter" class="form-label mb-0">
-        Filter for topic:
-      </label>
-      <VueTopicFilter v-model="filter.topicId" :topics="topics" />
-      <button
-        type="button"
-        class="btn btn-outline-secondary btn-sm"
-        title="Show filtering options"
-        @click="dialogOeffnen('filter')"
-      >
-        <i class="bi bi-funnel" aria-hidden="true"></i>
-      </button>
-    </div>
+    <FilterComponent
+      v-show="!formOffen"
+      class="mb-3"
+      :quiz="quizSchluessel"
+      :topics="topics"
+      :schools="schools"
+      @open-advanced-filter="dialogOeffnen('filter')"
+    />
 
   
     <ul class="nav nav-tabs" role="tablist" v-show="!formOffen">
@@ -169,7 +165,6 @@
       <VueNewTopic
         v-if="formOffen"
         :questionOfQuiz="aktuelle"
-        :topics="topics"
         @cancel-clicked="formOffen = false"
         @tutorial-saved="formOffen = false; tutorialGespeichert($event)"
       />
@@ -233,7 +228,7 @@ import VueSignUp from "./VueSignUp.vue";
 import VueLogin from "./VueLogin.vue";
 import VueProfile from "./VueProfile.vue";
 import VueFilterDialog from "./VueFilterDialog.vue";
-import VueTopicFilter from "./VueTopicFilter.vue";
+import FilterComponent from "./FilterComponent.vue";
 import LoginToEditComponent from "./LoginToEditComponent.vue";
 import {
   API_URL,
@@ -243,6 +238,7 @@ import {
   getExercisesBySubject,
   getQuiz,
   getQuizByName,
+  getSchools,
   istNichtAngemeldet,
   updateExercise,
   getAllTopics,
@@ -252,8 +248,7 @@ import {
 import { useAuthStore } from "@/stores/auth";
 import { useFilterStore } from "@/stores/filter";
 import { bildGroesseImVollbild } from "@/utils/vollbild";
-import { oldestAncestorSchool } from "@/utils/topicTree";
-import type { Exercise, Lang, Quiz, QuizName, Topic } from "@/types/quiz";
+import type { Exercise, Lang, Quiz, QuizName, School, Topic } from "@/types/quiz";
 
 // "quiz" ist der Name eines Website-Quizzes (z.B. "deutsch"). Buch-Quizzes
 // haben keine eigene Seite, sondern werden ueber ihre _id geladen ("quizId");
@@ -469,6 +464,16 @@ const t = computed(() => texte[props.lg]);
 // Abgeleitete Werte
 const topics = ref<Topic[]>([]);
 
+// Alle Schulen aus der Datenbank (Auswahlliste im Filter und im Formular).
+const schools = ref<School[]>([]);
+
+// Eine im Formular neu angelegte Schule in die Auswahlliste aufnehmen.
+function schuleHinzugefuegt(schule: School): void {
+  if (!schools.value.some((s) => s._id === schule._id || s.name === schule.name)) {
+    schools.value.push(schule);
+  }
+}
+
 // Alle Benutzer, die mindestens eine dieser Aufgaben erstellt haben.
 const creators = computed<string[]>(() => {
   const ids = new Set<string>();
@@ -504,9 +509,18 @@ function suchTexte(q: Exercise): string[] {
 function norm(s: string): string {
   return filter.value.caseSensitive ? s : s.toLowerCase();
 }
+// Der Name der Schule einer Aufgabe. Der Server schickt die Schule als
+// Dokument mit (populate); ist nur die _id bekannt, wird der Name in der
+// geladenen Schulliste nachgeschlagen.
+function schulName(q: Exercise): string {
+  const s = q.school;
+  if (!s) return "";
+  if (typeof s !== "string") return s.name ?? "";
+  return schools.value.find((x) => x._id === s)?.name ?? "";
+}
 
 // Frontend-Filterung: Quiz-Umfang ("nur dieses Quiz" oder "ganzes Fach"),
-// Theme, Ersteller und Suchwort werden hier angewandt.
+// Theme, Schule, Ersteller und Suchwort werden hier angewandt.
 const displayedQuestions = computed<Exercise[]>(() =>
   questions.value.filter((q) => {
     const f = filter.value;
@@ -520,15 +534,7 @@ const displayedQuestions = computed<Exercise[]>(() =>
       const id = typeof q.topic === "string" ? q.topic : q.topic?._id;
       if (id !== f.topicId) return false;
     }
-    if (f.school) {
-      const id = typeof q.topic === "string" ? q.topic : q.topic?._id;
-      const schule = id
-        ? oldestAncestorSchool(topics.value, id)
-        : typeof q.topic === "object"
-          ? q.topic?.school ?? ""
-          : "";
-      if (schule !== f.school) return false;
-    }
+    if (f.school && schulName(q) !== f.school) return false;
     if (f.creator && q.user !== f.creator) return false;
     if (
       f.word &&
@@ -614,6 +620,7 @@ watch(
   () => [
     filter.value.scope,
     filter.value.topicId,
+    filter.value.school,
     filter.value.creator,
     filter.value.word,
     filter.value.caseSensitive,
@@ -671,9 +678,45 @@ function calcScore(): void {
   scoreText.value = t.value.score(richtig, beantwortet);
 }
 
+// Vergleicht Titel bzw. Schulnamen unabhaengig von Grossschreibung, Leer- und
+// Sonderzeichen, damit "9.Klasse Gymnasium Bayern" zu "9klasseGymnasiumBayern"
+// aus dem Link passt.
+function normalisiert(s: string): string {
+  return s.toLowerCase().replace(/[^a-z0-9]/g, "");
+}
+
+// Ein Link wie
+// "#franzoesisch?frenchtopic=verbesreflechi&frenchschool=9klasseGymnasiumBayern"
+// springt zum Quiz und waehlt dort schon Thema und Schule aus. Die Parameternamen
+// fangen mit dem Namen des Quiz an (frenchtopic/frenchschool), damit die Links
+// mehrerer Quizze auf derselben Seite eindeutig sind.
+function deepLinkAnwenden(): void {
+  if (!props.quiz) return;
+  const fragezeichen = window.location.hash.indexOf("?");
+  if (fragezeichen === -1) return;
+  const params = new URLSearchParams(
+    window.location.hash.slice(fragezeichen + 1)
+  );
+
+  const thema = params.get(`${props.quiz}topic`);
+  if (thema) {
+    const gefunden = topics.value.find(
+      (t) => normalisiert(t.title) === normalisiert(thema)
+    );
+    if (gefunden?._id) filter.value.topicId = gefunden._id;
+  }
+
+  const schule = params.get(`${props.quiz}school`);
+  if (schule) {
+    const gefunden = schools.value.find(
+      (s) => normalisiert(s.name) === normalisiert(schule)
+    );
+    if (gefunden) filter.value.school = gefunden.name;
+  }
+}
+
 // Laden aus der Datenbank
-onMounted(async () => {
-  // Eine auf der letzten Seite begonnene Anmeldung fortsetzen.
+onMounted(async () => {  // Eine auf der letzten Seite begonnene Anmeldung fortsetzen.
   auth.sitzungWiederherstellen();
 
   // Zuerst das Quiz-Dokument laden: Bei einem Buch-Quizz ueber seine _id, bei
@@ -704,6 +747,21 @@ onMounted(async () => {
   } catch (e) {
     fehler.value = `Themen konnten nicht geladen werden (${(e as Error).message}). Läuft das Backend unter ${API_URL}?`;
   }
+
+  // Die Schulliste gehoert zum Filter und zum Formular. Fehlt der Endpunkt
+  // (z.B. auf einem noch nicht aktualisierten Server), laeuft das Quiz ohne
+  // Schulen weiter.
+  try {
+    schools.value = await getSchools();
+  } catch (e) {
+    console.warn(
+      "Schulen konnten nicht geladen werden: " + (e as Error).message
+    );
+  }
+
+  // Ein Link wie "#franzoesisch?frenchtopic=verbesreflechi&frenchschool=..."
+  // waehlt Thema und Schule schon aus.
+  deepLinkAnwenden();
 
   try {
     // Alle Aufgaben des Faches laden; der Filter entscheidet danach, ob nur die

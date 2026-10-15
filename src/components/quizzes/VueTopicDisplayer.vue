@@ -10,17 +10,29 @@
     <span v-else class="text-muted">
       This exercise isn't classified under a topic.
     </span>
+    <span v-if="schoolName" class="ms-2">
+      <label class="me-1 fw-semibold">School:</label>
+      <span class="badge text-bg-secondary">{{ schoolName }}</span>
+    </span>
   </p>
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { getTopic } from '@/api'
-import type { Topic } from '@/types/quiz'
+import type { School, Topic } from '@/types/quiz'
 
 const props = defineProps<{
   topic: Topic | string | undefined
+  // Die Schule der Aufgabe. Der Server schickt sie als Dokument mit (populate).
+  school?: School | string
 }>()
+
+// Der Name der Schule, falls die Aufgabe eine hat.
+const schoolName = computed(() => {
+  const s = props.school
+  return s && typeof s !== 'string' ? s.name ?? '' : ''
+})
 
 const topicTitle = ref<string>('')
 const topicLoadFailed = ref(false)

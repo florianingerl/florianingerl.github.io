@@ -93,7 +93,7 @@ describe("VueNewExercise: multiple choice anlegen", () => {
   it("speichert nur die erste Option als richtig", async () => {
     const wrapper = await mountForm();
 
-    const typSelect = wrapper.findAll("select")[0];
+    const typSelect = wrapper.get("#exercise-type");
     await typSelect.setValue("multipleChoice");
 
     const optionsBox = wrapper.findAll("div.mb-3.mt-3")[1];
@@ -127,7 +127,7 @@ describe("VueNewExercise: multiple choice anlegen", () => {
     const alertSpy = vi.spyOn(window, "alert").mockImplementation(() => {});
     const wrapper = await mountForm();
 
-    const typSelect = wrapper.findAll("select")[0];
+    const typSelect = wrapper.get("#exercise-type");
     await typSelect.setValue("multipleChoice");
 
     const save = wrapper
@@ -151,7 +151,6 @@ describe("VueNewExercise: Themen-Baum als Menue", () => {
             subject: "english",
             title: "Elektrotechnik",
             tutorial: "",
-            school: "Uni Aachen",
           },
           {
             _id: "dio",
@@ -191,13 +190,93 @@ describe("VueNewExercise: Themen-Baum als Menue", () => {
     await knoten!.trigger("click");
     await flushPromises();
 
-    // Das Menue ist zu, der Knopf zeigt "Schule - Pfad" und die Schule des
-    // aeltesten Vorfahren ist im "New topic"-Feld eingetragen (deaktiviert).
+    // Das Menue ist zu und der Knopf zeigt den Pfad des gewaehlten Themas.
     expect(baumOffen(wrapper)).toBe(false);
-    expect(knopf.text()).toContain("Uni Aachen - Elektrotechnik");
+    expect(knopf.text()).toContain("Elektrotechnik");
 
-    const schulFeld = wrapper.get("#newTopicSchool").element as HTMLInputElement;
-    expect(schulFeld.disabled).toBe(true);
-    expect(schulFeld.value).toBe("Uni Aachen");
+    // Die Schule steht nicht mehr am Thema, sondern in der eigenen Auswahl.
+    expect(wrapper.find("#newTopicSchool").exists()).toBe(false);
+    expect(wrapper.find("#exerciseSchool").exists()).toBe(true);
+  });
+});
+
+describe("VueNewExercise: Schule der Aufgabe", () => {
+  const schulen = [
+    { _id: "s1", name: "Hochschule Regensburg" },
+    { _id: "s2", name: "LMU Muenchen" },
+  ];
+
+  it("waehlt eine vorhandene Schule aus und speichert deren _id", async () => {
+    const wrapper = mount(VueNewExercise, {
+      props: { quiz: "english", editMode: false, schools: schulen },
+      shallow: true,
+    });
+    await flushPromises();
+
+    const auswahl = wrapper.get("#exerciseSchool");
+    expect(auswahl.findAll("option").map((o) => o.text())).toEqual([
+      "No school",
+      "Hochschule Regensburg",
+      "LMU Muenchen",
+    ]);
+
+    await auswahl.setValue("s2");
+    await wrapper
+      .findAll("button")
+      .find((b) => b.text().trim() === "Save")!
+      .trigger("click");
+
+    const emitted = wrapper.emitted("new-exercise-created");
+    expect(emitted).toBeTruthy();
+    expect((emitted![0][0] as Exercise).school).toBe("s2");
+  });
+
+  it("legt mit 'Add' eine neue Schule an, waehlt sie aus und meldet sie", async () => {
+    const wrapper = mount(VueNewExercise, {
+      props: { quiz: "english", editMode: false, schools: [] },
+      shallow: true,
+    });
+    await flushPromises();
+
+    await wrapper.get("#newSchoolName").setValue("Uni Aachen");
+    await wrapper
+      .findAll("button")
+      .find((b) => b.text().trim() === "Add")!
+      .trigger("click");
+    await flushPromises();
+
+    // Die neue Schule wurde gemeldet und ist ausgewaehlt.
+    const gemeldet = wrapper.emitted("school-created");
+    expect(gemeldet).toBeTruthy();
+    expect(gemeldet![0][0]).toEqual({ _id: "mocked-school-id", name: "Uni Aachen" });
+    expect(
+      (wrapper.get("#exerciseSchool").element as HTMLSelectElement).value,
+    ).toBe("mocked-school-id");
+
+    await wrapper
+      .findAll("button")
+      .find((b) => b.text().trim() === "Save")!
+      .trigger("click");
+    const emitted = wrapper.emitted("new-exercise-created");
+    expect((emitted![0][0] as Exercise).school).toBe("mocked-school-id");
+  });
+
+  it("legt ohne Namen im Feld 'New school' nichts an", async () => {
+    const alertSpy = vi.spyOn(window, "alert").mockImplementation(() => {});
+    const wrapper = mount(VueNewExercise, {
+      props: { quiz: "english", editMode: false, schools: [] },
+      shallow: true,
+    });
+    await flushPromises();
+
+    await wrapper
+      .findAll("button")
+      .find((b) => b.text().trim() === "Add")!
+      .trigger("click");
+    await flushPromises();
+
+    expect(alertSpy).toHaveBeenCalled();
+    expect(wrapper.emitted("school-created")).toBeFalsy();
+    alertSpy.mockRestore();
   });
 });

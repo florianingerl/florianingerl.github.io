@@ -11,4 +11,12 @@ export const handlers = [
   http.get(`${API_URL}/api/ping`, () =>
     HttpResponse.json({ message: "pong", server: "mocked-backend" }),
   ),
+  // Die Schulliste ist im Test standardmaessig leer. Einzelne Tests koennen mit
+  // server.use(...) eine eigene Liste liefern.
+  http.get(`${API_URL}/api/school`, () => HttpResponse.json([])),
+  // Eine neue Schule wird mit einer festen _id beantwortet.
+  http.post(`${API_URL}/api/school`, async ({ request }) => {
+    const { name } = (await request.json()) as { name: string };
+    return HttpResponse.json({ _id: "mocked-school-id", name });
+  }),
 ];

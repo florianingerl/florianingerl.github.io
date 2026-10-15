@@ -9,7 +9,6 @@ const themen: Topic[] = [
     subject: "elektrotechnik",
     title: "Elektrotechnik",
     tutorial: "",
-    school: "Uni Aachen",
   },
   {
     _id: "dio",
@@ -44,14 +43,14 @@ describe("VueTopicFilter: Baum als Menue", () => {
     expect(baumOffen(wrapper)).toBe(false);
   });
 
-  it("zeigt 'Schule - Pfad' als String, solange zugeklappt", () => {
+  it("zeigt den Pfad des gewaehlten Themas als String, solange zugeklappt", () => {
     const wrapper = mount(VueTopicFilter, {
       props: { modelValue: "zeh", topics: themen },
     });
 
-    expect(wrapper.text()).toContain(
-      "Uni Aachen - Elektrotechnik->Dioden->Zehnerdiode",
-    );
+    expect(wrapper.text()).toContain("Elektrotechnik->Dioden->Zehnerdiode");
+    // Die Schule gehoert zur Aufgabe und steht nicht mehr im Themenpfad.
+    expect(wrapper.text()).not.toContain("Uni Aachen");
     expect(baumOffen(wrapper)).toBe(false);
   });
 

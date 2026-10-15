@@ -1,0 +1,73 @@
+<!-- Die Filterzeile eines Quiz: der Themenfilter, die Auswahl der Schule und
+     der Knopf fuer den erweiterten Filterdialog. Die gewaehlten Werte liegen
+     im Filter-Store (pro Quiz getrennt), damit sie den Dialog und die Anzeige
+     ueberleben. -->
+<template>
+  <div class="filter-component">
+    <label class="form-label mb-0">Filter for topic:</label>
+    <VueTopicFilter v-model="filter.topicId" :topics="topics" />
+
+    <label class="form-label mb-0" :for="schoolFilterId">School:</label>
+    <select
+      :id="schoolFilterId"
+      v-model="filter.school"
+      class="form-select w-auto"
+    >
+      <option value="">All schools</option>
+      <option v-for="s in schools" :key="s._id" :value="s.name">
+        {{ s.name }}
+      </option>
+    </select>
+
+    <button
+      type="button"
+      class="btn btn-outline-secondary btn-sm"
+      title="Show filtering options"
+      @click="emit('open-advanced-filter')"
+    >
+      <i class="bi bi-funnel" aria-hidden="true"></i>
+    </button>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { computed } from "vue";
+import { useFilterStore } from "@/stores/filter";
+import type { School, Topic } from "@/types/quiz";
+import VueTopicFilter from "./VueTopicFilter.vue";
+
+const props = defineProps<{
+  // Schluessel des Filters im Filter-Store: der Name eines Website-Quizzes
+  // (z.B. "french") oder die _id eines Buch-Quizzes.
+  quiz: string;
+  // Alle Themen des Faches, aus denen der Baum gebaut wird.
+  topics: Topic[];
+  // Alle Schulen, die schon in der Datenbank stehen.
+  schools: School[];
+}>();
+
+const emit = defineEmits<{
+  (e: "open-advanced-filter"): void;
+}>();
+
+const filterStore = useFilterStore();
+// Derselbe Filter wie in VueQuiz: Der Schluessel entscheidet, welcher Eintrag
+// im Store gemeint ist.
+const filter = computed(() => filterStore.filterFor(props.quiz));
+
+// Auf der Seite stehen mehrere Quizze, deshalb muss die _id des Auswahlfeldes
+// pro Quiz verschieden sein.
+const schoolFilterId = computed(() => `schoolFilter-${props.quiz}`);
+</script>
+
+<style scoped>
+/* So soll die Filterzeile aussehen: alles in einer Reihe, linksbuendig, mit
+   kleinem Abstand zwischen den Elementen und mittig ausgerichtet. */
+.filter-component {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 3px;
+  align-items: center;
+}
+</style>

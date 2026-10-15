@@ -1,5 +1,5 @@
 <!-- Themen-Auswahl als Baum. Ist kein Thema gewaehlt, steht dort ein Knopf
-     "Choose a topic..."; ist eines gewaehlt, "Schule - Pfad->zum->Thema" und
+     "Choose a topic..."; ist eines gewaehlt, der Pfad "Wurzel->...->Thema" und
      ein Klick darauf klappt den Baum auf. Der Baum liegt dabei ueber den
      uebrigen Elementen (wie ein Menue), statt sie wegzuschieben. Wird an
      filter.topicId gebunden. -->
@@ -44,7 +44,6 @@ import type { Topic } from "@/types/quiz";
 import {
   buildTopicTree,
   findTopicPath,
-  oldestAncestorSchool,
   topicPathString,
 } from "@/utils/topicTree";
 
@@ -65,12 +64,10 @@ const expandedKeys = ref<Record<string, boolean>>({});
 
 const treeNodes = computed(() => buildTopicTree(props.topics));
 
-// "Schule - Wurzel->...->Thema", z.B. "Uni Aachen - Elektrotechnik->Dioden->Zehnerdiode".
+// "Wurzel->...->Thema", z.B. "Elektrotechnik->Dioden->Zehnerdiode".
 const selectedLabel = computed(() => {
   if (!props.modelValue) return "";
-  const schule = oldestAncestorSchool(props.topics, props.modelValue);
-  const pfad = topicPathString(props.topics, props.modelValue);
-  return schule ? `${schule} - ${pfad}` : pfad;
+  return topicPathString(props.topics, props.modelValue);
 });
 
 function onNodeSelect(node: { key?: string }): void {

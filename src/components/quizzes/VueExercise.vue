@@ -1,6 +1,6 @@
 <template>
   <div>
-    <VueTopicDisplayer :topic="exercise.topic" />
+    <VueTopicDisplayer :topic="exercise.topic" :school="exercise.school" />
 
     <VueImage :imageUrl="exercise.imageUrl">
       <template #pagination>

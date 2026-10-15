@@ -6,43 +6,27 @@ import { server } from "@/mocks/server";
 import type { Exercise, Topic } from "@/types/quiz";
 import VueNewTopic from "./VueNewTopic.vue";
 
-// Die Hierarchie: Elektrotechnik (Schule "Uni Aachen") -> Dioden -> Zehnerdiode.
-const themen: Topic[] = [
-  {
-    _id: "et",
-    subject: "elektrotechnik",
-    title: "Elektrotechnik",
-    tutorial: "",
-    school: "Uni Aachen",
-  },
-  {
-    _id: "dio",
-    subject: "elektrotechnik",
-    title: "Dioden",
-    tutorial: "",
-    parentId: "et",
-  },
-  {
-    _id: "zeh",
-    subject: "elektrotechnik",
-    title: "Zehnerdiode",
-    tutorial: "",
-    parentId: "dio",
-  },
-];
+// Ein Thema ohne Elternthema (die Schule steckt jetzt in der Aufgabe, nicht
+// mehr im Thema).
+const thema: Topic = {
+  _id: "et",
+  subject: "elektrotechnik",
+  title: "Elektrotechnik",
+  tutorial: "<p>Alt</p>",
+};
 
-function aufgabeMit(thema: Topic): Exercise {
+function aufgabeMit(t: Topic): Exercise {
   return {
     quiz: "elektrotechnik",
     type: "gapText",
     imageUrl: "",
-    topic: thema,
+    topic: t,
   };
 }
 
-function mountTopic(thema: Topic) {
+function mountTopic(t: Topic) {
   return mount(VueNewTopic, {
-    props: { questionOfQuiz: aufgabeMit(thema), topics: themen },
+    props: { questionOfQuiz: aufgabeMit(t) },
     global: { stubs: { VueJoditEditor: true } },
   });
 }
@@ -55,17 +39,23 @@ afterEach(() => {
   vi.restoreAllMocks();
 });
 
-describe("VueNewTopic: Schule bearbeiten", () => {
-  it("zeigt die Schule als editierbares Feld, wenn das Thema kein Elternthema hat", async () => {
-    const wrapper = mountTopic(themen[0]);
+describe("VueNewTopic: Tutorial bearbeiten", () => {
+  it("zeigt den Titel des Themas in einem Eingabefeld", async () => {
+    const wrapper = mountTopic(thema);
     await flushPromises();
 
-    const feld = wrapper.get("#topic-school").element as HTMLInputElement;
-    expect(feld.disabled).toBe(false);
-    expect(feld.value).toBe("Uni Aachen");
+    const feld = wrapper.get("#topic-title").element as HTMLInputElement;
+    expect(feld.value).toBe("Elektrotechnik");
   });
 
-  it("speichert eine geaenderte Schule eines Wurzelthemas", async () => {
+  it("hat kein school-Feld mehr", async () => {
+    const wrapper = mountTopic(thema);
+    await flushPromises();
+
+    expect(wrapper.find("#topic-school").exists()).toBe(false);
+  });
+
+  it("speichert Titel und Tutorial, aber kein school-Feld", async () => {
     let gesendet: Topic | null = null;
     server.use(
       http.put(`${API_URL}/api/topic/et`, async ({ request }) => {
@@ -74,10 +64,10 @@ describe("VueNewTopic: Schule bearbeiten", () => {
       }),
     );
 
-    const wrapper = mountTopic(themen[0]);
+    const wrapper = mountTopic(thema);
     await flushPromises();
 
-    await wrapper.get("#topic-school").setValue("LMU Muenchen");
+    await wrapper.get("#topic-title").setValue("Elektrotechnik neu");
     await wrapper
       .findAll("button")
       .find((b) => b.text().trim() === "Save")!
@@ -85,37 +75,11 @@ describe("VueNewTopic: Schule bearbeiten", () => {
     await flushPromises();
 
     expect(gesendet).toBeTruthy();
-    expect(gesendet!.school).toBe("LMU Muenchen");
-  });
-
-  it("zeigt bei einem Unterthema nicht editierbar die Schule des aeltesten Vorfahren", async () => {
-    const wrapper = mountTopic(themen[2]);
-    await flushPromises();
-
-    const feld = wrapper.get("#topic-school").element as HTMLInputElement;
-    expect(feld.disabled).toBe(true);
-    expect(feld.value).toBe("Uni Aachen");
-  });
-
-  it("ueberschreibt die Schule eines Unterthemas beim Speichern nicht", async () => {
-    let gesendet: Topic | null = null;
-    server.use(
-      http.put(`${API_URL}/api/topic/zeh`, async ({ request }) => {
-        gesendet = (await request.json()) as Topic;
-        return HttpResponse.json(gesendet);
-      }),
+    expect(gesendet!.title).toBe("Elektrotechnik neu");
+    // Das Tutorial des Themas bleibt beim Speichern erhalten.
+    expect(gesendet!.tutorial).toBe("<p>Alt</p>");
+    expect(Object.prototype.hasOwnProperty.call(gesendet!, "school")).toBe(
+      false,
     );
-
-    const wrapper = mountTopic(themen[2]);
-    await flushPromises();
-
-    await wrapper
-      .findAll("button")
-      .find((b) => b.text().trim() === "Save")!
-      .trigger("click");
-    await flushPromises();
-
-    expect(gesendet).toBeTruthy();
-    expect(gesendet!.school).toBeUndefined();
   });
 });

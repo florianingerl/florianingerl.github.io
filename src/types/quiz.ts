@@ -72,8 +72,15 @@ export interface Topic {
   // _id des Benutzers, der das Topic angelegt hat. Der Server setzt das beim
   // Speichern selbst, es kann also nicht veraendert werden.
   user?: string;
-  school?: string; // school can be Hochschule Regensburg oder LMU München oder 9.Klasse Gymnasium Bayern
   parentId?: string; // for hierarchical topics
+}
+
+// Eine Schule/Hochschule/Klasse, z.B. "LMU München" oder
+// "9.Klasse Gymnasium Bayern". Die Aufgaben waehlen ihre Schule aus dieser
+// Liste. Der Name ist eindeutig, der Server legt neue Schulen bei Bedarf an.
+export interface School {
+  _id?: string;
+  name: string;
 }
 
 // Ein Quiz gehoert zu einer Website ("web", die Sprach-/Fachseiten) oder zu
@@ -115,6 +122,9 @@ export interface Exercise {
   type: ExerciseType;
   imageUrl: string;
   topic?: Topic | string; //It's either the id of the topic or the topic itsself
+  // Die Schule der Aufgabe. Der Server schickt das ganze School-Dokument mit
+  // populate, beim Speichern wird nur die _id (oder der Name) geschickt.
+  school?: School | string;
   // gapText
   instruction?: string;
   gapText?: string;

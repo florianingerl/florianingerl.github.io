@@ -1,16 +1,16 @@
 import { flushPromises, mount } from "@vue/test-utils";
 import { createPinia, setActivePinia } from "pinia";
 import { http, HttpResponse } from "msw";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { beforeEach, afterEach, describe, expect, it, vi } from "vitest";
 import { API_URL, getAllExercises } from "@/api";
 import { server } from "@/mocks/server";
 import { useAuthStore } from "@/stores/auth";
 import { useFilterStore } from "@/stores/filter";
-import type { Exercise, QuizName, Topic, User } from "@/types/quiz";
+import type { Exercise, QuizName, School, Topic, User } from "@/types/quiz";
+import FilterComponent from "./FilterComponent.vue";
 import VueNewExercise from "./VueNewExercise.vue";
 import VueExercise from "./VueExercise.vue";
 import VueQuiz from "./VueQuiz.vue";
-import VueTopicFilter from "./VueTopicFilter.vue";
 
 const QUIZ: QuizName = "english";
 
@@ -103,7 +103,7 @@ describe("VueQuiz: neues Thema erscheint im Topic-Filter-Dropdown", () => {
     // getTopicsForQuizName wird erneut aufgerufen und liefert 4 Themen.
     await vi.waitFor(() => {
       const themen = wrapper
-        .findComponent(VueTopicFilter)
+        .findComponent(FilterComponent)
         .props("topics") as Topic[];
       expect(themen).toHaveLength(4);
       expect(themen[themen.length - 1].title).toBe("Topic 4");
@@ -660,9 +660,8 @@ describe("VueQuiz: Multiple-Choice-Aufgabe anlegen (Server-Roundtrip)", () => {
     await flushPromises();
 
     const formular = wrapper.findComponent(VueNewExercise);
-    const selecte = formular.findAll("select");
-    // Der Themenfilter ist jetzt ein Baum, es bleibt nur der Typ-Select.
-    await selecte[0].setValue("multipleChoice");
+    // Im Formular den Aufgabentyp waehlen (die erste Auswahl ist die Schule).
+    await formular.get("#exercise-type").setValue("multipleChoice");
 
     // Thema "Topic 1" im Baum auswaehlen.
     const themenKnoten = formular
@@ -716,5 +715,175 @@ describe("VueQuiz: Multiple-Choice-Aufgabe anlegen (Server-Roundtrip)", () => {
       { option: "Rom", correct: false },
       { option: "Madrid", correct: false },
     ]);
+  });
+});
+
+// Die Schule haengt an der Aufgabe (nicht mehr am Thema). Aufgaben mit
+// derselben Schule duerfen im Filter "School:" ausgewaehlt werden.
+describe("VueQuiz: nach Schule filtern", () => {
+  const SCHULEN: School[] = [
+    { _id: "s1", name: "8.Klasse Gymnasium Bayern" },
+    { _id: "s2", name: "9.Klasse Gymnasium Bayern" },
+  ];
+
+  beforeEach(() => {
+    server.use(
+      http.get(`${API_URL}/api/quiz`, () =>
+        HttpResponse.json([
+          { _id: "q1", website: "web", subject: QUIZ, name: QUIZ },
+        ]),
+      ),
+      http.get(`${API_URL}/api/topic/:quiz`, () => HttpResponse.json([])),
+      http.get(`${API_URL}/api/school`, () => HttpResponse.json(SCHULEN)),
+      http.get(`${API_URL}/api/exercise`, () =>
+        HttpResponse.json<Exercise[]>([
+          {
+            _id: "e1",
+            quiz: "q1",
+            subject: QUIZ,
+            type: "gapText",
+            imageUrl: "",
+            school: "s2",
+          },
+          {
+            _id: "e2",
+            quiz: "q1",
+            subject: QUIZ,
+            type: "gapText",
+            imageUrl: "",
+            school: SCHULEN[0],
+          },
+          {
+            _id: "e3",
+            quiz: "q1",
+            subject: QUIZ,
+            type: "gapText",
+            imageUrl: "",
+          },
+        ]),
+      ),
+    );
+  });
+
+  async function mountQuiz() {
+    const pinia = createPinia();
+    setActivePinia(pinia);
+    const wrapper = mount(VueQuiz, {
+      props: { quiz: QUIZ, lg: "en" },
+      global: {
+        plugins: [pinia],
+        stubs: {
+          VueExercise: {
+            template: '<div><slot name="pagination" /></div>',
+            props: ["exercise", "lg"],
+          },
+        },
+      },
+      shallow: true,
+    });
+    await flushPromises();
+    return wrapper;
+  }
+
+  function aktuellAngezeigt(wrapper: ReturnType<typeof mount>) {
+    return wrapper.findComponent(VueExercise).props("exercise") as Exercise;
+  }
+
+  it("zeigt alle Aufgaben, solange keine Schule gewaehlt ist", async () => {
+    const wrapper = await mountQuiz();
+    expect(wrapper.get('input[type="number"]').attributes("max")).toBe("2");
+  });
+
+  it("zeigt nur die Aufgaben der gewaehlten Schule", async () => {
+    const wrapper = await mountQuiz();
+
+    // Die Schule wird ueber die _id gefunden: "s2" steht in der Schulliste,
+    // die gewaehlte Aufgabe traegt nur die _id.
+    const filterStore = useFilterStore();
+    filterStore.filterFor("q1").school = "9.Klasse Gymnasium Bayern";
+    await flushPromises();
+
+    expect(aktuellAngezeigt(wrapper)).toMatchObject({ _id: "e1" });
+    expect(wrapper.get('input[type="number"]').attributes("max")).toBe("0");
+
+    // Die Schule eines anderen Aufgaben-Dokuments kommt als Objekt an.
+    filterStore.filterFor("q1").school = "8.Klasse Gymnasium Bayern";
+    await flushPromises();
+    expect(aktuellAngezeigt(wrapper)).toMatchObject({ _id: "e2" });
+  });
+
+  it("gibt die Schulliste an die Filterzeile weiter", async () => {
+    const wrapper = await mountQuiz();
+    expect(wrapper.findComponent(FilterComponent).props("schools")).toEqual(
+      SCHULEN,
+    );
+  });
+});
+
+// Ein Link wie
+// https://florianingerl.github.io/#franzoesisch?frenchtopic=...&frenchschool=...
+// soll das Thema und die Schule schon auswaehlen.
+describe("VueQuiz: Deep-Link waehlt Thema und Schule", () => {
+  const SCHULEN: School[] = [
+    { _id: "s1", name: "9.Klasse Gymnasium Bayern" },
+  ];
+
+  beforeEach(() => {
+    server.use(
+      http.get(`${API_URL}/api/quiz`, () =>
+        HttpResponse.json([
+          { _id: "q1", website: "web", subject: QUIZ, name: QUIZ },
+        ]),
+      ),
+      http.get(`${API_URL}/api/topic/:quiz`, () =>
+        HttpResponse.json<Topic[]>([
+          {
+            _id: "t-verbes",
+            subject: QUIZ,
+            title: "Verbes reflechi",
+            tutorial: "",
+          },
+          { _id: "t2", subject: QUIZ, title: "Topic 2", tutorial: "" },
+        ]),
+      ),
+      http.get(`${API_URL}/api/school`, () => HttpResponse.json(SCHULEN)),
+      http.get(`${API_URL}/api/exercise`, () => HttpResponse.json([])),
+    );
+  });
+
+  afterEach(() => {
+    // Keine Spuren im jsdom-URL-Objekt hinterlassen.
+    window.location.hash = "";
+  });
+
+  async function mountQuiz() {
+    const pinia = createPinia();
+    setActivePinia(pinia);
+    const wrapper = mount(VueQuiz, {
+      props: { quiz: QUIZ, lg: "en" },
+      global: { plugins: [pinia] },
+      shallow: true,
+    });
+    await flushPromises();
+    return wrapper;
+  }
+
+  it("waehlt Thema und Schule aus dem Link aus", async () => {
+    window.location.hash =
+      "#irgendwas?englishtopic=Verbes%20reflechi&englishschool=9klasseGymnasiumBayern";
+    await mountQuiz();
+
+    const filterStore = useFilterStore();
+    expect(filterStore.filterFor("q1").topicId).toBe("t-verbes");
+    expect(filterStore.filterFor("q1").school).toBe("9.Klasse Gymnasium Bayern");
+  });
+
+  it("laesst den Filter in Ruhe, wenn der Link nichts Passendes nennt", async () => {
+    window.location.hash = "#irgendwas?englishtopic=Gibt%20es%20nicht";
+    await mountQuiz();
+
+    const filterStore = useFilterStore();
+    expect(filterStore.filterFor("q1").topicId).toBe("");
+    expect(filterStore.filterFor("q1").school).toBe("");
   });
 });
