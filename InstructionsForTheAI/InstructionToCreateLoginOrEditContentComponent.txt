@@ -29,3 +29,11 @@ Also put these images then in assets/img/css/flexbox and insert the multiple cho
 for the quiz of web programming with the topic "web design->css->flex-box".
 
 Now go ahead ! Implement it, test it and then commit and push it ! 
+
+can you write a quiz on css grid for me and save it in a seperate
+folder here as an .html page. While you work, I read the tutorial on css grid on w3schools.
+
+Each question should be multiple choice and be accompanied by a picture that you create by taking a picture of the displayed html
+that belongs to the question.
+Also put these images then in assets/img/css/grid and insert the multiple choice question in the database
+for the quiz of web programming with the topic "web design->css->grid".

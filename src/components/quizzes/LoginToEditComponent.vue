@@ -44,6 +44,15 @@
         </span>
         <button
           type="button"
+          class="btn btn-outline-secondary btn-sm"
+          title="Modify your profile or your settings"
+          @click="emit('profile-clicked')"
+        >
+          <i class="bi bi-person-gear me-1" aria-hidden="true"></i>
+          Profile
+        </button>
+        <button
+          type="button"
           class="btn btn-outline-danger btn-sm"
           @click="emit('logout-clicked')"
         >
@@ -106,6 +115,7 @@ const emit = defineEmits<{
   (e: "delete-clicked"): void;
   (e: "login-clicked"): void;
   (e: "signup-clicked"): void;
+  (e: "profile-clicked"): void;
   (e: "logout-clicked"): void;
 }>();
 

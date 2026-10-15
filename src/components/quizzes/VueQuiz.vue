@@ -1,9 +1,10 @@
 <template>
   <div ref="quizRoot" :class="{ 'quiz-vollbild': istVollbild }">
   
-    <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+    <div class="d-flex flex-row align-items-center gap-2 mb-3">
       <LoginToEditComponent
         v-if="dialog === null"
+        class="flex-grow-1"
         :form-open="formOffen"
         :can-edit="!!aktuelle"
         :can-delete="!!aktuelle?._id"
@@ -12,19 +13,9 @@
         @delete-clicked="loeschen"
         @login-clicked="dialogOeffnen('login')"
         @signup-clicked="dialogOeffnen('signup')"
+        @profile-clicked="dialogOeffnen('profile')"
         @logout-clicked="abmelden"
       />
-
-      <button
-        v-if="dialog === null && auth.angemeldet"
-        type="button"
-        class="btn btn-outline-secondary btn-sm"
-        title="Modify your profile or your settings"
-        @click="dialogOeffnen('profile')"
-      >
-        <i class="bi bi-person-gear me-1" aria-hidden="true"></i>
-        Profile
-      </button>
 
       <button
         type="button"
