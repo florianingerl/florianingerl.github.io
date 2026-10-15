@@ -1,0 +1,17 @@
+Can you create a python programm !
+When started, a small user interface written in TKinter should pop up !
+In this user interface, there should
+be a row with a label "Article", an input of type text for entering the url of the artcile,
+below that a label "Schule" and next to it an input of type text and below that
+a label "Quiz" and next to it an dropdown-menu for selecting one of the quizzes already present on my website.
+and below all of this 
+a button "Create exercises for article".
+All the user interface elements belonging to this functionality 3 Labels, 3 Textinput and 1 Button, should
+be grouped together in a container with black border and heading "Create exercises for article"
+
+If the button is clicked, exercises should be created like you did it already
+with the instructions you find in the file InstructionToCreateExercisesOnActivityDiagrams !
+So write python a python script, that creates exercises for a certain article and inserts them with the correct
+topic (title of article) and its them into my database !
+
+Go ahead ! Implement it, test it and then commit and push it !

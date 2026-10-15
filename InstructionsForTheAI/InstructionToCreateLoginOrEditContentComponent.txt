@@ -1,0 +1,31 @@
+The tree buttons for creating a new exercise, edit or delete an existing one,
+the label "Login to create, edit or delete exercises and tutorials" and the label with text "You are logged in as ...." and the
+login, sign up and logout buttons 
+should be placed in one Vue-Component, called LoginToEditComponent.vue 
+
+if( store.user ){
+    buttons to create, edit or delete exercises ,
+    the label with text, you are logged in as ...." and the 
+    logout button should be visible
+    (the rest invisible)
+}
+else {
+    the stuff is visible, that in above case was invisible and the other way round
+}
+
+On the right hand side of the three buttons to edit,create or delete exercises or on the right hand side of the label "Login to create,edit or delete exercises...", there should be a 
+transparent div, which takes all the space if there is space remaining. 
+
+This cVue-component called LoginToEditComponent should have display: flex , flex-direction: row, justify-content: space-between
+The flex children should be vertically center-aligned
+
+Use bootstrap wherever possible.
+After completing your task, can you write a quiz on css flex box for me and save it in a seperate
+folder here as an .html page. While you work, I read the tutorial on css flex box on w3schools.
+
+Each question should be multiple choice and be accompanied by a picture that you create by taking a picture of the displayed html
+that belongs to the question.
+Also put these images then in assets/img/css/flexbox and insert the multiple choice question in the database
+for the quiz of web programming with the topic "web design->css->flex-box".
+
+Now go ahead ! Implement it, test it and then commit and push it ! 
