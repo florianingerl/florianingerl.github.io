@@ -14,10 +14,10 @@ else {
 }
 
 On the right hand side of the three buttons to edit,create or delete exercises or on the right hand side of the label "Login to create,edit or delete exercises...", there should be a 
-transparent div, which takes all the space if there is space remaining. 
+transparent div, which takes all the space if there is space remaining (flex-grow: 1 ). 
 
 This cVue-component called LoginToEditComponent should have display: flex , flex-direction: row, justify-content: space-between
-The flex children should be vertically center-aligned
+The flex children should be vertically center-aligned (align-items: center; )
 
 Use bootstrap wherever possible.
 After completing your task, can you write a quiz on css flex box for me and save it in a seperate
