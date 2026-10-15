@@ -1,0 +1,36 @@
+Can you please remove the school? attribute from the type Topic { school?: string , other properties }
+
+Instead add the school? attribute to the type Exercise { school? : string }
+
+Perform the necessary migration in the database ! 
+
+I.e. if an exercise is classified under a topic and the topic (or the oldest ancestor of the topic) had the school
+attribute set, set the school attribute of the exercise to this.
+
+In VueQuiz, create a FilterComponent.vue
+The FilterComponent should have display:flex; flex-direction: row; justify-content: flex-start; gap: 3px; align-items: center;
+First: Label "Filter for topic:" then the Topic filter ( you can leave it as it is with the tree), then
+label "School:" then a dropdown menu of all the schools, that are already in the database ! then
+the button for the advanced filter. 
+
+So maybe let's have type School { _id: ObjectId , name: string }  as a type and
+Exercise { school : ObjectId? , other properties } in the database !
+
+So when a new topic is added to the topic tree in VueNewExercise, you can get rid of the school label and input of type text !
+
+In VueNewExercise, directly below the row with the topic stuff, you can add a label "School" and next to it a dropdown menu 
+with all the schools already in the database to choose from and next to it a label "New school", then an input of type text, and next to it
+a button "Add". When the add button is clicked, the new school should be inserted into the database and be selected
+in the dropdown menu for the school and be the school for this exercise.
+
+In VueExercise, if the school of the exercise is let, next to the label "Topic" and the label badge with exercise.topic.title written on it, there
+should be the label "School" and then the label badge with exercise.school.name written on it.
+
+I also want to sent a student, for studies for example "French" in the school "9.Klasse Gymnasium Bayern" and has currently 
+the topic "Verbes reflechi" to learn, a link to my quiz where the topic and the school is already selected to match his need, i.e.
+I want to send him https://florianingerl.github.io/#franzoesisch?frenchtopic=verbesreflechi&frenchschool=9klasseGymnasiumBayern .
+
+Can you implement this too !
+
+Go ahead ! Implement everything, test it and then commit and push it !
+
