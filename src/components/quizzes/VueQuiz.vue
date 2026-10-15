@@ -1,95 +1,43 @@
 <template>
   <div ref="quizRoot" :class="{ 'quiz-vollbild': istVollbild }">
   
-    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
-      <div v-if="dialog === null" class="d-flex flex-wrap align-items-center gap-2">
-        <button
-          v-if="auth.angemeldet && !formOffen"
-          type="button"
-          class="btn btn-success"
-          title="Add a new exercise"
-          @click="oeffneFormular(false)"
-        >
-          <i class="bi bi-plus-lg" aria-hidden="true"></i>
-        </button>
-        <button
-          v-if="auth.angemeldet && !formOffen && aktuelle"
-          type="button"
-          class="btn btn-primary"
-          title="Edit the exercise"
-          @click="oeffneFormular(true)"
-        >
-          <i class="bi bi-pencil-square" aria-hidden="true"></i>
-        </button>
-        <button
-          v-if="auth.angemeldet && !formOffen && aktuelle?._id"
-          type="button"
-          class="btn btn-danger"
-          title="Delete the exercise"
-          @click="loeschen"
-        >
-          <i class="bi bi-trash" aria-hidden="true"></i>
-        </button>
-        <span v-if="!auth.angemeldet" class="text-muted">
-          Log in to create, edit or delete exercises and tutorials.
-        </span>
-      </div>
+    <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+      <LoginToEditComponent
+        v-if="dialog === null"
+        :form-open="formOffen"
+        :can-edit="!!aktuelle"
+        :can-delete="!!aktuelle?._id"
+        @create-clicked="oeffneFormular(false)"
+        @edit-clicked="oeffneFormular(true)"
+        @delete-clicked="loeschen"
+        @login-clicked="dialogOeffnen('login')"
+        @signup-clicked="dialogOeffnen('signup')"
+        @logout-clicked="abmelden"
+      />
 
-      <div class="d-flex flex-wrap align-items-center gap-2">
-        <template v-if="auth.angemeldet">
-          <span v-if="dialog === null" class="badge text-bg-success">
-            Logged in with {{ auth.email }}
-          </span>
-          <button
-            v-if="dialog === null"
-            type="button"
-            class="btn btn-outline-secondary btn-sm"
-            title="Modify your profile or your settings"
-            @click="dialogOeffnen('profile')"
-          >
-            <i class="bi bi-person-gear me-1" aria-hidden="true"></i>
-            Profile
-          </button>
-          <button
-            type="button"
-            class="btn btn-outline-danger btn-sm"
-            @click="abmelden"
-          >
-            <i class="bi bi-box-arrow-right me-1" aria-hidden="true"></i>
-            Logout
-          </button>
-        </template>
-        <template v-else>
-          <button
-            type="button"
-            class="btn btn-outline-primary btn-sm"
-            @click="dialogOeffnen('signup')"
-          >
-            <i class="bi bi-person-plus me-1" aria-hidden="true"></i>
-            Sign up
-          </button>
-          <button
-            type="button"
-            class="btn btn-primary btn-sm"
-            @click="dialogOeffnen('login')"
-          >
-            <i class="bi bi-box-arrow-in-right me-1" aria-hidden="true"></i>
-            Login
-          </button>
-        </template>
-        <button
-          type="button"
-          class="btn btn-outline-secondary btn-sm"
-          :title="istVollbild ? t.vollbildBeenden : t.vollbild"
-          @click="vollbildUmschalten"
-        >
-          <i
-            class="bi"
-            :class="istVollbild ? 'bi-fullscreen-exit' : 'bi-arrows-fullscreen'"
-            aria-hidden="true"
-          ></i>
-        </button>
-      </div>
+      <button
+        v-if="dialog === null && auth.angemeldet"
+        type="button"
+        class="btn btn-outline-secondary btn-sm"
+        title="Modify your profile or your settings"
+        @click="dialogOeffnen('profile')"
+      >
+        <i class="bi bi-person-gear me-1" aria-hidden="true"></i>
+        Profile
+      </button>
+
+      <button
+        type="button"
+        class="btn btn-outline-secondary btn-sm"
+        :title="istVollbild ? t.vollbildBeenden : t.vollbild"
+        @click="vollbildUmschalten"
+      >
+        <i
+          class="bi"
+          :class="istVollbild ? 'bi-fullscreen-exit' : 'bi-arrows-fullscreen'"
+          aria-hidden="true"
+        ></i>
+      </button>
     </div>
 
     <!-- Solange kein Dialog offen ist, wird das Quiz gezeigt. -->
@@ -295,6 +243,7 @@ import VueLogin from "./VueLogin.vue";
 import VueProfile from "./VueProfile.vue";
 import VueFilterDialog from "./VueFilterDialog.vue";
 import VueTopicFilter from "./VueTopicFilter.vue";
+import LoginToEditComponent from "./LoginToEditComponent.vue";
 import {
   API_URL,
   createExercise,

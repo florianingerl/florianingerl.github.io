@@ -65,7 +65,11 @@ describe("VueQuiz: neues Thema erscheint im Topic-Filter-Dropdown", () => {
     setActivePinia(pinia);
     const wrapper = mount(VueQuiz, {
       props: { quiz: QUIZ, lg: "en" },
-      global: { plugins: [pinia] },
+      global: {
+        plugins: [pinia],
+        // Die Knopfleiste soll echt gerendert werden (shallow stubbt sie sonst).
+        stubs: { LoginToEditComponent: false },
+      },
       shallow: true,
     });
     await flushPromises();
@@ -571,7 +575,11 @@ describe("VueQuiz: nicht angemeldet", () => {
     setActivePinia(pinia);
     const wrapper = mount(VueQuiz, {
       props: { quiz: QUIZ, lg: "en" },
-      global: { plugins: [pinia] },
+      global: {
+        plugins: [pinia],
+        // Der Anmelde-Hinweis steht in der Knopfleiste, also echt rendern.
+        stubs: { LoginToEditComponent: false },
+      },
       shallow: true,
     });
     await flushPromises();

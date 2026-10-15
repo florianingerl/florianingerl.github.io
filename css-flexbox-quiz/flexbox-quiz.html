@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Quiz: CSS Flexbox</title>
+  <style>
+    :root { color-scheme: light; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 24px 16px 64px;
+      font-family: system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+      background: #f8f9fa;
+      color: #212529;
+    }
+    main { max-width: 760px; margin: 0 auto; }
+    h1 { margin: 0 0 8px; }
+    .intro { color: #495057; margin: 0 0 24px; }
+    .question {
+      background: #fff;
+      border: 1px solid #dee2e6;
+      border-radius: 10px;
+      padding: 18px;
+      margin-bottom: 20px;
+    }
+    .question h2 { margin: 0 0 12px; font-size: 1.1rem; }
+    .question img {
+      display: block;
+      width: 100%;
+      max-width: 660px;
+      border: 1px solid #dee2e6;
+      border-radius: 8px;
+      margin-bottom: 12px;
+    }
+    .question__text { font-weight: 600; }
+    .options { display: flex; flex-direction: column; gap: 8px; }
+    .option {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      padding: 8px 10px;
+      border: 1px solid #dee2e6;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .option:hover { background: #f1f3f5; }
+    .option.correct { border-color: #198754; background: #d1e7dd; }
+    .option.wrong { border-color: #dc3545; background: #f8d7da; }
+    .result { font-weight: 700; }
+    .result--ok { color: #198754; }
+    .result--bad { color: #dc3545; }
+    .explanation { color: #495057; background: #f1f3f5; border-radius: 6px; padding: 10px 12px; }
+    .actions {
+      position: sticky;
+      bottom: 0;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      padding: 12px 0;
+      background: linear-gradient(to top, #f8f9fa 70%, rgba(248,249,250,0));
+    }
+    button {
+      font: inherit;
+      font-weight: 600;
+      padding: 10px 18px;
+      border: 0;
+      border-radius: 6px;
+      background: #0d6efd;
+      color: #fff;
+      cursor: pointer;
+    }
+    button.secondary { background: #6c757d; }
+    .score { font-weight: 700; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Quiz: CSS Flexbox</h1>
+    <p class="intro">
+      Each question shows a picture of a rendered HTML example (the dashed blue
+      border is the flex container). Choose the flexbox declaration that produces
+      the shown layout, then check your answers.
+    </p>
+
+    <section class="question" data-correct="0">
+      <h2>Question 1</h2>
+      <img src="../assets/img/css/flexbox/flexbox-01.png" alt="Flexbox example for question 1" />
+      <p class="question__text">The flex container (dashed border) has display: flex. The boxes labelled 1, 2 and 3 appear from left to right in this order. Which flex-direction value is used?</p>
+      <div class="options">
+        <label class="option">
+          <input type="radio" name="q1" value="0" />
+          <span>row</span>
+        </label>
+        <label class="option">
+          <input type="radio" name="q1" value="1" />
+          <span>column</span>
+        </label>
+        <label class="option">
+          <input type="radio" name="q1" value="2" />
+          <span>row-reverse</span>
+        </label>
+        <label class="option">
+          <input type="radio" name="q1" value="3" />
+          <span>column-reverse</span>
+        </label>
+      </div>
+      <p class="result" hidden></p>
+      <p class="explanation" hidden>flex-direction: row is the default. It lays the items out in a row along the main axis, in the order of the source code (1, 2, 3 from left to right).</p>
+    </section>
+
+    <section class="question" data-correct="0">
+      <h2>Question 2</h2>
+      <img src="../assets/img/css/flexbox/flexbox-02.png" alt="Flexbox example for question 2" />
+      <p class="question__text">The flex container has display: flex. The boxes labelled 1, 2 and 3 appear from left to right in the order 3, 2, 1. Which flex-direction value is used?</p>
+      <div class="options">
+        <label class="option">
+          <input type="radio" name="q2" value="0" />
+          <span>row-reverse</span>
+        </label>
+        <label class="option">
+          <input type="radio" name="q2" value="1" />
+          <span>row</span>
+        </label>
+        <label class="option">
+          <input type="radio" name="q2" value="2" />
+          <span>column-reverse</span>
+        </label>
+        <label class="option">
+          <input type="radio" name="q2" value="3" />
+          <span>column</span>
+        </label>
+      </div>
+      <p class="result" hidden></p>
+      <p class="explanation" hidden>flex-direction: row-reverse keeps the items in a row, but starts the main axis at the right side, so the order is reversed.</p>
+    </section>
+
+    <section class="question" data-correct="0">
+      <h2>Question 3</h2>
+      <img src="../assets/img/css/flexbox/flexbox-03.png" alt="Flexbox example for question 3" />
+      <p class="question__text">The flex container is much wider than its three items. The first item touches the left edge, the last item touches the right edge and the remaining space is distributed evenly between the items. Which justify-content value is used?</p>
+      <div class="options">
+        <label class="option">
+          <input type="radio" name="q3" value="0" />
+          <span>space-between</span>
+        </label>
+        <label class="option">
+          <input type="radio" name="q3" value="1" />
+          <span>space-around</span>
+        </label>
+        <label class="option">
+          <input type="radio" name="q3" value="2" />
+          <span>space-evenly</span>
+        </label>
+        <label class="option">
+          <input type="radio" name="q3" value="3" />
+          <span>flex-start</span>
+        </label>
+      </div>
+      <p class="result" hidden></p>
+      <p class="explanation" hidden>justify-content: space-between puts the first item at the start and the last item at the end of the main axis; the free space is distributed between the items.</p>
+    </section>
+
+    <section class="question" data-correct="0">
+      <h2>Question 4</h2>
+      <img src="../assets/img/css/flexbox/flexbox-04.png" alt="Flexbox example for question 4" />
+      <p class="question__text">The three items of the flex container are grouped together in the middle of the container. Which justify-content value is used?</p>
+      <div class="options">
+        <label class="option">
+          <input type="radio" name="q4" value="0" />
+          <span>center</span>
+        </label>
+        <label class="option">
+          <input type="radio" name="q4" value="1" />
+          <span>flex-start</span>
+        </label>
+        <label class="option">
+          <input type="radio" name="q4" value="2" />
+          <span>flex-end</span>
+        </label>
+        <label class="option">
+          <input type="radio" name="q4" value="3" />
+          <span>space-between</span>
+        </label>
+      </div>
+      <p class="result" hidden></p>
+      <p class="explanation" hidden>justify-content: center centres the whole group of items along the main axis.</p>
+    </section>
+
+    <section class="question" data-correct="0">
+      <h2>Question 5</h2>
+      <img src="../assets/img/css/flexbox/flexbox-05.png" alt="Flexbox example for question 5" />
+      <p class="question__text">The three items have different heights (60px, 140px and 90px). They are all centred vertically inside the 200px high container. Which align-items value is used?</p>
+      <div class="options">
+        <label class="option">
+          <input type="radio" name="q5" value="0" />
+          <span>center</span>
+        </label>
+        <label class="option">
+          <input type="radio" name="q5" value="1" />
+          <span>flex-start</span>
+        </label>
+        <label class="option">
+          <input type="radio" name="q5" value="2" />
+          <span>flex-end</span>
+        </label>
+        <label class="option">
+          <input type="radio" name="q5" value="3" />
+          <span>stretch</span>
+        </label>
+      </div>
+      <p class="result" hidden></p>
+      <p class="explanation" hidden>align-items: center aligns the items along the cross axis (here vertically) in the middle of the container.</p>
+    </section>
+
+    <section class="question" data-correct="0">
+      <h2>Question 6</h2>
+      <img src="../assets/img/css/flexbox/flexbox-06.png" alt="Flexbox example for question 6" />
+      <p class="question__text">The three items have different heights and are all aligned at the bottom edge of the container. Which align-items value is used?</p>
+      <div class="options">
+        <label class="option">
+          <input type="radio" name="q6" value="0" />
+          <span>flex-end</span>
+        </label>
+        <label class="option">
+          <input type="radio" name="q6" value="1" />
+          <span>flex-start</span>
+        </label>
+        <label class="option">
+          <input type="radio" name="q6" value="2" />
+          <span>center</span>
+        </label>
+        <label class="option">
+          <input type="radio" name="q6" value="3" />
+          <span>baseline</span>
+        </label>
+      </div>
+      <p class="result" hidden></p>
+      <p class="explanation" hidden>align-items: flex-end aligns the items at the end of the cross axis, which is the bottom edge for a row.</p>
+    </section>
+
+    <section class="question" data-correct="0">
+      <h2>Question 7</h2>
+      <img src="../assets/img/css/flexbox/flexbox-07.png" alt="Flexbox example for question 7" />
+      <p class="question__text">All items are aligned at the top of the container, except the middle item (which is aligned at the bottom). Which declaration does the middle item have?</p>
+      <div class="options">
+        <label class="option">
+          <input type="radio" name="q7" value="0" />
+          <span>align-self: flex-end</span>
+        </label>
+        <label class="option">
+          <input type="radio" name="q7" value="1" />
+          <span>align-items: flex-end</span>
+        </label>
+        <label class="option">
+          <input type="radio" name="q7" value="2" />
+          <span>justify-content: flex-end</span>
+        </label>
+        <label class="option">
+          <input type="radio" name="q7" value="3" />
+          <span>order: 3</span>
+        </label>
+      </div>
+      <p class="result" hidden></p>
+      <p class="explanation" hidden>align-self overrides the container's align-items for a single item. align-self: flex-end moves only that item to the bottom.</p>
+    </section>
+
+    <section class="question" data-correct="0">
+      <h2>Question 8</h2>
+      <img src="../assets/img/css/flexbox/flexbox-08.png" alt="Flexbox example for question 8" />
+      <p class="question__text">The eight items do not fit next to each other in one line, so the remaining items move onto a second line inside the container. Which declaration on the container causes this?</p>
+      <div class="options">
+        <label class="option">
+          <input type="radio" name="q8" value="0" />
+          <span>flex-wrap: wrap</span>
+        </label>
+        <label class="option">
+          <input type="radio" name="q8" value="1" />
+          <span>flex-wrap: nowrap</span>
+        </label>
+        <label class="option">
+          <input type="radio" name="q8" value="2" />
+          <span>flex-direction: column</span>
+        </label>
+        <label class="option">
+          <input type="radio" name="q8" value="3" />
+          <span>align-content: flex-start</span>
+        </label>
+      </div>
+      <p class="result" hidden></p>
+      <p class="explanation" hidden>With flex-wrap: wrap the items that do not fit on the first line are moved onto the next line.</p>
+    </section>
+
+    <section class="question" data-correct="0">
+      <h2>Question 9</h2>
+      <img src="../assets/img/css/flexbox/flexbox-09.png" alt="Flexbox example for question 9" />
+      <p class="question__text">Boxes 1 and 3 are 90px wide. Box 2 is much wider and fills the remaining space in the container. Which declaration does box 2 have?</p>
+      <div class="options">
+        <label class="option">
+          <input type="radio" name="q9" value="0" />
+          <span>flex-grow: 1</span>
+        </label>
+        <label class="option">
+          <input type="radio" name="q9" value="1" />
+          <span>flex-shrink: 0</span>
+        </label>
+        <label class="option">
+          <input type="radio" name="q9" value="2" />
+          <span>flex-basis: 90px</span>
+        </label>
+        <label class="option">
+          <input type="radio" name="q9" value="3" />
+          <span>align-self: stretch</span>
+        </label>
+      </div>
+      <p class="result" hidden></p>
+      <p class="explanation" hidden>flex-grow: 1 lets an item grow and take up the free space that is left in the container.</p>
+    </section>
+
+    <section class="question" data-correct="0">
+      <h2>Question 10</h2>
+      <img src="../assets/img/css/flexbox/flexbox-10.png" alt="Flexbox example for question 10" />
+      <p class="question__text">The three items are grouped in the middle of the container and each item has a spacing of 40px to the next item. Which declaration creates this spacing between the items?</p>
+      <div class="options">
+        <label class="option">
+          <input type="radio" name="q10" value="0" />
+          <span>gap: 40px</span>
+        </label>
+        <label class="option">
+          <input type="radio" name="q10" value="1" />
+          <span>justify-content: space-between</span>
+        </label>
+        <label class="option">
+          <input type="radio" name="q10" value="2" />
+          <span>margin: 40px</span>
+        </label>
+        <label class="option">
+          <input type="radio" name="q10" value="3" />
+          <span>padding: 40px</span>
+        </label>
+      </div>
+      <p class="result" hidden></p>
+      <p class="explanation" hidden>gap (or column-gap/row-gap) sets the distance between flex items without adding space around the outside of the container.</p>
+    </section>
+
+    <div class="actions">
+      <button type="button" id="check">Check answers</button>
+      <button type="button" id="reset" class="secondary">Reset</button>
+      <span class="score" id="score"></span>
+    </div>
+  </main>
+
+  <script>
+    const sections = Array.from(document.querySelectorAll(".question"));
+
+    function reset() {
+      for (const section of sections) {
+        section.querySelectorAll(".option").forEach((o) => o.classList.remove("correct", "wrong"));
+        section.querySelector(".result").hidden = true;
+        section.querySelector(".explanation").hidden = true;
+      }
+      document.getElementById("score").textContent = "";
+    }
+
+    document.getElementById("check").addEventListener("click", () => {
+      let right = 0;
+      for (const section of sections) {
+        const correct = Number(section.dataset.correct);
+        const options = Array.from(section.querySelectorAll(".option"));
+        const chosen = options.findIndex((o) => o.querySelector("input").checked);
+        const result = section.querySelector(".result");
+        const explanation = section.querySelector(".explanation");
+
+        options[correct].classList.add("correct");
+        if (chosen !== -1 && chosen !== correct) {
+          options[chosen].classList.add("wrong");
+        }
+
+        if (chosen === correct) {
+          right++;
+          result.textContent = "Correct!";
+          result.className = "result result--ok";
+        } else {
+          result.textContent = chosen === -1 ? "Not answered." : "Wrong.";
+          result.className = "result result--bad";
+        }
+        result.hidden = false;
+        explanation.hidden = false;
+      }
+      document.getElementById("score").textContent = right + " / " + sections.length + " correct";
+    });
+
+    document.getElementById("reset").addEventListener("click", reset);
+  </script>
+</body>
+</html>
