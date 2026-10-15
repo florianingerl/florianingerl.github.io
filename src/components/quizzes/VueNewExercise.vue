@@ -326,11 +326,29 @@ import { buildTopicTree, topicPathString } from '@/utils/topicTree';
 
 const newTopic = ref<string>('');
 const topics = ref<Topic[]>([])
-// Die Schulen aus der Datenbank, aus denen die Schule der Aufgabe gewaehlt
-// wird. Die Liste kommt vom Quiz (props.schools); eine hier neu angelegte
-// Schule wird zusaetzlich in diese eigene Liste aufgenommen, damit sie sofort
-// in der Auswahl steht.
-const schulen = ref<School[]>([])
+// Die Schulen, aus denen die Schule der Aufgabe gewaehlt wird. Die Liste kommt
+// vom Quiz (props.schools) und enthaelt nur Schulen, die im Quiz schon eine
+// Aufgabe haben. Eine hier neu angelegte Schule kommt dazu (neueSchulen),
+// ebenso die Schule der bearbeiteten Aufgabe, damit die Auswahl sichtbar bleibt.
+const neueSchulen = ref<School[]>([])
+const schulen = computed<School[]>(() => {
+  const liste: School[] = [...(props.schools ?? [])]
+  const vorhanden = new Set(
+    liste.map((s) => s._id).filter((id): id is string => !!id),
+  )
+  const schuleDerAufgabe = props.questionOfQuiz?.school
+  const extra: School[] = [...neueSchulen.value]
+  if (schuleDerAufgabe && typeof schuleDerAufgabe !== 'string') {
+    extra.push(schuleDerAufgabe)
+  }
+  for (const s of extra) {
+    if (s._id && !vorhanden.has(s._id)) {
+      liste.push(s)
+      vorhanden.add(s._id)
+    }
+  }
+  return liste
+})
 // _id der gewaehlten Schule oder "" fuer "keine Schule".
 const gewaehlteSchule = ref<string>('');
 // Der Name im Feld "New school".
@@ -362,16 +380,6 @@ const emit = defineEmits<{
   (e: 'cancel-clicked'): void
 }>()
 
-// Die Schulliste des Quiz uebernehmen; neue Schulen (siehe unten) kommen nur
-// dann dazu, wenn kein Quiz die Liste liefert (z.B. in Tests).
-watch(
-  () => props.schools ?? [],
-  (liste) => {
-    schulen.value = [...liste]
-  },
-  { immediate: true, deep: true },
-)
-
 // Legt die im Feld "New school" eingetippte Schule an, waehlt sie aus und
 // macht sie zur Schule dieser Aufgabe. Der Server liefert eine schon
 // vorhandene Schule mit demselben Namen zurueck, statt sie doppelt anzulegen.
@@ -383,8 +391,8 @@ async function schuleAnlegen(): Promise<void> {
   }
   try {
     const schule = await createSchool(name)
-    if (!schulen.value.some((s) => s._id === schule._id)) {
-      schulen.value.push(schule)
+    if (!neueSchulen.value.some((s) => s._id === schule._id)) {
+      neueSchulen.value.push(schule)
     }
     gewaehlteSchule.value = schule._id ?? ''
     neueSchule.value = ''

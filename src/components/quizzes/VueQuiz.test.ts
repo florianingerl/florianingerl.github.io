@@ -719,11 +719,14 @@ describe("VueQuiz: Multiple-Choice-Aufgabe anlegen (Server-Roundtrip)", () => {
 });
 
 // Die Schule haengt an der Aufgabe (nicht mehr am Thema). Aufgaben mit
-// derselben Schule duerfen im Filter "School:" ausgewaehlt werden.
+// derselben Schule duerfen im Filter "School:" ausgewaehlt werden. In der
+// Schulauswahl erscheinen nur die Schulen, die in diesem Quiz schon eine
+// Aufgabe haben.
 describe("VueQuiz: nach Schule filtern", () => {
-  const SCHULEN: School[] = [
+  const ALLE_SCHULEN: School[] = [
     { _id: "s1", name: "8.Klasse Gymnasium Bayern" },
     { _id: "s2", name: "9.Klasse Gymnasium Bayern" },
+    { _id: "s3", name: "Hochschule Wismar" },
   ];
 
   beforeEach(() => {
@@ -734,7 +737,7 @@ describe("VueQuiz: nach Schule filtern", () => {
         ]),
       ),
       http.get(`${API_URL}/api/topic/:quiz`, () => HttpResponse.json([])),
-      http.get(`${API_URL}/api/school`, () => HttpResponse.json(SCHULEN)),
+      http.get(`${API_URL}/api/school`, () => HttpResponse.json(ALLE_SCHULEN)),
       http.get(`${API_URL}/api/exercise`, () =>
         HttpResponse.json<Exercise[]>([
           {
@@ -751,7 +754,7 @@ describe("VueQuiz: nach Schule filtern", () => {
             subject: QUIZ,
             type: "gapText",
             imageUrl: "",
-            school: SCHULEN[0],
+            school: ALLE_SCHULEN[0],
           },
           {
             _id: "e3",
@@ -759,6 +762,14 @@ describe("VueQuiz: nach Schule filtern", () => {
             subject: QUIZ,
             type: "gapText",
             imageUrl: "",
+          },
+          {
+            _id: "e4",
+            quiz: "q2",
+            subject: QUIZ,
+            type: "gapText",
+            imageUrl: "",
+            school: "s3",
           },
         ]),
       ),
@@ -812,11 +823,14 @@ describe("VueQuiz: nach Schule filtern", () => {
     expect(aktuellAngezeigt(wrapper)).toMatchObject({ _id: "e2" });
   });
 
-  it("gibt die Schulliste an die Filterzeile weiter", async () => {
+  it("gibt nur die Schulen mit Aufgaben dieses Quizzes an die Filterzeile weiter", async () => {
     const wrapper = await mountQuiz();
-    expect(wrapper.findComponent(FilterComponent).props("schools")).toEqual(
-      SCHULEN,
-    );
+    // s1 und s2 kommen in Aufgaben dieses Quizzes vor, s3 nur in einem anderen
+    // Quiz und darf deshalb nicht erscheinen.
+    expect(wrapper.findComponent(FilterComponent).props("schools")).toEqual([
+      ALLE_SCHULEN[0],
+      ALLE_SCHULEN[1],
+    ]);
   });
 });
 

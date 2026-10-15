@@ -57,6 +57,26 @@
         </div>
 
         <div class="mb-3">
+          <label for="filter-school" class="form-label fw-semibold">
+            Filter for school:
+          </label>
+
+          <select
+            id="filter-school"
+            v-model="filter.school"
+            class="form-select"
+          >
+            <option value="">All schools</option>
+            <option v-for="s in schools" :key="s._id" :value="s.name">
+              {{ s.name }}
+            </option>
+          </select>
+          <div class="form-text">
+            Only the exercises of the chosen school are shown.
+          </div>
+        </div>
+
+        <div class="mb-3">
           <label for="filter-creator" class="form-label fw-semibold">
             Filter for creator:
           </label>
@@ -128,13 +148,15 @@
 <script setup lang="ts">
 import { useAuthStore } from "@/stores/auth";
 import { useFilterStore } from "@/stores/filter";
-import type { Topic } from "@/types/quiz";
+import type { School, Topic } from "@/types/quiz";
 import VueTopicFilter from "./VueTopicFilter.vue";
 
 const props = defineProps<{
   // Quiz-Name (Website-Quiz) oder Sprache/Fach (Buch-Quizz) als Filter-Schluessel.
   quiz: string;
   topics: Topic[];
+  // Die Schulen, die in diesem Quiz schon mindestens eine Aufgabe haben.
+  schools: School[];
   // Alle Benutzer-IDs, die mindestens eine der Aufgaben erstellt haben
   creators: string[];
 }>();

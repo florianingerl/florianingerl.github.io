@@ -39,7 +39,7 @@
         :subject="formSubject"
         :questionOfQuiz="aktuelle"
         :editMode="editMode"
-        :schools="schools"
+        :schools="verfuegbareSchulen"
         @new-exercise-created="gespeichert"
         @school-created="schuleHinzugefuegt"
         @cancel-clicked="formOffen = false"
@@ -54,7 +54,7 @@
       class="mb-3"
       :quiz="quizSchluessel"
       :topics="topics"
-      :schools="schools"
+      :schools="verfuegbareSchulen"
       @open-advanced-filter="dialogOeffnen('filter')"
     />
 
@@ -205,6 +205,7 @@
       :quiz="quizSchluessel"
       :topics="topics"
       :creators="creators"
+      :schools="verfuegbareSchulen"
       @cancel-clicked="dialog = null"
     />
   </div>
@@ -464,7 +465,9 @@ const t = computed(() => texte[props.lg]);
 // Abgeleitete Werte
 const topics = ref<Topic[]>([]);
 
-// Alle Schulen aus der Datenbank (Auswahlliste im Filter und im Formular).
+// Alle Schulen aus der Datenbank. In die Auswahllisten (Filterzeile,
+// Filterdialog, Formular) kommen aber nur die, die hier im Quiz schon eine
+// Aufgabe haben (siehe verfuegbareSchulen).
 const schools = ref<School[]>([]);
 
 // Eine im Formular neu angelegte Schule in die Auswahlliste aufnehmen.
@@ -519,6 +522,47 @@ function schulName(q: Exercise): string {
   return schools.value.find((x) => x._id === s)?.name ?? "";
 }
 
+// Die _id der Schule einer Aufgabe - egal ob der Server das School-Dokument
+// mitgeschickt hat (populate) oder nur die _id.
+function schulId(q: Exercise): string {
+  const s = q.school;
+  if (!s) return "";
+  return typeof s === "string" ? s : s._id ?? "";
+}
+
+// Gehoert die Aufgabe zum angezeigten Quiz? Ohne bekannte Quiz-_id (z.B. noch
+// nicht migrierte Daten) werden alle Aufgaben als zugehoerig betrachtet.
+function gehoertZumQuiz(q: Exercise): boolean {
+  if (!currentQuizId.value) return true;
+  const quizId = typeof q.quiz === "string" ? q.quiz : q.quiz?._id;
+  return quizId === currentQuizId.value;
+}
+
+// Nur die Schulen, die in diesem Quiz schon mindestens eine Aufgabe haben.
+// Sie erscheinen in der Schulauswahl der Filterzeile, des erweiterten
+// Filterdialogs und des Aufgaben-Formulars. Eine Schule ohne Aufgabe waere
+// dort nutzlos.
+const verfuegbareSchulen = computed<School[]>(() => {
+  // Alle bekannten Schulen (aus der Schulliste und aus den Aufgaben selbst).
+  const bekannt = new Map<string, School>();
+  schools.value.forEach((s) => {
+    if (s._id) bekannt.set(s._id, s);
+  });
+  const verwendet = new Set<string>();
+  questions.value.forEach((q) => {
+    if (!gehoertZumQuiz(q)) return;
+    const id = schulId(q);
+    if (!id) return;
+    verwendet.add(id);
+    // Die Schule kommt evtl. nur als eingebettetes Dokument in der Aufgabe vor.
+    const s = q.school;
+    if (s && typeof s !== "string" && !bekannt.has(id)) bekannt.set(id, s);
+  });
+  return [...bekannt.values()].filter(
+    (s) => s._id !== undefined && verwendet.has(s._id),
+  );
+});
+
 // Frontend-Filterung: Quiz-Umfang ("nur dieses Quiz" oder "ganzes Fach"),
 // Theme, Schule, Ersteller und Suchwort werden hier angewandt.
 const displayedQuestions = computed<Exercise[]>(() =>
@@ -526,10 +570,7 @@ const displayedQuestions = computed<Exercise[]>(() =>
     const f = filter.value;
     // Ohne bekannte Quiz-_id (z.B. noch nicht migrierte Daten) entfaellt die
     // Einschraenkung auf dieses Quiz, damit weiterhin Aufgaben zu sehen sind.
-    if (f.scope === "quiz" && currentQuizId.value) {
-      const quizId = typeof q.quiz === "string" ? q.quiz : q.quiz?._id;
-      if (quizId !== currentQuizId.value) return false;
-    }
+    if (f.scope === "quiz" && !gehoertZumQuiz(q)) return false;
     if (f.topicId) {
       const id = typeof q.topic === "string" ? q.topic : q.topic?._id;
       if (id !== f.topicId) return false;

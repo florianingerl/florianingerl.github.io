@@ -261,6 +261,35 @@ describe("VueNewExercise: Schule der Aufgabe", () => {
     expect((emitted![0][0] as Exercise).school).toBe("mocked-school-id");
   });
 
+  it("behaelt eine neu angelegte Schule, wenn sich die Schulliste aendert", async () => {
+    const wrapper = mount(VueNewExercise, {
+      props: { quiz: "english", editMode: false, schools: [] },
+      shallow: true,
+    });
+    await flushPromises();
+
+    await wrapper.get("#newSchoolName").setValue("Uni Aachen");
+    await wrapper
+      .findAll("button")
+      .find((b) => b.text().trim() === "Add")!
+      .trigger("click");
+    await flushPromises();
+
+    // Das Quiz laedt die Schulliste neu; die frische Schule hat noch keine
+    // Aufgabe und ist deshalb nicht dabei. Die Auswahl darf sie nicht verlieren.
+    await wrapper.setProps({ schools: [{ _id: "s9", name: "Andere Uni" }] });
+    await flushPromises();
+
+    const optionen = wrapper
+      .get("#exerciseSchool")
+      .findAll("option")
+      .map((o) => o.text());
+    expect(optionen).toContain("Uni Aachen");
+    expect(
+      (wrapper.get("#exerciseSchool").element as HTMLSelectElement).value,
+    ).toBe("mocked-school-id");
+  });
+
   it("legt ohne Namen im Feld 'New school' nichts an", async () => {
     const alertSpy = vi.spyOn(window, "alert").mockImplementation(() => {});
     const wrapper = mount(VueNewExercise, {

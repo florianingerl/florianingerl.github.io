@@ -42,7 +42,7 @@ const props = defineProps<{
   quiz: string;
   // Alle Themen des Faches, aus denen der Baum gebaut wird.
   topics: Topic[];
-  // Alle Schulen, die schon in der Datenbank stehen.
+  // Die Schulen, die in diesem Quiz schon mindestens eine Aufgabe haben.
   schools: School[];
 }>();
 
