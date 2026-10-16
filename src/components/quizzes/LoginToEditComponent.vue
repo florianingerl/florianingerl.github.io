@@ -39,7 +39,10 @@
       <div class="login-to-edit__spacer flex-grow-1" aria-hidden="true"></div>
 
       <div class="d-flex flex-wrap align-items-center gap-2">
-        <span class="badge text-bg-success">
+        <span
+          class="badge text-bg-success login-to-edit__ellipsis"
+          :title="'You are logged in as ' + auth.email"
+        >
           You are logged in as {{ auth.email }}
         </span>
         <button
@@ -63,9 +66,12 @@
     </template>
 
     <template v-else>
-      <span class="text-muted">
+      <label
+        class="text-muted login-to-edit__ellipsis"
+        title="Log in to create, edit or delete exercises and tutorials."
+      >
         Log in to create, edit or delete exercises and tutorials.
-      </span>
+      </label>
 
       <div class="login-to-edit__spacer flex-grow-1" aria-hidden="true"></div>
 
@@ -135,5 +141,15 @@ const auth = useAuthStore();
 
 .login-to-edit__spacer {
   background-color: transparent;
+}
+
+/* Lange Texte (langer Benutzername/Email) duerfen schrumpfen und werden dann
+   mit "..." abgeschnitten; der vollstaendige Text steht im title-Tooltip. */
+.login-to-edit__ellipsis {
+  flex-shrink: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
 }
 </style>

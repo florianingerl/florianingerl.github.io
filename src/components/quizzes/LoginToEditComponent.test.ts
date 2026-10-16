@@ -34,6 +34,13 @@ describe("LoginToEditComponent: angemeldet", () => {
     expect(wrapper.find('[title="Delete the exercise"]').exists()).toBe(true);
     expect(wrapper.text()).toContain("You are logged in as tester@example.com");
 
+    // Der Benutzer-Badge traegt denselben Text als Tooltip und darf schrumpfen.
+    const badge = wrapper.get(".badge.text-bg-success");
+    expect(badge.attributes("title")).toBe(
+      "You are logged in as tester@example.com"
+    );
+    expect(badge.classes()).toContain("login-to-edit__ellipsis");
+
     // Der Anmelde-Hinweis und die Anmelde-Knoepfe sind ausgeblendet.
     expect(wrapper.text()).not.toContain("Log in to create");
     expect(wrapper.text()).not.toContain("Sign up");
@@ -87,6 +94,11 @@ describe("LoginToEditComponent: abgemeldet", () => {
     auth.abmelden();
 
     expect(wrapper.text()).toContain(
+      "Log in to create, edit or delete exercises and tutorials."
+    );
+    // Der Hinweis ist ein Label mit Tooltip und der Ellipsis-Klasse.
+    const hint = wrapper.get("label.login-to-edit__ellipsis");
+    expect(hint.attributes("title")).toBe(
       "Log in to create, edit or delete exercises and tutorials."
     );
     expect(wrapper.text()).toContain("Sign up");

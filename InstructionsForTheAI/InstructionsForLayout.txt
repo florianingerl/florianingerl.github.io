@@ -1,0 +1,41 @@
+1)
+In the LoginToEditComponent.vue,
+can you please set following properties on the label "Login to create, edit or delete exercises".
+flex-shrink: 1;
+overflow: hidden;
+overflow-policy: ellipsis;
+And add a tooltip to the label, that shows what is also written on the label
+so use <label title="..."></label>
+
+2)
+In the LoginToEditComponent.vue,
+can you please set the following properties on the label badge "You are logged in as imelflorianingerl@gmail.com"
+flex-shrink: 1;
+overflow: hidden;
+overflow-policy: ellipsis;
+And add a tooltip to that label badge, that also displays what is written on it
+so use the title attribute on the label
+
+3) In VueExercise
+can you add nice bootstrap icons two the three buttons
+"Validate", "Show solution" and "Retry".
+The three buttons should be inside a div with
+display: flex; flex-direction: row; wrap: no-wrap; jutify-content: space-around;
+On each button (the flex items), set 
+flex-shrink:1; overflow: hidden; overflow-policy: ellipsis;
+
+4)
+In VueMCGaps,
+the element with the question, the unordered list for the options, and the div containing the three
+buttons for "Validate", "Show solution" and "Retry" should be inside a div with styles:
+display: flex; flex-direction: column; gap: 2px;
+Between the ul and the div with the threee buttons, insert an empty space-taker-div.
+The element with the question and the ul should have the following styles:
+flex-shrink 1; overflow: scroll; 
+The space-taker-div should have styles
+flex-grow 1; 
+
+5) In VueExercise, for the image set the following styles:
+object-fit: cover;
+object-position: center;
+
