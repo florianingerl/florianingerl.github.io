@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="440" viewBox="0 0 800 440" role="img" aria-label="object-fit: cover">
+  <rect width="800" height="440" fill="#eef1f5"/>
+  <rect x="16" y="16" width="768" height="408" rx="18" fill="#ffffff" stroke="#ced4da" stroke-width="2"/>
+  <path d="M16 34 a18 18 0 0 1 18 -18 h732 a18 18 0 0 1 18 18 v34 h-768 z" fill="#495057"/>
+  <circle cx="54" cy="42" r="7" fill="#ff6b6b"/>
+  <circle cx="78" cy="42" r="7" fill="#ffd43b"/>
+  <circle cx="102" cy="42" r="7" fill="#51cf66"/>
+  <text x="48" y="112" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700" fill="#1f2933">object-fit: cover</text>
+  <rect x="120" y="150" width="560" height="240" fill="#fff"/>
+  <g>
+    <circle cx="230" cy="220" r="30" fill="#ffd43b"/>
+    <path d="M120 390 l170 -150 l120 100 l90 -70 l180 120 z" fill="#40c057"/>
+  </g>
+  <rect x="120" y="150" width="560" height="240" fill="none" stroke="#212529" stroke-width="3"/>
+
+  <text x="120" y="440" font-family="Consolas, 'Courier New', monospace" font-size="20" fill="#495057">object-fit: cover;  -&gt; fuellt den Rahmen, Seiten beschnitten</text>
+</svg>

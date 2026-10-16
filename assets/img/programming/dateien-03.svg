@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="302" viewBox="0 0 800 302" role="img" aria-label="Text anhaengen statt ueberschreiben">
+  <rect width="800" height="302" fill="#eef1f5"/>
+  <rect x="16" y="16" width="768" height="270" rx="18" fill="#ffffff" stroke="#ced4da" stroke-width="2"/>
+  <text x="48" y="66" font-family="Segoe UI, Arial, sans-serif" font-size="26" font-weight="700" fill="#1f2933">Text anhaengen statt ueberschreiben</text>
+  <text x="48" y="102" font-family="Consolas, 'Courier New', monospace" font-size="20" fill="#57606a">log.txt</text>
+
+    <rect x="120" y="112" width="560" height="34" rx="6" fill="#ffffff" stroke="#e1e4e8"/>
+    <text x="138" y="138" font-family="Consolas, 'Courier New', monospace" font-size="21" fill="#57606a">1</text>
+    <text x="188" y="138" font-family="Consolas, 'Courier New', monospace" font-size="21" fill="#212529" xml:space="preserve">Zeile 1</text>
+    <rect x="120" y="152" width="560" height="34" rx="6" fill="#f6f8fa" stroke="#e1e4e8"/>
+    <text x="138" y="178" font-family="Consolas, 'Courier New', monospace" font-size="21" fill="#57606a">2</text>
+    <text x="188" y="178" font-family="Consolas, 'Courier New', monospace" font-size="21" fill="#212529" xml:space="preserve">Zeile 2</text>
+    <rect x="120" y="192" width="560" height="34" rx="6" fill="#ffffff" stroke="#e1e4e8"/>
+    <text x="138" y="218" font-family="Consolas, 'Courier New', monospace" font-size="21" fill="#57606a">3</text>
+    <text x="188" y="218" font-family="Consolas, 'Courier New', monospace" font-size="21" fill="#212529" xml:space="preserve">Zeile 3  &lt;- neu angehaengt</text>
+</svg>

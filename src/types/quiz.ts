@@ -10,6 +10,7 @@ export type QuizName =
   | "mathematics"
   | "webprogramming"
   | "informatics"
+  | "programming"
   | "physics";
 
 export type Lang = "de" | "en" | "fr";

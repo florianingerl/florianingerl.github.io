@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="222" viewBox="0 0 800 222" role="img" aria-label="Datei konnte nicht geoeffnet werden">
+  <rect width="800" height="222" fill="#eef1f5"/>
+  <rect x="16" y="16" width="768" height="190" rx="18" fill="#ffffff" stroke="#ced4da" stroke-width="2"/>
+  <text x="48" y="66" font-family="Segoe UI, Arial, sans-serif" font-size="26" font-weight="700" fill="#1f2933">Datei konnte nicht geoeffnet werden</text>
+  <text x="48" y="102" font-family="Consolas, 'Courier New', monospace" font-size="20" fill="#57606a">ausgabe.txt</text>
+    <text x="120" y="98" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-style="italic" fill="#d6336c">Datei fehlt / kein Recht</text>
+    <rect x="120" y="112" width="560" height="34" rx="6" fill="#ffffff" stroke="#e1e4e8"/>
+    <text x="138" y="138" font-family="Consolas, 'Courier New', monospace" font-size="21" fill="#57606a">1</text>
+    <text x="188" y="138" font-family="Consolas, 'Courier New', monospace" font-size="21" fill="#212529" xml:space="preserve">(kein Zugriff)</text>
+</svg>

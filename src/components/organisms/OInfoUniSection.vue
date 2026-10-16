@@ -3,7 +3,6 @@ import { computed } from "vue";
 import { useI18n } from "vue-i18n";
 import { quizLang } from "@/i18n";
 import ASectionTitle from "@/components/atoms/ASectionTitle.vue";
-import ASectionImage from "@/components/atoms/ASectionImage.vue";
 import ARichText from "@/components/atoms/ARichText.vue";
 import VueQuiz from "@/components/quizzes/VueQuiz.vue";
 
@@ -27,8 +26,9 @@ const lg = computed(() => quizLang(locale.value));
 			</div>
 
 			<div class="row">
+				<!-- Auch das zweite Bild ist durch ein Quiz ersetzt (Programmierung). -->
 				<div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
-					<ASectionImage src="assets/img/programming.png" :alt="t('sections.infouni.imageAlt2')" />
+					<VueQuiz quiz="programming" :lg="lg" />
 				</div>
 				<div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
 					<ARichText :html="t('sections.infouni.body2')" />
