@@ -1,23 +1,13 @@
 <!-- Die Filterzeile eines Quiz: der Themenfilter, die Auswahl der Schule und
-     der Knopf fuer den erweiterten Filterdialog. Die gewaehlten Werte liegen
-     im Filter-Store (pro Quiz getrennt), damit sie den Dialog und die Anzeige
-     ueberleben. -->
+      der Knopf fuer den erweiterten Filterdialog. Die gewaehlten Werte liegen
+      im Filter-Store (pro Quiz getrennt), damit sie den Dialog und die Anzeige
+      ueberleben. -->
 <template>
   <div class="filter-component">
     <label class="form-label mb-0">Filter for topic:</label>
     <VueTopicFilter v-model="filter.topicId" :topics="topics" />
 
-    <label class="form-label mb-0" :for="schoolFilterId">School:</label>
-    <select
-      :id="schoolFilterId"
-      v-model="filter.school"
-      class="form-select w-auto"
-    >
-      <option value="">All schools</option>
-      <option v-for="s in schools" :key="s._id" :value="s.name">
-        {{ s.name }}
-      </option>
-    </select>
+    <VueSchoolFilter v-model="filter.school" :schools="schools" :quiz="props.quiz" />
 
     <button
       type="button"
@@ -35,6 +25,7 @@ import { computed } from "vue";
 import { useFilterStore } from "@/stores/filter";
 import type { School, Topic } from "@/types/quiz";
 import VueTopicFilter from "./VueTopicFilter.vue";
+import VueSchoolFilter from "./VueSchoolFilter.vue";
 
 const props = defineProps<{
   // Schluessel des Filters im Filter-Store: der Name eines Website-Quizzes
@@ -54,10 +45,6 @@ const filterStore = useFilterStore();
 // Derselbe Filter wie in VueQuiz: Der Schluessel entscheidet, welcher Eintrag
 // im Store gemeint ist.
 const filter = computed(() => filterStore.filterFor(props.quiz));
-
-// Auf der Seite stehen mehrere Quizze, deshalb muss die _id des Auswahlfeldes
-// pro Quiz verschieden sein.
-const schoolFilterId = computed(() => `schoolFilter-${props.quiz}`);
 </script>
 
 <style scoped>
