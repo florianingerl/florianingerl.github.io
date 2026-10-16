@@ -42,6 +42,7 @@
         :schools="verfuegbareSchulen"
         @new-exercise-created="gespeichert"
         @school-created="schuleHinzugefuegt"
+        @topic-created="themaErstellt"
         @cancel-clicked="formOffen = false"
       />
     </div>
@@ -474,6 +475,14 @@ const schools = ref<School[]>([]);
 function schuleHinzugefuegt(schule: School): void {
   if (!schools.value.some((s) => s._id === schule._id || s.name === schule.name)) {
     schools.value.push(schule);
+  }
+}
+
+// Ein im Formular neu angelegtes Thema in die Themenliste aufnehmen, damit
+// es auch im Themen-Filter erscheint. Es ist schon gespeichert (mit _id).
+function themaErstellt(thema: Topic): void {
+  if (!topics.value.some((t) => t._id === thema._id)) {
+    topics.value.push(thema);
   }
 }
 

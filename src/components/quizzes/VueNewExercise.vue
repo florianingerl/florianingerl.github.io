@@ -2,33 +2,13 @@
   <div class="container">
 
     <div class="row">
-      <label class="col" for="topic">Choose a topic (from tree):</label>
-    </div>
-
-    <div class="row">
       <div class="col-12 mt-3">
-        <div ref="topicPicker" class="topic-picker position-relative">
-          <button
-            type="button"
-            class="btn btn-outline-secondary text-start w-100"
-            @click="treeOffen = !treeOffen"
-          >
-            {{ selectedTopicLabel || "Choose a topic..." }}
-          </button>
-          <div
-            v-show="treeOffen"
-            class="topic-tree-overlay border rounded bg-white shadow p-2"
-          >
-            <Tree
-              :value="treeNodes"
-              selectionMode="single"
-              v-model:selectionKeys="selectionKeys"
-              v-model:expandedKeys="expandedKeys"
-              @nodeSelect="onNodeSelect"
-              @nodeUnselect="onNodeUnselect"
-            />
-          </div>
-        </div>
+        <OTopicChooserAndCreator
+          :subject="subject ?? quiz"
+          :quiz="quiz"
+          @topic-selected="onTopicSelected"
+          @topic-created="onTopicCreated"
+        />
       </div>
     </div>
 
@@ -57,26 +37,6 @@
           Add
         </button>
       </div>
-    </div>
-
-    <div class="row">
-      <div class="col-12 mt-3 p-3 border border-dark rounded">
-        <h5>New topic</h5>
-        <div class="input-group mb-2">
-          <label class="input-group-text" for="newTopicTitle">Title</label>
-          <input
-            id="newTopicTitle"
-            v-model="newTopic"
-            type="text"
-            class="form-control"
-            placeholder="Enter a new topic"
-          />
-        </div>
-        <div class="text-center">
-          <button class="btn btn-primary" @click="addNewTopicClicked">Add new topic</button>
-        </div>
-      </div>
-
     </div>
 
     <div>
@@ -317,15 +277,12 @@ export async function uploadPastedImage(datei: File): Promise<string> {
 </script>
 
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref, watch, computed } from 'vue'
+import { onMounted, ref, watch, computed } from 'vue'
 import VueImage from './VueImage.vue'
+import OTopicChooserAndCreator from '@/components/organisms/OTopicChooserAndCreator.vue'
 import type { Exercise, QuizName , School, Topic, TwoPartSentences } from '@/types/quiz'
-import { createSchool, fehlerText, getAllTopics } from '@/api';
-import Tree from 'primevue/tree';
-import { buildTopicTree, topicPathString } from '@/utils/topicTree';
+import { createSchool, fehlerText } from '@/api';
 
-const newTopic = ref<string>('');
-const topics = ref<Topic[]>([])
 // Die Schulen, aus denen die Schule der Aufgabe gewaehlt wird. Die Liste kommt
 // vom Quiz (props.schools) und enthaelt nur Schulen, die im Quiz schon eine
 // Aufgabe haben. Eine hier neu angelegte Schule kommt dazu (neueSchulen),
@@ -353,13 +310,6 @@ const schulen = computed<School[]>(() => {
 const gewaehlteSchule = ref<string>('');
 // Der Name im Feld "New school".
 const neueSchule = ref<string>('');
-// PrimeVue erwartet beim single-Modus ein Objekt { [key]: true }.
-const selectionKeys = ref<Record<string, boolean>>({});
-const selectedNode = ref<Topic | null>(null);
-const expandedKeys = ref<Record<string, boolean>>({});
-// Der Baum liegt als Menue ueber dem Formular und ist nur aufgeklappt sichtbar.
-const treeOffen = ref(false);
-const topicPicker = ref<HTMLElement | null>(null);
 
 const props = defineProps<{
   // Name eines Website-Quizzes (z.B. "deutsch") oder - bei einem Buch-Quizz -
@@ -377,6 +327,7 @@ const props = defineProps<{
 const emit = defineEmits<{
   (e: 'new-exercise-created', exercise: Exercise): void
   (e: 'school-created', school: School): void
+  (e: 'topic-created', topic: Topic): void
   (e: 'cancel-clicked'): void
 }>()
 
@@ -434,33 +385,16 @@ let imageUrls: string[] = []
 let k = 0
 let page = 1
 
-function addNewTopicClicked(){
-  if (!newTopic.value.trim()) {
-    alert('Please enter a title for the new topic.')
-    return
-  }
-  let parentId: string | undefined = undefined;
+// Das im Themen-Baum gewaehlte Thema wird das Thema der Aufgabe.
+function onTopicSelected(topic: Topic | null): void {
+  exercise.value.topic = topic ?? undefined;
+}
 
-  if (selectedNode.value) {
-    // Ist ein Thema im Baum ausgewaehlt, wird das neue Thema ein Unterthema
-    // davon.
-    parentId = selectedNode.value._id;
-  }
-
-  const topic: Topic = {
-    subject: props.subject ?? (props.quiz || ''),
-    title: newTopic.value.trim(),
-    tutorial: '',
-    quiz: props.quiz || undefined,
-    parentId: parentId,
-  };
-
+// Ein neu angelegtes Thema ist schon gespeichert (mit _id) und wird gleich
+// das Thema der Aufgabe; das Quiz pflegt es in seine Themenliste ein.
+function onTopicCreated(topic: Topic): void {
   exercise.value.topic = topic;
-  topics.value.push(topic);
-  selectionKeys.value = {};
-  selectedNode.value = null;
-  newTopic.value = '';
-  treeOffen.value = false;
+  emit('topic-created', topic);
 }
 
 
@@ -580,14 +514,6 @@ watch(searchString, () => {
 })
 
 onMounted(async () => {
-  // Die Themen werden nach Sprache/Fach gefiltert; bei Buch-Quizzen ist das
-  // nicht der Quiz-Name, sondern das Fach (subject).
-  topics.value = await getAllTopics(props.subject ?? props.quiz);
-
-  console.log("Here are all the topics from the database for quiz " + (props.subject ?? props.quiz) );
-  console.log(topics.value );
-
-
   if (!props.questionOfQuiz) return
   // Beim Bearbeiten wird die Frage mit ihrer _id über­nomen, beim Anlegen nur als Vorlage ohne _id
   const { _id, correctlyAnswered: _ca, gaps: _g, guessedSentences: _gs, wordorder: _wo, ...vorlage } = props.questionOfQuiz
@@ -609,47 +535,6 @@ onMounted(async () => {
     typeof schule === 'string' ? schule : schule?._id ?? ''
   //TODO The topic of the exercise should be the topic of the exercise of the quiz
 })
-
-const treeNodes = computed(() => buildTopicTree(topics.value));
-
-// "Wurzel->...->Thema" des aktuell fuer die Aufgabe gewaehlten Themas.
-const selectedTopicLabel = computed(() => {
-  const t = exercise.value.topic;
-  if (!t || typeof t === 'string') return '';
-  if (!t._id) return t.title;
-  return topicPathString(topics.value, t._id);
-});
-
-function onNodeSelect(node: { data?: Topic }) {
-  if (node.data) {
-    selectedNode.value = node.data;
-    exercise.value.topic = node.data;
-    treeOffen.value = false;
-  }
-}
-
-function onNodeUnselect() {
-  selectedNode.value = null;
-}
-
-// Klick ausserhalb schliesst das aufgeklappte Themen-Menue.
-function onClickAusserhalb(event: MouseEvent): void {
-  if (topicPicker.value && !topicPicker.value.contains(event.target as Node)) {
-    treeOffen.value = false;
-  }
-}
-
-watch(treeOffen, (offen) => {
-  if (offen) {
-    document.addEventListener('mousedown', onClickAusserhalb);
-  } else {
-    document.removeEventListener('mousedown', onClickAusserhalb);
-  }
-});
-
-onBeforeUnmount(() => {
-  document.removeEventListener('mousedown', onClickAusserhalb);
-});
 </script>
 
 <style scoped>
@@ -657,15 +542,5 @@ onBeforeUnmount(() => {
   height: 10px;
   flex: 1;
   min-width: 0;
-}
-
-.topic-tree-overlay {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  z-index: 1000;
-  min-width: 16rem;
-  max-height: 20rem;
-  overflow-y: auto;
 }
 </style>

@@ -4,6 +4,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import { API_URL } from "@/api";
 import { server } from "@/mocks/server";
 import type { Exercise, Topic } from "@/types/quiz";
+import OTopicChooserAndCreator from "@/components/organisms/OTopicChooserAndCreator.vue";
 import VueImage from "./VueImage.vue";
 import VueNewExercise, { bildUrl, uploadPastedImage } from "./VueNewExercise.vue";
 
@@ -141,62 +142,65 @@ describe("VueNewExercise: multiple choice anlegen", () => {
   });
 });
 
-describe("VueNewExercise: Themen-Baum als Menue", () => {
-  beforeEach(() => {
-    server.use(
-      http.get(`${API_URL}/api/topic/english`, () =>
-        HttpResponse.json<Topic[]>([
-          {
-            _id: "et",
-            subject: "english",
-            title: "Elektrotechnik",
-            tutorial: "",
-          },
-          {
-            _id: "dio",
-            subject: "english",
-            title: "Dioden",
-            tutorial: "",
-            parentId: "et",
-          },
-        ]),
-      ),
-    );
-  });
-
-  function baumOffen(wrapper: ReturnType<typeof mount>): boolean {
-    const style = wrapper.get(".topic-tree-overlay").attributes("style") ?? "";
-    return !style.includes("display: none");
-  }
-
-  it("zeigt den Baum erst nach Klick und uebernimmt das gewaehlte Thema", async () => {
-    // Hier wird der echte (nicht gestubbte) Baum gebraucht.
+describe("VueNewExercise: Thema ueber den Themenwaehler", () => {
+  it("uebernimmt das gemeldete Thema in die Aufgabe", async () => {
     const wrapper = mount(VueNewExercise, {
       props: { quiz: "english", editMode: false },
+      shallow: true,
     });
     await flushPromises();
 
-    const knopf = wrapper.get(".topic-picker > button");
-    expect(knopf.text()).toContain("Choose a topic");
-    expect(baumOffen(wrapper)).toBe(false);
+    const waehler = wrapper.findComponent(OTopicChooserAndCreator);
+    expect(waehler.exists()).toBe(true);
+    // Der Waehler bekommt Fach und Quiz des Formulars.
+    expect(waehler.props("subject")).toBe("english");
+    expect(waehler.props("quiz")).toBe("english");
 
-    await knopf.trigger("click");
-    expect(baumOffen(wrapper)).toBe(true);
-
-    const knoten = wrapper
-      .findAll(".p-treenode-content")
-      .find((n) => n.text().includes("Elektrotechnik"));
-    expect(knoten).toBeTruthy();
-    await knoten!.trigger("click");
+    const thema: Topic = {
+      _id: "et",
+      subject: "english",
+      title: "Elektrotechnik",
+      tutorial: "",
+    };
+    waehler.vm.$emit("topic-selected", thema);
     await flushPromises();
 
-    // Das Menue ist zu und der Knopf zeigt den Pfad des gewaehlten Themas.
-    expect(baumOffen(wrapper)).toBe(false);
-    expect(knopf.text()).toContain("Elektrotechnik");
+    await wrapper
+      .findAll("button")
+      .find((b) => b.text().trim() === "Save")!
+      .trigger("click");
 
-    // Die Schule steht nicht mehr am Thema, sondern in der eigenen Auswahl.
-    expect(wrapper.find("#newTopicSchool").exists()).toBe(false);
-    expect(wrapper.find("#exerciseSchool").exists()).toBe(true);
+    const emitted = wrapper.emitted("new-exercise-created");
+    expect(emitted).toBeTruthy();
+    expect((emitted![0][0] as Exercise).topic).toEqual(thema);
+  });
+
+  it("meldet ein neu angelegtes Thema weiter und macht es zum Thema der Aufgabe", async () => {
+    const wrapper = mount(VueNewExercise, {
+      props: { quiz: "english", editMode: false },
+      shallow: true,
+    });
+    await flushPromises();
+
+    const thema: Topic = {
+      _id: "neu",
+      subject: "english",
+      title: "Dioden",
+      tutorial: "",
+    };
+    wrapper.findComponent(OTopicChooserAndCreator).vm.$emit("topic-created", thema);
+    await flushPromises();
+
+    expect(wrapper.emitted("topic-created")?.[0][0]).toEqual(thema);
+
+    await wrapper
+      .findAll("button")
+      .find((b) => b.text().trim() === "Save")!
+      .trigger("click");
+
+    const emitted = wrapper.emitted("new-exercise-created");
+    expect(emitted).toBeTruthy();
+    expect((emitted![0][0] as Exercise).topic).toEqual(thema);
   });
 });
 

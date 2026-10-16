@@ -1,0 +1,18 @@
+Can you please create a OTopicChooserAndCreater Vue-Component !
+It should be a div with the following styles set:
+display: flex; flex-direction: row; justify-content: flex-start;
+
+Inside of this div, there should be a 
+MTopicChooser Vue-Component, which consists of the label "Choose a topic(from the tree)" and next to it the tree.
+When another topic is selected, the VueComponent should emit a signal !
+The MTopicChooser is also a div with display: flex; flex-direction: row; justify-content: flex-start;
+
+On the right hand side of MTopicChooser, there should be a 
+MTopicCreator Vue-Component. This component should have a property parentTopic: Topic? .
+The parentTopic is the one selected in MTopicChooser. 
+
+When the MTopicChooser has still a sufficient width, it should be a div with display: flex; flex-direction: row; justify-content: flex-start;
+There should be a label "New topic:", then an input of type text where the title of the new topic can be entered and then a button "Add".
+When the add button is clicked, the new topic should be created as a child topic of the parentTopic (The parent topic is the topic selected in MTopicChooser!)
+A signal should be emitted and the MTopicChooser should react to it by updating its tree and selecting the newly created topic.
+
