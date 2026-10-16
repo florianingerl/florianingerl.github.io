@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="320" viewBox="0 0 520 320" font-family="Segoe UI, Arial, sans-serif">
+  <rect x="0" y="0" width="520" height="320" fill="#f8f9fa"/>
+  <rect x="1" y="1" width="518" height="318" fill="none" stroke="#ced4da" stroke-width="2"/>
+  <text x="20" y="34" font-size="19" font-weight="700" fill="#212529">The button toggles the panel</text>
+
+  <!-- closed state -->
+  <text x="60" y="70" font-size="14" font-weight="600" fill="#495057">closed  (hidden)</text>
+  <rect x="40" y="84" width="180" height="40" rx="6" fill="#6c757d"/>
+  <text x="58" y="109" font-size="14" fill="#ffffff">Choose a topic...</text>
+  <rect x="40" y="140" width="180" height="120" fill="#ffffff" stroke="#dee2e6"/>
+  <rect x="56" y="160" width="148" height="10" rx="5" fill="#e9ecef"/>
+  <rect x="56" y="180" width="120" height="10" rx="5" fill="#e9ecef"/>
+  <rect x="56" y="200" width="140" height="10" rx="5" fill="#e9ecef"/>
+  <rect x="56" y="220" width="100" height="10" rx="5" fill="#e9ecef"/>
+
+  <!-- arrow -->
+  <path d="M250 170 L300 170" stroke="#0d6efd" stroke-width="3" fill="none"/>
+  <path d="M300 160 L318 170 L300 180 z" fill="#0d6efd"/>
+  <text x="246" y="155" font-size="12" fill="#0d6efd">click</text>
+
+  <!-- open state -->
+  <text x="350" y="70" font-size="14" font-weight="600" fill="#495057">open  (visible)</text>
+  <rect x="330" y="84" width="160" height="40" rx="6" fill="#0d6efd"/>
+  <text x="346" y="109" font-size="14" fill="#ffffff">Choose a topic...</text>
+  <rect x="330" y="140" width="160" height="120" rx="6" fill="#ffffff" stroke="#0d6efd" stroke-width="2"/>
+  <text x="344" y="164" font-size="13" fill="#212529">Topic A</text>
+  <text x="344" y="186" font-size="13" fill="#212529">Topic B</text>
+  <text x="344" y="208" font-size="13" fill="#212529">Topic C</text>
+
+  <text x="40" y="298" font-size="13" fill="#6c757d">A boolean state  treeOffen  decides whether the panel is shown (v-show).</text>
+</svg>

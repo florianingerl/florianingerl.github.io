@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="320" viewBox="0 0 520 320" font-family="Segoe UI, Arial, sans-serif">
+  <rect x="0" y="0" width="520" height="320" fill="#f8f9fa"/>
+  <rect x="1" y="1" width="518" height="318" fill="none" stroke="#ced4da" stroke-width="2"/>
+  <text x="20" y="34" font-size="19" font-weight="700" fill="#212529">normal flow vs. position: absolute</text>
+
+  <!-- normal flow -->
+  <text x="40" y="66" font-size="14" font-weight="600" fill="#495057">normal flow</text>
+  <rect x="40" y="80" width="180" height="34" rx="5" fill="#0d6efd"/>
+  <text x="56" y="102" font-size="13" fill="#ffffff">button</text>
+  <rect x="40" y="120" width="180" height="70" rx="5" fill="#ffffff" stroke="#adb5bd"/>
+  <text x="54" y="146" font-size="12" fill="#212529">panel</text>
+  <text x="54" y="164" font-size="11" fill="#6c757d">pushes content</text>
+  <text x="54" y="180" font-size="11" fill="#6c757d">DOWN</text>
+  <rect x="40" y="196" width="180" height="70" fill="#ffffff" stroke="#dee2e6"/>
+  <rect x="54" y="214" width="150" height="10" rx="5" fill="#e9ecef"/>
+  <rect x="54" y="234" width="120" height="10" rx="5" fill="#e9ecef"/>
+
+  <!-- divider -->
+  <line x1="260" y1="60" x2="260" y2="290" stroke="#ced4da" stroke-width="2"/>
+
+  <!-- absolute -->
+  <text x="290" y="66" font-size="14" font-weight="600" fill="#495057">position: absolute</text>
+  <rect x="290" y="80" width="180" height="34" rx="5" fill="#0d6efd"/>
+  <text x="306" y="102" font-size="13" fill="#ffffff">button</text>
+  <rect x="290" y="160" width="180" height="106" fill="#ffffff" stroke="#dee2e6"/>
+  <rect x="304" y="178" width="150" height="10" rx="5" fill="#e9ecef"/>
+  <rect x="304" y="198" width="120" height="10" rx="5" fill="#e9ecef"/>
+  <rect x="304" y="218" width="140" height="10" rx="5" fill="#e9ecef"/>
+  <rect x="304" y="238" width="90" height="10" rx="5" fill="#e9ecef"/>
+  <!-- absolute panel over content -->
+  <rect x="290" y="118" width="180" height="66" rx="5" fill="#ffffff" stroke="#0d6efd" stroke-width="2"/>
+  <text x="304" y="144" font-size="12" fill="#212529">panel</text>
+  <text x="304" y="162" font-size="11" fill="#0d6efd">floats OVER, no reflow</text>
+
+  <text x="40" y="300" font-size="13" fill="#6c757d">position: absolute removes the panel from the normal flow.</text>
+</svg>

@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="320" viewBox="0 0 520 320" font-family="Segoe UI, Arial, sans-serif">
+  <rect x="0" y="0" width="520" height="320" fill="#f8f9fa"/>
+  <rect x="1" y="1" width="518" height="318" fill="none" stroke="#ced4da" stroke-width="2"/>
+  <text x="20" y="34" font-size="19" font-weight="700" fill="#212529">Where you meet this pattern</text>
+
+  <!-- dropdown menu -->
+  <g transform="translate(40,70)">
+    <rect x="0" y="0" width="110" height="150" fill="#ffffff" stroke="#dee2e6"/>
+    <rect x="14" y="16" width="82" height="26" rx="5" fill="#0d6efd"/>
+    <text x="24" y="34" font-size="11" fill="#ffffff">Menu ▾</text>
+    <rect x="14" y="46" width="82" height="60" rx="5" fill="#ffffff" stroke="#0d6efd"/>
+    <text x="24" y="66" font-size="10" fill="#212529">Item 1</text>
+    <text x="24" y="82" font-size="10" fill="#212529">Item 2</text>
+    <text x="24" y="98" font-size="10" fill="#212529">Item 3</text>
+    <text x="6" y="140" font-size="12" font-weight="600" fill="#495057">dropdown</text>
+  </g>
+
+  <!-- hamburger nav -->
+  <g transform="translate(190,70)">
+    <rect x="0" y="0" width="110" height="150" fill="#ffffff" stroke="#dee2e6"/>
+    <rect x="14" y="16" width="26" height="22" rx="4" fill="#0d6efd"/>
+    <line x1="20" y1="22" x2="34" y2="22" stroke="#fff" stroke-width="2"/>
+    <line x1="20" y1="27" x2="34" y2="27" stroke="#fff" stroke-width="2"/>
+    <line x1="20" y1="32" x2="34" y2="32" stroke="#fff" stroke-width="2"/>
+    <rect x="14" y="46" width="82" height="80" rx="5" fill="#ffffff" stroke="#0d6efd"/>
+    <text x="26" y="68" font-size="10" fill="#212529">Home</text>
+    <text x="26" y="88" font-size="10" fill="#212529">About</text>
+    <text x="26" y="108" font-size="10" fill="#212529">Contact</text>
+    <text x="6" y="140" font-size="12" font-weight="600" fill="#495057">hamburger nav</text>
+  </g>
+
+  <!-- FAB menu -->
+  <g transform="translate(340,70)">
+    <rect x="0" y="0" width="110" height="150" fill="#ffffff" stroke="#dee2e6"/>
+    <circle cx="80" cy="120" r="20" fill="#0d6efd"/>
+    <text x="73" y="127" font-size="20" fill="#ffffff">+</text>
+    <circle cx="80" cy="70" r="14" fill="#ffffff" stroke="#0d6efd"/>
+    <circle cx="80" cy="42" r="14" fill="#ffffff" stroke="#0d6efd"/>
+    <text x="6" y="140" font-size="12" font-weight="600" fill="#495057">FAB menu</text>
+  </g>
+
+  <text x="40" y="255" font-size="13" fill="#6c757d">A modal dialog is the same idea: a panel floating on top of the page.</text>
+  <text x="40" y="280" font-size="13" fill="#6c757d">Here the "button" is the trigger that collapses / expands the overlay.</text>
+</svg>

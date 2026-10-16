@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="320" viewBox="0 0 520 320" font-family="Segoe UI, Arial, sans-serif">
+  <rect x="0" y="0" width="520" height="320" fill="#f8f9fa"/>
+  <rect x="1" y="1" width="518" height="318" fill="none" stroke="#ced4da" stroke-width="2"/>
+  <text x="20" y="34" font-size="19" font-weight="700" fill="#212529">Collapsible overlay button</text>
+
+  <!-- page content underneath -->
+  <rect x="20" y="60" width="480" height="230" fill="#ffffff" stroke="#dee2e6"/>
+  <rect x="40" y="80" width="440" height="12" rx="6" fill="#e9ecef"/>
+  <rect x="40" y="104" width="380" height="12" rx="6" fill="#e9ecef"/>
+  <rect x="40" y="128" width="420" height="12" rx="6" fill="#e9ecef"/>
+  <rect x="40" y="152" width="300" height="12" rx="6" fill="#e9ecef"/>
+  <rect x="40" y="176" width="410" height="12" rx="6" fill="#e9ecef"/>
+  <rect x="40" y="200" width="250" height="12" rx="6" fill="#e9ecef"/>
+
+  <!-- trigger button -->
+  <g>
+    <rect x="40" y="236" width="200" height="40" rx="6" fill="#0d6efd"/>
+    <text x="58" y="261" font-size="15" fill="#ffffff">Choose a topic...</text>
+    <path d="M214 250 l8 10 l8 -10 z" fill="#ffffff"/>
+  </g>
+
+  <!-- overlay panel floating over content -->
+  <g>
+    <rect x="40" y="270" width="200" height="96" rx="6" fill="#ffffff" stroke="#0d6efd" stroke-width="2"/>
+    <text x="56" y="294" font-size="14" fill="#212529">Topic A</text>
+    <text x="56" y="318" font-size="14" fill="#212529">Topic B</text>
+    <text x="56" y="342" font-size="14" fill="#212529">Topic C</text>
+  </g>
+
+  <!-- annotation -->
+  <text x="270" y="300" font-size="13" fill="#6c757d">panel floats OVER the content</text>
+  <path d="M300 285 L245 265" stroke="#6c757d" stroke-width="1.5" fill="none" marker-end="url(#a1)"/>
+  <defs>
+    <marker id="a1" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 z" fill="#6c757d"/>
+    </marker>
+  </defs>
+</svg>

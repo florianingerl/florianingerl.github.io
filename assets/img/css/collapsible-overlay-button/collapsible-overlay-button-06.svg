@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="320" viewBox="0 0 520 320" font-family="Segoe UI, Arial, sans-serif">
+  <rect x="0" y="0" width="520" height="320" fill="#f8f9fa"/>
+  <rect x="1" y="1" width="518" height="318" fill="none" stroke="#ced4da" stroke-width="2"/>
+  <text x="20" y="34" font-size="19" font-weight="700" fill="#212529">How an overlay closes</text>
+
+  <!-- overlay panel -->
+  <rect x="40" y="70" width="200" height="150" rx="6" fill="#ffffff" stroke="#0d6efd" stroke-width="2"/>
+  <text x="58" y="96" font-size="13" fill="#212529">Topic A</text>
+  <text x="58" y="118" font-size="13" fill="#212529">Topic B</text>
+  <text x="58" y="140" font-size="13" fill="#212529">Topic C</text>
+
+  <!-- outside click -->
+  <path d="M330 120 L380 170" stroke="#dc3545" stroke-width="3"/>
+  <circle cx="390" cy="180" r="10" fill="#dc3545"/>
+  <text x="300" y="105" font-size="14" fill="#dc3545">outside click</text>
+  <text x="300" y="205" font-size="12" fill="#6c757d">mousedown outside closes it</text>
+
+  <!-- escape -->
+  <rect x="330" y="230" width="80" height="40" rx="6" fill="none" stroke="#198754" stroke-width="2"/>
+  <text x="348" y="256" font-size="15" font-weight="700" fill="#198754">Esc</text>
+  <text x="420" y="256" font-size="12" fill="#6c757d">keyboard</text>
+
+  <!-- select closes -->
+  <text x="40" y="250" font-size="13" fill="#6c757d">Selecting a node also closes it:</text>
+  <text x="40" y="270" font-size="13" fill="#6c757d">treeOffen = false</text>
+  <text x="40" y="292" font-size="12" fill="#0d6efd">VueTopicFilter.vue: onNodeSelect / onClickAusserhalb</text>
+</svg>

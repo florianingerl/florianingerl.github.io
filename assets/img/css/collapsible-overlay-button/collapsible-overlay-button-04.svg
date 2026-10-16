@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="320" viewBox="0 0 520 320" font-family="Segoe UI, Arial, sans-serif">
+  <rect x="0" y="0" width="520" height="320" fill="#f8f9fa"/>
+  <rect x="1" y="1" width="518" height="318" fill="none" stroke="#ced4da" stroke-width="2"/>
+  <text x="20" y="34" font-size="19" font-weight="700" fill="#212529">z-index controls the stacking order</text>
+
+  <!-- background layer -->
+  <rect x="60" y="90" width="280" height="170" fill="#e9ecef" stroke="#adb5bd"/>
+  <text x="80" y="118" font-size="13" fill="#6c757d">page content  (z-index: auto / 0)</text>
+
+  <!-- overlay layer -->
+  <rect x="140" y="150" width="240" height="130" rx="6" fill="#ffffff" stroke="#0d6efd" stroke-width="2"/>
+  <text x="158" y="176" font-size="13" fill="#0d6efd">overlay panel  (z-index: 1000)</text>
+  <rect x="158" y="190" width="200" height="10" rx="5" fill="#e9ecef"/>
+  <rect x="158" y="210" width="160" height="10" rx="5" fill="#e9ecef"/>
+  <rect x="158" y="230" width="190" height="10" rx="5" fill="#e9ecef"/>
+
+  <!-- labels -->
+  <text x="60" y="290" font-size="13" fill="#6c757d">Higher z-index = painted on top of lower layers.</text>
+
+  <g>
+    <rect x="400" y="90" width="100" height="60" rx="5" fill="#0d6efd11" stroke="#0d6efd"/>
+    <text x="412" y="114" font-size="12" fill="#0d6efd">z-index</text>
+    <text x="412" y="134" font-size="15" font-weight="700" fill="#0d6efd">1000</text>
+  </g>
+</svg>

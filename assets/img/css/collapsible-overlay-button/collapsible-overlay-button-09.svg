@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="320" viewBox="0 0 520 320" font-family="Segoe UI, Arial, sans-serif">
+  <rect x="0" y="0" width="520" height="320" fill="#f8f9fa"/>
+  <rect x="1" y="1" width="518" height="318" fill="none" stroke="#ced4da" stroke-width="2"/>
+  <text x="20" y="34" font-size="19" font-weight="700" fill="#212529">Why (and when not) to use an overlay</text>
+
+  <!-- pros -->
+  <text x="40" y="70" font-size="15" font-weight="600" fill="#198754">Advantages</text>
+  <text x="40" y="98" font-size="13" fill="#212529">✔  does not reflow the rest of the page</text>
+  <text x="40" y="122" font-size="13" fill="#212529">✔  keeps the trigger and the choices close</text>
+  <text x="40" y="146" font-size="13" fill="#212529">✔  good for menus, filters, dropdowns</text>
+
+  <!-- cons -->
+  <text x="290" y="70" font-size="15" font-weight="600" fill="#dc3545">Watch out</text>
+  <text x="290" y="98" font-size="13" fill="#212529">✘  may cover important content</text>
+  <text x="290" y="122" font-size="13" fill="#212529">✘  needs a high z-index / stacking care</text>
+  <text x="290" y="146" font-size="13" fill="#212529">✘  must handle outside-click &amp; Escape</text>
+
+  <!-- illustration -->
+  <rect x="40" y="180" width="440" height="110" fill="#ffffff" stroke="#dee2e6"/>
+  <rect x="60" y="200" width="120" height="30" rx="5" fill="#0d6efd"/>
+  <text x="74" y="220" font-size="12" fill="#ffffff">click me</text>
+  <rect x="60" y="230" width="120" height="46" rx="5" fill="#ffffff" stroke="#0d6efd" stroke-width="2"/>
+  <text x="72" y="250" font-size="12" fill="#212529">menu item</text>
+  <text x="72" y="268" font-size="12" fill="#212529">menu item</text>
+  <rect x="220" y="200" width="240" height="70" fill="#f1f3f5"/>
+  <text x="234" y="228" font-size="12" fill="#6c757d">page content stays in place,</text>
+  <text x="234" y="248" font-size="12" fill="#6c757d">the menu just floats above it</text>
+</svg>

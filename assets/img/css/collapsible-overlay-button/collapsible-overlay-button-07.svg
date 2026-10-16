@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="320" viewBox="0 0 520 320" font-family="Segoe UI, Arial, sans-serif">
+  <rect x="0" y="0" width="520" height="320" fill="#f8f9fa"/>
+  <rect x="1" y="1" width="518" height="318" fill="none" stroke="#ced4da" stroke-width="2"/>
+  <text x="20" y="34" font-size="19" font-weight="700" fill="#212529">VueTopicFilter: the topic tree overlay</text>
+
+  <!-- selected path button -->
+  <rect x="40" y="60" width="300" height="38" rx="5" fill="#ffffff" stroke="#adb5bd"/>
+  <text x="56" y="84" font-size="13" fill="#212529">web design->css->collapsible overlay button</text>
+  <path d="M320 74 l8 10 l8 -10 z" fill="#495057"/>
+
+  <!-- overlay tree -->
+  <rect x="40" y="98" width="300" height="180" rx="6" fill="#ffffff" stroke="#0d6efd" stroke-width="2"/>
+  <text x="56" y="122" font-size="13" fill="#495057">▾ web design</text>
+  <text x="72" y="146" font-size="13" fill="#495057">▾ css</text>
+  <text x="88" y="170" font-size="13" fill="#212529">flex-box</text>
+  <text x="88" y="192" font-size="13" fill="#212529">grid</text>
+  <text x="88" y="214" font-size="13" fill="#212529">overflow</text>
+  <text x="88" y="236" font-size="13" fill="#0d6efd">collapsible overlay button</text>
+  <text x="88" y="258" font-size="13" fill="#495057">TypeScript->Destructuring</text>
+
+  <!-- code snippet -->
+  <rect x="352" y="98" width="150" height="90" rx="5" fill="#212529"/>
+  <text x="364" y="120" font-size="11" fill="#7dd3fc">.topic-tree-overlay</text>
+  <text x="364" y="138" font-size="11" fill="#e9ecef">position: absolute</text>
+  <text x="364" y="154" font-size="11" fill="#e9ecef">top: 100%; left: 0</text>
+  <text x="364" y="170" font-size="11" fill="#e9ecef">z-index: 1000</text>
+</svg>
