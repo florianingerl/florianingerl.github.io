@@ -60,7 +60,7 @@
     </div>
 
     <div style="display: flex">
-      <VueImage :imageUrl="exercise.imageUrl" />
+      <OImageChooserAndDisplayer v-model="exercise.imageUrl" />
 
       <textarea v-if="exercise.type === 'gapText'" v-model="exercise.gapText" rows="3"></textarea>
 
@@ -112,34 +112,6 @@
       </div>
     </div>
 
-    Search: <input v-model="searchString" type="text" />
-    <button @click="nextImage">Change image</button>
-
-    <div>
-      <button class="btn btn-secondary" @click="randomFacileImage">
-        Random image from *facile.com
-      </button>
-      <p v-if="randomImageFailed" class="text-danger">{{ randomImageFailed }}</p>
-    </div>
-
-    <div class="mt-2 mb-2">
-      <label class="form-label" for="imageUrlInput">Image url</label>
-      <div class="input-group">
-        <input
-          id="imageUrlInput"
-          v-model="imageUrlInput"
-          type="text"
-          class="form-control"
-          placeholder="https://..."
-          @paste="imagePasted"
-        />
-        <button class="btn btn-secondary" type="button" @click="applyImageUrl">
-          Get image
-        </button>
-      </div>
-      <p v-if="imageUrlMessage" class="text-danger">{{ imageUrlMessage }}</p>
-    </div>
-
     <div class="row justify-center">
       <button class="col btn-primary btn" @click="save">Save</button>
       <button class="col btn-primary btn" @click="emit('cancel-clicked')">Cancel</button>
@@ -147,138 +119,9 @@
   </div>
 </template>
 
-<script lang="ts">
-import { API_URL, uploadImage } from '@/api'
-
-// Die Bilder der *facile.com-Tests liegen unter dieser Adresse.
-const FACILE_BILDER_URL = 'https://www.anglaisfacile.com/cgi2/myexam/images2/'
-
-// Kleinste und groesste Nummer, die dort gefunden wurde. Beide sind als Bild
-// vorhanden, dazwischen gibt es aber Luecken, deshalb wird jedes Mal geprueft.
-const FACILE_BILD_MIN = 25648
-const FACILE_BILD_MAX = 105000
-
-// So viele Bilder werden auf einmal geprueft, damit ein Klick schnell bleibt.
-const BILDER_PRO_DURCHLAUF = 6
-
-// Wie lange auf ein Bild gewartet wird, bevor die Zahl als nicht vorhanden gilt.
-const BILD_TIMEOUT_MS = 6000
-
-// So viele Zahlen werden insgesamt gezogen, bevor aufgegeben wird.
-const MAX_DURCHLAEUFE = 4
-
-function zufallsNummer(min: number, max: number): number {
-  return Math.floor(Math.random() * (max - min + 1)) + min
-}
-
-// Prueft, ob es die Bilddatei gibt.
-//
-// Bewusst ueber ein Image-Element und nicht ueber fetch: anglaisfacile.com
-// schickt kein Access-Control-Allow-Origin, deshalb wuerde fetch an der
-// CORS-Pruefung scheitern, auch wenn das Bild existiert. Ein Bild anzeigen
-// braucht diese Erlaubnis nicht, also liefert onload "ja" und onerror "nein".
-function bildExistiert(url: string): Promise<boolean> {
-  return new Promise<boolean>((resolve) => {
-    const bild = new Image()
-    const fertig = (vorhanden: boolean) => {
-      bild.onload = null
-      bild.onerror = null
-      resolve(vorhanden)
-    }
-    bild.onload = () => fertig(true)
-    bild.onerror = () => fertig(false)
-    // Sicherheitsnetz, falls der Server gar nicht antwortet.
-    setTimeout(() => fertig(false), BILD_TIMEOUT_MS)
-    bild.src = url
-  })
-}
-
-// Zieht BILDER_PRO_DURCHLAUF verschiedene Zahlen und gibt die URL des ersten
-// Bildes zurueck, das es wirklich gibt. Beide Endungen werden gleichzeitig
-// geprueft, weil die Nummer je nach Bild mal .jpg und mal .gif ist.
-async function findeFacileBild(): Promise<string> {
-  const zahlen: number[] = []
-  while (zahlen.length < BILDER_PRO_DURCHLAUF) {
-    const nummer = zufallsNummer(FACILE_BILD_MIN, FACILE_BILD_MAX)
-    if (!zahlen.includes(nummer)) zahlen.push(nummer)
-  }
-
-  const versuche: Promise<string>[] = []
-  for (const nummer of zahlen) {
-    for (const endung of ['jpg', 'gif']) {
-      const url = `${FACILE_BILDER_URL}${nummer}.${endung}`
-      versuche.push(bildExistiert(url).then((vorhanden) => (vorhanden ? url : '')))
-    }
-  }
-
-  // Sobald ein Bild geladen ist, wird es zurueckgegeben und der Rest egal.
-  for (const versuch of versuche) {
-    const url = await versuch
-    if (url !== '') return url
-  }
-  return ''
-}
-
-// Liefert die URL eines zufaelligen Bildes aus dem Bestand von *facile.com.
-export async function findRandomImageUrlOnFacile(): Promise<string> {
-  for (let durchlauf = 0; durchlauf < MAX_DURCHLAEUFE; durchlauf++) {
-    const url = await findeFacileBild()
-    if (url !== '') return url
-  }
-  throw new Error('Kein Bild unter ' + FACILE_BILDER_URL + ' gefunden')
-}
-
-// Sucht in den Daten einer Zwischenablage (Strg+V) ein Bild. Text wird
-// durchgelassen (null), damit die Eingabe normal weiter funktioniert.
-export function dateiAusZwischenablage(
-  daten: DataTransfer | null | undefined,
-): File | null {
-  if (!daten) return null
-  for (const datei of Array.from<File>(daten.files ?? [])) {
-    if (datei.type.startsWith('image/')) return datei
-  }
-  for (const element of Array.from<DataTransferItem>(daten.items ?? [])) {
-    if (element.kind === 'file' && element.type.startsWith('image/')) {
-      const datei = element.getAsFile()
-      if (datei) return datei
-    }
-  }
-  return null
-}
-
-// Liest eine Datei als Data-URL ("data:image/png;base64,..."), so wie sie der
-// Server erwartet.
-function dateiAlsDatenUrl(datei: File): Promise<string> {
-  return new Promise<string>((resolve, reject) => {
-    const leser = new FileReader()
-    leser.onload = () => resolve(String(leser.result))
-    leser.onerror = () => reject(new Error('The pasted image could not be read.'))
-    leser.readAsDataURL(datei)
-  })
-}
-
-// Macht aus der Antwort des Servers eine URL, die der Browser laden kann.
-// Bilder, die unser Server ausliefert, werden immer ueber API_URL geladen
-// (auch wenn der Server hinter dem Proxy nur http gemeldet hat); eine fremde,
-// absolute URL bleibt unveraendert.
-export function bildUrl(url: string): string {
-  const pfad = url.replace(/^https?:\/\/[^/]+/i, '')
-  if (pfad.startsWith('/api/image/')) return `${API_URL}${pfad}`
-  return /^https?:\/\//i.test(url) ? url : `${API_URL}${url}`
-}
-
-// Schickt ein eingefuegtes Bild an den Server (der das Tageslimit prueft) und
-// liefert die vollstaendige URL des gespeicherten Bildes zurueck.
-export async function uploadPastedImage(datei: File): Promise<string> {
-  const datenUrl = await dateiAlsDatenUrl(datei)
-  const antwort = await uploadImage(datenUrl)
-  return bildUrl(antwort.url)
-}
-</script>
-
 <script setup lang="ts">
-import { onMounted, ref, watch, computed } from 'vue'
-import VueImage from './VueImage.vue'
+import { onMounted, ref, computed } from 'vue'
+import OImageChooserAndDisplayer from '@/components/organisms/OImageChooserAndDisplayer.vue'
 import OTopicChooserAndCreator from '@/components/organisms/OTopicChooserAndCreator.vue'
 import type { Exercise, QuizName , School, Topic, TwoPartSentences } from '@/types/quiz'
 import { createSchool, fehlerText } from '@/api';
@@ -371,20 +214,6 @@ const sentences = ref<TwoPartSentences[]>([
   { part1: '', part2: '' },
   { part1: '', part2: '' },
 ])
-const randomImageFailed = ref('')
-
-// Das Textfeld neben dem Label "Image url". Es nimmt eine eingegebene oder
-// eingefuegte Bild-Adresse auf; ein eingefuegtes Bild wird hochgeladen.
-const imageUrlInput = ref('')
-const imageUrlMessage = ref('')
-
-// Bildsuche über Klipy
-const searchString = ref('Duck')
-let searchStringChanged = true
-let imageUrls: string[] = []
-let k = 0
-let page = 1
-
 // Das im Themen-Baum gewaehlte Thema wird das Thema der Aufgabe.
 function onTopicSelected(topic: Topic | null): void {
   exercise.value.topic = topic ?? undefined;
@@ -402,74 +231,6 @@ function addOption(): void {
   if (!newOption.value) return
   allOptions.value.push(newOption.value)
   newOption.value = ''
-}
-
-async function findGifUrls(): Promise<string[]> {
-  const key = import.meta.env.VITE_KLIPY_API_KEY
-  
-  //const key = "GblaAUO3H2fVadJMh2BBPfeNpoAcdpI0TQKEx7HGN2GDeCVNpLY9CgEB10yhcnZb";
-  
-  if (!key) {
-    alert('Kein Klipy-Schlüssel: VITE_KLIPY_API_KEY in .env eintragen.')
-    return []
-  }
-  const url = new URL(`https://api.klipy.com/api/v1/${key}/gifs/search`)
-  url.searchParams.set('q', searchString.value)
-  url.searchParams.set('page', String(page))
-  url.searchParams.set('per_page', '10')
-  const response = await fetch(url)
-  if (!response.ok) throw new Error(`Klipy request failed: ${response.status}`)
-  const result = (await response.json()) as { data: { data: Array<{ file: { hd: { jpg: { url: string } } } }> } }
-  return result.data.data.map((e) => e.file.hd.jpg.url)
-}
-
-async function nextImage(): Promise<void> {
-  if (!searchStringChanged) {
-    k++
-    if (k < imageUrls.length) {
-      exercise.value.imageUrl = imageUrls[k]
-      return
-    }
-    page++
-    k = 0
-  }
-  imageUrls = await findGifUrls()
-  k = 0
-  searchStringChanged = false
-  if (imageUrls[k]) exercise.value.imageUrl = imageUrls[k]
-}
-
-async function randomFacileImage(): Promise<void> {
-  randomImageFailed.value = ''
-  try {
-    exercise.value.imageUrl = await findRandomImageUrlOnFacile()
-  } catch (e) {
-    randomImageFailed.value = (e as Error).message
-  }
-}
-
-// Uebernimmt die eingetippte/eingefuegte Adresse als Bild der Aufgabe.
-function applyImageUrl(): void {
-  const url = imageUrlInput.value.trim()
-  if (!url) return
-  imageUrlMessage.value = ''
-  exercise.value.imageUrl = url
-}
-
-// Ein Bild aus der Zwischenablage wird erst an den Server geschickt und dann
-// als Bild der Aufgabe uebernommen. Reiner Text wird normal eingefuegt.
-async function imagePasted(event: ClipboardEvent): Promise<void> {
-  const datei = dateiAusZwischenablage(event.clipboardData)
-  if (!datei) return
-  event.preventDefault()
-  imageUrlMessage.value = ''
-  try {
-    const url = await uploadPastedImage(datei)
-    exercise.value.imageUrl = url
-    imageUrlInput.value = url
-  } catch (e) {
-    imageUrlMessage.value = fehlerText(e, 'The image could not be uploaded.')
-  }
 }
 
 function save(): void {
@@ -508,10 +269,6 @@ function save(): void {
   }
   emit('new-exercise-created', exercise.value)
 }
-
-watch(searchString, () => {
-  searchStringChanged = true
-})
 
 onMounted(async () => {
   if (!props.questionOfQuiz) return

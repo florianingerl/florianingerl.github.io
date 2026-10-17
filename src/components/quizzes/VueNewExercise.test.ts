@@ -5,8 +5,9 @@ import { API_URL } from "@/api";
 import { server } from "@/mocks/server";
 import type { Exercise, Topic } from "@/types/quiz";
 import OTopicChooserAndCreator from "@/components/organisms/OTopicChooserAndCreator.vue";
-import VueImage from "./VueImage.vue";
-import VueNewExercise, { bildUrl, uploadPastedImage } from "./VueNewExercise.vue";
+import OImageChooserAndDisplayer from "@/components/organisms/OImageChooserAndDisplayer.vue";
+import VueNewExercise from "./VueNewExercise.vue";
+import { bildUrl, uploadPastedImage } from "@/utils/images";
 
 // Das Formular laedt beim Anlegen die Themen des Faches. Ohne diesen Handler
 // wuerde MSW die Anfrage als unerwartet melden.
@@ -24,19 +25,18 @@ async function mountForm() {
 }
 
 describe("VueNewExercise: benutzerdefiniertes Bild", () => {
-  it("uebernimmt eine eingetippte URL als Bild der Aufgabe", async () => {
+  it("zeigt den Bildwaehler und uebernimmt eine gemeldete Bildadresse", async () => {
     const wrapper = await mountForm();
 
-    await wrapper.get("#imageUrlInput").setValue("https://example.com/cat.png");
-    const knopf = wrapper
-      .findAll("button")
-      .find((b) => b.text() === "Get image");
-    expect(knopf).toBeTruthy();
-    await knopf!.trigger("click");
+    const waehler = wrapper.findComponent(OImageChooserAndDisplayer);
+    expect(waehler.exists()).toBe(true);
 
-    expect(wrapper.findComponent(VueImage).props("imageUrl")).toBe(
-      "https://example.com/cat.png",
-    );
+    waehler.vm.$emit("update:modelValue", "https://example.com/cat.png");
+    await flushPromises();
+
+    expect(
+      wrapper.findComponent(OImageChooserAndDisplayer).props("modelValue"),
+    ).toBe("https://example.com/cat.png");
   });
 
   it("schickt ein eingefuegtes Bild zum Server und nimmt die Antwort-URL", async () => {

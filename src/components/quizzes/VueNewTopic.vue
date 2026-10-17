@@ -23,7 +23,7 @@ import VueJoditEditor from "./VueJoditEditor.vue";
 import { getTopic, updateTopic } from "@/api";
 import type { Exercise, Topic } from "@/types/quiz";
 import "jodit/es2021/jodit.min.css";
-import { findRandomImageUrlOnFacile } from "./VueNewExercise.vue";
+import { findRandomImageUrlOnFacile } from "@/utils/facileImages";
 
 const props = defineProps<{
   questionOfQuiz?: Exercise

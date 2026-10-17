@@ -47,11 +47,11 @@ async function mockBackend(page: Page, exercises: unknown[]): Promise<void> {
 }
 
 function imageUrlInput(section: Locator) {
-  return section.getByLabel("Image url");
+  return section.getByLabel("URL:");
 }
 
 test.describe("Exercise editor: Image url", () => {
-  test("anlegen: Feld 'Image url' und Knopf 'Get image' sind sichtbar", async ({
+  test("anlegen: Feld 'URL:' und Bildwaehler sind sichtbar", async ({
     page,
   }) => {
     await mockBackend(page, []);
@@ -62,11 +62,11 @@ test.describe("Exercise editor: Image url", () => {
 
     await expect(imageUrlInput(section)).toBeVisible();
     await expect(
-      section.getByRole("button", { name: "Get image" }),
+      section.getByRole("button", { name: "Get random image from Facile" }),
     ).toBeVisible();
   });
 
-  test("anlegen: eingegebene Bild-Adresse wird als Aufgabenbild uebernommen", async ({
+  test("anlegen: eingegebene Bild-Adresse wird sofort als Aufgabenbild uebernommen", async ({
     page,
   }) => {
     await mockBackend(page, []);
@@ -77,14 +77,11 @@ test.describe("Exercise editor: Image url", () => {
 
     const url = "https://example.com/pic.png";
     await imageUrlInput(section).fill(url);
-    await section.getByRole("button", { name: "Get image" }).click();
 
     await expect(section.locator(`img[src="${url}"]`)).toBeVisible();
   });
 
-  test("bearbeiten: Feld 'Image url' und Knopf 'Get image' sind sichtbar", async ({
-    page,
-  }) => {
+  test("bearbeiten: Feld 'URL:' ist sichtbar", async ({ page }) => {
     const exercise = {
       _id: "ex1",
       quiz: "q-english",
@@ -104,8 +101,5 @@ test.describe("Exercise editor: Image url", () => {
     await section.getByTitle("Edit the exercise").click();
 
     await expect(imageUrlInput(section)).toBeVisible();
-    await expect(
-      section.getByRole("button", { name: "Get image" }),
-    ).toBeVisible();
   });
 });
