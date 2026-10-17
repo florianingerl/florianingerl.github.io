@@ -15,8 +15,8 @@
     >
       <i class="bi bi-images"></i> {{ schaltflaecheText }}
     </button>
-    <p v-if="fehler" class="text-danger mb-0">{{ fehler }}</p>
   </div>
+  <p v-if="fehler" class="text-danger mb-0">{{ fehler }}</p>
 </template>
 
 <script setup lang="ts">
@@ -72,7 +72,7 @@ async function bildSuchen(): Promise<void> {
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 2px;
 }
 

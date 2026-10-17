@@ -1,0 +1,9 @@
+Can you please write a 
+VueSchoolFilter.vue component
+I should be a div with display: flex; flex-direction: row; justify-content: flex-start;
+Inside the div, there should be a label "School:" and next to it a dropdown-menu in which you can select the school.
+In this dropdown menu , all the schools are displayed where there exits an exercise with this school and this quiz. 
+When a new school is selected , a signal should be emitted.
+This signal should be reacted to by VueQuiz , which updates displayedQuestions by filtering all the questions.
+
+So the VueSchoolFilter should replace the school UI which is so far in VueQuiz. 

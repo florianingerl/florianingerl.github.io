@@ -1,6 +1,6 @@
 <template>
   <div class="paste-image-or-url">
-    <label class="form-label mb-0" for="pasteImageOrUrlInput">URL:</label>
+    <label class="mb-0" for="pasteImageOrUrlInput">URL:</label>
     <input
       id="pasteImageOrUrlInput"
       v-model="eingabe"
@@ -57,7 +57,7 @@ async function bildEingefuegt(event: ClipboardEvent): Promise<void> {
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 2px;
 }
 
