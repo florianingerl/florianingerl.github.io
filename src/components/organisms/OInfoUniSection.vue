@@ -1,13 +1,14 @@
-<script setup lang="ts">
+﻿<script setup lang="ts">
 import { computed } from "vue";
 import { useI18n } from "vue-i18n";
-import { quizLang } from "@/i18n";
+import { quizLanguage } from "@/i18n";
 import ASectionTitle from "@/components/atoms/ASectionTitle.vue";
 import ARichText from "@/components/atoms/ARichText.vue";
 import VueQuiz from "@/components/quizzes/VueQuiz.vue";
 
 const { t, locale } = useI18n();
-const lg = computed(() => quizLang(locale.value));
+const lg = computed(() => quizLanguage('informatics', locale.value));
+const lgProg = computed(() => quizLanguage('programming', locale.value));
 </script>
 
 <template>
@@ -28,7 +29,7 @@ const lg = computed(() => quizLang(locale.value));
 			<div class="row">
 				<!-- Auch das zweite Bild ist durch ein Quiz ersetzt (Programmierung). -->
 				<div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
-					<VueQuiz quiz="programming" :lg="lg" />
+					<VueQuiz quiz="programming" :lg="lgProg" />
 				</div>
 				<div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
 					<ARichText :html="t('sections.infouni.body2')" />
@@ -37,3 +38,4 @@ const lg = computed(() => quizLang(locale.value));
 		</div>
 	</section>
 </template>
+

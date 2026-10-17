@@ -71,17 +71,19 @@
       </div>
     </div>
 
-    <p>
-      <button @click="validate">{{ texte[lg].validate }}</button>
-      <button @click="showSolution">{{ texte[lg].solution }}</button>
-      <button @click="retry">{{ texte[lg].retry }}</button>
-    </p>
+    <ExerciseFeedback
+      :lg="lg"
+      @validate="validate"
+      @showSolution="showSolution"
+      @retry="retry"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
 import { nextTick, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import type { Exercise, Lang, TwoPartSentences } from "@/types/quiz";
+import ExerciseFeedback from "./ExerciseFeedback.vue";
 
 const props = defineProps<{
   exercise: Exercise;
@@ -92,27 +94,6 @@ const emit = defineEmits<{ (e: "answered-event"): void }>();
 
 // Diese Farben stehen fuer die Pfeile nach dem Pruefen: gruen = richtig, rot = falsch.
 const pfeilFarben = ["green", "red", "black"];
-
-const texte: Record<
-  Lang,
-  { validate: string; solution: string; retry: string }
-> = {
-  en: {
-    validate: "Validate",
-    solution: "Show me the solution",
-    retry: "Retry",
-  },
-  de: {
-    validate: "Prüfen",
-    solution: "Zeig mir die Lösung",
-    retry: "Nochmal versuchen",
-  },
-  fr: {
-    validate: "Valider ma solution",
-    solution: "Montre-moi la solution",
-    retry: "Essayer encore une fois",
-  },
-};
 
 // Beide Seiten werden vor der Anzeige gemischt.
 const links = ref<string[]>([]);

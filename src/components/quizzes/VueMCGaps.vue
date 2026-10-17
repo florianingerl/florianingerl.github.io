@@ -46,22 +46,19 @@
       </li>
     </ol>
 
-    <p v-if="lg === 'fr'">
-      <button @click="validate">Valider ma solution</button>
-      <button @click="showSolution">Montre-moi la solution</button>
-      <button @click="retry">Essayer encore une fois</button>
-    </p>
-    <p v-else>
-      <button @click="validate">Validate</button>
-      <button @click="showSolution">Show me the solution</button>
-      <button @click="retry">Retry</button>
-    </p>
+    <ExerciseFeedback
+      :lg="lg"
+      @validate="validate"
+      @showSolution="showSolution"
+      @retry="retry"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
 import { onMounted, ref, watch } from "vue";
 import type { Exercise, Gap, Lang } from "@/types/quiz";
+import ExerciseFeedback from "./ExerciseFeedback.vue";
 
 const props = defineProps<{
   exercise: Exercise

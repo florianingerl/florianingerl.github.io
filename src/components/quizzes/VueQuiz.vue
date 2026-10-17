@@ -415,6 +415,22 @@ const texte: Record<Lang, Texte> = {
     vollbildBeenden: "Quitter le plein écran",
     score: (r, b) => `Tu as répondu à ${r} parmi ${b} questions correctement.`,
   },
+  it: {
+    laden: "Caricamento delle domande ...",
+    alleThemen: "Scegli un argomento !",
+    keineFragen: "Nessuna domanda disponibile.",
+    vollbild: "Schermo intero",
+    vollbildBeenden: "Esci dallo schermo intero",
+    score: (r, b) => `Hai risposto correttamente a ${r} di ${b} domande.`,
+  },
+  es: {
+    laden: "Cargando las preguntas ...",
+    alleThemen: "¡Elige un tema!",
+    keineFragen: "No hay preguntas disponibles.",
+    vollbild: "Pantalla completa",
+    vollbildBeenden: "Salir de pantalla completa",
+    score: (r, b) => `Has respondido correctamente ${r} de ${b} preguntas.`,
+  },
 };
 
 const currentTutorial = ref<string>();

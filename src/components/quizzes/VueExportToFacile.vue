@@ -245,10 +245,12 @@ const typen: { wert: ExportTestType; label: string; seitentyp: string }[] = [
   },
 ];
 
-const texte: Record<Lang, string> = {
-  de: "Lade die Aufgaben des Themas ...",
-  en: "Loading the exercises of the topic ...",
-  fr: "Chargement des exercices du th├¿me ...",
+const texte: Record<Lang, string> = {
+  de: "Lade die Aufgaben des Themas ...",
+  en: "Loading the exercises of the topic ...",
+  fr: "Chargement des exercices du th├¿me ...",
+  it: "Caricamento degli esercizi dell'argomento ...",
+  es: "Cargando los ejercicios del tema ...",
 };
 
 const props = defineProps<{

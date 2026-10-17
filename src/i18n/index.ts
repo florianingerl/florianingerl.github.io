@@ -1,4 +1,5 @@
 import { createI18n } from "vue-i18n";
+import type { Lang } from "@/types/quiz";
 import de from "./locales/de.json";
 import en from "./locales/en.json";
 import fr from "./locales/fr.json";
@@ -56,6 +57,16 @@ export function setLocale(locale: AppLocale): void {
   }
 }
 
-export function quizLang(value: string): "de" | "en" | "fr" {
-  return value === "en" || value === "fr" ? value : "de";
+export function quizLanguage(quiz: string | undefined, userLocale: string): Lang {
+  const map: Record<string, Lang> = {
+    french: "fr",
+    english: "en",
+    deutsch: "de",
+    italiano: "it",
+    espagnol: "es",
+  };
+  if (quiz && map[quiz]) return map[quiz];
+  const isSupportedLocale = (v: string | null): v is AppLocale =>
+    v !== null && (supportedLocales as readonly string[]).includes(v);
+  return isSupportedLocale(userLocale) ? userLocale : "de";
 }

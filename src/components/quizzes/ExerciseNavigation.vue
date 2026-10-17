@@ -83,6 +83,18 @@ const texte: Record<Lang, Navigationstexte> = {
     weiter: "Question suivante",
     weiter5: "Sauter 5 questions",
   },
+  it: {
+    zurueck5: "Vai 5 esercizi indietro",
+    zurueck: "Esercizio precedente",
+    weiter: "Esercizio successivo",
+    weiter5: "Vai 5 esercizi avanti",
+  },
+  es: {
+    zurueck5: "Ir 5 ejercicios atrás",
+    zurueck: "Ejercicio anterior",
+    weiter: "Ejercicio siguiente",
+    weiter5: "Ir 5 ejercicios adelante",
+  },
 };
 
 const t = computed(() => texte[props.lg]);

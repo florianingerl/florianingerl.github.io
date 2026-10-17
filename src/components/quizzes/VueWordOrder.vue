@@ -13,18 +13,19 @@
       @input="beiEingabe"
     />
 
-    <p>
-     
-      <button @click="validate">{{ texte[lg].validate }}</button>
-      <button @click="showSolution">{{ texte[lg].solution }}</button>
-       <button @click="retry">{{ texte[lg].retry }}</button>
-    </p>
+    <ExerciseFeedback
+      :lg="lg"
+      @validate="validate"
+      @showSolution="showSolution"
+      @retry="retry"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed, onMounted, watch , ref} from "vue";
 import type { Exercise, Lang } from "@/types/quiz";
+import ExerciseFeedback from "./ExerciseFeedback.vue";
 
 const props = defineProps<{
   exercise: Exercise;
@@ -32,27 +33,6 @@ const props = defineProps<{
 }>();
 
 const emit = defineEmits<{ (e: "answered-event"): void }>();
-
-const texte: Record<
-  Lang,
-  { retry: string; validate: string; solution: string }
-> = {
-  en: {
-    retry: "Retry",
-    validate: "Validate",
-    solution: "Show me the solution",
-  },
-  de: {
-    retry: "Nochmal versuchen",
-    validate: "Prüfen",
-    solution: "Zeig mir die Lösung",
-  },
-  fr: {
-    retry: "Essayer encore une fois",
-    validate: "Valider ma solution",
-    solution: "Montre-moi la solution",
-  },
-};
 
 // Die gemischten Woerter des Satzes.
 const woerter = computed<string[]>(

@@ -13,7 +13,7 @@ export type QuizName =
   | "programming"
   | "physics";
 
-export type Lang = "de" | "en" | "fr";
+export type Lang = "de" | "en" | "fr" | "it" | "es";
 
 export type ExerciseType = "gapText" | "multipleChoice" | "matching" | "wordOrder";
 
