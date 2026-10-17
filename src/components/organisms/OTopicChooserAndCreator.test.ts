@@ -91,4 +91,49 @@ describe("OTopicChooserAndCreator", () => {
     // Die Anlage wird nach aussen weitergemeldet.
     expect(wrapper.emitted("topic-created")?.[0][0]).toEqual(neu);
   });
+
+  it("behaelt ein waehrend des Ladens angelegtes Thema als Elternthema", async () => {
+    // Die Anfangsliste kommt erst NACH dem Anlegen des ersten Themas an. Ohne
+    // Zusammenfuehren wuerde sie das neue Thema verdraengen und das zweite
+    // Thema haette kein Elternhema mehr.
+    let freigeben!: () => void;
+    const anfangsListe = new Promise<Response>((res) => {
+      freigeben = () => res(HttpResponse.json(themen));
+    });
+    let zaehler = 0;
+    let letzterBody: Topic | null = null;
+    server.use(
+      http.get(`${API_URL}/api/topic/english`, () => anfangsListe),
+      http.post(`${API_URL}/api/topic`, async ({ request }) => {
+        letzterBody = (await request.json()) as Topic;
+        return HttpResponse.json<Topic>(
+          { ...letzterBody, _id: `neu${++zaehler}` },
+          { status: 201 },
+        );
+      }),
+    );
+
+    const wrapper = mount(OTopicChooserAndCreator, {
+      props: { subject: "english" },
+    });
+    await flushPromises();
+
+    const erstellen = wrapper.findComponent(MTopicCreator);
+    await erstellen.get("input").setValue("Grammaire");
+    await erstellen.get("button").trigger("click");
+    await flushPromises();
+
+    // Jetzt trifft die urspruenglich angeforderte Themenliste ein.
+    freigeben();
+    await flushPromises();
+
+    await erstellen.get("input").setValue("Pronoms");
+    await erstellen.get("button").trigger("click");
+    await flushPromises();
+
+    // "Pronoms" wurde mit "Grammaire" als Eltern gespeichert ...
+    expect(letzterBody).toMatchObject({ title: "Pronoms", parentId: "neu1" });
+    // ... und haengt im Baum darunter.
+    expect(wrapper.text()).toContain("Grammaire->Pronoms");
+  });
 });

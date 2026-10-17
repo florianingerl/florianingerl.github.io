@@ -63,7 +63,14 @@ function onTopicCreated(topic: Topic): void {
 
 onMounted(async () => {
   try {
-    topics.value = await getAllTopics(props.subject);
+    const vomServer = await getAllTopics(props.subject);
+    // Waehrend die Themen geladen werden, kann der Benutzer schon ein neues
+    // Thema angelegt haben. Die geladene Liste darf ein solches Thema daher
+    // nicht ueberschreiben, sonst verliert der Baum seine Auswahl und das
+    // naechste Thema haengt nicht mehr am richtigen Elternthema. Deshalb nur
+    // noch fehlende Themen ergaenzen.
+    const bekannt = new Set(topics.value.map((t) => t._id));
+    topics.value.push(...vomServer.filter((t) => !bekannt.has(t._id)));
   } catch (e) {
     console.error("The topics couldn't be loaded:", e);
   }
