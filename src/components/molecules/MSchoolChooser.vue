@@ -52,7 +52,6 @@ function onChange(event: Event): void {
   flex-direction: row;
   flex-wrap: nowrap;
   gap: 2px;
-  overflow: auto;
   align-items: center;
 }
 </style>
