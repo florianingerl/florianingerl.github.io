@@ -95,45 +95,14 @@
       >
         <!-- Die Paginierung steht direkt unter dem Aufgabenbild. -->
         <template #pagination>
-          <ul class="pagination">
-            <li class="page-item">
-              <button class="page-link" :title="t.zurueck5" @click="springe(-5)">
-                <i class="bi bi-chevron-double-left" aria-hidden="true"></i>
-              </button>
-            </li>
-            <li class="page-item">
-              <button class="page-link" :title="t.zurueck" @click="springe(-1)">
-                <i class="bi bi-chevron-left" aria-hidden="true"></i>
-              </button>
-            </li>
-            <li
-              v-for="q in indices"
-              :key="q"
-              class="page-item"
-              :class="{ active: q === i }"
-            >
-              <button class="page-link" @click="i = q">{{ q }}</button>
-            </li>
-            <li class="page-item">
-              <button class="page-link" :title="t.weiter" @click="springe(1)">
-                <i class="bi bi-chevron-right" aria-hidden="true"></i>
-              </button>
-            </li>
-            <li class="page-item">
-              <button class="page-link" :title="t.weiter5" @click="springe(5)">
-                <i class="bi bi-chevron-double-right" aria-hidden="true"></i>
-              </button>
-            </li>
-            <input
-              type="number"
-              min="0"
-              :max="letzterIndex"
-              :value="i"
-              style="width: 50px"
-              @change="gehZu"
-            />
-            <span> / {{ letzterIndex }}</span>
-          </ul>
+          <ExerciseNavigation
+            :i="i"
+            :indices="indices"
+            :letzter-index="letzterIndex"
+            :lg="lg"
+            @navigate="springe"
+            @select="waehleIndex"
+          />
         </template>
       </VueExercise>
 
@@ -222,6 +191,7 @@ import {
   watch,
 } from "vue";
 import VueExercise from "./VueExercise.vue";
+import ExerciseNavigation from "./ExerciseNavigation.vue";
 import VueTopicDisplayer from "./VueTopicDisplayer.vue";
 import VueNewExercise from "./VueNewExercise.vue";
 import VueNewTopic from "./VueNewTopic.vue";
@@ -415,10 +385,6 @@ interface Texte {
   laden: string;
   alleThemen: string;
   keineFragen: string;
-  zurueck5: string;
-  zurueck: string;
-  weiter: string;
-  weiter5: string;
   vollbild: string;
   vollbildBeenden: string;
   score: (richtig: number, beantwortet: number) => string;
@@ -429,10 +395,6 @@ const texte: Record<Lang, Texte> = {
     laden: "Lade Fragen ...",
     alleThemen: "Bitte wähle ein Thema !",
     keineFragen: "Keine Fragen vorhanden.",
-    zurueck5: "Gehe 5 Aufgaben zurück",
-    zurueck: "Vorige Aufgabe",
-    weiter: "Nächste Aufgabe",
-    weiter5: "Gehe 5 Aufgaben weiter",
     vollbild: "Vollbildmodus",
     vollbildBeenden: "Vollbildmodus beenden",
     score: (r, b) => `Du hast ${r} von ${b} Fragen richtig beantwortet`,
@@ -441,10 +403,6 @@ const texte: Record<Lang, Texte> = {
     laden: "Loading questions ...",
     alleThemen: "Please choose a topic !",
     keineFragen: "No questions available.",
-    zurueck5: "Jump 5 exercises backward",
-    zurueck: "Previous exercise",
-    weiter: "Next exercise",
-    weiter5: "Jump 5 exercises forward",
     vollbild: "Fullscreen",
     vollbildBeenden: "Leave fullscreen",
     score: (r, b) => `You have answered ${r} of ${b} questions correctly.`,
@@ -453,10 +411,6 @@ const texte: Record<Lang, Texte> = {
     laden: "Chargement des questions ...",
     alleThemen: "Choisis un thème !",
     keineFragen: "Aucune question disponible.",
-    zurueck5: "Sauter 5 exercices en arrière",
-    zurueck: "Question précédente",
-    weiter: "Question suivante",
-    weiter5: "Sauter 5 questions",
     vollbild: "Plein écran",
     vollbildBeenden: "Quitter le plein écran",
     score: (r, b) => `Tu as répondu à ${r} parmi ${b} questions correctement.`,
@@ -654,14 +608,13 @@ function springe(delta: number): void {
   i.value = Math.min(Math.max(i.value + delta, 0), letzterIndex.value);
 }
 
-function gehZu(e: Event): void {
-  const u = parseInt((e.target as HTMLInputElement).value);
+function waehleIndex(index: number): void {
   if (
-    !Number.isNaN(u) &&
-    u >= 0 &&
-    u < displayedQuestions.value.length
+    !Number.isNaN(index) &&
+    index >= 0 &&
+    index < displayedQuestions.value.length
   )
-    i.value = u;
+    i.value = index;
 }
 
 // Bei jeder Filteraenderung wieder bei der ersten Aufgabe beginnen und das

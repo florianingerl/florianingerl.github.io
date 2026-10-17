@@ -166,12 +166,14 @@ describe("VueQuiz: Aufgaben des Faches werden geladen und nach Umfang gefiltert"
       global: {
         plugins: [pinia],
         // Der gestubbte Aufgaben-Bereich rendert die Paginierung (benannter
-        // Slot), damit sich damit blaettern laesst.
+        // Slot), damit sich damit blaettern laesst. ExerciseNavigation wird
+        // echt gerendert, sonst waeren die Blaetterknoepfe nicht im DOM.
         stubs: {
           VueExercise: {
             template: '<div><slot name="pagination" /></div>',
             props: ["exercise", "lg"],
           },
+          ExerciseNavigation: false,
         },
       },
       shallow: true,
@@ -788,6 +790,7 @@ describe("VueQuiz: nach Schule filtern", () => {
             template: '<div><slot name="pagination" /></div>',
             props: ["exercise", "lg"],
           },
+          ExerciseNavigation: false,
         },
       },
       shallow: true,
