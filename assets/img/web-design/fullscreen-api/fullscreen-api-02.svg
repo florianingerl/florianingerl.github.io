@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="320" viewBox="0 0 520 320" font-family="Segoe UI, Arial, sans-serif" role="img" aria-label="The fullscreen pseudo-class styles the element while it is in fullscreen">
+  <rect x="0" y="0" width="520" height="320" fill="#f8f9fa"/>
+  <rect x="1" y="1" width="518" height="318" fill="none" stroke="#ced4da" stroke-width="2"/>
+  <text x="20" y="34" font-size="19" font-weight="700" fill="#212529">Styling fullscreen</text>
+
+  <!-- pseudo class target -->
+  <rect x="40" y="62" width="200" height="150" fill="#000000" stroke="#0d6efd" stroke-width="3"/>
+  <text x="140" y="140" font-size="14" text-anchor="middle" fill="#ffffff">#video</text>
+  <text x="140" y="164" font-size="12" text-anchor="middle" fill="#adb5bd">:fullscreen</text>
+
+  <text x="268" y="96" font-size="14" fill="#212529">While the element is</text>
+  <text x="268" y="118" font-size="14" fill="#212529">in fullscreen, the</text>
+  <text x="268" y="140" font-size="14" fill="#212529">:fullscreen pseudo-class</text>
+  <text x="268" y="162" font-size="14" fill="#212529">matches it.</text>
+
+  <!-- code block -->
+  <rect x="40" y="228" width="440" height="66" rx="6" fill="#212529"/>
+  <text x="56" y="256" font-family="Consolas, 'Courier New', monospace" font-size="13" fill="#8ce99a">#video:fullscreen {</text>
+  <text x="72" y="278" font-family="Consolas, 'Courier New', monospace" font-size="13" fill="#e9ecef">width: 100%; height: 100%;</text>
+</svg>

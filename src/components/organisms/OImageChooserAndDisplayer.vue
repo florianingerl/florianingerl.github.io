@@ -68,8 +68,6 @@ async function zufallsBild(): Promise<void> {
 
 .image-chooser-and-displayer__img {
   display: block;
-  width: 100%;
-  height: 200px;
   object-fit: cover;
   object-position: center;
 }

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="320" viewBox="0 0 520 320" font-family="Segoe UI, Arial, sans-serif" role="img" aria-label="minmax(0, 1fr) allows a grid track to shrink below content size">
+  <rect x="0" y="0" width="520" height="320" fill="#f8f9fa"/>
+  <rect x="1" y="1" width="518" height="318" fill="none" stroke="#ced4da" stroke-width="2"/>
+  <text x="20" y="34" font-size="19" font-weight="700" fill="#212529">1fr vs minmax(0, 1fr)</text>
+
+  <!-- LEFT: 1fr, min = auto, overflows -->
+  <text x="20" y="62" font-size="14" font-weight="700" fill="#212529">1fr</text>
+  <rect x="20" y="72" width="220" height="120" fill="#ffffff" stroke="#adb5bd" stroke-width="2"/>
+  <rect x="20" y="72" width="220" height="120" fill="#ffe3e3" stroke="#fa5252" stroke-width="2"/>
+  <text x="130" y="120" font-size="13" text-anchor="middle" fill="#c92a2a">long content</text>
+  <text x="130" y="140" font-size="13" text-anchor="middle" fill="#c92a2a">pushes the track wider</text>
+  <text x="130" y="163" font-size="12" text-anchor="middle" fill="#c92a2a">min-width = auto</text>
+  <rect x="20" y="72" width="260" height="120" fill="none" stroke="#fa5252" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="130" y="212" font-size="12" text-anchor="middle" fill="#c92a2a">overflow / no shrink</text>
+
+  <!-- RIGHT: minmax(0,1fr) shrinks -->
+  <text x="290" y="62" font-size="14" font-weight="700" fill="#212529">minmax(0, 1fr)</text>
+  <rect x="290" y="72" width="210" height="120" fill="#ffffff" stroke="#adb5bd" stroke-width="2"/>
+  <rect x="290" y="72" width="210" height="120" fill="#d3f9d8" stroke="#37b24d" stroke-width="2"/>
+  <text x="395" y="120" font-size="13" text-anchor="middle" fill="#2b8a3e">long content</text>
+  <text x="395" y="140" font-size="13" text-anchor="middle" fill="#2b8a3e">stays inside track</text>
+  <text x="395" y="163" font-size="12" text-anchor="middle" fill="#2b8a3e">min-width = 0</text>
+  <text x="395" y="212" font-size="12" text-anchor="middle" fill="#2b8a3e">can shrink (like flex: 1)</text>
+
+  <text x="20" y="252" font-family="Consolas, 'Courier New', monospace" font-size="14" fill="#495057">minmax(0, 1fr) = grow AND shrink</text>
+  <text x="20" y="284" font-size="13" fill="#6c757d">closest analog of flex: 1 (flex-grow:1, flex-shrink:1, basis:0)</text>
+</svg>

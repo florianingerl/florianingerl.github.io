@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="320" viewBox="0 0 520 320" font-family="Segoe UI, Arial, sans-serif" role="img" aria-label="The Bootstrap form-label class only sets margin-bottom 0.5rem">
+  <rect x="0" y="0" width="520" height="320" fill="#f8f9fa"/>
+  <rect x="1" y="1" width="518" height="318" fill="none" stroke="#ced4da" stroke-width="2"/>
+  <text x="20" y="34" font-size="19" font-weight="700" fill="#212529">.form-label</text>
+
+  <!-- form mock -->
+  <rect x="40" y="56" width="260" height="180" fill="#ffffff" stroke="#dee2e6"/>
+
+  <text x="60" y="92" font-size="15" font-weight="700" fill="#212529">Your name</text>
+  <rect x="40" y="100" width="260" height="1" fill="none"/>
+  <rect x="60" y="112" width="220" height="38" rx="5" fill="#ffffff" stroke="#ced4da"/>
+  <text x="72" y="137" font-size="13" fill="#adb5bd">John Doe</text>
+
+  <!-- margin-bottom annotation -->
+  <path d="M320 92 V140" stroke="#0d6efd" stroke-width="2" marker-start="url(#m1)" marker-end="url(#m1)"/>
+  <text x="332" y="118" font-size="13" fill="#0d6efd">margin-bottom</text>
+  <text x="332" y="136" font-size="13" font-weight="700" fill="#0d6efd">0.5rem</text>
+
+  <text x="20" y="268" font-family="Consolas, 'Courier New', monospace" font-size="14" fill="#495057">.form-label { margin-bottom: .5rem; }</text>
+  <text x="20" y="292" font-size="13" fill="#6c757d">that is the ONLY declaration it sets</text>
+
+  <defs>
+    <marker id="m1" markerWidth="8" markerHeight="8" refX="3" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 z" fill="#0d6efd"/>
+    </marker>
+  </defs>
+</svg>

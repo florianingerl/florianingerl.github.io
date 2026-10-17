@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="320" viewBox="0 0 520 320" font-family="Segoe UI, Arial, sans-serif" role="img" aria-label="An empty Bootstrap badge is hidden because of the badge empty rule">
+  <rect x="0" y="0" width="520" height="320" fill="#f8f9fa"/>
+  <rect x="1" y="1" width="518" height="318" fill="none" stroke="#ced4da" stroke-width="2"/>
+  <text x="20" y="34" font-size="19" font-weight="700" fill="#212529">.badge:empty</text>
+
+  <!-- badge with content -->
+  <text x="60" y="90" font-size="14" fill="#212529">Inbox</text>
+  <rect x="140" y="72" width="48" height="28" rx="4" fill="#0d6efd"/>
+  <text x="164" y="92" font-size="14" font-weight="700" fill="#fff" text-anchor="middle">42</text>
+  <text x="220" y="90" font-size="13" fill="#6c757d">content inside -&gt; visible</text>
+
+  <!-- empty badge -->
+  <text x="60" y="150" font-size="14" fill="#212529">Inbox</text>
+  <text x="220" y="150" font-size="13" fill="#6c757d">empty badge -&gt; hidden</text>
+
+  <!-- crossed-out empty badge -->
+  <g>
+    <rect x="140" y="132" width="48" height="28" rx="4" fill="none" stroke="#adb5bd" stroke-width="1.5" stroke-dasharray="4 3"/>
+    <path d="M138 130 L190 162" stroke="#fa5252" stroke-width="3"/>
+  </g>
+
+  <text x="40" y="222" font-size="14" fill="#495057">An empty badge would show as an empty</text>
+  <text x="40" y="244" font-size="14" fill="#495057">coloured pill, so Bootstrap hides it:</text>
+
+  <text x="40" y="284" font-family="Consolas, 'Courier New', monospace" font-size="15" fill="#0d6efd">.badge:empty { display: none; }</text>
+</svg>

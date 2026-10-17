@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="320" viewBox="0 0 520 320" font-family="Segoe UI, Arial, sans-serif" role="img" aria-label="Bootstrap badge default font-weight is 700">
+  <rect x="0" y="0" width="520" height="320" fill="#f8f9fa"/>
+  <rect x="1" y="1" width="518" height="318" fill="none" stroke="#ced4da" stroke-width="2"/>
+  <text x="20" y="34" font-size="19" font-weight="700" fill="#212529">.badge</text>
+
+  <!-- badge samples -->
+  <g font-family="Segoe UI, Arial, sans-serif">
+    <rect x="60" y="70" width="90" height="34" rx="4" fill="#0d6efd"/>
+    <text x="105" y="93" font-size="16" font-weight="700" fill="#fff" text-anchor="middle">42</text>
+
+    <rect x="170" y="70" width="120" height="34" rx="4" fill="#198754"/>
+    <text x="230" y="93" font-size="16" font-weight="700" fill="#fff" text-anchor="middle">New</text>
+
+    <rect x="310" y="70" width="110" height="34" rx="4" fill="#dc3545"/>
+    <text x="365" y="93" font-size="16" font-weight="700" fill="#fff" text-anchor="middle">Pending</text>
+  </g>
+
+  <!-- thickness comparison -->
+  <text x="60" y="150" font-size="16" font-weight="400" fill="#212529">font-weight: 400</text>
+  <text x="60" y="184" font-size="16" font-weight="700" fill="#212529">font-weight: 700</text>
+
+  <text x="20" y="238" font-size="14" fill="#495057">The badge text is bold by default:</text>
+  <text x="20" y="272" font-family="Consolas, 'Courier New', monospace" font-size="15" fill="#0d6efd">font-weight: 700;</text>
+
+  <text x="20" y="304" font-size="12" fill="#6c757d">.badge also sets font-size .75em, line-height 1, padding .35em .65em</text>
+</svg>

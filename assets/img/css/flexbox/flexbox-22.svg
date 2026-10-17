@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="320" viewBox="0 0 520 320" font-family="Segoe UI, Arial, sans-serif" role="img" aria-label="grid-auto-rows 1fr makes all automatically created rows share the free space equally">
+  <rect x="0" y="0" width="520" height="320" fill="#f8f9fa"/>
+  <rect x="1" y="1" width="518" height="318" fill="none" stroke="#ced4da" stroke-width="2"/>
+  <text x="20" y="34" font-size="19" font-weight="700" fill="#212529">grid-auto-rows: 1fr</text>
+
+  <!-- grid with equal rows -->
+  <rect x="40" y="56" width="440" height="200" fill="#ffffff" stroke="#adb5bd" stroke-width="2"/>
+  <rect x="40" y="56" width="440" height="66" fill="#e7f1ff" stroke="#0d6efd"/>
+  <text x="60" y="96" font-size="14" fill="#0a58ca">row 1</text>
+  <text x="400" y="96" font-size="12" text-anchor="end" fill="#0a58ca">1fr</text>
+  <rect x="40" y="122" width="440" height="67" fill="#d0e2ff" stroke="#0d6efd"/>
+  <text x="60" y="163" font-size="14" fill="#0a58ca">row 2</text>
+  <text x="400" y="163" font-size="12" text-anchor="end" fill="#0a58ca">1fr</text>
+  <rect x="40" y="189" width="440" height="67" fill="#e7f1ff" stroke="#0d6efd"/>
+  <text x="60" y="230" font-size="14" fill="#0a58ca">row 3</text>
+  <text x="400" y="230" font-size="12" text-anchor="end" fill="#0a58ca">1fr</text>
+
+  <text x="40" y="288" font-size="14" fill="#495057">Every auto-created row gets an equal share</text>
+  <text x="40" y="308" font-size="13" fill="#6c757d">of the container height.</text>
+  <text x="330" y="296" font-family="Consolas, 'Courier New', monospace" font-size="13" fill="#495057">auto-rows = 1fr</text>
+</svg>

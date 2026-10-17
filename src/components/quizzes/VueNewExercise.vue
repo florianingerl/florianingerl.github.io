@@ -36,18 +36,18 @@
       <input style="flex-grow:1;" v-model="exercise.instruction" type="text" class="form-control" />
     </div>
 
-    <div v-if="exercise.type === 'multipleChoice'" style="display:flex; flex-direction:row; gap: 2px;" class="mb-3 mt-3">
+    <div v-if="exercise.type === 'multipleChoice'" style="display:flex; flex-direction:row; gap: 2px; flex-wrap: nowrap;" class="mb-3 mt-3">
       <label>Question:</label>
       <input style="flex-grow: 1;" v-model="exercise.question" type="text" class="form-control" />
     </div>
 
-    <Splitter>
+    <Splitter style="flex-grow: 1;">
       <SplitterPanel :size="50" :minSize="10">
         <OImageChooserAndDisplayer v-model="exercise.imageUrl" />
       </SplitterPanel>
 
       <SplitterPanel :size="50" :minSize="10">
-        <textarea
+        <textarea style="display: block; width: 100%; height: 100%; box-sizing: border-box;"
           v-if="exercise.type === 'gapText'"
           v-model="exercise.gapText"
           rows="3"
@@ -67,17 +67,17 @@
           </div>
         </div>
 
-        <div v-if="exercise.type === 'matching'" class="mb-3 mt-3">
-          <p>Sentences (at least 2, at most 5):</p>
-          <div
+        <div v-if="exercise.type === 'matching'"  class="mb-3 mt-3">
+          <p >Sentences (at least 2, at most 5):</p>
+          <div style="display: grid; grid-template-columns: auto 1fr auto 1fr;"
             v-for="(s, i) in sentences"
             :key="i"
             class="row mb-2 align-items-center"
           >
-            <label class="col-form-label col-sm-1">Part 1:</label>
-            <input v-model="s.part1" type="text" class="form-control col" />
-            <label class="col-form-label col-sm-1">Part 2:</label>
-            <input v-model="s.part2" type="text" class="form-control col" />
+            <label style="white-space: nowrap;">Part 1:</label>
+            <input v-model="s.part1" type="text" style="overflow: auto;" class="form-control col" placeholder="Part 1"/>
+            <label style="white-space: nowrap;">Part 2:</label>
+            <input v-model="s.part2" type="text" style="overflow: auto;" class="form-control col" placeholder="Part 2" />
             <button
               v-if="sentences.length > 2"
               class="col-sm-1 btn btn-secondary"

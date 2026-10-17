@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="320" viewBox="0 0 520 320" font-family="Segoe UI, Arial, sans-serif" role="img" aria-label="grid-template-columns with an fr track">
+  <rect x="0" y="0" width="520" height="320" fill="#f8f9fa"/>
+  <rect x="1" y="1" width="518" height="318" fill="none" stroke="#ced4da" stroke-width="2"/>
+  <text x="20" y="34" font-size="19" font-weight="700" fill="#212529">Which track size grows?</text>
+
+  <!-- grid frame -->
+  <rect x="40" y="60" width="440" height="180" fill="#ffffff" stroke="#adb5bd" stroke-width="2"/>
+
+  <!-- track A: fixed -->
+  <rect x="40" y="60" width="120" height="180" fill="#e7f1ff"/>
+  <rect x="40" y="60" width="120" height="180" fill="none" stroke="#adb5bd" stroke-width="2"/>
+  <text x="100" y="155" font-size="16" text-anchor="middle" fill="#495057">auto</text>
+  <text x="100" y="178" font-size="12" text-anchor="middle" fill="#6c757d">content size</text>
+
+  <!-- track B: fr -->
+  <rect x="160" y="60" width="320" height="180" fill="#d0e2ff"/>
+  <rect x="160" y="60" width="320" height="180" fill="none" stroke="#0d6efd" stroke-width="3"/>
+  <text x="320" y="142" font-size="26" text-anchor="middle" font-weight="700" fill="#0d6efd">1fr</text>
+  <text x="320" y="168" font-size="13" text-anchor="middle" fill="#0a58ca">one share of the FREE space</text>
+
+  <!-- double arrow showing leftover space -->
+  <path d="M170 205 H470" stroke="#0d6efd" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <text x="320" y="222" font-size="12" text-anchor="middle" fill="#0d6efd">fills all leftover space</text>
+
+  <text x="40" y="278" font-family="Consolas, 'Courier New', monospace" font-size="14" fill="#495057">grid-template-columns: auto 1fr;</text>
+</svg>

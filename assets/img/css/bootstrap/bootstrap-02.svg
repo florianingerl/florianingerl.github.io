@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="320" viewBox="0 0 520 320" font-family="Segoe UI, Arial, sans-serif" role="img" aria-label="Bootstrap reboot sets label to display inline-block">
+  <rect x="0" y="0" width="520" height="320" fill="#f8f9fa"/>
+  <rect x="1" y="1" width="518" height="318" fill="none" stroke="#ced4da" stroke-width="2"/>
+  <text x="20" y="34" font-size="19" font-weight="700" fill="#212529">reboot: label</text>
+
+  <!-- inline-block explanation -->
+  <rect x="40" y="60" width="180" height="150" fill="#ffffff" stroke="#adb5bd" stroke-width="2" stroke-dasharray="5 4"/>
+  <rect x="80" y="96" width="100" height="30" rx="4" fill="#d0e2ff" stroke="#0d6efd" stroke-width="2"/>
+  <text x="130" y="116" font-size="14" text-anchor="middle" fill="#0a58ca">label</text>
+  <text x="130" y="176" font-size="12" text-anchor="middle" fill="#6c757d">can take width,</text>
+  <text x="130" y="193" font-size="12" text-anchor="middle" fill="#6c757d">height &amp; margins</text>
+
+  <text x="250" y="112" font-size="14" fill="#212529">Stays in the text flow,</text>
+  <text x="250" y="134" font-size="14" fill="#212529">but behaves like a block</text>
+  <text x="250" y="156" font-size="14" fill="#212529">for sizing / spacing.</text>
+
+  <text x="40" y="256" font-family="Consolas, 'Courier New', monospace" font-size="15" fill="#495057">label { display: inline-block; }</text>
+  <text x="40" y="286" font-size="13" fill="#6c757d">so margin-bottom of .form-label can take effect</text>
+</svg>
