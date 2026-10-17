@@ -52,8 +52,8 @@ async function mockBackend(page: Page): Promise<void> {
   });
 }
 
-test.describe("Quiz-Layout: Inhalt neben dem Bild, Paginierung darunter", () => {
-  test("Frage und Antworten stehen direkt neben, die Paginierung unter dem Bild", async ({
+test.describe("Quiz-Layout: Splitter mit Bild links, Aufgabe rechts", () => {
+  test("Frage und Antworten stehen im rechten Panel, die Paginierung unter dem Bild", async ({
     page,
   }) => {
     await mockBackend(page);
@@ -65,13 +65,17 @@ test.describe("Quiz-Layout: Inhalt neben dem Bild, Paginierung darunter", () => 
     await expect(bild).toBeVisible();
     await expect(section.getByText("Was ist auf dem Bild zu sehen?")).toBeVisible();
 
+    // Der horizontale Splitter hat zwei Panels: links das Bild, rechts die Aufgabe.
+    const panels = section.locator(".p-splitter-panel");
+    await expect(panels).toHaveCount(2);
+
     const bildBox = await bild.boundingBox();
-    const inhaltBox = await section.locator(".vue-image__inhalt").boundingBox();
+    const inhaltBox = await panels.nth(1).boundingBox();
     const paginationBox = await section.locator("ul.pagination").boundingBox();
     if (!bildBox || !inhaltBox || !paginationBox) throw new Error("kein Layout");
 
-    // Der Inhalt beginnt direkt am rechten Bildrand (Toleranz 2px).
-    expect(Math.abs(inhaltBox.x - (bildBox.x + bildBox.width))).toBeLessThanOrEqual(2);
+    // Das rechte Panel beginnt rechts vom Bild (dazwischen liegt der Riegel).
+    expect(inhaltBox.x).toBeGreaterThanOrEqual(bildBox.x + bildBox.width - 2);
 
     // Die Paginierung steht unter dem Bild und beginnt an dessen linkem Rand.
     expect(paginationBox.y).toBeGreaterThanOrEqual(bildBox.y + bildBox.height - 2);
