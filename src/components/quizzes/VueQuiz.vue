@@ -250,6 +250,10 @@ import {
 import { useAuthStore } from "@/stores/auth";
 import { useFilterStore } from "@/stores/filter";
 import { bildGroesseImVollbild } from "@/utils/vollbild";
+import {
+  getAllSchoolsWhereThereisAtLeastOneExerciseWithThatSchoolInTheQuiz,
+  getAllSchoolsWhereTHereisAtLeastOneExerciseForThatSchoolInTheSubject,
+} from "@/utils/school";
 import type { Exercise, Lang, Quiz, QuizName, School, Topic } from "@/types/quiz";
 
 // "quiz" ist der Name eines Website-Quizzes (z.B. "deutsch"). Buch-Quizzes
@@ -531,14 +535,6 @@ function schulName(q: Exercise): string {
   return schools.value.find((x) => x._id === s)?.name ?? "";
 }
 
-// Die _id der Schule einer Aufgabe - egal ob der Server das School-Dokument
-// mitgeschickt hat (populate) oder nur die _id.
-function schulId(q: Exercise): string {
-  const s = q.school;
-  if (!s) return "";
-  return typeof s === "string" ? s : s._id ?? "";
-}
-
 // Gehoert die Aufgabe zum angezeigten Quiz? Ohne bekannte Quiz-_id (z.B. noch
 // nicht migrierte Daten) werden alle Aufgaben als zugehoerig betrachtet.
 function gehoertZumQuiz(q: Exercise): boolean {
@@ -547,30 +543,34 @@ function gehoertZumQuiz(q: Exercise): boolean {
   return quizId === currentQuizId.value;
 }
 
-// Nur die Schulen, die in diesem Quiz schon mindestens eine Aufgabe haben.
-// Sie erscheinen in der Schulauswahl der Filterzeile, des erweiterten
-// Filterdialogs und des Aufgaben-Formulars. Eine Schule ohne Aufgabe waere
-// dort nutzlos.
-const verfuegbareSchulen = computed<School[]>(() => {
-  // Alle bekannten Schulen (aus der Schulliste und aus den Aufgaben selbst).
-  const bekannt = new Map<string, School>();
-  schools.value.forEach((s) => {
-    if (s._id) bekannt.set(s._id, s);
-  });
-  const verwendet = new Set<string>();
-  questions.value.forEach((q) => {
-    if (!gehoertZumQuiz(q)) return;
-    const id = schulId(q);
-    if (!id) return;
-    verwendet.add(id);
-    // Die Schule kommt evtl. nur als eingebettetes Dokument in der Aufgabe vor.
-    const s = q.school;
-    if (s && typeof s !== "string" && !bekannt.has(id)) bekannt.set(id, s);
-  });
-  return [...bekannt.values()].filter(
-    (s) => s._id !== undefined && verwendet.has(s._id),
-  );
-});
+// Nur die Schulen, die im gewaehlten Umfang (scope) schon mindestens eine
+// Aufgabe haben. Sie erscheinen in der Schulauswahl der Filterzeile, des
+// erweiterten Filterdialogs und des Aufgaben-Formulars. Eine Schule ohne
+// Aufgabe waere dort nutzlos. Bei "subject" zaehlen alle Aufgaben desselben
+// Faches, bei "quiz" nur die dieses Quizzes.
+const verfuegbareSchulen = computed<School[]>(() =>
+  filter.value.scope === "subject"
+    ? getAllSchoolsWhereTHereisAtLeastOneExerciseForThatSchoolInTheSubject(
+        questions.value,
+        schools.value,
+        subject.value,
+      )
+    : getAllSchoolsWhereThereisAtLeastOneExerciseWithThatSchoolInTheQuiz(
+        questions.value,
+        schools.value,
+        currentQuizId.value,
+      ),
+);
+
+// Wechselt der Umfang ("nur dieses Quiz" <-> "ganzes Fach"), aendert sich die
+// Liste der waehlbaren Schulen. Damit keine Schule ausgewaehlt bleibt, die es
+// im neuen Umfang nicht mehr gibt, wird die Schulauswahl dann zurueckgesetzt.
+watch(
+  () => filter.value.scope,
+  () => {
+    filter.value.school = "";
+  },
+);
 
 // Frontend-Filterung: Quiz-Umfang ("nur dieses Quiz" oder "ganzes Fach"),
 // Theme, Schule, Ersteller und Suchwort werden hier angewandt.

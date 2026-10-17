@@ -9,11 +9,11 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref, watch } from "vue";
+import { computed, ref, watch } from "vue";
 import type { School } from "@/types/quiz";
 const props = defineProps<{ schools: School[]; quiz?: string; modelValue?: string }>();
 const emit = defineEmits<{ (e: "update:modelValue", value: string): void; (e: "school-selected", value: string): void }>();
-const schoolFilterId = ref(`schoolFilter-${props.quiz ?? Date.now().toString()}`);
+const schoolFilterId = computed(() => `schoolFilter-${props.quiz ?? ""}`);
 const selectedSchool = ref(props.modelValue ?? "");
 watch(() => props.modelValue, (v) => {
   if (v !== undefined) selectedSchool.value = v;

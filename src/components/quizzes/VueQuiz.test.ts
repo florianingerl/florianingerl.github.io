@@ -187,24 +187,24 @@ describe("VueQuiz: Aufgaben des Faches werden geladen und nach Umfang gefiltert"
   it("ueberlaesst den Umfang dem Filter", async () => {
     const wrapper = await mountQuiz();
 
-    // Eine Aufgabe dieses Quizzes ist sichtbar (Voreinstellung "this quiz"),
-    // die des anderen Quizzes ist ausgeblendet. Die Seitenzahl zeigt 1 Aufgabe.
+    // Voreinstellung "ganzes Fach": beide Aufgaben des Faches sind sichtbar
+    // (die Seitenzahl zeigt 2 Aufgaben).
     expect(aktuellAngezeigt(wrapper)).toMatchObject({ _id: "e1" });
     expect(wrapper.text()).not.toContain("No questions available.");
-    expect(wrapper.get('input[type="number"]').attributes("max")).toBe("0");
-
-    // Umstellung auf "ganzes Fach" zeigt beide Aufgaben (2 Seiten).
-    const filterStore = useFilterStore();
-    filterStore.filterFor("q1").scope = "subject";
-    await flushPromises();
-
     expect(wrapper.get('input[type="number"]').attributes("max")).toBe("1");
 
     // Zur zweiten Aufgabe blattern, es ist die des anderen Quizzes.
-    await wrapper
-      .get('button[title="Next exercise"]')
-      .trigger("click");
+    await wrapper.get('button[title="Next exercise"]').trigger("click");
     expect(aktuellAngezeigt(wrapper)).toMatchObject({ _id: "e2" });
+
+    // Umstellung auf "nur dieses Quiz" blendet die Aufgabe des anderen
+    // Quizzes aus (nur noch 1 Aufgabe).
+    const filterStore = useFilterStore();
+    filterStore.filterFor("q1").scope = "quiz";
+    await flushPromises();
+
+    expect(wrapper.get('input[type="number"]').attributes("max")).toBe("0");
+    expect(aktuellAngezeigt(wrapper)).toMatchObject({ _id: "e1" });
   });
 
   it("zeigt die Hinweis-Meldung, wenn keine Aufgaben da sind", async () => {
@@ -802,7 +802,9 @@ describe("VueQuiz: nach Schule filtern", () => {
 
   it("zeigt alle Aufgaben, solange keine Schule gewaehlt ist", async () => {
     const wrapper = await mountQuiz();
-    expect(wrapper.get('input[type="number"]').attributes("max")).toBe("2");
+    // Voreinstellung "ganzes Fach": alle vier Aufgaben des Faches, auch die
+    // des anderen Quizzes (e4).
+    expect(wrapper.get('input[type="number"]').attributes("max")).toBe("3");
   });
 
   it("zeigt nur die Aufgaben der gewaehlten Schule", async () => {
@@ -825,12 +827,37 @@ describe("VueQuiz: nach Schule filtern", () => {
 
   it("gibt nur die Schulen mit Aufgaben dieses Quizzes an die Filterzeile weiter", async () => {
     const wrapper = await mountQuiz();
-    // s1 und s2 kommen in Aufgaben dieses Quizzes vor, s3 nur in einem anderen
-    // Quiz und darf deshalb nicht erscheinen.
+    // Voreinstellung "ganzes Fach": s1, s2 und s3 kommen in Aufgaben des
+    // Faches vor.
+    expect(wrapper.findComponent(FilterComponent).props("schools")).toEqual([
+      ALLE_SCHULEN[0],
+      ALLE_SCHULEN[1],
+      ALLE_SCHULEN[2],
+    ]);
+
+    // Bei "nur dieses Quiz" bleiben s1 und s2 (Aufgaben dieses Quizzes), s3
+    // nur in einem anderen Quiz und darf deshalb nicht erscheinen.
+    useFilterStore().filterFor("q1").scope = "quiz";
+    await flushPromises();
     expect(wrapper.findComponent(FilterComponent).props("schools")).toEqual([
       ALLE_SCHULEN[0],
       ALLE_SCHULEN[1],
     ]);
+  });
+
+  it("setzt die gewaehlte Schule zurueck, wenn der Umfang wechselt", async () => {
+    const wrapper = await mountQuiz();
+    const filterStore = useFilterStore();
+
+    filterStore.filterFor("q1").school = "9.Klasse Gymnasium Bayern";
+    await flushPromises();
+    expect(aktuellAngezeigt(wrapper)).toMatchObject({ _id: "e1" });
+
+    // Der Wechsel des Umfangs aendert die Schulauswahl und verwirft deshalb
+    // die bisher gewaehlte Schule.
+    filterStore.filterFor("q1").scope = "quiz";
+    await flushPromises();
+    expect(filterStore.filterFor("q1").school).toBe("");
   });
 });
 
