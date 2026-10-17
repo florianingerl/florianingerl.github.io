@@ -85,6 +85,9 @@ onMounted(async () => {
   align-items: center;
   flex-wrap: nowrap;
   gap: 1rem;
+  /* Als Container fuer die Container-Abfrage im MTopicCreator (schmaler
+     Zustand klappt die Anlage zu einem Overlay-Knopf zusammen). */
+  container-type: inline-size;
 }
 
 .topic-chooser {

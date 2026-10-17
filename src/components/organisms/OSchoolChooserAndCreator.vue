@@ -99,7 +99,10 @@ onMounted(ladeSchulen);
   flex-direction: row;
   flex-wrap: nowrap;
   gap: 2px;
-  overflow: auto;
+  /* Kein overflow: auto, damit das Overlay der Anlage nicht abgeschnitten wird.
+     Als Container dient der Behälter der Container-Abfrage im MSchoolCreator. */
+  overflow: visible;
   align-items: center;
+  container-type: inline-size;
 }
 </style>

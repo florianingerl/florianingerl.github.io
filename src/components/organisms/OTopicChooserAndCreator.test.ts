@@ -120,7 +120,10 @@ describe("OTopicChooserAndCreator", () => {
 
     const erstellen = wrapper.findComponent(MTopicCreator);
     await erstellen.get("input").setValue("Grammaire");
-    await erstellen.get("button").trigger("click");
+    await erstellen
+      .findAll("button")
+      .find((b) => b.text().trim() === "Add")!
+      .trigger("click");
     await flushPromises();
 
     // Jetzt trifft die urspruenglich angeforderte Themenliste ein.
@@ -128,7 +131,10 @@ describe("OTopicChooserAndCreator", () => {
     await flushPromises();
 
     await erstellen.get("input").setValue("Pronoms");
-    await erstellen.get("button").trigger("click");
+    await erstellen
+      .findAll("button")
+      .find((b) => b.text().trim() === "Add")!
+      .trigger("click");
     await flushPromises();
 
     // "Pronoms" wurde mit "Grammaire" als Eltern gespeichert ...

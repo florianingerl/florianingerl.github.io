@@ -103,3 +103,64 @@ test.describe("Exercise editor: Image url", () => {
     await expect(imageUrlInput(section)).toBeVisible();
   });
 });
+
+// Bei breitem Layout bleiben die Anlagen von Schule und Thema nebeneinander
+// sichtbar; wird der Behälter zu schmal, klappen sie (per Container-Abfrage) zu
+// einem Knopf zusammen, der das Formular als Overlay oeffnet.
+test.describe("Exercise editor: Anlagen klappen bei schmalem Layout ein", () => {
+  test.describe("breites Layout", () => {
+    test.use({ viewport: { width: 1400, height: 900 } });
+
+    test("Schule und Thema bleiben inline sichtbar", async ({ page }) => {
+      await mockBackend(page, []);
+      await page.goto("/");
+      const section = page.locator("#englisch");
+      await section.getByTitle("Add a new exercise").click();
+
+      await expect(section.locator("#newSchoolName")).toBeVisible();
+      await expect(section.locator("#newTopicTitle")).toBeVisible();
+      await expect(section.locator(".school-creator__toggle")).toBeHidden();
+      await expect(section.locator(".topic-creator__toggle")).toBeHidden();
+    });
+  });
+
+  test.describe("schmales Layout", () => {
+    test.use({ viewport: { width: 420, height: 900 } });
+
+    test("die Schul-Anlage wird zum Overlay-Knopf", async ({ page }) => {
+      await mockBackend(page, []);
+      await page.goto("/");
+      const section = page.locator("#englisch");
+      await section.getByTitle("Add a new exercise").click();
+
+      const umschalter = section.locator(".school-creator__toggle");
+      await expect(umschalter).toBeVisible();
+      await expect(section.locator("#newSchoolName")).toBeHidden();
+
+      await umschalter.click();
+      await expect(section.locator("#newSchoolName")).toBeVisible();
+
+      // Escape schliesst das Overlay wieder.
+      await page.keyboard.press("Escape");
+      await expect(section.locator("#newSchoolName")).toBeHidden();
+    });
+
+    test("die Themen-Anlage wird zum Overlay-Knopf", async ({ page }) => {
+      await mockBackend(page, []);
+      await page.goto("/");
+      const section = page.locator("#englisch");
+      await section.getByTitle("Add a new exercise").click();
+
+      const umschalter = section.locator(".topic-creator__toggle");
+      await expect(umschalter).toBeVisible();
+      await expect(section.locator("#newTopicTitle")).toBeHidden();
+
+      await umschalter.click();
+      await expect(section.locator("#newTopicTitle")).toBeVisible();
+
+      // Ein Klick ausserhalb schliesst das Overlay wieder.
+      await page.locator("body").click({ position: { x: 5, y: 5 } });
+      await expect(section.locator("#newTopicTitle")).toBeHidden();
+    });
+  });
+});

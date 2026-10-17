@@ -1,10 +1,17 @@
-import { flushPromises, mount } from "@vue/test-utils";
+import { flushPromises, mount, type VueWrapper } from "@vue/test-utils";
 import { http, HttpResponse } from "msw";
 import { describe, expect, it, vi } from "vitest";
+import { nextTick } from "vue";
 import { API_URL } from "@/api";
 import { server } from "@/mocks/server";
 import type { School } from "@/types/quiz";
 import MSchoolCreator from "./MSchoolCreator.vue";
+
+// Der "Add"-Knopf (neben ihm gibt es noch den Umschalt-Knopf fuer den schmalen
+// Zustand).
+function addKnopf(wrapper: VueWrapper) {
+  return wrapper.findAll("button").find((b) => b.text().trim() === "Add")!;
+}
 
 // Merkt sich den an den "Server" (MSW) geschickten Namen.
 function postFangen(): { gesendet: () => string | null } {
@@ -24,7 +31,7 @@ describe("MSchoolCreator: neue Schule anlegen", () => {
 
     expect(wrapper.text()).toContain("New school");
     expect(wrapper.find('input[type="text"]').exists()).toBe(true);
-    expect(wrapper.get("button").text()).toBe("Add");
+    expect(addKnopf(wrapper).text()).toBe("Add");
   });
 
   it("legt die Schule an und meldet sie", async () => {
@@ -32,7 +39,7 @@ describe("MSchoolCreator: neue Schule anlegen", () => {
     const wrapper = mount(MSchoolCreator);
 
     await wrapper.get("input").setValue("Uni Aachen");
-    await wrapper.get("button").trigger("click");
+    await addKnopf(wrapper).trigger("click");
     await flushPromises();
 
     expect(gesendet()).toBe("Uni Aachen");
@@ -56,12 +63,52 @@ describe("MSchoolCreator: neue Schule anlegen", () => {
 
     const wrapper = mount(MSchoolCreator);
 
-    await wrapper.get("button").trigger("click");
+    await addKnopf(wrapper).trigger("click");
     await flushPromises();
 
     expect(alertSpy).toHaveBeenCalled();
     expect(angefragt).toBe(false);
     expect(wrapper.emitted("school-created")).toBeFalsy();
     alertSpy.mockRestore();
+  });
+
+  it("klappt im schmalen Zustand ein Overlay auf und per Escape wieder zu", async () => {
+    const wrapper = mount(MSchoolCreator, { attachTo: document.body });
+
+    const umschalter = wrapper.get(".school-creator__toggle");
+    await umschalter.trigger("click");
+    expect(wrapper.classes()).toContain("school-creator--open");
+
+    document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape" }));
+    await nextTick();
+    expect(wrapper.classes()).not.toContain("school-creator--open");
+
+    wrapper.unmount();
+  });
+
+  it("schliesst das Overlay bei einem Klick ausserhalb", async () => {
+    const wrapper = mount(MSchoolCreator, { attachTo: document.body });
+
+    await wrapper.get(".school-creator__toggle").trigger("click");
+    expect(wrapper.classes()).toContain("school-creator--open");
+
+    document.dispatchEvent(new MouseEvent("mousedown"));
+    await nextTick();
+    expect(wrapper.classes()).not.toContain("school-creator--open");
+
+    wrapper.unmount();
+  });
+
+  it("schliesst das Overlay nach dem Anlegen", async () => {
+    postFangen();
+    const wrapper = mount(MSchoolCreator, { attachTo: document.body });
+
+    await wrapper.get(".school-creator__toggle").trigger("click");
+    await wrapper.get("input").setValue("Uni Aachen");
+    await addKnopf(wrapper).trigger("click");
+    await flushPromises();
+
+    expect(wrapper.classes()).not.toContain("school-creator--open");
+    wrapper.unmount();
   });
 });
