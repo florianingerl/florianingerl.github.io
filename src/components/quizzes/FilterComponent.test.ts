@@ -49,7 +49,8 @@ describe("FilterComponent: Filterzeile", () => {
   it("schreibt die gewaehlte Schule in den Filter des Quiz", async () => {
     const wrapper = mountFilter();
 
-    await wrapper.get("#schoolFilter-french").setValue("LMU Muenchen");
+    // Die Auswahl traegt die _id; im Filter steht der Schulname.
+    await wrapper.get("#schoolFilter-french").setValue("s2");
 
     const filterStore = useFilterStore();
     expect(filterStore.filterFor("french").school).toBe("LMU Muenchen");

@@ -132,9 +132,9 @@ test.describe("Schulfilter und Deep-Link", () => {
       franzoesisch.locator(".topic-filter button").first(),
     ).toContainText("Verbes reflechi");
 
-    // Die Schulauswahl steht auf der Schule aus dem Link.
+    // Die Schulauswahl steht auf der Schule aus dem Link (Wert ist die _id).
     await expect(franzoesisch.locator("#schoolFilter-q-french")).toHaveValue(
-      "9.Klasse Gymnasium Bayern",
+      "s-bayern",
     );
 
     // Nur die Aufgabe dieser Schule bleibt uebrig (die andere ist ausgeblendet).

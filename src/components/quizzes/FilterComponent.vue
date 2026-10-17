@@ -7,7 +7,13 @@
     <label class="form-label mb-0">Filter for topic:</label>
     <VueTopicFilter v-model="filter.topicId" :topics="topics" />
 
-    <VueSchoolFilter v-model="filter.school" :schools="schools" :quiz="props.quiz" />
+    <MSchoolChooser
+      :schools="schools"
+      :model-value="gewaehlteSchulId"
+      :select-id="`schoolFilter-${props.quiz}`"
+      empty-label="All schools"
+      @update:model-value="schuleGewaehlt"
+    />
 
     <button
       type="button"
@@ -25,7 +31,7 @@ import { computed } from "vue";
 import { useFilterStore } from "@/stores/filter";
 import type { School, Topic } from "@/types/quiz";
 import VueTopicFilter from "./VueTopicFilter.vue";
-import VueSchoolFilter from "./VueSchoolFilter.vue";
+import MSchoolChooser from "@/components/molecules/MSchoolChooser.vue";
 
 const props = defineProps<{
   // Schluessel des Filters im Filter-Store: der Name eines Website-Quizzes
@@ -45,6 +51,16 @@ const filterStore = useFilterStore();
 // Derselbe Filter wie in VueQuiz: Der Schluessel entscheidet, welcher Eintrag
 // im Store gemeint ist.
 const filter = computed(() => filterStore.filterFor(props.quiz));
+
+// Der Filter speichert den Schulnamen, die Auswahl arbeitet aber mit der _id.
+// Die Uebersetzung passiert hier ueber die Schulliste.
+const gewaehlteSchulId = computed(
+  () => props.schools.find((s) => s.name === filter.value.school)?._id ?? "",
+);
+
+function schuleGewaehlt(id: string): void {
+  filter.value.school = props.schools.find((s) => s._id === id)?.name ?? "";
+}
 </script>
 
 <style scoped>

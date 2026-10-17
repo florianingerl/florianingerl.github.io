@@ -13,29 +13,12 @@
     </div>
 
     <div class="row">
-      <div class="col-12 mt-3 d-flex flex-wrap align-items-center gap-2">
-        <label class="form-label mb-0" for="exerciseSchool">School</label>
-        <select
-          id="exerciseSchool"
+      <div class="col-12 mt-3">
+        <OSchoolChooserAndCreator
           v-model="gewaehlteSchule"
-          class="form-select w-auto"
-        >
-          <option value="">No school</option>
-          <option v-for="s in schulen" :key="s._id" :value="s._id">
-            {{ s.name }}
-          </option>
-        </select>
-        <label class="form-label mb-0" for="newSchoolName">New school</label>
-        <input
-          id="newSchoolName"
-          v-model="neueSchule"
-          type="text"
-          class="form-control w-auto"
-          placeholder="e.g. Hochschule Regensburg"
+          :schools="schools"
+          @school-created="schuleAngelegt"
         />
-        <button type="button" class="btn btn-primary" @click="schuleAnlegen">
-          Add
-        </button>
       </div>
     </div>
 
@@ -120,39 +103,15 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, computed } from 'vue'
+import { onMounted, ref } from 'vue'
 import OImageChooserAndDisplayer from '@/components/organisms/OImageChooserAndDisplayer.vue'
 import OTopicChooserAndCreator from '@/components/organisms/OTopicChooserAndCreator.vue'
+import OSchoolChooserAndCreator from '@/components/organisms/OSchoolChooserAndCreator.vue'
 import type { Exercise, QuizName , School, Topic, TwoPartSentences } from '@/types/quiz'
-import { createSchool, fehlerText } from '@/api';
 
-// Die Schulen, aus denen die Schule der Aufgabe gewaehlt wird. Die Liste kommt
-// vom Quiz (props.schools) und enthaelt nur Schulen, die im Quiz schon eine
-// Aufgabe haben. Eine hier neu angelegte Schule kommt dazu (neueSchulen),
-// ebenso die Schule der bearbeiteten Aufgabe, damit die Auswahl sichtbar bleibt.
-const neueSchulen = ref<School[]>([])
-const schulen = computed<School[]>(() => {
-  const liste: School[] = [...(props.schools ?? [])]
-  const vorhanden = new Set(
-    liste.map((s) => s._id).filter((id): id is string => !!id),
-  )
-  const schuleDerAufgabe = props.questionOfQuiz?.school
-  const extra: School[] = [...neueSchulen.value]
-  if (schuleDerAufgabe && typeof schuleDerAufgabe !== 'string') {
-    extra.push(schuleDerAufgabe)
-  }
-  for (const s of extra) {
-    if (s._id && !vorhanden.has(s._id)) {
-      liste.push(s)
-      vorhanden.add(s._id)
-    }
-  }
-  return liste
-})
-// _id der gewaehlten Schule oder "" fuer "keine Schule".
+// _id der gewaehlten Schule oder "" fuer "keine Schule". Die Schulauswahl
+// samt Anlage neuer Schulen steckt in OSchoolChooserAndCreator.
 const gewaehlteSchule = ref<string>('');
-// Der Name im Feld "New school".
-const neueSchule = ref<string>('');
 
 const props = defineProps<{
   // Name eines Website-Quizzes (z.B. "deutsch") oder - bei einem Buch-Quizz -
@@ -174,26 +133,10 @@ const emit = defineEmits<{
   (e: 'cancel-clicked'): void
 }>()
 
-// Legt die im Feld "New school" eingetippte Schule an, waehlt sie aus und
-// macht sie zur Schule dieser Aufgabe. Der Server liefert eine schon
-// vorhandene Schule mit demselben Namen zurueck, statt sie doppelt anzulegen.
-async function schuleAnlegen(): Promise<void> {
-  const name = neueSchule.value.trim()
-  if (!name) {
-    alert('Please enter a name for the new school.')
-    return
-  }
-  try {
-    const schule = await createSchool(name)
-    if (!neueSchulen.value.some((s) => s._id === schule._id)) {
-      neueSchulen.value.push(schule)
-    }
-    gewaehlteSchule.value = schule._id ?? ''
-    neueSchule.value = ''
-    emit('school-created', schule)
-  } catch (e) {
-    alert(`The school could not be saved: ${fehlerText(e, 'unknown error')}`)
-  }
+// Eine neu angelegte Schule wird ans Quiz weitergemeldet, damit es seine
+// Schulenliste pflegen kann.
+function schuleAngelegt(schule: School): void {
+  emit('school-created', schule)
 }
 
 const exercise = ref<Exercise>({

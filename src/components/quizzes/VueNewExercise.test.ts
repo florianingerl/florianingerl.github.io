@@ -6,6 +6,7 @@ import { server } from "@/mocks/server";
 import type { Exercise, Topic } from "@/types/quiz";
 import OTopicChooserAndCreator from "@/components/organisms/OTopicChooserAndCreator.vue";
 import OImageChooserAndDisplayer from "@/components/organisms/OImageChooserAndDisplayer.vue";
+import OSchoolChooserAndCreator from "@/components/organisms/OSchoolChooserAndCreator.vue";
 import VueNewExercise from "./VueNewExercise.vue";
 import { bildUrl, uploadPastedImage } from "@/utils/images";
 
@@ -205,26 +206,17 @@ describe("VueNewExercise: Thema ueber den Themenwaehler", () => {
 });
 
 describe("VueNewExercise: Schule der Aufgabe", () => {
-  const schulen = [
-    { _id: "s1", name: "Hochschule Regensburg" },
-    { _id: "s2", name: "LMU Muenchen" },
-  ];
+  const schule = { _id: "s1", name: "Hochschule Regensburg" };
 
-  it("waehlt eine vorhandene Schule aus und speichert deren _id", async () => {
-    const wrapper = mount(VueNewExercise, {
-      props: { quiz: "english", editMode: false, schools: schulen },
-      shallow: true,
-    });
+  it("uebernimmt die im Schullaender gewaehlte Schule in die Aufgabe", async () => {
+    const wrapper = await mountForm();
+
+    const waehler = wrapper.findComponent(OSchoolChooserAndCreator);
+    expect(waehler.exists()).toBe(true);
+
+    waehler.vm.$emit("update:modelValue", "s1");
     await flushPromises();
 
-    const auswahl = wrapper.get("#exerciseSchool");
-    expect(auswahl.findAll("option").map((o) => o.text())).toEqual([
-      "No school",
-      "Hochschule Regensburg",
-      "LMU Muenchen",
-    ]);
-
-    await auswahl.setValue("s2");
     await wrapper
       .findAll("button")
       .find((b) => b.text().trim() === "Save")!
@@ -232,84 +224,28 @@ describe("VueNewExercise: Schule der Aufgabe", () => {
 
     const emitted = wrapper.emitted("new-exercise-created");
     expect(emitted).toBeTruthy();
-    expect((emitted![0][0] as Exercise).school).toBe("s2");
+    expect((emitted![0][0] as Exercise).school).toBe("s1");
   });
 
-  it("legt mit 'Add' eine neue Schule an, waehlt sie aus und meldet sie", async () => {
-    const wrapper = mount(VueNewExercise, {
-      props: { quiz: "english", editMode: false, schools: [] },
-      shallow: true,
-    });
+  it("meldet eine neu angelegte Schule ans Quiz weiter", async () => {
+    const wrapper = await mountForm();
+
+    wrapper.findComponent(OSchoolChooserAndCreator).vm.$emit("school-created", schule);
     await flushPromises();
 
-    await wrapper.get("#newSchoolName").setValue("Uni Aachen");
-    await wrapper
-      .findAll("button")
-      .find((b) => b.text().trim() === "Add")!
-      .trigger("click");
-    await flushPromises();
+    expect(wrapper.emitted("school-created")?.[0][0]).toEqual(schule);
+  });
 
-    // Die neue Schule wurde gemeldet und ist ausgewaehlt.
-    const gemeldet = wrapper.emitted("school-created");
-    expect(gemeldet).toBeTruthy();
-    expect(gemeldet![0][0]).toEqual({ _id: "mocked-school-id", name: "Uni Aachen" });
-    expect(
-      (wrapper.get("#exerciseSchool").element as HTMLSelectElement).value,
-    ).toBe("mocked-school-id");
+  it("speichert keine Schule, wenn keine gewaehlt wurde", async () => {
+    const wrapper = await mountForm();
 
     await wrapper
       .findAll("button")
       .find((b) => b.text().trim() === "Save")!
       .trigger("click");
+
     const emitted = wrapper.emitted("new-exercise-created");
-    expect((emitted![0][0] as Exercise).school).toBe("mocked-school-id");
-  });
-
-  it("behaelt eine neu angelegte Schule, wenn sich die Schulliste aendert", async () => {
-    const wrapper = mount(VueNewExercise, {
-      props: { quiz: "english", editMode: false, schools: [] },
-      shallow: true,
-    });
-    await flushPromises();
-
-    await wrapper.get("#newSchoolName").setValue("Uni Aachen");
-    await wrapper
-      .findAll("button")
-      .find((b) => b.text().trim() === "Add")!
-      .trigger("click");
-    await flushPromises();
-
-    // Das Quiz laedt die Schulliste neu; die frische Schule hat noch keine
-    // Aufgabe und ist deshalb nicht dabei. Die Auswahl darf sie nicht verlieren.
-    await wrapper.setProps({ schools: [{ _id: "s9", name: "Andere Uni" }] });
-    await flushPromises();
-
-    const optionen = wrapper
-      .get("#exerciseSchool")
-      .findAll("option")
-      .map((o) => o.text());
-    expect(optionen).toContain("Uni Aachen");
-    expect(
-      (wrapper.get("#exerciseSchool").element as HTMLSelectElement).value,
-    ).toBe("mocked-school-id");
-  });
-
-  it("legt ohne Namen im Feld 'New school' nichts an", async () => {
-    const alertSpy = vi.spyOn(window, "alert").mockImplementation(() => {});
-    const wrapper = mount(VueNewExercise, {
-      props: { quiz: "english", editMode: false, schools: [] },
-      shallow: true,
-    });
-    await flushPromises();
-
-    await wrapper
-      .findAll("button")
-      .find((b) => b.text().trim() === "Add")!
-      .trigger("click");
-    await flushPromises();
-
-    expect(alertSpy).toHaveBeenCalled();
-    expect(wrapper.emitted("school-created")).toBeFalsy();
-    alertSpy.mockRestore();
+    expect(emitted).toBeTruthy();
+    expect((emitted![0][0] as Exercise).school).toBeUndefined();
   });
 });
