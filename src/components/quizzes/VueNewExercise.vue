@@ -31,14 +31,14 @@
       </select>
     </div>
 
-    <div v-if="exercise.type !== 'multipleChoice'" class="mb-3 mt-3">
-      <label class="form-label">Instruction:</label>
-      <input v-model="exercise.instruction" type="text" class="form-control" />
+    <div v-if="exercise.type !== 'multipleChoice'" style="display:flex; flex-direction: row; gap: 2px;" class="mb-3 mt-3">
+      <label>Instruction:</label>
+      <input style="flex-grow:1;" v-model="exercise.instruction" type="text" class="form-control" />
     </div>
 
-    <div v-if="exercise.type === 'multipleChoice'" class="mb-3 mt-3">
-      <label class="form-label">Question:</label>
-      <input v-model="exercise.question" type="text" class="form-control" />
+    <div v-if="exercise.type === 'multipleChoice'" style="display:flex; flex-direction:row; gap: 2px;" class="mb-3 mt-3">
+      <label>Question:</label>
+      <input style="flex-grow: 1;" v-model="exercise.question" type="text" class="form-control" />
     </div>
 
     <Splitter>
