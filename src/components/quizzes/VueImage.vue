@@ -4,7 +4,6 @@
       v-if="imageUrl"
       class="vue-image__img"
       :src="imageUrl"
-      @click="imageClicked"
     />
     <!-- Direkt neben dem Bild: die Frage/Anweisung und die Antworten. -->
     <div class="vue-image__inhalt">
@@ -18,14 +17,7 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{ imageUrl?: string }>();
-
-function imageClicked(): void {
-  const fullPage = document.getElementById("fullpage");
-  if (!fullPage || !props.imageUrl) return;
-  fullPage.style.backgroundImage = `url(${props.imageUrl})`;
-  fullPage.style.display = "block";
-}
+defineProps<{ imageUrl?: string }>();
 </script>
 
 <style scoped>

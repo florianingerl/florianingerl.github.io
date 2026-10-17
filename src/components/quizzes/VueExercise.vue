@@ -13,7 +13,6 @@
             class="vue-image__img"
             :src="exercise.imageUrl"
             :alt="exercise.question ?? exercise.instruction ?? ''"
-            @click="imageClicked"
           />
         </div>
         <!-- Die Paginierung steht direkt unter dem Bild, wie bisher. -->
@@ -84,15 +83,6 @@ const exerciseProps = computed(() =>
     ? { question: props.exercise, lg: props.lg }
     : { exercise: props.exercise, lg: props.lg },
 )
-
-// Klick auf das Bild zeigt es als Hintergrund der ganzen Seite (wie bisher in
-// VueImage).
-function imageClicked(): void {
-  const fullPage = document.getElementById('fullpage')
-  if (!fullPage || !props.exercise.imageUrl) return
-  fullPage.style.backgroundImage = `url(${props.exercise.imageUrl})`
-  fullPage.style.display = 'block'
-}
 </script>
 
 <style scoped>
@@ -109,7 +99,6 @@ function imageClicked(): void {
   height: 200px;
   object-fit: cover;
   object-position: center;
-  cursor: pointer;
 }
 
 /* Der Inhalt rechts scrollt bei Bedarf, statt das Layout zu sprengen. */

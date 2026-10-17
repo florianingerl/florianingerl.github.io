@@ -1543,20 +1543,6 @@ section {
 }
 
 
-#fullpage {
-	display: none;
-	position: fixed;
-	z-index: 9999;
-	top: 0;
-	left: 0;
-	width: 100vw;
-	height: 100vh;
-	background-size: contain;
-	background-repeat: no-repeat no-repeat;
-	background-position: center center;
-	background-color: black;
-}
-
 .paypal-hinweis {
   border: 2px solid #ffc439;
   border-radius: 6px;
