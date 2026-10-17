@@ -20,6 +20,9 @@ async function mountForm() {
   const wrapper = mount(VueNewExercise, {
     props: { quiz: "english", editMode: false },
     shallow: true,
+    // Beim shallow mount rendern die Splitter-Stubs ihre Slots nicht
+    // automatisch; ohne dies waeren die Kinder der Panels unsichtbar.
+    global: { renderStubDefaultSlot: true },
   });
   await flushPromises();
   return wrapper;

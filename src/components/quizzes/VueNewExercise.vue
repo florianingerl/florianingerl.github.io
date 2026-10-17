@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-
     <div class="row">
       <div class="col-12 mt-3">
         <OTopicChooserAndCreator
@@ -42,58 +41,66 @@
       <input v-model="exercise.question" type="text" class="form-control" />
     </div>
 
-    <div style="display: flex">
-      <OImageChooserAndDisplayer v-model="exercise.imageUrl" />
+    <Splitter>
+      <SplitterPanel :size="50" :minSize="10">
+        <OImageChooserAndDisplayer v-model="exercise.imageUrl" />
+      </SplitterPanel>
 
-      <textarea v-if="exercise.type === 'gapText'" v-model="exercise.gapText" rows="3"></textarea>
+      <SplitterPanel :size="50" :minSize="10">
+        <textarea
+          v-if="exercise.type === 'gapText'"
+          v-model="exercise.gapText"
+          rows="3"
+        ></textarea>
 
-      <div v-if="exercise.type === 'multipleChoice'">
-        <ul class="list-group">
-          <li v-for="(o, idx) in allOptions" :key="idx" class="list-group-item">
-            {{ o }}<span v-if="idx === 0"> ✓ (richtige Antwort)</span>
-          </li>
-        </ul>
-        <div class="mb-3 mt-3">
-          <label class="form-label">New option (die erste ist die richtige):</label>
-          <input v-model="newOption" type="text" class="form-control" />
-          <button @click="addOption">Add</button>
-          <button @click="allOptions = []">Clear</button>
+        <div v-if="exercise.type === 'multipleChoice'">
+          <ul class="list-group">
+            <li v-for="(o, idx) in allOptions" :key="idx" class="list-group-item">
+              {{ o }}<span v-if="idx === 0"> ✓ (richtige Antwort)</span>
+            </li>
+          </ul>
+          <div class="mb-3 mt-3">
+            <label class="form-label">New option (die erste ist die richtige):</label>
+            <input v-model="newOption" type="text" class="form-control" />
+            <button @click="addOption">Add</button>
+            <button @click="allOptions = []">Clear</button>
+          </div>
         </div>
-      </div>
 
-      <div v-if="exercise.type === 'matching'" class="mb-3 mt-3">
-        <p>Sentences (at least 2, at most 5):</p>
-        <div
-          v-for="(s, i) in sentences"
-          :key="i"
-          class="row mb-2 align-items-center"
-        >
-          <label class="col-form-label col-sm-1">Part 1:</label>
-          <input v-model="s.part1" type="text" class="form-control col" />
-          <label class="col-form-label col-sm-1">Part 2:</label>
-          <input v-model="s.part2" type="text" class="form-control col" />
-          <button
-            v-if="sentences.length > 2"
-            class="col-sm-1 btn btn-secondary"
-            @click="sentences.splice(i, 1)"
+        <div v-if="exercise.type === 'matching'" class="mb-3 mt-3">
+          <p>Sentences (at least 2, at most 5):</p>
+          <div
+            v-for="(s, i) in sentences"
+            :key="i"
+            class="row mb-2 align-items-center"
           >
-            Remove
+            <label class="col-form-label col-sm-1">Part 1:</label>
+            <input v-model="s.part1" type="text" class="form-control col" />
+            <label class="col-form-label col-sm-1">Part 2:</label>
+            <input v-model="s.part2" type="text" class="form-control col" />
+            <button
+              v-if="sentences.length > 2"
+              class="col-sm-1 btn btn-secondary"
+              @click="sentences.splice(i, 1)"
+            >
+              Remove
+            </button>
+          </div>
+          <button
+            v-if="sentences.length < 5"
+            class="btn btn-secondary"
+            @click="sentences.push({ part1: '', part2: '' })"
+          >
+            Add sentence
           </button>
         </div>
-        <button
-          v-if="sentences.length < 5"
-          class="btn btn-secondary"
-          @click="sentences.push({ part1: '', part2: '' })"
-        >
-          Add sentence
-        </button>
-      </div>
 
-      <div v-if="exercise.type === 'wordOrder'" class="mb-3 mt-3">
-        <label class="form-label">Sentence (it will be shown shuffled):</label>
-        <input v-model="wordOrderSentence" type="text" class="form-control" />
-      </div>
-    </div>
+        <div v-if="exercise.type === 'wordOrder'" class="mb-3 mt-3">
+          <label class="form-label">Sentence (it will be shown shuffled):</label>
+          <input v-model="wordOrderSentence" type="text" class="form-control" />
+        </div>
+      </SplitterPanel>
+    </Splitter>
 
     <div class="row justify-center">
       <button class="col btn-primary btn" @click="save">Save</button>
@@ -103,15 +110,18 @@
 </template>
 
 <script setup lang="ts">
+import Splitter from 'primevue/splitter'
+import SplitterPanel from 'primevue/splitterpanel'
+
 import { onMounted, ref } from 'vue'
 import OImageChooserAndDisplayer from '@/components/organisms/OImageChooserAndDisplayer.vue'
 import OTopicChooserAndCreator from '@/components/organisms/OTopicChooserAndCreator.vue'
 import OSchoolChooserAndCreator from '@/components/organisms/OSchoolChooserAndCreator.vue'
-import type { Exercise, QuizName , School, Topic, TwoPartSentences } from '@/types/quiz'
+import type { Exercise, QuizName, School, Topic, TwoPartSentences } from '@/types/quiz'
 
 // _id der gewaehlten Schule oder "" fuer "keine Schule". Die Schulauswahl
 // samt Anlage neuer Schulen steckt in OSchoolChooserAndCreator.
-const gewaehlteSchule = ref<string>('');
+const gewaehlteSchule = ref<string>('')
 
 const props = defineProps<{
   // Name eines Website-Quizzes (z.B. "deutsch") oder - bei einem Buch-Quizz -
@@ -159,16 +169,15 @@ const sentences = ref<TwoPartSentences[]>([
 ])
 // Das im Themen-Baum gewaehlte Thema wird das Thema der Aufgabe.
 function onTopicSelected(topic: Topic | null): void {
-  exercise.value.topic = topic ?? undefined;
+  exercise.value.topic = topic ?? undefined
 }
 
 // Ein neu angelegtes Thema ist schon gespeichert (mit _id) und wird gleich
 // das Thema der Aufgabe; das Quiz pflegt es in seine Themenliste ein.
 function onTopicCreated(topic: Topic): void {
-  exercise.value.topic = topic;
-  emit('topic-created', topic);
+  exercise.value.topic = topic
+  emit('topic-created', topic)
 }
-
 
 function addOption(): void {
   if (!newOption.value) return
