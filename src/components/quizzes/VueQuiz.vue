@@ -178,6 +178,12 @@
       :schools="verfuegbareSchulen"
       @cancel-clicked="dialog = null"
     />
+
+    <!-- Kurzhinweis unten rechts, wenn das Aendern von Thema oder Schule den
+         Link in die Zwischenablage kopiert hat. -->
+    <div v-if="kopierHinweis" class="kopier-hinweis" role="status">
+      {{ kopierHinweis }}
+    </div>
   </div>
 </template>
 
@@ -202,6 +208,7 @@ import VueProfile from "./VueProfile.vue";
 import VueFilterDialog from "./VueFilterDialog.vue";
 import FilterComponent from "./FilterComponent.vue";
 import LoginToEditComponent from "./LoginToEditComponent.vue";
+import { QUIZ_ANKER } from "./quizAnker";
 import {
   API_URL,
   createExercise,
@@ -705,19 +712,24 @@ function normalisiert(s: string): string {
 }
 
 // Ein Link wie
-// "#franzoesisch?frenchtopic=verbesreflechi&frenchschool=9klasseGymnasiumBayern"
-// springt zum Quiz und waehlt dort schon Thema und Schule aus. Die Parameternamen
-// fangen mit dem Namen des Quiz an (frenchtopic/frenchschool), damit die Links
-// mehrerer Quizze auf derselben Seite eindeutig sind.
+// "#franzoesisch?topic=verbesreflechi&school=9klasseGymnasiumBayern"
+// springt zum Quiz und waehlt dort schon Thema und Schule aus. Die generischen
+// Parameter topic/school gelten nur, wenn der Anker der URL zu diesem Quiz
+// gehoert (siehe QUIZ_ANKER) - auf der Startseite stehen ja mehrere Quize.
 function deepLinkAnwenden(): void {
   if (!props.quiz) return;
   const fragezeichen = window.location.hash.indexOf("?");
+  const anker = window.location.hash.slice(
+    1,
+    fragezeichen === -1 ? undefined : fragezeichen
+  );
+  if (anker !== QUIZ_ANKER[props.quiz]) return;
   if (fragezeichen === -1) return;
   const params = new URLSearchParams(
     window.location.hash.slice(fragezeichen + 1)
   );
 
-  const thema = params.get(`${props.quiz}topic`);
+  const thema = params.get("topic");
   if (thema) {
     const gefunden = topics.value.find(
       (t) => normalisiert(t.title) === normalisiert(thema)
@@ -725,13 +737,66 @@ function deepLinkAnwenden(): void {
     if (gefunden?._id) filter.value.topicId = gefunden._id;
   }
 
-  const schule = params.get(`${props.quiz}school`);
+  const schule = params.get("school");
   if (schule) {
     const gefunden = schools.value.find(
       (s) => normalisiert(s.name) === normalisiert(schule)
     );
     if (gefunden) filter.value.school = gefunden.name;
   }
+}
+
+// Kopieren des Links in die Zwischenablage ---------------------------
+
+// Hinweis unten rechts und sein Ausblende-Timer.
+const kopierHinweis = ref("");
+let kopierHinweisTimer: ReturnType<typeof setTimeout> | undefined;
+
+function zeigeKopierHinweis(text: string): void {
+  kopierHinweis.value = text;
+  if (kopierHinweisTimer) clearTimeout(kopierHinweisTimer);
+  kopierHinweisTimer = setTimeout(() => {
+    kopierHinweis.value = "";
+    kopierHinweisTimer = undefined;
+  }, 3000);
+}
+
+onBeforeUnmount(() => {
+  if (kopierHinweisTimer) clearTimeout(kopierHinweisTimer);
+});
+
+// Der Link, den die Lehrkraft an die Schueler schicken kann:
+// "https://florianingerl.github.io/#franzoesisch?topic=...&school=...".
+// Ohne Website-Quiz (z.B. Buch-Quizz) gibt es keinen Anker und damit keinen
+// Link. Ohne Thema und ohne Schule gibt es keinen Link zur Auswahl - dann
+// wird auch nichts kopiert und kein Hinweis gezeigt.
+function teilbarerLink(): string | undefined {
+  if (!props.quiz) return undefined;
+  const anker = QUIZ_ANKER[props.quiz];
+  if (!anker) return undefined;
+
+  const teile: string[] = [];
+  if (filter.value.topicId) {
+    const titel = topics.value.find((t) => t._id === filter.value.topicId)
+      ?.title;
+    if (titel) teile.push(`topic=${encodeURIComponent(titel)}`);
+  }
+  if (filter.value.school)
+    teile.push(`school=${encodeURIComponent(filter.value.school)}`);
+  if (teile.length === 0) return undefined;
+
+  const grund = `${window.location.origin}${window.location.pathname}#${anker}`;
+  return teile.length === 0 ? grund : `${grund}?${teile.join("&")}`;
+}
+
+// Wird nach dem Laden (und nach dem Anwenden eines Deep-Links) registriert,
+// damit das Setzen der Filter beim Start keinen Kopierhinweis ausloest.
+function linkAufKopierablage(): void {
+  const link = teilbarerLink();
+  if (!link) return;
+  // Ohne Zwischenablage (z.B. unsicherer Kontext) bleibt es beim Hinweis.
+  void navigator.clipboard?.writeText(link).catch(() => {});
+  zeigeKopierHinweis(`Link ${link} has been copied to your clipboard`);
 }
 
 // Laden aus der Datenbank
@@ -778,9 +843,20 @@ onMounted(async () => {  // Eine auf der letzten Seite begonnene Anmeldung forts
     );
   }
 
-  // Ein Link wie "#franzoesisch?frenchtopic=verbesreflechi&frenchschool=..."
+  // Ein Link wie "#franzoesisch?topic=verbesreflechi&school=..."
   // waehlt Thema und Schule schon aus.
   deepLinkAnwenden();
+
+  // Erst nach dem Laden und nach dem Deep-Link beginnt das Kopieren: Bei
+  // jeder Aenderung von Thema oder Schule (ausser der Auswahl "alle") geht
+  // der passende Link in die Zwischenablage und der Hinweis erscheint.
+  watch(
+    () => [filter.value.topicId, filter.value.school],
+    () => {
+      if (!filter.value.topicId && !filter.value.school) return;
+      linkAufKopierablage();
+    }
+  );
 
   try {
     // Alle Aufgaben des Faches laden; der Filter entscheidet danach, ob nur die
@@ -909,5 +985,21 @@ async function loeschen(): Promise<void> {
 
 .quiz-vollbild::backdrop {
   background-color: #fff;
+}
+
+/* Kurzhinweis mit dem kopierten Link: fixiert unten rechts im Viewport,
+   unabhaengig vom Scrollstand der Seite. */
+.kopier-hinweis {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 1080;
+  max-width: min(32rem, calc(100vw - 2rem));
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  background-color: #333333;
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  word-break: break-all;
 }
 </style>

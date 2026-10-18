@@ -19,7 +19,7 @@ const router = createRouter({
   scrollBehavior(to, _from, savedPosition) {
     if (savedPosition) return savedPosition;
     if (to.hash) {
-      // Ein Link wie "#franzoesisch?frenchtopic=..." hat hinter dem "#" noch
+      // Ein Link wie "#franzoesisch?topic=..." hat hinter dem "#" noch
       // eine Abfrage. Angesprungen wird nur das Element davor.
       return { el: to.hash.split("?")[0] };
     }

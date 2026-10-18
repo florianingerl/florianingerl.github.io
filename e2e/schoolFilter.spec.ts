@@ -78,9 +78,10 @@ async function mockBackend(page: Page): Promise<void> {
 }
 
 // Genau der Link aus der Aufgabe: Franz\u00f6sisch, Thema "Verbes reflechi" und
-// Schule "9.Klasse Gymnasium Bayern".
+// Schule "9.Klasse Gymnasium Bayern". Die Parameter topic/school gelten nur,
+// wenn der Anker (franzoesisch) zur Franzoesisch-Sektion passt.
 const DEEP_LINK =
-  "/#franzoesisch?frenchtopic=verbesreflechi&frenchschool=9klasseGymnasiumBayern";
+  "/#franzoesisch?topic=verbesreflechi&school=9klasseGymnasiumBayern";
 
 test.describe("Schulfilter und Deep-Link", () => {
   test("die Filterzeile steht in einer Reihe, linksbuendig und mittig", async ({
@@ -150,6 +151,34 @@ test.describe("Schulfilter und Deep-Link", () => {
     await expect(
       franzoesisch.locator(".badge", { hasText: "9.Klasse Gymnasium Bayern" }).first(),
     ).toBeVisible();
+  });
+
+  test("das Aendern der Schule kopiert den Link und zeigt den Hinweis", async ({
+    page,
+    context,
+  }) => {
+    await context.grantPermissions(["clipboard-read", "clipboard-write"]);
+    await mockBackend(page);
+    await page.goto("/#franzoesisch");
+
+    // Ohne Auswahl gibt es keinen Hinweis.
+    await expect(page.locator(".kopier-hinweis")).toHaveCount(0);
+
+    // Die Schule waehlen: Der Link geht in die Zwischenablage und der
+    // Hinweis unten rechts zeigt ihn 3 Sekunden lang an.
+    await section(page).locator("#schoolFilter-q-french").selectOption("s-bayern");
+
+    const erwarteterLink = `${new URL(page.url()).origin}/#franzoesisch?school=${encodeURIComponent("9.Klasse Gymnasium Bayern")}`;
+    const hinweis = page.locator(".kopier-hinweis");
+    await expect(hinweis).toContainText(
+      `Link ${erwarteterLink} has been copied to your clipboard`,
+    );
+
+    const kopiert = await page.evaluate(() => navigator.clipboard.readText());
+    expect(kopiert).toBe(erwarteterLink);
+
+    // Nach 3 Sekunden ist der Hinweis wieder weg.
+    await expect(hinweis).toBeHidden({ timeout: 5000 });
   });
 });
 

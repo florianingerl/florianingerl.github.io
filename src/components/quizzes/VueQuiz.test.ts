@@ -1,4 +1,5 @@
 import { flushPromises, mount } from "@vue/test-utils";
+import { nextTick } from "vue";
 import { createPinia, setActivePinia } from "pinia";
 import { http, HttpResponse } from "msw";
 import { beforeEach, afterEach, describe, expect, it, vi } from "vitest";
@@ -865,8 +866,9 @@ describe("VueQuiz: nach Schule filtern", () => {
 });
 
 // Ein Link wie
-// https://florianingerl.github.io/#franzoesisch?frenchtopic=...&frenchschool=...
-// soll das Thema und die Schule schon auswaehlen.
+// https://florianingerl.github.io/#englisch?topic=...&school=...
+// soll das Thema und die Schule schon auswaehlen. Die generischen Parameter
+// topic/school gelten nur, wenn der Anker der URL zu diesem Quiz gehoert.
 describe("VueQuiz: Deep-Link waehlt Thema und Schule", () => {
   const SCHULEN: School[] = [
     { _id: "s1", name: "9.Klasse Gymnasium Bayern" },
@@ -914,7 +916,7 @@ describe("VueQuiz: Deep-Link waehlt Thema und Schule", () => {
 
   it("waehlt Thema und Schule aus dem Link aus", async () => {
     window.location.hash =
-      "#irgendwas?englishtopic=Verbes%20reflechi&englishschool=9klasseGymnasiumBayern";
+      "#englisch?topic=Verbes%20reflechi&school=9klasseGymnasiumBayern";
     await mountQuiz();
 
     const filterStore = useFilterStore();
@@ -922,12 +924,163 @@ describe("VueQuiz: Deep-Link waehlt Thema und Schule", () => {
     expect(filterStore.filterFor("q1").school).toBe("9.Klasse Gymnasium Bayern");
   });
 
-  it("laesst den Filter in Ruhe, wenn der Link nichts Passendes nennt", async () => {
-    window.location.hash = "#irgendwas?englishtopic=Gibt%20es%20nicht";
+  it("ignoriert den Link, wenn der Anker zu einem anderen Quiz gehoert", async () => {
+    window.location.hash =
+      "#franzoesisch?topic=Verbes%20reflechi&school=9klasseGymnasiumBayern";
     await mountQuiz();
 
     const filterStore = useFilterStore();
     expect(filterStore.filterFor("q1").topicId).toBe("");
     expect(filterStore.filterFor("q1").school).toBe("");
+  });
+
+  it("laesst den Filter in Ruhe, wenn der Link nichts Passendes nennt", async () => {
+    window.location.hash = "#englisch?topic=Gibt%20es%20nicht";
+    await mountQuiz();
+
+    const filterStore = useFilterStore();
+    expect(filterStore.filterFor("q1").topicId).toBe("");
+    expect(filterStore.filterFor("q1").school).toBe("");
+  });
+});
+
+// Aendert die Lehrkraft im Quiz Thema oder Schule, wird der passende Link
+// in die Zwischenablage kopiert und unten rechts ein Hinweis gezeigt. Bleibt
+// beides leer, wird nichts kopiert. Beim Oeffnen einer Seite mit Deep-Link
+// wird die Zwischenablage nicht angefasst.
+describe("VueQuiz: Link wird beim Aendern von Thema/Schule kopiert", () => {
+  const SCHULEN: School[] = [{ _id: "s1", name: "9.Klasse Gymnasium Bayern" }];
+  let writeText: ReturnType<typeof vi.fn>;
+
+  beforeEach(() => {
+    writeText = vi.fn().mockResolvedValue(undefined);
+    Object.defineProperty(window.navigator, "clipboard", {
+      value: { writeText },
+      configurable: true,
+    });
+    server.use(
+      http.get(`${API_URL}/api/quiz`, () =>
+        HttpResponse.json([
+          { _id: "q1", website: "web", subject: QUIZ, name: QUIZ },
+        ]),
+      ),
+      http.get(`${API_URL}/api/topic/:quiz`, () =>
+        HttpResponse.json<Topic[]>([
+          {
+            _id: "t-verbes",
+            subject: QUIZ,
+            title: "Verbes reflechi",
+            tutorial: "",
+          },
+        ]),
+      ),
+      http.get(`${API_URL}/api/school`, () => HttpResponse.json(SCHULEN)),
+      http.get(`${API_URL}/api/exercise`, () => HttpResponse.json([])),
+    );
+  });
+
+  afterEach(() => {
+    window.location.hash = "";
+    vi.useRealTimers();
+  });
+
+  async function mountQuiz() {
+    const pinia = createPinia();
+    setActivePinia(pinia);
+    const wrapper = mount(VueQuiz, {
+      props: { quiz: QUIZ, lg: "en" },
+      global: { plugins: [pinia] },
+      shallow: true,
+    });
+    await flushPromises();
+    return wrapper;
+  }
+
+  // Der erwartete Link baut auf der URL der jsdom-Umgebung auf.
+  function erwarteterLink(params: string): string {
+    return `${window.location.origin}${window.location.pathname}#englisch?${params}`;
+  }
+
+  it("kopiert den Link zum Thema und zeigt den Hinweis", async () => {
+    const wrapper = await mountQuiz();
+    const filterStore = useFilterStore();
+
+    filterStore.filterFor("q1").topicId = "t-verbes";
+    await flushPromises();
+
+    expect(writeText).toHaveBeenCalledWith(
+      erwarteterLink("topic=Verbes%20reflechi")
+    );
+    expect(wrapper.find(".kopier-hinweis").text()).toContain(
+      `Link ${erwarteterLink("topic=Verbes%20reflechi")} has been copied to your clipboard`
+    );
+  });
+
+  it("kopiert den Link mit Thema und Schule, wenn beides gewaehlt ist", async () => {
+    const wrapper = await mountQuiz();
+    const filterStore = useFilterStore();
+
+    filterStore.filterFor("q1").topicId = "t-verbes";
+    await flushPromises();
+    filterStore.filterFor("q1").school = "9.Klasse Gymnasium Bayern";
+    await flushPromises();
+
+    expect(writeText).toHaveBeenLastCalledWith(
+      erwarteterLink(
+        "topic=Verbes%20reflechi&school=9.Klasse%20Gymnasium%20Bayern"
+      )
+    );
+    expect(wrapper.find(".kopier-hinweis").text()).toContain("9.Klasse");
+  });
+
+  it("blendet den Hinweis nach 3 Sekunden aus", async () => {
+    const wrapper = await mountQuiz();
+    const filterStore = useFilterStore();
+
+    // Die Nettwerk-Abfragen laufen bei echten Timern, das Ausblenden des
+    // Hinweises wird danach mit faulen Timern geprueft.
+    vi.useFakeTimers();
+    filterStore.filterFor("q1").topicId = "t-verbes";
+    await nextTick();
+    await nextTick();
+    expect(wrapper.find(".kopier-hinweis").exists()).toBe(true);
+
+    vi.advanceTimersByTime(3000);
+    await nextTick();
+    expect(wrapper.find(".kopier-hinweis").exists()).toBe(false);
+  });
+
+  it("kopiert nichts und zeigt keinen Hinweis, wenn Thema und Schule leer bleiben", async () => {
+    const wrapper = await mountQuiz();
+    const filterStore = useFilterStore();
+
+    // Erst eine Auswahl (Hinweis erscheint), dann zurueck auf "alle":
+    // dadurch entsteht weder ein neuer Link noch ein neuer Hinweis.
+    // Die Nettwerk-Abfragen laufen bei echten Timern, die Zeit danach nicht.
+    vi.useFakeTimers();
+    filterStore.filterFor("q1").school = "9.Klasse Gymnasium Bayern";
+    await nextTick();
+    await nextTick();
+    expect(writeText).toHaveBeenCalledTimes(1);
+    expect(wrapper.find(".kopier-hinweis").exists()).toBe(true);
+
+    vi.advanceTimersByTime(3000);
+    await nextTick();
+    expect(wrapper.find(".kopier-hinweis").exists()).toBe(false);
+
+    filterStore.filterFor("q1").school = "";
+    await nextTick();
+    await nextTick();
+    expect(writeText).toHaveBeenCalledTimes(1);
+    expect(wrapper.find(".kopier-hinweis").exists()).toBe(false);
+  });
+
+  it("kopiert beim Oeffnen einer Seite mit Deep-Link nicht", async () => {
+    window.location.hash =
+      "#englisch?topic=Verbes%20reflechi&school=9klasseGymnasiumBayern";
+    const wrapper = await mountQuiz();
+
+    expect(writeText).not.toHaveBeenCalled();
+    expect(wrapper.find(".kopier-hinweis").exists()).toBe(false);
   });
 });
