@@ -1,5 +1,30 @@
 <template>
-  <div ref="quizRoot" :class="{ 'quiz-vollbild': istVollbild }">
+
+<!--
+ if !formoppen
+    display filtercomponent ok 
+    display tab ok 
+    if tab == 'exercise' ok
+      if question 
+        VueExercise
+        ExerciseNavigat
+        Score panel
+      else
+        display no question
+    else if tab == 'tutorial'
+      if question
+        VueTutorialDisplayer(need to create)
+      else
+        display no question     
+ else 
+    if tab == 'exercise' 
+      display VueNewExercise
+    else
+      display VueNewTopic  
+-->
+
+
+  <div style="display:flex; flex-direction: column; gap: 2px; align-items: stretch;" ref="quizRoot" :class="{ 'quiz-vollbild': istVollbild }">
   
     <div class="d-flex flex-row align-items-center gap-2 mb-3">
       <LoginToEditComponent
@@ -31,36 +56,16 @@
       </button>
     </div>
 
-    <!-- Solange kein Dialog offen ist, wird das Quiz gezeigt. -->
-    <template v-if="dialog === null">
-    <div v-if="formOffen && tab === 'exercise'">
-      <VueNewExercise
-        :quiz="formQuiz"
-        :subject="formSubject"
-        :questionOfQuiz="aktuelle"
-        :editMode="editMode"
-        :schools="verfuegbareSchulen"
-        @new-exercise-created="gespeichert"
-        @school-created="schuleHinzugefuegt"
-        @topic-created="themaErstellt"
-        @cancel-clicked="formOffen = false"
-      />
-    </div>
-
-    <p v-if="laden">{{ t.laden }}</p>
-    <p v-if="fehler" class="text-danger">{{ fehler }}</p>
-
-    <FilterComponent
-      v-show="!formOffen"
+    <div v-show="!formOffen && dialog==null ">
+      <FilterComponent
+      
       class="mb-3"
       :quiz="quizSchluessel"
       :topics="topics"
       :schools="verfuegbareSchulen"
-      @open-advanced-filter="dialogOeffnen('filter')"
-    />
-
-  
-    <ul class="nav nav-tabs" role="tablist" v-show="!formOffen">
+      @open-advanced-filter="dialogOeffnen('filter')"/>
+      
+    <ul class="nav nav-tabs" role="tablist">
       <li class="nav-item" role="presentation">
         <button
           class="nav-link"
@@ -85,8 +90,10 @@
       </li>
     </ul>
 
-    <div v-show="tab === 'exercise' && !formOffen">
-      <VueExercise
+<div v-if="tab == 'exercise'">
+     <div v-if="displayedQuestions.length > 0" style="display: flex; flex-direction: column;">
+     <VueExercise
+        style="flex-grow: 1; align-self: stretch; "
         v-if="aktuelle"
         :key="aktuelle._id ?? i"
         :exercise="aktuelle"
@@ -96,6 +103,7 @@
 
       <!-- Die Paginierung steht unter dem Splitter, nicht in einem Panel. -->
       <ExerciseNavigation
+        v-if="displayedQuestions.length != 0"
         :i="i"
         :indices="indices"
         :letzter-index="letzterIndex"
@@ -103,41 +111,67 @@
         @navigate="springe"
         @select="waehleIndex"
       />
-
-      <p v-if="displayedQuestions.length === 0">{{ t.keineFragen }}</p>
-
       <p>Your score: {{ scoreText }}</p>
-    </div> <!-- End of <div v-if= " tab === 'exercise'"></div>-->
+      </div> <!-- End of div displayedQuestins.length > 0 -->
 
-    <div v-show="tab === 'tutorial' && !formOffen">
-      <div class="row">
-      <VueTopicDisplayer class="col" :topic="aktuelle?.topic" />
-
+      <p v-if="displayedQuestions.length <= 0">{{ t.keineFragen }}</p>
+        </div> <!-- End of div tab == 'exercise'-->
+    
+    <div v-if="tab == 'tutorial'">
+        <div style="display:flex; flex-direction: row; gap: 2px;">
+            <VueTopicDisplayer :topic="aktuelle?.topic" />
+             <button
+                v-if="darfExportieren"
+                @click="exportToFrancaisFacileClicked"
+              >
+                Export to francaisfacile.com
+              </button>
       
-      <div class="col">
-        <button
-          v-if="darfExportieren"
-          @click="exportToFrancaisFacileClicked"
-        >
-          Export to francaisfacile.com
-        </button>
-      </div>
-    </div>
-
-      <div
-        v-if="!formOffen"
-        style="height: 167px; overflow-y: auto; background-color: antiquewhite;"
+        </div>
+        <div 
+        style="flex-grow: 1; height: 167px; overflow-y: auto; background-color: antiquewhite;"
         v-html="currentTutorial"
       ></div>
+    </div> <!-- End of div tab=="tutorial"-->
+      
+  </div> <!--End of div !formOffen -->
+      
+  
+   
 
-      <VueNewTopic
-        v-if="formOffen"
+   
+     
+
+    <!-- Solange kein Dialog offen ist, wird das Quiz gezeigt. -->
+    <div v-if="formOffen && dialog==null" style="flex-grow: 1; display:flex; flex-direction: column; gap: 2px;" >
+     
+
+      <VueNewExercise
+        v-if="tab == 'exercise'"
+        style="flex-grow: 1;"
+        :quiz="formQuiz"
+        :subject="formSubject"
+        :questionOfQuiz="aktuelle"
+        :editMode="editMode"
+        :schools="verfuegbareSchulen"
+        @new-exercise-created="gespeichert"
+        @school-created="schuleHinzugefuegt"
+        @topic-created="themaErstellt"
+        @cancel-clicked="formOffen = false"
+      />
+
+       <VueNewTopic
+        v-if="tab == 'tutorial'"
         :questionOfQuiz="aktuelle"
         @cancel-clicked="formOffen = false"
         @tutorial-saved="formOffen = false; tutorialGespeichert($event)"
       />
-    </div>
+    </div>     <!-- End of div formOpen-->     
 
+  </div>
+
+
+  <!-- Here come the dialogs now-->
     <VueExportToFacile
       v-if="exportOffen && darfExportieren && !props.quizId"
       :quiz="exportQuiz"
@@ -145,7 +179,6 @@
       :lg="lg"
       @cancel-clicked="exportOffen = false"
     />
-    </template>
 
     <!-- Ist ein Dialog offen, ist die restliche Oberflaeche unsichtbar. -->
     <VueSignUp
@@ -177,12 +210,11 @@
       @cancel-clicked="dialog = null"
     />
 
-    <!-- Kurzhinweis unten rechts, wenn das Aendern von Thema oder Schule den
+   <!-- Kurzhinweis unten rechts, wenn das Aendern von Thema oder Schule den
          Link in die Zwischenablage kopiert hat. -->
     <div v-if="kopierHinweis" class="kopier-hinweis" role="status">
       {{ kopierHinweis }}
     </div>
-  </div>
 </template>
 
 <script setup lang="ts">
