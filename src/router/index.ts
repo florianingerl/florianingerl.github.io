@@ -51,7 +51,13 @@ const router = createRouter({
       // Ein Link wie "#franzoesisch?topic=..." hat hinter dem "#" noch
       // eine Abfrage. Angesprungen wird nur das Element davor.
       await warteAufRuhigeSeite();
-      return { el: to.hash.split("?")[0] };
+      // Der fixierte Kopfbereich (.site-top) wuerde die Ueberschrift des
+      // Abschnitts verdecken, wenn das Element ganz oben am Viewport landet.
+      // Darum wird die Kopfhoehe als Versatz angegeben (equivalent zum
+      // scroll-padding-top, das window.scrollTo sonst nicht beruecksichtigt).
+      const kopfhoehe =
+        document.querySelector<HTMLElement>(".site-top")?.offsetHeight ?? 0;
+      return { el: to.hash.split("?")[0], top: kopfhoehe };
     }
     return { top: 0 };
   },
