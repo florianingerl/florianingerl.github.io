@@ -30,7 +30,6 @@ describe("VueExercise: Splitter aus Bild und Aufgabe", () => {
     const ex = aufgabe({ imageUrl: "https://example.com/bild.png" });
     const wrapper = mount(VueExercise, {
       props: { exercise: ex, lg: "en" },
-      slots: { pagination: '<ul class="pagination"><li>1</li></ul>' },
       global,
     });
 
@@ -39,28 +38,29 @@ describe("VueExercise: Splitter aus Bild und Aufgabe", () => {
     const panels = wrapper.findAllComponents(SplitterPanel);
     expect(panels).toHaveLength(2);
 
-    // Im ersten Panel steht das Bild ...
+    // Im ersten Panel steht das Bild.
     const bild = panels[0].get(".vue-image__img");
     expect(bild.attributes("src")).toBe("https://example.com/bild.png");
-    // ... und die Paginierung direkt darunter.
-    expect(panels[0].find(".vue-image__fuss ul.pagination").exists()).toBe(true);
 
     // Im zweiten Panel steht die Aufgabe (multipleChoice -> VueQuestion).
     const frage = panels[1].findComponent(VueQuestion);
     expect(frage.exists()).toBe(true);
     expect(frage.props("question")).toEqual(ex);
+
+    // Die Paginierung gehoert nicht mehr zum Splitter; sie steht in VueQuiz
+    // unter dem gesamten Splitter.
+    expect(wrapper.find("ul.pagination").exists()).toBe(false);
   });
 
   it("zeigt ohne Bild keinen Splitter, sondern nur die Aufgabe", () => {
     const wrapper = mount(VueExercise, {
       props: { exercise: aufgabe(), lg: "en" },
-      slots: { pagination: '<ul class="pagination"><li>1</li></ul>' },
       global,
     });
 
     expect(wrapper.findComponent(Splitter).exists()).toBe(false);
     expect(wrapper.findComponent(VueQuestion).exists()).toBe(true);
-    expect(wrapper.find(".vue-image__fuss ul.pagination").exists()).toBe(true);
+    expect(wrapper.find("ul.pagination").exists()).toBe(false);
   });
 
   it("waehlt fuer gapText die VueMCGaps-Aufgabe", () => {

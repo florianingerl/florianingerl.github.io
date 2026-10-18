@@ -15,10 +15,6 @@
             :alt="exercise.question ?? exercise.instruction ?? ''"
           />
         </div>
-        <!-- Die Paginierung steht direkt unter dem Bild, wie bisher. -->
-        <div class="vue-image__fuss">
-          <slot name="pagination"></slot>
-        </div>
       </SplitterPanel>
 
       <SplitterPanel :size="50" :minSize="10" class="vue-exercise__inhalt">
@@ -37,9 +33,6 @@
         v-bind="exerciseProps"
         @answered-event="emit('answered-event')"
       />
-      <div class="vue-image__fuss">
-        <slot name="pagination"></slot>
-      </div>
     </template>
   </div>
 </template>
@@ -104,10 +97,5 @@ const exerciseProps = computed(() =>
 /* Der Inhalt rechts scrollt bei Bedarf, statt das Layout zu sprengen. */
 .vue-exercise__inhalt {
   overflow: auto;
-}
-
-/* Ohne Paginierung entfaellt der Fuss ganz. */
-.vue-image__fuss:empty {
-  display: none;
 }
 </style>

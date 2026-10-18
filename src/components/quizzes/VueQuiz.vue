@@ -92,19 +92,17 @@
         :exercise="aktuelle"
         :lg="lg"
         @answered-event="calcScore"
-      >
-        <!-- Die Paginierung steht direkt unter dem Aufgabenbild. -->
-        <template #pagination>
-          <ExerciseNavigation
-            :i="i"
-            :indices="indices"
-            :letzter-index="letzterIndex"
-            :lg="lg"
-            @navigate="springe"
-            @select="waehleIndex"
-          />
-        </template>
-      </VueExercise>
+      />
+
+      <!-- Die Paginierung steht unter dem Splitter, nicht in einem Panel. -->
+      <ExerciseNavigation
+        :i="i"
+        :indices="indices"
+        :letzter-index="letzterIndex"
+        :lg="lg"
+        @navigate="springe"
+        @select="waehleIndex"
+      />
 
       <p v-if="displayedQuestions.length === 0">{{ t.keineFragen }}</p>
 

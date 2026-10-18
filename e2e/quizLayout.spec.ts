@@ -53,7 +53,7 @@ async function mockBackend(page: Page): Promise<void> {
 }
 
 test.describe("Quiz-Layout: Splitter mit Bild links, Aufgabe rechts", () => {
-  test("Frage und Antworten stehen im rechten Panel, die Paginierung unter dem Bild", async ({
+  test("Frage und Antworten stehen im rechten Panel, die Paginierung unter dem Splitter", async ({
     page,
   }) => {
     await mockBackend(page);
@@ -80,5 +80,8 @@ test.describe("Quiz-Layout: Splitter mit Bild links, Aufgabe rechts", () => {
     // Die Paginierung steht unter dem Bild und beginnt an dessen linkem Rand.
     expect(paginationBox.y).toBeGreaterThanOrEqual(bildBox.y + bildBox.height - 2);
     expect(Math.abs(paginationBox.x - bildBox.x)).toBeLessThanOrEqual(2);
+
+    // Die Paginierung liegt ausserhalb des Splitters (kein Panel enthaelt sie).
+    await expect(section.locator(".p-splitter-panel ul.pagination")).toHaveCount(0);
   });
 });
