@@ -84,6 +84,23 @@ const DEEP_LINK =
   "/#franzoesisch?topic=verbesreflechi&school=9klasseGymnasiumBayern";
 
 test.describe("Schulfilter und Deep-Link", () => {
+  test("der Anker springt zum Franzoesisch-Abschnitt, nicht zu einem hoeheren", async ({
+    page,
+  }) => {
+    await mockBackend(page);
+    await page.goto(DEEP_LINK);
+
+    // Die Bilder in den Abschnitten haben keine feste Hoehe und schieben die
+    // Sektionen erst beim Laden nach unten. Der Anker muss trotzdem stimmen:
+    // der Franzoesisch-Abschnitt steht dann oben im Sichtbereich.
+    await expect
+      .poll(async () => {
+        const box = await section(page).boundingBox();
+        return box ? Math.round(box.y) : Number.POSITIVE_INFINITY;
+      })
+      .toBeLessThan(200);
+  });
+
   test("die Filterzeile steht in einer Reihe, linksbuendig und mittig", async ({
     page,
   }) => {
