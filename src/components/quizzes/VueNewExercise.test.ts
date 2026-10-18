@@ -113,10 +113,10 @@ describe("VueNewExercise: multiple choice anlegen", () => {
       await addButton!.trigger("click");
     }
 
-    const save = wrapper
-      .findAll("button")
-      .find((b) => b.text().trim() === "Save");
-    await save!.trigger("click");
+    // Save ist jetzt der submit-Knopf des Formulars; in jsdom loest ein
+    // Klick auf type="submit" keinen submit-Event aus, deshalb direkt
+    // submit ausloesen.
+    await wrapper.find("form").trigger("submit");
 
     const emitted = wrapper.emitted("new-exercise-created");
     expect(emitted).toBeTruthy();
@@ -135,10 +135,8 @@ describe("VueNewExercise: multiple choice anlegen", () => {
     const typSelect = wrapper.get("#exercise-type");
     await typSelect.setValue("multipleChoice");
 
-    const save = wrapper
-      .findAll("button")
-      .find((b) => b.text().trim() === "Save");
-    await save!.trigger("click");
+    // Ohne Optionen sollte ein Klick auf Save (jetzt submit) alerten und nichts emitten.
+    await wrapper.find("form").trigger("submit");
 
     expect(alertSpy).toHaveBeenCalled();
     expect(wrapper.emitted("new-exercise-created")).toBeFalsy();
@@ -169,10 +167,7 @@ describe("VueNewExercise: Thema ueber den Themenwaehler", () => {
     waehler.vm.$emit("topic-selected", thema);
     await flushPromises();
 
-    await wrapper
-      .findAll("button")
-      .find((b) => b.text().trim() === "Save")!
-      .trigger("click");
+    await wrapper.find("form").trigger("submit");
 
     const emitted = wrapper.emitted("new-exercise-created");
     expect(emitted).toBeTruthy();
@@ -197,10 +192,7 @@ describe("VueNewExercise: Thema ueber den Themenwaehler", () => {
 
     expect(wrapper.emitted("topic-created")?.[0][0]).toEqual(thema);
 
-    await wrapper
-      .findAll("button")
-      .find((b) => b.text().trim() === "Save")!
-      .trigger("click");
+    await wrapper.find("form").trigger("submit");
 
     const emitted = wrapper.emitted("new-exercise-created");
     expect(emitted).toBeTruthy();
@@ -220,10 +212,7 @@ describe("VueNewExercise: Schule der Aufgabe", () => {
     waehler.vm.$emit("update:modelValue", "s1");
     await flushPromises();
 
-    await wrapper
-      .findAll("button")
-      .find((b) => b.text().trim() === "Save")!
-      .trigger("click");
+    await wrapper.find("form").trigger("submit");
 
     const emitted = wrapper.emitted("new-exercise-created");
     expect(emitted).toBeTruthy();
@@ -242,10 +231,7 @@ describe("VueNewExercise: Schule der Aufgabe", () => {
   it("speichert keine Schule, wenn keine gewaehlt wurde", async () => {
     const wrapper = await mountForm();
 
-    await wrapper
-      .findAll("button")
-      .find((b) => b.text().trim() === "Save")!
-      .trigger("click");
+    await wrapper.find("form").trigger("submit");
 
     const emitted = wrapper.emitted("new-exercise-created");
     expect(emitted).toBeTruthy();

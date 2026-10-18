@@ -41,6 +41,12 @@ async function mockBackend(page: Page, exercises: unknown[]): Promise<void> {
       ) {
         data = exercises;
       }
+    } else if (
+      request.method() === "POST" &&
+      url.pathname === "/api/exercise"
+    ) {
+      // Beim Speichern eine fertige Aufgabe mit _id zurueckschicken.
+      data = { ...(request.postDataJSON() as Record<string, unknown>), _id: "neu-1" };
     }
     await route.fulfill({ json: data, headers: corsHeaders });
   });
@@ -104,7 +110,45 @@ test.describe("Exercise editor: Image url", () => {
   });
 });
 
-// Bei breitem Layout bleiben die Anlagen von Schule und Thema nebeneinander
+// Save ist der submit-Knopf des Anlege-Formulars: Enter in einem Textfeld
+// loest das Speichern aus (Standard-Knopf).
+test.describe("Exercise editor: Speichern per Enter", () => {
+  test("Enter im Formular speichert die Aufgabe", async ({ page }) => {
+    await mockBackend(page, []);
+    await page.goto("/");
+
+    const section = page.locator("#englisch");
+    await section.getByTitle("Add a new exercise").click();
+
+    // Der Aufgabentyp ist standardmaessig "gapText"; in das Instruction-Feld
+    // tippen (das Label hat kein for/id, deshalb ueber den umschliessenden div).
+    const instruction = section
+      .locator("div.mb-3.mt-3")
+      .filter({ hasText: "Instruction:" })
+      .locator("input")
+      .first();
+    await instruction.fill("Erste Aufgabe");
+
+    // POST an den Server abfangen.
+    const posts: unknown[] = [];
+    page.on("request", (req) => {
+      if (req.method() === "POST" && req.url().includes("/api/exercise")) {
+        posts.push(req.postDataJSON());
+      }
+    });
+
+    // Enter im Eingabefeld loest das Absenden des Formulars aus.
+    await instruction.press("Enter");
+
+    await expect.poll(() => posts.length).toBeGreaterThan(0);
+    expect(posts[0]).toMatchObject({
+      quiz: "q-english",
+      subject: "english",
+      type: "gapText",
+      instruction: "Erste Aufgabe",
+    });
+  });
+});
 // sichtbar; wird der Behälter zu schmal, klappen sie (per Container-Abfrage) zu
 // einem Knopf zusammen, der das Formular als Overlay oeffnet.
 test.describe("Exercise editor: Anlagen klappen bei schmalem Layout ein", () => {

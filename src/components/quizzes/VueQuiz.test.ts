@@ -692,10 +692,9 @@ describe("VueQuiz: Multiple-Choice-Aufgabe anlegen (Server-Roundtrip)", () => {
     }
 
     // Speichern; das loest den POST an die gemockte Datenbank aus.
-    const speichern = formular
-      .findAll("button")
-      .find((b) => b.text().trim() === "Save")!;
-    await speichern.trigger("click");
+    // Save ist jetzt der submit-Knopf des Formulars (VueNewExercise), in
+    // jsdom loest ein Klick auf type="submit" keinen submit-Event aus.
+    await formular.find("form").trigger("submit");
     await flushPromises();
 
     // Vom Server erneut laden und die zuletzt angelegte Aufgabe pruefen.

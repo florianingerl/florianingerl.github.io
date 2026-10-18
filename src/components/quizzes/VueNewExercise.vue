@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <form class="container" @submit.prevent="save">
     <div class="row">
       <div class="col-12 mt-3">
         <OTopicChooserAndCreator
@@ -62,8 +62,8 @@
           <div class="mb-3 mt-3">
             <label class="form-label">New option (die erste ist die richtige):</label>
             <input v-model="newOption" type="text" class="form-control" />
-            <button @click="addOption">Add</button>
-            <button @click="allOptions = []">Clear</button>
+            <button type="button" @click="addOption">Add</button>
+            <button type="button" @click="allOptions = []">Clear</button>
           </div>
         </div>
 
@@ -80,6 +80,7 @@
             <input v-model="s.part2" type="text" style="overflow: auto;" class="form-control col" placeholder="Part 2" />
             <button
               v-if="sentences.length > 2"
+              type="button"
               class="col-sm-1 btn btn-secondary"
               @click="sentences.splice(i, 1)"
             >
@@ -88,6 +89,7 @@
           </div>
           <button
             v-if="sentences.length < 5"
+            type="button"
             class="btn btn-secondary"
             @click="sentences.push({ part1: '', part2: '' })"
           >
@@ -103,10 +105,10 @@
     </Splitter>
 
     <div class="row justify-center">
-      <button class="col btn-primary btn" @click="save">Save</button>
-      <button class="col btn-primary btn" @click="emit('cancel-clicked')">Cancel</button>
+      <button type="submit" class="col btn-primary btn">Save</button>
+      <button type="button" class="col btn-primary btn" @click="emit('cancel-clicked')">Cancel</button>
     </div>
-  </div>
+  </form>
 </template>
 
 <script setup lang="ts">
