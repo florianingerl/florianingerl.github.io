@@ -1,5 +1,8 @@
 <template>
-  <form @submit.prevent="saveTutorialClicked">
+  <form
+    :class="{ 'vue-new-topic--vollbild': vollbild }"
+    @submit.prevent="saveTutorialClicked"
+  >
 
     <div class="d-flex flex-row align-items-center gap-2 mb-2">
       <label for="topic-title" class="form-label mb-0">Titel</label>
@@ -11,7 +14,9 @@
       />
     </div>
 
-    <VueJoditEditor v-model="editorContent" :options="joditOptionen" ref="editorRef" />
+    <div class="topic-editor">
+      <VueJoditEditor v-model="editorContent" :options="joditOptionen" ref="editorRef" />
+    </div>
     <button type="button" @click="insertRandomFacileImage" class="mt-2 mb-2">
       Zufälliges Bild von anglaisfacile.com einfügen
     </button>
@@ -36,6 +41,8 @@ import { findRandomImageUrlOnFacile } from "@/utils/facileImages";
 
 const props = defineProps<{
   questionOfQuiz?: Exercise
+  // Im Vollbildmodus fuellt der Editor die verfuegbare Hoehe.
+  vollbild?: boolean
 }>()
 
 const emit = defineEmits<{
@@ -68,8 +75,9 @@ const auswaehlbareThemen = computed<Topic[]>(() => {
 // Entspricht ungefaehr der Toolbar von TinyMCE: Formatierung, Listen, Links,
 // Tabellen, Bilder, Zeichentabelle und Quelltext.
 const joditOptionen = {
-  // Gleiche Hoehe wie die Tutorial-Anzeige, mit Rollbalken bei zu viel Text.
-  height: 167,
+  // Der Editor fuellt seinen Rahmen (.topic-editor); dessen Hoehe kommt aus der
+  // gemeinsamen CSS-Variablen (im Vollbild 100%).
+  height: '100%',
   allowResizeY: true,
   buttons: [
     'bold', 'italic', 'underline', 'strikethrough',
@@ -193,3 +201,24 @@ async function saveTutorialClicked(): Promise<void> {
 }
 
 </script>
+
+<style scoped>
+/* Ausserhalb des Vollbilds hat der Editor dieselbe Hoehe wie das Aufgabenbild
+   (gemeinsame CSS-Variable); im Vollbild nimmt er die verfuegbare Resthoehe
+   ein und der Rahmen waechst mit. */
+.topic-editor {
+  height: var(--exercise-image-height);
+}
+
+.vue-new-topic--vollbild {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-height: 0;
+}
+
+.vue-new-topic--vollbild .topic-editor {
+  flex-grow: 1;
+  min-height: 0;
+}
+</style>

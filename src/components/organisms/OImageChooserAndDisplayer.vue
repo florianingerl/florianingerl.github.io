@@ -59,11 +59,16 @@ async function zufallsBild(): Promise<void> {
   flex-direction: column;
   gap: 2px;
   align-items: stretch;
+  /* Im Vollbild (die Variable ist dann 100%) fuellt die Komponente ihr Panel. */
+  height: 100%;
+  min-height: 0;
 }
 
 .image-chooser-and-displayer__bild-wrapper {
   overflow: auto;
   flex-grow: 1;
+  height: var(--exercise-image-height);
+  min-height: 0;
 }
 
 .image-chooser-and-displayer__img {

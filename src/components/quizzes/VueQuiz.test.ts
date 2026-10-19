@@ -467,7 +467,7 @@ describe("VueQuiz: Vollbildmodus", () => {
     // Der Browser meldet, dass das Quiz jetzt im Vollbild ist.
     Object.defineProperty(document, "fullscreenElement", {
       configurable: true,
-      get: () => wrapper.element,
+      get: () => wrapper.get("[data-quiz-root]").element,
     });
     document.dispatchEvent(new Event("fullscreenchange"));
     await flushPromises();
@@ -490,7 +490,7 @@ describe("VueQuiz: Vollbildmodus", () => {
 
     Object.defineProperty(document, "fullscreenElement", {
       configurable: true,
-      get: () => wrapper.element,
+      get: () => wrapper.get("[data-quiz-root]").element,
     });
     document.dispatchEvent(new Event("fullscreenchange"));
     await flushPromises();
@@ -515,16 +515,18 @@ describe("VueQuiz: Vollbildmodus", () => {
     });
 
     const wrapper = await mountQuiz();
-    expect(wrapper.element.classList.contains("quiz-vollbild")).toBe(false);
+    expect(wrapper.get("[data-quiz-root]").classes()).not.toContain(
+      "quiz-vollbild",
+    );
 
     await wrapper.get('[title="Fullscreen"]').trigger("click");
     Object.defineProperty(document, "fullscreenElement", {
       configurable: true,
-      get: () => wrapper.element,
+      get: () => wrapper.get("[data-quiz-root]").element,
     });
     document.dispatchEvent(new Event("fullscreenchange"));
     await flushPromises();
-    expect(wrapper.element.classList.contains("quiz-vollbild")).toBe(true);
+    expect(wrapper.get("[data-quiz-root]").classes()).toContain("quiz-vollbild");
 
     // Beim Verlassen des Vollbildmodus wird die Klasse wieder entfernt.
     Object.defineProperty(document, "fullscreenElement", {
@@ -533,7 +535,47 @@ describe("VueQuiz: Vollbildmodus", () => {
     });
     document.dispatchEvent(new Event("fullscreenchange"));
     await flushPromises();
-    expect(wrapper.element.classList.contains("quiz-vollbild")).toBe(false);
+    expect(wrapper.get("[data-quiz-root]").classes()).not.toContain(
+      "quiz-vollbild",
+    );
+  });
+
+  it("gibt den Vollbildzustand an die Aufgaben-Komponente weiter", async () => {
+    const requestFullscreen = vi.fn().mockResolvedValue(undefined);
+    Object.defineProperty(HTMLElement.prototype, "requestFullscreen", {
+      configurable: true,
+      writable: true,
+      value: requestFullscreen,
+    });
+    server.use(
+      http.get(`${API_URL}/api/exercise`, () =>
+        HttpResponse.json([
+          {
+            _id: "e1",
+            quiz: QUIZ,
+            subject: QUIZ,
+            type: "multipleChoice",
+            imageUrl: "data:image/svg+xml,%3Csvg/%3E",
+            question: "Frage?",
+            options: [{ option: "a", correct: true }],
+          },
+        ]),
+      ),
+    );
+
+    const wrapper = await mountQuiz();
+    await flushPromises();
+    expect(wrapper.findComponent(VueExercise).props("vollbild")).toBe(false);
+
+    await wrapper.get('[title="Fullscreen"]').trigger("click");
+    Object.defineProperty(document, "fullscreenElement", {
+      configurable: true,
+      get: () => wrapper.get("[data-quiz-root]").element,
+    });
+    document.dispatchEvent(new Event("fullscreenchange"));
+    await flushPromises();
+
+    expect(wrapper.findComponent(VueExercise).props("vollbild")).toBe(true);
   });
 });
 

@@ -24,7 +24,7 @@
 -->
 
 
-  <div style="display:flex; flex-direction: column; gap: 2px; align-items: stretch;" ref="quizRoot" :class="{ 'quiz-vollbild': istVollbild }">
+  <div style="display:flex; flex-direction: column; gap: 2px; align-items: stretch;" ref="quizRoot" data-quiz-root :class="{ 'quiz-vollbild': istVollbild }">
   
     <div class="d-flex flex-row align-items-center gap-2 mb-3">
       <LoginToEditComponent
@@ -56,7 +56,7 @@
       </button>
     </div>
 
-    <div v-show="!formOffen && dialog==null ">
+    <div v-show="!formOffen && dialog==null " class="quiz-body">
       <FilterComponent
       
       class="mb-3"
@@ -90,14 +90,15 @@
       </li>
     </ul>
 
-<div v-if="tab == 'exercise'">
-     <div v-if="displayedQuestions.length > 0" style="display: flex; flex-direction: column;">
+<div v-if="tab == 'exercise'" class="quiz-tab">
+     <div v-if="displayedQuestions.length > 0" class="quiz-tab__inner" style="display: flex; flex-direction: column;">
      <VueExercise
         style="flex-grow: 1; align-self: stretch; "
         v-if="aktuelle"
         :key="aktuelle._id ?? i"
         :exercise="aktuelle"
         :lg="lg"
+        :vollbild="istVollbild"
         @answered-event="calcScore"
       />
 
@@ -117,7 +118,7 @@
       <p v-if="displayedQuestions.length <= 0">{{ t.keineFragen }}</p>
         </div> <!-- End of div tab == 'exercise'-->
     
-    <div v-if="tab == 'tutorial'">
+    <div v-if="tab == 'tutorial'" class="quiz-tab">
         <div style="display:flex; flex-direction: row; gap: 2px;">
             <VueTopicDisplayer :topic="aktuelle?.topic" />
              <button
@@ -129,7 +130,7 @@
       
         </div>
         <div 
-        style="flex-grow: 1; height: 167px; overflow-y: auto; background-color: antiquewhite;"
+        class="quiz-tutorial"
         v-html="currentTutorial"
       ></div>
     </div> <!-- End of div tab=="tutorial"-->
@@ -143,7 +144,7 @@
      
 
     <!-- Solange kein Dialog offen ist, wird das Quiz gezeigt. -->
-    <div v-if="formOffen && dialog==null" style="flex-grow: 1; display:flex; flex-direction: column; gap: 2px;" >
+    <div v-if="formOffen && dialog==null" class="quiz-form" style="flex-grow: 1; display:flex; flex-direction: column; gap: 2px;" >
      
 
       <VueNewExercise
@@ -154,6 +155,7 @@
         :questionOfQuiz="aktuelle"
         :editMode="editMode"
         :schools="verfuegbareSchulen"
+        :vollbild="istVollbild"
         @new-exercise-created="gespeichert"
         @school-created="schuleHinzugefuegt"
         @topic-created="themaErstellt"
@@ -162,7 +164,9 @@
 
        <VueNewTopic
         v-if="tab == 'tutorial'"
+        style="flex-grow: 1;"
         :questionOfQuiz="aktuelle"
+        :vollbild="istVollbild"
         @cancel-clicked="formOffen = false"
         @tutorial-saved="formOffen = false; tutorialGespeichert($event)"
       />
@@ -1021,6 +1025,31 @@ async function loeschen(): Promise<void> {
   overflow: auto;
   background-color: #fff;
   color: #444444;
+  /* Im Vollbild fuellen Bild- und Tutorial-Flaechen die verfuegbare Hoehe. */
+  --exercise-image-height: 100%;
+}
+
+/* Im Vollbild wird der Inhalt unter der Filterzeile zu einer Spalte: die
+   jeweils sichtbare Tab-Flaeche (und darin die Aufgabe bzw. das Tutorial) nimmt
+   die verbleibende Hoehe ein. */
+.quiz-vollbild .quiz-body,
+.quiz-vollbild .quiz-tab,
+.quiz-vollbild .quiz-tab__inner,
+.quiz-vollbild .quiz-form {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-height: 0;
+}
+
+/* Die Tutorialsicht hat ausserhalb des Vollbilds dieselbe Hoehe wie das
+   Aufgabenbild und fuellt im Vollbild die verbleibende Hoehe. */
+.quiz-tutorial {
+  flex-grow: 1;
+  height: var(--exercise-image-height);
+  min-height: 0;
+  overflow-y: auto;
+  background-color: antiquewhite;
 }
 
 .quiz-vollbild:fullscreen {

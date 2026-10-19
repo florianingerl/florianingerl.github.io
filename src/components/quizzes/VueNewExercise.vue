@@ -1,5 +1,9 @@
 <template>
-  <form class="container" @submit.prevent="save">
+  <form
+    class="container"
+    :class="{ 'exercise-form--vollbild': vollbild }"
+    @submit.prevent="save"
+  >
     <div class="row">
       <div class="col-12 mt-3">
         <OTopicChooserAndCreator
@@ -136,6 +140,8 @@ const props = defineProps<{
   editMode: boolean
   // Alle Schulen, die in der Datenbank stehen (vom Quiz geladen).
   schools?: School[]
+  // Im Vollbildmodus fuellt der Splitter die verfuegbare Hoehe.
+  vollbild?: boolean
 }>()
 
 const emit = defineEmits<{
@@ -249,6 +255,15 @@ onMounted(async () => {
 </script>
 
 <style scoped>
+/* Im Vollbild wird das Formular eine Spalte und der Splitter nimmt die
+   verfuegbare Hoehe ein; das Bild darf dann in sein Panel hineinwachsen. */
+.exercise-form--vollbild {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-height: 0;
+}
+
 .textarea {
   height: 10px;
   flex: 1;

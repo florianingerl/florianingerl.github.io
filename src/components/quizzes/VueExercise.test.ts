@@ -75,3 +75,21 @@ describe("VueExercise: Splitter aus Bild und Aufgabe", () => {
     expect(gap.props("exercise")).toEqual(ex);
   });
 });
+
+describe("VueExercise: Vollbildmodus", () => {
+  it("markiert die Komponente nur im Vollbild mit der Vollbild-Klasse", () => {
+    const ex = aufgabe({ imageUrl: "https://example.com/bild.png" });
+
+    const normal = mount(VueExercise, {
+      props: { exercise: ex, lg: "en" },
+      global,
+    });
+    expect(normal.classes()).not.toContain("vue-exercise--vollbild");
+
+    const voll = mount(VueExercise, {
+      props: { exercise: ex, lg: "en", vollbild: true },
+      global,
+    });
+    expect(voll.classes()).toContain("vue-exercise--vollbild");
+  });
+});

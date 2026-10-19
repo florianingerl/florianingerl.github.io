@@ -85,3 +85,48 @@ test.describe("Quiz-Layout: Splitter mit Bild links, Aufgabe rechts", () => {
     await expect(section.locator(".p-splitter-panel ul.pagination")).toHaveCount(0);
   });
 });
+
+// Die Bild- und Tutorial-Flaechen teilen sich die CSS-Variable
+// --exercise-image-height: ausserhalb des Vollbilds 200px, im Vollbild 100%.
+test.describe("Quiz-Layout: Hoehe im Vollbildmodus", () => {
+  // Hoehe der Flaeche in Pixeln.
+  async function hoehe(locator: import("@playwright/test").Locator) {
+    const box = await locator.boundingBox();
+    if (!box) throw new Error("kein Layout");
+    return box.height;
+  }
+
+  test("Bild und Tutorial fuellen im Vollbild die Hoehe", async ({ page }) => {
+    await mockBackend(page);
+    await page.goto("/");
+    await page.locator('.language-bar a[title="English"]').click();
+
+    const section = page.locator("#englisch");
+    const root = section.locator("[data-quiz-root]");
+    const bild = section.locator(".vue-exercise__bild-wrapper");
+    await expect(bild).toBeVisible();
+
+    // Ausserhalb des Vollbilds die feste Hoehe (200px).
+    expect(await hoehe(bild)).toBeCloseTo(200, 0);
+
+    // Vollbild einschalten: die Flaeche waechst ueber die feste Hoehe hinaus.
+    await section.locator('button[title="Fullscreen"]').click();
+    await expect(root).toHaveClass(/quiz-vollbild/);
+    expect(await hoehe(bild)).toBeGreaterThan(300);
+
+    // Beenden: wieder die feste Hoehe.
+    await section.locator('button[title="Leave fullscreen"]').click();
+    await expect(root).not.toHaveClass(/quiz-vollbild/);
+    expect(await hoehe(bild)).toBeCloseTo(200, 0);
+
+    // Dasselbe fuer die Tutorialsicht.
+    await section.getByRole("tab", { name: "Tutorial" }).click();
+    const tutorial = section.locator(".quiz-tutorial");
+    await expect(tutorial).toBeVisible();
+    expect(await hoehe(tutorial)).toBeCloseTo(200, 0);
+
+    await section.locator('button[title="Fullscreen"]').click();
+    await expect(root).toHaveClass(/quiz-vollbild/);
+    expect(await hoehe(tutorial)).toBeGreaterThan(300);
+  });
+});

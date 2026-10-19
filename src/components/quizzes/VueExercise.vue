@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="{ 'vue-exercise--vollbild': vollbild }">
     <VueTopicDisplayer :topic="exercise.topic" :school="exercise.school" />
 
     <!-- Horizontale Zweiteilung: links das Aufgabenbild, rechts die Aufgabe.
@@ -51,6 +51,8 @@ import type { Exercise, Lang } from '@/types/quiz'
 const props = defineProps<{
   exercise: Exercise
   lg: Lang
+  // Im Vollbildmodus fuellen Bild und Splitter die verfuegbare Hoehe.
+  vollbild?: boolean
 }>()
 
 const emit = defineEmits<{ (e: 'answered-event'): void }>()
@@ -80,16 +82,17 @@ const exerciseProps = computed(() =>
 
 <style scoped>
 /* Der Rahmen des Bildes ist scrollbar, falls das Bild groesser ist als der
-   Rahmen. Das Bild selbst fuellt ihn mit object-fit: cover aus. */
+   Rahmen. Das Bild selbst fuellt ihn mit object-fit: cover aus. Die Hoehe kommt
+   aus der gemeinsamen CSS-Variablen (im Vollbild 100%). */
 .vue-exercise__bild-wrapper {
   overflow: auto;
-  height: 200px;
+  height: var(--exercise-image-height);
 }
 
 .vue-image__img {
   display: block;
   width: 100%;
-  height: 200px;
+  height: var(--exercise-image-height);
   object-fit: cover;
   object-position: center;
 }
@@ -97,5 +100,23 @@ const exerciseProps = computed(() =>
 /* Der Inhalt rechts scrollt bei Bedarf, statt das Layout zu sprengen. */
 .vue-exercise__inhalt {
   overflow: auto;
+}
+
+/* Im Vollbild wird die Komponente eine Spalte und der Splitter nimmt die
+   verfuegbare Hoehe ein; das Bild fuellt sein Panel. */
+.vue-exercise--vollbild {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+
+.vue-exercise--vollbild .vue-exercise-splitter {
+  flex-grow: 1;
+  min-height: 0;
+}
+
+.vue-exercise--vollbild .vue-exercise__bild-wrapper {
+  min-height: 0;
 }
 </style>
