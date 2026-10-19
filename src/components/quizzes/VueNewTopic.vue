@@ -1,6 +1,6 @@
 <template>
-  <div>
-    
+  <form @submit.prevent="saveTutorialClicked">
+
     <label for="topic-title">Titel</label>
     <input id="topic-title" type="text" v-model="topicTitle" />
 
@@ -9,12 +9,12 @@
       Zufälliges Bild von anglaisfacile.com einfügen
     </button>
     <div class="row">
-        <button @click="saveTutorialClicked">Save</button>
+        <button type="submit" class="col"><i class="bi bi-save" aria-hidden="true"></i> Save</button>
       </div>
       <div class="col">
-        <button @click="emit('cancel-clicked')">Cancel</button>
+        <button type="button" @click="emit('cancel-clicked')"><i class="bi bi-x-lg" aria-hidden="true"></i> Cancel</button>
       </div>
-    </div>
+  </form>
 </template>
 
 <script setup lang="ts">

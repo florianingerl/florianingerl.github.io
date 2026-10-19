@@ -68,10 +68,9 @@ describe("VueNewTopic: Tutorial bearbeiten", () => {
     await flushPromises();
 
     await wrapper.get("#topic-title").setValue("Elektrotechnik neu");
-    await wrapper
-      .findAll("button")
-      .find((b) => b.text().trim() === "Save")!
-      .trigger("click");
+    // Save ist der submit-Knopf des Formulars; in jsdom loest ein Klick auf
+    // type="submit" keinen submit-Event aus, deshalb direkt submit ausloesen.
+    await wrapper.find("form").trigger("submit");
     await flushPromises();
 
     expect(gesendet).toBeTruthy();
@@ -81,5 +80,23 @@ describe("VueNewTopic: Tutorial bearbeiten", () => {
     expect(Object.prototype.hasOwnProperty.call(gesendet!, "school")).toBe(
       false,
     );
+  });
+
+  it("Save ist der submit-Knopf des Formulars und beide Knopfe tragen ein Icon", async () => {
+    const wrapper = mountTopic(thema);
+    await flushPromises();
+
+    const form = wrapper.get("form");
+    const knoepfe = form.findAll("button");
+    const save = knoepfe.find((b) => b.text().trim() === "Save")!;
+    const cancel = knoepfe.find((b) => b.text().trim() === "Cancel")!;
+
+    expect(save.attributes("type")).toBe("submit");
+    expect(save.find("i.bi-save").exists()).toBe(true);
+    expect(cancel.attributes("type")).toBe("button");
+    expect(cancel.find("i.bi-x-lg").exists()).toBe(true);
+
+    // Der Titel steht im Formular: Enter in ihm loest Save aus.
+    expect(form.find("#topic-title").exists()).toBe(true);
   });
 });

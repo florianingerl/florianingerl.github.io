@@ -238,3 +238,23 @@ describe("VueNewExercise: Schule der Aufgabe", () => {
     expect((emitted![0][0] as Exercise).school).toBeUndefined();
   });
 });
+
+describe("VueNewExercise: Save als Default-Knopf", () => {
+  it("Save ist der submit-Knopf des Formulars und beide Knopfe tragen ein Icon", async () => {
+    const wrapper = await mountForm();
+
+    const form = wrapper.get("form");
+    const knoepfe = form.findAll("button");
+    const save = knoepfe.find((b) => b.text().trim() === "Save")!;
+    const cancel = knoepfe.find((b) => b.text().trim() === "Cancel")!;
+
+    expect(save.attributes("type")).toBe("submit");
+    expect(save.find("i.bi-save").exists()).toBe(true);
+    expect(cancel.attributes("type")).toBe("button");
+    expect(cancel.find("i.bi-x-lg").exists()).toBe(true);
+
+    // Die Textfelder gehoeren zum Formular: Enter in ihnen loest Save aus.
+    expect(form.find("#exercise-type").exists()).toBe(true);
+    expect(form.findAll('input[type="text"]').length).toBeGreaterThan(0);
+  });
+});
