@@ -31,8 +31,8 @@
         v-if="dialog === null"
         class="flex-grow-1"
         :form-open="formOffen"
-        :can-edit="!!aktuelle"
-        :can-delete="!!aktuelle?._id"
+        :can-edit="!!aktuelle && darfAendern"
+        :can-delete="!!aktuelle?._id && darfAendern"
         @create-clicked="oeffneFormular(false)"
         @edit-clicked="oeffneFormular(true)"
         @delete-clicked="loeschen"
@@ -243,6 +243,7 @@ import {
   API_URL,
   createExercise,
   deleteExercise,
+  fehlerText,
   getExercises,
   getExercisesBySubject,
   getQuiz,
@@ -606,6 +607,17 @@ const aktuelle = computed<Exercise | undefined>(
   () => displayedQuestions.value[i.value]
 );
 
+// Nur die Besitzerin der Aufgabe oder der Benutzer mit der Admin-Adresse
+// darf Aufgaben aendern und loeschen (Aufgabe 16 aus InstructionsForTheAI).
+// Der Server prueft dasselbe und antwortet sonst mit 403. Ein neues Thema
+// ohne _id hat noch keine Besitzerin - das darf nur die Admin-Adresse
+// bearbeiten.
+const darfAendern = computed(() => {
+  if (!auth.angemeldet || !aktuelle.value) return false;
+  if (auth.email.trim().toLowerCase() === EXPORT_EMAIL) return true;
+  return !!aktuelle.value.user && aktuelle.value.user === auth.user?._id;
+});
+
 const letzterIndex = computed(() =>
   Math.max(displayedQuestions.value.length - 1, 0)
 );
@@ -920,6 +932,7 @@ function oeffneFormular(bearbeiten: boolean): void {
     dialogOeffnen("login");
     return;
   }
+  if (bearbeiten && !darfAendern.value) return;
   editMode.value = bearbeiten;
   formOffen.value = true;
 }
@@ -974,7 +987,9 @@ async function gespeichert(ex: Exercise): Promise<void> {
     );
   } catch (e) {
     if (sitzungAbgelaufen(e)) return;
-    alert(`Speichern fehlgeschlagen: ${(e as Error).message}`);
+    // Bei 403 zeigt der Server den Grund (fremde Aufgabe), deshalb wird
+    // bevorzugt die Meldung des Servers angezeigt.
+    alert(`Speichern fehlgeschlagen: ${fehlerText(e, (e as Error).message)}`);
   }
 }
 
@@ -984,7 +999,7 @@ async function loeschen(): Promise<void> {
     return;
   }
   const q = aktuelle.value;
-  if (!q?._id) return;
+  if (!q?._id || !darfAendern.value) return;
   if (!window.confirm("Do you really want to delete this question?")) return;
   try {
     await deleteExercise(q._id);
@@ -992,7 +1007,7 @@ async function loeschen(): Promise<void> {
     if (i.value > letzterIndex.value) i.value = letzterIndex.value;
   } catch (e) {
     if (sitzungAbgelaufen(e)) return;
-    alert(`Löschen fehlgeschlagen: ${(e as Error).message}`);
+    alert(`Löschen fehlgeschlagen: ${fehlerText(e, (e as Error).message)}`);
   }
 }
 </script>

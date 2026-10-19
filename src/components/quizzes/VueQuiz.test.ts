@@ -1075,3 +1075,129 @@ describe("VueQuiz: Link wird beim Aendern von Thema/Schule kopiert", () => {
     expect(wrapper.find(".kopier-hinweis").exists()).toBe(false);
   });
 });
+
+// Aufgabe 16 aus InstructionsForTheAI.txt: Nur die Besitzerin der Aufgabe
+// oder der Benutzer mit der Adresse imelflorianingerl@gmail.com darf
+// bearbeiten und loeschen. Die Knopfe duerfen dann nicht sichtbar sein.
+describe("VueQuiz: Bearbeiten und Loeschen nur fuer Besitzerin oder Admin", () => {
+  beforeEach(() => {
+    server.use(
+      http.get(`${API_URL}/api/quiz`, () =>
+        HttpResponse.json([
+          { _id: "q1", website: "web", subject: QUIZ, name: QUIZ },
+        ]),
+      ),
+      http.get(`${API_URL}/api/topic/:quiz`, () =>
+        HttpResponse.json([
+          { _id: "t1", subject: QUIZ, title: "Topic 1", tutorial: "" },
+        ]),
+      ),
+      http.get(`${API_URL}/api/exercise`, () =>
+        HttpResponse.json<Exercise[]>([
+          {
+            _id: "e1",
+            quiz: "q1",
+            subject: QUIZ,
+            topic: "t1",
+            type: "gapText",
+            imageUrl: "",
+            instruction: "Fill the gap",
+            gapText: "a {b} c",
+            user: "u-owner",
+          },
+        ]),
+      ),
+    );
+  });
+
+  async function mountMitBenutzer(user: User) {
+    const pinia = createPinia();
+    setActivePinia(pinia);
+    const wrapper = mount(VueQuiz, {
+      props: { quiz: QUIZ, lg: "en" },
+      global: {
+        plugins: [pinia],
+        // Die Knopfleiste soll echt gerendert werden.
+        stubs: { LoginToEditComponent: false },
+      },
+      shallow: true,
+    });
+    await flushPromises();
+
+    const auth = useAuthStore();
+    auth.token = "test-token";
+    auth.user = user;
+    await flushPromises();
+    return wrapper;
+  }
+
+  it("fremder Benutzer sieht keinen Edit- und keinen Delete-Knopf", async () => {
+    const wrapper = await mountMitBenutzer({
+      _id: "u-other",
+      name: "Other",
+      email: "other@example.com",
+    } as User);
+
+    expect(wrapper.find('[title="Add a new exercise"]').exists()).toBe(true);
+    expect(wrapper.find('[title="Edit the exercise"]').exists()).toBe(false);
+    expect(wrapper.find('[title="Delete the exercise"]').exists()).toBe(false);
+  });
+
+  it("die Besitzerin der Aufgabe sieht Edit- und Delete-Knopf", async () => {
+    const wrapper = await mountMitBenutzer({
+      _id: "u-owner",
+      name: "Owner",
+      email: "owner@example.com",
+    } as User);
+
+    expect(wrapper.find('[title="Edit the exercise"]').exists()).toBe(true);
+    expect(wrapper.find('[title="Delete the exercise"]').exists()).toBe(true);
+  });
+
+  it("die Admin-Adresse sieht beide Knoepfe, auch ohne Besitz", async () => {
+    const wrapper = await mountMitBenutzer({
+      _id: "u-admin",
+      name: "Admin",
+      email: "imelflorianingerl@gmail.com",
+    } as User);
+
+    expect(wrapper.find('[title="Edit the exercise"]').exists()).toBe(true);
+    expect(wrapper.find('[title="Delete the exercise"]').exists()).toBe(true);
+  });
+
+  it("eine Aufgabe ohne Besitzerin darf nur die Admin-Adresse bearbeiten", async () => {
+    server.use(
+      http.get(`${API_URL}/api/exercise`, () =>
+        HttpResponse.json<Exercise[]>([
+          {
+            _id: "e2",
+            quiz: "q1",
+            subject: QUIZ,
+            topic: "t1",
+            type: "gapText",
+            imageUrl: "",
+            instruction: "Fill the gap",
+            gapText: "a {b} c",
+          },
+        ]),
+      ),
+    );
+
+    const fremd = await mountMitBenutzer({
+      _id: "u-other",
+      name: "Other",
+      email: "other@example.com",
+    } as User);
+    expect(fremd.find('[title="Edit the exercise"]').exists()).toBe(false);
+    expect(fremd.find('[title="Delete the exercise"]').exists()).toBe(false);
+    fremd.unmount();
+
+    const admin = await mountMitBenutzer({
+      _id: "u-admin",
+      name: "Admin",
+      email: "IMELFlorianingerl@Gmail.com",
+    } as User);
+    expect(admin.find('[title="Edit the exercise"]').exists()).toBe(true);
+    expect(admin.find('[title="Delete the exercise"]').exists()).toBe(true);
+  });
+});
