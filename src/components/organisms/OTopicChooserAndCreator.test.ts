@@ -4,7 +4,7 @@ import { beforeEach, describe, expect, it } from "vitest";
 import { API_URL } from "@/api";
 import { server } from "@/mocks/server";
 import type { Topic } from "@/types/quiz";
-import VueTopicFilter from "@/components/quizzes/VueTopicFilter.vue";
+import MTopicChooser from "@/components/molecules/MTopicChooser.vue";
 import MTopicCreator from "@/components/molecules/MTopicCreator.vue";
 import OTopicChooserAndCreator from "./OTopicChooserAndCreator.vue";
 
@@ -38,7 +38,7 @@ describe("OTopicChooserAndCreator", () => {
     await flushPromises();
 
     expect(wrapper.text()).toContain("Choose a topic (from tree):");
-    expect(wrapper.findComponent(VueTopicFilter).props("topics")).toEqual(
+    expect(wrapper.findComponent(MTopicChooser).props("topics")).toEqual(
       themen,
     );
     // Ohne Auswahl gibt es kein Elternthema.
@@ -52,7 +52,7 @@ describe("OTopicChooserAndCreator", () => {
     await flushPromises();
 
     // Den Baum aufklappen und "Elektrotechnik" waehlen.
-    await wrapper.findComponent(VueTopicFilter).get("button").trigger("click");
+    await wrapper.findComponent(MTopicChooser).get("button").trigger("click");
     const knoten = wrapper
       .findAll(".p-treenode-content")
       .find((n) => n.text().includes("Elektrotechnik"));
@@ -83,7 +83,7 @@ describe("OTopicChooserAndCreator", () => {
     await flushPromises();
 
     // Das neue Thema haengt an den Themen des Baumes ...
-    const filter = wrapper.findComponent(VueTopicFilter);
+    const filter = wrapper.findComponent(MTopicChooser);
     expect((filter.props("topics") as Topic[]).at(-1)).toEqual(neu);
     // ... und ist dort ausgewaehlt, sodass sein Pfad angezeigt wird.
     expect(filter.props("modelValue")).toBe("zeh");

@@ -4,8 +4,7 @@
       ueberleben. -->
 <template>
   <div class="filter-component">
-    <label class="form-label mb-0">Filter for topic:</label>
-    <VueTopicFilter v-model="filter.topicId" :topics="topics" />
+    <MTopicChooser label="Filter for topic:" v-model="filter.topicId" :topics="topics" />
 
     <MSchoolChooser
       :schools="schools"
@@ -30,7 +29,7 @@
 import { computed } from "vue";
 import { useFilterStore } from "@/stores/filter";
 import type { School, Topic } from "@/types/quiz";
-import VueTopicFilter from "./VueTopicFilter.vue";
+import MTopicChooser from "@/components/molecules/MTopicChooser.vue";
 import MSchoolChooser from "@/components/molecules/MSchoolChooser.vue";
 
 const props = defineProps<{

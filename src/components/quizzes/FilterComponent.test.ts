@@ -4,7 +4,7 @@ import { describe, expect, it } from "vitest";
 import { useFilterStore } from "@/stores/filter";
 import type { School, Topic } from "@/types/quiz";
 import FilterComponent from "./FilterComponent.vue";
-import VueTopicFilter from "./VueTopicFilter.vue";
+import MTopicChooser from "@/components/molecules/MTopicChooser.vue";
 
 const themen: Topic[] = [
   { _id: "t1", subject: "french", title: "Verbes reflechi", tutorial: "" },
@@ -31,8 +31,8 @@ describe("FilterComponent: Filterzeile", () => {
 
     expect(wrapper.text()).toContain("Filter for topic:");
     expect(wrapper.text()).toContain("School:");
-    expect(wrapper.findComponent(VueTopicFilter).exists()).toBe(true);
-    expect(wrapper.findComponent(VueTopicFilter).props("topics")).toEqual(
+    expect(wrapper.findComponent(MTopicChooser).exists()).toBe(true);
+    expect(wrapper.findComponent(MTopicChooser).props("topics")).toEqual(
       themen,
     );
 

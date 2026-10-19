@@ -2,10 +2,13 @@
      "Choose a topic..."; ist eines gewaehlt, der Pfad "Wurzel->...->Thema" und
      ein Klick darauf klappt den Baum auf. Der Baum liegt dabei ueber den
      uebrigen Elementen (wie ein Menue), statt sie wegzuschieben. Wird an
-     filter.topicId gebunden. -->
+     filter.topicId gebunden. Ueber die optionale Eigenschaft label kann eine
+     Beschriftung (z.B. "Parent topic:") mitgeliefert werden; wird sie nicht
+     gesetzt, rendert die Komponente keine eigene Beschriftung. -->
 <template>
   <div ref="wurzel" class="topic-filter position-relative">
     <div class="d-flex align-items-center">
+      <label v-if="label" class="form-label mb-0 me-2">{{ label }}</label>
       <button
         type="button"
         class="btn btn-link p-0 text-decoration-none text-start flex-grow-1"
@@ -51,6 +54,9 @@ const props = defineProps<{
   // _id des gewaehlten Themas oder "".
   modelValue: string;
   topics: Topic[];
+  // Beschriftung links neben dem Baum (z.B. "Parent topic:"). Ohne label
+  // rendert die Komponente keine eigene Beschriftung.
+  label?: string;
 }>();
 
 const emit = defineEmits<{

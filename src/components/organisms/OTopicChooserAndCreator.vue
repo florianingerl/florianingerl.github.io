@@ -1,5 +1,5 @@
 <!-- Themen-Auswahl und -Anlage nebeneinander: Links die Beschriftung
-     "Choose a topic (from tree):" mit dem Themen-Baum (VueTopicFilter),
+     "Choose a topic (from tree):" mit dem Themen-Baum (MTopicChooser),
      rechts daneben die Anlage eines neuen Themas (MTopicCreator) mit dem im
      Baum gewaehlten Thema als Elternthema. Die Themen werden ueber
      getAllTopics(subject) geladen. Ein neu angelegtes Thema erscheint im
@@ -8,8 +8,11 @@
 <template>
   <div class="topic-chooser-and-creator">
     <div class="topic-chooser">
-      <label class="form-label mb-0">Choose a topic (from tree):</label>
-      <VueTopicFilter v-model="selectedTopicId" :topics="topics" />
+      <MTopicChooser
+        v-model="selectedTopicId"
+        :topics="topics"
+        label="Choose a topic (from tree):"
+      />
     </div>
     <MTopicCreator
       :parentTopic="selectedTopic"
@@ -22,7 +25,7 @@
 
 <script setup lang="ts">
 import { computed, onMounted, ref, watch } from "vue";
-import VueTopicFilter from "@/components/quizzes/VueTopicFilter.vue";
+import MTopicChooser from "@/components/molecules/MTopicChooser.vue";
 import MTopicCreator from "@/components/molecules/MTopicCreator.vue";
 import { getAllTopics } from "@/api";
 import type { Topic } from "@/types/quiz";

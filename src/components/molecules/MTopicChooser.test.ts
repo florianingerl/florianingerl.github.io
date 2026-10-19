@@ -1,7 +1,7 @@
 import { flushPromises, mount } from "@vue/test-utils";
 import { describe, expect, it } from "vitest";
 import type { Topic } from "@/types/quiz";
-import VueTopicFilter from "./VueTopicFilter.vue";
+import MTopicChooser from "./MTopicChooser.vue";
 
 const themen: Topic[] = [
   {
@@ -33,9 +33,25 @@ function baumOffen(wrapper: ReturnType<typeof mount>): boolean {
   return !style.includes("display: none");
 }
 
-describe("VueTopicFilter: Baum als Menue", () => {
+describe("MTopicChooser: Baum als Menue", () => {
+  it("zeigt ohne label keine eigene Beschriftung", () => {
+    const wrapper = mount(MTopicChooser, {
+      props: { modelValue: "", topics: themen },
+    });
+
+    expect(wrapper.find("label").exists()).toBe(false);
+  });
+
+  it("zeigt die uebergebene Beschriftung links neben dem Baum", () => {
+    const wrapper = mount(MTopicChooser, {
+      props: { modelValue: "", topics: themen, label: "Parent topic:" },
+    });
+
+    expect(wrapper.get("label").text()).toBe("Parent topic:");
+  });
+
   it("zeigt ohne Auswahl einen Knopf und einen zugeklappten Baum", () => {
-    const wrapper = mount(VueTopicFilter, {
+    const wrapper = mount(MTopicChooser, {
       props: { modelValue: "", topics: themen },
     });
 
@@ -44,7 +60,7 @@ describe("VueTopicFilter: Baum als Menue", () => {
   });
 
   it("zeigt den Pfad des gewaehlten Themas als String, solange zugeklappt", () => {
-    const wrapper = mount(VueTopicFilter, {
+    const wrapper = mount(MTopicChooser, {
       props: { modelValue: "zeh", topics: themen },
     });
 
@@ -55,7 +71,7 @@ describe("VueTopicFilter: Baum als Menue", () => {
   });
 
   it("klappt den Baum beim Klick auf den String als Menue auf", async () => {
-    const wrapper = mount(VueTopicFilter, {
+    const wrapper = mount(MTopicChooser, {
       props: { modelValue: "zeh", topics: themen },
     });
 
@@ -68,7 +84,7 @@ describe("VueTopicFilter: Baum als Menue", () => {
   });
 
   it("waehlt einen Knoten und schliesst das Menue", async () => {
-    const wrapper = mount(VueTopicFilter, {
+    const wrapper = mount(MTopicChooser, {
       props: { modelValue: "", topics: themen },
     });
 

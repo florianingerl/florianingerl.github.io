@@ -47,9 +47,11 @@
         </div>
 
         <div class="mb-3">
-          <label class="form-label fw-semibold">Filter for topic:</label>
-
-          <VueTopicFilter v-model="filter.topicId" :topics="topics" />
+          <MTopicChooser
+            v-model="filter.topicId"
+            :topics="topics"
+            label="Filter for topic:"
+          />
 
           <div class="form-text">
             Only the exercises of the chosen topic are shown.
@@ -149,7 +151,7 @@
 import { useAuthStore } from "@/stores/auth";
 import { useFilterStore } from "@/stores/filter";
 import type { School, Topic } from "@/types/quiz";
-import VueTopicFilter from "./VueTopicFilter.vue";
+import MTopicChooser from "@/components/molecules/MTopicChooser.vue";
 
 const props = defineProps<{
   // Quiz-Name (Website-Quiz) oder Sprache/Fach (Buch-Quizz) als Filter-Schluessel.

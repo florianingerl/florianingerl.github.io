@@ -20,7 +20,7 @@ function mountDialog(schools: School[] = schulen) {
   setActivePinia(pinia);
   return mount(VueFilterDialog, {
     props: { quiz: "french", topics: themen, schools, creators: [] },
-    global: { plugins: [pinia], stubs: { VueTopicFilter: true } },
+    global: { plugins: [pinia], stubs: { MTopicChooser: true } },
   });
 }
 

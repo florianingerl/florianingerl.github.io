@@ -73,7 +73,7 @@ export interface Topic {
   // _id des Benutzers, der das Topic angelegt hat. Der Server setzt das beim
   // Speichern selbst, es kann also nicht veraendert werden.
   user?: string;
-  parentId?: string; // for hierarchical topics
+  parentId?: string | null; // for hierarchical topics
 }
 
 // Eine Schule/Hochschule/Klasse, z.B. "LMU München" oder
