@@ -46,7 +46,7 @@
       </li>
     </ol>
 
-    <ExerciseFeedback
+    <MExerciseFeedback
       :lg="lg"
       @validate="validate"
       @showSolution="showSolution"
@@ -58,7 +58,7 @@
 <script setup lang="ts">
 import { onMounted, ref, watch } from "vue";
 import type { Exercise, Gap, Lang } from "@/types/quiz";
-import ExerciseFeedback from "./ExerciseFeedback.vue";
+import MExerciseFeedback from "../molecules/MExerciseFeedback.vue";
 
 const props = defineProps<{
   exercise: Exercise
