@@ -62,7 +62,7 @@
       class="mb-3"
       :quiz="quizSchluessel"
       :topics="topics"
-      :schools="verfuegbareSchulen"
+      :schools="schulenFuerFilter"
       @open-advanced-filter="dialogOeffnen('filter')"/>
       
     <ul class="nav nav-tabs" role="tablist">
@@ -210,7 +210,7 @@
       :quiz="quizSchluessel"
       :topics="topics"
       :creators="creators"
-      :schools="verfuegbareSchulen"
+      :schools="schulenFuerFilter"
       @cancel-clicked="dialog = null"
     />
 
@@ -573,6 +573,20 @@ const verfuegbareSchulen = computed<School[]>(() =>
         currentQuizId.value,
       ),
 );
+
+// Fuer die Schulauswahl in der Filterzeile: die verfuegbaren Schulen. Ist schon
+// eine Schule gewaehlt (z.B. aus einem Deep-Link), wird sie immer mit
+// aufgenommen - auch bevor die Aufgaben geladen sind. Sonst koennte die
+// Auswahl nicht angezeigt werden, solange verfuegbareSchulen noch leer ist.
+const schulenFuerFilter = computed<School[]>(() => {
+  const liste = verfuegbareSchulen.value;
+  const gewaehlt = filter.value.school;
+  if (!gewaehlt) return liste;
+  if (liste.some((s) => s.name === gewaehlt)) return liste;
+  const ausListe = schools.value.find((s) => s.name === gewaehlt);
+  if (!ausListe) return liste;
+  return [ausListe, ...liste];
+});
 
 // Wechselt der Umfang ("nur dieses Quiz" <-> "ganzes Fach"), aendert sich die
 // Liste der waehlbaren Schulen. Damit keine Schule ausgewaehlt bleibt, die es

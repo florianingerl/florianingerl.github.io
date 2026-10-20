@@ -10,6 +10,8 @@ import { useFilterStore } from "@/stores/filter";
 import type { Exercise, QuizName, School, Topic, User } from "@/types/quiz";
 import FilterComponent from "./FilterComponent.vue";
 import VueNewExercise from "./VueNewExercise.vue";
+import MSchoolChooser from "@/components/molecules/MSchoolChooser.vue";
+import MTopicChooser from "@/components/molecules/MTopicChooser.vue";
 import OExercise from "./OExercise.vue";
 import OQuiz from "./OQuiz.vue";
 
@@ -974,6 +976,80 @@ describe("OQuiz: Deep-Link waehlt Thema und Schule", () => {
     const filterStore = useFilterStore();
     expect(filterStore.filterFor("q1").topicId).toBe("");
     expect(filterStore.filterFor("q1").school).toBe("");
+  });
+});
+
+// Bug: Oeffnet man einen geteilten Link, wird richtig gefiltert, aber in der
+// Filterzeile (FilterComponent) erscheinen Thema und Schule nicht als
+// ausgewaehlt. Die Filterzeile muss die Auswahl des Deep-Links widerspiegeln -
+// auch dann, wenn in der Aufgabenliste (noch) keine Schule auftaucht, aus der
+// sich die Schulauswahl sonst aufbaut.
+describe("OQuiz: Filterzeile zeigt die Auswahl eines Deep-Links", () => {
+  const SCHULEN: School[] = [
+    { _id: "s1", name: "9.Klasse Gymnasium Bayern" },
+  ];
+
+  beforeEach(() => {
+    server.use(
+      http.get(`${API_URL}/api/quiz`, () =>
+        HttpResponse.json([
+          { _id: "q1", website: "web", subject: QUIZ, name: QUIZ },
+        ]),
+      ),
+      http.get(`${API_URL}/api/topic/:quiz`, () =>
+        HttpResponse.json<Topic[]>([
+          {
+            _id: "t-verbes",
+            subject: QUIZ,
+            title: "Verbes reflechi",
+            tutorial: "",
+          },
+        ]),
+      ),
+      http.get(`${API_URL}/api/school`, () => HttpResponse.json(SCHULEN)),
+      // Keine Aufgaben: so fehlt die Schule in der aus den Aufgaben
+      // abgeleiteten Liste, und die Auswahl kann nur aus der Wahl selbst
+      // kommen.
+      http.get(`${API_URL}/api/exercise`, () => HttpResponse.json([])),
+    );
+  });
+
+  afterEach(() => {
+    window.location.hash = "";
+  });
+
+  async function mountQuiz() {
+    const pinia = createPinia();
+    setActivePinia(pinia);
+    const wrapper = mount(OQuiz, {
+      props: { quiz: QUIZ, lg: "en" },
+      global: { plugins: [pinia] },
+      shallow: false,
+    });
+    await flushPromises();
+    return wrapper;
+  }
+
+  it("waehlt die Schule aus dem Link auch in der Filterzeile aus", async () => {
+    window.location.hash =
+      "#englisch?topic=Verbes%20reflechi&school=9klasseGymnasiumBayern";
+    const wrapper = await mountQuiz();
+
+    const chooser = wrapper
+      .findComponent(FilterComponent)
+      .findComponent(MSchoolChooser);
+    expect(chooser.props("modelValue")).toBe("s1");
+  });
+
+  it("zeigt das Thema aus dem Link auch in der Filterzeile", async () => {
+    window.location.hash =
+      "#englisch?topic=Verbes%20reflechi&school=9klasseGymnasiumBayern";
+    const wrapper = await mountQuiz();
+
+    const chooser = wrapper
+      .findComponent(FilterComponent)
+      .findComponent(MTopicChooser);
+    expect(chooser.props("modelValue")).toBe("t-verbes");
   });
 });
 
