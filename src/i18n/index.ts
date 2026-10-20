@@ -1,4 +1,5 @@
 import { createI18n } from "vue-i18n";
+import type { MessageCompiler } from "vue-i18n";
 import type { Lang } from "@/types/quiz";
 import de from "./locales/de.json";
 import en from "./locales/en.json";
@@ -57,10 +58,21 @@ export function resolveInitialLocale(): AppLocale {
   return readLocaleFromUrl() ?? readStoredLocale();
 }
 
+// Die Uebersetzungen enthalten HTML und LaTeX (z.B. \frac{1}{2} oder
+// \text{Euro}). vue-i18n wuerde geschweifte Klammern als Platzhalter deuten und
+// die Nachricht gar nicht mehr uebersetzen. Im Produktions-Build wirft der
+// Standard-Compiler dabei sogar einen Fehler, wodurch ganze Abschnitte
+// verschwinden. Da im Projekt keine Platzhalter, Plurale oder Linked-Messages
+// verwendet werden, geben wir die Nachricht unveraendert zurueck.
+export const literalMessageCompiler: MessageCompiler = (message) => () => {
+  return typeof message === "string" ? message : "";
+};
+
 export const i18n = createI18n({
   legacy: false,
   globalInjection: true,
   warnHtmlMessage: false,
+  messageCompiler: literalMessageCompiler,
   locale: resolveInitialLocale(),
   fallbackLocale: "de",
   messages: { de, en, fr, es, it },

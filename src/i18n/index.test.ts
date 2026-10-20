@@ -1,10 +1,13 @@
 import { afterEach, describe, expect, it } from "vitest";
 import {
+  i18n,
+  literalMessageCompiler,
   readLocaleFromUrl,
   resolveInitialLocale,
   syncLocaleToUrl,
   supportedLocales,
 } from "./index";
+import de from "./locales/de.json";
 
 // Kleine Helfer, um die Adresse der jsdom-Umgebung zu setzen und wieder
 // aufzuraeumen.
@@ -90,5 +93,20 @@ describe("i18n: Sprache in die Adresse zurueckschreiben", () => {
     setzeAdresse("?lang=en");
     syncLocaleToUrl("it");
     expect(window.location.search).toBe("?lang=it");
+  });
+});
+
+describe("i18n: LaTeX und HTML in Nachrichten", () => {
+  it("gibt Nachrichten mit geschweiften Klammern unveraendert zurueck", () => {
+    const text = "$\\frac{1}{2}$ und $\\text{Euro}$";
+    expect(literalMessageCompiler(text, {} as never)("" as never)).toBe(text);
+  });
+
+  it("liefert den Preise-Abschnitt inklusive LaTeX unveraendert", () => {
+    expect(i18n.global.t("sections.preise.body")).toBe(de.sections.preise.body);
+  });
+
+  it("liefert die Preisformel inklusive LaTeX unveraendert", () => {
+    expect(i18n.global.t("contract.priceFormula")).toBe(de.contract.priceFormula);
   });
 });
