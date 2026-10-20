@@ -108,9 +108,9 @@
       </SplitterPanel>
     </Splitter>
 
-    <div class="row justify-center">
-      <button type="submit" class="col btn-primary btn"><i class="bi bi-save" aria-hidden="true"></i> Save</button>
-      <button type="button" class="col btn-primary btn" @click="emit('cancel-clicked')"><i class="bi bi-x-lg" aria-hidden="true"></i> Cancel</button>
+    <div class="row justify-content-center">
+      <button type="submit" class="col btn btn-primary"><i class="bi bi-save" aria-hidden="true"></i> Save</button>
+      <button type="button" class="col btn btn-secondary" @click="emit('cancel-clicked')"><i class="bi bi-x-lg" aria-hidden="true"></i> Cancel</button>
     </div>
   </form>
 </template>

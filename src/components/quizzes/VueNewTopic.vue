@@ -20,12 +20,10 @@
     <button type="button" @click="insertRandomFacileImage" class="mt-2 mb-2">
       Zufälliges Bild von anglaisfacile.com einfügen
     </button>
-    <div class="row">
-        <button type="submit" class="col"><i class="bi bi-save" aria-hidden="true"></i> Save</button>
-      </div>
-      <div class="col">
-        <button type="button" @click="emit('cancel-clicked')"><i class="bi bi-x-lg" aria-hidden="true"></i> Cancel</button>
-      </div>
+    <div class="row justify-content-center">
+      <button type="submit" class="col btn btn-primary"><i class="bi bi-save" aria-hidden="true"></i> Save</button>
+      <button type="button" class="col btn btn-secondary" @click="emit('cancel-clicked')"><i class="bi bi-x-lg" aria-hidden="true"></i> Cancel</button>
+    </div>
   </form>
 </template>
 
