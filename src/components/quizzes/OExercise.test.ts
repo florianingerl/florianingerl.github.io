@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import Splitter from "primevue/splitter";
 import SplitterPanel from "primevue/splitterpanel";
 import type { Exercise } from "@/types/quiz";
-import VueExercise from "./VueExercise.vue";
+import OExercise from "./OExercise.vue";
 import VueMCGaps from "./VueMCGaps.vue";
 import VueQuestion from "./VueQuestion.vue";
 
@@ -22,13 +22,13 @@ function aufgabe(overrides: Partial<Exercise> = {}): Exercise {
   };
 }
 
-// VueTopicDisplayer laedt das Thema vom Server; im Test wird er ersetzt.
-const global = { stubs: { VueTopicDisplayer: true } };
+// MTopicAndSchoolDisplayer laedt das Thema vom Server; im Test wird er ersetzt.
+const global = { stubs: { MTopicAndSchoolDisplayer: true } };
 
-describe("VueExercise: Splitter aus Bild und Aufgabe", () => {
+describe("OExercise: Splitter aus Bild und Aufgabe", () => {
   it("legt das Bild in das erste und die Aufgabe in das zweite Panel", () => {
     const ex = aufgabe({ imageUrl: "https://example.com/bild.png" });
-    const wrapper = mount(VueExercise, {
+    const wrapper = mount(OExercise, {
       props: { exercise: ex, lg: "en" },
       global,
     });
@@ -47,13 +47,13 @@ describe("VueExercise: Splitter aus Bild und Aufgabe", () => {
     expect(frage.exists()).toBe(true);
     expect(frage.props("question")).toEqual(ex);
 
-    // Die Paginierung gehoert nicht mehr zum Splitter; sie steht in VueQuiz
+    // Die Paginierung gehoert nicht mehr zum Splitter; sie steht in OQuiz
     // unter dem gesamten Splitter.
     expect(wrapper.find("ul.pagination").exists()).toBe(false);
   });
 
   it("zeigt ohne Bild keinen Splitter, sondern nur die Aufgabe", () => {
-    const wrapper = mount(VueExercise, {
+    const wrapper = mount(OExercise, {
       props: { exercise: aufgabe(), lg: "en" },
       global,
     });
@@ -65,7 +65,7 @@ describe("VueExercise: Splitter aus Bild und Aufgabe", () => {
 
   it("waehlt fuer gapText die VueMCGaps-Aufgabe", () => {
     const ex = aufgabe({ type: "gapText", gapText: "a {b} c" });
-    const wrapper = mount(VueExercise, {
+    const wrapper = mount(OExercise, {
       props: { exercise: ex, lg: "en" },
       global,
     });
@@ -76,17 +76,17 @@ describe("VueExercise: Splitter aus Bild und Aufgabe", () => {
   });
 });
 
-describe("VueExercise: Vollbildmodus", () => {
+describe("OExercise: Vollbildmodus", () => {
   it("markiert die Komponente nur im Vollbild mit der Vollbild-Klasse", () => {
     const ex = aufgabe({ imageUrl: "https://example.com/bild.png" });
 
-    const normal = mount(VueExercise, {
+    const normal = mount(OExercise, {
       props: { exercise: ex, lg: "en" },
       global,
     });
     expect(normal.classes()).not.toContain("vue-exercise--vollbild");
 
-    const voll = mount(VueExercise, {
+    const voll = mount(OExercise, {
       props: { exercise: ex, lg: "en", vollbild: true },
       global,
     });

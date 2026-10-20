@@ -15,7 +15,7 @@ import { DUMMY_BOOK } from "@/components/book/bookDummy";
 // Der Buchladen laedt Buecher und (Buch-)Quizze von der API. Ist der Server
 // nicht erreichbar (oder liefert keine Buecher), wird fuer das Fach "deutsch"
 // das Beispiel-Buch aus bookDummy.ts gezeigt, damit der Laden auch ohne Backend
-// sichtbar ist. Die Aufgaben eines Buch-Quizzes laedt VueQuiz selbst ueber die
+// sichtbar ist. Die Aufgaben eines Buch-Quizzes laedt OQuiz selbst ueber die
 // normale Aufgaben-API.
 export const useBookStore = defineStore("books", () => {
   const books = ref<Book[]>([]);

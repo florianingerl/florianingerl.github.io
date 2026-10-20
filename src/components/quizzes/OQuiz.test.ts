@@ -10,8 +10,8 @@ import { useFilterStore } from "@/stores/filter";
 import type { Exercise, QuizName, School, Topic, User } from "@/types/quiz";
 import FilterComponent from "./FilterComponent.vue";
 import VueNewExercise from "./VueNewExercise.vue";
-import VueExercise from "./VueExercise.vue";
-import VueQuiz from "./VueQuiz.vue";
+import OExercise from "./OExercise.vue";
+import OQuiz from "./OQuiz.vue";
 
 const QUIZ: QuizName = "english";
 
@@ -30,7 +30,7 @@ function neueAufgabe(themaTitel: string): Exercise {
 // Der "andere Server" (Backend) wird mit MSW gemockt. Er haelt die Themen in
 // einem internen Array. addTopic (POST /api/topic) haengt das neue Thema hinten
 // an, getTopicsForQuizName (GET /api/topic/:quiz) liefert dieses Array zurueck.
-describe("VueQuiz: neues Thema erscheint im Topic-Filter-Dropdown", () => {
+describe("OQuiz: neues Thema erscheint im Topic-Filter-Dropdown", () => {
   let themen: Topic[];
 
   beforeEach(() => {
@@ -64,7 +64,7 @@ describe("VueQuiz: neues Thema erscheint im Topic-Filter-Dropdown", () => {
   async function mountQuiz() {
     const pinia = createPinia();
     setActivePinia(pinia);
-    const wrapper = mount(VueQuiz, {
+    const wrapper = mount(OQuiz, {
       props: { quiz: QUIZ, lg: "en" },
       global: {
         plugins: [pinia],
@@ -118,7 +118,7 @@ describe("VueQuiz: neues Thema erscheint im Topic-Filter-Dropdown", () => {
 // Aufgaben werden nach dem Fach (subject) geladen und angezeigt. Der Filter
 // "Only the exercises of this quiz" (Voreinstellung) blendet Aufgaben anderer
 // Quizze des Faches aus; "All exercises for the same subject" zeigt sie an.
-describe("VueQuiz: Aufgaben des Faches werden geladen und nach Umfang gefiltert", () => {
+describe("OQuiz: Aufgaben des Faches werden geladen und nach Umfang gefiltert", () => {
   beforeEach(() => {
     server.use(
       http.get(`${API_URL}/api/quiz`, () =>
@@ -162,7 +162,7 @@ describe("VueQuiz: Aufgaben des Faches werden geladen und nach Umfang gefiltert"
   async function mountQuiz() {
     const pinia = createPinia();
     setActivePinia(pinia);
-    const wrapper = mount(VueQuiz, {
+    const wrapper = mount(OQuiz, {
       props: { quiz: QUIZ, lg: "en" },
       global: {
         plugins: [pinia],
@@ -180,7 +180,7 @@ describe("VueQuiz: Aufgaben des Faches werden geladen und nach Umfang gefiltert"
   }
 
   function aktuellAngezeigt(wrapper: ReturnType<typeof mount>) {
-    return wrapper.findComponent(VueExercise).props("exercise") as Exercise;
+    return wrapper.findComponent(OExercise).props("exercise") as Exercise;
   }
 
   it("ueberlaesst den Umfang dem Filter", async () => {
@@ -216,7 +216,7 @@ describe("VueQuiz: Aufgaben des Faches werden geladen und nach Umfang gefiltert"
 // Das Mathematik-Quiz (Fach "mathematics") laedt das Thema "Gruppen" und die
 // dazugehoerigen Multiple-Choice-Aufgaben, die auf dem Wikipedia-Artikel ueber
 // Gruppen beruhen.
-describe("VueQuiz: Mathematik-Quiz laedt Thema 'Gruppen' und Aufgaben", () => {
+describe("OQuiz: Mathematik-Quiz laedt Thema 'Gruppen' und Aufgaben", () => {
   const MATHE: QuizName = "mathematics";
   const WIKI = "https://de.wikipedia.org/wiki/Gruppe_(Mathematik)";
 
@@ -264,7 +264,7 @@ describe("VueQuiz: Mathematik-Quiz laedt Thema 'Gruppen' und Aufgaben", () => {
   it("zeigt die Multiple-Choice-Aufgabe des Faches mathematics an", async () => {
     const pinia = createPinia();
     setActivePinia(pinia);
-    const wrapper = mount(VueQuiz, {
+    const wrapper = mount(OQuiz, {
       props: { quiz: MATHE, lg: "de" },
       global: { plugins: [pinia] },
       shallow: true,
@@ -272,7 +272,7 @@ describe("VueQuiz: Mathematik-Quiz laedt Thema 'Gruppen' und Aufgaben", () => {
     await flushPromises();
 
     const aufgabe = wrapper
-      .findComponent(VueExercise)
+      .findComponent(OExercise)
       .props("exercise") as Exercise;
     expect(aufgabe).toMatchObject({ _id: "em1", type: "multipleChoice" });
     expect(wrapper.text()).not.toContain("Keine Fragen vorhanden.");
@@ -282,7 +282,7 @@ describe("VueQuiz: Mathematik-Quiz laedt Thema 'Gruppen' und Aufgaben", () => {
 // Das Web-Programming-Quiz (Fach "webprogramming") laedt das Thema
 // "TypeScript - destructuring expressions" und die Multiple-Choice-Aufgaben,
 // die auf dem Medium-Artikel ueber ES6-Destructuring beruhen.
-describe("VueQuiz: Web-Programming-Quiz laedt Destructuring-Thema und Aufgaben", () => {
+describe("OQuiz: Web-Programming-Quiz laedt Destructuring-Thema und Aufgaben", () => {
   const WEB: QuizName = "webprogramming";
   const ARTIKEL =
     "https://medium.com/@taitasciore/es6-destructuring-in-depth-when-using-typescript-bdf7c899768a";
@@ -331,7 +331,7 @@ describe("VueQuiz: Web-Programming-Quiz laedt Destructuring-Thema und Aufgaben",
   it("zeigt die Multiple-Choice-Aufgabe des Faches webprogramming an", async () => {
     const pinia = createPinia();
     setActivePinia(pinia);
-    const wrapper = mount(VueQuiz, {
+    const wrapper = mount(OQuiz, {
       props: { quiz: WEB, lg: "de" },
       global: { plugins: [pinia] },
       shallow: true,
@@ -339,7 +339,7 @@ describe("VueQuiz: Web-Programming-Quiz laedt Destructuring-Thema und Aufgaben",
     await flushPromises();
 
     const aufgabe = wrapper
-      .findComponent(VueExercise)
+      .findComponent(OExercise)
       .props("exercise") as Exercise;
     expect(aufgabe).toMatchObject({ _id: "ew1", type: "multipleChoice" });
     expect(wrapper.text()).not.toContain("Keine Fragen vorhanden.");
@@ -349,7 +349,7 @@ describe("VueQuiz: Web-Programming-Quiz laedt Destructuring-Thema und Aufgaben",
 // Das Informatik-Quiz (Fach "informatics") laedt das Thema
 // "UML - Aktivit\u00e4tsdiagramme" und die dazugehoerigen Multiple-Choice-Aufgaben,
 // die auf dem Wikipedia-Artikel ueber Aktivit\u00e4tsdiagramme beruhen.
-describe("VueQuiz: Informatik-Quiz laedt UML-Aktivit\u00e4tsdiagramm-Thema und Aufgaben", () => {
+describe("OQuiz: Informatik-Quiz laedt UML-Aktivit\u00e4tsdiagramm-Thema und Aufgaben", () => {
   const INFO: QuizName = "informatics";
   const WIKI = "https://de.wikipedia.org/wiki/Aktivit%C3%A4tsdiagramm";
 
@@ -397,7 +397,7 @@ describe("VueQuiz: Informatik-Quiz laedt UML-Aktivit\u00e4tsdiagramm-Thema und A
   it("zeigt die Multiple-Choice-Aufgabe des Faches informatics an", async () => {
     const pinia = createPinia();
     setActivePinia(pinia);
-    const wrapper = mount(VueQuiz, {
+    const wrapper = mount(OQuiz, {
       props: { quiz: INFO, lg: "de" },
       global: { plugins: [pinia] },
       shallow: true,
@@ -405,7 +405,7 @@ describe("VueQuiz: Informatik-Quiz laedt UML-Aktivit\u00e4tsdiagramm-Thema und A
     await flushPromises();
 
     const aufgabe = wrapper
-      .findComponent(VueExercise)
+      .findComponent(OExercise)
       .props("exercise") as Exercise;
     expect(aufgabe).toMatchObject({ _id: "ei1", type: "multipleChoice" });
     expect(wrapper.text()).not.toContain("Keine Fragen vorhanden.");
@@ -414,7 +414,7 @@ describe("VueQuiz: Informatik-Quiz laedt UML-Aktivit\u00e4tsdiagramm-Thema und A
 
 // Der Vollbild-Knopf neben An- bzw. Abmelden schaltet das Quiz in den
 // Vollbildmodus. jsdom kennt die Fullscreen-API nicht, darum wird sie gestubbt.
-describe("VueQuiz: Vollbildmodus", () => {
+describe("OQuiz: Vollbildmodus", () => {
   beforeEach(() => {
     // jsdom kennt keinen Vollbildmodus: neutraler Ausgangszustand.
     Object.defineProperty(document, "fullscreenElement", {
@@ -435,7 +435,7 @@ describe("VueQuiz: Vollbildmodus", () => {
   async function mountQuiz() {
     const pinia = createPinia();
     setActivePinia(pinia);
-    const wrapper = mount(VueQuiz, {
+    const wrapper = mount(OQuiz, {
       props: { quiz: QUIZ, lg: "en" },
       global: { plugins: [pinia] },
       shallow: true,
@@ -565,7 +565,7 @@ describe("VueQuiz: Vollbildmodus", () => {
 
     const wrapper = await mountQuiz();
     await flushPromises();
-    expect(wrapper.findComponent(VueExercise).props("vollbild")).toBe(false);
+    expect(wrapper.findComponent(OExercise).props("vollbild")).toBe(false);
 
     await wrapper.get('[title="Fullscreen"]').trigger("click");
     Object.defineProperty(document, "fullscreenElement", {
@@ -575,13 +575,13 @@ describe("VueQuiz: Vollbildmodus", () => {
     document.dispatchEvent(new Event("fullscreenchange"));
     await flushPromises();
 
-    expect(wrapper.findComponent(VueExercise).props("vollbild")).toBe(true);
+    expect(wrapper.findComponent(OExercise).props("vollbild")).toBe(true);
   });
 });
 
 // Ohne Anmeldung duerfen die drei Knoepfe zum Anlegen, Bearbeiten und Loeschen
 // nicht sichtbar sein; stattdessen steht dort der Anmelde-Hinweis.
-describe("VueQuiz: nicht angemeldet", () => {
+describe("OQuiz: nicht angemeldet", () => {
   beforeEach(() => {
     server.use(
       http.get(`${API_URL}/api/quiz`, () =>
@@ -614,7 +614,7 @@ describe("VueQuiz: nicht angemeldet", () => {
   it("zeigt statt der drei Knoepfe den Anmelde-Hinweis", async () => {
     const pinia = createPinia();
     setActivePinia(pinia);
-    const wrapper = mount(VueQuiz, {
+    const wrapper = mount(OQuiz, {
       props: { quiz: QUIZ, lg: "en" },
       global: {
         plugins: [pinia],
@@ -642,7 +642,7 @@ describe("VueQuiz: nicht angemeldet", () => {
 // Eine Multiple-Choice-Aufgabe wird ueber das Formular angelegt, gespeichert
 // und danach ueber die API (getAllExercises) wieder geladen. So wird geprueft,
 // dass die erste Option als die richtige Antwort in der Datenbank landet.
-describe("VueQuiz: Multiple-Choice-Aufgabe anlegen (Server-Roundtrip)", () => {
+describe("OQuiz: Multiple-Choice-Aufgabe anlegen (Server-Roundtrip)", () => {
   let aufgaben: Exercise[];
 
   beforeEach(() => {
@@ -671,7 +671,7 @@ describe("VueQuiz: Multiple-Choice-Aufgabe anlegen (Server-Roundtrip)", () => {
   it("speichert die erste Option als richtige Antwort", async () => {
     const pinia = createPinia();
     setActivePinia(pinia);
-    const wrapper = mount(VueQuiz, {
+    const wrapper = mount(OQuiz, {
       props: { quiz: QUIZ, lg: "en" },
       global: {
         plugins: [pinia],
@@ -679,8 +679,8 @@ describe("VueQuiz: Multiple-Choice-Aufgabe anlegen (Server-Roundtrip)", () => {
         // (u.a. der Jodit-Editor in VueNewTopic) sind fuer den Test unnoetig.
         stubs: {
           VueNewTopic: true,
-          VueExercise: true,
-          VueTopicDisplayer: true,
+          OExercise: true,
+          MTopicAndSchoolDisplayer: true,
           VueExportToFacile: true,
           VueSignUp: true,
           VueLogin: true,
@@ -762,7 +762,7 @@ describe("VueQuiz: Multiple-Choice-Aufgabe anlegen (Server-Roundtrip)", () => {
 // derselben Schule duerfen im Filter "School:" ausgewaehlt werden. In der
 // Schulauswahl erscheinen nur die Schulen, die in diesem Quiz schon eine
 // Aufgabe haben.
-describe("VueQuiz: nach Schule filtern", () => {
+describe("OQuiz: nach Schule filtern", () => {
   const ALLE_SCHULEN: School[] = [
     { _id: "s1", name: "8.Klasse Gymnasium Bayern" },
     { _id: "s2", name: "9.Klasse Gymnasium Bayern" },
@@ -819,7 +819,7 @@ describe("VueQuiz: nach Schule filtern", () => {
   async function mountQuiz() {
     const pinia = createPinia();
     setActivePinia(pinia);
-    const wrapper = mount(VueQuiz, {
+    const wrapper = mount(OQuiz, {
       props: { quiz: QUIZ, lg: "en" },
       global: {
         plugins: [pinia],
@@ -834,7 +834,7 @@ describe("VueQuiz: nach Schule filtern", () => {
   }
 
   function aktuellAngezeigt(wrapper: ReturnType<typeof mount>) {
-    return wrapper.findComponent(VueExercise).props("exercise") as Exercise;
+    return wrapper.findComponent(OExercise).props("exercise") as Exercise;
   }
 
   it("zeigt alle Aufgaben, solange keine Schule gewaehlt ist", async () => {
@@ -902,7 +902,7 @@ describe("VueQuiz: nach Schule filtern", () => {
 // https://florianingerl.github.io/#englisch?topic=...&school=...
 // soll das Thema und die Schule schon auswaehlen. Die generischen Parameter
 // topic/school gelten nur, wenn der Anker der URL zu diesem Quiz gehoert.
-describe("VueQuiz: Deep-Link waehlt Thema und Schule", () => {
+describe("OQuiz: Deep-Link waehlt Thema und Schule", () => {
   const SCHULEN: School[] = [
     { _id: "s1", name: "9.Klasse Gymnasium Bayern" },
   ];
@@ -938,7 +938,7 @@ describe("VueQuiz: Deep-Link waehlt Thema und Schule", () => {
   async function mountQuiz() {
     const pinia = createPinia();
     setActivePinia(pinia);
-    const wrapper = mount(VueQuiz, {
+    const wrapper = mount(OQuiz, {
       props: { quiz: QUIZ, lg: "en" },
       global: { plugins: [pinia] },
       shallow: true,
@@ -981,7 +981,7 @@ describe("VueQuiz: Deep-Link waehlt Thema und Schule", () => {
 // in die Zwischenablage kopiert und unten rechts ein Hinweis gezeigt. Bleibt
 // beides leer, wird nichts kopiert. Beim Oeffnen einer Seite mit Deep-Link
 // wird die Zwischenablage nicht angefasst.
-describe("VueQuiz: Link wird beim Aendern von Thema/Schule kopiert", () => {
+describe("OQuiz: Link wird beim Aendern von Thema/Schule kopiert", () => {
   const SCHULEN: School[] = [{ _id: "s1", name: "9.Klasse Gymnasium Bayern" }];
   let writeText: ReturnType<typeof vi.fn>;
 
@@ -1020,7 +1020,7 @@ describe("VueQuiz: Link wird beim Aendern von Thema/Schule kopiert", () => {
   async function mountQuiz() {
     const pinia = createPinia();
     setActivePinia(pinia);
-    const wrapper = mount(VueQuiz, {
+    const wrapper = mount(OQuiz, {
       props: { quiz: QUIZ, lg: "en" },
       global: { plugins: [pinia] },
       shallow: true,
@@ -1121,7 +1121,7 @@ describe("VueQuiz: Link wird beim Aendern von Thema/Schule kopiert", () => {
 // Aufgabe 16 aus InstructionsForTheAI.txt: Nur die Besitzerin der Aufgabe
 // oder der Benutzer mit der Adresse imelflorianingerl@gmail.com darf
 // bearbeiten und loeschen. Die Knopfe duerfen dann nicht sichtbar sein.
-describe("VueQuiz: Bearbeiten und Loeschen nur fuer Besitzerin oder Admin", () => {
+describe("OQuiz: Bearbeiten und Loeschen nur fuer Besitzerin oder Admin", () => {
   beforeEach(() => {
     server.use(
       http.get(`${API_URL}/api/quiz`, () =>
@@ -1155,7 +1155,7 @@ describe("VueQuiz: Bearbeiten und Loeschen nur fuer Besitzerin oder Admin", () =
   async function mountMitBenutzer(user: User) {
     const pinia = createPinia();
     setActivePinia(pinia);
-    const wrapper = mount(VueQuiz, {
+    const wrapper = mount(OQuiz, {
       props: { quiz: QUIZ, lg: "en" },
       global: {
         plugins: [pinia],

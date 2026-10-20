@@ -1,12 +1,12 @@
 import { mount } from "@vue/test-utils";
 import { describe, expect, it } from "vitest";
 import { i18n } from "@/i18n";
-import VueQuiz from "@/components/quizzes/VueQuiz.vue";
+import OQuiz from "@/components/quizzes/OQuiz.vue";
 import OInfoUniSection from "./OInfoUniSection.vue";
 
 function mountSection() {
 	return mount(OInfoUniSection, {
-		global: { plugins: [i18n], stubs: { VueQuiz: true } },
+		global: { plugins: [i18n], stubs: { OQuiz: true } },
 	});
 }
 
@@ -24,7 +24,7 @@ describe("OInfoUniSection", () => {
 		expect(bilder).toEqual([]);
 
 		// Oben das Informatik-Quiz, unten das Programmierung-Quiz.
-		const quiz = wrapper.findAllComponents(VueQuiz);
+		const quiz = wrapper.findAllComponents(OQuiz);
 		expect(quiz).toHaveLength(2);
 		expect(quiz[0].props("quiz")).toBe("informatics");
 		expect(quiz[1].props("quiz")).toBe("programming");

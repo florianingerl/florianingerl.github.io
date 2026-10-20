@@ -3,7 +3,7 @@ import { computed } from "vue";
 import { useI18n } from "vue-i18n";
 import { quizLanguage } from "@/i18n";
 import MSectionTextImage from "@/components/molecules/MSectionTextImage.vue";
-import VueQuiz from "@/components/quizzes/VueQuiz.vue";
+import OQuiz from "@/components/quizzes/OQuiz.vue";
 
 const { t, locale } = useI18n();
 const lg = computed(() => quizLanguage('mathematics', locale.value));
@@ -16,7 +16,7 @@ const lg = computed(() => quizLanguage('mathematics', locale.value));
 		:body-html="t('sections.matheuni.body')"
 	>
 		<template #image>
-			<VueQuiz quiz="mathematics" :lg="lg" />
+			<OQuiz quiz="mathematics" :lg="lg" />
 		</template>
 	</MSectionTextImage>
 </template>

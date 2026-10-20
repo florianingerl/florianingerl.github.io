@@ -3,7 +3,7 @@ import { computed } from "vue";
 import { useI18n } from "vue-i18n";
 import { quizLanguage } from "@/i18n";
 import MSectionTextImage from "@/components/molecules/MSectionTextImage.vue";
-import VueQuiz from "@/components/quizzes/VueQuiz.vue";
+import OQuiz from "@/components/quizzes/OQuiz.vue";
 
 const { t, locale } = useI18n();
 const lg = computed(() => quizLanguage('physics', locale.value));
@@ -17,7 +17,7 @@ const lg = computed(() => quizLanguage('physics', locale.value));
 	>
 		<!-- Das Quiz ersetzt das Bild der Sektion. -->
 		<template #image>
-			<VueQuiz quiz="physics" :lg="lg" />
+			<OQuiz quiz="physics" :lg="lg" />
 		</template>
 	</MSectionTextImage>
 </template>

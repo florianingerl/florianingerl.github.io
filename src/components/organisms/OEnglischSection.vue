@@ -3,7 +3,7 @@ import { computed } from "vue";
 import { useI18n } from "vue-i18n";
 import { quizLanguage } from "@/i18n";
 import MSectionTextImage from "@/components/molecules/MSectionTextImage.vue";
-import VueQuiz from "@/components/quizzes/VueQuiz.vue";
+import OQuiz from "@/components/quizzes/OQuiz.vue";
 import VuePaypal from "@/components/quizzes/vue-paypal.vue";
 
 const { t, locale } = useI18n();
@@ -18,7 +18,7 @@ const lg = computed(() => quizLanguage('english', locale.value));
 		content-class="col-lg-6 pt-4 pt-lg-0 order-1 order-lg-1 content"
 	>
 		<template #image>
-			<VueQuiz quiz="english" :lg="lg" />
+			<OQuiz quiz="english" :lg="lg" />
 		</template>
 		<VuePaypal sprache="english" />
 	</MSectionTextImage>

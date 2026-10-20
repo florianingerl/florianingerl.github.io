@@ -32,7 +32,7 @@ vi.mock("bootstrap", () => ({
   },
 }));
 
-// Wie in VueQuiz: Der Login-Dialog wird entfernt, sobald "logged-in" kommt -
+// Wie in OQuiz: Der Login-Dialog wird entfernt, sobald "logged-in" kommt -
 // bei echten Bootstrap-Buchungen mitten in der Einblendphase.
 const Host = defineComponent({
   components: { VueLogin },

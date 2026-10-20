@@ -50,7 +50,7 @@ describe("VueBookWriter", () => {
         plugins: [pinia],
         stubs: {
           VueJoditEditor: JoditStub,
-          VueQuiz: { name: "VueQuiz", template: "<div />" },
+          OQuiz: { name: "OQuiz", template: "<div />" },
           VueBookAccountBar: true,
         },
       },
@@ -69,9 +69,9 @@ describe("VueBookWriter", () => {
   it("zeigt die Absaetze eines Buchs ohne Anmeldung nur als <div v-html>", async () => {
     const wrapper = await mountWriter(false);
 
-    // Drei Absaetze, dazwischen zwei Quizze (VueQuiz), aber keine Editoren.
+    // Drei Absaetze, dazwischen zwei Quizze (OQuiz), aber keine Editoren.
     expect(wrapper.findAll(".book-paragraph")).toHaveLength(3);
-    expect(wrapper.findAllComponents({ name: "VueQuiz" })).toHaveLength(2);
+    expect(wrapper.findAllComponents({ name: "OQuiz" })).toHaveLength(2);
     expect(wrapper.findAll(".jodit-stub")).toHaveLength(0);
   });
 
@@ -116,7 +116,7 @@ describe("VueBookWriter", () => {
     await flushPromises();
 
     // Ein Quiz mehr (2 -> 3) und ein Absatz mehr (3 -> 4).
-    expect(wrapper.findAllComponents({ name: "VueQuiz" })).toHaveLength(3);
+    expect(wrapper.findAllComponents({ name: "OQuiz" })).toHaveLength(3);
     expect(wrapper.findAll(".jodit-stub")).toHaveLength(4);
   });
 });

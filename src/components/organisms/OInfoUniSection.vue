@@ -1,10 +1,10 @@
-﻿<script setup lang="ts">
+<script setup lang="ts">
 import { computed } from "vue";
 import { useI18n } from "vue-i18n";
 import { quizLanguage } from "@/i18n";
 import ASectionTitle from "@/components/atoms/ASectionTitle.vue";
 import ARichText from "@/components/atoms/ARichText.vue";
-import VueQuiz from "@/components/quizzes/VueQuiz.vue";
+import OQuiz from "@/components/quizzes/OQuiz.vue";
 
 const { t, locale } = useI18n();
 const lg = computed(() => quizLanguage('informatics', locale.value));
@@ -19,7 +19,7 @@ const lgProg = computed(() => quizLanguage('programming', locale.value));
 			<div class="row">
 				<!-- Das Quiz ersetzt das obere Bild der Sektion. -->
 				<div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
-					<VueQuiz quiz="informatics" :lg="lg" />
+					<OQuiz quiz="informatics" :lg="lg" />
 				</div>
 				<div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
 					<ARichText :html="t('sections.infouni.body')" />
@@ -29,7 +29,7 @@ const lgProg = computed(() => quizLanguage('programming', locale.value));
 			<div class="row">
 				<!-- Auch das zweite Bild ist durch ein Quiz ersetzt (Programmierung). -->
 				<div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
-					<VueQuiz quiz="programming" :lg="lgProg" />
+					<OQuiz quiz="programming" :lg="lgProg" />
 				</div>
 				<div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
 					<ARichText :html="t('sections.infouni.body2')" />

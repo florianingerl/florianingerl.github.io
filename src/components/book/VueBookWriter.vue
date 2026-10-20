@@ -7,7 +7,7 @@
      Die Zusammenarbeit (socket.io) schickt ausschliesslich die Inhalte der
      JoditEditoren - die Absaetze - hin und her. In den Quizzen wird nicht
      zusammengearbeitet, ein Buch-Quizz ist ein normales Quiz und wird mit dem
-     bestehenden VueQuiz angezeigt. -->
+     bestehenden OQuiz angezeigt. -->
 <template>
   <div class="book-writer">
     <div
@@ -71,7 +71,7 @@
       </template>
 
       <template v-else>
-        <VueQuiz v-if="block.quizId" :quiz-id="block.quizId" :lg="lg" />
+        <OQuiz v-if="block.quizId" :quiz-id="block.quizId" :lg="lg" />
         <div v-if="editable" class="mt-1">
           <button
             type="button"
@@ -95,7 +95,7 @@
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import VueJoditEditor from "@/components/quizzes/VueJoditEditor.vue";
-import VueQuiz from "@/components/quizzes/VueQuiz.vue";
+import OQuiz from "@/components/quizzes/OQuiz.vue";
 import VueBookAccountBar from "./VueBookAccountBar.vue";
 import { useBookStore } from "@/stores/books";
 import { useAuthStore } from "@/stores/auth";

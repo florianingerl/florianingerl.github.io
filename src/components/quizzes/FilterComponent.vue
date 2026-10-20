@@ -47,7 +47,7 @@ const emit = defineEmits<{
 }>();
 
 const filterStore = useFilterStore();
-// Derselbe Filter wie in VueQuiz: Der Schluessel entscheidet, welcher Eintrag
+// Derselbe Filter wie in OQuiz: Der Schluessel entscheidet, welcher Eintrag
 // im Store gemeint ist.
 const filter = computed(() => filterStore.filterFor(props.quiz));
 

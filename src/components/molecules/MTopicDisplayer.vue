@@ -1,38 +1,29 @@
+<!-- Zeigt das Thema einer Aufgabe an: Label "Topic:" und den Titel als Badge.
+     Liegt das Thema als Id vor, wird es vom Server geladen. Ohne Thema (oder
+     nach einer fehlgeschlagenen Ladung) erscheint ein Hinweistext. -->
 <template>
-  <p class="mb-1">
-    <span v-if="topicTitle">
+  <div class="m-topic-displayer">
+    <template v-if="topicTitle">
       <label class="me-1 fw-semibold">Topic:</label>
-      <span class="badge text-bg-secondary">{{ topicTitle }}</span>
-    </span>
+      <span class="badge text-bg-secondary m-topic-displayer__badge">{{ topicTitle }}</span>
+    </template>
     <span v-else-if="topicLoadFailed" class="text-danger">
       The topic of this exercise couldn't be loaded.
     </span>
     <span v-else class="text-muted">
       This exercise isn't classified under a topic.
     </span>
-    <span v-if="schoolName" class="ms-2">
-      <label class="me-1 fw-semibold">School:</label>
-      <span class="badge text-bg-secondary">{{ schoolName }}</span>
-    </span>
-  </p>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue'
+import { ref, watch } from 'vue'
 import { getTopic } from '@/api'
-import type { School, Topic } from '@/types/quiz'
+import type { Topic } from '@/types/quiz'
 
 const props = defineProps<{
   topic: Topic | string | undefined
-  // Die Schule der Aufgabe. Der Server schickt sie als Dokument mit (populate).
-  school?: School | string
 }>()
-
-// Der Name der Schule, falls die Aufgabe eine hat.
-const schoolName = computed(() => {
-  const s = props.school
-  return s && typeof s !== 'string' ? s.name ?? '' : ''
-})
 
 const topicTitle = ref<string>('')
 const topicLoadFailed = ref(false)
@@ -65,3 +56,16 @@ async function loadTopic(): Promise<void> {
 
 watch(() => props.topic, loadTopic, { immediate: true })
 </script>
+
+<style scoped>
+.m-topic-displayer {
+  flex-shrink: 1;
+}
+
+.m-topic-displayer__badge {
+  flex-shrink: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+</style>

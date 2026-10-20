@@ -2,7 +2,7 @@ import { reactive } from "vue";
 import { defineStore } from "pinia";
 
 // Filterkriterien fuer die Anzeige der Aufgaben eines Quizzes. Die Filterung
-// selbst erfolgt im Frontend (siehe displayedQuestions in VueQuiz.vue).
+// selbst erfolgt im Frontend (siehe displayedQuestions in OQuiz.vue).
 export interface QuizFilter {
   // "quiz" = nur Aufgaben dieses Quizzes, "subject" = alle Aufgaben desselben
   // Faches (Sprache/Fach). Voreinstellung ist "subject".

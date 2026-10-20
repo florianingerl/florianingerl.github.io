@@ -1,6 +1,6 @@
 <template>
   <div :class="{ 'vue-exercise--vollbild': vollbild }">
-    <VueTopicDisplayer :topic="exercise.topic" :school="exercise.school" />
+    <MTopicAndSchoolDisplayer :topic="exercise.topic" :school="exercise.school" />
 
     <!-- Horizontale Zweiteilung: links das Aufgabenbild, rechts die Aufgabe.
          Der Benutzer kann die Trennlinie (den Splitter-Riegel) verschieben. -->
@@ -45,7 +45,7 @@ import VueMCGaps from './VueMCGaps.vue'
 import VueMatching from './VueMatching.vue'
 import VueQuestion from './VueQuestion.vue'
 import VueWordOrder from './VueWordOrder.vue'
-import VueTopicDisplayer from './VueTopicDisplayer.vue'
+import MTopicAndSchoolDisplayer from '@/components/molecules/MTopicAndSchoolDisplayer.vue'
 import type { Exercise, Lang } from '@/types/quiz'
 
 const props = defineProps<{

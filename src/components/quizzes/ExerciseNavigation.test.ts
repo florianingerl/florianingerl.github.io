@@ -4,7 +4,7 @@ import ExerciseNavigation from "./ExerciseNavigation.vue";
 
 // Die Blaetterleiste unter dem Aufgabenbild. Sie meldet nur, was der Benutzer
 // will (eine Verschiebung oder eine bestimmte Seitennummer); die Grenzen und
-// die tatsaechliche Auswahl prueft der Aufrufer (VueQuiz).
+// die tatsaechliche Auswahl prueft der Aufrufer (OQuiz).
 function leiste(overrides: Partial<Record<string, unknown>> = {}) {
   return mount(ExerciseNavigation, {
     props: {

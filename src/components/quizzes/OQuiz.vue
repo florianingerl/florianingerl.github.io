@@ -6,7 +6,7 @@
     display tab ok 
     if tab == 'exercise' ok
       if question 
-        VueExercise
+        OExercise
         ExerciseNavigat
         Score panel
       else
@@ -92,7 +92,7 @@
 
 <div v-if="tab == 'exercise'" class="quiz-tab">
      <div v-if="displayedQuestions.length > 0" class="quiz-tab__inner" style="display: flex; flex-direction: column;">
-     <VueExercise
+     <OExercise
         style="flex-grow: 1; align-self: stretch; "
         v-if="aktuelle"
         :key="aktuelle._id ?? i"
@@ -120,7 +120,7 @@
     
     <div v-if="tab == 'tutorial'" class="quiz-tab">
         <div style="display:flex; flex-direction: row; gap: 2px;">
-            <VueTopicDisplayer :topic="aktuelle?.topic" />
+            <MTopicDisplayer :topic="aktuelle?.topic" />
              <button
                 v-if="darfExportieren"
                 @click="exportToFrancaisFacileClicked"
@@ -230,9 +230,9 @@ import {
   ref,
   watch,
 } from "vue";
-import VueExercise from "./VueExercise.vue";
+import OExercise from "./OExercise.vue";
 import ExerciseNavigation from "./ExerciseNavigation.vue";
-import VueTopicDisplayer from "./VueTopicDisplayer.vue";
+import MTopicDisplayer from "@/components/molecules/MTopicDisplayer.vue";
 import VueNewExercise from "./VueNewExercise.vue";
 import VueNewTopic from "./VueNewTopic.vue";
 import VueExportToFacile from "./VueExportToFacile.vue";
