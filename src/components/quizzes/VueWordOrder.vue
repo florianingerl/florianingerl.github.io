@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p v-html="renderRichText(exercise.instruction ?? '')"></p>
+    <p v-html="renderRichText(exercise.questionOrInstruction ?? '')"></p>
 
     <!-- Die Woerter des Satzes, gemischt und durch Schraegstriche getrennt. -->
     <p>{{ woerter.join(" / ") }}</p>

@@ -30,8 +30,7 @@ const AUFGABE: Exercise = {
   type: "multipleChoice",
   imageUrl: "",
   topic: "top1",
-  instruction: "Scegli la congiunzione giusta!",
-  question: "Non è triste. ___, è molto felice del regalo.",
+  questionOrInstruction: "Non è triste. ___, è molto felice del regalo.",
   options: [
     { option: "anzi", correct: true },
     { option: "quindi", correct: false },

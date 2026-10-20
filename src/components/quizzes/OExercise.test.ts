@@ -13,7 +13,7 @@ function aufgabe(overrides: Partial<Exercise> = {}): Exercise {
     quiz: "english",
     type: "multipleChoice",
     imageUrl: "",
-    question: "Was ist auf dem Bild zu sehen?",
+    questionOrInstruction: "Was ist auf dem Bild zu sehen?",
     options: [
       { option: "ein Rechteck", correct: true },
       { option: "ein Kreis", correct: false },

@@ -355,7 +355,7 @@ function optionenMitRichtigerVorne(ex: Exercise): string[] {
 
 function frageAntwortBauen(ex: Exercise): FrageAntwort | null {
   if (ex.type === "multipleChoice") {
-    const frage = ex.question ?? ex.gapText ?? "";
+    const frage = ex.questionOrInstruction ?? ex.gapText ?? "";
     const text = ohneLuecken(frage);
     if (text === "") return null;
     // Enthaelt die Frage eine Luecke (mindestens drei Unterstriche), dann steht

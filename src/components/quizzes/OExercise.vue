@@ -12,7 +12,7 @@
           <img
             class="vue-image__img"
             :src="exercise.imageUrl"
-            :alt="exercise.question ?? exercise.instruction ?? ''"
+            :alt="exercise.questionOrInstruction ?? ''"
           />
         </div>
       </SplitterPanel>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p v-html="renderRichText(exercise.instruction ?? '')"></p>
+    <p v-html="renderRichText(exercise.questionOrInstruction ?? '')"></p>
     <ol style="list-style-type: none">
       <li>
         <span v-for="(gap, gi) in exercise.gaps ?? []" :key="gi">

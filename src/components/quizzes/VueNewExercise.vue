@@ -35,14 +35,9 @@
       </select>
     </div>
 
-    <div v-if="exercise.type !== 'multipleChoice'" style="display:flex; flex-direction: row; gap: 2px;" class="mb-3 mt-3">
-      <label>Instruction:</label>
-      <input style="flex-grow:1;" v-model="exercise.instruction" type="text" class="form-control" />
-    </div>
-
-    <div v-if="exercise.type === 'multipleChoice'" style="display:flex; flex-direction:row; gap: 2px; flex-wrap: nowrap;" class="mb-3 mt-3">
-      <label>Question:</label>
-      <input style="flex-grow: 1;" v-model="exercise.question" type="text" class="form-control" />
+    <div style="display:flex; flex-direction: row; gap: 2px;" class="mb-3 mt-3">
+      <label>Instruction/Question:</label>
+      <input style="flex-grow:1;" v-model="exercise.questionOrInstruction" type="text" class="form-control" />
     </div>
 
     <Splitter style="flex-grow: 1;">
@@ -162,7 +157,7 @@ const exercise = ref<Exercise>({
   subject: props.subject,
   type: 'gapText',
   imageUrl: 'assets/img/spanisch/bonitamuyer.jpg',
-  instruction: '',
+  questionOrInstruction: '',
   gapText: '',
 })
 

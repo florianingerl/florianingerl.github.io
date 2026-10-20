@@ -127,12 +127,11 @@ export interface Exercise {
   // populate, beim Speichern wird nur die _id (oder der Name) geschickt.
   school?: School | string;
   // gapText
-  instruction?: string;
   gapText?: string;
-  // multipleChoice
-  question?: string;
+  questionOrInstruction: string;
   questionEn?: string;
   questionFr?: string;
+  // multipleChoice
   options?: Option[];
   optionsEn?: Option[];
   optionsFr?: Option[];

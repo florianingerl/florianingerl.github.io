@@ -522,9 +522,8 @@ function suchTexte(q: Exercise): string[] {
       : q.topic?.title ?? "";
   return [
     titel,
-    q.instruction ?? "",
+    q.questionOrInstruction ?? "",
     q.gapText ?? "",
-    q.question ?? "",
     q.questionEn ?? "",
     q.questionFr ?? "",
     ...(q.options ?? []).map((o) => o.option),

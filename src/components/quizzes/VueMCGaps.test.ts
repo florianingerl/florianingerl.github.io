@@ -12,6 +12,7 @@ function exercise(): Exercise {
     quiz: "english",
     type: "gapText",
     imageUrl: "",
+    questionOrInstruction: "",
     gapText:
       "The duck, {that§which} you see in the picture, wears a hat.",
   };

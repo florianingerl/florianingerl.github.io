@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p v-html="renderRichText(exercise.instruction ?? '')"></p>
+    <p v-html="renderRichText(exercise.questionOrInstruction ?? '')"></p>
 
     <div class="matching" ref="wurzel">
       <svg class="pfeile" :width="groesse.b" :height="groesse.h">

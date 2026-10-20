@@ -43,6 +43,7 @@ function aufgabeMit(t: Topic): Exercise {
     quiz: "elektrotechnik",
     type: "gapText",
     imageUrl: "",
+    questionOrInstruction: "",
     topic: t,
   };
 }

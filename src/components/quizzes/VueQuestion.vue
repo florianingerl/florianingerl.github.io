@@ -35,7 +35,7 @@ const frageText = computed<string>(() => {
     return props.question.questionEn;
   if (props.lg === "fr" && props.question.questionFr)
     return props.question.questionFr;
-  return props.question.question ?? "";
+  return props.question.questionOrInstruction ?? "";
 });
 
 const optionen = computed<Option[]>(() => {

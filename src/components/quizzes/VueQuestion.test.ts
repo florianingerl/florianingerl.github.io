@@ -11,7 +11,7 @@ function exercise(): Exercise {
     quiz: "english",
     type: "multipleChoice",
     imageUrl: "",
-    question: "Choose the right word",
+    questionOrInstruction: "Choose the right word",
     options: [
       { option: "A", correct: true },
       { option: "B", correct: false },
@@ -51,7 +51,7 @@ describe("VueQuestion: multiple choice Validierung", () => {
       quiz: "nutrition",
       type: "multipleChoice",
       imageUrl: "",
-      question: "Was ist Reiki?",
+      questionOrInstruction: "Was ist Reiki?",
       options: [
         { option: "A", correct: true },
         { option: "B", correct: true },
@@ -90,7 +90,7 @@ describe("VueQuestion: HTML und LaTeX in Frage und Optionen", () => {
       quiz: "english",
       type: "multipleChoice",
       imageUrl: "",
-      question: 'Which formula solves <strong>$ax^2 + bx + c = 0$</strong>?',
+      questionOrInstruction: 'Which formula solves <strong>$ax^2 + bx + c = 0$</strong>?',
       options: [
         {
           option: '$x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$',
@@ -120,12 +120,15 @@ describe("VueQuestion: HTML und LaTeX in Frage und Optionen", () => {
     });
     await nextTick();
 
+    // Die Optionen werden beim Mounten gemischt, deshalb per Inhalt suchen.
     const labels = wrapper.findAll("label");
     expect(labels).toHaveLength(2);
-    expect(labels[0].html()).toContain("katex");
-    expect(labels[0].text()).not.toContain("$");
-    expect(labels[1].find("em").exists()).toBe(true);
-    expect(labels[1].text()).toBe("just plain text");
+    const formelLabel = labels.find((l) => l.html().includes("katex"));
+    const textLabel = labels.find((l) => l.text() === "just plain text");
+    expect(formelLabel).toBeTruthy();
+    expect(formelLabel!.text()).not.toContain("$");
+    expect(textLabel).toBeTruthy();
+    expect(textLabel!.find("em").exists()).toBe(true);
   });
 
   it("zeigt weiterhin reine Textfragen unveraendert an", async () => {
@@ -133,7 +136,7 @@ describe("VueQuestion: HTML und LaTeX in Frage und Optionen", () => {
       quiz: "english",
       type: "multipleChoice",
       imageUrl: "",
-      question: "Choose the right word",
+      questionOrInstruction: "Choose the right word",
       options: [{ option: "A", correct: true }],
     });
     const wrapper = mount(VueQuestion, { props: { question: ex, lg: "en" } });

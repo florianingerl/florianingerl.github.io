@@ -25,7 +25,7 @@ function neueAufgabe(themaTitel: string): Exercise {
     quiz: QUIZ,
     type: "gapText",
     imageUrl: "",
-    instruction: "Fill the gap",
+    questionOrInstruction: "Fill the gap",
     gapText: "a {b} c",
     topic: { subject: QUIZ, title: themaTitel, tutorial: "" },
   };
@@ -146,7 +146,7 @@ describe("OQuiz: Aufgaben des Faches werden geladen und nach Umfang gefiltert", 
             topic: "t1",
             type: "gapText",
             imageUrl: "",
-            instruction: "Fill the gap",
+            questionOrInstruction: "Fill the gap",
             gapText: "a {b} c",
           },
           {
@@ -155,7 +155,7 @@ describe("OQuiz: Aufgaben des Faches werden geladen und nach Umfang gefiltert", 
             subject: QUIZ,
             type: "gapText",
             imageUrl: "",
-            instruction: "Second exercise",
+            questionOrInstruction: "Second exercise",
             gapText: "x {y} z",
           },
         ]),
@@ -251,8 +251,7 @@ describe("OQuiz: Mathematik-Quiz laedt Thema 'Gruppen' und Aufgaben", () => {
             type: "multipleChoice",
             imageUrl:
               "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Rubik%27s_cube.svg/500px-Rubik%27s_cube.svg.png",
-            instruction: "W\u00e4hle die richtige Antwort.",
-            question:
+            questionOrInstruction:
               "Welche der folgenden Strukturen ist bez\u00fcglich der angegebenen Verkn\u00fcpfung eine Gruppe?",
             options: [
               { option: "(\u2124, +)", correct: true },
@@ -318,8 +317,7 @@ describe("OQuiz: Web-Programming-Quiz laedt Destructuring-Thema und Aufgaben", (
             type: "multipleChoice",
             imageUrl:
               "https://miro.medium.com/v2/resize:fit:1400/1*CyOusrkRxuYbXG0klN2xiw.png",
-            instruction: "Choose the correct answer.",
-            question:
+            questionOrInstruction:
               "How do you unpack the properties id and title of an object res into variables with the same names?",
             options: [
               { option: "const { id, title } = res;", correct: true },
@@ -384,8 +382,7 @@ describe("OQuiz: Informatik-Quiz laedt UML-Aktivit\u00e4tsdiagramm-Thema und Auf
             type: "multipleChoice",
             imageUrl:
               "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Uml-Activity-Beispiel3_Deutsch.svg/500px-Uml-Activity-Beispiel3_Deutsch.svg.png",
-            instruction: "W\u00e4hle die richtige Antwort.",
-            question:
+            questionOrInstruction:
               "Was wird mit einem Aktivit\u00e4tsdiagramm meist beschrieben?",
             options: [
               { option: "der Ablauf eines Anwendungsfalls", correct: true },
@@ -560,7 +557,7 @@ describe("OQuiz: Vollbildmodus", () => {
             subject: QUIZ,
             type: "multipleChoice",
             imageUrl: "data:image/svg+xml,%3Csvg/%3E",
-            question: "Frage?",
+            questionOrInstruction: "Frage?",
             options: [{ option: "a", correct: true }],
           },
         ]),
@@ -607,7 +604,7 @@ describe("OQuiz: nicht angemeldet", () => {
             topic: "t1",
             type: "gapText",
             imageUrl: "",
-            instruction: "Fill the gap",
+            questionOrInstruction: "Fill the gap",
             gapText: "a {b} c",
           },
         ]),
@@ -751,7 +748,7 @@ describe("OQuiz: Multiple-Choice-Aufgabe anlegen (Server-Roundtrip)", () => {
       quiz: "q1",
       subject: QUIZ,
       type: "multipleChoice",
-      question: "Wie heisst die Hauptstadt von Frankreich?",
+      questionOrInstruction: "Wie heisst die Hauptstadt von Frankreich?",
       topic: "t1",
     });
     expect(letzte.options).toEqual([
@@ -790,6 +787,7 @@ describe("OQuiz: nach Schule filtern", () => {
             subject: QUIZ,
             type: "gapText",
             imageUrl: "",
+            questionOrInstruction: "",
             school: "s2",
           },
           {
@@ -798,6 +796,7 @@ describe("OQuiz: nach Schule filtern", () => {
             subject: QUIZ,
             type: "gapText",
             imageUrl: "",
+            questionOrInstruction: "",
             school: ALLE_SCHULEN[0],
           },
           {
@@ -806,6 +805,7 @@ describe("OQuiz: nach Schule filtern", () => {
             subject: QUIZ,
             type: "gapText",
             imageUrl: "",
+            questionOrInstruction: "",
           },
           {
             _id: "e4",
@@ -813,6 +813,7 @@ describe("OQuiz: nach Schule filtern", () => {
             subject: QUIZ,
             type: "gapText",
             imageUrl: "",
+            questionOrInstruction: "",
             school: "s3",
           },
         ]),
@@ -1350,7 +1351,7 @@ describe("OQuiz: Bearbeiten und Loeschen nur fuer Besitzerin oder Admin", () => 
             topic: "t1",
             type: "gapText",
             imageUrl: "",
-            instruction: "Fill the gap",
+            questionOrInstruction: "Fill the gap",
             gapText: "a {b} c",
             user: "u-owner",
           },
@@ -1425,7 +1426,7 @@ describe("OQuiz: Bearbeiten und Loeschen nur fuer Besitzerin oder Admin", () => 
             topic: "t1",
             type: "gapText",
             imageUrl: "",
-            instruction: "Fill the gap",
+            questionOrInstruction: "Fill the gap",
             gapText: "a {b} c",
           },
         ]),
@@ -1478,7 +1479,7 @@ describe("OQuiz: Navigation mit den Pfeiltasten", () => {
             topic: "t1",
             type: "gapText",
             imageUrl: "",
-            instruction: "Fill the gap",
+            questionOrInstruction: "Fill the gap",
             gapText: `a {${k}} c`,
           })),
         ),
@@ -1620,7 +1621,7 @@ describe("OQuiz: Erfolgs-Toasts nach dem Speichern und Loeschen", () => {
     topic: "t1",
     type: "gapText",
     imageUrl: "",
-    instruction: "Fill the gap",
+    questionOrInstruction: "Fill the gap",
     gapText: "a {b} c",
     user: "u-owner",
   };
@@ -1702,7 +1703,7 @@ describe("OQuiz: Erfolgs-Toasts nach dem Speichern und Loeschen", () => {
       quiz: QUIZ,
       type: "gapText",
       imageUrl: "",
-      instruction: "Fill the gap",
+      questionOrInstruction: "Fill the gap",
       gapText: "x {y} z",
       topic: "t1",
     } as Exercise);

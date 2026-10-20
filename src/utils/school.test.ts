@@ -23,6 +23,7 @@ function aufgabe(
     subject,
     type: "gapText",
     imageUrl: "",
+    questionOrInstruction: "",
     school,
   };
 }
