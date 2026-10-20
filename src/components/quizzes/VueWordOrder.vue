@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>{{ exercise.instruction }}</p>
+    <p v-html="renderRichText(exercise.instruction ?? '')"></p>
 
     <!-- Die Woerter des Satzes, gemischt und durch Schraegstriche getrennt. -->
     <p>{{ woerter.join(" / ") }}</p>
@@ -25,6 +25,7 @@
 <script setup lang="ts">
 import { computed, onMounted, watch , ref} from "vue";
 import type { Exercise, Lang } from "@/types/quiz";
+import { renderRichText } from "@/utils/richText";
 import MExerciseFeedback from "../molecules/MExerciseFeedback.vue";
 
 const props = defineProps<{

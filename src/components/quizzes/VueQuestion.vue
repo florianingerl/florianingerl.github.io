@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>{{ frageText }}</p>
+    <p v-html="renderRichText(frageText)"></p>
     <div
       v-for="(option, idx) in optionen"
       :key="idx"
@@ -10,7 +10,7 @@
       }"
     >
       <input v-model="option.checked" :disabled="beantwortet" type="checkbox" @change="optionChanged" />
-      <label>{{ option.option }}</label>
+      <label v-html="renderRichText(option.option)"></label>
     </div>
     <MExerciseFeedback
       :lg="lg ?? 'de'"
@@ -24,6 +24,7 @@
 <script setup lang="ts">
 import { computed, onMounted, watch } from "vue";
 import type { Exercise, Lang, Option } from "@/types/quiz";
+import { renderRichText } from "@/utils/richText";
 import MExerciseFeedback from "../molecules/MExerciseFeedback.vue";
 
 const props = defineProps<{ question: Exercise; lg?: Lang }>();

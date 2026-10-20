@@ -83,3 +83,63 @@ describe("VueQuestion: multiple choice Validierung", () => {
     expect(box!.element.closest("div")!.classList.contains("correct")).toBe(false);
   });
 });
+
+describe("VueQuestion: HTML und LaTeX in Frage und Optionen", () => {
+  function richExercise(): Exercise {
+    return {
+      quiz: "english",
+      type: "multipleChoice",
+      imageUrl: "",
+      question: 'Which formula solves <strong>$ax^2 + bx + c = 0$</strong>?',
+      options: [
+        {
+          option: '$x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$',
+          correct: true,
+        },
+        { option: "just <em>plain</em> text", correct: false },
+      ],
+    };
+  }
+
+  it("rendert HTML-Tags und Formeln in der Frage", async () => {
+    const wrapper = mount(VueQuestion, {
+      props: { question: richExercise(), lg: "en" },
+    });
+    await nextTick();
+
+    const p = wrapper.get("p");
+    expect(p.find("strong").exists()).toBe(true);
+    expect(p.html()).toContain("katex");
+    expect(p.text()).toContain("Which formula solves");
+    expect(p.text()).not.toContain("$");
+  });
+
+  it("rendert Formeln und HTML in den Optionen", async () => {
+    const wrapper = mount(VueQuestion, {
+      props: { question: richExercise(), lg: "en" },
+    });
+    await nextTick();
+
+    const labels = wrapper.findAll("label");
+    expect(labels).toHaveLength(2);
+    expect(labels[0].html()).toContain("katex");
+    expect(labels[0].text()).not.toContain("$");
+    expect(labels[1].find("em").exists()).toBe(true);
+    expect(labels[1].text()).toBe("just plain text");
+  });
+
+  it("zeigt weiterhin reine Textfragen unveraendert an", async () => {
+    const ex = reactive<Exercise>({
+      quiz: "english",
+      type: "multipleChoice",
+      imageUrl: "",
+      question: "Choose the right word",
+      options: [{ option: "A", correct: true }],
+    });
+    const wrapper = mount(VueQuestion, { props: { question: ex, lg: "en" } });
+    await nextTick();
+
+    expect(wrapper.get("p").text()).toBe("Choose the right word");
+    expect(wrapper.get("label").text()).toBe("A");
+  });
+});

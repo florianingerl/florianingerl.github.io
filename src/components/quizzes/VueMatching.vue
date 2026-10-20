@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>{{ exercise.instruction }}</p>
+    <p v-html="renderRichText(exercise.instruction ?? '')"></p>
 
     <div class="matching" ref="wurzel">
       <svg class="pfeile" :width="groesse.b" :height="groesse.h">
@@ -83,6 +83,7 @@
 <script setup lang="ts">
 import { nextTick, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import type { Exercise, Lang, TwoPartSentences } from "@/types/quiz";
+import { renderRichText } from "@/utils/richText";
 import MExerciseFeedback from "../molecules/MExerciseFeedback.vue";
 
 const props = defineProps<{

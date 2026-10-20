@@ -7,6 +7,7 @@ import { i18n, resolveInitialLocale } from "./i18n";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import "katex/dist/katex.min.css";
 import "bootstrap";
 import "aos/dist/aos.css";
 import "../assets/css/style.css";

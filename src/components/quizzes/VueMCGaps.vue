@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>{{ exercise.instruction }}</p>
+    <p v-html="renderRichText(exercise.instruction ?? '')"></p>
     <ol style="list-style-type: none">
       <li>
         <span v-for="(gap, gi) in exercise.gaps ?? []" :key="gi">
@@ -58,6 +58,7 @@
 <script setup lang="ts">
 import { onMounted, ref, watch } from "vue";
 import type { Exercise, Gap, Lang } from "@/types/quiz";
+import { renderRichText } from "@/utils/richText";
 import MExerciseFeedback from "../molecules/MExerciseFeedback.vue";
 
 const props = defineProps<{
