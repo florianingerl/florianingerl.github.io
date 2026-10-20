@@ -1243,3 +1243,133 @@ describe("OQuiz: Bearbeiten und Loeschen nur fuer Besitzerin oder Admin", () => 
     expect(admin.find('[title="Delete the exercise"]').exists()).toBe(true);
   });
 });
+
+// Navigation mit den Pfeiltasten zwischen den Aufgaben: Pfeil links/rechts
+// bewegt um eine Aufgabe, mit Umschalttaste (oder Bild auf/ab) um fuenf. An
+// den Raendern wird gestoppt, nicht umgebrochen. Waehrend der Eingabe in einem
+// Feld sowie im Formular oder Tutorial-Tab sind die Tasten wirkungslos.
+describe("OQuiz: Navigation mit den Pfeiltasten", () => {
+  beforeEach(() => {
+    server.use(
+      http.get(`${API_URL}/api/quiz`, () =>
+        HttpResponse.json([
+          { _id: "q1", website: "web", subject: QUIZ, name: QUIZ },
+        ]),
+      ),
+      http.get(`${API_URL}/api/topic/:quiz`, () =>
+        HttpResponse.json([
+          { _id: "t1", subject: QUIZ, title: "Topic 1", tutorial: "" },
+        ]),
+      ),
+      // Sieben Aufgaben, damit Sprünge um fuenf sichtbar werden.
+      http.get(`${API_URL}/api/exercise`, () =>
+        HttpResponse.json<Exercise[]>(
+          Array.from({ length: 7 }, (_, k) => ({
+            _id: `e${k + 1}`,
+            quiz: "q1",
+            subject: QUIZ,
+            topic: "t1",
+            type: "gapText",
+            imageUrl: "",
+            instruction: "Fill the gap",
+            gapText: `a {${k}} c`,
+          })),
+        ),
+      ),
+    );
+  });
+
+  async function mountQuiz() {
+    const pinia = createPinia();
+    setActivePinia(pinia);
+    const wrapper = mount(OQuiz, {
+      props: { quiz: QUIZ, lg: "en" },
+      global: {
+        plugins: [pinia],
+        stubs: { ExerciseNavigation: false },
+      },
+      // Damit das Wurzelelement ans document angebunden wird (fuer keydown).
+      attachTo: document.body,
+      shallow: true,
+    });
+    await flushPromises();
+    return wrapper;
+  }
+
+  function aktuell(wrapper: ReturnType<typeof mount>) {
+    return wrapper.findComponent(OExercise).props("exercise") as Exercise;
+  }
+
+  async function taste(key: string, init: KeyboardEventInit = {}) {
+    window.dispatchEvent(new KeyboardEvent("keydown", { key, ...init }));
+    await flushPromises();
+  }
+
+  it("geht mit Pfeil rechts/links um je eine Aufgabe", async () => {
+    const wrapper = await mountQuiz();
+    expect(aktuell(wrapper)).toMatchObject({ _id: "e1" });
+
+    await taste("ArrowRight");
+    expect(aktuell(wrapper)).toMatchObject({ _id: "e2" });
+
+    await taste("ArrowLeft");
+    expect(aktuell(wrapper)).toMatchObject({ _id: "e1" });
+    wrapper.unmount();
+  });
+
+  it("springt mit Umschalt+Pfeil um fuenf Aufgaben", async () => {
+    const wrapper = await mountQuiz();
+
+    await taste("ArrowRight", { shiftKey: true });
+    expect(aktuell(wrapper)).toMatchObject({ _id: "e6" });
+
+    await taste("ArrowLeft", { shiftKey: true });
+    expect(aktuell(wrapper)).toMatchObject({ _id: "e1" });
+    wrapper.unmount();
+  });
+
+  it("springt mit Bild auf/ab um fuenf Aufgaben", async () => {
+    const wrapper = await mountQuiz();
+
+    await taste("PageDown");
+    expect(aktuell(wrapper)).toMatchObject({ _id: "e6" });
+
+    await taste("PageUp");
+    expect(aktuell(wrapper)).toMatchObject({ _id: "e1" });
+    wrapper.unmount();
+  });
+
+  it("stoppt am Anfang und am Ende, ohne umzubrechen", async () => {
+    const wrapper = await mountQuiz();
+
+    await taste("ArrowLeft");
+    expect(aktuell(wrapper)).toMatchObject({ _id: "e1" });
+
+    await taste("ArrowRight", { shiftKey: true });
+    expect(aktuell(wrapper)).toMatchObject({ _id: "e6" });
+    await taste("ArrowRight", { shiftKey: true });
+    expect(aktuell(wrapper)).toMatchObject({ _id: "e7" });
+    await taste("ArrowRight", { shiftKey: true });
+    expect(aktuell(wrapper)).toMatchObject({ _id: "e7" });
+    wrapper.unmount();
+  });
+
+  it("reagiert nicht, wenn ein Eingabefeld den Fokus hat", async () => {
+    const wrapper = await mountQuiz();
+    expect(aktuell(wrapper)).toMatchObject({ _id: "e1" });
+
+    const input = document.createElement("input");
+    document.body.appendChild(input);
+    input.focus();
+
+    // keydown blubbert vom fokussierten Feld nach oben; das Ziel ist das Feld.
+    input.dispatchEvent(
+      new KeyboardEvent("keydown", { key: "ArrowRight", bubbles: true }),
+    );
+    await flushPromises();
+
+    expect(aktuell(wrapper)).toMatchObject({ _id: "e1" });
+    input.remove();
+    wrapper.unmount();
+  });
+});

@@ -686,6 +686,47 @@ function waehleIndex(index: number): void {
     i.value = index;
 }
 
+// Tastatur-Navigation zwischen den Aufgaben: Pfeil links/rechts bewegt um
+// eine Aufgabe, mit gedrueckter Umschalttaste (oder Bild auf/ab) um fuenf.
+// Waehrend der Eingabe in einem Textfeld, waehrend des Formulars, eines
+// Dialogs oder im Tutorial-Tab sind die Tasten wirkungslos.
+function istEingabefeld(ziel: EventTarget | null): boolean {
+  if (!(ziel instanceof HTMLElement)) return false;
+  const tag = ziel.tagName;
+  return (
+    tag === "INPUT" ||
+    tag === "TEXTAREA" ||
+    tag === "SELECT" ||
+    ziel.isContentEditable
+  );
+}
+
+function beiTaste(event: KeyboardEvent): void {
+  if (event.defaultPrevented) return;
+  if (tab.value !== "exercise") return;
+  if (formOffen.value || dialog.value != null || exportOffen.value) return;
+  if (event.ctrlKey || event.metaKey || event.altKey) return;
+  if (istEingabefeld(event.target)) return;
+
+  switch (event.key) {
+    case "ArrowLeft":
+      springe(event.shiftKey ? -5 : -1);
+      break;
+    case "ArrowRight":
+      springe(event.shiftKey ? 5 : 1);
+      break;
+    case "PageUp":
+      springe(-5);
+      break;
+    case "PageDown":
+      springe(5);
+      break;
+    default:
+      return;
+  }
+  event.preventDefault();
+}
+
 // Bei jeder Filteraenderung wieder bei der ersten Aufgabe beginnen und das
 // Tutorial der neuen aktuellen Aufgabe nachladen.
 watch(
@@ -924,10 +965,12 @@ onMounted(async () => {  // Eine auf der letzten Seite begonnene Anmeldung forts
 onMounted(() => {
   document.addEventListener("fullscreenchange", vollbildGeaendert);
   window.addEventListener("resize", beiFensterGroesse);
+  window.addEventListener("keydown", beiTaste);
 });
 onBeforeUnmount(() => {
   document.removeEventListener("fullscreenchange", vollbildGeaendert);
   window.removeEventListener("resize", beiFensterGroesse);
+  window.removeEventListener("keydown", beiTaste);
 });
 
 // Anlegen / bearbeiten / löschen
