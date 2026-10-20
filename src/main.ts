@@ -3,7 +3,7 @@ import { createPinia } from "pinia";
 
 import App from "./App.vue";
 import router from "./router";
-import { i18n, readStoredLocale } from "./i18n";
+import { i18n, resolveInitialLocale } from "./i18n";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
@@ -22,6 +22,6 @@ app.use(router);
 app.use(i18n);
 app.use(PrimeVue);
 
-document.documentElement.lang = readStoredLocale();
+document.documentElement.lang = resolveInitialLocale();
 
 app.mount("#app");

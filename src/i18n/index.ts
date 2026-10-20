@@ -38,14 +38,51 @@ export function readStoredLocale(): AppLocale {
   return "de";
 }
 
+// Die Sprache aus der Adresse lesen: "...?lang=en" (bzw. "?lang=fr"). Die
+// Schreibweise wird vereinheitlicht; unbekannte oder fehlende Werte ergeben
+// null, damit dann die gemerkte Sprache gilt.
+export function readLocaleFromUrl(search?: string): AppLocale | null {
+  if (typeof window === "undefined" && search === undefined) return null;
+  const query = search ?? window.location.search;
+  const value = new URLSearchParams(query).get("lang");
+  if (value === null) return null;
+  const klein = value.toLowerCase();
+  return isSupported(klein) ? klein : null;
+}
+
+// Die Startsprache: Ein "?lang=" in der Adresse hat Vorrang vor der gemerkten
+// Sprache. So fuehrt ein geteilter Link "...?lang=en" direkt zur englischen
+// Seite, ansonsten zaehlt die zuletzt gewaehlte Sprache.
+export function resolveInitialLocale(): AppLocale {
+  return readLocaleFromUrl() ?? readStoredLocale();
+}
+
 export const i18n = createI18n({
   legacy: false,
   globalInjection: true,
   warnHtmlMessage: false,
-  locale: readStoredLocale(),
+  locale: resolveInitialLocale(),
   fallbackLocale: "de",
   messages: { de, en, fr, es, it },
 });
+
+// Schreibt die gewaehlte Sprache in die Adresse zurueck, ohne einen neuen
+// Verlaufseintrag anzulegen (replaceState). Die Standardsprache "de" wird
+// weggelassen, damit die Adressen kurz bleiben.
+export function syncLocaleToUrl(locale: AppLocale): void {
+  if (typeof window === "undefined") return;
+  const url = new URL(window.location.href);
+  if (locale === "de") {
+    url.searchParams.delete("lang");
+  } else {
+    url.searchParams.set("lang", locale);
+  }
+  const neu = url.pathname + url.search + url.hash;
+  const jetzt = window.location.pathname + window.location.search + window.location.hash;
+  if (neu !== jetzt) {
+    window.history.replaceState(window.history.state, "", neu);
+  }
+}
 
 export function setLocale(locale: AppLocale): void {
   i18n.global.locale.value = locale;
@@ -55,6 +92,7 @@ export function setLocale(locale: AppLocale): void {
   } catch {
     // localStorage kann z.B. in Privatmodi blockiert sein - dann eben ohne Merken.
   }
+  syncLocaleToUrl(locale);
 }
 
 export function quizLanguage(quiz: string | undefined, userLocale: string): Lang {
