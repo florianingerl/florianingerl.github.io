@@ -24,7 +24,7 @@
 -->
 
 
-  <div style="display:flex; flex-direction: column; gap: 2px; align-items: stretch;" ref="quizRoot" data-quiz-root :class="{ 'quiz-vollbild': istVollbild }">
+  <div style="display:flex; flex-direction: column; gap: 2px; align-items: stretch;" ref="quizRoot" data-quiz-root tabindex="0" :class="{ 'quiz-vollbild': istVollbild }" @keydown="beiTaste">
   
     <div class="d-flex flex-row align-items-center gap-2 mb-3">
       <LoginToEditComponent
@@ -688,6 +688,8 @@ function waehleIndex(index: number): void {
 
 // Tastatur-Navigation zwischen den Aufgaben: Pfeil links/rechts bewegt um
 // eine Aufgabe, mit gedrueckter Umschalttaste (oder Bild auf/ab) um fuenf.
+// Der Handler haengt am Quiz-Wurzelelement (tabindex), sodass auf einer Seite
+// mit mehreren Quizzen nur das angeklickte bzw. fokussierte Quiz reagiert.
 // Waehrend der Eingabe in einem Textfeld, waehrend des Formulars, eines
 // Dialogs oder im Tutorial-Tab sind die Tasten wirkungslos.
 function istEingabefeld(ziel: EventTarget | null): boolean {
@@ -965,12 +967,10 @@ onMounted(async () => {  // Eine auf der letzten Seite begonnene Anmeldung forts
 onMounted(() => {
   document.addEventListener("fullscreenchange", vollbildGeaendert);
   window.addEventListener("resize", beiFensterGroesse);
-  window.addEventListener("keydown", beiTaste);
 });
 onBeforeUnmount(() => {
   document.removeEventListener("fullscreenchange", vollbildGeaendert);
   window.removeEventListener("resize", beiFensterGroesse);
-  window.removeEventListener("keydown", beiTaste);
 });
 
 // Anlegen / bearbeiten / löschen

@@ -1300,8 +1300,15 @@ describe("OQuiz: Navigation mit den Pfeiltasten", () => {
     return wrapper.findComponent(OExercise).props("exercise") as Exercise;
   }
 
-  async function taste(key: string, init: KeyboardEventInit = {}) {
-    window.dispatchEvent(new KeyboardEvent("keydown", { key, ...init }));
+  // Der Handler haengt am Quiz-Wurzelelement; Tasten werden dort ausgeloest.
+  async function taste(
+    wrapper: ReturnType<typeof mount>,
+    key: string,
+    init: KeyboardEventInit = {},
+  ) {
+    await wrapper
+      .get("[data-quiz-root]")
+      .trigger("keydown", { key, ...init });
     await flushPromises();
   }
 
@@ -1309,10 +1316,10 @@ describe("OQuiz: Navigation mit den Pfeiltasten", () => {
     const wrapper = await mountQuiz();
     expect(aktuell(wrapper)).toMatchObject({ _id: "e1" });
 
-    await taste("ArrowRight");
+    await taste(wrapper, "ArrowRight");
     expect(aktuell(wrapper)).toMatchObject({ _id: "e2" });
 
-    await taste("ArrowLeft");
+    await taste(wrapper, "ArrowLeft");
     expect(aktuell(wrapper)).toMatchObject({ _id: "e1" });
     wrapper.unmount();
   });
@@ -1320,10 +1327,10 @@ describe("OQuiz: Navigation mit den Pfeiltasten", () => {
   it("springt mit Umschalt+Pfeil um fuenf Aufgaben", async () => {
     const wrapper = await mountQuiz();
 
-    await taste("ArrowRight", { shiftKey: true });
+    await taste(wrapper, "ArrowRight", { shiftKey: true });
     expect(aktuell(wrapper)).toMatchObject({ _id: "e6" });
 
-    await taste("ArrowLeft", { shiftKey: true });
+    await taste(wrapper, "ArrowLeft", { shiftKey: true });
     expect(aktuell(wrapper)).toMatchObject({ _id: "e1" });
     wrapper.unmount();
   });
@@ -1331,10 +1338,10 @@ describe("OQuiz: Navigation mit den Pfeiltasten", () => {
   it("springt mit Bild auf/ab um fuenf Aufgaben", async () => {
     const wrapper = await mountQuiz();
 
-    await taste("PageDown");
+    await taste(wrapper, "PageDown");
     expect(aktuell(wrapper)).toMatchObject({ _id: "e6" });
 
-    await taste("PageUp");
+    await taste(wrapper, "PageUp");
     expect(aktuell(wrapper)).toMatchObject({ _id: "e1" });
     wrapper.unmount();
   });
@@ -1342,14 +1349,14 @@ describe("OQuiz: Navigation mit den Pfeiltasten", () => {
   it("stoppt am Anfang und am Ende, ohne umzubrechen", async () => {
     const wrapper = await mountQuiz();
 
-    await taste("ArrowLeft");
+    await taste(wrapper, "ArrowLeft");
     expect(aktuell(wrapper)).toMatchObject({ _id: "e1" });
 
-    await taste("ArrowRight", { shiftKey: true });
+    await taste(wrapper, "ArrowRight", { shiftKey: true });
     expect(aktuell(wrapper)).toMatchObject({ _id: "e6" });
-    await taste("ArrowRight", { shiftKey: true });
+    await taste(wrapper, "ArrowRight", { shiftKey: true });
     expect(aktuell(wrapper)).toMatchObject({ _id: "e7" });
-    await taste("ArrowRight", { shiftKey: true });
+    await taste(wrapper, "ArrowRight", { shiftKey: true });
     expect(aktuell(wrapper)).toMatchObject({ _id: "e7" });
     wrapper.unmount();
   });
@@ -1358,18 +1365,42 @@ describe("OQuiz: Navigation mit den Pfeiltasten", () => {
     const wrapper = await mountQuiz();
     expect(aktuell(wrapper)).toMatchObject({ _id: "e1" });
 
-    const input = document.createElement("input");
-    document.body.appendChild(input);
+    // Ein Eingabefeld im Quiz: die Tasten sollen die Aufgabe nicht wechseln.
+    const input = wrapper
+      .get("[data-quiz-root]")
+      .element.ownerDocument.createElement("input");
+    wrapper.get("[data-quiz-root]").element.appendChild(input);
     input.focus();
 
-    // keydown blubbert vom fokussierten Feld nach oben; das Ziel ist das Feld.
+    // keydown blubbert vom fokussierten Feld zum Quiz-Wurzelelement.
     input.dispatchEvent(
       new KeyboardEvent("keydown", { key: "ArrowRight", bubbles: true }),
     );
     await flushPromises();
 
     expect(aktuell(wrapper)).toMatchObject({ _id: "e1" });
-    input.remove();
     wrapper.unmount();
+  });
+
+  it("navigiert nur das fokussierte Quiz, wenn mehrere auf der Seite liegen", async () => {
+    // Die Startseite rendert mehrere Quizze gleichzeitig. Nur das fokussierte
+    // Quiz darf auf die Tasten reagieren, damit z.B. die franzoesische Aufgabe
+    // nicht vom (frueher eingebundenen) Mathematik-Quiz "geschluckt" wird.
+    const erstes = await mountQuiz();
+    const zweites = await mountQuiz();
+
+    // Tasten gehen an das zweite Quiz.
+    await taste(zweites, "ArrowRight");
+    expect(aktuell(zweites)).toMatchObject({ _id: "e2" });
+    // Das erste Quiz bleibt unveraendert.
+    expect(aktuell(erstes)).toMatchObject({ _id: "e1" });
+
+    // Und umgekehrt: nur das erste Quiz reagiert.
+    await taste(erstes, "ArrowRight");
+    expect(aktuell(erstes)).toMatchObject({ _id: "e2" });
+    expect(aktuell(zweites)).toMatchObject({ _id: "e2" });
+
+    erstes.unmount();
+    zweites.unmount();
   });
 });
