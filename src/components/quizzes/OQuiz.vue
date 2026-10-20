@@ -878,6 +878,41 @@ function teilbarerLink(): string | undefined {
   return teile.length === 0 ? grund : `${grund}?${teile.join("&")}`;
 }
 
+// Der Anker-Teil der Adresse (ohne Domain/Pfad), passend zum gerade
+// bearbeiteten Quiz: "#franzoesisch?topic=...&school=...". Ist weder Thema
+// noch Schule gewaehlt, bleibt nur "#franzoesisch".
+function ankerMitParametern(): string | undefined {
+  if (!props.quiz) return undefined;
+  const anker = QUIZ_ANKER[props.quiz];
+  if (!anker) return undefined;
+
+  const teile: string[] = [];
+  if (filter.value.topicId) {
+    const titel = topics.value.find((t) => t._id === filter.value.topicId)
+      ?.title;
+    if (titel) teile.push(`topic=${encodeURIComponent(titel)}`);
+  }
+  if (filter.value.school)
+    teile.push(`school=${encodeURIComponent(filter.value.school)}`);
+
+  return teile.length === 0 ? `#${anker}` : `#${anker}?${teile.join("&")}`;
+}
+
+// Schreibt die aktuelle Themen-/Schulwahl in die Adresse zurueck, damit die
+// Adresszeile jederzeit einen teilbaren Link zeigt. Der Anker wechselt dabei
+// auf das gerade bearbeitete Quiz. Die "?-Parameter" vor dem "#" (z.B. lang=)
+// bleiben unangetastet. replaceState statt pushState, damit jeder
+// Auswahlschritt keinen neuen Verlaufseintrag anlegt.
+function schreibeAdresseZurueck(): void {
+  const anker = ankerMitParametern();
+  if (!anker) return;
+  const neu = `${window.location.pathname}${window.location.search}${anker}`;
+  const jetzt = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+  if (neu !== jetzt) {
+    window.history.replaceState(window.history.state, "", neu);
+  }
+}
+
 // Wird nach dem Laden (und nach dem Anwenden eines Deep-Links) registriert,
 // damit das Setzen der Filter beim Start keinen Kopierhinweis ausloest.
 function linkAufKopierablage(): void {
@@ -939,9 +974,12 @@ onMounted(async () => {  // Eine auf der letzten Seite begonnene Anmeldung forts
   // Erst nach dem Laden und nach dem Deep-Link beginnt das Kopieren: Bei
   // jeder Aenderung von Thema oder Schule (ausser der Auswahl "alle") geht
   // der passende Link in die Zwischenablage und der Hinweis erscheint.
+  // Ausserdem wird die Adresse zurueckgeschrieben, damit sie immer einen
+  // teilbaren Link zeigt.
   watch(
     () => [filter.value.topicId, filter.value.school],
     () => {
+      schreibeAdresseZurueck();
       if (!filter.value.topicId && !filter.value.school) return;
       linkAufKopierablage();
     }

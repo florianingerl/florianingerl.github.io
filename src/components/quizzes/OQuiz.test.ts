@@ -1118,6 +1118,135 @@ describe("OQuiz: Link wird beim Aendern von Thema/Schule kopiert", () => {
   });
 });
 
+// Aendert die Lehrkraft Thema oder Schule, wird die Adresse zurueckgeschrieben,
+// damit die Adresszeile immer einen teilbaren Link zeigt. Der Anker wechselt
+// dabei auf das gerade bearbeitete Quiz; die "-Parameter" vor dem "#" (z.B.
+// lang=) bleiben erhalten. Beim Oeffnen mit Deep-Link wird nicht geschrieben.
+describe("OQuiz: Adresse wird beim Aendern von Thema/Schule zurueckgeschrieben", () => {
+  const SCHULEN: School[] = [{ _id: "s1", name: "9.Klasse Gymnasium Bayern" }];
+
+  beforeEach(() => {
+    server.use(
+      http.get(`${API_URL}/api/quiz`, () =>
+        HttpResponse.json([
+          { _id: "q1", website: "web", subject: QUIZ, name: QUIZ },
+        ]),
+      ),
+      http.get(`${API_URL}/api/topic/:quiz`, () =>
+        HttpResponse.json<Topic[]>([
+          {
+            _id: "t-verbes",
+            subject: QUIZ,
+            title: "Verbes reflechi",
+            tutorial: "",
+          },
+        ]),
+      ),
+      http.get(`${API_URL}/api/school`, () => HttpResponse.json(SCHULEN)),
+      http.get(`${API_URL}/api/exercise`, () => HttpResponse.json([])),
+    );
+  });
+
+  afterEach(() => {
+    window.location.hash = "";
+  });
+
+  async function mountQuiz() {
+    const pinia = createPinia();
+    setActivePinia(pinia);
+    const wrapper = mount(OQuiz, {
+      props: { quiz: QUIZ, lg: "en" },
+      global: { plugins: [pinia] },
+      shallow: true,
+    });
+    await flushPromises();
+    return wrapper;
+  }
+
+  it("schreibt das gewaehlte Thema in den Anker der Adresse", async () => {
+    await mountQuiz();
+    const filterStore = useFilterStore();
+
+    filterStore.filterFor("q1").topicId = "t-verbes";
+    await flushPromises();
+
+    expect(window.location.hash).toBe(
+      "#englisch?topic=Verbes%20reflechi"
+    );
+  });
+
+  it("schreibt Thema und Schule gemeinsam, korrekt kodiert", async () => {
+    await mountQuiz();
+    const filterStore = useFilterStore();
+
+    filterStore.filterFor("q1").topicId = "t-verbes";
+    await flushPromises();
+    filterStore.filterFor("q1").school = "9.Klasse Gymnasium Bayern";
+    await flushPromises();
+
+    expect(window.location.hash).toBe(
+      "#englisch?topic=Verbes%20reflechi&school=9.Klasse%20Gymnasium%20Bayern"
+    );
+  });
+
+  it("entfernt die Parameter wieder, wenn Thema und Schule geleert werden", async () => {
+    await mountQuiz();
+    const filterStore = useFilterStore();
+
+    filterStore.filterFor("q1").topicId = "t-verbes";
+    await flushPromises();
+    filterStore.filterFor("q1").topicId = "";
+    await flushPromises();
+
+    expect(window.location.hash).toBe("#englisch");
+  });
+
+  it("wechselt den Anker auf das gerade bearbeitete Quiz", async () => {
+    // Die Adresse zeigt (noch) ein anderes Quiz.
+    window.location.hash = "#franzoesisch?topic=Etwas";
+    await mountQuiz();
+    const filterStore = useFilterStore();
+
+    filterStore.filterFor("q1").topicId = "t-verbes";
+    await flushPromises();
+
+    expect(window.location.hash).toBe(
+      "#englisch?topic=Verbes%20reflechi"
+    );
+  });
+
+  it("laesst die Parameter vor dem # (z.B. lang=) unangetastet", async () => {
+    window.history.replaceState(
+      {},
+      "",
+      `${window.location.pathname}?lang=fr`
+    );
+    await mountQuiz();
+    const filterStore = useFilterStore();
+
+    filterStore.filterFor("q1").school = "9.Klasse Gymnasium Bayern";
+    await flushPromises();
+
+    expect(window.location.search).toBe("?lang=fr");
+    expect(window.location.hash).toBe(
+      "#englisch?school=9.Klasse%20Gymnasium%20Bayern"
+    );
+    window.history.replaceState({}, "", window.location.pathname);
+  });
+
+  it("schreibt beim Oeffnen mit Deep-Link nicht in die Adresse", async () => {
+    window.location.hash =
+      "#englisch?topic=Verbes%20reflechi&school=9klasseGymnasiumBayern";
+    await mountQuiz();
+
+    // Der Deep-Link nennt die Schule leicht anders; die Adresse bleibt, wie
+    // sie im Link stand, statt neu geschrieben zu werden.
+    expect(window.location.hash).toBe(
+      "#englisch?topic=Verbes%20reflechi&school=9klasseGymnasiumBayern"
+    );
+  });
+});
+
 // Aufgabe 16 aus InstructionsForTheAI.txt: Nur die Besitzerin der Aufgabe
 // oder der Benutzer mit der Adresse imelflorianingerl@gmail.com darf
 // bearbeiten und loeschen. Die Knopfe duerfen dann nicht sichtbar sein.
