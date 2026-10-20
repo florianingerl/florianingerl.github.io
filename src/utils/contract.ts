@@ -55,6 +55,8 @@ const LANGUAGE_TERMS = [
   "allemand",
   "tedesco",
   "aleman",
+  "latein",
+  "latin",
 ];
 
 function ohneAkzente(s: string): string {
@@ -70,16 +72,31 @@ export function isALangue(fach: string): boolean {
 }
 
 // ---------------------------------------------------------------------------
-// Preisberechnung
-//   Preis = Wochen bis zur Pruefung (Gleitkommazahl) *
-//           (isALangue(fach) ? 3*15 : 3*30) + 100
-// Die 100 Euro am Ende sind das Risiko-Entgelt: falls der Schueler sein Ziel
-// nicht erreicht, muss ich das Geld zurueckzahlen. Die Formel geht von 3
-// Nachhilfestunden a 60 min pro Woche aus - eine grobe Richtlinie, nicht fix.
+// Preisberechnung (Alles-oder-Nichts-Paket):
+//   Preis = (w * (3 * h) + (r * m)) * f * lg
+//   w = Wochen bis zur Pruefung (Gleitkommazahl), m = w/4 (Monate)
+//   h = Stundenhonorar (30 Euro), r = Risikobetrag pro Monat (100 Euro)
+//   f  = Fachfaktor: 1/2 wenn das Fach eine Sprache ist, sonst 1
+//   lg = Unterrichtssprachenfaktor: 1 bei Unterricht auf Deutsch oder
+//        Englisch, sonst 5/6
+// Die Formel geht von 3 Nachhilfestunden a 60 min pro Woche aus - eine grobe
+// Richtlinie, nicht fix.
 // ---------------------------------------------------------------------------
+export type TeachingLanguage = AppLocale;
+
+export function teachingLanguageFactor(language: TeachingLanguage): number {
+  return language === "de" || language === "en" ? 1 : 5 / 6;
+}
+
+export function subjectFactor(subject: string): number {
+  return isALangue(subject) ? 1 / 2 : 1;
+}
+
 export interface PriceResult {
   weeks: number;
-  isLanguage: boolean;
+  months: number;
+  factorF: number;
+  factorLG: number;
   price: number;
 }
 
@@ -98,13 +115,17 @@ export function weeksUntilExam(
 export function computePrice(
   subject: string,
   examDate: string,
+  teachingLanguage: TeachingLanguage = "de",
   today: Date = new Date()
 ): PriceResult {
   const weeks = weeksUntilExam(examDate, today);
-  const isLanguage = isALangue(subject);
-  const ratePerWeek = isLanguage ? 3 * 15 : 3 * 30;
-  const price = Math.round(weeks * ratePerWeek + 100);
-  return { weeks, isLanguage, price };
+  const months = weeks / 4;
+  const factorF = subjectFactor(subject);
+  const factorLG = teachingLanguageFactor(teachingLanguage);
+  const h = 30;
+  const r = 100;
+  const price = Math.round((weeks * (3 * h) + r * months) * factorF * factorLG);
+  return { weeks, months, factorF, factorLG, price };
 }
 
 // ---------------------------------------------------------------------------

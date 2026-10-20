@@ -10,11 +10,15 @@ import {
 	createContractPdf,
 	downloadBlob,
 	type ContractFields,
+	type TeachingLanguage,
 } from "@/utils/contract";
 import { localeNames, supportedLocales, type AppLocale } from "@/i18n";
+import { renderRichText } from "@/utils/richText";
 
-const { t } = useI18n();
+const { t, locale } = useI18n();
 const emit = defineEmits<{ (e: "close"): void }>();
+
+const lessonLanguages = supportedLocales;
 
 const form = reactive({
 	date: "",
@@ -24,6 +28,7 @@ const form = reactive({
 	address: "",
 	goal: "",
 	subject: "",
+	lessonLanguage: (locale.value as AppLocale) as TeachingLanguage,
 	contractLang: "de" as AppLocale,
 });
 
@@ -38,8 +43,17 @@ watch(generated, async (isReady) => {
 	if (el) el.scrollTo({ top: el.scrollHeight, behavior: "smooth" });
 });
 
-const price = computed(() => computePrice(form.subject, form.date));
+const price = computed(() =>
+	computePrice(form.subject, form.date, form.lessonLanguage)
+);
 const canCompute = computed(() => form.date !== "" && form.subject.trim() !== "");
+
+function formatFactor(value: number): string {
+	if (value === 1) return "1";
+	if (value === 1 / 2) return "1/2";
+	if (value === 5 / 6) return "5/6";
+	return String(value);
+}
 
 function formatDate(iso: string): string {
 	if (!iso) return "";
@@ -139,11 +153,22 @@ async function download(format: "pdf" | "doc" | "rtf"): Promise<void> {
 						<div class="form-text">{{ t('contract.goalHint') }}</div>
 					</div>
 
-					<div class="mb-3">
-						<label class="form-label" for="contract-subject">{{ t('contract.subject') }}</label>
-						<input id="contract-subject" v-model="form.subject" type="text" class="form-control" />
-						<div class="form-text">{{ t('contract.subjectHint') }}</div>
-					</div>
+				<div class="mb-3">
+					<label class="form-label" for="contract-subject">{{ t('contract.subject') }}</label>
+					<input id="contract-subject" v-model="form.subject" type="text" class="form-control" />
+					<div class="form-text">{{ t('contract.subjectHint') }}</div>
+				</div>
+
+				<div class="mb-3">
+					<label class="form-label" for="contract-lesson-language">{{ t('contract.teachingLanguage') }}</label>
+					<select id="contract-lesson-language" v-model="form.lessonLanguage" class="form-select">
+						<option v-for="lang in lessonLanguages" :key="lang" :value="lang">
+							{{ t(`contract.lessonLanguages.${lang}`) }}
+						</option>
+					</select>
+					<div class="form-text">{{ t('contract.teachingLanguageHint') }}</div>
+				</div>
+
 
 					<div class="mb-3">
 						<label class="form-label" for="contract-lang">{{ t('contract.contractLanguage') }}</label>
@@ -154,23 +179,27 @@ async function download(format: "pdf" | "doc" | "rtf"): Promise<void> {
 						</select>
 					</div>
 
-					<div class="alert alert-info mb-2">
-						<template v-if="canCompute">
-							<div>
-								<strong>{{ t('contract.weeksLabel') }}:</strong> {{ price.weeks.toFixed(1) }}
-								<span v-if="price.isLanguage" class="text-muted">({{ t('contract.subject') }}: {{ form.subject }})</span>
-							</div>
-							<div class="fs-5">
-								<strong>{{ t('contract.priceLabel') }}:</strong> {{ price.price }} €
-							</div>
-						</template>
-						<div v-else>{{ t('contract.pricePending') }}</div>
-					</div>
-					<div class="form-text mb-3">
-						<div>{{ t('contract.priceFormula') }}</div>
-						<div class="mt-1">{{ t('contract.priceAssumption') }}</div>
-						<div class="mt-1">{{ t('contract.priceRisk') }}</div>
-					</div>
+				<div class="alert alert-info mb-2">
+					<template v-if="canCompute">
+						<div>
+							<strong>{{ t('contract.weeksLabel') }}:</strong> {{ price.weeks.toFixed(1) }}
+							<span v-if="price.factorF !== 1" class="text-muted">({{ t('contract.subject') }}: {{ form.subject }})</span>
+						</div>
+						<div class="fs-5">
+							<strong>{{ t('contract.priceLabel') }}:</strong> {{ price.price }} €
+						</div>
+						<div>
+							<em>f</em> = {{ formatFactor(price.factorF) }},
+							<em>lg</em> = {{ formatFactor(price.factorLG) }}
+						</div>
+					</template>
+					<div v-else>{{ t('contract.pricePending') }}</div>
+				</div>
+				<div class="form-text mb-3">
+					<div v-html="renderRichText(t('contract.priceFormula'))"></div>
+					<div class="mt-1">{{ t('contract.priceAssumption') }}</div>
+					<div class="mt-1">{{ t('contract.priceRisk') }}</div>
+				</div>
 
 					<div v-if="error" class="alert alert-danger">{{ error }}</div>
 

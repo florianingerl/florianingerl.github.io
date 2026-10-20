@@ -4,6 +4,9 @@ import {
   computePrice,
   createContractPdf,
   downloadBlob,
+  subjectFactor,
+  teachingLanguageFactor,
+  weeksUntilExam,
   type ContractFields,
 } from "./contract";
 
@@ -58,7 +61,7 @@ vi.mock("jspdf", () => ({
 const LINE_HEIGHT = (fs: number): number => Math.ceil(fs * 1.5);
 
 function dummyFields(): ContractFields {
-  const price = computePrice("Mathematik", "2027-05-10");
+  const price = computePrice("Mathematik", "2027-05-10", "de");
   return {
     firstName: "Erika",
     lastName: "Mustermann",
@@ -133,11 +136,77 @@ describe("createContractPdf Layout", () => {
       subject: "English",
       goal: "an A grade",
       institution: "Example College",
-      price: computePrice("English", "2027-05-10").price,
+      price: computePrice("English", "2027-05-10", "en").price,
     });
     const blob = createContractPdf(blocks, blocks[0].text);
     expect(blob).toBeInstanceOf(Blob);
     expectNoOverlappingLines(collectBaselines());
+  });
+});
+
+describe("computePrice: Alles-oder-Nichts-Formel (w*3h + r*m)*f*lg", () => {
+  // Fester Stichtag, damit die Wochenzahl exakt ist: 4 Wochen bis zur Pruefung.
+  const heute = new Date(2027, 3, 12);
+  const pruefung = "2027-05-10";
+
+  it("berechnet 460 Euro bei 4 Wochen und f=lg=1 (Beispiel aus Preise.html)", () => {
+    const res = computePrice("Mathematik", pruefung, "de", heute);
+    expect(res.weeks).toBeCloseTo(4, 5);
+    expect(res.months).toBeCloseTo(1, 5);
+    expect(res.factorF).toBe(1);
+    expect(res.factorLG).toBe(1);
+    expect(res.price).toBe(460);
+  });
+
+  it("halbiert den Preis, wenn das Fach eine Sprache ist (f=1/2)", () => {
+    const res = computePrice("Französisch", pruefung, "de", heute);
+    expect(res.factorF).toBe(1 / 2);
+    expect(res.price).toBe(230);
+  });
+
+  it("wendet lg=5/6 bei Unterricht auf Franzoesisch an", () => {
+    const res = computePrice("Mathematik", pruefung, "fr", heute);
+    expect(res.factorLG).toBe(5 / 6);
+    expect(res.price).toBe(Math.round(460 * (5 / 6)));
+  });
+
+  it("wendet lg=1 bei Unterricht auf Englisch an", () => {
+    const res = computePrice("Mathematik", pruefung, "en", heute);
+    expect(res.factorLG).toBe(1);
+    expect(res.price).toBe(460);
+  });
+
+  it("kombiniert Fach- und Sprachenfaktor", () => {
+    const res = computePrice("Spanisch", pruefung, "it", heute);
+    expect(res.factorF).toBe(1 / 2);
+    expect(res.factorLG).toBe(5 / 6);
+    expect(res.price).toBe(Math.round(460 * (1 / 2) * (5 / 6)));
+  });
+
+  it("gibt bei vergangener Pruefung den Risikobetrag zurueck", () => {
+    const res = computePrice("Mathe", "2020-01-01", "de", heute);
+    expect(res.weeks).toBe(0);
+    expect(res.price).toBe(0);
+  });
+
+  it("teachingLanguageFactor kennt nur de und en mit 1", () => {
+    expect(teachingLanguageFactor("de")).toBe(1);
+    expect(teachingLanguageFactor("en")).toBe(1);
+    expect(teachingLanguageFactor("fr")).toBe(5 / 6);
+    expect(teachingLanguageFactor("es")).toBe(5 / 6);
+    expect(teachingLanguageFactor("it")).toBe(5 / 6);
+  });
+
+  it("subjectFactor erkennt Sprachfaecher", () => {
+    expect(subjectFactor("Latein")).toBe(1 / 2);
+    expect(subjectFactor("Français")).toBe(1 / 2);
+    expect(subjectFactor("Mathe")).toBe(1);
+  });
+
+  it("weeksUntilExam liefert Gleitkommawochen", () => {
+    expect(weeksUntilExam(pruefung, heute)).toBeCloseTo(4, 5);
+    expect(weeksUntilExam("", heute)).toBe(0);
+    expect(weeksUntilExam("ungueltig", heute)).toBe(0);
   });
 });
 
