@@ -262,6 +262,7 @@ import {
 import { useAuthStore } from "@/stores/auth";
 import { useFilterStore } from "@/stores/filter";
 import { bildGroesseImVollbild } from "@/utils/vollbild";
+import { showSuccessToast } from "@/utils/toast";
 import {
   getAllSchoolsWhereThereisAtLeastOneExerciseWithThatSchoolInTheQuiz,
   getAllSchoolsWhereTHereisAtLeastOneExerciseForThatSchoolInTheSubject,
@@ -1064,6 +1065,10 @@ async function gespeichert(ex: Exercise): Promise<void> {
     editMode.value = false;
     formOffen.value = false;
 
+    showSuccessToast(
+      bearbeiten ? "toasts.exerciseUpdated" : "toasts.exerciseCreated"
+    );
+
     // Die bisherige Auswahl im Thema-Dropdown merken, damit sie sich beim
     // Aktualisieren der Liste nicht aendert.
     const gewaehltesThema = filter.value.topicId;
@@ -1104,6 +1109,7 @@ async function loeschen(): Promise<void> {
     await deleteExercise(q._id);
     questions.value = questions.value.filter((x) => x._id !== q._id);
     if (i.value > letzterIndex.value) i.value = letzterIndex.value;
+    showSuccessToast("toasts.exerciseDeleted");
   } catch (e) {
     if (sitzungAbgelaufen(e)) return;
     alert(`Löschen fehlgeschlagen: ${fehlerText(e, (e as Error).message)}`);

@@ -36,6 +36,7 @@ import type { Exercise, Topic } from "@/types/quiz";
 import { findTopicPath } from "@/utils/topicTree";
 import "jodit/es2021/jodit.min.css";
 import { findRandomImageUrlOnFacile } from "@/utils/facileImages";
+import { showSuccessToast } from "@/utils/toast";
 
 const props = defineProps<{
   questionOfQuiz?: Exercise
@@ -191,7 +192,7 @@ async function saveTutorialClicked(): Promise<void> {
       parentId: elternId.value || null,
     }
     const gespeichert = await updateTopic(topic)
-    alert("The tutorial was inserted into the database!")
+    showSuccessToast('toasts.tutorialSaved')
     emit('tutorial-saved', gespeichert)
   } catch (e) {
     alert(`Speichern fehlgeschlagen: ${(e as Error).message}`)

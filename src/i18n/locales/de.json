@@ -1,4 +1,10 @@
 {
+  "toasts": {
+    "exerciseCreated": "Die Aufgabe wurde erfolgreich in der Datenbank erstellt.",
+    "exerciseUpdated": "Die Aufgabe wurde erfolgreich in der Datenbank aktualisiert.",
+    "exerciseDeleted": "Die Aufgabe wurde erfolgreich aus der Datenbank gelöscht.",
+    "tutorialSaved": "Das Tutorial wurde erfolgreich in der Datenbank gespeichert."
+  },
   "meta": {
     "title": "Frag Florian - Nachhilfe für die Uni und die Schule in Mathe, Physik, Informatik, Ingenieurwesen, Chemie, Französisch, Englisch und Spanisch",
     "description": "Nachhilfe in Mathe, Physik, Informatik, Ingenieurwesen, Chemie und Sprachen für Uni und Schule"

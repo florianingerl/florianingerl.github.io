@@ -2,6 +2,7 @@
 import { computed, onBeforeUnmount, onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import AOS from "aos";
+import Toast from "primevue/toast";
 import ONavBar from "@/components/organisms/ONavBar.vue";
 import OFooter from "@/components/organisms/OFooter.vue";
 
@@ -63,4 +64,6 @@ onBeforeUnmount(() => {
 	>
 		<i class="bi bi-arrow-up-short"></i>
 	</a>
+
+	<Toast position="bottom-right" />
 </template>

@@ -1,4 +1,10 @@
 {
+  "toasts": {
+    "exerciseCreated": "The exercise was successfully created in the database.",
+    "exerciseUpdated": "The exercise was successfully updated in the database.",
+    "exerciseDeleted": "The exercise was successfully deleted from the database.",
+    "tutorialSaved": "The tutorial was successfully saved in the database."
+  },
   "meta": {
     "title": "Frag Florian - Tutoring for university and school in Maths, Physics, Computer Science, Engineering, Chemistry, French, English and Spanish",
     "description": "Tutoring in Maths, Physics, Computer Science, Engineering, Chemistry and languages for university and school"

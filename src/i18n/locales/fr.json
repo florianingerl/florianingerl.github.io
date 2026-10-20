@@ -1,4 +1,10 @@
 {
+  "toasts": {
+    "exerciseCreated": "L'exercice a été créé avec succès dans la base de données.",
+    "exerciseUpdated": "L'exercice a été mis à jour avec succès dans la base de données.",
+    "exerciseDeleted": "L'exercice a été supprimé avec succès de la base de données.",
+    "tutorialSaved": "Le tutoriel a été enregistré avec succès dans la base de données."
+  },
   "meta": {
     "title": "Frag Florian - Cours particuliers pour l'université et le lycée en maths, physique, informatique, ingénierie, chimie, français, anglais et espagnol",
     "description": "Cours particuliers de maths, physique, informatique, ingénierie, chimie et langues pour l'université et le lycée"

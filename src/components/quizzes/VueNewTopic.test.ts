@@ -1,7 +1,9 @@
 import { flushPromises, mount } from "@vue/test-utils";
 import { http, HttpResponse } from "msw";
+import ToastEventBus, { type ToastMessage } from "primevue/toasteventbus";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { API_URL } from "@/api";
+import { i18n } from "@/i18n";
 import { server } from "@/mocks/server";
 import type { Exercise, Topic } from "@/types/quiz";
 import MTopicChooser from "@/components/molecules/MTopicChooser.vue";
@@ -52,7 +54,7 @@ function mountTopic(t: Topic) {
   });
 }
 
-// jsdom kennt alert() nicht; das Speichern ruft es auf ("... inserted ...").
+// Fehlerpfade rufen alert() auf; jsdom kennt alert() nicht, deshalb mocken.
 beforeEach(() => {
   vi.spyOn(window, "alert").mockImplementation(() => {});
   // VueNewTopic laedt die Themen fuer die Auswahl des Elternthemas.
@@ -107,6 +109,32 @@ describe("VueNewTopic: Tutorial bearbeiten", () => {
     expect(Object.prototype.hasOwnProperty.call(gesendet!, "school")).toBe(
       false,
     );
+  });
+
+  it("zeigt nach dem Speichern einen Erfolgs-Toast statt alert", async () => {
+    i18n.global.locale.value = "de";
+    const toasts: ToastMessage[] = [];
+    const onAdd = (message: ToastMessage) => toasts.push(message);
+    ToastEventBus.on("add", onAdd);
+    server.use(
+      http.put(`${API_URL}/api/topic/et`, async ({ request }) =>
+        HttpResponse.json(await request.json()),
+      ),
+    );
+
+    const wrapper = mountTopic(thema);
+    await flushPromises();
+
+    await wrapper.find("form").trigger("submit");
+    await flushPromises();
+    ToastEventBus.off("add", onAdd);
+
+    expect(toasts).toHaveLength(1);
+    expect(toasts[0]).toMatchObject({
+      severity: "success",
+      summary: "Das Tutorial wurde erfolgreich in der Datenbank gespeichert.",
+    });
+    expect(window.alert).not.toHaveBeenCalled();
   });
 
   it("Save ist der submit-Knopf des Formulars und beide Knopfe tragen ein Icon", async () => {

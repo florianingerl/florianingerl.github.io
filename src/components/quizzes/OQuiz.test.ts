@@ -2,8 +2,10 @@ import { flushPromises, mount } from "@vue/test-utils";
 import { nextTick } from "vue";
 import { createPinia, setActivePinia } from "pinia";
 import { http, HttpResponse } from "msw";
+import ToastEventBus, { type ToastMessage } from "primevue/toasteventbus";
 import { beforeEach, afterEach, describe, expect, it, vi } from "vitest";
 import { API_URL, getAllExercises } from "@/api";
+import { i18n } from "@/i18n";
 import { server } from "@/mocks/server";
 import { useAuthStore } from "@/stores/auth";
 import { useFilterStore } from "@/stores/filter";
@@ -1607,5 +1609,154 @@ describe("OQuiz: Navigation mit den Pfeiltasten", () => {
 
     erstes.unmount();
     zweites.unmount();
+  });
+});
+
+describe("OQuiz: Erfolgs-Toasts nach dem Speichern und Loeschen", () => {
+  const aufgabe: Exercise = {
+    _id: "e1",
+    quiz: QUIZ,
+    subject: QUIZ,
+    topic: "t1",
+    type: "gapText",
+    imageUrl: "",
+    instruction: "Fill the gap",
+    gapText: "a {b} c",
+    user: "u-owner",
+  };
+
+  let toasts: ToastMessage[];
+  let onAdd: (message: ToastMessage) => void;
+
+  beforeEach(() => {
+    toasts = [];
+    onAdd = (message) => toasts.push(message);
+    ToastEventBus.on("add", onAdd);
+    i18n.global.locale.value = "de";
+
+    server.use(
+      http.get(`${API_URL}/api/quiz`, () =>
+        HttpResponse.json([
+          { _id: "q1", website: "web", subject: QUIZ, name: QUIZ },
+        ]),
+      ),
+      http.get(`${API_URL}/api/topic/:quiz`, () =>
+        HttpResponse.json<Topic[]>([
+          { _id: "t1", subject: QUIZ, title: "Topic 1", tutorial: "" },
+        ]),
+      ),
+      http.get(`${API_URL}/api/exercise`, () =>
+        HttpResponse.json<Exercise[]>([aufgabe]),
+      ),
+      http.post(`${API_URL}/api/exercise`, async ({ request }) => {
+        const body = (await request.json()) as Exercise;
+        return HttpResponse.json({ ...body, _id: "e2" }, { status: 201 });
+      }),
+      http.put(`${API_URL}/api/exercise/:id`, async ({ request }) => {
+        const body = (await request.json()) as Exercise;
+        return HttpResponse.json(body);
+      }),
+      http.delete(`${API_URL}/api/exercise/:id`, () =>
+        HttpResponse.json({ message: "deleted" }),
+      ),
+    );
+  });
+
+  afterEach(() => {
+    ToastEventBus.off("add", onAdd);
+    vi.restoreAllMocks();
+  });
+
+  async function mountMitOwner() {
+    const pinia = createPinia();
+    setActivePinia(pinia);
+    const wrapper = mount(OQuiz, {
+      props: { quiz: QUIZ, lg: "en" },
+      global: {
+        plugins: [pinia],
+        // Die Knopfleiste soll echt gerendert werden.
+        stubs: { LoginToEditComponent: false },
+      },
+      shallow: true,
+    });
+    await flushPromises();
+
+    const auth = useAuthStore();
+    auth.token = "test-token";
+    auth.user = {
+      _id: "u-owner",
+      name: "Owner",
+      email: "owner@example.com",
+    } as User;
+    await flushPromises();
+    return wrapper;
+  }
+
+  it("zeigt nach dem Anlegen eine Erfolgsmeldung", async () => {
+    const wrapper = await mountMitOwner();
+
+    await wrapper.get('[title="Add a new exercise"]').trigger("click");
+    await flushPromises();
+
+    wrapper.findComponent(VueNewExercise).vm.$emit("new-exercise-created", {
+      quiz: QUIZ,
+      type: "gapText",
+      imageUrl: "",
+      instruction: "Fill the gap",
+      gapText: "x {y} z",
+      topic: "t1",
+    } as Exercise);
+    await flushPromises();
+
+    expect(toasts).toHaveLength(1);
+    expect(toasts[0]).toMatchObject({
+      severity: "success",
+      summary: "Die Aufgabe wurde erfolgreich in der Datenbank erstellt.",
+    });
+  });
+
+  it("zeigt nach dem Bearbeiten eine Erfolgsmeldung", async () => {
+    const wrapper = await mountMitOwner();
+
+    await wrapper.get('[title="Edit the exercise"]').trigger("click");
+    await flushPromises();
+
+    wrapper
+      .findComponent(VueNewExercise)
+      .vm.$emit("new-exercise-created", { ...aufgabe, gapText: "x {y} z" });
+    await flushPromises();
+
+    expect(toasts).toHaveLength(1);
+    expect(toasts[0]).toMatchObject({
+      severity: "success",
+      summary: "Die Aufgabe wurde erfolgreich in der Datenbank aktualisiert.",
+    });
+  });
+
+  it("zeigt nach dem Loeschen eine Erfolgsmeldung", async () => {
+    vi.spyOn(window, "confirm").mockReturnValue(true);
+    const wrapper = await mountMitOwner();
+
+    await wrapper.get('[title="Delete the exercise"]').trigger("click");
+    await flushPromises();
+
+    expect(window.confirm).toHaveBeenCalledWith(
+      "Do you really want to delete this question?",
+    );
+    expect(toasts).toHaveLength(1);
+    expect(toasts[0]).toMatchObject({
+      severity: "success",
+      summary: "Die Aufgabe wurde erfolgreich aus der Datenbank gelöscht.",
+    });
+  });
+
+  it("zeigt keine Erfolgsmeldung, wenn das Loeschen abgebrochen wird", async () => {
+    vi.spyOn(window, "confirm").mockReturnValue(false);
+    const wrapper = await mountMitOwner();
+
+    await wrapper.get('[title="Delete the exercise"]').trigger("click");
+    await flushPromises();
+
+    expect(toasts).toHaveLength(0);
   });
 });

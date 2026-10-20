@@ -12,6 +12,7 @@ import "aos/dist/aos.css";
 import "../assets/css/style.css";
 
 import PrimeVue from "primevue/config";
+import ToastService from "primevue/toastservice";
 import "primevue/resources/themes/lara-light-blue/theme.css";
 import "primevue/resources/primevue.min.css";
 
@@ -21,6 +22,7 @@ app.use(createPinia());
 app.use(router);
 app.use(i18n);
 app.use(PrimeVue);
+app.use(ToastService);
 
 document.documentElement.lang = resolveInitialLocale();
 

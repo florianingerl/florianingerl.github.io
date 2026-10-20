@@ -1,4 +1,10 @@
 {
+  "toasts": {
+    "exerciseCreated": "El ejercicio se creó correctamente en la base de datos.",
+    "exerciseUpdated": "El ejercicio se actualizó correctamente en la base de datos.",
+    "exerciseDeleted": "El ejercicio se eliminó correctamente de la base de datos.",
+    "tutorialSaved": "El tutorial se guardó correctamente en la base de datos."
+  },
   "meta": {
     "title": "Frag Florian - Clases particulares para la universidad y el colegio en matemáticas, física, informática, ingeniería, química, francés, inglés y español",
     "description": "Clases particulares de matemáticas, física, informática, ingeniería, química y idiomas para la universidad y el colegio"

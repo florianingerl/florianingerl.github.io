@@ -1,4 +1,10 @@
 {
+  "toasts": {
+    "exerciseCreated": "L'esercizio è stato creato con successo nel database.",
+    "exerciseUpdated": "L'esercizio è stato aggiornato con successo nel database.",
+    "exerciseDeleted": "L'esercizio è stato eliminato con successo dal database.",
+    "tutorialSaved": "Il tutorial è stato salvato con successo nel database."
+  },
   "meta": {
     "title": "Frag Florian - Ripetizioni per l'università e la scuola in matematica, fisica, informatica, ingegneria, chimica, francese, inglese e spagnolo",
     "description": "Ripetizioni di matematica, fisica, informatica, ingegneria, chimica e lingue per università e scuola"
