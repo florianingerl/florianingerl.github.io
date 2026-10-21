@@ -291,7 +291,8 @@ async function submitForm(): Promise<void> {
     })
 
     const email = form.email
-    successMessage.value = 'Your account has been created successfully. Please log in now.'
+    successMessage.value =
+      'Your account has been created. We sent a one-time verification code to your email address - please enter it on the verification page before logging in.'
 
     form.name = ''
     form.password = ''

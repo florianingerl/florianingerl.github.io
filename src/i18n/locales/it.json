@@ -275,5 +275,17 @@
       "es": "spagnolo",
       "it": "italiano"
     }
+  },
+  "verifyEmail": {
+    "title": "Conferma il tuo indirizzo e-mail",
+    "sentTo": "Abbiamo inviato un codice monouso al seguente indirizzo:",
+    "noEmail": "Il link di conferma non contiene alcun indirizzo e-mail.",
+    "codeLabel": "Codice di conferma",
+    "codeHelp": "Il codice è valido per 24 ore e può essere usato una sola volta.",
+    "verifyButton": "Conferma",
+    "resendButton": "Invia un nuovo codice",
+    "homeButton": "Vai alla pagina iniziale",
+    "verifyError": "La conferma non è riuscita. Riprova.",
+    "resendError": "Impossibile richiedere un nuovo codice. Riprova."
   }
 }

@@ -275,5 +275,17 @@
       "es": "español",
       "it": "italiano"
     }
+  },
+  "verifyEmail": {
+    "title": "Confirma tu dirección de correo",
+    "sentTo": "Hemos enviado un código de un solo uso a la siguiente dirección:",
+    "noEmail": "El enlace de confirmación no contiene ninguna dirección de correo.",
+    "codeLabel": "Código de confirmación",
+    "codeHelp": "El código es válido durante 24 horas y solo puede usarse una vez.",
+    "verifyButton": "Confirmar",
+    "resendButton": "Enviar un código nuevo",
+    "homeButton": "Ir a la página de inicio",
+    "verifyError": "La confirmación ha fallado. Inténtalo de nuevo.",
+    "resendError": "No se pudo solicitar un código nuevo. Inténtalo de nuevo."
   }
 }

@@ -275,5 +275,17 @@
       "es": "espagnol",
       "it": "italien"
     }
+  },
+  "verifyEmail": {
+    "title": "Confirmer votre adresse e-mail",
+    "sentTo": "Nous avons envoyé un code à usage unique à l'adresse suivante :",
+    "noEmail": "Le lien de confirmation ne contient pas d'adresse e-mail.",
+    "codeLabel": "Code de confirmation",
+    "codeHelp": "Le code est valable 24 heures et ne peut être utilisé qu'une seule fois.",
+    "verifyButton": "Confirmer",
+    "resendButton": "Envoyer un nouveau code",
+    "homeButton": "Aller à la page d'accueil",
+    "verifyError": "La confirmation a échoué. Veuillez réessayer.",
+    "resendError": "Impossible de demander un nouveau code. Veuillez réessayer."
   }
 }

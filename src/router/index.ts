@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "@/views/HomeView.vue";
 import WhiteboardView from "@/views/WhiteboardView.vue";
+import VerifyEmailView from "@/views/VerifyEmailView.vue";
 
 // Die Bilder in den Abschnitten haben keine feste Hoehe. Sie laden erst nach
 // dem ersten Rendern nach und schieben die weiter unten liegenden Abschnitte
@@ -43,6 +44,11 @@ const router = createRouter({
       path: "/whiteboard",
       name: "whiteboard",
       component: WhiteboardView,
+    },
+    {
+      path: "/verify-email",
+      name: "verify-email",
+      component: VerifyEmailView,
     },
   ],
   async scrollBehavior(to, _from, savedPosition) {

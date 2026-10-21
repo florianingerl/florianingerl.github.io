@@ -275,5 +275,17 @@
       "es": "Spanisch",
       "it": "Italienisch"
     }
+  },
+  "verifyEmail": {
+    "title": "E-Mail-Adresse bestätigen",
+    "sentTo": "Wir haben einen Einmal-Code an folgende Adresse geschickt:",
+    "noEmail": "Der Bestätigungslink enthält keine E-Mail-Adresse.",
+    "codeLabel": "Bestätigungscode",
+    "codeHelp": "Der Code ist 24 Stunden gültig und kann nur einmal verwendet werden.",
+    "verifyButton": "Bestätigen",
+    "resendButton": "Neuen Code senden",
+    "homeButton": "Zur Startseite",
+    "verifyError": "Die Bestätigung ist fehlgeschlagen. Bitte versuche es erneut.",
+    "resendError": "Ein neuer Code konnte nicht angefordert werden. Bitte versuche es erneut."
   }
 }

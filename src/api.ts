@@ -307,6 +307,33 @@ export async function getAuthenticatedUser(): Promise<User> {
   return r.data;
 }
 
+// E-Mail-Verifizierung nach der Registrierung ------------------------
+
+export interface VerifizierungsAntwort {
+  message: string;
+}
+
+// Bestaetigt den Einmalcode aus der Registrierungs-E-Mail. Erst danach
+// darf sich der Benutzer anmelden.
+export async function verifiziereEmail(data: {
+  email: string;
+  code: string;
+}): Promise<VerifizierungsAntwort> {
+  const r = await client.post<VerifizierungsAntwort>("/api/verifyemail", data);
+  return r.data;
+}
+
+// Fordert einen neuen Code fuer noch nicht verifizierte Adressen an.
+export async function resendVerifizierung(data: {
+  email: string;
+}): Promise<VerifizierungsAntwort> {
+  const r = await client.post<VerifizierungsAntwort>(
+    "/api/resendverification",
+    data,
+  );
+  return r.data;
+}
+
 // PUT /api/user/:id aendert nur die uebergebenen Felder.
 export async function updateUser(id: string, daten: Partial<User>): Promise<User> {
   const r = await client.put<User>(

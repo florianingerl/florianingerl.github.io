@@ -275,5 +275,17 @@
       "es": "Spanish",
       "it": "Italian"
     }
+  },
+  "verifyEmail": {
+    "title": "Verify your email address",
+    "sentTo": "We sent a one-time verification code to:",
+    "noEmail": "The verification link doesn't contain an email address.",
+    "codeLabel": "Verification code",
+    "codeHelp": "The code is valid for 24 hours and can only be used once.",
+    "verifyButton": "Verify",
+    "resendButton": "Send new code",
+    "homeButton": "Go to the homepage",
+    "verifyError": "The verification failed. Please try again.",
+    "resendError": "A new code couldn't be requested. Please try again."
   }
 }
