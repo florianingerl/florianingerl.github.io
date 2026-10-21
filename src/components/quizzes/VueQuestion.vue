@@ -5,8 +5,8 @@
       v-for="(option, idx) in optionen"
       :key="idx"
       :class="{
-        correct: beantwortet && option.checked && option.correct,
-        notcorrect: beantwortet && option.checked && !option.correct,
+        correct: beantwortet && !loesungGesehen && option.checked && option.correct,
+        notcorrect: beantwortet && !loesungGesehen && option.checked && !option.correct,
       }"
     >
       <input v-model="option.checked" :disabled="beantwortet" type="checkbox" @change="optionChanged" />
@@ -22,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, watch } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
 import type { Exercise, Lang, Option } from "@/types/quiz";
 import { renderRichText } from "@/utils/richText";
 import MExerciseFeedback from "../molecules/MExerciseFeedback.vue";
@@ -49,6 +49,8 @@ const optionen = computed<Option[]>(() => {
 const beantwortet = computed(
   () => props.question.correctlyAnswered !== undefined,
 );
+
+const loesungGesehen = ref(false);
 
 function shuffle<T>(arr: T[]): void {
   for (let i = arr.length - 1; i > 0; i--) {
@@ -79,6 +81,7 @@ function normalizeCorrect(): void {
 
 function reset(): void {
   normalizeCorrect();
+  loesungGesehen.value = false;
   delete props.question.correctlyAnswered;
   optionen.value.forEach((o) => {
     o.checked = false;
@@ -139,9 +142,11 @@ function validate(): void {
 
 function showSolution(): void {
   optionen.value.forEach((o) => {
-    o.checked = o.checked;
+    o.checked = o.correct;
   });
+  loesungGesehen.value = true;
   if (!beantwortet.value) props.question.correctlyAnswered = false;
+  emit("answered-event");
 }
 
 watch(() => props.question, reset);

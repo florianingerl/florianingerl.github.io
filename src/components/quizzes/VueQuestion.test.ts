@@ -28,6 +28,17 @@ function checkBoxFor(wrapper: ReturnType<typeof mount>, optionText: string) {
   });
 }
 
+function checkboxStatus(wrapper: ReturnType<typeof mount>) {
+  return wrapper.findAll('div input[type="checkbox"]').map((b) => {
+    const el = b.element as HTMLInputElement;
+    return {
+      checked: el.checked,
+      disabled: el.disabled,
+      classes: (b.element.closest("div") as HTMLElement).classList,
+    };
+  });
+}
+
 describe("VueQuestion: multiple choice Validierung", () => {
   it("faerbt die richtige Antwort gruen", async () => {
     const ex = reactive<Exercise>(exercise());
@@ -144,5 +155,88 @@ describe("VueQuestion: HTML und LaTeX in Frage und Optionen", () => {
 
     expect(wrapper.get("p").text()).toBe("Choose the right word");
     expect(wrapper.get("label").text()).toBe("A");
+  });
+});
+
+describe("VueQuestion: Loesung zeigen (Aufgabe 34)", () => {
+  function mcExercise(): Exercise {
+    return {
+      quiz: "english",
+      type: "multipleChoice",
+      imageUrl: "",
+      questionOrInstruction: "Choose the right word",
+      options: [
+        { option: "A", correct: true },
+        { option: "B", correct: false },
+        { option: "C", correct: false },
+      ],
+    };
+  }
+
+  function klickLoesung(wrapper: ReturnType<typeof mount>) {
+    return wrapper.get('button[title="Show me the solution"]').trigger("click");
+  }
+
+  it("faerbt weder rot noch gruen und sperrt alle Checkboxen", async () => {
+    const ex = reactive<Exercise>(mcExercise());
+    const wrapper = mount(VueQuestion, { props: { question: ex, lg: "en" } });
+    await nextTick();
+
+    const falsch = checkBoxFor(wrapper, "B");
+    await falsch!.setValue(true);
+    expect(ex.correctlyAnswered).toBe(false);
+
+    await klickLoesung(wrapper);
+    await nextTick();
+
+    const a = checkBoxFor(wrapper, "A")!.element as HTMLInputElement;
+    const b = checkBoxFor(wrapper, "B")!.element as HTMLInputElement;
+    const c = checkBoxFor(wrapper, "C")!.element as HTMLInputElement;
+    expect(a.checked).toBe(true);
+    expect(b.checked).toBe(false);
+    expect(c.checked).toBe(false);
+    expect(ex.correctlyAnswered).toBe(false);
+
+    for (const status of checkboxStatus(wrapper)) {
+      expect(status.disabled).toBe(true);
+      expect(status.classes.contains("correct")).toBe(false);
+      expect(status.classes.contains("notcorrect")).toBe(false);
+    }
+  });
+
+  it("laesst eine bereits richtig beantwortete Aufgabe richtig", async () => {
+    const ex = reactive<Exercise>(mcExercise());
+    const wrapper = mount(VueQuestion, { props: { question: ex, lg: "en" } });
+    await nextTick();
+
+    await checkBoxFor(wrapper, "A")!.setValue(true);
+    expect(ex.correctlyAnswered).toBe(true);
+
+    await klickLoesung(wrapper);
+    await nextTick();
+
+    expect(ex.correctlyAnswered).toBe(true);
+    expect(
+      (checkBoxFor(wrapper, "A")!.element as HTMLInputElement).checked,
+    ).toBe(true);
+  });
+
+  it("Retry macht die Aufgabe wieder beantwortbar", async () => {
+    const ex = reactive<Exercise>(mcExercise());
+    const wrapper = mount(VueQuestion, { props: { question: ex, lg: "en" } });
+    await nextTick();
+
+    await klickLoesung(wrapper);
+    await nextTick();
+    expect(ex.correctlyAnswered).toBe(false);
+
+    await wrapper.get('button[title="Retry"]').trigger("click");
+    await nextTick();
+
+    expect(ex.correctlyAnswered).toBeUndefined();
+    for (const status of checkboxStatus(wrapper)) {
+      expect(status.disabled).toBe(false);
+      expect(status.checked).toBe(false);
+    }
   });
 });
