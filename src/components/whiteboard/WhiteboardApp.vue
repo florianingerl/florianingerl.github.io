@@ -153,7 +153,7 @@ function auswahlKopieren(): void {
 	void copyToClipboard(serializeSelection(gewaehlt));
 }
 
-async function auswahlEinfuegen(): void {
+async function auswahlEinfuegen(): Promise<void> {
 	let inhalt = kopierPuffer.value;
 	try {
 		const text = await navigator.clipboard?.readText?.();

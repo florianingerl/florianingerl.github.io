@@ -72,7 +72,7 @@ export function useWhiteboardSession(): WhiteboardSession {
 		connected.value = false;
 		error.value = "whiteboard.serverUnreachable";
 	}
-	function onChanged(patch: WhiteboardPatch): void {
+	function handleChanged(patch: WhiteboardPatch): void {
 		changedHandler?.(patch);
 	}
 	function onParticipants(list: WhiteboardParticipant[]): void {
@@ -91,7 +91,7 @@ export function useWhiteboardSession(): WhiteboardSession {
 		socket.on("connect", onConnect);
 		socket.on("disconnect", onDisconnect);
 		socket.on("connect_error", onConnectError);
-		socket.on("whiteboard:changed", onChanged);
+		socket.on("whiteboard:changed", handleChanged);
 		socket.on("whiteboard:participants", onParticipants);
 		socket.on("whiteboard:cursor", onCursor);
 		if (socket.connected) connected.value = true;
@@ -103,7 +103,7 @@ export function useWhiteboardSession(): WhiteboardSession {
 		socket.off("connect", onConnect);
 		socket.off("disconnect", onDisconnect);
 		socket.off("connect_error", onConnectError);
-		socket.off("whiteboard:changed", onChanged);
+		socket.off("whiteboard:changed", handleChanged);
 		socket.off("whiteboard:participants", onParticipants);
 		socket.off("whiteboard:cursor", onCursor);
 		socket = null;

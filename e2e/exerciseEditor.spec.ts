@@ -124,7 +124,7 @@ test.describe("Exercise editor: Speichern per Enter", () => {
     // tippen (das Label hat kein for/id, deshalb ueber den umschliessenden div).
     const instruction = section
       .locator("div.mb-3.mt-3")
-      .filter({ hasText: "Instruction:" })
+      .filter({ hasText: "Instruction/Question:" })
       .locator("input")
       .first();
     await instruction.fill("Erste Aufgabe");
@@ -145,7 +145,7 @@ test.describe("Exercise editor: Speichern per Enter", () => {
       quiz: "q-english",
       subject: "english",
       type: "gapText",
-      instruction: "Erste Aufgabe",
+      questionOrInstruction: "Erste Aufgabe",
     });
   });
 });

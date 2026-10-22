@@ -59,6 +59,10 @@ export interface CreateObjectOptions {
 	w?: number;
 	h?: number;
 	author?: string;
+	/** Freihand: flache Liste x0,y0,x1,y1,... */
+	points?: number[];
+	/** Bild: Daten-URL. */
+	src?: string;
 }
 
 /** Legt ein neues Objekt an (Sticky Note, Text, Rechteck, ...). */
@@ -84,6 +88,7 @@ export function createObject(
 	if (options.text !== undefined) obj.text = options.text;
 	if (options.fontSize !== undefined) obj.fontSize = options.fontSize;
 	if (options.author !== undefined) obj.author = options.author;
+	if (options.src !== undefined) obj.src = options.src;
 
 	switch (type) {
 		case "note":

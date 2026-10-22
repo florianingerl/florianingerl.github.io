@@ -35,8 +35,9 @@ test.describe("Whiteboard-Seite", () => {
 
 		// Nur die Whiteboard-Seite mit dem gruenen Knopf ist uebrig.
 		await expect(page).toHaveURL(/\/whiteboard$/);
+		// Der Knopf traegt den Text der Sprache der Seite (Standard: Deutsch).
 		await expect(
-			page.getByRole("button", { name: "Create new whitepaper" }),
+			page.getByRole("button", { name: "Neues Whitepaper anlegen" }),
 		).toBeVisible();
 		await expect(page.locator("#main")).toHaveCount(0);
 		await expect(page.locator("#footer")).toHaveCount(0);
@@ -50,7 +51,7 @@ test.describe("Whiteboard-Seite", () => {
 		await expect(page).toHaveURL(/#uebermich$/);
 		await expect(page.locator("#main")).toBeVisible();
 		await expect(
-			page.getByRole("button", { name: "Create new whitepaper" }),
+			page.getByRole("button", { name: "Neues Whitepaper anlegen" }),
 		).toHaveCount(0);
 	});
 });

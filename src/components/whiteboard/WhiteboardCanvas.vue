@@ -122,7 +122,6 @@ function handleGroesse(): number {
 }
 
 function ecken(box: { x: number; y: number; w: number; h: number }) {
-	const g = handleGroesse();
 	return [
 		{ ecke: "nw" as Ecke, x: box.x, y: box.y },
 		{ ecke: "ne" as Ecke, x: box.x + box.w, y: box.y },

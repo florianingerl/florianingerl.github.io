@@ -39,7 +39,7 @@ async function mockBackend(page: Page): Promise<void> {
             subject: "english",
             type: "multipleChoice",
             imageUrl: BILD,
-            question: "Was ist auf dem Bild zu sehen?",
+            questionOrInstruction: "Was ist auf dem Bild zu sehen?",
             options: [
               { option: "ein Rechteck", correct: true },
               { option: "ein Kreis", correct: false },

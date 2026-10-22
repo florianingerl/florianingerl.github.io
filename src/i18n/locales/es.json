@@ -289,6 +289,7 @@
     "resendError": "No se pudo solicitar un código nuevo. Inténtalo de nuevo."
   },
   "whiteboard": {
+    "createNew": "Crear una pizarra nueva",
     "creating": "Creando…",
     "share": "Enlace de colaboración",
     "copyLink": "Copiar el enlace",
