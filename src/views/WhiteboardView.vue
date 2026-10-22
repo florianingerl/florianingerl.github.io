@@ -56,7 +56,7 @@ async function neuesWhitepaper(): Promise<void> {
 				:disabled="laeuft"
 				@click="neuesWhitepaper"
 			>
-				{{ laeuft ? t("whiteboard.creating") : "Create new whitepaper" }}
+				{{ laeuft ? t("whiteboard.creating") : t("whiteboard.createNew") }}
 			</button>
 			<p v-if="fehler" class="whiteboard__fehler">{{ fehler }}</p>
 		</div>

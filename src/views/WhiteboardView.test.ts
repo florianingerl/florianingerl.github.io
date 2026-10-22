@@ -12,6 +12,7 @@ describe("WhiteboardView", () => {
 			messages: {
 				de: {
 					whiteboard: {
+						createNew: "Create new whiteboard",
 						creating: "Wird angelegt …",
 						serverUnreachable: "Der Whiteboard-Server ist nicht erreichbar.",
 						notFound: "Dieses Whiteboard gibt es nicht (mehr).",
@@ -33,12 +34,12 @@ describe("WhiteboardView", () => {
 		});
 	}
 
-	it("zeigt genau einen Knopf mit dem Text 'Create new whitepaper'", () => {
+	it("zeigt genau einen Knopf mit dem Text 'Create new whiteboard'", () => {
 		const wrapper = mountView();
 
 		const buttons = wrapper.findAll("button");
 		expect(buttons).toHaveLength(1);
-		expect(buttons[0].text()).toBe("Create new whitepaper");
+		expect(buttons[0].text()).toBe("Create new whiteboard");
 	});
 
 	it("haelt den Knopf in einem gruenen, zentrierten Container", () => {
