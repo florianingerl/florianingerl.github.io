@@ -59,6 +59,7 @@
 import { onMounted, ref, watch } from "vue";
 import type { Exercise, Gap, Lang } from "@/types/quiz";
 import { renderRichText } from "@/utils/richText";
+import { spreche, stoppeSprechen } from "@/utils/speech";
 import MExerciseFeedback from "../molecules/MExerciseFeedback.vue";
 
 const props = defineProps<{
@@ -109,9 +110,27 @@ function onInputChanged() {
   if(isEverythingCorrect() ){
      validated.value = true;
      props.exercise.correctlyAnswered = true;
+     loesungVorlesen();
      emit("answered-event");
   }
 }  
+
+// Die Loesung der Aufgabe vorlesen (Aufgabe 38). Gelesen werden nur die
+// Woerter, die in den Luecken stehen, nicht der ganze Satz. Bei einer
+// Auswahl-Luecke ist die erste Alternative die richtige, bei einer
+// Freitext-Luecke der eingegebene Loesungstext. Mehrere moegliche
+// Antworten sind durch "§" getrennt; gelesen wird die erste.
+function loesungVorlesen(): void {
+  const woerter = (props.exercise.gaps ?? [])
+    .map((g: Gap) => {
+      const loesung =
+        g.solution ?? (Array.isArray(g.gap) ? (g.gap[0] ?? "") : g.gap);
+      return loesung.split("§")[0].trim();
+    })
+    .filter((wort: string) => wort !== "");
+  if (woerter.length === 0) return;
+  spreche(woerter.join(" "), props.lg);
+}
 
 // "La femme {qui|que} tient ..." => Text / Lücken-Paare
 function parseGapText(data: string): void {
@@ -168,10 +187,12 @@ function shuffle(arr: string[]): string[] {
 function validate(): void {
   validated.value = true;
   props.exercise.correctlyAnswered = isEverythingCorrect();
+  if (props.exercise.correctlyAnswered) loesungVorlesen();
   emit("answered-event");
 }
 
 function retry(): void {
+  stoppeSprechen();
   validated.value = false;
   props.exercise.gaps?.forEach((g) => {
     g.guess = "";
@@ -186,6 +207,7 @@ function showSolution(): void {
     // Bei mehreren richtigen Antworten (getrennt durch §) die erste einsetzen.
     g.guess = (g.solution ?? "").split("§")[0];
   });
+  loesungVorlesen();
 }
 
 watch(
