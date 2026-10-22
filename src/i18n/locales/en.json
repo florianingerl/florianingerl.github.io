@@ -287,5 +287,40 @@
     "homeButton": "Go to the homepage",
     "verifyError": "The verification failed. Please try again.",
     "resendError": "A new code couldn't be requested. Please try again."
+  },
+  "whiteboard": {
+    "creating": "Creating…",
+    "share": "Collaboration link",
+    "copyLink": "Copy link",
+    "copy": "Copy",
+    "duplicate": "Duplicate",
+    "paste": "Paste",
+    "participants": "Participants",
+    "yourName": "Your name",
+    "connected": "Connected",
+    "disconnected": "Not connected",
+    "colors": "Colour",
+    "noteColor": "Note colour",
+    "strokeWidth": "Line width",
+    "undo": "Undo",
+    "redo": "Redo",
+    "delete": "Delete",
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out",
+    "zoomFit": "Zoom to fit",
+    "notFound": "This whiteboard doesn't exist (any more).",
+    "serverUnreachable": "The whiteboard server couldn't be reached.",
+    "imageFailed": "The image couldn't be loaded.",
+    "tools": {
+      "select": "Select",
+      "hand": "Move the canvas",
+      "note": "Sticky note",
+      "text": "Text",
+      "rect": "Rectangle",
+      "ellipse": "Ellipse",
+      "line": "Line",
+      "pen": "Pen",
+      "image": "Image"
+    }
   }
 }

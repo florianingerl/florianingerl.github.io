@@ -287,5 +287,40 @@
     "homeButton": "Aller à la page d'accueil",
     "verifyError": "La confirmation a échoué. Veuillez réessayer.",
     "resendError": "Impossible de demander un nouveau code. Veuillez réessayer."
+  },
+  "whiteboard": {
+    "creating": "Création en cours…",
+    "share": "Lien de collaboration",
+    "copyLink": "Copier le lien",
+    "copy": "Copier",
+    "duplicate": "Dupliquer",
+    "paste": "Coller",
+    "participants": "Participants",
+    "yourName": "Votre nom",
+    "connected": "Connecté",
+    "disconnected": "Non connecté",
+    "colors": "Couleur",
+    "noteColor": "Couleur du post-it",
+    "strokeWidth": "Épaisseur du trait",
+    "undo": "Annuler",
+    "redo": "Rétablir",
+    "delete": "Supprimer",
+    "zoomIn": "Zoom avant",
+    "zoomOut": "Zoom arrière",
+    "zoomFit": "Tout afficher",
+    "notFound": "Ce tableau blanc n'existe pas (ou plus).",
+    "serverUnreachable": "Le serveur du tableau blanc est injoignable.",
+    "imageFailed": "L'image n'a pas pu être chargée.",
+    "tools": {
+      "select": "Sélectionner",
+      "hand": "Déplacer la zone",
+      "note": "Post-it",
+      "text": "Texte",
+      "rect": "Rectangle",
+      "ellipse": "Ellipse",
+      "line": "Ligne",
+      "pen": "Stylo",
+      "image": "Image"
+    }
   }
 }

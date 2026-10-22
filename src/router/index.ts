@@ -46,6 +46,13 @@ const router = createRouter({
       component: WhiteboardView,
     },
     {
+      // Ein einzelnes Board: /whiteboard/<id>. Der Link wird an die
+      // Mitarbeiter geschickt, damit sie mitarbeiten koennen.
+      path: "/whiteboard/:id",
+      name: "whiteboard-board",
+      component: WhiteboardView,
+    },
+    {
       path: "/verify-email",
       name: "verify-email",
       component: VerifyEmailView,

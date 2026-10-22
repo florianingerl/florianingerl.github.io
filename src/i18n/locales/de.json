@@ -287,5 +287,40 @@
     "homeButton": "Zur Startseite",
     "verifyError": "Die Bestätigung ist fehlgeschlagen. Bitte versuche es erneut.",
     "resendError": "Ein neuer Code konnte nicht angefordert werden. Bitte versuche es erneut."
+  },
+  "whiteboard": {
+    "creating": "Wird angelegt …",
+    "share": "Link zum Mitmachen",
+    "copyLink": "Link kopieren",
+    "copy": "Kopieren",
+    "duplicate": "Duplizieren",
+    "paste": "Einfügen",
+    "participants": "Teilnehmer",
+    "yourName": "Dein Name",
+    "connected": "Verbunden",
+    "disconnected": "Nicht verbunden",
+    "colors": "Farbe",
+    "noteColor": "Farbe der Notiz",
+    "strokeWidth": "Linienstärke",
+    "undo": "Rückgängig",
+    "redo": "Wiederherstellen",
+    "delete": "Löschen",
+    "zoomIn": "Vergrößern",
+    "zoomOut": "Verkleinern",
+    "zoomFit": "Alles zeigen",
+    "notFound": "Dieses Whiteboard gibt es nicht (mehr).",
+    "serverUnreachable": "Der Whiteboard-Server ist nicht erreichbar.",
+    "imageFailed": "Das Bild konnte nicht geladen werden.",
+    "tools": {
+      "select": "Auswählen",
+      "hand": "Fläche verschieben",
+      "note": "Klebezettel",
+      "text": "Text",
+      "rect": "Rechteck",
+      "ellipse": "Ellipse",
+      "line": "Linie",
+      "pen": "Stift",
+      "image": "Bild"
+    }
   }
 }

@@ -287,5 +287,40 @@
     "homeButton": "Ir a la página de inicio",
     "verifyError": "La confirmación ha fallado. Inténtalo de nuevo.",
     "resendError": "No se pudo solicitar un código nuevo. Inténtalo de nuevo."
+  },
+  "whiteboard": {
+    "creating": "Creando…",
+    "share": "Enlace de colaboración",
+    "copyLink": "Copiar el enlace",
+    "copy": "Copiar",
+    "duplicate": "Duplicar",
+    "paste": "Pegar",
+    "participants": "Participantes",
+    "yourName": "Tu nombre",
+    "connected": "Conectado",
+    "disconnected": "Sin conexión",
+    "colors": "Color",
+    "noteColor": "Color de la nota",
+    "strokeWidth": "Grosor de la línea",
+    "undo": "Deshacer",
+    "redo": "Rehacer",
+    "delete": "Eliminar",
+    "zoomIn": "Acercar",
+    "zoomOut": "Alejar",
+    "zoomFit": "Ver todo",
+    "notFound": "Esta pizarra no existe (o ya no).",
+    "serverUnreachable": "No se puede contactar con el servidor de la pizarra.",
+    "imageFailed": "No se ha podido cargar la imagen.",
+    "tools": {
+      "select": "Seleccionar",
+      "hand": "Mover la zona",
+      "note": "Nota adhesiva",
+      "text": "Texto",
+      "rect": "Rectángulo",
+      "ellipse": "Elipse",
+      "line": "Línea",
+      "pen": "Lápiz",
+      "image": "Imagen"
+    }
   }
 }

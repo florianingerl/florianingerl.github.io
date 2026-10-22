@@ -287,5 +287,40 @@
     "homeButton": "Vai alla pagina iniziale",
     "verifyError": "La conferma non è riuscita. Riprova.",
     "resendError": "Impossibile richiedere un nuovo codice. Riprova."
+  },
+  "whiteboard": {
+    "creating": "Creazione in corso…",
+    "share": "Link di collaborazione",
+    "copyLink": "Copia il link",
+    "copy": "Copia",
+    "duplicate": "Duplica",
+    "paste": "Incolla",
+    "participants": "Partecipanti",
+    "yourName": "Il tuo nome",
+    "connected": "Connesso",
+    "disconnected": "Non connesso",
+    "colors": "Colore",
+    "noteColor": "Colore del post-it",
+    "strokeWidth": "Spessore della linea",
+    "undo": "Annulla",
+    "redo": "Ripeti",
+    "delete": "Elimina",
+    "zoomIn": "Ingrandisci",
+    "zoomOut": "Riduci",
+    "zoomFit": "Mostra tutto",
+    "notFound": "Questa lavagna non esiste (più).",
+    "serverUnreachable": "Il server della lavagna non è raggiungibile.",
+    "imageFailed": "Non è stato possibile caricare l'immagine.",
+    "tools": {
+      "select": "Seleziona",
+      "hand": "Sposta l'area",
+      "note": "Post-it",
+      "text": "Testo",
+      "rect": "Rettangolo",
+      "ellipse": "Ellisse",
+      "line": "Linea",
+      "pen": "Penna",
+      "image": "Immagine"
+    }
   }
 }

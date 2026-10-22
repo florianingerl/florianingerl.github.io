@@ -1,4 +1,4 @@
-In the menu on top of my webage, left to About me, should be another menu
+1) In the menu on top of my webage, left to About me, should be another menu
 called "Whiteboard". If clicked, only the language choosing and the menu bar should take visible.
 The rest of the user interface should have disappeared.
 To program use , use the Vue Router https://router.vuejs.org/guide/
@@ -12,3 +12,9 @@ On the top, if the Whitebord menu item is chosen, the link is to "/whiteboad", a
 In the WhiteboardView, there should be one green and centered button visible and "Create new whitepaper" written on it.
 
 Go ahead ! Please implement, test, and then commit and push it !
+
+2) When "Create new whitepaper" is clicked, a new whiteboard should be created and the collaboration link should have been copied to the clipboard.
+Somewhere there should be a always this link that can be sent to collaborators. 
+The Whitebord should work like the Miro-Whiteboard. Maybe you find the feature list of the Miro Whiteboard online.
+Maybe start implementing and for every non-basic-feature, ask me whether I want to have it for the intial implementation
+or whether we want to do it later.
