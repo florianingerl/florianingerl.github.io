@@ -40,6 +40,14 @@ const AUFGABE: Exercise = {
 
 const FRAGE = "q = Non è triste. *, è molto felice del regalo.";
 
+function aufgabenAnzahl(anzahl: number): Exercise[] {
+  return Array.from({ length: anzahl }, (_, index) => ({
+    ...AUFGABE,
+    _id: `e${index + 1}`,
+    questionOrInstruction: `Frage ${index + 1}. ___`,
+  }));
+}
+
 async function mountExport() {
   const pinia = createPinia();
   setActivePinia(pinia);
@@ -78,5 +86,62 @@ describe("VueExportToFacile: multipleChoice mit Luecke in der Frage", () => {
     expect(wrapper.text()).toContain(FRAGE);
     expect(wrapper.text()).toContain("r = anzi");
     expect(wrapper.text()).not.toContain("r = anzi|quindi|sebbene");
+  });
+});
+
+describe("VueExportToFacile: Anzahl der exportierten Aufgaben", () => {
+  let body = "";
+
+  beforeEach(() => {
+    body = "";
+    server.use(
+      http.get(`${API_URL}/api/exercise`, () =>
+        HttpResponse.json(aufgabenAnzahl(12)),
+      ),
+      http.post(`${API_URL}/api/exportfacile`, async ({ request }) => {
+        body = await request.text();
+        return HttpResponse.json({ ok: true, gespeichert: true });
+      }),
+    );
+  });
+
+  async function exportiere(
+    wrapper: Awaited<ReturnType<typeof mountExport>>,
+  ): Promise<void> {
+    await wrapper.get("#uebungstyp-optionsDifferents").setValue(true);
+    await flushPromises();
+    await wrapper.get("#exportTestId").setValue("123456");
+    await wrapper.get("#exportCookie").setValue("auteur_cookies=flori10");
+    await wrapper.get(".modal-footer .btn-primary").trigger("click");
+    await vi.waitFor(() => expect(body).not.toBe(""));
+  }
+
+  it("exportiert mehr als zehn ausgewaehlte Aufgaben vollstaendig", async () => {
+    const wrapper = await mountExport();
+
+    await exportiere(wrapper);
+
+    const params = new URLSearchParams(body);
+    expect(params.get("mychoice")).toBe("12");
+    expect(params.get("q10")).toContain("Frage 10");
+    expect(params.get("q11")).toContain("Frage 11");
+    expect(params.get("q12")).toContain("Frage 12");
+    expect(wrapper.text()).toContain("12 Fragen");
+  });
+
+  it("fuellt weniger als zehn Aufgaben weiterhin auf zehn auf", async () => {
+    server.use(
+      http.get(`${API_URL}/api/exercise`, () =>
+        HttpResponse.json(aufgabenAnzahl(3)),
+      ),
+    );
+    const wrapper = await mountExport();
+
+    await exportiere(wrapper);
+
+    const params = new URLSearchParams(body);
+    expect(params.get("mychoice")).toBe("10");
+    expect(params.get("q10")).toContain("Frage 3");
+    expect(params.get("q11")).toBeNull();
   });
 });

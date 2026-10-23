@@ -380,10 +380,11 @@ function frageAntwortBauen(ex: Exercise): FrageAntwort | null {
 }
 
 function fuelleAufMindestzahl(fragen: FrageAntwort[]): FrageAntwort[] {
-  if (fragen.length === 0) return [];
-  const gefuellt: FrageAntwort[] = [];
-  for (let i = 0; i < MINDESTZAHL; i++) {
-    gefuellt.push(fragen[Math.min(i, fragen.length - 1)]);
+  if (fragen.length === 0) return [];
+  if (fragen.length >= MINDESTZAHL) return [...fragen];
+  const gefuellt: FrageAntwort[] = [...fragen];
+  while (gefuellt.length < MINDESTZAHL) {
+    gefuellt.push(fragen[fragen.length - 1]);
   }
   return gefuellt;
 }
