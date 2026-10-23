@@ -389,6 +389,27 @@ function fuelleAufMindestzahl(fragen: FrageAntwort[]): FrageAntwort[] {
   return gefuellt;
 }
 
+const TYPOGRAPHIE_ERSATZ: Record<string, string> = {
+  "\u2018": "'",
+  "\u2019": "'",
+  "\u201A": "'",
+  "\u201B": "'",
+  "\u201C": '"',
+  "\u201D": '"',
+  "\u201E": '"',
+  "\u201F": '"',
+  "\u2013": "-",
+  "\u2014": "-",
+  "\u2026": "...",
+};
+
+function normalisiereTypographie(text: string): string {
+  return text.replace(
+    /[\u2018\u2019\u201A\u201B\u201C\u201D\u201E\u201F\u2013\u2014\u2026]/g,
+    (zeichen) => TYPOGRAPHIE_ERSATZ[zeichen] ?? zeichen,
+  );
+}
+
 // *facile.com ist eine alte ISO-8859-1-Seite. URLSearchParams kodiert Akzente
 // als UTF-8 (%C3%A9 fuer "é"); die Seite liest daraus "Ã©" (Mojibake). Jede
 // Prozentfolge mit einem Byte >= 0x80 wird deshalb aus UTF-8 dekodiert und als
@@ -403,7 +424,7 @@ function alsIso8859Formular(urlencoded: string): string {
 
     let text: string;
     try {
-      text = decodeURIComponent(lauf);
+      text = normalisiereTypographie(decodeURIComponent(lauf));
     } catch {
       return lauf;
     }

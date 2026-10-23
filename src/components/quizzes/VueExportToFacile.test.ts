@@ -48,11 +48,11 @@ function aufgabenAnzahl(anzahl: number): Exercise[] {
   }));
 }
 
-async function mountExport() {
+async function mountExport(topic: Topic = THEMA) {
   const pinia = createPinia();
   setActivePinia(pinia);
   const wrapper = mount(VueExportToFacile, {
-    props: { quiz: "italiano", topic: THEMA, lg: "en" },
+    props: { quiz: "italiano", topic, lg: "en" },
     global: { plugins: [pinia], stubs: { teleport: true } },
     shallow: true,
   });
@@ -115,6 +115,21 @@ describe("VueExportToFacile: Anzahl der exportierten Aufgaben", () => {
     await wrapper.get(".modal-footer .btn-primary").trigger("click");
     await vi.waitFor(() => expect(body).not.toBe(""));
   }
+
+  it("exportiert typografische Apostrophe als ASCII", async () => {
+    const wrapper = await mountExport({
+      ...THEMA,
+      tutorial: "<p>It\u2019s usually neutral.</p>",
+    });
+
+    await exportiere(wrapper);
+
+    expect(body).toContain("It%27s");
+    expect(body).not.toContain("%E2%80%99");
+    expect(new URLSearchParams(body).get("message_textarea")).toBe(
+      "<p>It's usually neutral.</p>",
+    );
+  });
 
   it("exportiert mehr als zehn ausgewaehlte Aufgaben vollstaendig", async () => {
     const wrapper = await mountExport();
