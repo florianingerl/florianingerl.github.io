@@ -59,8 +59,19 @@
 	color: #323f4b;
 }
 
-.wb-share__knopf:hover {
+.wb-share__knopf:hover:not(:disabled) {
 	background: #eef2f6;
+}
+
+.wb-share__knopf:disabled {
+	opacity: 0.4;
+	cursor: not-allowed;
+}
+
+.wb-share__datei {
+	display: flex;
+	align-items: center;
+	gap: 0.4rem;
 }
 
 .wb-share__teilnehmer {

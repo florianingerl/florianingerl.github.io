@@ -2,7 +2,7 @@
 // Das Whiteboard: verbindet sich mit dem Server, haelt die Objekte, die
 // Werkzeugleiste, die Leiste mit dem Einladungslink und die Zeichenflaeche.
 
-import { computed, onMounted, ref } from "vue";
+import { computed, nextTick, onMounted, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import WhiteboardCanvas from "./WhiteboardCanvas.vue";
 import WhiteboardShareBar from "./WhiteboardShareBar.vue";
@@ -23,6 +23,13 @@ import {
 	topZ,
 } from "@/utils/whiteboard";
 import { bildAusDatei } from "@/utils/whiteboardBild";
+import {
+	downloadTextFile,
+	parseWhiteboardFile,
+	readTextFile,
+	serializeWhiteboardFile,
+	whiteboardFileName,
+} from "@/utils/whiteboardDatei";
 import type { WhiteboardObject, WhiteboardTool } from "@/types/whiteboard";
 import "./whiteboard.css";
 
@@ -45,6 +52,7 @@ const name = ref(loadName());
 const copied = ref(false);
 const kopierPuffer = ref<WhiteboardObject[]>([]);
 const fehler = ref("");
+const dateiFehler = ref("");
 const canvas = ref<InstanceType<typeof WhiteboardCanvas> | null>(null);
 
 const link = computed(() => boardLink(window.location.origin, props.boardId));
@@ -218,6 +226,40 @@ function nameGeaendert(neuerName: string): void {
 	saveName(name.value);
 }
 
+function dateiSpeichern(): void {
+	dateiFehler.value = "";
+	const titel = session.board.value?.title ?? "Whiteboard";
+	downloadTextFile(
+		serializeWhiteboardFile(titel, objects.value),
+		whiteboardFileName(titel),
+	);
+}
+
+async function dateiOeffnen(datei: File): Promise<void> {
+	dateiFehler.value = "";
+	try {
+		const daten = parseWhiteboardFile(await readTextFile(datei));
+		if (!daten) {
+			dateiFehler.value = t("whiteboard.fileInvalid");
+			return;
+		}
+		if (
+			objects.value.length > 0 &&
+			!window.confirm(t("whiteboard.openConfirm"))
+		) {
+			return;
+		}
+		merkeStand();
+		objects.value = daten.objects.map((obj) => ({ ...obj }));
+		selectedIds.value = [];
+		synchronisiere();
+		await nextTick();
+		canvas.value?.fitToContent();
+	} catch {
+		dateiFehler.value = t("whiteboard.fileReadFailed");
+	}
+}
+
 // ----------------------------------------------------------------- Server
 
 onMounted(async () => {
@@ -253,8 +295,11 @@ function cursorBewegt(x: number, y: number): void {
 			:connected="session.connected.value"
 			:name="name"
 			:copied="copied"
+			:can-edit="kannBearbeiten"
 			@copy="linkKopieren"
 			@update:name="nameGeaendert"
+			@save="dateiSpeichern"
+			@open="dateiOeffnen"
 		/>
 
 		<div class="wb-app__body">
@@ -285,6 +330,7 @@ function cursorBewegt(x: number, y: number): void {
 
 			<div class="wb-app__flaeche">
 				<p v-if="fehler" class="wb-app__fehler">{{ fehler }}</p>
+				<p v-if="dateiFehler" class="wb-app__fehler">{{ dateiFehler }}</p>
 				<WhiteboardCanvas
 					ref="canvas"
 					:objects="objects"

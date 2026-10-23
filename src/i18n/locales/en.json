@@ -312,6 +312,11 @@
     "notFound": "This whiteboard doesn't exist (any more).",
     "serverUnreachable": "The whiteboard server couldn't be reached.",
     "imageFailed": "The image couldn't be loaded.",
+    "saveFile": "Save whiteboard to file",
+    "openFile": "Open whiteboard from file",
+    "openConfirm": "The current whiteboard will be replaced by the file. Continue?",
+    "fileInvalid": "This file is not a valid whiteboard.",
+    "fileReadFailed": "The file couldn't be read.",
     "tools": {
       "select": "Select",
       "hand": "Move the canvas",

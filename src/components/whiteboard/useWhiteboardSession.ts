@@ -19,7 +19,7 @@
 import { onBeforeUnmount, ref, type Ref } from "vue";
 import type { Socket } from "socket.io-client";
 import { getSocket } from "@/utils/socket";
-import { newId } from "@/utils/whiteboard";
+import { newId, splitPatch } from "@/utils/whiteboard";
 import type {
 	WhiteboardBoard,
 	WhiteboardCursor,
@@ -167,13 +167,14 @@ export function useWhiteboardSession(): WhiteboardSession {
 
 	function sendPatch(patch: WhiteboardPatch): void {
 		if (!socket || !boardId) return;
-		if (!patch.upserts.length && !patch.deletes.length) return;
-		socket.emit("whiteboard:update", {
-			boardId,
-			clientId,
-			upserts: patch.upserts,
-			deletes: patch.deletes,
-		});
+		for (const teil of splitPatch(patch)) {
+			socket.emit("whiteboard:update", {
+				boardId,
+				clientId,
+				upserts: teil.upserts,
+				deletes: teil.deletes,
+			});
+		}
 	}
 
 	function sendCursor(x: number, y: number): void {

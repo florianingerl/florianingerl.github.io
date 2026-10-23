@@ -33,6 +33,7 @@ export const NOTE_HEIGHT = 200;
 export const DEFAULT_FONT_SIZE = 20;
 export const MIN_ZOOM = 0.1;
 export const MAX_ZOOM = 4;
+export const MAX_PATCH_ITEMS = 200;
 
 export interface Point {
 	x: number;
@@ -148,6 +149,24 @@ export function diffObjects(
 		if (!nachher.has(obj.id)) deletes.push(obj.id);
 	}
 	return { upserts, deletes };
+}
+
+export function splitPatch(
+	patch: WhiteboardPatch,
+	max = MAX_PATCH_ITEMS,
+): WhiteboardPatch[] {
+	const grenze = Math.max(1, Math.floor(max));
+	const anzahl = Math.max(
+		Math.ceil(patch.upserts.length / grenze),
+		Math.ceil(patch.deletes.length / grenze),
+	);
+	const teile: WhiteboardPatch[] = [];
+	for (let i = 0; i < anzahl; i += 1) {
+		const upserts = patch.upserts.slice(i * grenze, (i + 1) * grenze);
+		const deletes = patch.deletes.slice(i * grenze, (i + 1) * grenze);
+		if (upserts.length || deletes.length) teile.push({ upserts, deletes });
+	}
+	return teile;
 }
 
 /**

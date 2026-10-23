@@ -312,6 +312,11 @@
     "notFound": "Ce tableau blanc n'existe pas (ou plus).",
     "serverUnreachable": "Le serveur du tableau blanc est injoignable.",
     "imageFailed": "L'image n'a pas pu être chargée.",
+    "saveFile": "Enregistrer le tableau blanc dans un fichier",
+    "openFile": "Ouvrir un tableau blanc à partir d'un fichier",
+    "openConfirm": "Le tableau blanc actuel sera remplacé par le fichier. Continuer ?",
+    "fileInvalid": "Ce fichier n'est pas un tableau blanc valide.",
+    "fileReadFailed": "Le fichier n'a pas pu être lu.",
     "tools": {
       "select": "Sélectionner",
       "hand": "Déplacer la zone",

@@ -312,6 +312,11 @@
     "notFound": "Esta pizarra no existe (o ya no).",
     "serverUnreachable": "No se puede contactar con el servidor de la pizarra.",
     "imageFailed": "No se ha podido cargar la imagen.",
+    "saveFile": "Guardar la pizarra en un archivo",
+    "openFile": "Abrir una pizarra desde un archivo",
+    "openConfirm": "La pizarra actual se sustituirá por el contenido del archivo. ¿Continuar?",
+    "fileInvalid": "Este archivo no es una pizarra válida.",
+    "fileReadFailed": "No se ha podido leer el archivo.",
     "tools": {
       "select": "Seleccionar",
       "hand": "Mover la zona",

@@ -312,6 +312,11 @@
     "notFound": "Questa lavagna non esiste (più).",
     "serverUnreachable": "Il server della lavagna non è raggiungibile.",
     "imageFailed": "Non è stato possibile caricare l'immagine.",
+    "saveFile": "Salva la lavagna in un file",
+    "openFile": "Apri una lavagna da un file",
+    "openConfirm": "La lavagna attuale verrà sostituita dal contenuto del file. Continuare?",
+    "fileInvalid": "Questo file non è una lavagna valida.",
+    "fileReadFailed": "Non è stato possibile leggere il file.",
     "tools": {
       "select": "Seleziona",
       "hand": "Sposta l'area",

@@ -312,6 +312,11 @@
     "notFound": "Dieses Whiteboard gibt es nicht (mehr).",
     "serverUnreachable": "Der Whiteboard-Server ist nicht erreichbar.",
     "imageFailed": "Das Bild konnte nicht geladen werden.",
+    "saveFile": "Whiteboard als Datei speichern",
+    "openFile": "Whiteboard aus Datei öffnen",
+    "openConfirm": "Der Inhalt des aktuellen Whiteboards wird durch die Datei ersetzt. Fortfahren?",
+    "fileInvalid": "Die Datei ist kein gültiges Whiteboard.",
+    "fileReadFailed": "Die Datei konnte nicht gelesen werden.",
     "tools": {
       "select": "Auswählen",
       "hand": "Fläche verschieben",

@@ -2,6 +2,7 @@
 // Die Leiste oben auf dem Board. Sie enthaelt immer den Link, mit dem andere
 // Personen mitarbeiten koennen, sowie die Liste der Teilnehmer.
 
+import { ref } from "vue";
 import { useI18n } from "vue-i18n";
 import type { WhiteboardParticipant } from "@/types/whiteboard";
 
@@ -11,17 +12,28 @@ const props = defineProps<{
 	connected: boolean;
 	name: string;
 	copied: boolean;
+	canEdit: boolean;
 }>();
 
 const emit = defineEmits<{
 	(e: "copy"): void;
 	(e: "update:name", name: string): void;
+	(e: "save"): void;
+	(e: "open", datei: File): void;
 }>();
 
 const { t } = useI18n();
+const dateiFeld = ref<HTMLInputElement | null>(null);
 
 function onName(event: Event): void {
 	emit("update:name", (event.target as HTMLInputElement).value);
+}
+
+function onDatei(event: Event): void {
+	const feld = event.target as HTMLInputElement;
+	const datei = feld.files?.[0];
+	if (datei) emit("open", datei);
+	feld.value = "";
 }
 </script>
 
@@ -50,6 +62,35 @@ function onName(event: Event): void {
 			>
 				<i class="bi" :class="props.copied ? 'bi-check-lg' : 'bi-clipboard'"></i>
 			</button>
+		</div>
+
+		<div class="wb-share__datei">
+			<button
+				type="button"
+				class="wb-share__knopf"
+				:title="t('whiteboard.saveFile')"
+				:aria-label="t('whiteboard.saveFile')"
+				@click="emit('save')"
+			>
+				<i class="bi bi-download"></i>
+			</button>
+			<button
+				type="button"
+				class="wb-share__knopf"
+				:disabled="!props.canEdit"
+				:title="t('whiteboard.openFile')"
+				:aria-label="t('whiteboard.openFile')"
+				@click="dateiFeld?.click()"
+			>
+				<i class="bi bi-folder2-open"></i>
+			</button>
+			<input
+				ref="dateiFeld"
+				type="file"
+				accept=".json,application/json"
+				class="visually-hidden"
+				@change="onDatei"
+			/>
 		</div>
 
 		<div class="wb-share__teilnehmer">
