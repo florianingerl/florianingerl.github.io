@@ -332,9 +332,7 @@ function onPointerUp(): void {
 	if (obj.type === "pen") {
 		if ((obj.points?.length ?? 0) >= 4) {
 			emit("create", obj);
-			emit("select", [obj.id]);
 		}
-		emit("tool-change", "select");
 		return;
 	}
 
