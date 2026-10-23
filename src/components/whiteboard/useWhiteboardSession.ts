@@ -19,24 +19,31 @@
 import { onBeforeUnmount, ref, type Ref } from "vue";
 import type { Socket } from "socket.io-client";
 import { getSocket } from "@/utils/socket";
-import { newId, splitPatch } from "@/utils/whiteboard";
+import { appendPenPoints, newId, splitPatch } from "@/utils/whiteboard";
 import type {
 	WhiteboardBoard,
 	WhiteboardCursor,
+	WhiteboardObject,
 	WhiteboardParticipant,
 	WhiteboardPatch,
+	WhiteboardPenEvent,
+	WhiteboardPenStroke,
 } from "@/types/whiteboard";
 
 export interface WhiteboardSession {
 	board: Ref<WhiteboardBoard | null>;
 	participants: Ref<WhiteboardParticipant[]>;
 	cursors: Ref<Record<string, WhiteboardCursor>>;
+	penPreviews: Ref<Record<string, WhiteboardObject>>;
 	connected: Ref<boolean>;
 	error: Ref<string>;
 	createBoard: (title: string, name: string) => Promise<string>;
 	joinBoard: (boardId: string, name: string) => Promise<void>;
 	sendPatch: (patch: WhiteboardPatch) => void;
 	sendCursor: (x: number, y: number) => void;
+	sendPenStart: (stroke: WhiteboardPenStroke) => void;
+	sendPenPoints: (id: string, points: number[]) => void;
+	sendPenCancel: (id: string) => void;
 	leave: () => void;
 	onChanged: (handler: (patch: WhiteboardPatch) => void) => void;
 }
@@ -51,6 +58,7 @@ export function useWhiteboardSession(): WhiteboardSession {
 	const board = ref<WhiteboardBoard | null>(null);
 	const participants = ref<WhiteboardParticipant[]>([]);
 	const cursors = ref<Record<string, WhiteboardCursor>>({});
+	const penPreviews = ref<Record<string, WhiteboardObject>>({});
 	const connected = ref(false);
 	const error = ref("");
 
@@ -67,13 +75,65 @@ export function useWhiteboardSession(): WhiteboardSession {
 	}
 	function onDisconnect(): void {
 		connected.value = false;
+		penPreviews.value = {};
 	}
 	function onConnectError(): void {
 		connected.value = false;
 		error.value = "whiteboard.serverUnreachable";
 	}
 	function handleChanged(patch: WhiteboardPatch): void {
+		const rest = { ...penPreviews.value };
+		let geaendert = false;
+		for (const objekt of patch.upserts) {
+			if (objekt.type === "pen" && rest[objekt.id]) {
+				delete rest[objekt.id];
+				geaendert = true;
+			}
+		}
+		for (const id of patch.deletes) {
+			if (rest[id]) {
+				delete rest[id];
+				geaendert = true;
+			}
+		}
+		if (geaendert) penPreviews.value = rest;
 		changedHandler?.(patch);
+	}
+	function handlePen(event: WhiteboardPenEvent): void {
+		if (!event || typeof event !== "object") return;
+		if (event.phase === "start" && event.stroke) {
+			penPreviews.value = {
+				...penPreviews.value,
+				[event.stroke.id]: {
+					id: event.stroke.id,
+					type: "pen",
+					x: event.stroke.x,
+					y: event.stroke.y,
+					w: 0,
+					h: 0,
+					z: event.stroke.z,
+					color: event.stroke.color,
+					strokeWidth: event.stroke.strokeWidth,
+					author: event.stroke.author,
+					points: [],
+				},
+			};
+			return;
+		}
+		if (event.phase === "points" && event.id && Array.isArray(event.points)) {
+			const vorhanden = penPreviews.value[event.id];
+			if (!vorhanden) return;
+			penPreviews.value = {
+				...penPreviews.value,
+				[event.id]: appendPenPoints(vorhanden, event.points),
+			};
+			return;
+		}
+		if (event.phase === "cancel" && event.id && penPreviews.value[event.id]) {
+			const rest = { ...penPreviews.value };
+			delete rest[event.id];
+			penPreviews.value = rest;
+		}
 	}
 	function onParticipants(list: WhiteboardParticipant[]): void {
 		participants.value = Array.isArray(list) ? list : [];
@@ -94,6 +154,7 @@ export function useWhiteboardSession(): WhiteboardSession {
 		socket.on("whiteboard:changed", handleChanged);
 		socket.on("whiteboard:participants", onParticipants);
 		socket.on("whiteboard:cursor", onCursor);
+		socket.on("whiteboard:pen", handlePen);
 		if (socket.connected) connected.value = true;
 		return socket;
 	}
@@ -106,6 +167,7 @@ export function useWhiteboardSession(): WhiteboardSession {
 		socket.off("whiteboard:changed", handleChanged);
 		socket.off("whiteboard:participants", onParticipants);
 		socket.off("whiteboard:cursor", onCursor);
+		socket.off("whiteboard:pen", handlePen);
 		socket = null;
 	}
 
@@ -182,11 +244,27 @@ export function useWhiteboardSession(): WhiteboardSession {
 		socket.emit("whiteboard:cursor", { boardId, clientId, x, y });
 	}
 
+	function sendPenStart(stroke: WhiteboardPenStroke): void {
+		if (!socket || !boardId) return;
+		socket.emit("whiteboard:pen", { boardId, clientId, phase: "start", stroke });
+	}
+
+	function sendPenPoints(id: string, points: number[]): void {
+		if (!socket || !boardId || !points.length) return;
+		socket.emit("whiteboard:pen", { boardId, clientId, phase: "points", id, points });
+	}
+
+	function sendPenCancel(id: string): void {
+		if (!socket || !boardId) return;
+		socket.emit("whiteboard:pen", { boardId, clientId, phase: "cancel", id });
+	}
+
 	function leave(): void {
 		if (socket && boardId) {
 			socket.emit("whiteboard:leave", { boardId, clientId });
 		}
 		boardId = "";
+		penPreviews.value = {};
 		detach();
 	}
 
@@ -202,12 +280,16 @@ export function useWhiteboardSession(): WhiteboardSession {
 		board,
 		participants,
 		cursors,
+		penPreviews,
 		connected,
 		error,
 		createBoard,
 		joinBoard,
 		sendPatch,
 		sendCursor,
+		sendPenStart,
+		sendPenPoints,
+		sendPenCancel,
 		leave,
 		onChanged,
 	};

@@ -51,6 +51,22 @@ export function topZ(objects: WhiteboardObject[]): number {
 	return objects.reduce((max, obj) => Math.max(max, obj.z), 0);
 }
 
+/** Obergrenze fuer Freihandpunkte, passend zur Serverpruefung. */
+export const MAX_PEN_POINTS = 4000;
+
+/** Haengt neue Punkte an einen Stiftstrich an und begrenzt die Gesamtzahl. */
+export function appendPenPoints(
+	obj: WhiteboardObject,
+	points: number[],
+	max = MAX_PEN_POINTS,
+): WhiteboardObject {
+	if (!points.length) return obj;
+	const vorhandene = obj.points ?? [];
+	const zusammen = [...vorhandene, ...points].slice(0, Math.max(0, max));
+	if (zusammen.length % 2 !== 0) zusammen.pop();
+	return { ...obj, points: zusammen };
+}
+
 export interface CreateObjectOptions {
 	color?: string;
 	fill?: string;

@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
+	appendPenPoints,
 	applyPatch,
 	boardLink,
 	createObject,
@@ -92,6 +93,17 @@ describe("whiteboard", () => {
 		expect(ergebnis[0].x).toBe(10);
 		expect(ergebnis[0].y).toBe(5);
 		expect(ergebnis[1].x).toBe(100);
+	});
+
+	it("haengt Stiftpunkte an und begrenzt sie", () => {
+		const stift = createObject("pen", 10, 20, 1, { points: [1, 2] });
+
+		const erweitert = appendPenPoints(stift, [3, 4, 5, 6]);
+		expect(erweitert.points).toEqual([1, 2, 3, 4, 5, 6]);
+
+		const begrenzt = appendPenPoints(stift, [3, 4, 5, 6], 4);
+		expect(begrenzt.points).toEqual([1, 2, 3, 4]);
+		expect(appendPenPoints(stift, [], 4)).toBe(stift);
 	});
 
 	it("dupliziert Objekte mit neuen Kennungen", () => {

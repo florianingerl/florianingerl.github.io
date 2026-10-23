@@ -5,10 +5,11 @@
 // Die Kamera (Verschiebung und Zoom) liegt als Transform ueber der Gruppe
 // <g>, damit sich alles gemeinsam verschieben und vergroessern laesst.
 
-import { computed, ref } from "vue";
+import { computed, onBeforeUnmount, ref } from "vue";
 import type {
 	WhiteboardCursor,
 	WhiteboardObject,
+	WhiteboardPenStroke,
 	WhiteboardTool,
 } from "@/types/whiteboard";
 import {
@@ -34,6 +35,7 @@ const props = defineProps<{
 	fill: string;
 	strokeWidth: number;
 	cursors: WhiteboardCursor[];
+	penPreviews?: WhiteboardObject[];
 	canEdit: boolean;
 }>();
 
@@ -48,6 +50,9 @@ const emit = defineEmits<{
 	(e: "interaction-start"): void;
 	(e: "interaction-end"): void;
 	(e: "cursor", punkt: Point): void;
+	(e: "pen-start", stroke: WhiteboardPenStroke): void;
+	(e: "pen-points", id: string, points: number[]): void;
+	(e: "pen-cancel", id: string): void;
 }>();
 
 const svg = ref<SVGSVGElement | null>(null);
@@ -64,6 +69,43 @@ type Ziehen =
 const ziehen = ref<Ziehen | null>(null);
 const entwurf = ref<WhiteboardObject | null>(null);
 const editor = ref<{ id: string; wert: string } | null>(null);
+
+const PEN_SEND_INTERVAL = 60;
+let penPunkte: number[] = [];
+let penTimer: number | null = null;
+let letztePenSendung = 0;
+
+function penPunkteSenden(sofort = false): void {
+	const aktueller = ziehen.value;
+	if (aktueller?.mode !== "zeichnen" || aktueller.obj.type !== "pen") return;
+	if (!penPunkte.length) return;
+	if (penTimer !== null) {
+		window.clearTimeout(penTimer);
+		penTimer = null;
+	}
+	const jetzt = Date.now();
+	const wartezeit = PEN_SEND_INTERVAL - (jetzt - letztePenSendung);
+	if (!sofort && wartezeit > 0) {
+		penTimer = window.setTimeout(() => {
+			penTimer = null;
+			penPunkteSenden(true);
+		}, wartezeit);
+		return;
+	}
+	letztePenSendung = jetzt;
+	const punkte = penPunkte;
+	penPunkte = [];
+	emit("pen-points", aktueller.obj.id, punkte);
+}
+
+function penZuruecksetzen(): void {
+	if (penTimer !== null) {
+		window.clearTimeout(penTimer);
+		penTimer = null;
+	}
+	penPunkte = [];
+	letztePenSendung = 0;
+}
 
 const sortierte = computed(() => [...props.objects].sort((a, b) => a.z - b.z));
 
@@ -230,6 +272,18 @@ function onPointerDown(event: PointerEvent): void {
 		emit("interaction-start");
 		entwurf.value = obj;
 		ziehen.value = { mode: "zeichnen", start: punkt, obj };
+		if (obj.type === "pen") {
+			penZuruecksetzen();
+			emit("pen-start", {
+				id: obj.id,
+				x: obj.x,
+				y: obj.y,
+				z: obj.z,
+				color: obj.color,
+				strokeWidth: obj.strokeWidth,
+				author: obj.author,
+			});
+		}
 		svg.value?.setPointerCapture?.(event.pointerId);
 	}
 }
@@ -290,8 +344,11 @@ function onPointerMove(event: PointerEvent): void {
 		const obj = aktueller.obj;
 		if (obj.type === "pen") {
 			const punkte = obj.points ?? [];
-			punkte.push(punkt.x - obj.x, punkt.y - obj.y);
+			const neue = [punkt.x - obj.x, punkt.y - obj.y];
+			punkte.push(...neue);
 			obj.points = punkte;
+			penPunkte.push(...neue);
+			penPunkteSenden();
 		} else if (obj.type === "line") {
 			obj.x2 = punkt.x;
 			obj.y2 = punkt.y;
@@ -307,6 +364,9 @@ function onPointerMove(event: PointerEvent): void {
 
 function onPointerUp(): void {
 	const aktueller = ziehen.value;
+	if (aktueller?.mode === "zeichnen" && aktueller.obj.type === "pen") {
+		penPunkteSenden(true);
+	}
 	ziehen.value = null;
 	if (!aktueller) return;
 	emit("interaction-end");
@@ -332,7 +392,10 @@ function onPointerUp(): void {
 	if (obj.type === "pen") {
 		if ((obj.points?.length ?? 0) >= 4) {
 			emit("create", obj);
+		} else {
+			emit("pen-cancel", obj.id);
 		}
+		penZuruecksetzen();
 		return;
 	}
 
@@ -361,6 +424,18 @@ function onPointerUp(): void {
 	emit("select", [obj.id]);
 	emit("tool-change", "select");
 }
+
+function onPointerCancel(): void {
+	const aktueller = ziehen.value;
+	if (aktueller?.mode === "zeichnen" && aktueller.obj.type === "pen") {
+		penZuruecksetzen();
+		emit("pen-cancel", aktueller.obj.id);
+	}
+	ziehen.value = null;
+	entwurf.value = null;
+}
+
+onBeforeUnmount(penZuruecksetzen);
 
 function onPointerDownHandle(event: PointerEvent, ecke: Ecke, id: string): void {
 	const obj = props.objects.find((o) => o.id === id);
@@ -510,7 +585,7 @@ defineExpose({ zoomBy, fitToContent });
 			@pointerdown="onPointerDown"
 			@pointermove="onPointerMove"
 			@pointerup="onPointerUp"
-			@pointercancel="onPointerUp"
+			@pointercancel="onPointerCancel"
 			@dblclick="onDblClick"
 			@wheel.prevent="onWheel"
 		>
@@ -690,6 +765,19 @@ defineExpose({ zoomBy, fitToContent });
 						:points="punktKette(entwurf)"
 						:stroke="entwurf.color"
 						:stroke-width="entwurf.strokeWidth ?? 2"
+						fill="none"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+					/>
+				</g>
+
+				<!-- Laufende Striche der anderen Teilnehmer -->
+				<g v-for="preview in penPreviews ?? []" :key="`pen-preview-${preview.id}`">
+					<polyline
+						v-if="preview.type === 'pen'"
+						:points="punktKette(preview)"
+						:stroke="preview.color"
+						:stroke-width="preview.strokeWidth ?? 2"
 						fill="none"
 						stroke-linecap="round"
 						stroke-linejoin="round"

@@ -30,7 +30,11 @@ import {
 	serializeWhiteboardFile,
 	whiteboardFileName,
 } from "@/utils/whiteboardDatei";
-import type { WhiteboardObject, WhiteboardTool } from "@/types/whiteboard";
+import type {
+	WhiteboardObject,
+	WhiteboardPenStroke,
+	WhiteboardTool,
+} from "@/types/whiteboard";
 import "./whiteboard.css";
 
 const props = defineProps<{ boardId: string }>();
@@ -59,6 +63,7 @@ const link = computed(() => boardLink(window.location.origin, props.boardId));
 const kannBearbeiten = computed(() => !fehler.value);
 
 const cursors = computed(() => Object.values(session.cursors.value));
+const penPreviews = computed(() => Object.values(session.penPreviews.value));
 
 function fehlerText(schluessel: string): string {
 	return t(schluessel);
@@ -285,6 +290,18 @@ function cursorBewegt(x: number, y: number): void {
 	letzteCursorMeldung = jetzt;
 	session.sendCursor(x, y);
 }
+
+function stiftGestartet(stroke: WhiteboardPenStroke): void {
+	session.sendPenStart(stroke);
+}
+
+function stiftPunkte(id: string, points: number[]): void {
+	session.sendPenPoints(id, points);
+}
+
+function stiftAbgebrochen(id: string): void {
+	session.sendPenCancel(id);
+}
 </script>
 
 <template>
@@ -341,6 +358,7 @@ function cursorBewegt(x: number, y: number): void {
 					:fill="fill"
 					:stroke-width="strokeWidth"
 					:cursors="cursors"
+					:pen-previews="penPreviews"
 					:can-edit="kannBearbeiten"
 					@camera-change="camera = $event"
 					@select="selectedIds = $event"
@@ -352,6 +370,9 @@ function cursorBewegt(x: number, y: number): void {
 					@interaction-start="merkeStand"
 					@interaction-end="synchronisiere"
 					@cursor="cursorBewegt"
+					@pen-start="stiftGestartet"
+					@pen-points="stiftPunkte"
+					@pen-cancel="stiftAbgebrochen"
 				/>
 			</div>
 		</div>
