@@ -26,6 +26,59 @@ export function bilddateiAusZwischenablage(daten: DataTransfer | null): File | n
 	return null;
 }
 
+interface ZwischenablageEintrag {
+	types: readonly string[];
+	getType: (type: string) => Promise<Blob>;
+}
+
+export async function bildAusClipboardEintraegen(
+	eintraege: readonly ZwischenablageEintrag[],
+): Promise<File | null> {
+	for (const eintrag of eintraege) {
+		const typ = eintrag.types.find((wert) => wert.startsWith("image/"));
+		if (!typ) continue;
+		try {
+			const daten = await eintrag.getType(typ);
+			const endung = typ.split("/")[1]?.split("+")[0] || "png";
+			return new File([daten], `zwischenablage.${endung}`, { type: typ });
+		} catch {
+			continue;
+		}
+	}
+	return null;
+}
+
+export async function bildAusSystemZwischenablage(): Promise<File | null> {
+	if (!navigator.clipboard?.read) return null;
+	try {
+		return await bildAusClipboardEintraegen(await navigator.clipboard.read());
+	} catch {
+		return null;
+	}
+}
+
+function istTextartigesInput(element: HTMLInputElement): boolean {
+	if (element.readOnly || element.disabled) return false;
+	return [
+		"text",
+		"search",
+		"email",
+		"url",
+		"tel",
+		"password",
+		"number",
+	].includes(element.type);
+}
+
+export function istTexteingabe(element: Element | null): boolean {
+	if (!(element instanceof HTMLElement)) return false;
+	if (element.isContentEditable) return true;
+	if (element.contentEditable === "true") return true;
+	if (element instanceof HTMLTextAreaElement) return !element.readOnly && !element.disabled;
+	if (element instanceof HTMLInputElement) return istTextartigesInput(element);
+	return false;
+}
+
 export async function bildAusDatei(datei: File): Promise<WhiteboardBild> {
 	const datenUrl = await dateiAlsDatenUrl(datei);
 	const groesse = await bildGroesse(datenUrl);

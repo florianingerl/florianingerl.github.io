@@ -1,5 +1,9 @@
-import { describe, expect, it } from "vitest";
-import { bilddateiAusZwischenablage } from "./whiteboardBild";
+import { describe, expect, it, vi } from "vitest";
+import {
+	bildAusClipboardEintraegen,
+	bilddateiAusZwischenablage,
+	istTexteingabe,
+} from "./whiteboardBild";
 
 function bilddatei(name = "bild.png", type = "image/png"): File {
 	return new File(["Bild"], name, { type });
@@ -54,5 +58,47 @@ describe("whiteboardBild", () => {
 
 	it("liefert ohne Zwischenablage nichts", () => {
 		expect(bilddateiAusZwischenablage(null)).toBeNull();
+	});
+
+	it("liest Bilder aus Clipboard-Eintraegen", async () => {
+		const blob = new Blob(["png"], { type: "image/png" });
+		const ergebnis = await bildAusClipboardEintraegen([
+			{
+				types: ["text/plain", "image/png"],
+				getType: vi.fn(async (typ: string) => {
+					expect(typ).toBe("image/png");
+					return blob;
+				}),
+			},
+		]);
+
+		expect(ergebnis).toBeInstanceOf(File);
+		expect(ergebnis?.type).toBe("image/png");
+	});
+
+	it("erkennt nur Text-Eingabefelder als Texteingaben", () => {
+		const textarea = document.createElement("textarea");
+		document.body.append(textarea);
+		expect(istTexteingabe(textarea)).toBe(true);
+
+		const file = document.createElement("input");
+		file.type = "file";
+		document.body.append(file);
+		expect(istTexteingabe(file)).toBe(false);
+
+		const button = document.createElement("input");
+		button.type = "button";
+		document.body.append(button);
+		expect(istTexteingabe(button)).toBe(false);
+
+		const content = document.createElement("div");
+		content.contentEditable = "true";
+		document.body.append(content);
+		expect(istTexteingabe(content)).toBe(true);
+
+		textarea.remove();
+		file.remove();
+		button.remove();
+		content.remove();
 	});
 });

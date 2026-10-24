@@ -463,10 +463,15 @@ let pfeiltastenObjekteBewegt = false;
 function eingabeFokussiert(): boolean {
 	const element = document.activeElement;
 	if (!(element instanceof HTMLElement)) return false;
-	return (
-		element.isContentEditable ||
-		element.matches("input, textarea, select, [contenteditable='true']")
-	);
+	if (element.isContentEditable) return true;
+	if (element instanceof HTMLTextAreaElement) return !element.readOnly && !element.disabled;
+	if (element instanceof HTMLInputElement) {
+		if (element.readOnly || element.disabled) return false;
+		return ["text", "search", "email", "url", "tel", "password", "number"].includes(
+			element.type,
+		);
+	}
+	return false;
 }
 
 function pfeiltastenInteraktionBeendet(): void {

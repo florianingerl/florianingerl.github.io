@@ -22,7 +22,12 @@ import {
 	serializeSelection,
 	topZ,
 } from "@/utils/whiteboard";
-import { bildAusDatei, bilddateiAusZwischenablage } from "@/utils/whiteboardBild";
+import {
+	bildAusDatei,
+	bildAusSystemZwischenablage,
+	bilddateiAusZwischenablage,
+	istTexteingabe,
+} from "@/utils/whiteboardBild";
 import {
 	downloadTextFile,
 	parseWhiteboardFile,
@@ -218,17 +223,17 @@ async function bildEinfuegen(datei: File): Promise<void> {
 	}
 }
 
-function eingabeFokussiert(): boolean {
-	const element = document.activeElement;
-	return (
-		element instanceof HTMLInputElement ||
-		element instanceof HTMLTextAreaElement ||
-		(element instanceof HTMLElement && element.isContentEditable)
-	);
+async function auswahlOderBildEinfuegen(): Promise<void> {
+	const bild = await bildAusSystemZwischenablage();
+	if (bild) {
+		await bildEinfuegen(bild);
+		return;
+	}
+	await auswahlEinfuegen();
 }
 
 async function bildAusZwischenablageEinfuegen(event: ClipboardEvent): Promise<void> {
-	if (!kannBearbeiten.value || eingabeFokussiert()) return;
+	if (!kannBearbeiten.value || istTexteingabe(document.activeElement)) return;
 	const datei = bilddateiAusZwischenablage(event.clipboardData);
 	if (!datei) return;
 	event.preventDefault();
@@ -363,7 +368,7 @@ function stiftAbgebrochen(id: string): void {
 				@redo="wiederherstellen"
 				@delete="auswahlLoeschen"
 				@copy="auswahlKopieren"
-				@paste="auswahlEinfuegen"
+				@paste="auswahlOderBildEinfuegen"
 				@duplicate="auswahlDuplizieren"
 				@zoom-in="canvas?.zoomBy(1.2)"
 				@zoom-out="canvas?.zoomBy(1 / 1.2)"

@@ -55,6 +55,7 @@ function onDatei(event: Event): void {
 	const datei = feld.files?.[0];
 	if (datei) emit("image", datei);
 	feld.value = "";
+	feld.blur();
 }
 </script>
 
