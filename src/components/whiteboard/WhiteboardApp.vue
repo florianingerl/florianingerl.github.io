@@ -2,7 +2,7 @@
 // Das Whiteboard: verbindet sich mit dem Server, haelt die Objekte, die
 // Werkzeugleiste, die Leiste mit dem Einladungslink und die Zeichenflaeche.
 
-import { computed, nextTick, onMounted, ref } from "vue";
+import { computed, nextTick, onBeforeUnmount, onMounted, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import WhiteboardCanvas from "./WhiteboardCanvas.vue";
 import WhiteboardShareBar from "./WhiteboardShareBar.vue";
@@ -22,7 +22,7 @@ import {
 	serializeSelection,
 	topZ,
 } from "@/utils/whiteboard";
-import { bildAusDatei } from "@/utils/whiteboardBild";
+import { bildAusDatei, bilddateiAusZwischenablage } from "@/utils/whiteboardBild";
 import {
 	downloadTextFile,
 	parseWhiteboardFile,
@@ -218,6 +218,27 @@ async function bildEinfuegen(datei: File): Promise<void> {
 	}
 }
 
+function eingabeFokussiert(): boolean {
+	const element = document.activeElement;
+	return (
+		element instanceof HTMLInputElement ||
+		element instanceof HTMLTextAreaElement ||
+		(element instanceof HTMLElement && element.isContentEditable)
+	);
+}
+
+async function bildAusZwischenablageEinfuegen(event: ClipboardEvent): Promise<void> {
+	if (!kannBearbeiten.value || eingabeFokussiert()) return;
+	const datei = bilddateiAusZwischenablage(event.clipboardData);
+	if (!datei) return;
+	event.preventDefault();
+	await bildEinfuegen(datei);
+}
+
+function onPaste(event: ClipboardEvent): void {
+	void bildAusZwischenablageEinfuegen(event);
+}
+
 async function linkKopieren(): Promise<void> {
 	const erfolg = await copyToClipboard(link.value);
 	if (erfolg) {
@@ -268,6 +289,7 @@ async function dateiOeffnen(datei: File): Promise<void> {
 // ----------------------------------------------------------------- Server
 
 onMounted(async () => {
+	window.addEventListener("paste", onPaste);
 	try {
 		await session.joinBoard(props.boardId, name.value);
 		objects.value = session.board.value?.objects ?? [];
@@ -275,6 +297,10 @@ onMounted(async () => {
 	} catch {
 		setzeFehler("whiteboard.notFound");
 	}
+});
+
+onBeforeUnmount(() => {
+	window.removeEventListener("paste", onPaste);
 });
 
 session.onChanged((patch) => {

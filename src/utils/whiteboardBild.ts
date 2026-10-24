@@ -12,6 +12,20 @@ export interface WhiteboardBild {
 	h: number;
 }
 
+export function bilddateiAusZwischenablage(daten: DataTransfer | null): File | null {
+	if (!daten) return null;
+	const direkt = Array.from(daten.files).find((datei) =>
+		datei.type.startsWith("image/"),
+	);
+	if (direkt) return direkt;
+	for (const eintrag of Array.from(daten.items)) {
+		if (eintrag.kind !== "file" || !eintrag.type.startsWith("image/")) continue;
+		const datei = eintrag.getAsFile();
+		if (datei) return datei;
+	}
+	return null;
+}
+
 export async function bildAusDatei(datei: File): Promise<WhiteboardBild> {
 	const datenUrl = await dateiAlsDatenUrl(datei);
 	const groesse = await bildGroesse(datenUrl);
