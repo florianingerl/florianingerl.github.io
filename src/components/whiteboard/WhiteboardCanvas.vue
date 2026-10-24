@@ -5,7 +5,7 @@
 // Die Kamera (Verschiebung und Zoom) liegt als Transform ueber der Gruppe
 // <g>, damit sich alles gemeinsam verschieben und vergroessern laesst.
 
-import { computed, onBeforeUnmount, ref } from "vue";
+import { computed, onBeforeUnmount, onMounted, ref } from "vue";
 import type {
 	WhiteboardCursor,
 	WhiteboardObject,
@@ -444,6 +444,61 @@ function onPointerCancel(): void {
 	ziehen.value = null;
 	entwurf.value = null;
 }
+
+const TASTEN_SCHRITT = 10;
+const TASTEN_SCHRITT_GROSS = 50;
+const PFEILRICHTUNG: Record<string, Point> = {
+	ArrowLeft: { x: -1, y: 0 },
+	ArrowRight: { x: 1, y: 0 },
+	ArrowUp: { x: 0, y: -1 },
+	ArrowDown: { x: 0, y: 1 },
+};
+
+function eingabeFokussiert(): boolean {
+	const element = document.activeElement;
+	if (!(element instanceof HTMLElement)) return false;
+	return (
+		element.isContentEditable ||
+		element.matches("input, textarea, select, [contenteditable='true']")
+	);
+}
+
+function beiTaste(event: KeyboardEvent): void {
+	if (
+		event.defaultPrevented ||
+		event.isComposing ||
+		event.ctrlKey ||
+		event.metaKey ||
+		event.altKey ||
+		eingabeFokussiert() ||
+		ziehen.value
+	) {
+		return;
+	}
+	const richtung = PFEILRICHTUNG[event.key];
+	if (!richtung) return;
+	event.preventDefault();
+	const schritt = event.shiftKey ? TASTEN_SCHRITT_GROSS : TASTEN_SCHRITT;
+
+	if (props.canEdit && props.selectedIds.length) {
+		const skalierung = Math.max(0.0001, props.camera.scale);
+		const dx = (richtung.x * schritt) / skalierung;
+		const dy = (richtung.y * schritt) / skalierung;
+		if (!event.repeat) emit("interaction-start");
+		emit("move", props.selectedIds, dx, dy);
+		emit("interaction-end");
+		return;
+	}
+
+	emit("camera-change", {
+		...props.camera,
+		x: props.camera.x + richtung.x * schritt,
+		y: props.camera.y + richtung.y * schritt,
+	});
+}
+
+onMounted(() => window.addEventListener("keydown", beiTaste));
+onBeforeUnmount(() => window.removeEventListener("keydown", beiTaste));
 
 onBeforeUnmount(penZuruecksetzen);
 

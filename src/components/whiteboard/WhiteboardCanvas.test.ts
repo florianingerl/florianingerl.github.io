@@ -23,6 +23,39 @@ function montiere(
 	});
 }
 
+function montiereMitAuswahl(
+	selectedIds: string[],
+	objects: WhiteboardObject[] = [],
+): VueWrapper {
+	return mount(WhiteboardCanvas, {
+		props: {
+			objects,
+			selectedIds,
+			tool: "select",
+			camera: { x: 0, y: 0, scale: 1 },
+			color: "#1f2933",
+			fill: "#ffd966",
+			strokeWidth: 2,
+			cursors: [],
+			penPreviews: [],
+			canEdit: true,
+		},
+	});
+}
+
+function rechteck(): WhiteboardObject {
+	return {
+		id: "rechteck1",
+		type: "rect",
+		x: 10,
+		y: 20,
+		w: 100,
+		h: 80,
+		z: 1,
+		color: "#1f2933",
+	};
+}
+
 async function zeichneStrich(wrapper: VueWrapper): Promise<void> {
 	const svg = wrapper.get("svg.wb-canvas");
 	await svg.trigger("pointerdown");
@@ -30,6 +63,58 @@ async function zeichneStrich(wrapper: VueWrapper): Promise<void> {
 	await svg.trigger("pointermove");
 	await svg.trigger("pointerup");
 }
+
+describe("WhiteboardCanvas: Pfeiltasten", () => {
+	it("verschiebt ausgewaehlte Objekte statt der Zeichenflaeche", () => {
+		const wrapper = montiereMitAuswahl(["rechteck1"], [rechteck()]);
+
+		window.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowRight" }));
+
+		expect(wrapper.emitted("move")).toHaveLength(1);
+		expect(wrapper.emitted("move")?.[0]).toEqual([["rechteck1"], 10, 0]);
+		expect(wrapper.emitted("camera-change")).toBeUndefined();
+		expect(wrapper.emitted("interaction-start")).toHaveLength(1);
+		expect(wrapper.emitted("interaction-end")).toHaveLength(1);
+		wrapper.unmount();
+	});
+
+	it("verschiebt die Zeichenflaeche, wenn nichts ausgewaehlt ist", () => {
+		const wrapper = montiereMitAuswahl([]);
+
+		window.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowRight" }));
+
+		expect(wrapper.emitted("move")).toBeUndefined();
+		expect(wrapper.emitted("camera-change")?.[0]).toEqual([
+			{ x: 10, y: 0, scale: 1 },
+		]);
+		wrapper.unmount();
+	});
+
+	it("verschiebt mit gedrueckter Umschalttaste weiter", () => {
+		const wrapper = montiereMitAuswahl(["rechteck1"], [rechteck()]);
+
+		window.dispatchEvent(
+			new KeyboardEvent("keydown", { key: "ArrowDown", shiftKey: true }),
+		);
+
+		expect(wrapper.emitted("move")?.[0]).toEqual([["rechteck1"], 0, 50]);
+		wrapper.unmount();
+	});
+
+	it("ignoriert Pfeiltasten in Eingabefeldern", () => {
+		const wrapper = montiereMitAuswahl(["rechteck1"], [rechteck()]);
+		const eingabe = document.createElement("input");
+		document.body.append(eingabe);
+		eingabe.focus();
+
+		window.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowRight" }));
+
+		expect(wrapper.emitted("move")).toBeUndefined();
+		expect(wrapper.emitted("camera-change")).toBeUndefined();
+		eingabe.remove();
+		wrapper.unmount();
+	});
+});
 
 describe("WhiteboardCanvas: Stift", () => {
 	it("legt einen Stiftstrich an, ohne ihn auszuwaehlen oder das Werkzeug zu wechseln", async () => {
