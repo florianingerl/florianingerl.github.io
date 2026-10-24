@@ -430,6 +430,16 @@ function onPointerCancel(): void {
 	if (aktueller?.mode === "zeichnen" && aktueller.obj.type === "pen") {
 		penZuruecksetzen();
 		emit("pen-cancel", aktueller.obj.id);
+		entwurf.value = null;
+		ziehen.value = null;
+		emit("interaction-end");
+		return;
+	}
+	if (aktueller) {
+		entwurf.value = null;
+		ziehen.value = null;
+		emit("interaction-end");
+		return;
 	}
 	ziehen.value = null;
 	entwurf.value = null;
