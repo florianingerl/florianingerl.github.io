@@ -447,12 +447,18 @@ function onPointerCancel(): void {
 
 const TASTEN_SCHRITT = 10;
 const TASTEN_SCHRITT_GROSS = 50;
+const PFEIL_TAKT = 150;
 const PFEILRICHTUNG: Record<string, Point> = {
 	ArrowLeft: { x: -1, y: 0 },
 	ArrowRight: { x: 1, y: 0 },
 	ArrowUp: { x: 0, y: -1 },
 	ArrowDown: { x: 0, y: 1 },
 };
+
+const gedruecktePfeile = new Set<string>();
+let pfeiltastenTimer: number | null = null;
+let pfeiltastenShift = false;
+let pfeiltastenObjekteBewegt = false;
 
 function eingabeFokussiert(): boolean {
 	const element = document.activeElement;
@@ -463,42 +469,107 @@ function eingabeFokussiert(): boolean {
 	);
 }
 
+function pfeiltastenInteraktionBeendet(): void {
+	if (pfeiltastenTimer !== null) {
+		window.clearTimeout(pfeiltastenTimer);
+		pfeiltastenTimer = null;
+	}
+	if (pfeiltastenObjekteBewegt) {
+		emit("interaction-end");
+		pfeiltastenObjekteBewegt = false;
+	}
+	gedruecktePfeile.clear();
+	pfeiltastenShift = false;
+}
+
+function pfeiltastenBewegen(): void {
+	if (
+		ziehen.value ||
+		eingabeFokussiert() ||
+		gedruecktePfeile.size === 0 ||
+		(!props.canEdit && props.selectedIds.length)
+	) {
+		pfeiltastenInteraktionBeendet();
+		return;
+	}
+
+	const richtungSchluessel = Array.from(gedruecktePfeile).at(-1);
+	const richtung = richtungSchluessel ? PFEILRICHTUNG[richtungSchluessel] : null;
+	if (!richtung) {
+		pfeiltastenInteraktionBeendet();
+		return;
+	}
+
+	const schritt = pfeiltastenShift ? TASTEN_SCHRITT_GROSS : TASTEN_SCHRITT;
+	if (props.canEdit && props.selectedIds.length) {
+		if (!pfeiltastenObjekteBewegt) {
+			emit("interaction-start");
+			pfeiltastenObjekteBewegt = true;
+		}
+		const skalierung = Math.max(0.0001, props.camera.scale);
+		const dx = (richtung.x * schritt) / skalierung;
+		const dy = (richtung.y * schritt) / skalierung;
+		emit("move", props.selectedIds, dx, dy);
+	} else if (!props.selectedIds.length) {
+		emit("camera-change", {
+			...props.camera,
+			x: props.camera.x + richtung.x * schritt,
+			y: props.camera.y + richtung.y * schritt,
+		});
+	} else {
+		pfeiltastenInteraktionBeendet();
+		return;
+	}
+
+	pfeiltastenTimer = window.setTimeout(pfeiltastenBewegen, PFEIL_TAKT);
+}
+
 function beiTaste(event: KeyboardEvent): void {
 	if (
 		event.defaultPrevented ||
 		event.isComposing ||
 		event.ctrlKey ||
 		event.metaKey ||
-		event.altKey ||
-		eingabeFokussiert() ||
-		ziehen.value
+		event.altKey
 	) {
+		return;
+	}
+	if (eingabeFokussiert() || ziehen.value) {
+		pfeiltastenInteraktionBeendet();
 		return;
 	}
 	const richtung = PFEILRICHTUNG[event.key];
 	if (!richtung) return;
 	event.preventDefault();
-	const schritt = event.shiftKey ? TASTEN_SCHRITT_GROSS : TASTEN_SCHRITT;
 
-	if (props.canEdit && props.selectedIds.length) {
-		const skalierung = Math.max(0.0001, props.camera.scale);
-		const dx = (richtung.x * schritt) / skalierung;
-		const dy = (richtung.y * schritt) / skalierung;
-		if (!event.repeat) emit("interaction-start");
-		emit("move", props.selectedIds, dx, dy);
-		emit("interaction-end");
+	if (event.type === "keyup") {
+		gedruecktePfeile.delete(event.key);
+		if (gedruecktePfeile.size === 0) {
+			pfeiltastenInteraktionBeendet();
+		}
 		return;
 	}
 
-	emit("camera-change", {
-		...props.camera,
-		x: props.camera.x + richtung.x * schritt,
-		y: props.camera.y + richtung.y * schritt,
-	});
+	pfeiltastenShift = event.shiftKey;
+	if (!gedruecktePfeile.has(event.key)) {
+		gedruecktePfeile.add(event.key);
+		if (pfeiltastenTimer === null) {
+			pfeiltastenBewegen();
+			return;
+		}
+		return;
+	}
 }
 
-onMounted(() => window.addEventListener("keydown", beiTaste));
-onBeforeUnmount(() => window.removeEventListener("keydown", beiTaste));
+onMounted(() => {
+	window.addEventListener("keydown", beiTaste);
+	window.addEventListener("keyup", beiTaste);
+});
+onBeforeUnmount(() => {
+	window.removeEventListener("keydown", beiTaste);
+	window.removeEventListener("keyup", beiTaste);
+	pfeiltastenInteraktionBeendet();
+});
 
 onBeforeUnmount(penZuruecksetzen);
 

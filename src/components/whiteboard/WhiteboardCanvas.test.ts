@@ -1,5 +1,5 @@
 import { mount, type VueWrapper } from "@vue/test-utils";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import type { WhiteboardObject, WhiteboardTool } from "@/types/whiteboard";
 import WhiteboardCanvas from "./WhiteboardCanvas.vue";
 
@@ -66,6 +66,7 @@ async function zeichneStrich(wrapper: VueWrapper): Promise<void> {
 
 describe("WhiteboardCanvas: Pfeiltasten", () => {
 	it("verschiebt ausgewaehlte Objekte statt der Zeichenflaeche", () => {
+		vi.useFakeTimers();
 		const wrapper = montiereMitAuswahl(["rechteck1"], [rechteck()]);
 
 		window.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowRight" }));
@@ -74,11 +75,16 @@ describe("WhiteboardCanvas: Pfeiltasten", () => {
 		expect(wrapper.emitted("move")?.[0]).toEqual([["rechteck1"], 10, 0]);
 		expect(wrapper.emitted("camera-change")).toBeUndefined();
 		expect(wrapper.emitted("interaction-start")).toHaveLength(1);
+		expect(wrapper.emitted("interaction-end")).toBeUndefined();
+
+		window.dispatchEvent(new KeyboardEvent("keyup", { key: "ArrowRight" }));
 		expect(wrapper.emitted("interaction-end")).toHaveLength(1);
+		vi.useRealTimers();
 		wrapper.unmount();
 	});
 
 	it("verschiebt die Zeichenflaeche, wenn nichts ausgewaehlt ist", () => {
+		vi.useFakeTimers();
 		const wrapper = montiereMitAuswahl([]);
 
 		window.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowRight" }));
@@ -87,10 +93,14 @@ describe("WhiteboardCanvas: Pfeiltasten", () => {
 		expect(wrapper.emitted("camera-change")?.[0]).toEqual([
 			{ x: 10, y: 0, scale: 1 },
 		]);
+
+		window.dispatchEvent(new KeyboardEvent("keyup", { key: "ArrowRight" }));
+		vi.useRealTimers();
 		wrapper.unmount();
 	});
 
 	it("verschiebt mit gedrueckter Umschalttaste weiter", () => {
+		vi.useFakeTimers();
 		const wrapper = montiereMitAuswahl(["rechteck1"], [rechteck()]);
 
 		window.dispatchEvent(
@@ -98,10 +108,37 @@ describe("WhiteboardCanvas: Pfeiltasten", () => {
 		);
 
 		expect(wrapper.emitted("move")?.[0]).toEqual([["rechteck1"], 0, 50]);
+
+		window.dispatchEvent(new KeyboardEvent("keyup", { key: "ArrowDown" }));
+		vi.useRealTimers();
+		wrapper.unmount();
+	});
+
+	it("wiederholt beim Gedrueckt halten mit zeitlichem Abstand", () => {
+		vi.useFakeTimers();
+		const wrapper = montiereMitAuswahl(["rechteck1"], [rechteck()]);
+
+		window.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowRight" }));
+		expect(wrapper.emitted("move")).toHaveLength(1);
+		expect(wrapper.emitted("interaction-start")).toHaveLength(1);
+
+		window.dispatchEvent(
+			new KeyboardEvent("keydown", { key: "ArrowRight", repeat: true }),
+		);
+		vi.advanceTimersByTime(149);
+		expect(wrapper.emitted("move")).toHaveLength(1);
+
+		vi.advanceTimersByTime(1);
+		expect(wrapper.emitted("move")).toHaveLength(2);
+
+		window.dispatchEvent(new KeyboardEvent("keyup", { key: "ArrowRight" }));
+		expect(wrapper.emitted("interaction-end")).toHaveLength(1);
+		vi.useRealTimers();
 		wrapper.unmount();
 	});
 
 	it("ignoriert Pfeiltasten in Eingabefeldern", () => {
+		vi.useFakeTimers();
 		const wrapper = montiereMitAuswahl(["rechteck1"], [rechteck()]);
 		const eingabe = document.createElement("input");
 		document.body.append(eingabe);
@@ -112,6 +149,7 @@ describe("WhiteboardCanvas: Pfeiltasten", () => {
 		expect(wrapper.emitted("move")).toBeUndefined();
 		expect(wrapper.emitted("camera-change")).toBeUndefined();
 		eingabe.remove();
+		vi.useRealTimers();
 		wrapper.unmount();
 	});
 });
