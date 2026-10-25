@@ -60,6 +60,7 @@ import { onMounted, ref, watch } from "vue";
 import type { Exercise, Gap, Lang } from "@/types/quiz";
 import { renderRichText } from "@/utils/richText";
 import { spreche, stoppeSprechen } from "@/utils/speech";
+import { useAuthStore } from "@/stores/auth";
 import MExerciseFeedback from "../molecules/MExerciseFeedback.vue";
 
 const props = defineProps<{
@@ -70,6 +71,7 @@ const props = defineProps<{
 
 const emit = defineEmits<{ (e: "answered-event"): void }>();
 
+const auth = useAuthStore();
 
 const validated = ref(false);
 
@@ -115,18 +117,53 @@ function onInputChanged() {
   }
 }  
 
-// Die Loesung der Aufgabe vorlesen (Aufgabe 38). Gelesen werden nur die
-// Woerter, die in den Luecken stehen, nicht der ganze Satz. Bei einer
-// Auswahl-Luecke ist die erste Alternative die richtige, bei einer
-// Freitext-Luecke der eingegebene Loesungstext. Mehrere moegliche
-// Antworten sind durch "§" getrennt; gelesen wird die erste.
+function ersteRichtigeLoesungAusGapInhalt(inhalt: string | string[] | undefined): string {
+  if (Array.isArray(inhalt)) {
+    return inhalt[0] ?? "";
+  }
+  if (typeof inhalt !== "string" || inhalt === "") return "";
+  if (inhalt.includes("§")) {
+    return inhalt.split("§")[0].trim();
+  }
+  if (inhalt.includes("|")) {
+    return inhalt.split("|")[0].trim();
+  }
+  return inhalt.trim();
+}
+
+function ersteRichtigeLoesungFuerLuecke(g: Gap): string {
+  if (g.solution) {
+    return g.solution.split("??")[0].trim();
+  }
+  return ersteRichtigeLoesungAusGapInhalt(g.gap);
+}
+
+// Die Loesung der Aufgabe vorlesen. Je nach Einstellung wird entweder nur
+// die Luecke oder der ganze Satz mit ausgefuellten Luecken vorgelesen.
 function loesungVorlesen(): void {
+  const leseModus = auth.user?.quizSettings?.gapReadMode ?? "gap";
+  if (leseModus === "whole" && typeof props.exercise.gapText === "string" && props.exercise.gapText.length > 0) {
+    let text = props.exercise.gapText;
+    const luecken = props.exercise.gaps ?? [];
+    let lueckenIndex = 0;
+    text = text.replace(/\{([^{}]+)\}/g, (match, inhalt) => {
+      if (lueckenIndex >= luecken.length) {
+        lueckenIndex++;
+        return ersteRichtigeLoesungAusGapInhalt(inhalt);
+      }
+      const loesung = ersteRichtigeLoesungFuerLuecke(luecken[lueckenIndex++]);
+      if (!loesung) {
+        return ersteRichtigeLoesungAusGapInhalt(inhalt);
+      }
+      return loesung;
+    });
+    if (text.trim() === "") return;
+    spreche(text, props.lg);
+    return;
+  }
+
   const woerter = (props.exercise.gaps ?? [])
-    .map((g: Gap) => {
-      const loesung =
-        g.solution ?? (Array.isArray(g.gap) ? (g.gap[0] ?? "") : g.gap);
-      return loesung.split("§")[0].trim();
-    })
+    .map((g: Gap) => ersteRichtigeLoesungFuerLuecke(g))
     .filter((wort: string) => wort !== "");
   if (woerter.length === 0) return;
   spreche(woerter.join(" "), props.lg);
@@ -204,8 +241,9 @@ function retry(): void {
 function showSolution(): void {
   validated.value = true;
   props.exercise.gaps?.forEach((g) => {
-    // Bei mehreren richtigen Antworten (getrennt durch §) die erste einsetzen.
-    g.guess = (g.solution ?? "").split("§")[0];
+    // Bei mehreren richtigen Antworten (getrennt durch ??) die erste einsetzen.
+    const loesung = g.solution ?? ersteRichtigeLoesungAusGapInhalt(g.gap);
+    g.guess = (loesung ?? "").split("??")[0].trim();
   });
   loesungVorlesen();
 }

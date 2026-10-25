@@ -108,6 +108,10 @@ export interface User {
   email: string;
   role?: string;
   isAdmin?: boolean;
+  emailVerified?: boolean;
+  quizSettings?: {
+    gapReadMode?: "gap" | "whole";
+  };
   createdAt?: string;
   updatedAt?: string;
 }

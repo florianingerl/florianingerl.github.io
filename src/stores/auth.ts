@@ -76,10 +76,22 @@ export const useAuthStore = defineStore("auth", () => {
     await registerRequest(data);
   }
 
-  async function profilSpeichern(name: string): Promise<void> {
+  async function profilSpeichern(
+    name: string,
+    email?: string,
+    quizSettings?: { gapReadMode?: "gap" | "whole" },
+  ): Promise<void> {
     const id = user.value?._id;
     if (!id) throw new Error("The user has no _id, so the profile can't be saved.");
-    await updateUser(id, { name });
+    if (user.value?.isAdmin) throw new Error("Admins are not allowed to edit their profile.");
+    const daten: Record<string, unknown> = { name };
+    if (email && email !== user.value?.email) {
+      daten.email = email;
+    }
+    if (quizSettings) {
+      daten.quizSettings = quizSettings;
+    }
+    await updateUser(id, daten as Partial<User>);
     // /api/user/:id schickt den Benutzer mit Passwort zurueck, deshalb wird er
     // ueber /api/auth/user noch einmal sauber geholt.
     await benutzerLaden();
