@@ -114,6 +114,7 @@ export function quizLanguage(quiz: string | undefined, userLocale: string): Lang
     deutsch: "de",
     italiano: "it",
     espagnol: "es",
+    latin: "it",
   };
   if (quiz && map[quiz]) return map[quiz];
   const isSupportedLocale = (v: string | null): v is AppLocale =>

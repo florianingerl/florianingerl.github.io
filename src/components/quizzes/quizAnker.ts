@@ -9,6 +9,7 @@ export const QUIZ_ANKER: Record<QuizName, string> = {
   english: "englisch",
   espagnol: "spanisch",
   italiano: "italienisch",
+  latin: "latein",
   deutsch: "deutsch",
   nutrition: "ernaehrung",
   lernenlehren: "lernenundlehren",

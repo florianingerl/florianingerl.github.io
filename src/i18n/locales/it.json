@@ -35,6 +35,7 @@
       "schoolEnglish": "Inglese",
       "schoolSpanish": "Spagnolo",
       "schoolItalian": "Italiano",
+      "schoolLatin": "Latino",
       "schoolGerman": "Tedesco",
       "lifeSprouts": "Imparare più a lungo con i germogli",
       "lifeReiki": "Reiki",
@@ -124,6 +125,10 @@
     "italienisch": {
       "title": "Italiano",
       "body": "<p>Non sai parlare italiano ? Posso aiutarti.</p><p>Ecco i miei esercizi di grammatica da <a href='https://www.italien-facile.com/cgi2/myexam/mestests.php?qui=flori10&amp;quoi=9995&amp;popu=1'>Italien-facile.com</a></p><p>In una lezione di prova di italiano possiamo fare per esempio esercizi di grammatica per principianti. Per lo studente di materie scientifiche argomenti importanti sono per esempio le subordinate relative, le preposizioni, ecc...</p>"
+    },
+    "latein": {
+      "title": "Latino",
+      "body": "<p>Impara le prime parole latine e frasi semplici.</p><p>In una lezione di prova possiamo esercitarci insieme sulle basi.</p>"
     },
     "deutsch": {
       "title": "Tedesco (come lingua straniera)",

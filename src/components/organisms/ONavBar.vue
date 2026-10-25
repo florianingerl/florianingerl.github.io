@@ -43,6 +43,7 @@ const entries: NavEntry[] = [
 			{ key: "schoolEnglish", href: "/#englisch" },
 			{ key: "schoolSpanish", href: "/#spanisch" },
 			{ key: "schoolItalian", href: "/#italienisch" },
+			{ key: "schoolLatin", href: "/#latein" },
 			{ key: "schoolGerman", href: "/#deutsch" },
 		],
 	},

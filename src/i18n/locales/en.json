@@ -35,6 +35,7 @@
       "schoolEnglish": "English",
       "schoolSpanish": "Spanish",
       "schoolItalian": "Italian",
+      "schoolLatin": "Latin",
       "schoolGerman": "German",
       "lifeSprouts": "Nutrition",
       "lifeReiki": "Reiki",
@@ -123,7 +124,11 @@
     },
     "italienisch": {
       "title": "Italian",
-      "body": "<p>Can't you speak Italian? I can help you.</p><p>Here are my grammar exercises from <a href='https://www.italien-facile.com/cgi2/myexam/mestests.php?qui=flori10&amp;quoi=9995&amp;popu=1'>Italien-facile.com</a></p><p>In a trial Italian lesson we can, for example, do beginner grammar exercises. For the science student, relative clauses, prepositions, etc. are important topics.</p>"
+      "body": "<p>Non sai parlare italiano ? Posso aiutarti.</p><p>Ecco i miei esercizi di grammatica da <a href='https://www.italien-facile.com/cgi2/myexam/mestests.php?qui=flori10&amp;quoi=9995&amp;popu=1'>Italien-facile.com</a></p><p>In einer Probestunde Italienisch k\u00f6nnen wir z.B. Anf\u00e4nger-Grammatik-\u00dcbungen machen. F\u00fcr den Naturwischenschaftler sind z.B. Relativs\u00e4tze, Pr\u00e4positionen,etc... wichtige Themen</p>"
+    },
+    "latein": {
+      "title": "Latin",
+      "body": "<p>Learn your first Latin words and simple sentences.</p><p>In a trial lesson we can practice the basics together.</p>"
     },
     "deutsch": {
       "title": "German (as a foreign language)",

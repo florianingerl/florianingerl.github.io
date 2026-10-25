@@ -35,6 +35,7 @@
       "schoolEnglish": "Englisch",
       "schoolSpanish": "Spanisch",
       "schoolItalian": "Italienisch",
+      "schoolLatin": "Latein",
       "schoolGerman": "Deutsch",
       "lifeSprouts": "Länger lernen mit Sprossen",
       "lifeReiki": "Reiki",
@@ -123,7 +124,11 @@
     },
     "italienisch": {
       "title": "Italienisch",
-      "body": "<p>Non sai parlare italiano ? Posso aiutarti.</p><p>Ecco i miei esercizi di grammatica da <a href='https://www.italien-facile.com/cgi2/myexam/mestests.php?qui=flori10&amp;quoi=9995&amp;popu=1'>Italien-facile.com</a></p><p>In einer Probestunde Italienisch können wir z.B. Anfänger-Grammatik-Übungen machen. Für den Naturwischenschaftler sind z.B. Relativsätze, Präpositionen,etc... wichtige Themen</p>"
+      "body": "<p>Non sai parlare italiano ? Posso aiutarti.</p><p>Ecco i miei esercizi di grammatica da <a href='https://www.italien-facile.com/cgi2/myexam/mestests.php?qui=flori10&amp;quoi=9995&amp;popu=1'>Italien-facile.com</a></p><p>In einer Probestunde Italienisch k\u00f6nnen wir z.B. Anf\u00e4nger-Grammatik-\u00dcbungen machen. F\u00fcr den Naturwischenschaftler sind z.B. Relativs\u00e4tze, Pr\u00e4positionen,etc... wichtige Themen</p>"
+    },
+    "latein": {
+      "title": "Latein",
+      "body": "<p>Lerne die ersten lateinischen W\u00f6rter und einfachen S\u00e4tze.</p><p>In einer Probestunde Latein k\u00f6nnen wir gemeinsam die Grundlagen \u00fcben.</p>"
     },
     "deutsch": {
       "title": "Deutsch (als Fremdsprache)",

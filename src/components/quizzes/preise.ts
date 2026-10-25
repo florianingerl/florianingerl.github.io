@@ -30,4 +30,9 @@ export const PREISE: Record<string, SprachPreis> = {
     text: "Ti piacciono gli esercizi di italiano? Sostieni questo lavoro.",
     knopfText: "5€ con Paypal",
   },
+  latin: {
+    betrag: 5,
+    text: "Ti piacciono gli esercizi di latino? Sostieni questo lavoro.",
+    knopfText: "5€ con Paypal",
+  },
 };

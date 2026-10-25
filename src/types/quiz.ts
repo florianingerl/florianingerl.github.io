@@ -3,6 +3,7 @@ export type QuizName =
   | "english"
   | "espagnol"
   | "italiano"
+  | "latin"
   | "deutsch"
   | "nutrition"
   | "lernenlehren"

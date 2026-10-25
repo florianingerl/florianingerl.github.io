@@ -14,6 +14,7 @@ import OFranzoesischSection from "@/components/organisms/OFranzoesischSection.vu
 import OEnglischSection from "@/components/organisms/OEnglischSection.vue";
 import OSpanischSection from "@/components/organisms/OSpanischSection.vue";
 import OItalienischSection from "@/components/organisms/OItalienischSection.vue";
+import OLateinSection from "@/components/organisms/OLateinSection.vue";
 import ODeutschSection from "@/components/organisms/ODeutschSection.vue";
 import OErnaehrungSection from "@/components/organisms/OErnaehrungSection.vue";
 import OReikiSection from "@/components/organisms/OReikiSection.vue";
@@ -53,6 +54,7 @@ import OContactSection from "@/components/organisms/OContactSection.vue";
 		<OEnglischSection />
 		<OSpanischSection />
 		<OItalienischSection />
+		<OLateinSection />
 		<ODeutschSection />
 		<OErnaehrungSection />
 		<OReikiSection />

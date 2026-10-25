@@ -35,6 +35,7 @@
       "schoolEnglish": "Anglais",
       "schoolSpanish": "Espagnol",
       "schoolItalian": "Italien",
+      "schoolLatin": "Latin",
       "schoolGerman": "Allemand",
       "lifeSprouts": "Nourriture",
       "lifeReiki": "Reiki",
@@ -123,7 +124,11 @@
     },
     "italienisch": {
       "title": "Italien",
-      "body": "<p>Non sai parlare italiano ? Posso aiutarti.</p><p>Ecco i miei esercizi di grammatica da <a href='https://www.italien-facile.com/cgi2/myexam/mestests.php?qui=flori10&amp;quoi=9995&amp;popu=1'>Italien-facile.com</a></p><p>Lors d'un cours d'essai d'italien, nous pouvons par exemple faire des exercices de grammaire pour débutants. Pour l'étudiant en sciences, des sujets importants sont par exemple les propositions relatives, les prépositions, etc...</p>"
+      "body": "<p>Non sai parlare italiano ? Posso aiutarti.</p><p>Ecco i miei esercizi di grammatica da <a href='https://www.italien-facile.com/cgi2/myexam/mestests.php?qui=flori10&amp;quoi=9995&amp;popu=1'>Italien-facile.com</a></p><p>In einer Probestunde Italienisch k\u00f6nnen wir z.B. Anf\u00e4nger-Grammatik-\u00dcbungen machen. F\u00fcr den Naturwischenschaftler sind z.B. Relativs\u00e4tze, Pr\u00e4positionen,etc... wichtige Themen</p>"
+    },
+    "latein": {
+      "title": "Latin",
+      "body": "<p>Apprends tes premiers mots latins et de simples phrases.</p><p>Lors d'un cours d'essai, nous pouvons pratiquer les bases ensemble.</p>"
     },
     "deutsch": {
       "title": "Allemand (langue étrangère)",
