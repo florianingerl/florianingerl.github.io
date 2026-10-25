@@ -5,7 +5,7 @@
 // Die Kamera (Verschiebung und Zoom) liegt als Transform ueber der Gruppe
 // <g>, damit sich alles gemeinsam verschieben und vergroessern laesst.
 
-import { computed, onBeforeUnmount, onMounted, ref } from "vue";
+import { computed, nextTick, onBeforeUnmount, onMounted, ref } from "vue";
 import type {
 	WhiteboardCursor,
 	WhiteboardObject,
@@ -69,6 +69,19 @@ type Ziehen =
 const ziehen = ref<Ziehen | null>(null);
 const entwurf = ref<WhiteboardObject | null>(null);
 const editor = ref<{ id: string; wert: string } | null>(null);
+const editorRef = ref<HTMLTextAreaElement | null>(null);
+
+function editorOeffnen(id: string): void {
+	const obj = props.objects.find((o) => o.id === id);
+	if (!obj || (obj.type !== "note" && obj.type !== "text")) return;
+	editor.value = { id, wert: obj.text ?? "" };
+	nextTick(() => {
+		const element = editorRef.value;
+		if (!element) return;
+		element.focus();
+		element.select();
+	});
+}
 
 const PEN_SEND_INTERVAL = 60;
 let penPunkte: number[] = [];
@@ -253,8 +266,8 @@ function onPointerDown(event: PointerEvent): void {
 		emit("create", obj);
 		emit("select", [obj.id]);
 		emit("tool-change", "select");
-		ziehen.value = { mode: "bewegen", ids: [obj.id], letzte: punkt };
-		svg.value?.setPointerCapture?.(event.pointerId);
+		ziehen.value = null;
+		editorOeffnen(obj.id);
 		return;
 	}
 
@@ -621,9 +634,9 @@ function onDblClick(event: MouseEvent): void {
 	const punkt = weltPunkt(event);
 	const treffer = trefferObjekt(punkt);
 	if (!treffer || (treffer.type !== "note" && treffer.type !== "text")) return;
-	editor.value = { id: treffer.id, wert: treffer.text ?? "" };
 	emit("select", [treffer.id]);
 	emit("interaction-start");
+	editorOeffnen(treffer.id);
 }
 
 const editorObjekt = computed(() => {
@@ -988,6 +1001,7 @@ defineExpose({ zoomBy, fitToContent });
 		<!-- Textbearbeitung -->
 		<textarea
 			v-if="editor && editorRechteck"
+			ref="editorRef"
 			class="wb-editor"
 			:style="editorRechteck"
 			:value="editor.wert"
