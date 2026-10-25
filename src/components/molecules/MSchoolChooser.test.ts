@@ -25,6 +25,28 @@ describe("MSchoolChooser: Schulauswahl", () => {
     ]);
   });
 
+  it("zeigt einen vorgegebenen Wert als Auswahl", () => {
+    const wrapper = mount(MSchoolChooser, {
+      props: { schools: schulen, modelValue: "s1", emptyLabel: "No school" },
+    });
+
+    expect((wrapper.get("select").element as HTMLSelectElement).value).toBe(
+      "s1",
+    );
+  });
+
+  it("waehlt den Wert auch, wenn die Optionen erst spaeter eintreffen", async () => {
+    const wrapper = mount(MSchoolChooser, {
+      props: { schools: [], modelValue: "s2", emptyLabel: "No school" },
+    });
+
+    await wrapper.setProps({ schools: schulen });
+
+    expect((wrapper.get("select").element as HTMLSelectElement).value).toBe(
+      "s2",
+    );
+  });
+
   it("meldet Auswahl als _id und als Schuldokument", async () => {
     const wrapper = mount(MSchoolChooser, {
       props: { schools: schulen, emptyLabel: "No school" },

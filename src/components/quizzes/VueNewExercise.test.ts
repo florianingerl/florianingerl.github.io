@@ -200,6 +200,94 @@ describe("VueNewExercise: Thema ueber den Themenwaehler", () => {
   });
 });
 
+describe("VueNewExercise: Vorbelegung beim Anlegen", () => {
+  const thema: Topic = {
+    _id: "t1",
+    subject: "english",
+    title: "Elektrotechnik",
+    tutorial: "",
+  };
+  const schule = { _id: "s1", name: "Hochschule Regensburg" };
+
+  function mountMitVorlage(vorlage: Exercise, schools: { _id: string; name: string }[] = []) {
+    return mount(VueNewExercise, {
+      props: {
+        quiz: "english",
+        editMode: false,
+        questionOfQuiz: vorlage,
+        schools,
+      },
+      shallow: true,
+      global: { renderStubDefaultSlot: true },
+    });
+  }
+
+  it("waehlt Thema und Schule der aktuellen Aufgabe vor", async () => {
+    const wrapper = mountMitVorlage(
+      {
+        _id: "ex1",
+        quiz: "english",
+        type: "gapText",
+        questionOrInstruction: "Fill the gap",
+        gapText: "a {b} c",
+        topic: thema,
+        school: schule,
+      },
+      [schule],
+    );
+    await flushPromises();
+
+    expect(
+      wrapper.findComponent(OTopicChooserAndCreator).props("modelValue"),
+    ).toBe("t1");
+    expect(
+      wrapper.findComponent(OSchoolChooserAndCreator).props("modelValue"),
+    ).toBe("s1");
+
+    await wrapper.find("form").trigger("submit");
+
+    const emitted = wrapper.emitted("new-exercise-created");
+    expect((emitted![0][0] as Exercise).topic).toEqual(thema);
+    expect((emitted![0][0] as Exercise).school).toBe("s1");
+  });
+
+  it("kommt auch mit _ids als Strings zurecht", async () => {
+    const wrapper = mountMitVorlage({
+      _id: "ex2",
+      quiz: "english",
+      type: "gapText",
+      questionOrInstruction: "Fill the gap",
+      gapText: "a {b} c",
+      topic: "t1",
+      school: "s1",
+    });
+    await flushPromises();
+
+    expect(
+      wrapper.findComponent(OTopicChooserAndCreator).props("modelValue"),
+    ).toBe("t1");
+    expect(
+      wrapper.findComponent(OSchoolChooserAndCreator).props("modelValue"),
+    ).toBe("s1");
+  });
+
+  it("nimmt die Schule der aktuellen Aufgabe in die Schulliste auf", async () => {
+    const wrapper = mountMitVorlage({
+      _id: "ex3",
+      quiz: "english",
+      type: "gapText",
+      questionOrInstruction: "Fill the gap",
+      gapText: "a {b} c",
+      school: schule,
+    });
+    await flushPromises();
+
+    expect(
+      wrapper.findComponent(OSchoolChooserAndCreator).props("schools"),
+    ).toEqual([schule]);
+  });
+});
+
 describe("VueNewExercise: Schule der Aufgabe", () => {
   const schule = { _id: "s1", name: "Hochschule Regensburg" };
 

@@ -7,6 +7,7 @@
     <div class="row">
       <div class="col-12 mt-3">
         <OTopicChooserAndCreator
+          v-model="gewaehltesThema"
           :subject="subject ?? quiz"
           :quiz="quiz"
           @topic-selected="onTopicSelected"
@@ -19,7 +20,7 @@
       <div class="col-12 mt-3">
         <OSchoolChooserAndCreator
           v-model="gewaehlteSchule"
-          :schools="schools"
+          :schools="schulenFuerFormular"
           @school-created="schuleAngelegt"
         />
       </div>
@@ -114,15 +115,11 @@
 import Splitter from 'primevue/splitter'
 import SplitterPanel from 'primevue/splitterpanel'
 
-import { onMounted, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import OImageChooserAndDisplayer from '@/components/organisms/OImageChooserAndDisplayer.vue'
 import OTopicChooserAndCreator from '@/components/organisms/OTopicChooserAndCreator.vue'
 import OSchoolChooserAndCreator from '@/components/organisms/OSchoolChooserAndCreator.vue'
 import type { Exercise, QuizName, School, Topic, TwoPartSentences } from '@/types/quiz'
-
-// _id der gewaehlten Schule oder "" fuer "keine Schule". Die Schulauswahl
-// samt Anlage neuer Schulen steckt in OSchoolChooserAndCreator.
-const gewaehlteSchule = ref<string>('')
 
 const props = defineProps<{
   // Name eines Website-Quizzes (z.B. "deutsch") oder - bei einem Buch-Quizz -
@@ -145,6 +142,35 @@ const emit = defineEmits<{
   (e: 'topic-created', topic: Topic): void
   (e: 'cancel-clicked'): void
 }>()
+
+function idOfSchule(schule: Exercise['school']): string {
+  return typeof schule === 'string' ? schule : schule?._id ?? ''
+}
+
+function idOfThema(thema: Exercise['topic']): string {
+  return typeof thema === 'string' ? thema : thema?._id ?? ''
+}
+
+// _id der gewaehlten Schule oder "" fuer "keine Schule".
+const gewaehlteSchule = ref<string>(idOfSchule(props.questionOfQuiz?.school))
+// _id des gewaehlten Themas oder "" fuer keins.
+const gewaehltesThema = ref<string>(idOfThema(props.questionOfQuiz?.topic))
+
+// Die Schule der aktuellen Aufgabe muss auch dann im Dropdown stehen, wenn
+// die vom Quiz gelieferte Schulliste sie (noch) nicht enthaelt.
+const schulenFuerFormular = computed<School[]>(() => {
+  const liste = [...(props.schools ?? [])]
+  const schule = props.questionOfQuiz?.school
+  if (
+    schule &&
+    typeof schule !== 'string' &&
+    schule._id &&
+    !liste.some((s) => s._id === schule._id)
+  ) {
+    liste.unshift(schule)
+  }
+  return liste
+})
 
 // Eine neu angelegte Schule wird ans Quiz weitergemeldet, damit es seine
 // Schulenliste pflegen kann.
@@ -240,12 +266,6 @@ onMounted(async () => {
     sentences.value = props.questionOfQuiz.sentences.map((s) => ({ ...s }))
   }
   wordOrderSentence.value = props.questionOfQuiz.wordorder?.sentence ?? ''
-  // Die Schule der bearbeiteten Aufgabe auswaehlen. Der Server schickt sie als
-  // Dokument mit, gespeichert wird aber die _id.
-  const schule = props.questionOfQuiz.school
-  gewaehlteSchule.value =
-    typeof schule === 'string' ? schule : schule?._id ?? ''
-  //TODO The topic of the exercise should be the topic of the exercise of the quiz
 })
 </script>
 

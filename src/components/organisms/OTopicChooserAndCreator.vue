@@ -9,9 +9,10 @@
   <div class="topic-chooser-and-creator">
     <div class="topic-chooser">
       <MTopicChooser
-        v-model="selectedTopicId"
+        :model-value="selectedTopicId"
         :topics="topics"
         label="Choose a topic (from tree):"
+        @update:model-value="waehleThema"
       />
     </div>
     <MTopicCreator
@@ -35,9 +36,12 @@ const props = defineProps<{
   subject: string;
   // Das Quiz, in dem neue Themen angelegt werden (Name oder _id).
   quiz?: string;
+  // _id des vorausgewaehlten Themas oder "" fuer keins.
+  modelValue?: string;
 }>();
 
 const emit = defineEmits<{
+  (e: "update:modelValue", value: string): void;
   (e: "topic-selected", topic: Topic | null): void;
   (e: "topic-created", topic: Topic): void;
 }>();
@@ -45,22 +49,35 @@ const emit = defineEmits<{
 // Alle Themen des Faches; ein neu angelegtes Thema kommt hinten dazu.
 const topics = ref<Topic[]>([]);
 // _id des im Baum gewaehlten Themas oder "" fuer keins.
-const selectedTopicId = ref<string>("");
+const selectedTopicId = ref<string>(props.modelValue ?? "");
 
 // Das im Baum gewaehlte Thema (Elternthema fuer "New topic").
 const selectedTopic = computed<Topic | null>(
   () => topics.value.find((t) => t._id === selectedTopicId.value) ?? null,
 );
 
-// Die Auswahl im Baum wird nach aussen gemeldet.
-watch(selectedTopicId, () => {
+// Eine von aussen gesetzte Vorauswahl wird nur uebernommen. Sie darf nicht
+// als Benutzerauswahl gemeldet werden, sonst wuerde das Formular sein Thema
+// verlieren, solange die Themenliste noch nicht geladen ist.
+watch(
+  () => props.modelValue,
+  (value) => {
+    selectedTopicId.value = value ?? "";
+  },
+);
+
+function waehleThema(id: string): void {
+  selectedTopicId.value = id;
+  emit("update:modelValue", id);
   emit("topic-selected", selectedTopic.value);
-});
+}
 
 // Ein neu angelegtes Thema wird im Baum sichtbar und gleich ausgewaehlt.
 function onTopicCreated(topic: Topic): void {
   topics.value.push(topic);
-  selectedTopicId.value = topic._id ?? "";
+  const id = topic._id ?? "";
+  selectedTopicId.value = id;
+  emit("update:modelValue", id);
   emit("topic-created", topic);
 }
 

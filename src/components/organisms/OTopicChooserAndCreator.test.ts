@@ -45,6 +45,21 @@ describe("OTopicChooserAndCreator", () => {
     expect(wrapper.findComponent(MTopicCreator).props("parentTopic")).toBeNull();
   });
 
+  it("waehlt ein von aussen vorgegebenes Thema vor", async () => {
+    const wrapper = mount(OTopicChooserAndCreator, {
+      props: { subject: "english", modelValue: "dio" },
+    });
+    await flushPromises();
+
+    expect(wrapper.findComponent(MTopicChooser).props("modelValue")).toBe("dio");
+    expect(wrapper.text()).toContain("Elektrotechnik->Dioden");
+    expect(wrapper.findComponent(MTopicCreator).props("parentTopic")).toEqual(
+      themen[1],
+    );
+    // Eine Vorauswahl ist noch keine Benutzerauswahl.
+    expect(wrapper.emitted("topic-selected")).toBeFalsy();
+  });
+
   it("meldet eine Auswahl und gibt sie als Elternthema weiter", async () => {
     const wrapper = mount(OTopicChooserAndCreator, {
       props: { subject: "english" },
@@ -60,10 +75,24 @@ describe("OTopicChooserAndCreator", () => {
     await knoten!.trigger("click");
     await flushPromises();
 
+    expect(wrapper.emitted("update:modelValue")?.at(-1)).toEqual(["et"]);
     expect(wrapper.emitted("topic-selected")?.at(-1)).toEqual([themen[0]]);
     expect(wrapper.findComponent(MTopicCreator).props("parentTopic")).toEqual(
       themen[0],
     );
+  });
+
+  it("meldet das Leeren der Auswahl", async () => {
+    const wrapper = mount(OTopicChooserAndCreator, {
+      props: { subject: "english", modelValue: "et" },
+    });
+    await flushPromises();
+
+    await wrapper.get('[aria-label="Clear topic filter"]').trigger("click");
+    await flushPromises();
+
+    expect(wrapper.emitted("update:modelValue")?.at(-1)).toEqual([""]);
+    expect(wrapper.emitted("topic-selected")?.at(-1)).toEqual([null]);
   });
 
   it("uebernimmt ein neu angelegtes Thema in den Baum und waehlt es", async () => {

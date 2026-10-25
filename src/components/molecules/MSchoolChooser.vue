@@ -8,7 +8,7 @@
     <select
       :id="selectId"
       class="form-select w-auto"
-      :value="modelValue ?? ''"
+      v-model="gewaehlteSchule"
       @change="onChange"
     >
       <option value="">{{ emptyLabel }}</option>
@@ -20,6 +20,7 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from "vue";
 import type { School } from "@/types/quiz";
 
 const props = defineProps<{
@@ -38,10 +39,16 @@ const emit = defineEmits<{
   (e: "school-selected", school: School | null): void;
 }>();
 
+// v-model auf dem select sorgt dafuer, dass die Auswahl auch dann gesetzt
+// wird, wenn die Optionen erst nach dem ersten Rendern eintreffen.
+const gewaehlteSchule = computed<string>({
+  get: () => props.modelValue ?? "",
+  set: (value) => emit("update:modelValue", value),
+});
+
 function onChange(event: Event): void {
   const id = (event.target as HTMLSelectElement).value;
   const school = props.schools.find((s) => s._id === id) ?? null;
-  emit("update:modelValue", id);
   emit("school-selected", school);
 }
 </script>
