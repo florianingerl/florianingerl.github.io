@@ -168,6 +168,7 @@ function auswahlKopieren(): void {
 	const gewaehlt = objects.value.filter((obj) => selectedIds.value.includes(obj.id));
 	if (!gewaehlt.length) return;
 	kopierPuffer.value = gewaehlt;
+	//The void before copyToClipboard intentionelly ignore the Promise/result, that copyToClipboard returns, it's not a syntax error
 	void copyToClipboard(serializeSelection(gewaehlt));
 }
 

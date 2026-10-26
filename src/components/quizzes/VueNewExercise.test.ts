@@ -227,12 +227,13 @@ describe("VueNewExercise: Vorbelegung beim Anlegen", () => {
       {
         _id: "ex1",
         quiz: "english",
-        type: "gapText",
-        questionOrInstruction: "Fill the gap",
-        gapText: "a {b} c",
-        topic: thema,
-        school: schule,
-      },
+				type: "gapText",
+				questionOrInstruction: "Fill",
+				gapText: "a {b|c} d",
+				imageUrl: "img.jpg",
+				topic: "t1",
+				school: { _id: "s1", name: "S1" },
+			},
       [schule],
     );
     await flushPromises();
@@ -258,6 +259,7 @@ describe("VueNewExercise: Vorbelegung beim Anlegen", () => {
       type: "gapText",
       questionOrInstruction: "Fill the gap",
       gapText: "a {b} c",
+      imageUrl: "img.jpg",
       topic: "t1",
       school: "s1",
     });
@@ -278,6 +280,7 @@ describe("VueNewExercise: Vorbelegung beim Anlegen", () => {
       type: "gapText",
       questionOrInstruction: "Fill the gap",
       gapText: "a {b} c",
+      imageUrl: "img.jpg",
       school: schule,
     });
     await flushPromises();

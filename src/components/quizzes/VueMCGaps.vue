@@ -146,7 +146,7 @@ function loesungVorlesen(): void {
     let text = props.exercise.gapText;
     const luecken = props.exercise.gaps ?? [];
     let lueckenIndex = 0;
-    text = text.replace(/\{([^{}]+)\}/g, (match, inhalt) => {
+    text = text.replace(/\{([^{}]+)\}/g, (_match, inhalt) => {
       if (lueckenIndex >= luecken.length) {
         lueckenIndex++;
         return ersteRichtigeLoesungAusGapInhalt(inhalt);
