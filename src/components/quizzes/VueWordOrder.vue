@@ -26,6 +26,7 @@
 import { computed, onMounted, watch , ref} from "vue";
 import type { Exercise, Lang } from "@/types/quiz";
 import { renderRichText } from "@/utils/richText";
+import { spreche, stoppeSprechen } from "@/utils/speech";
 import MExerciseFeedback from "../molecules/MExerciseFeedback.vue";
 
 const props = defineProps<{
@@ -79,6 +80,11 @@ function init(): void {
     w.shuffledSentence = mischen(w.sentence.trim().split(/\s+/));
 }
 
+function loesungVorlesen(): void {
+  const sentence = props.exercise.wordorder?.sentence;
+  if (sentence) spreche(sentence, props.lg);
+}
+
 function beiEingabe(event: Event): void {
   const input = event.target;
   if (!(input instanceof HTMLInputElement)) return;
@@ -89,16 +95,19 @@ function beiEingabe(event: Event): void {
   // Ist der richtige Satz getippt, wird automatisch als richtig geprueft.
   if (istRichtig() && props.exercise.correctlyAnswered !== true) {
     props.exercise.correctlyAnswered = true;
+    loesungVorlesen();
     emit("answered-event");
   }
 }
 
 function validate(): void {
   props.exercise.correctlyAnswered = istRichtig();
+  if (props.exercise.correctlyAnswered) loesungVorlesen();
   emit("answered-event");
 }
 
 function retry(): void {
+  stoppeSprechen();
   showSolutionWasClicked.value = false;
   props.exercise.correctlyAnswered = undefined;
   if (props.exercise.wordorder) props.exercise.wordorder.guess = undefined;
@@ -112,6 +121,7 @@ function showSolution(): void {
   w.guess = w.sentence;
   if (props.exercise.correctlyAnswered === undefined)
     props.exercise.correctlyAnswered = false;
+  loesungVorlesen();
   emit("answered-event");
 }
 
