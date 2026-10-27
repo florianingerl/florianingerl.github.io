@@ -53,12 +53,29 @@
           rows="3"
         ></textarea>
 
-        <div v-if="exercise.type === 'multipleChoice'">
-          <ul class="list-group">
-            <li v-for="(o, idx) in allOptions" :key="idx" class="list-group-item">
+        <div v-if="exercise.type === 'multipleChoice'" style="display:flex; flex-direction: column; gap: 2px;">
+          <div style="display:flex; flex-direction:row;">
+          <ul style="flex-grow: 1;" class="list-group">
+            <li
+              v-for="(o, idx) in allOptions"
+              :key="idx"
+              class="list-group-item"
+              :class="{ active: selectedIndex === idx }"
+              style="cursor: pointer;"
+              @click="selectOption(idx)"
+            >
               {{ o }}<span v-if="idx === 0"> ✓ (richtige Antwort)</span>
             </li>
           </ul>
+          <div style="display:flex; flex-direction: column; gap: 2px; justify-content: flex-start;">
+            <button type="button" class="btn btn-sm btn-outline-secondary" :disabled="selectedIndex === null || allOptions.length <= 1" @click="moveUp">
+              <i class="bi bi-arrow-up"></i>
+            </button>
+            <button type="button" class="btn btn-sm btn-outline-secondary" :disabled="selectedIndex === null || allOptions.length <= 1" @click="moveDown">
+              <i class="bi bi-arrow-down"></i>
+            </button>
+          </div>
+          </div>
           <div class="mb-3 mt-3">
             <label class="form-label">New option (die erste ist die richtige):</label>
             <input v-model="newOption" type="text" class="form-control" />
@@ -189,6 +206,7 @@ const exercise = ref<Exercise>({
 
 const newOption = ref('')
 const allOptions = ref<string[]>([])
+const selectedIndex = ref<number | null>(null)
 // Der Satz einer word-order-Aufgabe.
 const wordOrderSentence = ref('')
 // Zwei leere Zeilen als Minimum, maximal 5 Saelze.
@@ -206,6 +224,34 @@ function onTopicSelected(topic: Topic | null): void {
 function onTopicCreated(topic: Topic): void {
   exercise.value.topic = topic
   emit('topic-created', topic)
+}
+
+function selectOption(idx: number): void {
+  if (selectedIndex.value === idx) {
+    selectedIndex.value = null
+    return
+  }
+  selectedIndex.value = idx
+}
+
+function moveUp(): void {
+  if (selectedIndex.value === null || allOptions.value.length <= 1) return
+  const idx = selectedIndex.value
+  const arr = allOptions.value
+  const newIdx = (idx - 1 + arr.length) % arr.length
+  const [item] = arr.splice(idx, 1)
+  arr.splice(newIdx, 0, item)
+  selectedIndex.value = newIdx
+}
+
+function moveDown(): void {
+  if (selectedIndex.value === null || allOptions.value.length <= 1) return
+  const idx = selectedIndex.value
+  const arr = allOptions.value
+  const newIdx = (idx + 1) % arr.length
+  const [item] = arr.splice(idx, 1)
+  arr.splice(newIdx, 0, item)
+  selectedIndex.value = newIdx
 }
 
 function addOption(): void {
@@ -262,6 +308,7 @@ onMounted(async () => {
     ...(props.editMode ? { _id } : {}),
   }
   allOptions.value = (props.questionOfQuiz.options ?? []).map((o) => o.option)
+  selectedIndex.value = null
   if (props.questionOfQuiz.sentences?.length) {
     sentences.value = props.questionOfQuiz.sentences.map((s) => ({ ...s }))
   }
