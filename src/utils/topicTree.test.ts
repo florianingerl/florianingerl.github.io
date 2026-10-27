@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import type { Topic } from "@/types/quiz";
 import {
   buildTopicTree,
+  findSubtreeIds,
   findTopicPath,
   topicPathString,
 } from "./topicTree";
@@ -76,5 +77,21 @@ describe("topicTree", () => {
 
   it("gibt bei unbekannter Id einen leeren Pfad zurueck", () => {
     expect(findTopicPath(themen, "gibt-es-nicht")).toEqual([]);
+  });
+});
+
+// Ein Themenfilter im Quiz zeigt die Aufgaben des Themas und aller seiner
+// Unterthemen. Dazu liefert findSubtreeIds das Thema selbst und alle
+// Unterthemen rekursiv (beliebig tief).
+describe("findSubtreeIds", () => {
+  it("liefert das Thema und alle seine Unterthemen rekursiv", () => {
+    // Elektrotechnik -> Dioden -> Zehnerdiode sowie Widerstaende.
+    expect(findSubtreeIds(themen, "et")).toEqual(["et", "dio", "zeh", "wid"]);
+    expect(findSubtreeIds(themen, "dio")).toEqual(["dio", "zeh"]);
+  });
+
+  it("liefert fuer ein Thema ohne Unterthemen nur es selbst", () => {
+    expect(findSubtreeIds(themen, "zeh")).toEqual(["zeh"]);
+    expect(findSubtreeIds(themen, "mathe")).toEqual(["mathe"]);
   });
 });

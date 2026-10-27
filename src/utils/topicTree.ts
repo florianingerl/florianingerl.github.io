@@ -52,3 +52,23 @@ export function topicPathString(topics: Topic[], id: string): string {
     .map((t) => t.title)
     .join("->");
 }
+
+// Liefert die _ids des Themas und aller seiner Unterthemen - also alle
+// Teilbereiche des Themas - rekursiv, also bis zur tiefsten Ebene. Die
+// Reihenfolge folgt dem Abhaengigkeitsbaum: Das Thema selbst zuerst, dann die
+// Kinder, deren Kinder usw. Damit kann ein Themenfilter alle Aufgaben eines
+// Themas und aller Unterthemen beruecksichtigen.
+export function findSubtreeIds(topics: Topic[], id: string): string[] {
+  const ids: string[] = [];
+  const besuch = (topicId: string): void => {
+    if (ids.includes(topicId)) return;
+    ids.push(topicId);
+    topics
+      .filter((t) => t.parentId === topicId)
+      .forEach((t) => {
+        if (t._id) besuch(t._id);
+      });
+  };
+  besuch(id);
+  return ids;
+}

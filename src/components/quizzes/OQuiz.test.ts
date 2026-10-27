@@ -1761,3 +1761,130 @@ describe("OQuiz: Erfolgs-Toasts nach dem Speichern und Loeschen", () => {
     expect(toasts).toHaveLength(0);
   });
 });
+
+// Wenn der Benutzer nach einem Thema filtert, zeigt das Quiz die Aufgaben
+// dieses Themas und aller seiner Unterthemen (rekursiv) an. Die Aufgaben der
+// Elternthemen werden dabei nicht mit angezeigt.
+describe("OQuiz: Themenfilter zeigt die Aufgaben der Unterthemen", () => {
+  beforeEach(() => {
+    // Der Filter-Watcher kopiert den Deep-Link; ohne Stub schlaegt das in
+    // jsdom fehl.
+    Object.defineProperty(window.navigator, "clipboard", {
+      value: { writeText: vi.fn().mockResolvedValue(undefined) },
+      configurable: true,
+    });
+    server.use(
+      http.get(`${API_URL}/api/quiz`, () =>
+        HttpResponse.json([
+          { _id: "q1", website: "web", subject: QUIZ, name: QUIZ },
+        ]),
+      ),
+      // Dieselbe URL liefert entweder alle Themen des Faches (getAllTopics)
+      // oder ein einzelnes Thema (getTopic fuer die aktuelle Aufgabe).
+      http.get(`${API_URL}/api/topic/:quiz`, ({ params }) => {
+        const themen: Topic[] = [
+          { _id: "t1", subject: QUIZ, title: "Thema 1", tutorial: "" },
+          {
+            _id: "t2",
+            subject: QUIZ,
+            title: "Unterthema 1.1",
+            tutorial: "",
+            parentId: "t1",
+          },
+          {
+            _id: "t3",
+            subject: QUIZ,
+            title: "Unterthema 1.1.1",
+            tutorial: "",
+            parentId: "t2",
+          },
+        ];
+        if (params.quiz === QUIZ) return HttpResponse.json(themen);
+        const thema = themen.find((t) => t._id === params.quiz);
+        return thema
+          ? HttpResponse.json(thema)
+          : HttpResponse.json({ message: "not found" }, { status: 404 });
+      }),
+      http.get(`${API_URL}/api/school`, () => HttpResponse.json([])),
+      http.get(`${API_URL}/api/exercise`, () =>
+        HttpResponse.json<Exercise[]>([
+          {
+            _id: "e1",
+            quiz: "q1",
+            subject: QUIZ,
+            topic: "t1",
+            type: "gapText",
+            imageUrl: "",
+            questionOrInstruction: "Aufgabe des Themas",
+            gapText: "a {b} c",
+          },
+          {
+            _id: "e2",
+            quiz: "q1",
+            subject: QUIZ,
+            topic: "t2",
+            type: "gapText",
+            imageUrl: "",
+            questionOrInstruction: "Aufgabe des Unterthemas",
+            gapText: "d {e} f",
+          },
+          {
+            _id: "e3",
+            quiz: "q1",
+            subject: QUIZ,
+            topic: "t3",
+            type: "gapText",
+            imageUrl: "",
+            questionOrInstruction: "Aufgabe des Unter-Unterthemas",
+            gapText: "g {h} i",
+          },
+        ]),
+      ),
+    );
+  });
+
+  async function mountQuiz() {
+    const pinia = createPinia();
+    setActivePinia(pinia);
+    const wrapper = mount(OQuiz, {
+      props: { quiz: QUIZ, lg: "en" },
+      global: {
+        plugins: [pinia],
+        // Die Paginierung soll echt gerendert werden, damit die Anzahl der
+        // angezeigten Aufgaben ablesbar ist.
+        stubs: { ExerciseNavigation: false },
+      },
+      shallow: true,
+    });
+    await flushPromises();
+    return wrapper;
+  }
+
+  function aktuellAngezeigt(wrapper: ReturnType<typeof mount>) {
+    return wrapper.findComponent(OExercise).props("exercise") as Exercise;
+  }
+
+  it("zeigt beim Filter auf ein Eltern-Thema auch alle Unterthemen an", async () => {
+    const wrapper = await mountQuiz();
+    const filterStore = useFilterStore();
+
+    filterStore.filterFor("q1").topicId = "t1";
+    await flushPromises();
+
+    // Thema (e1), Unterthema (e2) und Unter-Unterthema (e3): 3 Aufgaben.
+    expect(wrapper.get('input[type="number"]').attributes("max")).toBe("2");
+    expect(aktuellAngezeigt(wrapper)).toMatchObject({ _id: "e1" });
+  });
+
+  it("zeigt beim Filter auf ein Unterthema nicht die Aufgaben des Eltern-Themas", async () => {
+    const wrapper = await mountQuiz();
+    const filterStore = useFilterStore();
+
+    filterStore.filterFor("q1").topicId = "t2";
+    await flushPromises();
+
+    // Nur Unterthema (e2) und dessen Unterthema (e3): e1 fehlt.
+    expect(wrapper.get('input[type="number"]').attributes("max")).toBe("1");
+    expect(aktuellAngezeigt(wrapper)).toMatchObject({ _id: "e2" });
+  });
+});

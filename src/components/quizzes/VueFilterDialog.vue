@@ -54,7 +54,7 @@
           />
 
           <div class="form-text">
-            Only the exercises of the chosen topic are shown.
+            Only the exercises of the chosen topic and its subtopics are shown.
           </div>
         </div>
 

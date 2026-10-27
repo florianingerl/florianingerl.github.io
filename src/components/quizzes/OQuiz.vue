@@ -267,6 +267,7 @@ import {
   getAllSchoolsWhereThereisAtLeastOneExerciseWithThatSchoolInTheQuiz,
   getAllSchoolsWhereTHereisAtLeastOneExerciseForThatSchoolInTheSubject,
 } from "@/utils/school";
+import { findSubtreeIds } from "@/utils/topicTree";
 import type { Exercise, Lang, Quiz, QuizName, School, Topic } from "@/types/quiz";
 
 // "quiz" ist der Name eines Website-Quizzes (z.B. "deutsch"). Buch-Quizzes
@@ -600,6 +601,14 @@ watch(
 
 // Frontend-Filterung: Quiz-Umfang ("nur dieses Quiz" oder "ganzes Fach"),
 // Theme, Schule, Ersteller und Suchwort werden hier angewandt.
+// Bei einer Themenfilter-Auswahl zeigt das Quiz alle Aufgaben des
+// gewaehlten Themas und alle Aufgaben seiner Unterthemen (rekursiv, also bis
+// zur tiefsten Ebene). Die _id des Themas inklusive aller Unterthemen werden
+// ermittelt.
+const gefilterteThemenIds = computed<string[]>(() =>
+  filter.value.topicId ? findSubtreeIds(topics.value, filter.value.topicId) : [],
+);
+
 const displayedQuestions = computed<Exercise[]>(() =>
   questions.value.filter((q) => {
     const f = filter.value;
@@ -608,7 +617,9 @@ const displayedQuestions = computed<Exercise[]>(() =>
     if (f.scope === "quiz" && !gehoertZumQuiz(q)) return false;
     if (f.topicId) {
       const id = typeof q.topic === "string" ? q.topic : q.topic?._id;
-      if (id !== f.topicId) return false;
+      // Der Themenfilter zeigt alle Aufgaben des Themas und alle Aufgaben
+      // seiner Unterthemen (rekursiv) an.
+      if (!id || !gefilterteThemenIds.value.includes(id)) return false;
     }
     if (f.school && schulName(q) !== f.school) return false;
     if (f.creator && q.user !== f.creator) return false;
