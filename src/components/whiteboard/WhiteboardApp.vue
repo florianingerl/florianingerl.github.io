@@ -316,11 +316,11 @@ session.onChanged((patch) => {
 
 let letzteCursorMeldung = 0;
 
-function cursorBewegt(x: number, y: number): void {
+function cursorBewegt(punkt: { x: number; y: number }): void {
 	const jetzt = Date.now();
 	if (jetzt - letzteCursorMeldung < 60) return;
 	letzteCursorMeldung = jetzt;
-	session.sendCursor(x, y);
+	session.sendCursor(punkt.x, punkt.y);
 }
 
 function stiftGestartet(stroke: WhiteboardPenStroke): void {
