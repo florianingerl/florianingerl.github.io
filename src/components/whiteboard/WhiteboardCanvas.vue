@@ -581,13 +581,39 @@ function pfeiltastenBewegen(): void {
 }
 
 function beiTaste(event: KeyboardEvent): void {
-	if (
-		event.defaultPrevented ||
-		event.isComposing ||
-		event.ctrlKey ||
-		event.metaKey ||
-		event.altKey
-	) {
+	if (event.defaultPrevented || event.isComposing) {
+		return;
+	}
+
+	if (event.type === "keydown" && (event.ctrlKey || event.metaKey) && !event.altKey) {
+		if (eingabeFokussiert() || ziehen.value) {
+			return;
+		}
+		const key = event.key;
+		const code = event.code;
+		if (
+			key === "=" ||
+			key === "+" ||
+			code === "Equal" ||
+			code === "NumpadAdd"
+		) {
+			event.preventDefault();
+			zoomBy(1.2);
+			return;
+		}
+		if (
+			key === "-" ||
+			key === "_" ||
+			code === "Minus" ||
+			code === "NumpadSubtract"
+		) {
+			event.preventDefault();
+			zoomBy(1 / 1.2);
+			return;
+		}
+	}
+
+	if (event.ctrlKey || event.metaKey || event.altKey) {
 		return;
 	}
 	if (eingabeFokussiert() || ziehen.value) {
