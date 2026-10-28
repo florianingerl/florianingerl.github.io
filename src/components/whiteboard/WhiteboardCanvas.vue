@@ -54,6 +54,7 @@ const emit = defineEmits<{
 	(e: "pen-points", id: string, points: number[]): void;
 	(e: "pen-cancel", id: string): void;
 	(e: "erase", ids: string[]): void;
+	(e: "canvas-click", punkt: Point): void;
 }>();
 
 const svg = ref<SVGSVGElement | null>(null);
@@ -230,6 +231,7 @@ function onPointerDown(event: PointerEvent): void {
 	if (!props.canEdit && props.tool !== "select") return;
 
 	const punkt = weltPunkt(event);
+	emit("canvas-click", punkt);
 	const add = event.shiftKey;
 
 	if (props.tool === "eraser") {

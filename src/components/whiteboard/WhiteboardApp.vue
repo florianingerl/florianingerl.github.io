@@ -63,6 +63,7 @@ const kopierPuffer = ref<WhiteboardObject[]>([]);
 const fehler = ref("");
 const dateiFehler = ref("");
 const canvas = ref<InstanceType<typeof WhiteboardCanvas> | null>(null);
+const letzteKlickPosition = ref<{ x: number; y: number } | null>(null);
 
 const link = computed(() => boardLink(window.location.origin, props.boardId));
 const kannBearbeiten = computed(() => !fehler.value);
@@ -130,6 +131,10 @@ function wiederherstellen(): void {
 function objectHinzugefuegt(obj: WhiteboardObject): void {
 	objects.value = [...objects.value, obj];
 	synchronisiere();
+}
+
+function canvasClick(punkt: { x: number; y: number }): void {
+	letzteKlickPosition.value = { x: punkt.x, y: punkt.y };
 }
 
 function auswahlGedaehnt(ids: string[], dx: number, dy: number): void {
@@ -215,11 +220,24 @@ function auswahlDuplizieren(): void {
 	synchronisiere();
 }
 
-async function bildEinfuegen(datei: File): Promise<void> {
+import { screenToWorld } from "@/utils/whiteboard";
+
+function viewportMitteInWelt(): { x: number; y: number } {
+	const flaeche = canvas.value?.$el?.querySelector?.(".wb-canvas")?.getBoundingClientRect?.();
+	const breite = flaeche?.width || 800;
+	const hoehe = flaeche?.height || 600;
+	const punkt = screenToWorld({ x: breite / 2, y: hoehe / 2 }, camera.value);
+	return { x: punkt.x, y: punkt.y };
+}
+
+async function bildEinfuegen(datei: File, pos?: { x: number; y: number }): Promise<void> {
 	try {
 		const bild = await bildAusDatei(datei);
 		const z = topZ(objects.value) + 1;
-		const obj = createObject("image", camera.value.x, camera.value.y, z, {
+		const ziel = pos ?? letzteKlickPosition.value ?? viewportMitteInWelt();
+		const x = ziel.x - bild.w / 2;
+		const y = ziel.y - bild.h / 2;
+		const obj = createObject("image", x, y, z, {
 			src: bild.src,
 			w: bild.w,
 			h: bild.h,
@@ -415,6 +433,7 @@ function stiftAbgebrochen(id: string): void {
 				@pen-points="stiftPunkte"
 				@pen-cancel="stiftAbgebrochen"
 				@erase="objekteLoeschen"
+				@canvas-click="canvasClick"
 			/>
 			</div>
 		</div>
