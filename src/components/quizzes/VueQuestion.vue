@@ -31,18 +31,21 @@ const props = defineProps<{ question: Exercise; lg?: Lang }>();
 const emit = defineEmits<{ (e: "answered-event"): void }>();
 
 const frageText = computed<string>(() => {
+  /*
   if (props.lg === "en" && props.question.questionEn)
     return props.question.questionEn;
   if (props.lg === "fr" && props.question.questionFr)
-    return props.question.questionFr;
+    return props.question.questionFr;*/
   return props.question.questionOrInstruction ?? "";
 });
 
 const optionen = computed<Option[]>(() => {
-  if (props.lg === "en" && props.question.optionsEn)
+  /*if (props.lg === "en" && props.question.optionsEn)
     return props.question.optionsEn;
   if (props.lg === "fr" && props.question.optionsFr)
     return props.question.optionsFr;
+  console.log("Optionen");
+  console.log(props.question.options); */
   return props.question.options ?? [];
 });
 
