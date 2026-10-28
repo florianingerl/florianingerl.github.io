@@ -52,14 +52,20 @@ describe("OExercise: Splitter aus Bild und Aufgabe", () => {
     expect(wrapper.find("ul.pagination").exists()).toBe(false);
   });
 
-  it("zeigt ohne Bild keinen Splitter, sondern nur die Aufgabe", () => {
+  it("zeigt ohne Bild stattdessen das Fragezeichen-Bild im Splitter", () => {
     const wrapper = mount(OExercise, {
       props: { exercise: aufgabe(), lg: "en" },
       global,
     });
 
-    expect(wrapper.findComponent(Splitter).exists()).toBe(false);
-    expect(wrapper.findComponent(VueQuestion).exists()).toBe(true);
+    expect(wrapper.findComponent(Splitter).exists()).toBe(true);
+    const panels = wrapper.findAllComponents(SplitterPanel);
+    expect(panels).toHaveLength(2);
+
+    const bild = panels[0].get(".vue-image__img");
+    expect(bild.attributes("src")).toBe("assets/img/cs/fragezeichen.jpg");
+
+    expect(panels[1].findComponent(VueQuestion).exists()).toBe(true);
     expect(wrapper.find("ul.pagination").exists()).toBe(false);
   });
 

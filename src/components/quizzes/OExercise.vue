@@ -4,15 +4,16 @@
 
     <!-- Horizontale Zweiteilung: links das Aufgabenbild, rechts die Aufgabe.
          Der Benutzer kann die Trennlinie (den Splitter-Riegel) verschieben. -->
-    <Splitter v-if="exercise.imageUrl" class="vue-exercise-splitter">
+    <Splitter class="vue-exercise-splitter">
       <SplitterPanel :size="50" :minSize="10">
         <!-- Das Bild liegt in einem scrollbaren Rahmen. object-fit: cover
              fuellt den Rahmen vollstaendig aus und beschneidet an den Raendern. -->
         <div class="vue-exercise__bild-wrapper">
           <img
             class="vue-image__img"
-            :src="exercise.imageUrl"
+            :src="bildSrc"
             :alt="exercise.questionOrInstruction ?? ''"
+            @error="bildFehlerhaft"
           />
         </div>
       </SplitterPanel>
@@ -25,20 +26,11 @@
         />
       </SplitterPanel>
     </Splitter>
-
-    <!-- Ohne Bild gibt es keinen Splitter; die Aufgabe nimmt die ganze Breite. -->
-    <template v-else>
-      <component
-        :is="exerciseComponent"
-        v-bind="exerciseProps"
-        @answered-event="emit('answered-event')"
-      />
-    </template>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref, watch } from 'vue'
 import Splitter from 'primevue/splitter'
 import SplitterPanel from 'primevue/splitterpanel'
 import VueMCGaps from './VueMCGaps.vue'
@@ -48,6 +40,8 @@ import VueWordOrder from './VueWordOrder.vue'
 import MTopicAndSchoolDisplayer from '@/components/molecules/MTopicAndSchoolDisplayer.vue'
 import type { Exercise, Lang } from '@/types/quiz'
 
+const DEFAULT_BILD = 'assets/img/cs/fragezeichen.jpg'
+
 const props = defineProps<{
   exercise: Exercise
   lg: Lang
@@ -56,6 +50,21 @@ const props = defineProps<{
 }>()
 
 const emit = defineEmits<{ (e: 'answered-event'): void }>()
+
+const bildSrc = ref(props.exercise.imageUrl?.trim() || DEFAULT_BILD)
+
+watch(
+  () => props.exercise.imageUrl,
+  (url) => {
+    bildSrc.value = url?.trim() || DEFAULT_BILD
+  },
+)
+
+function bildFehlerhaft(): void {
+  if (bildSrc.value !== DEFAULT_BILD) {
+    bildSrc.value = DEFAULT_BILD
+  }
+}
 
 // Der passende Aufgabentyp zur Aufgabe.
 const exerciseComponent = computed(() => {
