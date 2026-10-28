@@ -53,6 +53,7 @@ const emit = defineEmits<{
 	(e: "pen-start", stroke: WhiteboardPenStroke): void;
 	(e: "pen-points", id: string, points: number[]): void;
 	(e: "pen-cancel", id: string): void;
+	(e: "erase", ids: string[]): void;
 }>();
 
 const svg = ref<SVGSVGElement | null>(null);
@@ -64,7 +65,8 @@ type Ziehen =
 	| { mode: "schieben"; start: Point; kamera: Point }
 	| { mode: "rahmen"; start: Point; aktuell: Point }
 	| { mode: "zeichnen"; start: Point; obj: WhiteboardObject }
-	| { mode: "groesse"; id: string; ecke: Ecke; box: { x: number; y: number; w: number; h: number } };
+	| { mode: "groesse"; id: string; ecke: Ecke; box: { x: number; y: number; w: number; h: number } }
+	| { mode: "radieren"; geloescht: Set<string> };
 
 const ziehen = ref<Ziehen | null>(null);
 const entwurf = ref<WhiteboardObject | null>(null);
@@ -230,6 +232,20 @@ function onPointerDown(event: PointerEvent): void {
 	const punkt = weltPunkt(event);
 	const add = event.shiftKey;
 
+	if (props.tool === "eraser") {
+		if (!props.canEdit) return;
+		const treffer = trefferObjekt(punkt);
+		if (treffer) {
+			emit("interaction-start");
+			emit("erase", [treffer.id]);
+			ziehen.value = { mode: "radieren", geloescht: new Set([treffer.id]) };
+		} else {
+			ziehen.value = { mode: "radieren", geloescht: new Set() };
+		}
+		svg.value?.setPointerCapture?.(event.pointerId);
+		return;
+	}
+
 	if (props.tool === "select") {
 		const treffer = trefferObjekt(punkt);
 		if (treffer) {
@@ -329,6 +345,16 @@ function onPointerMove(event: PointerEvent): void {
 		return;
 	}
 
+	if (aktueller.mode === "radieren") {
+		if (!props.canEdit) return;
+		const treffer = trefferObjekt(punkt);
+		if (treffer && !aktueller.geloescht.has(treffer.id)) {
+			aktueller.geloescht.add(treffer.id);
+			emit("erase", [treffer.id]);
+		}
+		return;
+	}
+
 	if (aktueller.mode === "groesse") {
 		const box = aktueller.box;
 		let x = box.x;
@@ -379,6 +405,11 @@ function onPointerUp(): void {
 	const aktueller = ziehen.value;
 	if (aktueller?.mode === "zeichnen" && aktueller.obj.type === "pen") {
 		penPunkteSenden(true);
+	}
+	if (aktueller?.mode === "radieren") {
+		ziehen.value = null;
+		emit("interaction-end");
+		return;
 	}
 	ziehen.value = null;
 	if (!aktueller) return;
@@ -444,6 +475,11 @@ function onPointerCancel(): void {
 		penZuruecksetzen();
 		emit("pen-cancel", aktueller.obj.id);
 		entwurf.value = null;
+		ziehen.value = null;
+		emit("interaction-end");
+		return;
+	}
+	if (aktueller?.mode === "radieren") {
 		ziehen.value = null;
 		emit("interaction-end");
 		return;
@@ -734,7 +770,7 @@ defineExpose({ zoomBy, fitToContent });
 		<svg
 			ref="svg"
 			class="wb-canvas"
-			:class="{ 'wb-canvas--draw': tool === 'pen' }"
+			:class="{ 'wb-canvas--draw': tool === 'pen', 'wb-canvas--erase': tool === 'eraser' }"
 			xmlns="http://www.w3.org/2000/svg"
 			@pointerdown="onPointerDown"
 			@pointermove="onPointerMove"

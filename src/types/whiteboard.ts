@@ -19,7 +19,8 @@ export type WhiteboardTool =
 	| "rect"
 	| "ellipse"
 	| "line"
-	| "pen";
+	| "pen"
+	| "eraser";
 
 export interface WhiteboardObject {
 	id: string;

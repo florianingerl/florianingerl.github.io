@@ -48,6 +48,7 @@ const werkzeuge: { tool: WhiteboardTool; icon: string; key: string }[] = [
 	{ tool: "ellipse", icon: "bi-circle", key: "ellipse" },
 	{ tool: "line", icon: "bi-slash-lg", key: "line" },
 	{ tool: "pen", icon: "bi-pencil", key: "pen" },
+	{ tool: "eraser", icon: "bi-eraser", key: "eraser" },
 ];
 
 function onDatei(event: Event): void {

@@ -164,6 +164,15 @@ function auswahlLoeschen(): void {
 	synchronisiere();
 }
 
+function objekteLoeschen(ids: string[]): void {
+	if (!ids.length || !kannBearbeiten.value) return;
+	merkeStand();
+	const zuLoeschen = new Set(ids);
+	objects.value = objects.value.filter((obj) => !zuLoeschen.has(obj.id));
+	selectedIds.value = selectedIds.value.filter((id) => !zuLoeschen.has(id));
+	synchronisiere();
+}
+
 function auswahlKopieren(): void {
 	const gewaehlt = objects.value.filter((obj) => selectedIds.value.includes(obj.id));
 	if (!gewaehlt.length) return;
@@ -395,17 +404,18 @@ function stiftAbgebrochen(id: string): void {
 					@camera-change="camera = $event"
 					@select="selectedIds = $event"
 					@create="objectHinzugefuegt"
-					@move="auswahlGedaehnt"
-					@resize="objectGeaendert"
-					@update="objectAktualisiert"
-					@tool-change="tool = $event"
-					@interaction-start="merkeStand"
-					@interaction-end="synchronisiere"
-					@cursor="cursorBewegt"
-					@pen-start="stiftGestartet"
-					@pen-points="stiftPunkte"
-					@pen-cancel="stiftAbgebrochen"
-				/>
+				@move="auswahlGedaehnt"
+				@resize="objectGeaendert"
+				@update="objectAktualisiert"
+				@tool-change="tool = $event"
+				@interaction-start="merkeStand"
+				@interaction-end="synchronisiere"
+				@cursor="cursorBewegt"
+				@pen-start="stiftGestartet"
+				@pen-points="stiftPunkte"
+				@pen-cancel="stiftAbgebrochen"
+				@erase="objekteLoeschen"
+			/>
 			</div>
 		</div>
 	</div>
