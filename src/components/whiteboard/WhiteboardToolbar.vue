@@ -2,7 +2,9 @@
 // Die Werkzeugleiste links auf dem Board: Werkzeuge waehlen, Farbe und
 // Strichstaerke festlegen, Aktionen wie Rueckgaengig oder Loeschen.
 
+import { ref } from "vue";
 import { useI18n } from "vue-i18n";
+import ColorPicker from "primevue/colorpicker";
 import type { WhiteboardTool } from "@/types/whiteboard";
 import {
 	WHITEBOARD_COLORS,
@@ -50,6 +52,28 @@ const werkzeuge: { tool: WhiteboardTool; icon: string; key: string }[] = [
 	{ tool: "pen", icon: "bi-pencil", key: "pen" },
 	{ tool: "eraser", icon: "bi-eraser", key: "eraser" },
 ];
+
+const eigeneFarbe = ref<string | null>(null);
+const eigeneFuellung = ref<string | null>(null);
+
+function normalisiereFarbe(wert: string): string {
+	if (!wert) return "#1f2933";
+	return wert.startsWith("#") ? wert : `#${wert}`;
+}
+
+function onFarbeGeaendert(wert: string | null): void {
+	if (!wert) return;
+	const farbe = normalisiereFarbe(wert);
+	eigeneFarbe.value = farbe;
+	emit("color-change", farbe);
+}
+
+function onFuellungGeaendert(wert: string | null): void {
+	if (!wert) return;
+	const farbe = normalisiereFarbe(wert);
+	eigeneFuellung.value = farbe;
+	emit("fill-change", farbe);
+}
 
 function onDatei(event: Event): void {
 	const feld = event.target as HTMLInputElement;
@@ -99,12 +123,27 @@ function onDatei(event: Event): void {
 					:key="farbe"
 					type="button"
 					class="wb-toolbar__farbe"
-					:class="{ 'wb-toolbar__farbe--aktiv': props.color === farbe }"
+					:class="{ 'wb-toolbar__farbe--aktiv': props.color === farbe && eigeneFarbe !== farbe }"
 					:style="{ background: farbe }"
 					:title="farbe"
 					:aria-label="farbe"
 					@click="emit('color-change', farbe)"
 				></button>
+				<button
+					type="button"
+					class="wb-toolbar__farbe wb-toolbar__farbe--picker"
+					:class="{ 'wb-toolbar__farbe--aktiv': eigeneFarbe === props.color }"
+					:style="eigeneFarbe ? { background: eigeneFarbe } : { background: '#ffffff' }"
+					:title="t('whiteboard.colors')"
+					:aria-label="t('whiteboard.colors')"
+				>
+					<i v-if="!eigeneFarbe" class="bi bi-palette"></i>
+					<ColorPicker
+						:model-value="eigeneFarbe?.replace('#', '') ?? '1f2933'"
+						format="hex"
+						@update:model-value="onFarbeGeaendert"
+					/>
+				</button>
 			</div>
 			<span class="wb-toolbar__titel">{{ t("whiteboard.noteColor") }}</span>
 			<div class="wb-toolbar__farben">
@@ -113,12 +152,27 @@ function onDatei(event: Event): void {
 					:key="farbe"
 					type="button"
 					class="wb-toolbar__farbe"
-					:class="{ 'wb-toolbar__farbe--aktiv': props.fill === farbe }"
+					:class="{ 'wb-toolbar__farbe--aktiv': props.fill === farbe && eigeneFuellung !== farbe }"
 					:style="{ background: farbe }"
 					:title="farbe"
 					:aria-label="farbe"
 					@click="emit('fill-change', farbe)"
 				></button>
+				<button
+					type="button"
+					class="wb-toolbar__farbe wb-toolbar__farbe--picker"
+					:class="{ 'wb-toolbar__farbe--aktiv': eigeneFuellung === props.fill }"
+					:style="eigeneFuellung ? { background: eigeneFuellung } : { background: '#ffd966' }"
+					:title="t('whiteboard.noteColor')"
+					:aria-label="t('whiteboard.noteColor')"
+				>
+					<i v-if="!eigeneFuellung" class="bi bi-palette"></i>
+					<ColorPicker
+						:model-value="eigeneFuellung?.replace('#', '') ?? 'ffd966'"
+						format="hex"
+						@update:model-value="onFuellungGeaendert"
+					/>
+				</button>
 			</div>
 		</div>
 
