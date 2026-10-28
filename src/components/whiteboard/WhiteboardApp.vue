@@ -137,7 +137,7 @@ function auswahlGedaehnt(ids: string[], dx: number, dy: number): void {
 	synchronisiere();
 }
 
-function objectGeaendert(box: { x: number; y: number; w: number; h: number }, id: string): void {
+function objectGeaendert(id: string, box: { x: number; y: number; w: number; h: number }): void {
 	objects.value = objects.value.map((obj) => {
 		if (obj.id !== id) return obj;
 		const neu: WhiteboardObject = { ...obj, ...box };
