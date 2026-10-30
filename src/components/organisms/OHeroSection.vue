@@ -60,10 +60,10 @@ const { t } = useI18n();
 
 	background-image:
 		linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-		url("/assets/img/physicsschool.jpg");
+		url("/assets/img/hungrybirdexercise.png");
 	background-repeat: no-repeat;
 	background-position: center;
-	background-size: cover;
+	background-size: contain;
 }
 
 .head-image {
@@ -85,7 +85,7 @@ const { t } = useI18n();
 
 .hero h1 {
 	margin: 0 0 1rem;
-	color: #5fcf80;
+	color: var(--brand-green);
 	font-family: Arial, sans-serif;
 	font-size: clamp(2.5rem, 8vw, 6rem);
 	opacity: 0;

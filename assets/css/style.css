@@ -19,6 +19,7 @@
    ausfuellen. */
 :root {
   --exercise-image-height: 200px;
+  --brand-green: #5fcf80;
 }
 
 body {
@@ -154,7 +155,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #header .logo a {
-  color: #5fcf80;
+  color: var(--brand-green);
 }
 
 #header .logo img {

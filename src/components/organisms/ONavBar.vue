@@ -113,7 +113,7 @@ function onGroupClick(event: MouseEvent): void {
 		<header id="header">
 			<div class="container d-flex align-items-center">
 				<h1 class="logo me-auto">
-					<a href="index.html">{{ t("nav.logo") }}</a>
+					<a href="/">{{ t("nav.logo") }}</a>
 				</h1>
 
 				<nav
