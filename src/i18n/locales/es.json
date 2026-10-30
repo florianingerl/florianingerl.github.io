@@ -58,6 +58,11 @@
     }
   },
   "backToTop": "Volver arriba",
+  "hero": {
+    "subtitle": "Clases particulares para la universidad y la escuela",
+    "specialties": "Clases particulares de matemáticas, física, informática e ingeniería",
+    "headAlt": "Mi cabeza"
+  },
   "sections": {
     "nachhilfeangebot": {
       "title": "Mi oferta de tutoría",

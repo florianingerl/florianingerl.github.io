@@ -58,6 +58,11 @@
     }
   },
   "backToTop": "Torna su",
+  "hero": {
+    "subtitle": "Lezioni private per l'università e la scuola",
+    "specialties": "Lezioni private di matematica, fisica, informatica e ingegneria",
+    "headAlt": "La mia testa"
+  },
   "sections": {
     "nachhilfeangebot": {
       "title": "La mia offerta di ripetizioni",

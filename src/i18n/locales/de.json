@@ -58,6 +58,11 @@
     }
   },
   "backToTop": "Nach oben",
+  "hero": {
+    "subtitle": "Nachhilfe für die Uni und die Schule",
+    "specialties": "Nachhilfe in Mathematik, Physik, Informatik und Ingenieurwesen",
+    "headAlt": "Mein Kopf"
+  },
   "sections": {
     "nachhilfeangebot": {
       "title": "Mein Nachhilfeangebot",
