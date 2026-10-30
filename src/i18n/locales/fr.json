@@ -58,11 +58,6 @@
     }
   },
   "backToTop": "Haut de page",
-  "hero": {
-    "subtitle": "Cours particuliers pour l'université et l'école",
-    "specialties": "Cours particuliers en mathématiques, physique, informatique et ingénierie",
-    "headAlt": "Ma tête"
-  },
   "sections": {
     "nachhilfeangebot": {
       "title": "Mon offre de tutorat",
