@@ -3,6 +3,7 @@ import { computed, nextTick, reactive, ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
 import {
 	buildContract,
+	computeFourHourPrice,
 	computePrice,
 	contractFilename,
 	contractToHtml,
@@ -10,13 +11,20 @@ import {
 	createContractPdf,
 	downloadBlob,
 	type ContractFields,
+	type ContractPackage,
 	type TeachingLanguage,
 } from "@/utils/contract";
 import { localeNames, supportedLocales, type AppLocale } from "@/i18n";
 import { renderRichText } from "@/utils/richText";
 
+const props = withDefaults(
+	defineProps<{ packageType?: ContractPackage }>(),
+	{ packageType: "allOrNothing" }
+);
 const { t, locale } = useI18n();
 const emit = defineEmits<{ (e: "close"): void }>();
+
+const isFourHour = computed(() => props.packageType === "fourHourBonus");
 
 const lessonLanguages = supportedLocales;
 
@@ -43,9 +51,10 @@ watch(generated, async (isReady) => {
 	if (el) el.scrollTo({ top: el.scrollHeight, behavior: "smooth" });
 });
 
-const price = computed(() =>
+const allOrNothingPrice = computed(() =>
 	computePrice(form.subject, form.date, form.lessonLanguage)
 );
+const fourHourPrice = computed(() => computeFourHourPrice());
 const canCompute = computed(() => form.date !== "" && form.subject.trim() !== "");
 
 function formatFactor(value: number): string {
@@ -71,7 +80,7 @@ function buildFields(): ContractFields {
 		goal: form.goal,
 		institution: form.institution,
 		date: formatDate(form.date),
-		price: price.value.price,
+		price: isFourHour.value ? fourHourPrice.value.price : allOrNothingPrice.value.price,
 	};
 }
 
@@ -92,12 +101,12 @@ function createFiles(): void {
 
 async function download(format: "pdf" | "doc" | "rtf"): Promise<void> {
 	const lang = form.contractLang;
-	const blocks = buildContract(lang, buildFields());
-	const name = contractFilename(lang, form.date, format);
+	const blocks = buildContract(lang, buildFields(), props.packageType);
+	const name = contractFilename(lang, form.date, format, props.packageType);
 	if (format === "pdf") {
 		await downloadBlob(createContractPdf(blocks, blocks[0].text), name);
 	} else if (format === "doc") {
-		const html = contractToHtml(blocks);
+		const html = contractToHtml(blocks, blocks[0].text);
 		await downloadBlob(new Blob(["\ufeff", html], { type: "application/msword" }), name);
 	} else {
 		await downloadBlob(new Blob([contractToRtf(blocks)], { type: "application/rtf" }), name);
@@ -110,7 +119,9 @@ async function download(format: "pdf" | "doc" | "rtf"): Promise<void> {
 		<div class="contract-backdrop" @click.self="emit('close')">
 			<div class="contract-dialog" role="dialog" aria-modal="true">
 				<div class="contract-header">
-					<h5 class="mb-0">{{ t('contract.dialogTitle') }}</h5>
+					<h5 class="mb-0">
+						{{ isFourHour ? t('contract.fourHourDialogTitle') : t('contract.dialogTitle') }}
+					</h5>
 					<button
 						type="button"
 						class="btn-close"
@@ -179,23 +190,29 @@ async function download(format: "pdf" | "doc" | "rtf"): Promise<void> {
 						</select>
 					</div>
 
-				<div class="alert alert-info mb-2">
+				<div v-if="isFourHour" class="alert alert-info mb-2">
+					<div class="fs-5">
+						<strong>{{ t('contract.priceLabel') }}:</strong> {{ fourHourPrice.price }} €
+					</div>
+					<div>{{ t('contract.fourHourPriceExplanation') }}</div>
+				</div>
+				<div v-else class="alert alert-info mb-2">
 					<template v-if="canCompute">
 						<div>
-							<strong>{{ t('contract.weeksLabel') }}:</strong> {{ price.weeks.toFixed(1) }}
-							<span v-if="price.factorF !== 1" class="text-muted">({{ t('contract.subject') }}: {{ form.subject }})</span>
+							<strong>{{ t('contract.weeksLabel') }}:</strong> {{ allOrNothingPrice.weeks.toFixed(1) }}
+							<span v-if="allOrNothingPrice.factorF !== 1" class="text-muted">({{ t('contract.subject') }}: {{ form.subject }})</span>
 						</div>
 						<div class="fs-5">
-							<strong>{{ t('contract.priceLabel') }}:</strong> {{ price.price }} €
+							<strong>{{ t('contract.priceLabel') }}:</strong> {{ allOrNothingPrice.price }} €
 						</div>
 						<div>
-							<em>f</em> = {{ formatFactor(price.factorF) }},
-							<em>lg</em> = {{ formatFactor(price.factorLG) }}
+							<em>f</em> = {{ formatFactor(allOrNothingPrice.factorF) }},
+							<em>lg</em> = {{ formatFactor(allOrNothingPrice.factorLG) }}
 						</div>
 					</template>
 					<div v-else>{{ t('contract.pricePending') }}</div>
 				</div>
-				<div class="form-text mb-3">
+				<div v-if="!isFourHour" class="form-text mb-3">
 					<div v-html="renderRichText(t('contract.priceFormula'))"></div>
 					<div class="mt-1">{{ t('contract.priceAssumption') }}</div>
 					<div class="mt-1">{{ t('contract.priceRisk') }}</div>
@@ -221,10 +238,10 @@ async function download(format: "pdf" | "doc" | "rtf"): Promise<void> {
 
 				<div class="contract-footer">
 					<button type="button" class="btn btn-primary" @click="createFiles">
-						{{ t('contract.createButton') }}
+						{{ isFourHour ? t('contract.fourHourCreateButton') : t('contract.createButton') }}
 					</button>
 					<button type="button" class="btn btn-secondary" @click="emit('close')">
-						{{ t('contract.closeButton') }}
+						{{ isFourHour ? t('contract.fourHourCancelButton') : t('contract.closeButton') }}
 					</button>
 				</div>
 			</div>

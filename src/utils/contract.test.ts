@@ -1,7 +1,10 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import {
   buildContract,
+  computeFourHourPrice,
   computePrice,
+  contractFilename,
+  contractToHtml,
   createContractPdf,
   downloadBlob,
   subjectFactor,
@@ -207,6 +210,60 @@ describe("computePrice: Alles-oder-Nichts-Formel (w*3h + r*m)*f*lg", () => {
     expect(weeksUntilExam(pruefung, heute)).toBeCloseTo(4, 5);
     expect(weeksUntilExam("", heute)).toBe(0);
     expect(weeksUntilExam("ungueltig", heute)).toBe(0);
+  });
+});
+
+describe("4-Stunden-Lernpaket mit Bonus", () => {
+  it("berechnet 4 * 33 = 132 Euro und 4 * 6 = 24 Euro Rueckzahlung", () => {
+    const res = computeFourHourPrice();
+    expect(res.lessons).toBe(4);
+    expect(res.hourlyRate).toBe(33);
+    expect(res.price).toBe(132);
+    expect(res.refundPerLesson).toBe(6);
+    expect(res.refundTotal).toBe(24);
+    expect(res.priceIfGoalMissed).toBe(108);
+  });
+
+  it("erzeugt in allen Sprachen einen Vertrag ohne Alles-oder-Nichts-Texte", () => {
+    const fields = { ...dummyFields(), price: computeFourHourPrice().price };
+    for (const lang of ["de", "en", "fr", "es", "it"] as const) {
+      const blocks = buildContract(lang, fields, "fourHourBonus");
+      const text = blocks.map((b) => b.text).join("\n");
+      expect(text).not.toContain("Alles-oder-Nichts");
+      expect(text).not.toContain("all-or-nothing");
+      expect(text).toContain("132 €");
+      expect(text).toContain("6");
+    }
+  });
+
+  it("verwendet den richtigen Dateinamen", () => {
+    expect(contractFilename("de", "2027-05-10", "pdf")).toBe(
+      "Alles-oder-Nichts-Paket_de_2027-05-10.pdf"
+    );
+    expect(contractFilename("de", "2027-05-10", "pdf", "fourHourBonus")).toBe(
+      "4-Stunden-Lernpaket-mit-Bonus_de_2027-05-10.pdf"
+    );
+    expect(contractFilename("en", "2027-05-10", "rtf", "fourHourBonus")).toBe(
+      "4-Stunden-Lernpaket-mit-Bonus_en_2027-05-10.rtf"
+    );
+  });
+
+  it("setzt den uebergebenen Titel in das Word-HTML", () => {
+    const blocks = buildContract("en", dummyFields(), "fourHourBonus");
+    const html = contractToHtml(blocks, blocks[0].text);
+    expect(html).toContain("<title>Contract for a 4-hour learning package with bonus");
+    expect(html).toContain("<h1>Contract for a 4-hour learning package with bonus");
+  });
+
+  it("erzeugt ein ueberlappungsfreies PDF", () => {
+    mocks.calls = [];
+    mocks.page = 0;
+    const fields = { ...dummyFields(), price: computeFourHourPrice().price };
+    const blocks = buildContract("de", fields, "fourHourBonus");
+    const blob = createContractPdf(blocks, blocks[0].text);
+    expect(blob).toBeInstanceOf(Blob);
+    expect(mocks.calls.length).toBeGreaterThan(0);
+    expectNoOverlappingLines(collectBaselines());
   });
 });
 

@@ -16,6 +16,9 @@ export interface ContractFields {
   price: number;
 }
 
+// Welches Lernpaket der Vertrag betrifft.
+export type ContractPackage = "allOrNothing" | "fourHourBonus";
+
 // Eine Zeile des Vertrags. Der Text darf **fett** enthalten (Markdown-Stil),
 // die Ausgabefunktionen wandeln das in fette Schrift um.
 export interface ContractBlock {
@@ -129,6 +132,41 @@ export function computePrice(
 }
 
 // ---------------------------------------------------------------------------
+// Preis des 4-Stunden-Lernpakets mit Bonus:
+//   Preis = 4 * (30 + 3) = 4 * 33 = 132 Euro
+//   Rueckzahlung bei nicht erreichtem Ziel = 4 * 6 = 24 Euro
+// Die Fach- und Unterrichtssprachenfaktoren gelten hier bewusst nicht.
+// ---------------------------------------------------------------------------
+export const FOUR_HOUR_LESSONS = 4;
+export const FOUR_HOUR_HOURLY_RATE = 33;
+export const FOUR_HOUR_REFUND_PER_LESSON = 6;
+
+export interface FourHourPriceResult {
+  lessons: number;
+  hourlyRate: number;
+  price: number;
+  refundPerLesson: number;
+  refundTotal: number;
+  priceIfGoalMissed: number;
+}
+
+export function computeFourHourPrice(): FourHourPriceResult {
+  const lessons = FOUR_HOUR_LESSONS;
+  const hourlyRate = FOUR_HOUR_HOURLY_RATE;
+  const refundPerLesson = FOUR_HOUR_REFUND_PER_LESSON;
+  const price = lessons * hourlyRate;
+  const refundTotal = lessons * refundPerLesson;
+  return {
+    lessons,
+    hourlyRate,
+    price,
+    refundPerLesson,
+    refundTotal,
+    priceIfGoalMissed: price - refundTotal,
+  };
+}
+
+// ---------------------------------------------------------------------------
 // Vertragstexte in allen Sprachen - orientiert am formatierten Mustervertrag 3.
 // Fett wird gelassen, was im Mustervertrag fett ist (Platzhalter und die
 // Felder der Unterschriften), **...** kennzeichnet Fettschrift.
@@ -149,7 +187,7 @@ function sigSchueler(f: ContractFields): ContractBlock[] {
   ];
 }
 
-const CONTRACT_BUILDERS: Record<AppLocale, Builder> = {
+const ALL_OR_NOTHING_BUILDERS: Record<AppLocale, Builder> = {
   de: (f) => {
     const fn = f.firstName.trim() || "…";
     return [
@@ -717,11 +755,518 @@ const CONTRACT_BUILDERS: Record<AppLocale, Builder> = {
   },
 };
 
+// ---------------------------------------------------------------------------
+// Vertragstexte fuer das 4-Stunden-Lernpaket mit Bonus (Vorlage:
+// MustervertragFor4HourLearningPackageWithBonus). Preis 4 * 33 Euro, bei nicht
+// erreichtem Ziel 6 Euro pro Stunde zurueck.
+// ---------------------------------------------------------------------------
+const FOUR_HOUR_BUILDERS: Record<AppLocale, Builder> = {
+  de: (f) => {
+    const fn = f.firstName.trim() || "…";
+    return [
+      {
+        kind: "title",
+        text: `Vertrag für ein 4-Stunden-Lernpaket mit Bonus zwischen ${fn} und Florian`,
+      },
+      { kind: "para", text: `Hallo **${fn}**,` },
+      {
+        kind: "para",
+        text: "im Folgenden schreibe ich dir meine Bedingungen für das 4-Stunden-Lernpaket mit Bonus.",
+      },
+      { kind: "heading", text: "1. Leistung und Preis" },
+      {
+        kind: "para",
+        text:
+          `Das Paket kostet dich **${EURO(f.price)}**. Das Geld ist im Voraus zu bezahlen. ` +
+          `Dafür bereiten wir uns mit vier 60-minütigen Nachhilfestunden auf die **${f.subject}**-Prüfung ` +
+          `der **${f.institution}** am **${f.date}** vor. Erreichst du dein Ziel (**${f.goal}**) nicht, ` +
+          `erstatte ich dir **6 Euro pro Stunde**, also insgesamt **24 Euro**, zurück.`,
+      },
+      { kind: "heading", text: "2. Rückzahlung" },
+      {
+        kind: "para",
+        text:
+          `Ich erstatte 6 Euro pro Stunde nur in dem folgenden Fall zurück: Du zeigst mir Bilder ` +
+          `der korrigierten Prüfung mit dem nicht erreichten Ziel (**${f.goal}**) aus der Einsicht.`,
+      },
+      {
+        kind: "para",
+        text: "Insbesondere ist das Geld fällig und wird nicht zurückgezahlt, wenn:",
+      },
+      {
+        kind: "item",
+        text: "du die Prüfung aus irgendeinem Grund (Krankheit etc.) nicht schreibst;",
+      },
+      {
+        kind: "item",
+        text: `du die Prüfung schreibst, dein Ziel (**${f.goal}**) nicht erreichst und dann keine Bilder von der Einsicht liefern kannst;`,
+      },
+      {
+        kind: "item",
+        text:
+          "auf den Bildern der korrigierten Prüfung mit dem nicht erreichten Ziel das Datum, " +
+          "der Name oder die Schule/Hochschule/Universität nicht sichtbar sind, sodass es sich um " +
+          "eine andere Prüfung handeln könnte;",
+      },
+      {
+        kind: "item",
+        text:
+          "auf den Bildern der Einsicht nicht sichtbar ist, dass du versucht hast, die Aufgaben zu " +
+          "lösen (d. h. es ist nicht möglich, sich krank zur Prüfung zu schleppen, nur den Namen " +
+          "darauf zu schreiben und dann Bilder leerer Seiten zu schicken).",
+      },
+      { kind: "heading", text: "3. Absagen und Nichterscheinen" },
+      {
+        kind: "para",
+        text:
+          "**Achtung: Terminverlegungen sind nicht möglich.** Bei einer Terminabsage – unabhängig " +
+          "davon, wie früh sie erfolgt –, bei technischen Problemen (z. B. einer länger als zehn " +
+          "Minuten andauernden instabilen Internetverbindung oder der Unfähigkeit, Teams oder Zoom " +
+          "zu benutzen) oder bei einer Verspätung von mehr als zehn Minuten deinerseits wird das " +
+          "volle Honorar von **30 Euro** für die Stunde fällig. Ich warte in diesen Fällen nicht " +
+          "länger – unabhängig davon, wie lange der Termin gebucht war.",
+      },
+      {
+        kind: "para",
+        text:
+          "Bei einer kurzfristigen Absage oder einem technischen Ausfall meinerseits erhältst du " +
+          "entweder zeitnah einen Ersatztermin oder dein Geld zurück.",
+      },
+      { kind: "heading", text: "4. Annahme des Vertrags" },
+      {
+        kind: "para",
+        text:
+          "Durch Überweisung des Geldes und Rücksendung dieses Dokuments mit Unterschrift " +
+          "akzeptierst du diese Bedingungen. Wenn ich den Vertrag ebenfalls akzeptiere, werde ich " +
+          "ihn dir unterschrieben zurücksenden. Andernfalls lehne ich den Vertrag durch " +
+          "Rücküberweisung des Geldes ab.",
+      },
+      { kind: "para", text: "Mit freundlichen Grüßen" },
+      { kind: "para", text: "Florian Ingerl" },
+      { kind: "heading", text: "5. Angaben und Unterschriften" },
+      { kind: "para", text: "**Schüler:**" },
+      ...sigSchueler(f),
+      {
+        kind: "para",
+        text:
+          `Ich akzeptiere die oben genannten Bedingungen des 4-Stunden-Lernpakets mit Bonus für die ` +
+          `Prüfung am **${f.date}** in **${f.subject}**.`,
+      },
+      { kind: "sig", text: `**Unterschrift des Schülers:** ${BLANK_SIGN}` },
+      { kind: "para", text: "**Lehrer:**" },
+      { kind: "sig", text: "**Vorname:** Florian" },
+      { kind: "sig", text: "**Nachname:** Ingerl" },
+      { kind: "sig", text: "**Adresse:** Rainerstraße 6a, 82178 Puchheim, Deutschland" },
+      { kind: "sig", text: `**Unterschrift des Lehrers:** ${BLANK_SIGN}` },
+    ];
+  },
+
+  en: (f) => {
+    const fn = f.firstName.trim() || "…";
+    return [
+      {
+        kind: "title",
+        text: `Contract for a 4-hour learning package with bonus between ${fn} and Florian`,
+      },
+      { kind: "para", text: `Hello **${fn}**,` },
+      {
+        kind: "para",
+        text: "below I set out my terms for the 4-hour learning package with bonus.",
+      },
+      { kind: "heading", text: "1. Service and price" },
+      {
+        kind: "para",
+        text:
+          `The package will cost you **${EURO(f.price)}**. The money must be paid in advance. In ` +
+          `return, we prepare with four 60-minute tutoring sessions for the **${f.subject}** exam at ` +
+          `**${f.institution}** on **${f.date}**. If you do not reach your goal (**${f.goal}**), I ` +
+          `will refund **6 euros per lesson**, i.e. **24 euros** in total.`,
+      },
+      { kind: "heading", text: "2. Refund" },
+      {
+        kind: "para",
+        text:
+          `I will refund 6 euros per lesson only in the following case: you show me pictures of the ` +
+          `corrected exam with the goal not reached (**${f.goal}**) from the exam inspection.`,
+      },
+      {
+        kind: "para",
+        text: "In particular, the money is due and will not be refunded if:",
+      },
+      {
+        kind: "item",
+        text: "you do not sit the exam for any reason (illness, etc.);",
+      },
+      {
+        kind: "item",
+        text: `you sit the exam, do not reach your goal (**${f.goal}**) and then cannot provide pictures from the inspection;`,
+      },
+      {
+        kind: "item",
+        text:
+          "the date, the name or the school/college/university are not visible on the pictures of " +
+          "the corrected exam with the goal not reached, so that it could be a different exam;",
+      },
+      {
+        kind: "item",
+        text:
+          "the pictures from the inspection do not show that you tried to solve the tasks (that " +
+          "is, it is not possible to drag yourself to the exam while ill, only write your name on " +
+          "it and then send pictures of blank pages).",
+      },
+      { kind: "heading", text: "3. Cancellations and non-appearance" },
+      {
+        kind: "para",
+        text:
+          "**Attention: appointments cannot be rescheduled.** In the case of a cancellation of an " +
+          "appointment – regardless of how early it is made –, technical problems (e. g. an " +
+          "unstable internet connection lasting more than ten minutes or the inability to use " +
+          "Teams or Zoom) or a delay of more than ten minutes on your part, the full fee of " +
+          "**30 euros** for the lesson is due. In these cases I will not wait any longer – " +
+          "regardless of how long the appointment was booked for.",
+      },
+      {
+        kind: "para",
+        text:
+          "In the event of a short-term cancellation or a technical failure on my part, you will " +
+          "either receive a prompt replacement appointment or your money back.",
+      },
+      { kind: "heading", text: "4. Acceptance of the contract" },
+      {
+        kind: "para",
+        text:
+          "By transferring the money and returning this document with your signature, you accept " +
+          "these terms. If I also accept the contract, I will return it to you signed. Otherwise I " +
+          "decline the contract by transferring the money back.",
+      },
+      { kind: "para", text: "Kind regards" },
+      { kind: "para", text: "Florian Ingerl" },
+      { kind: "heading", text: "5. Details and signatures" },
+      { kind: "para", text: "**Student:**" },
+      ...sigSchueler(f),
+      {
+        kind: "para",
+        text:
+          `I accept the above terms of the 4-hour learning package with bonus for the exam on ` +
+          `**${f.date}** in **${f.subject}**.`,
+      },
+      { kind: "sig", text: `**Signature of the student:** ${BLANK_SIGN}` },
+      { kind: "para", text: "**Teacher:**" },
+      { kind: "sig", text: "**First name:** Florian" },
+      { kind: "sig", text: "**Last name:** Ingerl" },
+      { kind: "sig", text: "**Address:** Rainerstraße 6a, 82178 Puchheim, Germany" },
+      { kind: "sig", text: `**Signature of the teacher:** ${BLANK_SIGN}` },
+    ];
+  },
+
+  fr: (f) => {
+    const fn = f.firstName.trim() || "…";
+    return [
+      {
+        kind: "title",
+        text: `Contrat pour un forfait de 4 heures avec bonus entre ${fn} et Florian`,
+      },
+      { kind: "para", text: `Bonjour **${fn}**,` },
+      {
+        kind: "para",
+        text: "ci-dessous, je t'expose mes conditions pour le forfait de 4 heures avec bonus.",
+      },
+      { kind: "heading", text: "1. Prestation et prix" },
+      {
+        kind: "para",
+        text:
+          `Le forfait te coûtera **${EURO(f.price)}**. Ce montant doit être payé à l'avance. En ` +
+          `échange, nous nous préparons, par quatre cours particuliers de 60 minutes, à l'examen de ` +
+          `**${f.subject}** à **${f.institution}** le **${f.date}**. Si tu n'atteins pas ton objectif ` +
+          `(**${f.goal}**), je te rembourse **6 euros par cours**, soit **24 euros** au total.`,
+      },
+      { kind: "heading", text: "2. Remboursement" },
+      {
+        kind: "para",
+        text:
+          `Je ne rembourse 6 euros par cours que dans le cas suivant : tu me montres les photos de ` +
+          `la copie corrigée avec l'objectif non atteint (**${f.goal}**) prises lors de la ` +
+          `consultation des copies.`,
+      },
+      {
+        kind: "para",
+        text: "En particulier, l'argent est dû et ne sera pas remboursé si :",
+      },
+      {
+        kind: "item",
+        text: "tu ne passes pas l'examen pour une raison quelconque (maladie, etc.) ;",
+      },
+      {
+        kind: "item",
+        text: `tu passes l'examen, tu n'atteins pas ton objectif (**${f.goal}**) et tu ne peux ensuite fournir aucune photo de la consultation ;`,
+      },
+      {
+        kind: "item",
+        text:
+          "la date, le nom ou l'école/collège/université ne sont pas visibles sur les photos de la " +
+          "copie corrigée avec l'objectif non atteint, de sorte qu'il pourrait s'agir d'un autre " +
+          "examen ;",
+      },
+      {
+        kind: "item",
+        text:
+          "il ne ressort pas des photos de la consultation que tu as essayé de résoudre les " +
+          "exercices (c'est-à-dire qu'il n'est pas possible de se traîner malade à l'examen, d'y " +
+          "écrire seulement son nom et d'envoyer ensuite les photos des pages blanches).",
+      },
+      { kind: "heading", text: "3. Annulations et absences" },
+      {
+        kind: "para",
+        text:
+          "**Attention : les rendez-vous ne peuvent pas être reportés.** En cas d'annulation d'un " +
+          "rendez-vous – quelle que soit la précocité de l'annulation –, de problèmes techniques " +
+          "(par exemple une connexion Internet instable pendant plus de dix minutes ou " +
+          "l'impossibilité d'utiliser Teams ou Zoom) ou d'un retard de plus de dix minutes de ta " +
+          "part, le plein tarif de **30 euros** pour le cours est dû. Dans ces cas, je n'attends pas " +
+          "plus longtemps – quelle que soit la durée pour laquelle le rendez-vous avait été réservé.",
+      },
+      {
+        kind: "para",
+        text:
+          "En cas d'annulation à court terme ou de panne technique de ma part, tu recevras soit " +
+          "rapidement un rendez-vous de remplacement, soit ton argent.",
+      },
+      { kind: "heading", text: "4. Acceptation du contrat" },
+      {
+        kind: "para",
+        text:
+          "En virant l'argent et en renvoyant ce document signé, tu acceptes ces conditions. Si " +
+          "j'accepte aussi le contrat, je te le renverrai signé. Sinon, je refuse le contrat en " +
+          "remboursant l'argent.",
+      },
+      { kind: "para", text: "Cordialement" },
+      { kind: "para", text: "Florian Ingerl" },
+      { kind: "heading", text: "5. Informations et signatures" },
+      { kind: "para", text: "**Élève :**" },
+      ...sigSchueler(f),
+      {
+        kind: "para",
+        text:
+          `J'accepte les conditions ci-dessus du forfait de 4 heures avec bonus pour l'examen du ` +
+          `**${f.date}** en **${f.subject}**.`,
+      },
+      { kind: "sig", text: `**Signature de l'élève :** ${BLANK_SIGN}` },
+      { kind: "para", text: "**Enseignant :**" },
+      { kind: "sig", text: "**Prénom :** Florian" },
+      { kind: "sig", text: "**Nom :** Ingerl" },
+      { kind: "sig", text: "**Adresse :** Rainerstraße 6a, 82178 Puchheim, Allemagne" },
+      { kind: "sig", text: `**Signature de l'enseignant :** ${BLANK_SIGN}` },
+    ];
+  },
+
+  es: (f) => {
+    const fn = f.firstName.trim() || "…";
+    return [
+      {
+        kind: "title",
+        text: `Contrato para un paquete de 4 horas con bonificación entre ${fn} y Florian`,
+      },
+      { kind: "para", text: `Hola **${fn}**,` },
+      {
+        kind: "para",
+        text: "a continuación te expongo mis condiciones para el paquete de 4 horas con bonificación.",
+      },
+      { kind: "heading", text: "1. Prestación y precio" },
+      {
+        kind: "para",
+        text:
+          `El paquete te costará **${EURO(f.price)}**. Este dinero debe pagarse por adelantado. A ` +
+          `cambio, nos preparamos con cuatro clases particulares de 60 minutos para el examen de ` +
+          `**${f.subject}** en **${f.institution}** el **${f.date}**. Si no alcanzas tu objetivo ` +
+          `(**${f.goal}**), te devolveré **6 euros por clase**, es decir, **24 euros** en total.`,
+      },
+      { kind: "heading", text: "2. Reembolso" },
+      {
+        kind: "para",
+        text:
+          `Solo devolveré 6 euros por clase en el siguiente caso: me muestras las fotos del examen ` +
+          `corregido con el objetivo no alcanzado (**${f.goal}**) realizadas en la consulta del ` +
+          `examen.`,
+      },
+      {
+        kind: "para",
+        text: "En particular, el dinero se debe y no se devolverá si:",
+      },
+      {
+        kind: "item",
+        text: "no te presentas al examen por cualquier motivo (enfermedad, etc.);",
+      },
+      {
+        kind: "item",
+        text: `haces el examen, no alcanzas tu objetivo (**${f.goal}**) y luego no puedes aportar fotos de la consulta;`,
+      },
+      {
+        kind: "item",
+        text:
+          "en las fotos del examen corregido con el objetivo no alcanzado no se ven la fecha, el " +
+          "nombre o la escuela/colegio/universidad, de modo que podría tratarse de otro examen;",
+      },
+      {
+        kind: "item",
+        text:
+          "en las fotos de la consulta no se ve que intentaste resolver las tareas (es decir, no " +
+          "es posible arrastrarte enfermo al examen, escribir solo tu nombre y luego enviar fotos " +
+          "de las páginas en blanco).",
+      },
+      { kind: "heading", text: "3. Cancelaciones e inasistencias" },
+      {
+        kind: "para",
+        text:
+          "**Atención: las citas no se pueden reprogramar.** En caso de cancelación de una cita – " +
+          "independientemente de con cuánta antelación se haga –, de problemas técnicos (por " +
+          "ejemplo, una conexión a Internet inestable durante más de diez minutos o la " +
+          "imposibilidad de usar Teams o Zoom) o de un retraso de más de diez minutos por tu parte, " +
+          "se debe el importe íntegro de **30 euros** por la clase. En estos casos no esperaré más " +
+          "– independientemente de cuánto tiempo se hubiera reservado la cita.",
+      },
+      {
+        kind: "para",
+        text:
+          "En caso de una cancelación a corto plazo o de un fallo técnico por mi parte, recibirás " +
+          "rápidamente una cita de sustitución o tu dinero.",
+      },
+      { kind: "heading", text: "4. Aceptación del contrato" },
+      {
+        kind: "para",
+        text:
+          "Al transferir el dinero y devolver este documento firmado, aceptas estas condiciones. " +
+          "Si yo también acepto el contrato, te lo devolveré firmado. De lo contrario, rechazo el " +
+          "contrato devolviendo el dinero.",
+      },
+      { kind: "para", text: "Un saludo" },
+      { kind: "para", text: "Florian Ingerl" },
+      { kind: "heading", text: "5. Datos y firmas" },
+      { kind: "para", text: "**Alumno/a:**" },
+      ...sigSchueler(f),
+      {
+        kind: "para",
+        text:
+          `Acepto las condiciones anteriores del paquete de 4 horas con bonificación para el ` +
+          `examen del **${f.date}** de **${f.subject}**.`,
+      },
+      { kind: "sig", text: `**Firma del alumno/a:** ${BLANK_SIGN}` },
+      { kind: "para", text: "**Profesor:**" },
+      { kind: "sig", text: "**Nombre:** Florian" },
+      { kind: "sig", text: "**Apellidos:** Ingerl" },
+      { kind: "sig", text: "**Dirección:** Rainerstraße 6a, 82178 Puchheim, Alemania" },
+      { kind: "sig", text: `**Firma del profesor:** ${BLANK_SIGN}` },
+    ];
+  },
+
+  it: (f) => {
+    const fn = f.firstName.trim() || "…";
+    return [
+      {
+        kind: "title",
+        text: `Contratto per un pacchetto di 4 ore con bonus tra ${fn} e Florian`,
+      },
+      { kind: "para", text: `Ciao **${fn}**,` },
+      {
+        kind: "para",
+        text: "qui di seguito ti scrivo le mie condizioni per il pacchetto di 4 ore con bonus.",
+      },
+      { kind: "heading", text: "1. Prestazione e prezzo" },
+      {
+        kind: "para",
+        text:
+          `Il pacchetto ti costerà **${EURO(f.price)}**. Questo importo va pagato in anticipo. In ` +
+          `cambio ci prepariamo, con quattro lezioni di 60 minuti, all'esame di **${f.subject}** ` +
+          `presso **${f.institution}** il **${f.date}**. Se non raggiungi il tuo obiettivo ` +
+          `(**${f.goal}**), ti rimborso **6 euro per lezione**, cioè **24 euro** in totale.`,
+      },
+      { kind: "heading", text: "2. Rimborso" },
+      {
+        kind: "para",
+        text:
+          `Rimborso 6 euro per lezione solo nel seguente caso: mi mostri le foto della prova ` +
+          `corretta con l'obiettivo non raggiunto (**${f.goal}**) scattate durante la ` +
+          `consultazione delle prove.`,
+      },
+      {
+        kind: "para",
+        text: "In particolare, il denaro è dovuto e non verrà rimborsato se:",
+      },
+      {
+        kind: "item",
+        text: "non sostieni la prova per qualsiasi motivo (malattia, ecc.);",
+      },
+      {
+        kind: "item",
+        text: `sostieni la prova, non raggiungi il tuo obiettivo (**${f.goal}**) e poi non puoi fornire foto della consultazione;`,
+      },
+      {
+        kind: "item",
+        text:
+          "nelle foto della prova corretta con l'obiettivo non raggiunto non sono visibili la " +
+          "data, il nome o la scuola/college/università, cosicché potrebbe trattarsi di un'altra " +
+          "prova;",
+      },
+      {
+        kind: "item",
+        text:
+          "dalle foto della consultazione non risulta che hai provato a risolvere gli esercizi " +
+          "(cioè non è possibile trascinarti malato alla prova, scriverci solo il tuo nome e poi " +
+          "inviare le foto delle pagine vuote).",
+      },
+      { kind: "heading", text: "3. Disdette e assenze" },
+      {
+        kind: "para",
+        text:
+          "**Attenzione: gli appuntamenti non possono essere riprogrammati.** In caso di disdetta " +
+          "di un appuntamento – indipendentemente da quanto tempo prima venga fatta –, di problemi " +
+          "tecnici (ad esempio una connessione Internet instabile per più di dieci minuti o " +
+          "l'impossibilità di usare Teams o Zoom) o di un ritardo di più di dieci minuti da parte " +
+          "tua, è dovuto il compenso intero di **30 euro** per la lezione. In questi casi non aspetto " +
+          "ulteriormente – indipendentemente da quanto tempo fosse prenotato l'appuntamento.",
+      },
+      {
+        kind: "para",
+        text:
+          "In caso di disdetta a breve termine o di guasto tecnico da parte mia, riceverai " +
+          "rapidamente un appuntamento sostitutivo oppure il tuo denaro.",
+      },
+      { kind: "heading", text: "4. Accettazione del contratto" },
+      {
+        kind: "para",
+        text:
+          "Con il pagamento del denaro e la restituzione di questo documento firmato accetti " +
+          "queste condizioni. Se accetto anch'io il contratto, te lo restituirò firmato. In caso " +
+          "contrario, rifiuto il contratto restituendo il denaro.",
+      },
+      { kind: "para", text: "Cordiali saluti" },
+      { kind: "para", text: "Florian Ingerl" },
+      { kind: "heading", text: "5. Dati e firme" },
+      { kind: "para", text: "**Studente/studentessa:**" },
+      ...sigSchueler(f),
+      {
+        kind: "para",
+        text:
+          `Accetto le condizioni di cui sopra del pacchetto di 4 ore con bonus per l'esame del ` +
+          `**${f.date}** in **${f.subject}**.`,
+      },
+      { kind: "sig", text: `**Firma dello studente/della studentessa:** ${BLANK_SIGN}` },
+      { kind: "para", text: "**Insegnante:**" },
+      { kind: "sig", text: "**Nome:** Florian" },
+      { kind: "sig", text: "**Cognome:** Ingerl" },
+      { kind: "sig", text: "**Indirizzo:** Rainerstraße 6a, 82178 Puchheim, Germania" },
+      { kind: "sig", text: `**Firma dell'insegnante:** ${BLANK_SIGN}` },
+    ];
+  },
+};
+
 export function buildContract(
   lang: AppLocale,
-  fields: ContractFields
+  fields: ContractFields,
+  packageType: ContractPackage = "allOrNothing"
 ): ContractBlock[] {
-  return CONTRACT_BUILDERS[lang](fields);
+  const builders =
+    packageType === "fourHourBonus" ? FOUR_HOUR_BUILDERS : ALL_OR_NOTHING_BUILDERS;
+  return builders[lang](fields);
 }
 
 // ---------------------------------------------------------------------------
@@ -741,7 +1286,10 @@ function inlineHtml(s: string): string {
     .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
 }
 
-export function contractToHtml(blocks: ContractBlock[]): string {
+export function contractToHtml(
+  blocks: ContractBlock[],
+  title = "Alles-oder-Nichts-Paket"
+): string {
   const body = blocks
     .map((b) => {
       if (b.kind === "title") return `<h1>${inlineHtml(b.text)}</h1>`;
@@ -753,7 +1301,7 @@ export function contractToHtml(blocks: ContractBlock[]): string {
     .join("\n");
   return `<!DOCTYPE html>
 <html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word">
-<head><meta charset="utf-8"><title>Alles-oder-Nichts-Paket</title>
+<head><meta charset="utf-8"><title>${escapeHtml(title.replace(/\*\*/g, ""))}</title>
 <style>
   body { font-family: "Times New Roman", Times, serif; font-size: 12pt; line-height: 1.6; color: #000; }
   h1 { font-size: 18pt; font-weight: bold; text-align: center; margin: 0 0 14pt 0; }
@@ -986,8 +1534,13 @@ export async function downloadBlob(blob: Blob, filename: string): Promise<void> 
 export function contractFilename(
   lang: AppLocale,
   date: string,
-  ext: string
+  ext: string,
+  packageType: ContractPackage = "allOrNothing"
 ): string {
   const safeDate = date.replace(/[^0-9-]/g, "") || "ohne-Datum";
-  return `Alles-oder-Nichts-Paket_${lang}_${safeDate}.${ext}`;
+  const prefix =
+    packageType === "fourHourBonus"
+      ? "4-Stunden-Lernpaket-mit-Bonus"
+      : "Alles-oder-Nichts-Paket";
+  return `${prefix}_${lang}_${safeDate}.${ext}`;
 }

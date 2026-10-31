@@ -2,9 +2,12 @@ import { expect, test, type Page } from "@playwright/test";
 
 // Rueckt auf der Startseite den Vertragsdialog auf und fuellt die
 // Pflichtfelder, bis die drei Download-Buttons erscheinen.
-async function openDialogAndGenerate(page: Page) {
+async function openDialogAndGenerate(
+  page: Page,
+  openButton = "#contract-open-all-or-nothing"
+) {
   await page.goto("/");
-  await page.locator("#preise button.btn-primary").click();
+  await page.locator(openButton).click();
   const dialog = page.locator(".contract-dialog");
   await expect(dialog).toBeVisible();
   await page.locator("#contract-date").fill("2027-05-10");
@@ -59,6 +62,17 @@ test.describe("Vertrags-Download ohne weiteren Klick", () => {
     await dialog.getByRole("button", { name: /Word/i }).click();
     expect((await docPromise).suggestedFilename()).toBe(
       "Alles-oder-Nichts-Paket_de_2027-05-10.doc"
+    );
+  });
+
+  test("4-Stunden-Lernpaket: Preis 132 Euro und eigener Dateiname", async ({ page }) => {
+    const dialog = await openDialogAndGenerate(page, "#contract-open-four-hour");
+    await expect(dialog).toContainText("132");
+
+    const downloadPromise = page.waitForEvent("download");
+    await dialog.getByRole("button", { name: /PDF/i }).click();
+    expect((await downloadPromise).suggestedFilename()).toBe(
+      "4-Stunden-Lernpaket-mit-Bonus_de_2027-05-10.pdf"
     );
   });
 });
