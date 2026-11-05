@@ -23,7 +23,7 @@ export type ExerciseType =
   | "wordOrder"
   | "programming";
 
-export type ProgrammingLanguage = "JavaScript" | "TypeScript";
+export type ProgrammingLanguage = "JavaScript" | "TypeScript" | "Lean 4";
 
 // 1.1) Test à trous, 1.2) Test avec des options différents, 1.3) Test avec les mêmes options
 export type ExportTestType =
@@ -70,11 +70,12 @@ export interface WordOrderSentence {
   guess?: string;
 }
 
-// A programming exercise stores one boolean expression that calls the
-// function, e.g. "max([7,9,4]) == 9 && max([3,2,1]) == 3".
+// For JavaScript and TypeScript the testcases are one boolean expression that
+// calls the function, e.g. "max([7,9,4]) == 9 && max([3,2,1]) == 3". For Lean 4
+// they are Lean test declarations, e.g. "example : double 7 = 14 := rfl".
 export interface ProgrammingValidationResult {
   passed: boolean;
-  // The boolean expression that was checked.
+  // The testcases that were checked.
   expression?: string;
   // The formatted value the expression evaluated to.
   actual?: string;
@@ -168,8 +169,8 @@ export interface Exercise {
   // programming
   programminglanguage?: ProgrammingLanguage;
   function?: string;
-  // A boolean expression that must evaluate to true, e.g.
-  // "max([7,9,4]) == 9 && max([3,2,1]) == 3".
+  // JavaScript/TypeScript: a boolean expression that must evaluate to true.
+  // Lean 4: test declarations, e.g. "example : double 7 = 14 := rfl".
   testcases?: string;
   // Only used in the browser while the student edits the code.
   programmingCode?: string;

@@ -203,3 +203,92 @@ export function functionSignatureSkeleton(code: string): string {
       : code.slice(0, signature.bodyStart).trimEnd();
   return `${header} {\n  \n}`;
 }
+
+// Finds a token outside parentheses, brackets, braces, strings and Lean
+// comments.
+function findTopLevelLeanToken(text: string, token: string): number {
+  let round = 0;
+  let square = 0;
+  let curly = 0;
+  let quote: string | null = null;
+  let escaped = false;
+  let inLineComment = false;
+  let inBlockComment = false;
+
+  for (let i = 0; i < text.length; i++) {
+    const char = text[i];
+    const next = text[i + 1];
+
+    if (inLineComment) {
+      if (char === "\n") inLineComment = false;
+      continue;
+    }
+    if (inBlockComment) {
+      if (char === "-" && next === "/") {
+        inBlockComment = false;
+        i++;
+      }
+      continue;
+    }
+    if (quote) {
+      if (escaped) {
+        escaped = false;
+        continue;
+      }
+      if (char === "\\") {
+        escaped = true;
+        continue;
+      }
+      if (char === quote) quote = null;
+      continue;
+    }
+
+    if (char === "-" && next === "-") {
+      inLineComment = true;
+      i++;
+      continue;
+    }
+    if (char === "/" && next === "-") {
+      inBlockComment = true;
+      i++;
+      continue;
+    }
+    if (char === '"') {
+      quote = char;
+      continue;
+    }
+
+    if (round === 0 && square === 0 && curly === 0 && text.startsWith(token, i)) {
+      return i;
+    }
+
+    if (char === "(") round++;
+    else if (char === ")") round--;
+    else if (char === "[") square++;
+    else if (char === "]") square--;
+    else if (char === "{") curly++;
+    else if (char === "}") curly--;
+  }
+
+  return -1;
+}
+
+// The Lean editor skeleton keeps only the definition header: everything up to
+// and including "=>" for a "fun" body, otherwise up to and including ":=".
+export function leanSignatureSkeleton(code: string): string {
+  const text = code.trim();
+  if (!/^def\s/.test(text)) return "";
+
+  const assign = findTopLevelLeanToken(text, ":=");
+  if (assign === -1) return "";
+
+  const afterAssign = text.slice(assign + 2);
+  if (/^\s*fun\b/.test(afterAssign)) {
+    const arrow = findTopLevelLeanToken(afterAssign, "=>");
+    if (arrow !== -1) {
+      return text.slice(0, assign + 2 + arrow + 2).trimEnd();
+    }
+  }
+
+  return text.slice(0, assign + 2).trimEnd();
+}

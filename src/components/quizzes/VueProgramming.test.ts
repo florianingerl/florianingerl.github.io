@@ -50,6 +50,33 @@ describe("VueProgramming: coding exercise", () => {
     ).toBe("function add(a, b) {\n  \n}");
   });
 
+  it("prefills the Lean signature before the arrow and hides the body", () => {
+    const { wrapper } = mountProgramming({
+      ...exercise(),
+      programminglanguage: "Lean 4",
+      function: "def double := fun (x : Nat) => x + x",
+      testcases: "example : double 7 = 14 := rfl",
+    });
+
+    expect(wrapper.text()).toContain("example : double 7 = 14 := rfl");
+    expect(
+      (wrapper.get(".programming-exercise__code").element as HTMLTextAreaElement).value,
+    ).toBe("def double := fun (x : Nat) =>");
+  });
+
+  it("prefills the Lean signature before the assignment and hides the body", () => {
+    const { wrapper } = mountProgramming({
+      ...exercise(),
+      programminglanguage: "Lean 4",
+      function: "def double (x : Nat) : Nat := x + x",
+      testcases: "example : double 7 = 14 := rfl",
+    });
+
+    expect(
+      (wrapper.get(".programming-exercise__code").element as HTMLTextAreaElement).value,
+    ).toBe("def double (x : Nat) : Nat :=");
+  });
+
   it("validates the submitted code and marks the exercise as solved", async () => {
     const { sentCode } = validationHandler({
       passed: true,

@@ -42,6 +42,7 @@
         <select id="programming-language" v-model="programmingLanguage" class="form-select">
           <option value="JavaScript">JavaScript</option>
           <option value="TypeScript">TypeScript</option>
+          <option value="Lean 4">Lean 4</option>
         </select>
       </div>
     </div>
@@ -141,7 +142,10 @@
               rows="8"
               spellcheck="false"
             ></textarea>
-            <div v-if="programmingSignature" class="form-text">
+            <div v-if="isLean" class="form-text">
+              Enter a Lean 4 definition, for example: def double (x : Nat) : Nat := x + x
+            </div>
+            <div v-else-if="programmingSignature" class="form-text">
               Parameters: {{ programmingParameterNames.join(', ') || '(none)' }}
             </div>
             <div v-else class="form-text text-danger">
@@ -157,10 +161,12 @@
               class="form-control programming-code"
               rows="4"
               spellcheck="false"
-              placeholder="max([7,9,4]) == 9 && max([3,2,1]) == 3"
+              :placeholder="isLean ? 'example : double 7 = 14 := rfl' : 'max([7,9,4]) == 9 && max([3,2,1]) == 3'"
             ></textarea>
             <div class="form-text">
-              Enter a boolean expression that must evaluate to true.
+              {{ isLean
+                ? 'Enter Lean 4 test declarations, for example: example : double 7 = 14 := rfl'
+                : 'Enter a boolean expression that must evaluate to true.' }}
             </div>
           </div>
         </div>
@@ -193,6 +199,7 @@ import type {
 import {
   extractFunctionSignature,
   extractParameterNames,
+  leanSignatureSkeleton,
 } from '@/utils/programming'
 
 const props = defineProps<{
@@ -275,6 +282,10 @@ const programmingSignature = computed(() =>
 )
 const programmingParameterNames = computed(() =>
   extractParameterNames(programmingSolution.value),
+)
+const isLean = computed(() => programmingLanguage.value === 'Lean 4')
+const programmingLeanSkeleton = computed(() =>
+  isLean.value ? leanSignatureSkeleton(programmingSolution.value) : '',
 )
 // Zwei leere Zeilen als Minimum, maximal 5 Saelze.
 const sentences = ref<TwoPartSentences[]>([
@@ -362,8 +373,17 @@ function save(): void {
     delete exercise.value.wordorder
   }
   if (exercise.value.type === 'programming') {
-    const signature = programmingSignature.value
-    if (!signature) {
+    const solution = programmingSolution.value.trim()
+    if (!solution) {
+      alert('Please write the function declaration and solution for the programming exercise.')
+      return
+    }
+    if (isLean.value) {
+      if (!programmingLeanSkeleton.value) {
+        alert('Please write a Lean 4 definition, for example: def double (x : Nat) : Nat := x + x')
+        return
+      }
+    } else if (!programmingSignature.value) {
       alert('Please write the function declaration and solution for the programming exercise.')
       return
     }

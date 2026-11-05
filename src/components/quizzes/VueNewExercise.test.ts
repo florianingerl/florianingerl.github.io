@@ -171,6 +171,29 @@ describe("VueNewExercise: programming exercise", () => {
     expect(ex.testcases).toBe("add(2, 3) == 5 && add(-1, 1) == 0");
   });
 
+  it("saves a Lean 4 definition and its test declarations", async () => {
+    const wrapper = await mountForm();
+
+    await wrapper.get("#exercise-type").setValue("programming");
+    await wrapper.get("#programming-language").setValue("Lean 4");
+    await wrapper
+      .get("#programming-solution")
+      .setValue("def double (x : Nat) : Nat := x + x");
+    await wrapper
+      .get("#programming-testcases")
+      .setValue("example : double 7 = 14 := rfl");
+
+    await wrapper.find("form").trigger("submit");
+
+    const emitted = wrapper.emitted("new-exercise-created");
+    expect(emitted).toBeTruthy();
+    const ex = emitted![0][0] as Exercise;
+    expect(ex.type).toBe("programming");
+    expect(ex.programminglanguage).toBe("Lean 4");
+    expect(ex.function).toBe("def double (x : Nat) : Nat := x + x");
+    expect(ex.testcases).toBe("example : double 7 = 14 := rfl");
+  });
+
   it("does not save a programming exercise without test cases", async () => {
     const alertSpy = vi.spyOn(window, "alert").mockImplementation(() => {});
     const wrapper = await mountForm();

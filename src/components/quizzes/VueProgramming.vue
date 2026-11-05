@@ -51,7 +51,10 @@ import type {
 import { validateProgrammingExercise } from "@/api";
 import { fehlerText } from "@/api";
 import { renderRichText } from "@/utils/richText";
-import { functionSignatureSkeleton } from "@/utils/programming";
+import {
+  functionSignatureSkeleton,
+  leanSignatureSkeleton,
+} from "@/utils/programming";
 import MExerciseFeedback from "../molecules/MExerciseFeedback.vue";
 
 const props = defineProps<{
@@ -93,16 +96,16 @@ const t = computed(() => texte[props.lg]);
 
 const testcases = computed(() => props.exercise.testcases ?? "");
 
-const code = ref(
-  props.exercise.programmingCode ??
-    functionSignatureSkeleton(props.exercise.function ?? ""),
-);
+const code = ref(props.exercise.programmingCode ?? skeleton());
 const validating = ref(false);
 const error = ref("");
 const validationResult = ref<ProgrammingValidationResult | null>(null);
 
 function skeleton(): string {
-  return functionSignatureSkeleton(props.exercise.function ?? "");
+  const solution = props.exercise.function ?? "";
+  return props.exercise.programminglanguage === "Lean 4"
+    ? leanSignatureSkeleton(solution)
+    : functionSignatureSkeleton(solution);
 }
 
 function initCode(): void {
