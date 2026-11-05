@@ -6,6 +6,7 @@ import type { Exercise } from "@/types/quiz";
 import OExercise from "./OExercise.vue";
 import VueMCGaps from "./VueMCGaps.vue";
 import VueQuestion from "./VueQuestion.vue";
+import VueProgramming from "./VueProgramming.vue";
 
 // Eine Aufgabe, wie sie im Quiz vorkommt. Die erste Option ist die richtige.
 function aufgabe(overrides: Partial<Exercise> = {}): Exercise {
@@ -79,6 +80,23 @@ describe("OExercise: Splitter aus Bild und Aufgabe", () => {
     const gap = wrapper.findComponent(VueMCGaps);
     expect(gap.exists()).toBe(true);
     expect(gap.props("exercise")).toEqual(ex);
+  });
+
+  it("waehlt fuer programming die VueProgramming-Aufgabe", () => {
+    const ex = aufgabe({
+      type: "programming",
+      programminglanguage: "JavaScript",
+      function: "function add(a, b) { return a + b; }",
+      testcases: "add(2, 3) == 5",
+    });
+    const wrapper = mount(OExercise, {
+      props: { exercise: ex, lg: "en" },
+      global,
+    });
+
+    const programming = wrapper.findComponent(VueProgramming);
+    expect(programming.exists()).toBe(true);
+    expect(programming.props("exercise")).toEqual(ex);
   });
 });
 

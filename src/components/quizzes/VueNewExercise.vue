@@ -26,14 +26,24 @@
       </div>
     </div>
 
-    <div>
-      <label class="form-label" for="exercise-type">Type:</label>
-      <select id="exercise-type" v-model="exercise.type">
-        <option value="gapText">Gap text</option>
-        <option value="multipleChoice">Multiple choice</option>
-        <option value="matching">Matching</option>
-        <option value="wordOrder">Word order</option>
-      </select>
+    <div class="d-flex flex-wrap align-items-end gap-2">
+      <div>
+        <label class="form-label" for="exercise-type">Type:</label>
+        <select id="exercise-type" v-model="exercise.type" class="form-select">
+          <option value="gapText">Gap text</option>
+          <option value="multipleChoice">Multiple choice</option>
+          <option value="matching">Matching</option>
+          <option value="wordOrder">Word order</option>
+          <option value="programming">Programming</option>
+        </select>
+      </div>
+      <div v-if="exercise.type === 'programming'">
+        <label class="form-label" for="programming-language">Language:</label>
+        <select id="programming-language" v-model="programmingLanguage" class="form-select">
+          <option value="JavaScript">JavaScript</option>
+          <option value="TypeScript">TypeScript</option>
+        </select>
+      </div>
     </div>
 
     <div style="display:flex; flex-direction: row; gap: 2px;" class="mb-3 mt-3">
@@ -118,6 +128,42 @@
           <label class="form-label">Sentence (it will be shown shuffled):</label>
           <input v-model="wordOrderSentence" type="text" class="form-control" />
         </div>
+
+        <div v-if="exercise.type === 'programming'" class="mb-3 mt-3 programming-editor">
+          <div class="mb-2">
+            <label class="form-label" for="programming-solution">
+              Function to be implemented (signature and solution):
+            </label>
+            <textarea
+              id="programming-solution"
+              v-model="programmingSolution"
+              class="form-control programming-code"
+              rows="8"
+              spellcheck="false"
+            ></textarea>
+            <div v-if="programmingSignature" class="form-text">
+              Parameters: {{ programmingParameterNames.join(', ') || '(none)' }}
+            </div>
+            <div v-else class="form-text text-danger">
+              Add a function declaration, for example: function add(a, b) { return a + b; }
+            </div>
+          </div>
+
+          <div class="mb-2">
+            <label class="form-label" for="programming-testcases">Testcases:</label>
+            <textarea
+              id="programming-testcases"
+              v-model="programmingTestcases"
+              class="form-control programming-code"
+              rows="4"
+              spellcheck="false"
+              placeholder="max([7,9,4]) == 9 && max([3,2,1]) == 3"
+            ></textarea>
+            <div class="form-text">
+              Enter a boolean expression that must evaluate to true.
+            </div>
+          </div>
+        </div>
       </SplitterPanel>
     </Splitter>
 
@@ -136,7 +182,18 @@ import { computed, onMounted, ref } from 'vue'
 import OImageChooserAndDisplayer from '@/components/organisms/OImageChooserAndDisplayer.vue'
 import OTopicChooserAndCreator from '@/components/organisms/OTopicChooserAndCreator.vue'
 import OSchoolChooserAndCreator from '@/components/organisms/OSchoolChooserAndCreator.vue'
-import type { Exercise, QuizName, School, Topic, TwoPartSentences } from '@/types/quiz'
+import type {
+  Exercise,
+  ProgrammingLanguage,
+  QuizName,
+  School,
+  Topic,
+  TwoPartSentences,
+} from '@/types/quiz'
+import {
+  extractFunctionSignature,
+  extractParameterNames,
+} from '@/utils/programming'
 
 const props = defineProps<{
   // Name eines Website-Quizzes (z.B. "deutsch") oder - bei einem Buch-Quizz -
@@ -209,6 +266,16 @@ const allOptions = ref<string[]>([])
 const selectedIndex = ref<number | null>(null)
 // Der Satz einer word-order-Aufgabe.
 const wordOrderSentence = ref('')
+// Programming exercise: language, solution and test cases.
+const programmingLanguage = ref<ProgrammingLanguage>('JavaScript')
+const programmingSolution = ref('')
+const programmingTestcases = ref('')
+const programmingSignature = computed(() =>
+  extractFunctionSignature(programmingSolution.value),
+)
+const programmingParameterNames = computed(() =>
+  extractParameterNames(programmingSolution.value),
+)
 // Zwei leere Zeilen als Minimum, maximal 5 Saelze.
 const sentences = ref<TwoPartSentences[]>([
   { part1: '', part2: '' },
@@ -294,6 +361,25 @@ function save(): void {
   } else {
     delete exercise.value.wordorder
   }
+  if (exercise.value.type === 'programming') {
+    const signature = programmingSignature.value
+    if (!signature) {
+      alert('Please write the function declaration and solution for the programming exercise.')
+      return
+    }
+    const testcases = programmingTestcases.value.trim()
+    if (!testcases) {
+      alert('A programming exercise needs at least one test case.')
+      return
+    }
+    exercise.value.programminglanguage = programmingLanguage.value
+    exercise.value.function = programmingSolution.value
+    exercise.value.testcases = testcases
+  } else {
+    delete exercise.value.programminglanguage
+    delete exercise.value.function
+    delete exercise.value.testcases
+  }
   emit('new-exercise-created', exercise.value)
 }
 
@@ -313,6 +399,9 @@ onMounted(async () => {
     sentences.value = props.questionOfQuiz.sentences.map((s) => ({ ...s }))
   }
   wordOrderSentence.value = props.questionOfQuiz.wordorder?.sentence ?? ''
+  programmingLanguage.value = props.questionOfQuiz.programminglanguage ?? 'JavaScript'
+  programmingSolution.value = props.questionOfQuiz.function ?? ''
+  programmingTestcases.value = props.questionOfQuiz.testcases ?? ''
 })
 </script>
 
@@ -330,5 +419,15 @@ onMounted(async () => {
   height: 10px;
   flex: 1;
   min-width: 0;
+}
+
+.programming-code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.9rem;
+}
+
+.programming-editor {
+  max-height: 100%;
+  overflow: auto;
 }
 </style>

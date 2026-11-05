@@ -1,5 +1,13 @@
 import axios from "axios";
-import type { Topic, Exercise, QuizName, Quiz, User, School } from "@/types/quiz";
+import type {
+  Topic,
+  Exercise,
+  QuizName,
+  Quiz,
+  User,
+  School,
+  ProgrammingValidationResult,
+} from "@/types/quiz";
 import type { Book, BookStore } from "@/types/book";
 import { getToken } from "@/authToken";
 
@@ -41,7 +49,7 @@ export function istNichtAngemeldet(e: unknown): boolean {
 function bereinigen(e: Exercise): Exercise {
   const ohneChecked = (opts?: Exercise["options"]) =>
     opts?.map(({ option, correct }) => ({ option, correct }));
-  const { correctlyAnswered: weg, gaps: auchWeg, ...rest } = e;
+  const { correctlyAnswered: weg, gaps: auchWeg, programmingCode: _code, ...rest } = e;
   return {
     ...rest,
     // shuffledSentence und guess einer word-order-Aufgabe bleiben im Browser.
@@ -170,6 +178,18 @@ export async function updateExercise(e: Exercise): Promise<Exercise> {
 
 export async function deleteExercise(id: string): Promise<void> {
   await client.delete(`/api/exercise/${encodeURIComponent(id)}`);
+}
+
+// Prueft eingereichten Code gegen die Testfaelle einer programming-Aufgabe.
+export async function validateProgrammingExercise(
+  id: string,
+  code: string,
+): Promise<ProgrammingValidationResult> {
+  const r = await client.post<ProgrammingValidationResult>(
+    `/api/exercise/${encodeURIComponent(id)}/validate`,
+    { code },
+  );
+  return r.data;
 }
 
 // Schulen (Auswahlliste fuer die Schule einer Aufgabe) ------------

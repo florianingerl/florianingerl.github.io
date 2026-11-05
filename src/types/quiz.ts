@@ -16,7 +16,14 @@ export type QuizName =
 
 export type Lang = "de" | "en" | "fr" | "it" | "es";
 
-export type ExerciseType = "gapText" | "multipleChoice" | "matching" | "wordOrder";
+export type ExerciseType =
+  | "gapText"
+  | "multipleChoice"
+  | "matching"
+  | "wordOrder"
+  | "programming";
+
+export type ProgrammingLanguage = "JavaScript" | "TypeScript";
 
 // 1.1) Test à trous, 1.2) Test avec des options différents, 1.3) Test avec les mêmes options
 export type ExportTestType =
@@ -61,6 +68,17 @@ export interface WordOrderSentence {
   sentence: string;
   shuffledSentence?: string[];
   guess?: string;
+}
+
+// A programming exercise stores one boolean expression that calls the
+// function, e.g. "max([7,9,4]) == 9 && max([3,2,1]) == 3".
+export interface ProgrammingValidationResult {
+  passed: boolean;
+  // The boolean expression that was checked.
+  expression?: string;
+  // The formatted value the expression evaluated to.
+  actual?: string;
+  error?: string;
 }
 
 export interface Topic {
@@ -147,6 +165,14 @@ export interface Exercise {
   guessedSentences?: TwoPartSentences[];
   // word order
   wordorder?: WordOrderSentence;
+  // programming
+  programminglanguage?: ProgrammingLanguage;
+  function?: string;
+  // A boolean expression that must evaluate to true, e.g.
+  // "max([7,9,4]) == 9 && max([3,2,1]) == 3".
+  testcases?: string;
+  // Only used in the browser while the student edits the code.
+  programmingCode?: string;
   // _id des Benutzers, der die Aufgabe angelegt hat. Der Server setzt das beim
   // Speichern selbst, es kann also nicht veraendert werden.
   user?: string;

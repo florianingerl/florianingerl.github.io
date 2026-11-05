@@ -144,6 +144,49 @@ describe("VueNewExercise: multiple choice anlegen", () => {
   });
 });
 
+describe("VueNewExercise: programming exercise", () => {
+  it("saves the language, solution and testcases expression", async () => {
+    const wrapper = await mountForm();
+
+    await wrapper.get("#exercise-type").setValue("programming");
+    await wrapper.get("#programming-language").setValue("TypeScript");
+    await wrapper
+      .get("#programming-solution")
+      .setValue("function add(a: number, b: number): number { return a + b; }");
+
+    await wrapper
+      .get("#programming-testcases")
+      .setValue("add(2, 3) == 5 && add(-1, 1) == 0");
+
+    await wrapper.find("form").trigger("submit");
+
+    const emitted = wrapper.emitted("new-exercise-created");
+    expect(emitted).toBeTruthy();
+    const ex = emitted![0][0] as Exercise;
+    expect(ex.type).toBe("programming");
+    expect(ex.programminglanguage).toBe("TypeScript");
+    expect(ex.function).toBe(
+      "function add(a: number, b: number): number { return a + b; }",
+    );
+    expect(ex.testcases).toBe("add(2, 3) == 5 && add(-1, 1) == 0");
+  });
+
+  it("does not save a programming exercise without test cases", async () => {
+    const alertSpy = vi.spyOn(window, "alert").mockImplementation(() => {});
+    const wrapper = await mountForm();
+
+    await wrapper.get("#exercise-type").setValue("programming");
+    await wrapper
+      .get("#programming-solution")
+      .setValue("function add(a, b) { return a + b; }");
+    await wrapper.find("form").trigger("submit");
+
+    expect(alertSpy).toHaveBeenCalled();
+    expect(wrapper.emitted("new-exercise-created")).toBeFalsy();
+    alertSpy.mockRestore();
+  });
+});
+
 describe("VueNewExercise: Thema ueber den Themenwaehler", () => {
   it("uebernimmt das gemeldete Thema in die Aufgabe", async () => {
     const wrapper = mount(VueNewExercise, {
@@ -201,12 +244,6 @@ describe("VueNewExercise: Thema ueber den Themenwaehler", () => {
 });
 
 describe("VueNewExercise: Vorbelegung beim Anlegen", () => {
-  const thema: Topic = {
-    _id: "t1",
-    subject: "english",
-    title: "Elektrotechnik",
-    tutorial: "",
-  };
   const schule = { _id: "s1", name: "Hochschule Regensburg" };
 
   function mountMitVorlage(vorlage: Exercise, schools: { _id: string; name: string }[] = []) {
@@ -248,7 +285,7 @@ describe("VueNewExercise: Vorbelegung beim Anlegen", () => {
     await wrapper.find("form").trigger("submit");
 
     const emitted = wrapper.emitted("new-exercise-created");
-    expect((emitted![0][0] as Exercise).topic).toEqual(thema);
+    expect((emitted![0][0] as Exercise).topic).toBe("t1");
     expect((emitted![0][0] as Exercise).school).toBe("s1");
   });
 

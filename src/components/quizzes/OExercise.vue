@@ -37,6 +37,7 @@ import VueMCGaps from './VueMCGaps.vue'
 import VueMatching from './VueMatching.vue'
 import VueQuestion from './VueQuestion.vue'
 import VueWordOrder from './VueWordOrder.vue'
+import VueProgramming from './VueProgramming.vue'
 import MTopicAndSchoolDisplayer from '@/components/molecules/MTopicAndSchoolDisplayer.vue'
 import type { Exercise, Lang } from '@/types/quiz'
 
@@ -75,6 +76,8 @@ const exerciseComponent = computed(() => {
       return VueMatching
     case 'wordOrder':
       return VueWordOrder
+    case 'programming':
+      return VueProgramming
     default:
       // multipleChoice und alles Unbekannte zeigen die Fragen-Optionen.
       return VueQuestion
