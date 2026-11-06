@@ -155,4 +155,36 @@ describe("programming utils: comments", () => {
     expect(stripCommentsAndContents(code, "Lean 4")).toBe("\ndef x := 1");
     expect(stripCommentMarkers(code, "Lean 4")).toBe(" doc \ndef x := 1");
   });
+
+  it("removes Python comments and their contents", () => {
+    const code = "def add(a, b):\n    # return a + b";
+
+    expect(stripCommentsAndContents(code, "Python")).toBe("def add(a, b):\n    ");
+    expect(stripCommentMarkers(code, "Python")).toBe(
+      "def add(a, b):\n     return a + b",
+    );
+    expect(programmingSkeleton(code, "Python")).toBe("def add(a, b):");
+  });
+
+  it("removes a whole commented-out Python function from the skeleton", () => {
+    const code = "# def add(a, b):\n#     return a + b";
+
+    expect(stripCommentsAndContents(code, "Python")).toBe("\n");
+    expect(programmingSkeleton(code, "Python")).toBe("");
+    expect(stripCommentMarkers(code, "Python")).toBe(
+      " def add(a, b):\n     return a + b",
+    );
+  });
+
+  it("does not treat # inside Python strings as a comment", () => {
+    const code = 'text = """# not a comment"""\n# real';
+    expect(stripCommentsAndContents(code, "Python")).toBe(
+      'text = """# not a comment"""\n',
+    );
+
+    const singleQuoted = "value = '# not a comment' # real";
+    expect(stripCommentsAndContents(singleQuoted, "Python")).toBe(
+      "value = '# not a comment' ",
+    );
+  });
 });

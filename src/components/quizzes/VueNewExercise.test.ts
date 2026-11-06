@@ -171,6 +171,29 @@ describe("VueNewExercise: programming exercise", () => {
     expect(ex.testcases).toBe("add(2, 3) == 5 && add(-1, 1) == 0");
   });
 
+  it("saves a Python function and its test expression", async () => {
+    const wrapper = await mountForm();
+
+    await wrapper.get("#exercise-type").setValue("programming");
+    await wrapper.get("#programming-language").setValue("Python");
+    await wrapper
+      .get("#programming-solution")
+      .setValue("def add(a, b):\n    # return a + b");
+    await wrapper
+      .get("#programming-testcases")
+      .setValue("add(2, 3) == 5 and add(-1, 1) == 0");
+
+    await wrapper.find("form").trigger("submit");
+
+    const emitted = wrapper.emitted("new-exercise-created");
+    expect(emitted).toBeTruthy();
+    const ex = emitted![0][0] as Exercise;
+    expect(ex.type).toBe("programming");
+    expect(ex.programminglanguage).toBe("Python");
+    expect(ex.function).toBe("def add(a, b):\n    # return a + b");
+    expect(ex.testcases).toBe("add(2, 3) == 5 and add(-1, 1) == 0");
+  });
+
   it("saves a Lean 4 definition and its test declarations", async () => {
     const wrapper = await mountForm();
 
@@ -216,13 +239,28 @@ describe("VueNewExercise: programming exercise", () => {
     );
   });
 
-  it("shows language-agnostic comment help with both examples", async () => {
+  it("shows comment help for all supported languages", async () => {
     const wrapper = await mountForm();
 
     await wrapper.get("#exercise-type").setValue("programming");
+    await wrapper.get("#programming-language").setValue("Python");
 
     expect(wrapper.text()).toContain("JavaScript/TypeScript example:");
     expect(wrapper.text()).toContain("Lean 4 example:");
+    expect(wrapper.text()).toContain("Python example:");
+    expect(wrapper.text()).toContain("add(2, 3) == 5 and add(-1, 1) == 0");
+  });
+
+  it("does not show the JavaScript function hint for Python", async () => {
+    const wrapper = await mountForm();
+
+    await wrapper.get("#exercise-type").setValue("programming");
+    await wrapper.get("#programming-language").setValue("Python");
+    await wrapper.get("#programming-solution").setValue("def add(a, b):\n    # return a + b");
+
+    expect(wrapper.text()).not.toContain(
+      "Hint: JavaScript/TypeScript solutions need a function declaration",
+    );
   });
 
   it("allows a JavaScript solution without a function declaration and shows a hint", async () => {

@@ -43,6 +43,7 @@
           <option value="JavaScript">JavaScript</option>
           <option value="TypeScript">TypeScript</option>
           <option value="Lean 4">Lean 4</option>
+          <option value="Python">Python</option>
         </select>
       </div>
     </div>
@@ -155,8 +156,12 @@
               Lean 4 example:
               <code>/- def double (x : Nat) : Nat := x + x -/</code>
             </div>
+            <div class="form-text">
+              Python example:
+              <code>def add(a, b):<br />    # return a + b</code>
+            </div>
             <div
-              v-if="!isLean && programmingSolution.trim() && !programmingSignature"
+              v-if="!isLean && !isPython && programmingSolution.trim() && !programmingSignature"
               class="form-text"
             >
               Hint: JavaScript/TypeScript solutions need a function declaration somewhere so the
@@ -172,12 +177,18 @@
               class="form-control programming-code"
               rows="4"
               spellcheck="false"
-              :placeholder="isLean ? 'example : double 7 = 14 := rfl' : 'max([7,9,4]) == 9 && max([3,2,1]) == 3'"
+              :placeholder="isLean
+                ? 'example : double 7 = 14 := rfl'
+                : isPython
+                  ? 'add(2, 3) == 5 and add(-1, 1) == 0'
+                  : 'max([7,9,4]) == 9 && max([3,2,1]) == 3'"
             ></textarea>
             <div class="form-text">
               {{ isLean
                 ? 'Enter Lean 4 test declarations, for example: example : double 7 = 14 := rfl'
-                : 'Enter a boolean expression that must evaluate to true.' }}
+                : isPython
+                  ? 'Enter a Python boolean expression that must evaluate to true, for example: add(2, 3) == 5 and add(-1, 1) == 0'
+                  : 'Enter a boolean expression that must evaluate to true.' }}
             </div>
           </div>
         </div>
@@ -291,6 +302,7 @@ const programmingSignature = computed(() =>
   extractFunctionSignature(revealedSolution.value),
 )
 const isLean = computed(() => programmingLanguage.value === 'Lean 4')
+const isPython = computed(() => programmingLanguage.value === 'Python')
 // Zwei leere Zeilen als Minimum, maximal 5 Saelze.
 const sentences = ref<TwoPartSentences[]>([
   { part1: '', part2: '' },

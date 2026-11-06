@@ -78,6 +78,34 @@ describe("VueProgramming: coding exercise", () => {
     ).toBe("def double (x : Nat) : Nat := x + x");
   });
 
+  it("prefills a Python function skeleton", () => {
+    const { wrapper } = mountProgramming({
+      ...exercise(),
+      programminglanguage: "Python",
+      function: "def add(a, b):\n    # return a + b",
+      testcases: "add(2, 3) == 5 and add(-1, 1) == 0",
+    });
+
+    expect(wrapper.text()).toContain("add(2, 3) == 5 and add(-1, 1) == 0");
+    expect(
+      (wrapper.get(".programming-exercise__code").element as HTMLTextAreaElement).value,
+    ).toBe("def add(a, b):");
+  });
+
+  it("reveals a commented-out Python solution", async () => {
+    const { wrapper } = mountProgramming({
+      ...exercise(),
+      programminglanguage: "Python",
+      function: "def add(a, b):\n    # return a + b",
+      testcases: "add(2, 3) == 5 and add(-1, 1) == 0",
+    });
+
+    await wrapper.get('button[title="Show me the solution"]').trigger("click");
+    expect(
+      (wrapper.get(".programming-exercise__code").element as HTMLTextAreaElement).value,
+    ).toBe("def add(a, b):\n     return a + b");
+  });
+
   it("validates the submitted code and marks the exercise as solved", async () => {
     const { sentCode } = validationHandler({
       passed: true,

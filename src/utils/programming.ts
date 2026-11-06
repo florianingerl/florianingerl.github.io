@@ -192,26 +192,35 @@ export function extractParameterNames(code: string): string[] {
     .filter((name) => name !== "");
 }
 
-type CommentLanguage = "JavaScript" | "TypeScript" | "Lean 4";
+type CommentLanguage = "JavaScript" | "TypeScript" | "Lean 4" | "Python";
 
 function isLean(language: CommentLanguage): boolean {
   return language === "Lean 4";
 }
 
+function isPython(language: CommentLanguage): boolean {
+  return language === "Python";
+}
+
 function isStringQuote(char: string, language: CommentLanguage): boolean {
   if (isLean(language)) return char === '"';
+  if (isPython(language)) return char === '"' || char === "'";
   return char === '"' || char === "'" || char === "`";
 }
 
-function stringEnd(code: string, start: number): number {
+function stringEnd(code: string, start: number, language: CommentLanguage): number {
   const quote = code[start];
-  let i = start + 1;
+  const delimiter =
+    isPython(language) && code[start + 1] === quote && code[start + 2] === quote
+      ? quote.repeat(3)
+      : quote;
+  let i = start + delimiter.length;
   while (i < code.length) {
     if (code[i] === "\\") {
       i += 2;
       continue;
     }
-    if (code[i] === quote) return i + 1;
+    if (code.startsWith(delimiter, i)) return i + delimiter.length;
     i++;
   }
   return code.length;
@@ -227,6 +236,7 @@ export function stripCommentsAndContents(
   language: CommentLanguage,
 ): string {
   const lean = isLean(language);
+  const python = isPython(language);
   let result = "";
   let i = 0;
 
@@ -235,12 +245,21 @@ export function stripCommentsAndContents(
     const next = code[i + 1];
 
     if (isStringQuote(char, language)) {
-      const end = stringEnd(code, i);
+      const end = stringEnd(code, i, language);
       result += code.slice(i, end);
       i = end;
       continue;
     }
 
+    if (python && char === "#") {
+      i++;
+      while (i < code.length && code[i] !== "\n") i++;
+      if (i < code.length) {
+        result += "\n";
+        i++;
+      }
+      continue;
+    }
     if (!lean && char === "/" && next === "/") {
       i += 2;
       while (i < code.length && code[i] !== "\n") i++;
@@ -304,6 +323,7 @@ export function stripCommentMarkers(
   language: CommentLanguage,
 ): string {
   const lean = isLean(language);
+  const python = isPython(language);
   let result = "";
   let i = 0;
 
@@ -312,12 +332,21 @@ export function stripCommentMarkers(
     const next = code[i + 1];
 
     if (isStringQuote(char, language)) {
-      const end = stringEnd(code, i);
+      const end = stringEnd(code, i, language);
       result += code.slice(i, end);
       i = end;
       continue;
     }
 
+    if (python && char === "#") {
+      i++;
+      while (i < code.length) {
+        result += code[i];
+        i++;
+        if (code[i - 1] === "\n") break;
+      }
+      continue;
+    }
     if (!lean && char === "/" && next === "/") {
       i += 2;
       while (i < code.length) {
