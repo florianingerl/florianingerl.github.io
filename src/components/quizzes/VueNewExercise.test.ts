@@ -194,6 +194,77 @@ describe("VueNewExercise: programming exercise", () => {
     expect(ex.testcases).toBe("example : double 7 = 14 := rfl");
   });
 
+  it("saves a commented-out TypeScript solution", async () => {
+    const wrapper = await mountForm();
+
+    await wrapper.get("#exercise-type").setValue("programming");
+    await wrapper.get("#programming-language").setValue("TypeScript");
+    await wrapper
+      .get("#programming-solution")
+      .setValue("function add(a: number, b: number): number {\n  // return a + b;\n}");
+    await wrapper
+      .get("#programming-testcases")
+      .setValue("add(2, 3) == 5 && add(-1, 1) == 0");
+
+    await wrapper.find("form").trigger("submit");
+
+    const emitted = wrapper.emitted("new-exercise-created");
+    expect(emitted).toBeTruthy();
+    const ex = emitted![0][0] as Exercise;
+    expect(ex.function).toBe(
+      "function add(a: number, b: number): number {\n  // return a + b;\n}",
+    );
+  });
+
+  it("shows language-agnostic comment help with both examples", async () => {
+    const wrapper = await mountForm();
+
+    await wrapper.get("#exercise-type").setValue("programming");
+
+    expect(wrapper.text()).toContain("JavaScript/TypeScript example:");
+    expect(wrapper.text()).toContain("Lean 4 example:");
+  });
+
+  it("allows a JavaScript solution without a function declaration and shows a hint", async () => {
+    const wrapper = await mountForm();
+
+    await wrapper.get("#exercise-type").setValue("programming");
+    await wrapper.get("#programming-language").setValue("JavaScript");
+    await wrapper.get("#programming-solution").setValue("// const answer = 42;");
+    await wrapper.get("#programming-testcases").setValue("answer === 42");
+
+    expect(wrapper.text()).toContain(
+      "Hint: JavaScript/TypeScript solutions need a function declaration",
+    );
+
+    await wrapper.find("form").trigger("submit");
+
+    const emitted = wrapper.emitted("new-exercise-created");
+    expect(emitted).toBeTruthy();
+    const ex = emitted![0][0] as Exercise;
+    expect(ex.function).toBe("// const answer = 42;");
+  });
+
+  it("saves a fully commented-out Lean 4 definition", async () => {
+    const wrapper = await mountForm();
+
+    await wrapper.get("#exercise-type").setValue("programming");
+    await wrapper.get("#programming-language").setValue("Lean 4");
+    await wrapper
+      .get("#programming-solution")
+      .setValue("/-\ndef double (x : Nat) : Nat := x + x\n-/");
+    await wrapper
+      .get("#programming-testcases")
+      .setValue("example : double 7 = 14 := rfl");
+
+    await wrapper.find("form").trigger("submit");
+
+    const emitted = wrapper.emitted("new-exercise-created");
+    expect(emitted).toBeTruthy();
+    const ex = emitted![0][0] as Exercise;
+    expect(ex.function).toBe("/-\ndef double (x : Nat) : Nat := x + x\n-/");
+  });
+
   it("does not save a programming exercise without test cases", async () => {
     const alertSpy = vi.spyOn(window, "alert").mockImplementation(() => {});
     const wrapper = await mountForm();

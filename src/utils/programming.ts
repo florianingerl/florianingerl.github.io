@@ -192,6 +192,197 @@ export function extractParameterNames(code: string): string[] {
     .filter((name) => name !== "");
 }
 
+type CommentLanguage = "JavaScript" | "TypeScript" | "Lean 4";
+
+function isLean(language: CommentLanguage): boolean {
+  return language === "Lean 4";
+}
+
+function isStringQuote(char: string, language: CommentLanguage): boolean {
+  if (isLean(language)) return char === '"';
+  return char === '"' || char === "'" || char === "`";
+}
+
+function stringEnd(code: string, start: number): number {
+  const quote = code[start];
+  let i = start + 1;
+  while (i < code.length) {
+    if (code[i] === "\\") {
+      i += 2;
+      continue;
+    }
+    if (code[i] === quote) return i + 1;
+    i++;
+  }
+  return code.length;
+}
+
+function leanBlockOpenLength(code: string, index: number): number {
+  if (code[index] !== "/" || code[index + 1] !== "-") return 0;
+  return code[index + 2] === "-" || code[index + 2] === "!" ? 3 : 2;
+}
+
+export function stripCommentsAndContents(
+  code: string,
+  language: CommentLanguage,
+): string {
+  const lean = isLean(language);
+  let result = "";
+  let i = 0;
+
+  while (i < code.length) {
+    const char = code[i];
+    const next = code[i + 1];
+
+    if (isStringQuote(char, language)) {
+      const end = stringEnd(code, i);
+      result += code.slice(i, end);
+      i = end;
+      continue;
+    }
+
+    if (!lean && char === "/" && next === "/") {
+      i += 2;
+      while (i < code.length && code[i] !== "\n") i++;
+      if (i < code.length) {
+        result += "\n";
+        i++;
+      }
+      continue;
+    }
+    if (lean && char === "-" && next === "-") {
+      i += 2;
+      while (i < code.length && code[i] !== "\n") i++;
+      if (i < code.length) {
+        result += "\n";
+        i++;
+      }
+      continue;
+    }
+    if (!lean && char === "/" && next === "*") {
+      i += 2;
+      while (i < code.length) {
+        if (code[i] === "*" && code[i + 1] === "/") {
+          i += 2;
+          break;
+        }
+        if (code[i] === "\n") result += "\n";
+        i++;
+      }
+      continue;
+    }
+    if (lean && char === "/" && next === "-") {
+      i += leanBlockOpenLength(code, i);
+      let depth = 1;
+      while (i < code.length) {
+        if (code[i] === "/" && code[i + 1] === "-") {
+          i += leanBlockOpenLength(code, i);
+          depth++;
+          continue;
+        }
+        if (code[i] === "-" && code[i + 1] === "/") {
+          i += 2;
+          depth--;
+          if (depth === 0) break;
+          continue;
+        }
+        if (code[i] === "\n") result += "\n";
+        i++;
+      }
+      continue;
+    }
+
+    result += char;
+    i++;
+  }
+
+  return result;
+}
+
+export function stripCommentMarkers(
+  code: string,
+  language: CommentLanguage,
+): string {
+  const lean = isLean(language);
+  let result = "";
+  let i = 0;
+
+  while (i < code.length) {
+    const char = code[i];
+    const next = code[i + 1];
+
+    if (isStringQuote(char, language)) {
+      const end = stringEnd(code, i);
+      result += code.slice(i, end);
+      i = end;
+      continue;
+    }
+
+    if (!lean && char === "/" && next === "/") {
+      i += 2;
+      while (i < code.length) {
+        result += code[i];
+        i++;
+        if (code[i - 1] === "\n") break;
+      }
+      continue;
+    }
+    if (lean && char === "-" && next === "-") {
+      i += 2;
+      while (i < code.length) {
+        result += code[i];
+        i++;
+        if (code[i - 1] === "\n") break;
+      }
+      continue;
+    }
+    if (!lean && char === "/" && next === "*") {
+      i += 2;
+      while (i < code.length) {
+        if (code[i] === "*" && code[i + 1] === "/") {
+          i += 2;
+          break;
+        }
+        result += code[i];
+        i++;
+      }
+      continue;
+    }
+    if (lean && char === "/" && next === "-") {
+      i += leanBlockOpenLength(code, i);
+      let depth = 1;
+      while (i < code.length) {
+        if (code[i] === "/" && code[i + 1] === "-") {
+          i += leanBlockOpenLength(code, i);
+          depth++;
+          continue;
+        }
+        if (code[i] === "-" && code[i + 1] === "/") {
+          i += 2;
+          depth--;
+          if (depth === 0) break;
+          continue;
+        }
+        result += code[i];
+        i++;
+      }
+      continue;
+    }
+
+    result += char;
+    i++;
+  }
+
+  return result;
+}
+
+export function programmingSkeleton(
+  code: string,
+  language: CommentLanguage,
+): string {
+  return stripCommentsAndContents(code, language).trim();
+}
+
 // The code shown in the editor before the student starts: the correct function
 // signature followed by an empty body.
 export function functionSignatureSkeleton(code: string): string {

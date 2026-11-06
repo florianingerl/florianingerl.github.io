@@ -52,8 +52,8 @@ import { validateProgrammingExercise } from "@/api";
 import { fehlerText } from "@/api";
 import { renderRichText } from "@/utils/richText";
 import {
-  functionSignatureSkeleton,
-  leanSignatureSkeleton,
+  programmingSkeleton,
+  stripCommentMarkers,
 } from "@/utils/programming";
 import MExerciseFeedback from "../molecules/MExerciseFeedback.vue";
 
@@ -102,10 +102,10 @@ const error = ref("");
 const validationResult = ref<ProgrammingValidationResult | null>(null);
 
 function skeleton(): string {
-  const solution = props.exercise.function ?? "";
-  return props.exercise.programminglanguage === "Lean 4"
-    ? leanSignatureSkeleton(solution)
-    : functionSignatureSkeleton(solution);
+  return programmingSkeleton(
+    props.exercise.function ?? "",
+    props.exercise.programminglanguage ?? "JavaScript",
+  );
 }
 
 function initCode(): void {
@@ -144,7 +144,13 @@ async function validate(): Promise<void> {
 }
 
 function showSolution(): void {
-  code.value = props.exercise.function ?? skeleton();
+  const solution = props.exercise.function;
+  code.value = solution
+    ? stripCommentMarkers(
+        solution,
+        props.exercise.programminglanguage ?? "JavaScript",
+      ).trim()
+    : skeleton();
   validationResult.value = null;
   error.value = "";
   if (props.exercise.correctlyAnswered === undefined) {

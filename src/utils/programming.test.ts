@@ -5,6 +5,9 @@ import {
   extractParameterNames,
   functionSignatureSkeleton,
   leanSignatureSkeleton,
+  programmingSkeleton,
+  stripCommentMarkers,
+  stripCommentsAndContents,
 } from "./programming";
 
 describe("programming utils: function signature", () => {
@@ -65,5 +68,91 @@ describe("programming utils: Lean signature", () => {
 
   it("returns empty text when there is no Lean definition", () => {
     expect(leanSignatureSkeleton("const add = 3;")).toBe("");
+  });
+});
+
+describe("programming utils: comments", () => {
+  it("removes JavaScript line comments and their contents", () => {
+    const code = "function add(a, b) {\n  // return a + b;\n}";
+
+    expect(stripCommentsAndContents(code, "JavaScript")).toBe(
+      "function add(a, b) {\n  \n}",
+    );
+    expect(stripCommentMarkers(code, "JavaScript")).toBe(
+      "function add(a, b) {\n   return a + b;\n}",
+    );
+    expect(programmingSkeleton(code, "JavaScript")).toBe(
+      "function add(a, b) {\n  \n}",
+    );
+  });
+
+  it("removes JavaScript block comments but keeps their contents for solutions", () => {
+    const code = "function add(a, b) { /* return a + b; */ }";
+
+    expect(stripCommentsAndContents(code, "JavaScript")).toBe(
+      "function add(a, b) {  }",
+    );
+    expect(stripCommentMarkers(code, "JavaScript")).toBe(
+      "function add(a, b) {  return a + b;  }",
+    );
+  });
+
+  it("does not treat comment markers inside strings as comments", () => {
+    const code = 'const url = "http://example.com"; // note\n';
+
+    expect(stripCommentsAndContents(code, "JavaScript")).toBe(
+      'const url = "http://example.com"; \n',
+    );
+    expect(stripCommentMarkers(code, "JavaScript")).toBe(
+      'const url = "http://example.com";  note\n',
+    );
+  });
+
+  it("removes Lean line comments and their contents", () => {
+    const code = "def x := 1 -- note\ndef y := 2";
+
+    expect(stripCommentsAndContents(code, "Lean 4")).toBe(
+      "def x := 1 \ndef y := 2",
+    );
+    expect(stripCommentMarkers(code, "Lean 4")).toBe(
+      "def x := 1  note\ndef y := 2",
+    );
+  });
+
+  it("removes a whole commented-out Lean definition from the skeleton", () => {
+    const code = "/-\ndef doubleNat (n : Nat) : Nat := n + n\n-/";
+
+    expect(stripCommentsAndContents(code, "Lean 4")).toBe("\n\n");
+    expect(stripCommentMarkers(code, "Lean 4")).toBe(
+      "\ndef doubleNat (n : Nat) : Nat := n + n\n",
+    );
+    expect(programmingSkeleton(code, "Lean 4")).toBe("");
+  });
+
+  it("handles nested Lean block comments", () => {
+    const code = "/- outer /- inner -/ still -/ def x := 1";
+
+    expect(stripCommentsAndContents(code, "Lean 4")).toBe(" def x := 1");
+    expect(stripCommentMarkers(code, "Lean 4")).toBe(
+      " outer  inner  still  def x := 1",
+    );
+  });
+
+  it("does not treat comment markers inside Lean strings as comments", () => {
+    const code = 'def s := "-- not a comment" -- real';
+
+    expect(stripCommentsAndContents(code, "Lean 4")).toBe(
+      'def s := "-- not a comment" ',
+    );
+    expect(stripCommentMarkers(code, "Lean 4")).toBe(
+      'def s := "-- not a comment"  real',
+    );
+  });
+
+  it("handles Lean documentation comments", () => {
+    const code = "/-- doc -/\ndef x := 1";
+
+    expect(stripCommentsAndContents(code, "Lean 4")).toBe("\ndef x := 1");
+    expect(stripCommentMarkers(code, "Lean 4")).toBe(" doc \ndef x := 1");
   });
 });

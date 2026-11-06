@@ -15,7 +15,7 @@ function exercise(): Exercise {
     imageUrl: "",
     questionOrInstruction: "Add two numbers.",
     programminglanguage: "JavaScript",
-    function: "function add(a, b) { return a + b; }",
+    function: "function add(a, b) {\n  // return a + b;\n}",
     testcases: "add(2, 3) == 5",
   };
 }
@@ -50,31 +50,32 @@ describe("VueProgramming: coding exercise", () => {
     ).toBe("function add(a, b) {\n  \n}");
   });
 
-  it("prefills the Lean signature before the arrow and hides the body", () => {
+  it("prefills an empty Lean editor when the whole definition is commented out", () => {
     const { wrapper } = mountProgramming({
       ...exercise(),
       programminglanguage: "Lean 4",
-      function: "def double := fun (x : Nat) => x + x",
+      function: "/-\ndef double (x : Nat) : Nat := x + x\n-/",
       testcases: "example : double 7 = 14 := rfl",
     });
 
     expect(wrapper.text()).toContain("example : double 7 = 14 := rfl");
     expect(
       (wrapper.get(".programming-exercise__code").element as HTMLTextAreaElement).value,
-    ).toBe("def double := fun (x : Nat) =>");
+    ).toBe("");
   });
 
-  it("prefills the Lean signature before the assignment and hides the body", () => {
+  it("reveals a commented-out Lean definition when showing the solution", async () => {
     const { wrapper } = mountProgramming({
       ...exercise(),
       programminglanguage: "Lean 4",
-      function: "def double (x : Nat) : Nat := x + x",
+      function: "/-\ndef double (x : Nat) : Nat := x + x\n-/",
       testcases: "example : double 7 = 14 := rfl",
     });
 
+    await wrapper.get('button[title="Show me the solution"]').trigger("click");
     expect(
       (wrapper.get(".programming-exercise__code").element as HTMLTextAreaElement).value,
-    ).toBe("def double (x : Nat) : Nat :=");
+    ).toBe("def double (x : Nat) : Nat := x + x");
   });
 
   it("validates the submitted code and marks the exercise as solved", async () => {
@@ -120,7 +121,7 @@ describe("VueProgramming: coding exercise", () => {
     await wrapper.get('button[title="Show me the solution"]').trigger("click");
     expect(
       (wrapper.get(".programming-exercise__code").element as HTMLTextAreaElement).value,
-    ).toBe("function add(a, b) { return a + b; }");
+    ).toBe("function add(a, b) {\n   return a + b;\n}");
 
     await wrapper.get('button[title="Retry"]').trigger("click");
     expect(

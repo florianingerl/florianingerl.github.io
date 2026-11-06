@@ -142,14 +142,25 @@
               rows="8"
               spellcheck="false"
             ></textarea>
-            <div v-if="isLean" class="form-text">
-              Enter a Lean 4 definition, for example: def double (x : Nat) : Nat := x + x
+            <div class="form-text">
+              Write the complete solution and comment out the part the student must find.
+              The student editor removes comments and their contents; "Show solution" removes
+              only the comment markers.
             </div>
-            <div v-else-if="programmingSignature" class="form-text">
-              Parameters: {{ programmingParameterNames.join(', ') || '(none)' }}
+            <div class="form-text">
+              JavaScript/TypeScript example:
+              <code>function add(a, b) { /* return a + b; */ }</code>
             </div>
-            <div v-else class="form-text text-danger">
-              Add a function declaration, for example: function add(a, b) { return a + b; }
+            <div class="form-text">
+              Lean 4 example:
+              <code>/- def double (x : Nat) : Nat := x + x -/</code>
+            </div>
+            <div
+              v-if="!isLean && programmingSolution.trim() && !programmingSignature"
+              class="form-text"
+            >
+              Hint: JavaScript/TypeScript solutions need a function declaration somewhere so the
+              server can find the function to test. Commenting it out is fine.
             </div>
           </div>
 
@@ -196,11 +207,7 @@ import type {
   Topic,
   TwoPartSentences,
 } from '@/types/quiz'
-import {
-  extractFunctionSignature,
-  extractParameterNames,
-  leanSignatureSkeleton,
-} from '@/utils/programming'
+import { extractFunctionSignature, stripCommentMarkers } from '@/utils/programming'
 
 const props = defineProps<{
   // Name eines Website-Quizzes (z.B. "deutsch") oder - bei einem Buch-Quizz -
@@ -277,16 +284,13 @@ const wordOrderSentence = ref('')
 const programmingLanguage = ref<ProgrammingLanguage>('JavaScript')
 const programmingSolution = ref('')
 const programmingTestcases = ref('')
-const programmingSignature = computed(() =>
-  extractFunctionSignature(programmingSolution.value),
+const revealedSolution = computed(() =>
+  stripCommentMarkers(programmingSolution.value, programmingLanguage.value),
 )
-const programmingParameterNames = computed(() =>
-  extractParameterNames(programmingSolution.value),
+const programmingSignature = computed(() =>
+  extractFunctionSignature(revealedSolution.value),
 )
 const isLean = computed(() => programmingLanguage.value === 'Lean 4')
-const programmingLeanSkeleton = computed(() =>
-  isLean.value ? leanSignatureSkeleton(programmingSolution.value) : '',
-)
 // Zwei leere Zeilen als Minimum, maximal 5 Saelze.
 const sentences = ref<TwoPartSentences[]>([
   { part1: '', part2: '' },
@@ -375,16 +379,7 @@ function save(): void {
   if (exercise.value.type === 'programming') {
     const solution = programmingSolution.value.trim()
     if (!solution) {
-      alert('Please write the function declaration and solution for the programming exercise.')
-      return
-    }
-    if (isLean.value) {
-      if (!programmingLeanSkeleton.value) {
-        alert('Please write a Lean 4 definition, for example: def double (x : Nat) : Nat := x + x')
-        return
-      }
-    } else if (!programmingSignature.value) {
-      alert('Please write the function declaration and solution for the programming exercise.')
+      alert('Please write the complete solution for the programming exercise.')
       return
     }
     const testcases = programmingTestcases.value.trim()
