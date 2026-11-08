@@ -39,15 +39,18 @@ const frageText = computed<string>(() => {
   return props.question.questionOrInstruction ?? "";
 });
 
-const optionen = computed<Option[]>(() => {
+// Die Optionen werden fuer die Anzeige gemischt. Dabei darf die im Exercise
+// gespeicherte Reihenfolge nicht veraendert werden, weil der Editor sie sonst
+// in gemischter Reihenfolge anzeigt und beim Speichern ueberschreibt.
+const optionen = ref<Option[]>([]);
+
+function quellOptionen(): Option[] {
   /*if (props.lg === "en" && props.question.optionsEn)
     return props.question.optionsEn;
   if (props.lg === "fr" && props.question.optionsFr)
-    return props.question.optionsFr;
-  console.log("Optionen");
-  console.log(props.question.options); */
+    return props.question.optionsFr; */
   return props.question.options ?? [];
-});
+}
 
 const beantwortet = computed(
   () => props.question.correctlyAnswered !== undefined,
@@ -86,9 +89,9 @@ function reset(): void {
   normalizeCorrect();
   loesungGesehen.value = false;
   delete props.question.correctlyAnswered;
-  optionen.value.forEach((o) => {
-    o.checked = false;
-  });
+  // Kopien anlegen, damit nur die Anzeige gemischt wird. checked ist ein
+  // reines Laufzeitfeld und gehoert nicht in die gespeicherte Aufgabe.
+  optionen.value = quellOptionen().map((o) => ({ ...o, checked: false }));
   shuffle(optionen.value);
 }
 

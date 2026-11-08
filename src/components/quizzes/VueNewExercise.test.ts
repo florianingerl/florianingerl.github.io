@@ -142,6 +142,80 @@ describe("VueNewExercise: multiple choice anlegen", () => {
     expect(wrapper.emitted("new-exercise-created")).toBeFalsy();
     alertSpy.mockRestore();
   });
+
+  it("waehlt eine neu angelegte Option aus, sodass sie nach oben verschoben werden kann", async () => {
+    const wrapper = await mountForm();
+
+    await wrapper.get("#exercise-type").setValue("multipleChoice");
+
+    const optionsBox = wrapper
+      .findAll("div.mb-3.mt-3")
+      .find((d) => d.text().includes("New option"))!;
+    const optionInput = optionsBox.find('input[type="text"]');
+    const addButton = optionsBox
+      .findAll("button")
+      .find((b) => b.text().trim() === "Add")!;
+
+    for (const option of ["Haus", "Maus"]) {
+      await optionInput.setValue(option);
+      await addButton.trigger("click");
+    }
+
+    const listeneintraege = wrapper.findAll("li.list-group-item");
+    expect(listeneintraege).toHaveLength(2);
+    // Die zuletzt hinzugefuegte Option ist ausgewaehlt.
+    expect(listeneintraege[1].classes()).toContain("active");
+
+    const upButton = wrapper
+      .findAll("button")
+      .find((b) => b.find("i.bi-arrow-up").exists())!;
+    await upButton.trigger("click");
+
+    expect(wrapper.findAll("li.list-group-item")[0].text()).toContain("Maus");
+
+    await wrapper.find("form").trigger("submit");
+
+    const emitted = wrapper.emitted("new-exercise-created");
+    expect(emitted).toBeTruthy();
+    expect((emitted![0][0] as Exercise).options).toEqual([
+      { option: "Maus", correct: true },
+      { option: "Haus", correct: false },
+    ]);
+  });
+});
+
+describe("VueNewExercise: Multiple-Choice-Aufgabe bearbeiten", () => {
+  it("zeigt die Optionen in der Reihenfolge aus der Datenbank", async () => {
+    const vorlage: Exercise = {
+      _id: "mc1",
+      quiz: "english",
+      type: "multipleChoice",
+      questionOrInstruction: "Choose the right word",
+      imageUrl: "",
+      options: [
+        { option: "A", correct: true },
+        { option: "B", correct: false },
+        { option: "C", correct: false },
+      ],
+    };
+    const wrapper = mount(VueNewExercise, {
+      props: {
+        quiz: "english",
+        editMode: true,
+        questionOfQuiz: vorlage,
+      },
+      shallow: true,
+      global: { renderStubDefaultSlot: true },
+    });
+    await flushPromises();
+
+    const texte = wrapper
+      .findAll("li.list-group-item")
+      .map((li) => li.text());
+    expect(texte[0]).toContain("A");
+    expect(texte[1]).toContain("B");
+    expect(texte[2]).toContain("C");
+  });
 });
 
 describe("VueNewExercise: programming exercise", () => {

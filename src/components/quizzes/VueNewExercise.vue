@@ -351,6 +351,10 @@ function moveDown(): void {
 function addOption(): void {
   if (!newOption.value) return
   allOptions.value.push(newOption.value)
+  // Die neue Option wird angehaengt und gleich ausgewaehlt, damit sie mit den
+  // Pfeil-Knoepfen nach oben (auf die Position der richtigen Antwort) bewegt
+  // werden kann.
+  selectedIndex.value = allOptions.value.length - 1
   newOption.value = ''
 }
 

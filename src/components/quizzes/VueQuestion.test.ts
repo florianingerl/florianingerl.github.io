@@ -1,6 +1,6 @@
 import { mount } from "@vue/test-utils";
 import { nextTick, reactive } from "vue";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import type { Exercise } from "@/types/quiz";
 import VueQuestion from "./VueQuestion.vue";
 
@@ -92,6 +92,21 @@ describe("VueQuestion: multiple choice Validierung", () => {
     expect(ex.correctlyAnswered).toBe(false);
     expect(box!.element.closest("div")!.classList.contains("notcorrect")).toBe(true);
     expect(box!.element.closest("div")!.classList.contains("correct")).toBe(false);
+  });
+});
+
+describe("VueQuestion: gespeicherte Reihenfolge", () => {
+  it("aendert die Reihenfolge der Optionen in der Aufgabe nicht", async () => {
+    // Mit Math.random = 0 wird deterministisch gemischt. Ohne die Kopie in
+    // VueQuestion wuerde die gespeicherte Reihenfolge dadurch veraendert.
+    const randomSpy = vi.spyOn(Math, "random").mockReturnValue(0);
+    const ex = reactive<Exercise>(exercise());
+
+    mount(VueQuestion, { props: { question: ex, lg: "en" } });
+    await nextTick();
+
+    expect(ex.options!.map((o) => o.option)).toEqual(["A", "B", "C"]);
+    randomSpy.mockRestore();
   });
 });
 
