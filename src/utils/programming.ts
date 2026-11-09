@@ -192,7 +192,13 @@ export function extractParameterNames(code: string): string[] {
     .filter((name) => name !== "");
 }
 
-type CommentLanguage = "JavaScript" | "TypeScript" | "Lean 4" | "Python" | "Java";
+type CommentLanguage =
+  | "JavaScript"
+  | "TypeScript"
+  | "Lean 4"
+  | "Python"
+  | "Java"
+  | "Racket";
 
 function isLean(language: CommentLanguage): boolean {
   return language === "Lean 4";
@@ -206,8 +212,12 @@ function isJava(language: CommentLanguage): boolean {
   return language === "Java";
 }
 
+function isRacket(language: CommentLanguage): boolean {
+  return language === "Racket";
+}
+
 function isStringQuote(char: string, language: CommentLanguage): boolean {
-  if (isLean(language)) return char === '"';
+  if (isLean(language) || isRacket(language)) return char === '"';
   if (isPython(language)) return char === '"' || char === "'";
   return char === '"' || char === "'" || char === "`";
 }
@@ -243,6 +253,7 @@ export function stripCommentsAndContents(
 ): string {
   const lean = isLean(language);
   const python = isPython(language);
+  const racket = isRacket(language);
   let result = "";
   let i = 0;
 
@@ -262,6 +273,35 @@ export function stripCommentsAndContents(
       while (i < code.length && code[i] !== "\n") i++;
       if (i < code.length) {
         result += "\n";
+        i++;
+      }
+      continue;
+    }
+    if (racket && char === ";") {
+      i++;
+      while (i < code.length && code[i] !== "\n") i++;
+      if (i < code.length) {
+        result += "\n";
+        i++;
+      }
+      continue;
+    }
+    if (racket && char === "#" && next === "|") {
+      i += 2;
+      let depth = 1;
+      while (i < code.length) {
+        if (code[i] === "#" && code[i + 1] === "|") {
+          i += 2;
+          depth++;
+          continue;
+        }
+        if (code[i] === "|" && code[i + 1] === "#") {
+          i += 2;
+          depth--;
+          if (depth === 0) break;
+          continue;
+        }
+        if (code[i] === "\n") result += "\n";
         i++;
       }
       continue;
@@ -330,6 +370,7 @@ export function stripCommentMarkers(
 ): string {
   const lean = isLean(language);
   const python = isPython(language);
+  const racket = isRacket(language);
   let result = "";
   let i = 0;
 
@@ -350,6 +391,35 @@ export function stripCommentMarkers(
         result += code[i];
         i++;
         if (code[i - 1] === "\n") break;
+      }
+      continue;
+    }
+    if (racket && char === ";") {
+      i++;
+      while (i < code.length) {
+        result += code[i];
+        i++;
+        if (code[i - 1] === "\n") break;
+      }
+      continue;
+    }
+    if (racket && char === "#" && next === "|") {
+      i += 2;
+      let depth = 1;
+      while (i < code.length) {
+        if (code[i] === "#" && code[i + 1] === "|") {
+          i += 2;
+          depth++;
+          continue;
+        }
+        if (code[i] === "|" && code[i + 1] === "#") {
+          i += 2;
+          depth--;
+          if (depth === 0) break;
+          continue;
+        }
+        result += code[i];
+        i++;
       }
       continue;
     }

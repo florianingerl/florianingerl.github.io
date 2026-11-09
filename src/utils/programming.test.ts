@@ -216,4 +216,28 @@ describe("programming utils: comments", () => {
       'String text = """\n// not a comment\n""";\n real',
     );
   });
+
+  it("removes Racket comments and their contents", () => {
+    const code = `(define (double x)
+  ; (* 2 x)
+  #| return x + x |#
+)`;
+
+    expect(stripCommentsAndContents(code, "Racket")).toBe(
+      "(define (double x)\n  \n  \n)",
+    );
+    expect(stripCommentMarkers(code, "Racket")).toBe(
+      "(define (double x)\n   (* 2 x)\n   return x + x \n)",
+    );
+  });
+
+  it("does not treat ; inside Racket strings as a comment", () => {
+    const code = '(define text "; not a comment")\n; real';
+    expect(stripCommentsAndContents(code, "Racket")).toBe(
+      '(define text "; not a comment")\n',
+    );
+    expect(stripCommentMarkers(code, "Racket")).toBe(
+      '(define text "; not a comment")\n real',
+    );
+  });
 });

@@ -28,7 +28,8 @@ export type ProgrammingLanguage =
   | "TypeScript"
   | "Lean 4"
   | "Python"
-  | "Java";
+  | "Java"
+  | "Racket";
 
 // 1.1) Test à trous, 1.2) Test avec des options différents, 1.3) Test avec les mêmes options
 export type ExportTestType =

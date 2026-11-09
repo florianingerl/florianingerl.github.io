@@ -316,6 +316,29 @@ describe("VueNewExercise: programming exercise", () => {
     expect(ex.testcases).toBe("add(2, 3) == 5 && add(-1, 1) == 0");
   });
 
+  it("saves a Racket function and its test expression", async () => {
+    const wrapper = await mountForm();
+
+    await wrapper.get("#exercise-type").setValue("programming");
+    await wrapper.get("#programming-language").setValue("Racket");
+    await wrapper
+      .get("#programming-solution")
+      .setValue("(define (double x)\n  ; (* 2 x)\n)");
+    await wrapper
+      .get("#programming-testcases")
+      .setValue("(and (= (double 7) 14) (= (double 0) 0))");
+
+    await wrapper.find("form").trigger("submit");
+
+    const emitted = wrapper.emitted("new-exercise-created");
+    expect(emitted).toBeTruthy();
+    const ex = emitted![0][0] as Exercise;
+    expect(ex.type).toBe("programming");
+    expect(ex.programminglanguage).toBe("Racket");
+    expect(ex.function).toBe("(define (double x)\n  ; (* 2 x)\n)");
+    expect(ex.testcases).toBe("(and (= (double 7) 14) (= (double 0) 0))");
+  });
+
   it("saves a commented-out TypeScript solution", async () => {
     const wrapper = await mountForm();
 
@@ -348,6 +371,7 @@ describe("VueNewExercise: programming exercise", () => {
     expect(wrapper.text()).toContain("Lean 4 example:");
     expect(wrapper.text()).toContain("Python example:");
     expect(wrapper.text()).toContain("Java example");
+    expect(wrapper.text()).toContain("Racket example:");
     expect(wrapper.text()).toContain("add(2, 3) == 5 and add(-1, 1) == 0");
   });
 
@@ -359,6 +383,20 @@ describe("VueNewExercise: programming exercise", () => {
     await wrapper
       .get("#programming-solution")
       .setValue("static int add(int a, int b) {\n  // return a + b;\n}");
+
+    expect(wrapper.text()).not.toContain(
+      "Hint: JavaScript/TypeScript solutions need a function declaration",
+    );
+  });
+
+  it("does not show the JavaScript function hint for Racket", async () => {
+    const wrapper = await mountForm();
+
+    await wrapper.get("#exercise-type").setValue("programming");
+    await wrapper.get("#programming-language").setValue("Racket");
+    await wrapper
+      .get("#programming-solution")
+      .setValue("(define (double x)\n  ; (* 2 x)\n)");
 
     expect(wrapper.text()).not.toContain(
       "Hint: JavaScript/TypeScript solutions need a function declaration",

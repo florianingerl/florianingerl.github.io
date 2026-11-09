@@ -45,6 +45,7 @@
           <option value="Lean 4">Lean 4</option>
           <option value="Python">Python</option>
           <option value="Java">Java</option>
+          <option value="Racket">Racket</option>
         </select>
       </div>
     </div>
@@ -165,8 +166,12 @@
               Java example (the server wraps it in a Main class):
               <code>static int add(int a, int b) {<br />  // return a + b;<br />}</code>
             </div>
+            <div class="form-text">
+              Racket example:
+              <code>(define (double x)<br />  ; (* 2 x)<br />)</code>
+            </div>
             <div
-              v-if="!isLean && !isPython && !isJava && programmingSolution.trim() && !programmingSignature"
+              v-if="!isLean && !isPython && !isJava && !isRacket && programmingSolution.trim() && !programmingSignature"
               class="form-text"
             >
               Hint: JavaScript/TypeScript solutions need a function declaration somewhere so the
@@ -188,7 +193,9 @@
                   ? 'add(2, 3) == 5 and add(-1, 1) == 0'
                   : isJava
                     ? 'add(2, 3) == 5 && add(-1, 1) == 0'
-                    : 'max([7,9,4]) == 9 && max([3,2,1]) == 3'"
+                    : isRacket
+                      ? '(and (= (double 7) 14) (= (double 0) 0))'
+                      : 'max([7,9,4]) == 9 && max([3,2,1]) == 3'"
             ></textarea>
             <div class="form-text">
               {{ isLean
@@ -197,7 +204,9 @@
                   ? 'Enter a Python boolean expression that must evaluate to true, for example: add(2, 3) == 5 and add(-1, 1) == 0'
                   : isJava
                     ? 'Enter a Java boolean expression that must evaluate to true, for example: add(2, 3) == 5 && add(-1, 1) == 0'
-                    : 'Enter a boolean expression that must evaluate to true.' }}
+                    : isRacket
+                      ? 'Enter a Racket boolean expression that must evaluate to true, for example: (and (= (double 7) 14) (= (double 0) 0))'
+                      : 'Enter a boolean expression that must evaluate to true.' }}
             </div>
           </div>
         </div>
@@ -313,6 +322,7 @@ const programmingSignature = computed(() =>
 const isLean = computed(() => programmingLanguage.value === 'Lean 4')
 const isPython = computed(() => programmingLanguage.value === 'Python')
 const isJava = computed(() => programmingLanguage.value === 'Java')
+const isRacket = computed(() => programmingLanguage.value === 'Racket')
 // Zwei leere Zeilen als Minimum, maximal 5 Saelze.
 const sentences = ref<TwoPartSentences[]>([
   { part1: '', part2: '' },

@@ -134,6 +134,34 @@ describe("VueProgramming: coding exercise", () => {
     ).toBe("static int add(int a, int b) {\n   return a + b;\n}");
   });
 
+  it("prefills a Racket function skeleton", () => {
+    const { wrapper } = mountProgramming({
+      ...exercise(),
+      programminglanguage: "Racket",
+      function: "(define (double x)\n  ; (* 2 x)\n)",
+      testcases: "(and (= (double 7) 14) (= (double 0) 0))",
+    });
+
+    expect(wrapper.text()).toContain("(and (= (double 7) 14) (= (double 0) 0))");
+    expect(
+      (wrapper.get(".programming-exercise__code").element as HTMLTextAreaElement).value,
+    ).toBe("(define (double x)\n  \n)");
+  });
+
+  it("reveals a commented-out Racket solution", async () => {
+    const { wrapper } = mountProgramming({
+      ...exercise(),
+      programminglanguage: "Racket",
+      function: "(define (double x)\n  ; (* 2 x)\n)",
+      testcases: "(and (= (double 7) 14) (= (double 0) 0))",
+    });
+
+    await wrapper.get('button[title="Show me the solution"]').trigger("click");
+    expect(
+      (wrapper.get(".programming-exercise__code").element as HTMLTextAreaElement).value,
+    ).toBe("(define (double x)\n   (* 2 x)\n)");
+  });
+
   it("validates the submitted code and marks the exercise as solved", async () => {
     const { sentCode } = validationHandler({
       passed: true,
