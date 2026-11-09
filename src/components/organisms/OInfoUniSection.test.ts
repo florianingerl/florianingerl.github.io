@@ -10,23 +10,17 @@ function mountSection() {
 	});
 }
 
-// In der Informatik-Sektion der Uni ersetzen zwei Quizze die beiden Bilder:
-// oben das Informatik-Quiz, unten das Programmierung-Quiz. Die Texte bleiben
-// erhalten.
+// In der Informatik-Sektion der Uni ersetzt das Informatik-Quiz das Bild.
+// Die Programmierung hat eine eigene Sektion (siehe OProgrammierungSection).
 describe("OInfoUniSection", () => {
-	it("ersetzt beide Bilder durch die beiden Quizze", () => {
+	it("zeigt an der Stelle des Bildes das Informatik-Quiz", () => {
 		const wrapper = mountSection();
 
-		// Kein Bild mehr: beide Bilder sind durch Quizze ersetzt.
-		const bilder = wrapper
-			.findAll("img")
-			.map((img) => img.attributes("src"));
-		expect(bilder).toEqual([]);
+		// Kein Bild mehr: es ist durch das Quiz ersetzt.
+		expect(wrapper.find("img").exists()).toBe(false);
 
-		// Oben das Informatik-Quiz, unten das Programmierung-Quiz.
 		const quiz = wrapper.findAllComponents(OQuiz);
-		expect(quiz).toHaveLength(2);
+		expect(quiz).toHaveLength(1);
 		expect(quiz[0].props("quiz")).toBe("informatics");
-		expect(quiz[1].props("quiz")).toBe("programming");
 	});
 });

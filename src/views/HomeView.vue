@@ -2,8 +2,9 @@
 import OHeroSection from "@/components/organisms/OHeroSection.vue";
 import ONachhilfeangebotSection from "@/components/organisms/ONachhilfeangebotSection.vue";
 import OMatheUniSection from "@/components/organisms/OMatheUniSection.vue";
-import OInfoUniSection from "@/components/organisms/OInfoUniSection.vue";
 import OPhysikUniSection from "@/components/organisms/OPhysikUniSection.vue";
+import OInfoUniSection from "@/components/organisms/OInfoUniSection.vue";
+import OProgrammierungSection from "@/components/organisms/OProgrammierungSection.vue";
 import OIngenieurwesenSection from "@/components/organisms/OIngenieurwesenSection.vue";
 import OChemieSection from "@/components/organisms/OChemieSection.vue";
 import OMatheSchuleSection from "@/components/organisms/OMatheSchuleSection.vue";
@@ -42,8 +43,9 @@ import OContactSection from "@/components/organisms/OContactSection.vue";
 	<main id="main">
 		<ONachhilfeangebotSection />
 		<OMatheUniSection />
-		<OInfoUniSection />
 		<OPhysikUniSection />
+		<OInfoUniSection />
+		<OProgrammierungSection />
 		<OIngenieurwesenSection />
 		<OChemieSection />
 		<OMatheSchuleSection />

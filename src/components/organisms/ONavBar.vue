@@ -24,8 +24,9 @@ const entries: NavEntry[] = [
 		href: "/#matheuni",
 		items: [
 			{ key: "uniMath", href: "/#matheuni" },
-			{ key: "uniInformatics", href: "/#infouni" },
 			{ key: "uniPhysics", href: "/#physikuni" },
+			{ key: "uniInformatics", href: "/#infouni" },
+			{ key: "uniProgramming", href: "/#programmierung" },
 			{ key: "uniEngineering", href: "/#ingenieurwesen" },
 			{ key: "uniChemistry", href: "/#chemie" },
 		],

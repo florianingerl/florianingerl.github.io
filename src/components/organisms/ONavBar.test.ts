@@ -27,6 +27,23 @@ describe("ONavBar", () => {
 		expect(wrapper.find('a[href="/#matheuni"]').exists()).toBe(true);
 	});
 
+	it("ordnet die Uni-Faecher in der gewuenschten Reihenfolge an", () => {
+		const wrapper = mountNav();
+
+		const hrefs = wrapper
+			.findAll("#navbar > ul > li:first-child > ul > li > a")
+			.map((a) => a.attributes("href"));
+
+		expect(hrefs).toEqual([
+			"/#matheuni",
+			"/#physikuni",
+			"/#infouni",
+			"/#programmierung",
+			"/#ingenieurwesen",
+			"/#chemie",
+		]);
+	});
+
 	it("beschriftet den Whiteboard-Menuepunkt mit 'Whiteboard'", () => {
 		const wrapper = mountNav();
 
