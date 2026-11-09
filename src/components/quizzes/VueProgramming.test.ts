@@ -106,6 +106,34 @@ describe("VueProgramming: coding exercise", () => {
     ).toBe("def add(a, b):\n     return a + b");
   });
 
+  it("prefills a Java method skeleton", () => {
+    const { wrapper } = mountProgramming({
+      ...exercise(),
+      programminglanguage: "Java",
+      function: "static int add(int a, int b) {\n  // return a + b;\n}",
+      testcases: "add(2, 3) == 5 && add(-1, 1) == 0",
+    });
+
+    expect(wrapper.text()).toContain("add(2, 3) == 5 && add(-1, 1) == 0");
+    expect(
+      (wrapper.get(".programming-exercise__code").element as HTMLTextAreaElement).value,
+    ).toBe("static int add(int a, int b) {\n  \n}");
+  });
+
+  it("reveals a commented-out Java solution", async () => {
+    const { wrapper } = mountProgramming({
+      ...exercise(),
+      programminglanguage: "Java",
+      function: "static int add(int a, int b) {\n  // return a + b;\n}",
+      testcases: "add(2, 3) == 5 && add(-1, 1) == 0",
+    });
+
+    await wrapper.get('button[title="Show me the solution"]').trigger("click");
+    expect(
+      (wrapper.get(".programming-exercise__code").element as HTMLTextAreaElement).value,
+    ).toBe("static int add(int a, int b) {\n   return a + b;\n}");
+  });
+
   it("validates the submitted code and marks the exercise as solved", async () => {
     const { sentCode } = validationHandler({
       passed: true,

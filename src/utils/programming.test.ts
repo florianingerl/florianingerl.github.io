@@ -187,4 +187,33 @@ describe("programming utils: comments", () => {
       "value = '# not a comment' ",
     );
   });
+
+  it("removes Java comments and their contents", () => {
+    const code = `static int add(int a, int b) {
+  // return a + b;
+  /* return a - b; */
+}`;
+
+    expect(stripCommentsAndContents(code, "Java")).toBe(`static int add(int a, int b) {
+  
+  
+}`);
+    expect(programmingSkeleton(code, "Java")).toBe(
+      "static int add(int a, int b) {\n  \n  \n}",
+    );
+    expect(stripCommentMarkers(code, "Java")).toBe(`static int add(int a, int b) {
+   return a + b;
+   return a - b; 
+}`);
+  });
+
+  it("does not treat comment markers inside Java text blocks as comments", () => {
+    const code = 'String text = """\n// not a comment\n""";\n// real';
+    expect(stripCommentsAndContents(code, "Java")).toBe(
+      'String text = """\n// not a comment\n""";\n',
+    );
+    expect(stripCommentMarkers(code, "Java")).toBe(
+      'String text = """\n// not a comment\n""";\n real',
+    );
+  });
 });

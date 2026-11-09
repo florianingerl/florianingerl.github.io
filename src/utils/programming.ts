@@ -192,7 +192,7 @@ export function extractParameterNames(code: string): string[] {
     .filter((name) => name !== "");
 }
 
-type CommentLanguage = "JavaScript" | "TypeScript" | "Lean 4" | "Python";
+type CommentLanguage = "JavaScript" | "TypeScript" | "Lean 4" | "Python" | "Java";
 
 function isLean(language: CommentLanguage): boolean {
   return language === "Lean 4";
@@ -200,6 +200,10 @@ function isLean(language: CommentLanguage): boolean {
 
 function isPython(language: CommentLanguage): boolean {
   return language === "Python";
+}
+
+function isJava(language: CommentLanguage): boolean {
+  return language === "Java";
 }
 
 function isStringQuote(char: string, language: CommentLanguage): boolean {
@@ -211,7 +215,9 @@ function isStringQuote(char: string, language: CommentLanguage): boolean {
 function stringEnd(code: string, start: number, language: CommentLanguage): number {
   const quote = code[start];
   const delimiter =
-    isPython(language) && code[start + 1] === quote && code[start + 2] === quote
+    (isPython(language) || isJava(language)) &&
+    code[start + 1] === quote &&
+    code[start + 2] === quote
       ? quote.repeat(3)
       : quote;
   let i = start + delimiter.length;

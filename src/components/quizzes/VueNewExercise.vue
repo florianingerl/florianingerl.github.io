@@ -44,6 +44,7 @@
           <option value="TypeScript">TypeScript</option>
           <option value="Lean 4">Lean 4</option>
           <option value="Python">Python</option>
+          <option value="Java">Java</option>
         </select>
       </div>
     </div>
@@ -160,8 +161,12 @@
               Python example:
               <code>def add(a, b):<br />    # return a + b</code>
             </div>
+            <div class="form-text">
+              Java example (the server wraps it in a Main class):
+              <code>static int add(int a, int b) {<br />  // return a + b;<br />}</code>
+            </div>
             <div
-              v-if="!isLean && !isPython && programmingSolution.trim() && !programmingSignature"
+              v-if="!isLean && !isPython && !isJava && programmingSolution.trim() && !programmingSignature"
               class="form-text"
             >
               Hint: JavaScript/TypeScript solutions need a function declaration somewhere so the
@@ -181,14 +186,18 @@
                 ? 'example : double 7 = 14 := rfl'
                 : isPython
                   ? 'add(2, 3) == 5 and add(-1, 1) == 0'
-                  : 'max([7,9,4]) == 9 && max([3,2,1]) == 3'"
+                  : isJava
+                    ? 'add(2, 3) == 5 && add(-1, 1) == 0'
+                    : 'max([7,9,4]) == 9 && max([3,2,1]) == 3'"
             ></textarea>
             <div class="form-text">
               {{ isLean
                 ? 'Enter Lean 4 test declarations, for example: example : double 7 = 14 := rfl'
                 : isPython
                   ? 'Enter a Python boolean expression that must evaluate to true, for example: add(2, 3) == 5 and add(-1, 1) == 0'
-                  : 'Enter a boolean expression that must evaluate to true.' }}
+                  : isJava
+                    ? 'Enter a Java boolean expression that must evaluate to true, for example: add(2, 3) == 5 && add(-1, 1) == 0'
+                    : 'Enter a boolean expression that must evaluate to true.' }}
             </div>
           </div>
         </div>
@@ -303,6 +312,7 @@ const programmingSignature = computed(() =>
 )
 const isLean = computed(() => programmingLanguage.value === 'Lean 4')
 const isPython = computed(() => programmingLanguage.value === 'Python')
+const isJava = computed(() => programmingLanguage.value === 'Java')
 // Zwei leere Zeilen als Minimum, maximal 5 Saelze.
 const sentences = ref<TwoPartSentences[]>([
   { part1: '', part2: '' },
