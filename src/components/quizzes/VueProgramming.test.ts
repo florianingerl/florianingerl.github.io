@@ -162,6 +162,36 @@ describe("VueProgramming: coding exercise", () => {
     ).toBe("(define (double x)\n   (* 2 x)\n)");
   });
 
+  it("prefills a Prolog predicate skeleton", () => {
+    const { wrapper } = mountProgramming({
+      ...exercise(),
+      programminglanguage: "Prolog",
+      function: "can_unify(X, Y) :-\n    % X = Y.\n",
+      testcases: "can_unify(foo(A, x), foo(a, x)), \\+ can_unify(circle, square)",
+    });
+
+    expect(wrapper.text()).toContain(
+      "can_unify(foo(A, x), foo(a, x)), \\+ can_unify(circle, square)",
+    );
+    expect(
+      (wrapper.get(".programming-exercise__code").element as HTMLTextAreaElement).value,
+    ).toBe("can_unify(X, Y) :-");
+  });
+
+  it("reveals a commented-out Prolog solution", async () => {
+    const { wrapper } = mountProgramming({
+      ...exercise(),
+      programminglanguage: "Prolog",
+      function: "can_unify(X, Y) :-\n    % X = Y.\n",
+      testcases: "can_unify(foo(A, x), foo(a, x)), \\+ can_unify(circle, square)",
+    });
+
+    await wrapper.get('button[title="Show me the solution"]').trigger("click");
+    expect(
+      (wrapper.get(".programming-exercise__code").element as HTMLTextAreaElement).value,
+    ).toBe("can_unify(X, Y) :-\n     X = Y.");
+  });
+
   it("validates the submitted code and marks the exercise as solved", async () => {
     const { sentCode } = validationHandler({
       passed: true,

@@ -240,4 +240,35 @@ describe("programming utils: comments", () => {
       '(define text "; not a comment")\n real',
     );
   });
+
+  it("removes Prolog comments and their contents", () => {
+    const code = `can_unify(X, Y) :-
+  % X = Y.
+  /* X \\= Y. */
+`;
+
+    expect(stripCommentsAndContents(code, "Prolog")).toBe(
+      "can_unify(X, Y) :-\n  \n  \n",
+    );
+    expect(programmingSkeleton(code, "Prolog")).toBe("can_unify(X, Y) :-");
+    expect(stripCommentMarkers(code, "Prolog")).toBe(
+      "can_unify(X, Y) :-\n   X = Y.\n   X \\= Y. \n",
+    );
+  });
+
+  it("does not treat % inside Prolog strings as a comment", () => {
+    const code = 'write("100% done")\n% real';
+    expect(stripCommentsAndContents(code, "Prolog")).toBe(
+      'write("100% done")\n',
+    );
+    expect(stripCommentMarkers(code, "Prolog")).toBe(
+      'write("100% done")\n real',
+    );
+  });
+
+  it("does not treat // in Prolog code as a comment", () => {
+    const code = "X is 7 // 2.";
+    expect(stripCommentsAndContents(code, "Prolog")).toBe("X is 7 // 2.");
+    expect(stripCommentMarkers(code, "Prolog")).toBe("X is 7 // 2.");
+  });
 });

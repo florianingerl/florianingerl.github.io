@@ -198,7 +198,8 @@ type CommentLanguage =
   | "Lean 4"
   | "Python"
   | "Java"
-  | "Racket";
+  | "Racket"
+  | "Prolog";
 
 function isLean(language: CommentLanguage): boolean {
   return language === "Lean 4";
@@ -216,8 +217,12 @@ function isRacket(language: CommentLanguage): boolean {
   return language === "Racket";
 }
 
+function isProlog(language: CommentLanguage): boolean {
+  return language === "Prolog";
+}
+
 function isStringQuote(char: string, language: CommentLanguage): boolean {
-  if (isLean(language) || isRacket(language)) return char === '"';
+  if (isLean(language) || isRacket(language) || isProlog(language)) return char === '"';
   if (isPython(language)) return char === '"' || char === "'";
   return char === '"' || char === "'" || char === "`";
 }
@@ -254,6 +259,7 @@ export function stripCommentsAndContents(
   const lean = isLean(language);
   const python = isPython(language);
   const racket = isRacket(language);
+  const prolog = isProlog(language);
   let result = "";
   let i = 0;
 
@@ -277,7 +283,7 @@ export function stripCommentsAndContents(
       }
       continue;
     }
-    if (racket && char === ";") {
+    if ((racket && char === ";") || (prolog && char === "%")) {
       i++;
       while (i < code.length && code[i] !== "\n") i++;
       if (i < code.length) {
@@ -306,7 +312,7 @@ export function stripCommentsAndContents(
       }
       continue;
     }
-    if (!lean && char === "/" && next === "/") {
+    if (!lean && !prolog && char === "/" && next === "/") {
       i += 2;
       while (i < code.length && code[i] !== "\n") i++;
       if (i < code.length) {
@@ -371,6 +377,7 @@ export function stripCommentMarkers(
   const lean = isLean(language);
   const python = isPython(language);
   const racket = isRacket(language);
+  const prolog = isProlog(language);
   let result = "";
   let i = 0;
 
@@ -394,7 +401,7 @@ export function stripCommentMarkers(
       }
       continue;
     }
-    if (racket && char === ";") {
+    if ((racket && char === ";") || (prolog && char === "%")) {
       i++;
       while (i < code.length) {
         result += code[i];
@@ -423,7 +430,7 @@ export function stripCommentMarkers(
       }
       continue;
     }
-    if (!lean && char === "/" && next === "/") {
+    if (!lean && !prolog && char === "/" && next === "/") {
       i += 2;
       while (i < code.length) {
         result += code[i];

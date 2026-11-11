@@ -46,6 +46,7 @@
           <option value="Python">Python</option>
           <option value="Java">Java</option>
           <option value="Racket">Racket</option>
+          <option value="Prolog">Prolog</option>
         </select>
       </div>
     </div>
@@ -170,8 +171,12 @@
               Racket example:
               <code>(define (double x)<br />  ; (* 2 x)<br />)</code>
             </div>
+            <div class="form-text">
+              Prolog example:
+              <code>can_unify(X, Y) :-<br />  % X = Y.</code>
+            </div>
             <div
-              v-if="!isLean && !isPython && !isJava && !isRacket && programmingSolution.trim() && !programmingSignature"
+              v-if="!isLean && !isPython && !isJava && !isRacket && !isProlog && programmingSolution.trim() && !programmingSignature"
               class="form-text"
             >
               Hint: JavaScript/TypeScript solutions need a function declaration somewhere so the
@@ -195,7 +200,9 @@
                     ? 'add(2, 3) == 5 && add(-1, 1) == 0'
                     : isRacket
                       ? '(and (= (double 7) 14) (= (double 0) 0))'
-                      : 'max([7,9,4]) == 9 && max([3,2,1]) == 3'"
+                      : isProlog
+                        ? 'can_unify(foo(a, X), foo(a, x)), \\+ can_unify(circle, square)'
+                        : 'max([7,9,4]) == 9 && max([3,2,1]) == 3'"
             ></textarea>
             <div class="form-text">
               {{ isLean
@@ -206,7 +213,9 @@
                     ? 'Enter a Java boolean expression that must evaluate to true, for example: add(2, 3) == 5 && add(-1, 1) == 0'
                     : isRacket
                       ? 'Enter a Racket boolean expression that must evaluate to true, for example: (and (= (double 7) 14) (= (double 0) 0))'
-                      : 'Enter a boolean expression that must evaluate to true.' }}
+                      : isProlog
+                        ? 'Enter a Prolog goal that must succeed, for example: can_unify(foo(a, X), foo(a, x)), \\+ can_unify(circle, square)'
+                        : 'Enter a boolean expression that must evaluate to true.' }}
             </div>
           </div>
         </div>
@@ -323,6 +332,7 @@ const isLean = computed(() => programmingLanguage.value === 'Lean 4')
 const isPython = computed(() => programmingLanguage.value === 'Python')
 const isJava = computed(() => programmingLanguage.value === 'Java')
 const isRacket = computed(() => programmingLanguage.value === 'Racket')
+const isProlog = computed(() => programmingLanguage.value === 'Prolog')
 // Zwei leere Zeilen als Minimum, maximal 5 Saelze.
 const sentences = ref<TwoPartSentences[]>([
   { part1: '', part2: '' },
