@@ -1,5 +1,6 @@
 import { reactive } from "vue";
 import { defineStore } from "pinia";
+import type { ExerciseType } from "@/types/quiz";
 
 // Filterkriterien fuer die Anzeige der Aufgaben eines Quizzes. Die Filterung
 // selbst erfolgt im Frontend (siehe displayedQuestions in OQuiz.vue).
@@ -11,6 +12,8 @@ export interface QuizFilter {
   topicId: string;
   // Schulname (z.B. "LMU München") oder "" fuer alle Schulen
   school: string;
+  // Aufgabentyp oder "" fuer alle Typen
+  type: ExerciseType | "";
   // _id des Benutzers, der die Aufgabe erstellt hat, oder "" fuer alle
   creator: string;
   // Nach diesem Wort wird in der Aufgabe gesucht, "" bedeutet kein Suchwort
@@ -29,6 +32,7 @@ export const useFilterStore = defineStore("filter", () => {
         scope: "subject",
         topicId: "",
         school: "",
+        type: "",
         creator: "",
         word: "",
         caseSensitive: false,
@@ -42,6 +46,7 @@ export const useFilterStore = defineStore("filter", () => {
     f.scope = "subject";
     f.topicId = "";
     f.school = "";
+    f.type = "";
     f.creator = "";
     f.word = "";
     f.caseSensitive = false;

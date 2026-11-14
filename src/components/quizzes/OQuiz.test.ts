@@ -903,11 +903,107 @@ describe("OQuiz: nach Schule filtern", () => {
   });
 });
 
+describe("OQuiz: nach Aufgabentyp filtern", () => {
+  beforeEach(() => {
+    server.use(
+      http.get(`${API_URL}/api/quiz`, () =>
+        HttpResponse.json([
+          { _id: "q1", website: "web", subject: QUIZ, name: QUIZ },
+        ]),
+      ),
+      http.get(`${API_URL}/api/topic/:quiz`, () => HttpResponse.json([])),
+      http.get(`${API_URL}/api/exercise`, () =>
+        HttpResponse.json<Exercise[]>([
+          {
+            _id: "e1",
+            quiz: "q1",
+            subject: QUIZ,
+            type: "gapText",
+            imageUrl: "",
+            questionOrInstruction: "",
+          },
+          {
+            _id: "e2",
+            quiz: "q1",
+            subject: QUIZ,
+            type: "multipleChoice",
+            imageUrl: "",
+            questionOrInstruction: "",
+          },
+          {
+            _id: "e3",
+            quiz: "q1",
+            subject: QUIZ,
+            type: "multipleChoice",
+            imageUrl: "",
+            questionOrInstruction: "",
+          },
+          {
+            _id: "e4",
+            quiz: "q1",
+            subject: QUIZ,
+            type: "matching",
+            imageUrl: "",
+            questionOrInstruction: "",
+          },
+        ]),
+      ),
+    );
+  });
+
+  async function mountQuiz() {
+    const pinia = createPinia();
+    setActivePinia(pinia);
+    const wrapper = mount(OQuiz, {
+      props: { quiz: QUIZ, lg: "en" },
+      global: {
+        plugins: [pinia],
+        stubs: {
+          ExerciseNavigation: false,
+        },
+      },
+      shallow: true,
+    });
+    await flushPromises();
+    return wrapper;
+  }
+
+  function aktuellAngezeigt(wrapper: ReturnType<typeof mount>) {
+    return wrapper.findComponent(OExercise).props("exercise") as Exercise;
+  }
+
+  it("zeigt nur die Aufgaben des gewaehlten Typs", async () => {
+    const wrapper = await mountQuiz();
+    expect(wrapper.get('input[type="number"]').attributes("max")).toBe("3");
+
+    const filterStore = useFilterStore();
+    filterStore.filterFor("q1").type = "multipleChoice";
+    await flushPromises();
+
+    expect(aktuellAngezeigt(wrapper)).toMatchObject({ _id: "e2" });
+    expect(wrapper.get('input[type="number"]').attributes("max")).toBe("1");
+  });
+
+  it("zeigt wieder alle Aufgaben, wenn der Typ geleert wird", async () => {
+    const wrapper = await mountQuiz();
+    const filterStore = useFilterStore();
+
+    filterStore.filterFor("q1").type = "matching";
+    await flushPromises();
+    expect(wrapper.get('input[type="number"]').attributes("max")).toBe("0");
+
+    filterStore.filterFor("q1").type = "";
+    await flushPromises();
+    expect(wrapper.get('input[type="number"]').attributes("max")).toBe("3");
+  });
+});
+
 // Ein Link wie
-// https://florianingerl.github.io/#englisch?topic=...&school=...
-// soll das Thema und die Schule schon auswaehlen. Die generischen Parameter
-// topic/school gelten nur, wenn der Anker der URL zu diesem Quiz gehoert.
-describe("OQuiz: Deep-Link waehlt Thema und Schule", () => {
+// https://florianingerl.github.io/#englisch?topic=...&school=...&type=...
+// soll das Thema, die Schule und den Aufgabentyp schon auswaehlen. Die
+// generischen Parameter topic/school/type gelten nur, wenn der Anker der URL
+// zu diesem Quiz gehoert.
+describe("OQuiz: Deep-Link waehlt Thema, Schule und Typ", () => {
   const SCHULEN: School[] = [
     { _id: "s1", name: "9.Klasse Gymnasium Bayern" },
   ];
@@ -960,6 +1056,21 @@ describe("OQuiz: Deep-Link waehlt Thema und Schule", () => {
     const filterStore = useFilterStore();
     expect(filterStore.filterFor("q1").topicId).toBe("t-verbes");
     expect(filterStore.filterFor("q1").school).toBe("9.Klasse Gymnasium Bayern");
+    expect(filterStore.filterFor("q1").type).toBe("");
+  });
+
+  it("waehlt den Aufgabentyp aus dem Link aus", async () => {
+    window.location.hash = "#englisch?type=multipleChoice";
+    await mountQuiz();
+
+    expect(useFilterStore().filterFor("q1").type).toBe("multipleChoice");
+  });
+
+  it("ignoriert einen unbekannten Aufgabentyp im Link", async () => {
+    window.location.hash = "#englisch?type=unbekannt";
+    await mountQuiz();
+
+    expect(useFilterStore().filterFor("q1").type).toBe("");
   });
 
   it("ignoriert den Link, wenn der Anker zu einem anderen Quiz gehoert", async () => {
@@ -1056,11 +1167,11 @@ describe("OQuiz: Filterzeile zeigt die Auswahl eines Deep-Links", () => {
   });
 });
 
-// Aendert die Lehrkraft im Quiz Thema oder Schule, wird der passende Link
+// Aendert die Lehrkraft im Quiz Thema, Schule oder Typ, wird der passende Link
 // in die Zwischenablage kopiert und unten rechts ein Hinweis gezeigt. Bleibt
-// beides leer, wird nichts kopiert. Beim Oeffnen einer Seite mit Deep-Link
+// alles leer, wird nichts kopiert. Beim Oeffnen einer Seite mit Deep-Link
 // wird die Zwischenablage nicht angefasst.
-describe("OQuiz: Link wird beim Aendern von Thema/Schule kopiert", () => {
+describe("OQuiz: Link wird beim Aendern von Thema/Schule/Typ kopiert", () => {
   const SCHULEN: School[] = [{ _id: "s1", name: "9.Klasse Gymnasium Bayern" }];
   let writeText: ReturnType<typeof vi.fn>;
 
@@ -1145,6 +1256,19 @@ describe("OQuiz: Link wird beim Aendern von Thema/Schule kopiert", () => {
     expect(wrapper.find(".kopier-hinweis").text()).toContain("9.Klasse");
   });
 
+  it("kopiert den Link mit gewaehltem Aufgabentyp", async () => {
+    const wrapper = await mountQuiz();
+    const filterStore = useFilterStore();
+
+    filterStore.filterFor("q1").type = "multipleChoice";
+    await flushPromises();
+
+    expect(writeText).toHaveBeenLastCalledWith(
+      erwarteterLink("type=multipleChoice")
+    );
+    expect(wrapper.find(".kopier-hinweis").text()).toContain("multipleChoice");
+  });
+
   it("blendet den Hinweis nach 3 Sekunden aus", async () => {
     const wrapper = await mountQuiz();
     const filterStore = useFilterStore();
@@ -1162,7 +1286,7 @@ describe("OQuiz: Link wird beim Aendern von Thema/Schule kopiert", () => {
     expect(wrapper.find(".kopier-hinweis").exists()).toBe(false);
   });
 
-  it("kopiert nichts und zeigt keinen Hinweis, wenn Thema und Schule leer bleiben", async () => {
+  it("kopiert nichts und zeigt keinen Hinweis, wenn Thema, Schule und Typ leer bleiben", async () => {
     const wrapper = await mountQuiz();
     const filterStore = useFilterStore();
 
@@ -1197,11 +1321,12 @@ describe("OQuiz: Link wird beim Aendern von Thema/Schule kopiert", () => {
   });
 });
 
-// Aendert die Lehrkraft Thema oder Schule, wird die Adresse zurueckgeschrieben,
-// damit die Adresszeile immer einen teilbaren Link zeigt. Der Anker wechselt
-// dabei auf das gerade bearbeitete Quiz; die "-Parameter" vor dem "#" (z.B.
-// lang=) bleiben erhalten. Beim Oeffnen mit Deep-Link wird nicht geschrieben.
-describe("OQuiz: Adresse wird beim Aendern von Thema/Schule zurueckgeschrieben", () => {
+// Aendert die Lehrkraft Thema, Schule oder Typ, wird die Adresse
+// zurueckgeschrieben, damit die Adresszeile immer einen teilbaren Link zeigt.
+// Der Anker wechselt dabei auf das gerade bearbeitete Quiz; die "-Parameter"
+// vor dem "#" (z.B. lang=) bleiben erhalten. Beim Oeffnen mit Deep-Link wird
+// nicht geschrieben.
+describe("OQuiz: Adresse wird beim Aendern von Thema/Schule/Typ zurueckgeschrieben", () => {
   const SCHULEN: School[] = [{ _id: "s1", name: "9.Klasse Gymnasium Bayern" }];
 
   beforeEach(() => {
@@ -1254,6 +1379,16 @@ describe("OQuiz: Adresse wird beim Aendern von Thema/Schule zurueckgeschrieben",
     );
   });
 
+  it("schreibt den gewaehlten Aufgabentyp in den Anker der Adresse", async () => {
+    await mountQuiz();
+    const filterStore = useFilterStore();
+
+    filterStore.filterFor("q1").type = "multipleChoice";
+    await flushPromises();
+
+    expect(window.location.hash).toBe("#englisch?type=multipleChoice");
+  });
+
   it("schreibt Thema und Schule gemeinsam, korrekt kodiert", async () => {
     await mountQuiz();
     const filterStore = useFilterStore();
@@ -1268,6 +1403,22 @@ describe("OQuiz: Adresse wird beim Aendern von Thema/Schule zurueckgeschrieben",
     );
   });
 
+  it("schreibt Thema, Schule und Typ gemeinsam in die Adresse", async () => {
+    await mountQuiz();
+    const filterStore = useFilterStore();
+
+    filterStore.filterFor("q1").topicId = "t-verbes";
+    await flushPromises();
+    filterStore.filterFor("q1").school = "9.Klasse Gymnasium Bayern";
+    await flushPromises();
+    filterStore.filterFor("q1").type = "gapText";
+    await flushPromises();
+
+    expect(window.location.hash).toBe(
+      "#englisch?topic=Verbes%20reflechi&school=9.Klasse%20Gymnasium%20Bayern&type=gapText"
+    );
+  });
+
   it("entfernt die Parameter wieder, wenn Thema und Schule geleert werden", async () => {
     await mountQuiz();
     const filterStore = useFilterStore();
@@ -1277,6 +1428,19 @@ describe("OQuiz: Adresse wird beim Aendern von Thema/Schule zurueckgeschrieben",
     filterStore.filterFor("q1").topicId = "";
     await flushPromises();
 
+    expect(window.location.hash).toBe("#englisch");
+  });
+
+  it("entfernt den Typ wieder, wenn 'All types' gewaehlt wird", async () => {
+    await mountQuiz();
+    const filterStore = useFilterStore();
+
+    filterStore.filterFor("q1").type = "gapText";
+    await flushPromises();
+    expect(window.location.hash).toBe("#englisch?type=gapText");
+
+    filterStore.filterFor("q1").type = "";
+    await flushPromises();
     expect(window.location.hash).toBe("#englisch");
   });
 

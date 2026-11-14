@@ -52,6 +52,39 @@ describe("VueFilterDialog: erweiterter Filter", () => {
     expect(useFilterStore().filterFor("french").school).toBe("LMU Muenchen");
   });
 
+  it("listet 'All types' und alle Aufgabentypen", () => {
+    const wrapper = mountDialog();
+
+    expect(wrapper.get("#filter-type").findAll("option").map((o) => o.text())).toEqual([
+      "All types",
+      "Gap text",
+      "Multiple choice",
+      "Matching",
+      "Word order",
+      "Programming",
+    ]);
+  });
+
+  it("schreibt den gewaehlten Aufgabentyp in den Filter des Quiz", async () => {
+    const wrapper = mountDialog();
+
+    await wrapper.get("#filter-type").setValue("multipleChoice");
+
+    expect(useFilterStore().filterFor("french").type).toBe("multipleChoice");
+  });
+
+  it("setzt den Aufgabentyp beim Zuruecksetzen auf 'alle'", async () => {
+    const wrapper = mountDialog();
+    await wrapper.get("#filter-type").setValue("wordOrder");
+
+    const zuruecksetzen = wrapper
+      .findAll("button")
+      .find((b) => b.text().trim() === "Reset filters")!;
+    await zuruecksetzen.trigger("click");
+
+    expect(useFilterStore().filterFor("french").type).toBe("");
+  });
+
   it("meldet 'Close' an den Aufrufer", async () => {
     const wrapper = mountDialog();
 

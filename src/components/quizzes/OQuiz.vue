@@ -214,8 +214,8 @@
       @cancel-clicked="dialog = null"
     />
 
-   <!-- Kurzhinweis unten rechts, wenn das Aendern von Thema oder Schule den
-         Link in die Zwischenablage kopiert hat. -->
+   <!-- Kurzhinweis unten rechts, wenn das Aendern von Thema, Schule oder Typ
+         den Link in die Zwischenablage kopiert hat. -->
     <div v-if="kopierHinweis" class="kopier-hinweis" role="status">
       {{ kopierHinweis }}
     </div>
@@ -268,6 +268,7 @@ import {
   getAllSchoolsWhereTHereisAtLeastOneExerciseForThatSchoolInTheSubject,
 } from "@/utils/school";
 import { findSubtreeIds } from "@/utils/topicTree";
+import { isExerciseType } from "@/utils/exerciseTypes";
 import type { Exercise, Lang, Quiz, QuizName, School, Topic } from "@/types/quiz";
 
 // "quiz" ist der Name eines Website-Quizzes (z.B. "deutsch"). Buch-Quizzes
@@ -600,7 +601,7 @@ watch(
 );
 
 // Frontend-Filterung: Quiz-Umfang ("nur dieses Quiz" oder "ganzes Fach"),
-// Theme, Schule, Ersteller und Suchwort werden hier angewandt.
+// Theme, Schule, Aufgabentyp, Ersteller und Suchwort werden hier angewandt.
 // Bei einer Themenfilter-Auswahl zeigt das Quiz alle Aufgaben des
 // gewaehlten Themas und alle Aufgaben seiner Unterthemen (rekursiv, also bis
 // zur tiefsten Ebene). Die _id des Themas inklusive aller Unterthemen werden
@@ -622,6 +623,7 @@ const displayedQuestions = computed<Exercise[]>(() =>
       if (!id || !gefilterteThemenIds.value.includes(id)) return false;
     }
     if (f.school && schulName(q) !== f.school) return false;
+    if (f.type && q.type !== f.type) return false;
     if (f.creator && q.user !== f.creator) return false;
     if (
       f.word &&
@@ -761,6 +763,7 @@ watch(
     filter.value.scope,
     filter.value.topicId,
     filter.value.school,
+    filter.value.type,
     filter.value.creator,
     filter.value.word,
     filter.value.caseSensitive,
@@ -827,9 +830,10 @@ function normalisiert(s: string): string {
 
 // Ein Link wie
 // "#franzoesisch?topic=verbesreflechi&school=9klasseGymnasiumBayern"
-// springt zum Quiz und waehlt dort schon Thema und Schule aus. Die generischen
-// Parameter topic/school gelten nur, wenn der Anker der URL zu diesem Quiz
-// gehoert (siehe QUIZ_ANKER) - auf der Startseite stehen ja mehrere Quize.
+// springt zum Quiz und waehlt dort schon Thema, Schule und Typ aus. Die
+// generischen Parameter topic/school/type gelten nur, wenn der Anker der URL
+// zu diesem Quiz gehoert (siehe QUIZ_ANKER) - auf der Startseite stehen ja
+// mehrere Quize.
 function deepLinkAnwenden(): void {
   if (!props.quiz) return;
   const fragezeichen = window.location.hash.indexOf("?");
@@ -858,6 +862,9 @@ function deepLinkAnwenden(): void {
     );
     if (gefunden) filter.value.school = gefunden.name;
   }
+
+  const typ = params.get("type");
+  if (isExerciseType(typ)) filter.value.type = typ;
 }
 
 // Kopieren des Links in die Zwischenablage ---------------------------
@@ -880,9 +887,9 @@ onBeforeUnmount(() => {
 });
 
 // Der Link, den die Lehrkraft an die Schueler schicken kann:
-// "https://florianingerl.github.io/#franzoesisch?topic=...&school=...".
+// "https://florianingerl.github.io/#franzoesisch?topic=...&school=...&type=...".
 // Ohne Website-Quiz (z.B. Buch-Quizz) gibt es keinen Anker und damit keinen
-// Link. Ohne Thema und ohne Schule gibt es keinen Link zur Auswahl - dann
+// Link. Ohne Thema, Schule und Typ gibt es keinen Link zur Auswahl - dann
 // wird auch nichts kopiert und kein Hinweis gezeigt.
 function teilbarerLink(): string | undefined {
   if (!props.quiz) return undefined;
@@ -897,6 +904,8 @@ function teilbarerLink(): string | undefined {
   }
   if (filter.value.school)
     teile.push(`school=${encodeURIComponent(filter.value.school)}`);
+  if (filter.value.type)
+    teile.push(`type=${encodeURIComponent(filter.value.type)}`);
   if (teile.length === 0) return undefined;
 
   const grund = `${window.location.origin}${window.location.pathname}#${anker}`;
@@ -904,8 +913,8 @@ function teilbarerLink(): string | undefined {
 }
 
 // Der Anker-Teil der Adresse (ohne Domain/Pfad), passend zum gerade
-// bearbeiteten Quiz: "#franzoesisch?topic=...&school=...". Ist weder Thema
-// noch Schule gewaehlt, bleibt nur "#franzoesisch".
+// bearbeiteten Quiz: "#franzoesisch?topic=...&school=...&type=...". Ist
+// weder Thema noch Schule noch Typ gewaehlt, bleibt nur "#franzoesisch".
 function ankerMitParametern(): string | undefined {
   if (!props.quiz) return undefined;
   const anker = QUIZ_ANKER[props.quiz];
@@ -919,15 +928,17 @@ function ankerMitParametern(): string | undefined {
   }
   if (filter.value.school)
     teile.push(`school=${encodeURIComponent(filter.value.school)}`);
+  if (filter.value.type)
+    teile.push(`type=${encodeURIComponent(filter.value.type)}`);
 
   return teile.length === 0 ? `#${anker}` : `#${anker}?${teile.join("&")}`;
 }
 
-// Schreibt die aktuelle Themen-/Schulwahl in die Adresse zurueck, damit die
-// Adresszeile jederzeit einen teilbaren Link zeigt. Der Anker wechselt dabei
-// auf das gerade bearbeitete Quiz. Die "?-Parameter" vor dem "#" (z.B. lang=)
-// bleiben unangetastet. replaceState statt pushState, damit jeder
-// Auswahlschritt keinen neuen Verlaufseintrag anlegt.
+// Schreibt die aktuelle Themen-, Schul- und Typwahl in die Adresse zurueck,
+// damit die Adresszeile jederzeit einen teilbaren Link zeigt. Der Anker
+// wechselt dabei auf das gerade bearbeitete Quiz. Die "?-Parameter" vor dem
+// "#" (z.B. lang=) bleiben unangetastet. replaceState statt pushState, damit
+// jeder Auswahlschritt keinen neuen Verlaufseintrag anlegt.
 function schreibeAdresseZurueck(): void {
   const anker = ankerMitParametern();
   if (!anker) return;
@@ -993,19 +1004,20 @@ onMounted(async () => {  // Eine auf der letzten Seite begonnene Anmeldung forts
   }
 
   // Ein Link wie "#franzoesisch?topic=verbesreflechi&school=..."
-  // waehlt Thema und Schule schon aus.
+  // waehlt Thema, Schule und Typ schon aus.
   deepLinkAnwenden();
 
   // Erst nach dem Laden und nach dem Deep-Link beginnt das Kopieren: Bei
-  // jeder Aenderung von Thema oder Schule (ausser der Auswahl "alle") geht
-  // der passende Link in die Zwischenablage und der Hinweis erscheint.
+  // jeder Aenderung von Thema, Schule oder Typ (ausser der Auswahl "alle")
+  // geht der passende Link in die Zwischenablage und der Hinweis erscheint.
   // Ausserdem wird die Adresse zurueckgeschrieben, damit sie immer einen
   // teilbaren Link zeigt.
   watch(
-    () => [filter.value.topicId, filter.value.school],
+    () => [filter.value.topicId, filter.value.school, filter.value.type],
     () => {
       schreibeAdresseZurueck();
-      if (!filter.value.topicId && !filter.value.school) return;
+      if (!filter.value.topicId && !filter.value.school && !filter.value.type)
+        return;
       linkAufKopierablage();
     }
   );

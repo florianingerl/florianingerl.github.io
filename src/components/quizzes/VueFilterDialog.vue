@@ -59,6 +59,26 @@
         </div>
 
         <div class="mb-3">
+          <label for="filter-type" class="form-label fw-semibold">
+            Filter for exercise type:
+          </label>
+
+          <select id="filter-type" v-model="filter.type" class="form-select">
+            <option value="">All types</option>
+            <option
+              v-for="option in EXERCISE_TYPE_OPTIONS"
+              :key="option.value"
+              :value="option.value"
+            >
+              {{ option.label }}
+            </option>
+          </select>
+          <div class="form-text">
+            Only the exercises of the chosen type are shown.
+          </div>
+        </div>
+
+        <div class="mb-3">
           <label for="filter-school" class="form-label fw-semibold">
             Filter for school:
           </label>
@@ -152,6 +172,7 @@ import { useAuthStore } from "@/stores/auth";
 import { useFilterStore } from "@/stores/filter";
 import type { School, Topic } from "@/types/quiz";
 import MTopicChooser from "@/components/molecules/MTopicChooser.vue";
+import { EXERCISE_TYPE_OPTIONS } from "@/utils/exerciseTypes";
 
 const props = defineProps<{
   // Quiz-Name (Website-Quiz) oder Sprache/Fach (Buch-Quizz) als Filter-Schluessel.
