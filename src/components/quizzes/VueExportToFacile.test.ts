@@ -116,7 +116,7 @@ describe("VueExportToFacile: Anzahl der exportierten Aufgaben", () => {
     await vi.waitFor(() => expect(body).not.toBe(""));
   }
 
-  it("exportiert typografische Apostrophe als ASCII", async () => {
+  it("uebergibt den Tutorial-Text an den Server", async () => {
     const wrapper = await mountExport({
       ...THEMA,
       tutorial: "<p>It\u2019s usually neutral.</p>",
@@ -124,11 +124,10 @@ describe("VueExportToFacile: Anzahl der exportierten Aufgaben", () => {
 
     await exportiere(wrapper);
 
-    expect(body).toContain("It%27s");
-    expect(body).not.toContain("%E2%80%99");
-    expect(new URLSearchParams(body).get("message_textarea")).toBe(
-      "<p>It's usually neutral.</p>",
-    );
+    const params = JSON.parse(body);
+    expect(params.topicTutorial).toBe("<p>It\u2019s usually neutral.</p>");
+    expect(params.title).toBe("Congiunzioni");
+    expect(params.testType).toBe("optionsDifferents");
   });
 
   it("exportiert mehr als zehn ausgewaehlte Aufgaben vollstaendig", async () => {
@@ -136,15 +135,12 @@ describe("VueExportToFacile: Anzahl der exportierten Aufgaben", () => {
 
     await exportiere(wrapper);
 
-    const params = new URLSearchParams(body);
-    expect(params.get("mychoice")).toBe("12");
-    expect(params.get("q10")).toContain("Frage 10");
-    expect(params.get("q11")).toContain("Frage 11");
-    expect(params.get("q12")).toContain("Frage 12");
+    const params = JSON.parse(body);
+    expect(params.exercises).toHaveLength(12);
     expect(wrapper.text()).toContain("12 Fragen");
   });
 
-  it("fuellt weniger als zehn Aufgaben weiterhin auf zehn auf", async () => {
+  it("uebergibt weniger als zehn Aufgaben an den Server", async () => {
     server.use(
       http.get(`${API_URL}/api/exercise`, () =>
         HttpResponse.json(aufgabenAnzahl(3)),
@@ -154,9 +150,28 @@ describe("VueExportToFacile: Anzahl der exportierten Aufgaben", () => {
 
     await exportiere(wrapper);
 
-    const params = new URLSearchParams(body);
-    expect(params.get("mychoice")).toBe("10");
-    expect(params.get("q10")).toContain("Frage 3");
-    expect(params.get("q11")).toBeNull();
+    const params = JSON.parse(body);
+    expect(params.exercises).toHaveLength(3);
+  });
+
+  it("nimmt Aufgaben mit mehreren Luecken auch bei optionsDifferents", async () => {
+    const mehrfach: Exercise = {
+      ...AUFGABE,
+      _id: "multi1",
+      type: "gapText",
+      gapText: "{Nachdem|Bevor} die Musik spielt, {geht|laeuft} Louise weiter.",
+      options: undefined,
+      questionOrInstruction: "",
+    };
+    server.use(
+      http.get(`${API_URL}/api/exercise`, () => HttpResponse.json([mehrfach])),
+    );
+    const wrapper = await mountExport();
+
+    await exportiere(wrapper);
+
+    const params = JSON.parse(body);
+    expect(params.exercises).toHaveLength(1);
+    expect(params.exercises[0].gapText).toBe(mehrfach.gapText);
   });
 });

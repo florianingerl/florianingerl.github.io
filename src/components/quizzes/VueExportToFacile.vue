@@ -222,13 +222,7 @@ const SEITEN: Partial<Record<QuizName, string>> = {
 // veroeffentlicht wird) auf edit2.php. Darueber ordnet *facile.com den Test der
 // richtigen Seite zu: 0001 anglaisfacile.com, 0002 francaisfacile.com,
 // 9997 allemandfacile.com, 9998 espagnolfacile.com, 9995 italien-facile.com.
-const SEITENNUMMERN: Partial<Record<QuizName, string>> = {
-  english: "0001",
-  french: "0002",
-  deutsch: "9997",
-  espagnol: "9998",
-  italiano: "9995",
-};
+
 
 // Die Nummern der Testarten stehen in choice.php auf *facile.com.
 const typen: { wert: ExportTestType; label: string; seitentyp: string }[] = [
@@ -308,20 +302,10 @@ function luecken(gapText: string): string[][] {
 }
 
 // Eine L├╝cke ohne "|" ist eine Freitext-L├╝cke, sonst eine Auswahll├╝cke.
-function istAuswahlluecke(lueckenDesTextes: string[][]): boolean {
-  return lueckenDesTextes.length > 0 && lueckenDesTextes[0].length > 1;
-}
-
-function passtZurTestart(ex: Exercise, art: ExportTestType): boolean {
-  if (ex.type === "multipleChoice") return art !== "trous";
-
-  const gefunden = luecken(ex.gapText ?? "");
-  if (gefunden.length === 0) return false;
-  // Nur 1.3) nimmt auch Aufgaben mit mehreren L├╝cken.
-  if (gefunden.length > 1) return art === "optionsGleich";
-  // Eine Auswahll├╝cke geh├Ârt zu 1.2) und 1.3), eine Freitextl├╝cke zu 1.1) und 1.3).
-  return art === "optionsGleich" || istAuswahlluecke(gefunden) === (art === "optionsDifferents");
-}
+function passtZurTestart(ex: Exercise, art: ExportTestType): boolean {
+  if (ex.type === "multipleChoice") return art !== "trous";
+  return luecken(ex.gapText ?? "").length > 0;
+}
 
 function absoluteUrl(url: string): string {
   if (/^https?:\/\//i.test(url)) return url;
@@ -389,99 +373,7 @@ function fuelleAufMindestzahl(fragen: FrageAntwort[]): FrageAntwort[] {
   return gefuellt;
 }
 
-const TYPOGRAPHIE_ERSATZ: Record<string, string> = {
-  "\u2018": "'",
-  "\u2019": "'",
-  "\u201A": "'",
-  "\u201B": "'",
-  "\u201C": '"',
-  "\u201D": '"',
-  "\u201E": '"',
-  "\u201F": '"',
-  "\u2013": "-",
-  "\u2014": "-",
-  "\u2026": "...",
-};
 
-function normalisiereTypographie(text: string): string {
-  return text.replace(
-    /[\u2018\u2019\u201A\u201B\u201C\u201D\u201E\u201F\u2013\u2014\u2026]/g,
-    (zeichen) => TYPOGRAPHIE_ERSATZ[zeichen] ?? zeichen,
-  );
-}
-
-// *facile.com ist eine alte ISO-8859-1-Seite. URLSearchParams kodiert Akzente
-// als UTF-8 (%C3%A9 fuer "é"); die Seite liest daraus "Ã©" (Mojibake). Jede
-// Prozentfolge mit einem Byte >= 0x80 wird deshalb aus UTF-8 dekodiert und als
-// ISO-8859-1 neu kodiert. Reine ASCII-Folgen bleiben unveraendert.
-function alsIso8859Formular(urlencoded: string): string {
-  return urlencoded.replace(/(?:%[0-9A-Fa-f]{2})+/g, (lauf) => {
-    const bytes = (lauf.match(/%[0-9A-Fa-f]{2}/g) ?? []).map((b) =>
-      parseInt(b.slice(1), 16),
-    );
-
-    if (bytes.every((b) => b < 0x80)) return lauf;
-
-    let text: string;
-    try {
-      text = normalisiereTypographie(decodeURIComponent(lauf));
-    } catch {
-      return lauf;
-    }
-
-    let ergebnis = "";
-    for (const zeichen of text) {
-      const punkt = zeichen.codePointAt(0) ?? 0;
-      // Zeichen ausserhalb ISO-8859-1 kommen auf der Seite nicht vor; sie
-      // bleiben als UTF-8 stehen, damit nichts verloren geht.
-      ergebnis +=
-        punkt <= 0xff
-          ? "%" + punkt.toString(16).toUpperCase().padStart(2, "0")
-          : encodeURIComponent(zeichen);
-    }
-    return ergebnis;
-  });
-}
-
-function baueBody(fragen: FrageAntwort[], testIdNummer: number): string {
-  const gefuellt = fuelleAufMindestzahl(fragen);
-  const seite = typen.find((x) => x.wert === uebungstyp.value) ?? typen[0];
-  const testtitel = titel.value.trim();
-  const felder = new URLSearchParams();
-
-  felder.set("statut", "r");
-  felder.set("top2", "");
-  felder.set("auteur2", auteur.value.trim());
-  felder.set("liaison2", "#adverbe#conjonction#");
-  felder.set("casier", `clone du test ${testIdNummer}`);
-  felder.set("anciensite", "0001");
-  felder.set("yenamarre", SEITENNUMMERN[props.quiz] ?? "0001");
-  felder.set("genre", "g");
-  felder.set("difficulte", "2");
-  felder.set("type", seite.seitentyp);
-  felder.set("titre", testtitel);
-  felder.set("titreenglish", testtitel);
-  felder.set("ancientitreenglish", testtitel);
-  felder.set("numero", "0");
-  felder.set("message_textarea", topicDaten.value?.tutorial ?? "");
-  felder.set("confirmer", "0");
-
-  gefuellt.forEach((frage, index) => {
-    const nummer = index + 1;
-    felder.set(`q${nummer}`, frage.q);
-    felder.set(`r${nummer}`, frage.r);
-    felder.set(`e${nummer}`, "");
-  });
-
-  felder.set("mychoice", String(gefuellt.length));
-  felder.set("grander", "");
-  felder.set("nol2", "");
-  felder.set("vieuxconfirm", "0");
-  felder.set("forcer2", "");
-  felder.set("enbaspage", "");
-  felder.set("enbas", "");
-  return alsIso8859Formular(felder.toString());
-}
 
 // Nur die Aufgaben, die zur gew├ñhlten Testart und zum geladenen Topic passen.
 function filtereNachTestart(): void {
@@ -551,9 +443,13 @@ async function exportieren(): Promise<void> {
     return;
   }
 
-  const gewaehlte = kandidaten.value
-    .map((ex, index) => (ausgewaehlt.value[index] ? frageAntwortBauen(ex) : null))
-    .filter((f): f is FrageAntwort => f !== null);
+  const gewaehlte = kandidaten.value
+    .map((ex, index) => (ausgewaehlt.value[index] ? frageAntwortBauen(ex) : null))
+    .filter((f): f is FrageAntwort => f !== null);
+
+  const gewaehlteExercises = kandidaten.value.filter(
+    (ex, index) => ausgewaehlt.value[index] && frageAntwortBauen(ex) !== null,
+  );
 
   if (gewaehlte.length === 0) {
     fehler.value = "Bitte mindestens eine Aufgabe ausw├ñhlen!";
@@ -574,9 +470,14 @@ async function exportieren(): Promise<void> {
     const antwort = await exportToFacile({
       site: seite,
       testId: testIdNummer,
-      cookie: sitzungscookie,
-      body: baueBody(gewaehlte, testIdNummer),
-    });
+      cookie: sitzungscookie,
+      quiz: props.quiz,
+      title: titel.value,
+      author: auteur.value,
+      topicTutorial: topicDaten.value?.tutorial ?? "",
+      testType: uebungstyp.value,
+      exercises: gewaehlteExercises,
+    });
 
     if (antwort.angemeldet === false) {
       meldung.value = "";
@@ -596,7 +497,7 @@ async function exportieren(): Promise<void> {
     const bestaetigt = antwort.gespeichert
       ? "Die Seite hat den Test gespeichert."
       : "Die Seite hat den Test angenommen, aber nicht best├ñtigt. Bitte kurz auf der Seite pr├╝fen, ob die Fragen ├╝bernommen wurden.";
-    meldung.value = `Test ${testIdNummer} auf ${seite}: ${gefuellt.length} Fragen, Typ ${art.seitentyp}. ${bestaetigt}`;
+    meldung.value = `Test ${testIdNummer} auf ${seite}: ${antwort.fragen ?? gefuellt.length} Fragen, Typ ${art.seitentyp}. ${bestaetigt}`;
   } catch (e) {
     meldung.value = "";
     // Bei einem 4xx/5xx wirft axios, und die brauchbare Meldung steckt in der

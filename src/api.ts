@@ -146,6 +146,10 @@ export interface ExportFacileAntwort {
   testId?: string;
   bytes?: number;
   message?: string;
+  fragen?: number;
+  mehrfachLuecken?: boolean;
+  type?: string;
+  numero?: string;
 }
 
 // Der Browser darf das Cookie-Header nicht setzen und die *facile.com-Seiten
@@ -154,7 +158,13 @@ export async function exportToFacile(params: {
   site: string;
   testId: number;
   cookie: string;
-  body: string;
+  body?: string;
+  quiz?: string;
+  title?: string;
+  author?: string;
+  topicTutorial?: string;
+  testType?: string;
+  exercises?: Exercise[];
 }): Promise<ExportFacileAntwort> {
   const r = await client.post<ExportFacileAntwort>("/api/exportfacile", params);
   return r.data;
