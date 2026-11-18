@@ -1835,6 +1835,16 @@ describe("OQuiz: Erfolgs-Toasts nach dem Speichern und Loeschen", () => {
   async function mountMitOwner() {
     const pinia = createPinia();
     setActivePinia(pinia);
+    // Den Benutzer vor dem Mounten setzen, damit die Knopfleiste schon beim
+    // ersten Rendern angemeldet ist. Das Token kommt erst danach, damit
+    // sitzungWiederherstellen beim Start nicht /api/auth/user abfragt.
+    const auth = useAuthStore();
+    auth.user = {
+      _id: "u-owner",
+      name: "Owner",
+      email: "owner@example.com",
+    } as User;
+
     const wrapper = mount(OQuiz, {
       props: { quiz: QUIZ, lg: "en" },
       global: {
@@ -1846,13 +1856,7 @@ describe("OQuiz: Erfolgs-Toasts nach dem Speichern und Loeschen", () => {
     });
     await flushPromises();
 
-    const auth = useAuthStore();
     auth.token = "test-token";
-    auth.user = {
-      _id: "u-owner",
-      name: "Owner",
-      email: "owner@example.com",
-    } as User;
     await flushPromises();
     return wrapper;
   }

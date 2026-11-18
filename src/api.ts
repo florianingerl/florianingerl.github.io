@@ -320,6 +320,32 @@ export async function login(data: {
   return r.data;
 }
 
+// Sign in / sign up with an OAuth provider --------------------------------
+// The backend owns the OAuth flow: the browser is sent to
+// /api/auth/<provider>, and the provider redirects back to the backend, which
+// finally redirects to /oauth-callback with a JWT. returnTo is the page the
+// user should see again after signing in (usually the current URL).
+export interface OAuthProviderStatus {
+  google: boolean;
+  github: boolean;
+}
+
+export type OAuthProvider = "google" | "github";
+
+export async function getOAuthProviders(): Promise<OAuthProviderStatus> {
+  const r = await client.get<OAuthProviderStatus>("/api/auth/providers");
+  return r.data;
+}
+
+export function oauthStartUrl(
+  provider: OAuthProvider,
+  returnTo?: string,
+): string {
+  const url = new URL(`${API_URL}/api/auth/${provider}`);
+  if (returnTo) url.searchParams.set("returnTo", returnTo);
+  return url.toString();
+}
+
 // GET /api/auth/user haengt an authMiddleware und liefert den Benutzer
 // ohne Passwort.
 export async function getAuthenticatedUser(): Promise<User> {

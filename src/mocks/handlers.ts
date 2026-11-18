@@ -19,4 +19,9 @@ export const handlers = [
     const { name } = (await request.json()) as { name: string };
     return HttpResponse.json({ _id: "mocked-school-id", name });
   }),
+  // Im Test sind beide OAuth-Anbieter verfuegbar, damit die Login- und
+  // Registrierdialoge ihre Google-/GitHub-Knoepfe anzeigen koennen.
+  http.get(`${API_URL}/api/auth/providers`, () =>
+    HttpResponse.json({ google: true, github: true }),
+  ),
 ];

@@ -2,6 +2,7 @@ import { mount } from "@vue/test-utils";
 import { createPinia, setActivePinia } from "pinia";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { defineComponent, nextTick, ref } from "vue";
+import { i18n } from "@/i18n";
 import VueLogin from "./VueLogin.vue";
 
 // Das Modal von Bootstrap sperrt das Scrollen ueber die body-Klasse
@@ -48,7 +49,7 @@ async function mountHost() {
   const pinia = createPinia();
   setActivePinia(pinia);
   const wrapper = mount(Host, {
-    global: { plugins: [pinia] },
+    global: { plugins: [pinia, i18n] },
     attachTo: document.body,
   });
   await nextTick();

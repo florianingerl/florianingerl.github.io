@@ -5,6 +5,14 @@
     "exerciseDeleted": "L'esercizio è stato eliminato con successo dal database.",
     "tutorialSaved": "Il tutorial è stato salvato con successo nel database."
   },
+  "oauth": {
+    "or": "o",
+    "continueWithGoogle": "Continua con Google",
+    "continueWithGitHub": "Continua con GitHub",
+    "callbackTitle": "Accesso in corso...",
+    "callbackError": "Non è stato possibile completare l'accesso.",
+    "callbackFailed": "Accesso non riuscito. Riprova."
+  },
   "meta": {
     "title": "Frag Florian - Ripetizioni per l'università e la scuola in matematica, fisica, informatica, ingegneria, chimica, francese, inglese e spagnolo",
     "description": "Ripetizioni di matematica, fisica, informatica, ingegneria, chimica e lingue per università e scuola"

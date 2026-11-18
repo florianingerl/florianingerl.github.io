@@ -5,6 +5,14 @@
     "exerciseDeleted": "The exercise was successfully deleted from the database.",
     "tutorialSaved": "The tutorial was successfully saved in the database."
   },
+  "oauth": {
+    "or": "or",
+    "continueWithGoogle": "Continue with Google",
+    "continueWithGitHub": "Continue with GitHub",
+    "callbackTitle": "Signing you in...",
+    "callbackError": "The login could not be completed.",
+    "callbackFailed": "Signing in failed. Please try again."
+  },
   "meta": {
     "title": "Frag Florian - Tutoring for university and school in Maths, Physics, Computer Science, Engineering, Chemistry, French, English and Spanish",
     "description": "Tutoring in Maths, Physics, Computer Science, Engineering, Chemistry and languages for university and school"

@@ -38,6 +38,8 @@
               </p>
             </div>
 
+            <MOAuthButtons />
+
             <form @submit.prevent="submitForm" novalidate>
               <div class="mb-3">
                 <label for="name" class="form-label fw-semibold">
@@ -173,6 +175,7 @@
 
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, reactive, ref } from 'vue'
+import MOAuthButtons from "@/components/molecules/MOAuthButtons.vue";
 import { useAuthStore } from "@/stores/auth";
 import { modalScrollSperreEntfernen } from "@/utils/modalScroll";
 import { Modal } from 'bootstrap'

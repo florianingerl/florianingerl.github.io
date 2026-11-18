@@ -66,6 +66,19 @@ export const useAuthStore = defineStore("auth", () => {
     }
   }
 
+  // After an OAuth login the backend redirects to /oauth-callback with a JWT.
+  // The token is stored like a normal login, then the user is loaded.
+  async function tokenUebernehmen(neuesToken: string): Promise<void> {
+    token.value = neuesToken;
+    setToken(neuesToken);
+    if (!(await benutzerLaden())) {
+      abmelden();
+      throw new Error(
+        "The login worked, but the user couldn't be loaded. Please try again."
+      );
+    }
+  }
+
   // /api/register schickt zwar schon ein Token mit, angemeldet wird aber erst
   // mit /api/login, damit das Passwort nicht noch einmal geschickt werden muss.
   async function registrieren(data: {
@@ -104,6 +117,7 @@ export const useAuthStore = defineStore("auth", () => {
     email,
     anmelden,
     registrieren,
+    tokenUebernehmen,
     profilSpeichern,
     abmelden,
     sitzungWiederherstellen,

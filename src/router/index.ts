@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "@/views/HomeView.vue";
 import WhiteboardView from "@/views/WhiteboardView.vue";
 import VerifyEmailView from "@/views/VerifyEmailView.vue";
+import OAuthCallbackView from "@/views/OAuthCallbackView.vue";
 
 // Die Bilder in den Abschnitten haben keine feste Hoehe. Sie laden erst nach
 // dem ersten Rendern nach und schieben die weiter unten liegenden Abschnitte
@@ -56,6 +57,13 @@ const router = createRouter({
       path: "/verify-email",
       name: "verify-email",
       component: VerifyEmailView,
+    },
+    {
+      // Landing page after a Google/GitHub login. The backend puts the JWT in
+      // the query string and the view stores it before redirecting back.
+      path: "/oauth-callback",
+      name: "oauth-callback",
+      component: OAuthCallbackView,
     },
   ],
   async scrollBehavior(to, _from, savedPosition) {
