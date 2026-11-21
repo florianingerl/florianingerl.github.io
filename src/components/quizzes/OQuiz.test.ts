@@ -71,7 +71,7 @@ describe("OQuiz: neues Thema erscheint im Topic-Filter-Dropdown", () => {
     const wrapper = mount(OQuiz, {
       props: { quiz: QUIZ, lg: "en" },
       global: {
-        plugins: [pinia],
+        plugins: [pinia, i18n],
         // Die Knopfleiste soll echt gerendert werden (shallow stubbt sie sonst).
         stubs: { LoginToEditComponent: false },
       },
@@ -169,7 +169,7 @@ describe("OQuiz: Aufgaben des Faches werden geladen und nach Umfang gefiltert", 
     const wrapper = mount(OQuiz, {
       props: { quiz: QUIZ, lg: "en" },
       global: {
-        plugins: [pinia],
+        plugins: [pinia, i18n],
         // Die Paginierung steht jetzt direkt im Quiz (unter dem Splitter);
         // ExerciseNavigation wird echt gerendert, sonst waeren die
         // Blaetterknoepfe nicht im DOM.
@@ -269,7 +269,7 @@ describe("OQuiz: Mathematik-Quiz laedt Thema 'Gruppen' und Aufgaben", () => {
     setActivePinia(pinia);
     const wrapper = mount(OQuiz, {
       props: { quiz: MATHE, lg: "de" },
-      global: { plugins: [pinia] },
+      global: { plugins: [pinia, i18n] },
       shallow: true,
     });
     await flushPromises();
@@ -335,7 +335,7 @@ describe("OQuiz: Web-Programming-Quiz laedt Destructuring-Thema und Aufgaben", (
     setActivePinia(pinia);
     const wrapper = mount(OQuiz, {
       props: { quiz: WEB, lg: "de" },
-      global: { plugins: [pinia] },
+      global: { plugins: [pinia, i18n] },
       shallow: true,
     });
     await flushPromises();
@@ -400,7 +400,7 @@ describe("OQuiz: Informatik-Quiz laedt UML-Aktivit\u00e4tsdiagramm-Thema und Auf
     setActivePinia(pinia);
     const wrapper = mount(OQuiz, {
       props: { quiz: INFO, lg: "de" },
-      global: { plugins: [pinia] },
+      global: { plugins: [pinia, i18n] },
       shallow: true,
     });
     await flushPromises();
@@ -438,7 +438,7 @@ describe("OQuiz: Vollbildmodus", () => {
     setActivePinia(pinia);
     const wrapper = mount(OQuiz, {
       props: { quiz: QUIZ, lg: "en" },
-      global: { plugins: [pinia] },
+      global: { plugins: [pinia, i18n] },
       shallow: true,
     });
     await flushPromises();
@@ -618,7 +618,7 @@ describe("OQuiz: nicht angemeldet", () => {
     const wrapper = mount(OQuiz, {
       props: { quiz: QUIZ, lg: "en" },
       global: {
-        plugins: [pinia],
+        plugins: [pinia, i18n],
         // Der Anmelde-Hinweis steht in der Knopfleiste, also echt rendern.
         stubs: { LoginToEditComponent: false },
       },
@@ -675,7 +675,7 @@ describe("OQuiz: Multiple-Choice-Aufgabe anlegen (Server-Roundtrip)", () => {
     const wrapper = mount(OQuiz, {
       props: { quiz: QUIZ, lg: "en" },
       global: {
-        plugins: [pinia],
+        plugins: [pinia, i18n],
         // Nur das Aufgaben-Formular wird echt gebraucht; die uebrigen Kinder
         // (u.a. der Jodit-Editor in VueNewTopic) sind fuer den Test unnoetig.
         stubs: {
@@ -827,7 +827,7 @@ describe("OQuiz: nach Schule filtern", () => {
     const wrapper = mount(OQuiz, {
       props: { quiz: QUIZ, lg: "en" },
       global: {
-        plugins: [pinia],
+        plugins: [pinia, i18n],
         stubs: {
           ExerciseNavigation: false,
         },
@@ -957,7 +957,7 @@ describe("OQuiz: nach Aufgabentyp filtern", () => {
     const wrapper = mount(OQuiz, {
       props: { quiz: QUIZ, lg: "en" },
       global: {
-        plugins: [pinia],
+        plugins: [pinia, i18n],
         stubs: {
           ExerciseNavigation: false,
         },
@@ -1041,7 +1041,7 @@ describe("OQuiz: Deep-Link waehlt Thema, Schule und Typ", () => {
     setActivePinia(pinia);
     const wrapper = mount(OQuiz, {
       props: { quiz: QUIZ, lg: "en" },
-      global: { plugins: [pinia] },
+      global: { plugins: [pinia, i18n] },
       shallow: true,
     });
     await flushPromises();
@@ -1137,7 +1137,7 @@ describe("OQuiz: Filterzeile zeigt die Auswahl eines Deep-Links", () => {
     setActivePinia(pinia);
     const wrapper = mount(OQuiz, {
       props: { quiz: QUIZ, lg: "en" },
-      global: { plugins: [pinia] },
+      global: { plugins: [pinia, i18n] },
       shallow: false,
     });
     await flushPromises();
@@ -1212,7 +1212,7 @@ describe("OQuiz: Link wird beim Aendern von Thema/Schule/Typ kopiert", () => {
     setActivePinia(pinia);
     const wrapper = mount(OQuiz, {
       props: { quiz: QUIZ, lg: "en" },
-      global: { plugins: [pinia] },
+      global: { plugins: [pinia, i18n] },
       shallow: true,
     });
     await flushPromises();
@@ -1360,7 +1360,7 @@ describe("OQuiz: Adresse wird beim Aendern von Thema/Schule/Typ zurueckgeschrieb
     setActivePinia(pinia);
     const wrapper = mount(OQuiz, {
       props: { quiz: QUIZ, lg: "en" },
-      global: { plugins: [pinia] },
+      global: { plugins: [pinia, i18n] },
       shallow: true,
     });
     await flushPromises();
@@ -1530,7 +1530,7 @@ describe("OQuiz: Bearbeiten und Loeschen nur fuer Besitzerin oder Admin", () => 
     const wrapper = mount(OQuiz, {
       props: { quiz: QUIZ, lg: "en" },
       global: {
-        plugins: [pinia],
+        plugins: [pinia, i18n],
         // Die Knopfleiste soll echt gerendert werden.
         stubs: { LoginToEditComponent: false },
       },
@@ -1657,7 +1657,7 @@ describe("OQuiz: Navigation mit den Pfeiltasten", () => {
     const wrapper = mount(OQuiz, {
       props: { quiz: QUIZ, lg: "en" },
       global: {
-        plugins: [pinia],
+        plugins: [pinia, i18n],
         stubs: { ExerciseNavigation: false },
       },
       // Damit das Wurzelelement ans document angebunden wird (fuer keydown).
@@ -1848,7 +1848,7 @@ describe("OQuiz: Erfolgs-Toasts nach dem Speichern und Loeschen", () => {
     const wrapper = mount(OQuiz, {
       props: { quiz: QUIZ, lg: "en" },
       global: {
-        plugins: [pinia],
+        plugins: [pinia, i18n],
         // Die Knopfleiste soll echt gerendert werden.
         stubs: { LoginToEditComponent: false },
       },
@@ -2017,7 +2017,7 @@ describe("OQuiz: Themenfilter zeigt die Aufgaben der Unterthemen", () => {
     const wrapper = mount(OQuiz, {
       props: { quiz: QUIZ, lg: "en" },
       global: {
-        plugins: [pinia],
+        plugins: [pinia, i18n],
         // Die Paginierung soll echt gerendert werden, damit die Anzahl der
         // angezeigten Aufgaben ablesbar ist.
         stubs: { ExerciseNavigation: false },

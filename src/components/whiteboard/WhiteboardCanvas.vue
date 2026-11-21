@@ -37,6 +37,9 @@ const props = defineProps<{
 	cursors: WhiteboardCursor[];
 	penPreviews?: WhiteboardObject[];
 	canEdit: boolean;
+	showGrid?: boolean;
+	defsId?: string;
+	fixedViewport?: boolean;
 }>();
 
 const emit = defineEmits<{
@@ -216,6 +219,7 @@ function trefferObjekt(punkt: Point): WhiteboardObject | null {
 }
 
 function onPointerDown(event: PointerEvent): void {
+	if (props.fixedViewport && (event.button === 1 || props.tool === "hand")) return;
 	if (event.button === 1 || props.tool === "hand") {
 		ziehen.value = {
 			mode: "schieben",
@@ -671,6 +675,7 @@ function onPointerDownHandle(event: PointerEvent, ecke: Ecke, id: string): void 
 }
 
 function onWheel(event: WheelEvent): void {
+	if (props.fixedViewport) return;
 	const flaeche = svg.value?.getBoundingClientRect();
 	const bildschirmX = event.clientX - (flaeche?.left ?? 0);
 	const bildschirmY = event.clientY - (flaeche?.top ?? 0);
@@ -809,7 +814,8 @@ defineExpose({ zoomBy, fitToContent });
 		>
 			<defs>
 				<pattern
-					id="wb-punkte"
+					v-if="showGrid !== false"
+					:id="`${defsId ?? 'wb'}-punkte`"
 					:width="24 / camera.scale"
 					:height="24 / camera.scale"
 					patternUnits="userSpaceOnUse"
@@ -818,7 +824,7 @@ defineExpose({ zoomBy, fitToContent });
 					<circle cx="1.5" cy="1.5" r="1.5" fill="#c9ced6" />
 				</pattern>
 				<marker
-					id="wb-pfeil"
+					:id="`${defsId ?? 'wb'}-pfeil`"
 					viewBox="0 0 10 10"
 					refX="9"
 					refY="5"
@@ -836,7 +842,7 @@ defineExpose({ zoomBy, fitToContent });
 				y="0"
 				width="100%"
 				height="100%"
-				fill="url(#wb-punkte)"
+				:fill="showGrid === false ? '#ffffff' : `url(#${defsId ?? 'wb'}-punkte)`"
 			/>
 
 			<g :transform="`translate(${camera.x}, ${camera.y}) scale(${camera.scale})`">
@@ -1003,7 +1009,7 @@ defineExpose({ zoomBy, fitToContent });
 				</g>
 
 				<!-- Auswahl -->
-				<g v-if="auswahlBounds">
+				<g v-if="auswahlBounds" class="wb-export-hidden">
 					<rect
 						:x="auswahlBounds.x"
 						:y="auswahlBounds.y"
@@ -1035,6 +1041,7 @@ defineExpose({ zoomBy, fitToContent });
 				<!-- Auswahl mit der Maus -->
 				<rect
 					v-if="rahmenRechteck"
+					class="wb-export-hidden"
 					:x="rahmenRechteck.x"
 					:y="rahmenRechteck.y"
 					:width="rahmenRechteck.w"
@@ -1047,7 +1054,7 @@ defineExpose({ zoomBy, fitToContent });
 			</g>
 
 			<!-- Cursor der anderen Teilnehmer (Bildschirmkoordinaten) -->
-			<g v-for="cursor in cursors" :key="cursor.participant.id">
+			<g v-for="cursor in cursors" :key="cursor.participant.id" class="wb-export-hidden">
 				<g
 					:transform="`translate(${bildschirm({ x: cursor.x, y: cursor.y }).x}, ${bildschirm({ x: cursor.x, y: cursor.y }).y})`"
 				>

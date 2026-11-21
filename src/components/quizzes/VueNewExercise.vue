@@ -58,7 +58,10 @@
 
     <Splitter style="flex-grow: 1;">
       <SplitterPanel :size="50" :minSize="10">
-        <OImageChooserAndDisplayer v-model="exercise.imageUrl" />
+        <OImageChooserAndDisplayer
+          v-model="exercise.imageUrl"
+          v-model:image-json-url="exercise.imageJsonUrl"
+        />
       </SplitterPanel>
 
       <SplitterPanel :size="50" :minSize="10">

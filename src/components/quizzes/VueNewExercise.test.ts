@@ -43,6 +43,23 @@ describe("VueNewExercise: benutzerdefiniertes Bild", () => {
     ).toBe("https://example.com/cat.png");
   });
 
+  it("uebernimmt die JSON-Adresse einer selbst gezeichneten Aufgabe in die gespeicherte Aufgabe", async () => {
+    const wrapper = await mountForm();
+
+    const waehler = wrapper.findComponent(OImageChooserAndDisplayer);
+    waehler.vm.$emit("update:modelValue", "https://example.com/drawn.png");
+    waehler.vm.$emit("update:imageJsonUrl", "/api/image/drawn.json");
+    await flushPromises();
+
+    await wrapper.find("form").trigger("submit");
+
+    const emitted = wrapper.emitted("new-exercise-created");
+    expect(emitted).toBeTruthy();
+    const ex = emitted![0][0] as Exercise;
+    expect(ex.imageUrl).toBe("https://example.com/drawn.png");
+    expect(ex.imageJsonUrl).toBe("/api/image/drawn.json");
+  });
+
   it("schickt ein eingefuegtes Bild zum Server und nimmt die Antwort-URL", async () => {
     let gesendeteDatenUrl = "";
     server.use(

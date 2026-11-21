@@ -5,6 +5,15 @@
     "exerciseDeleted": "L'esercizio è stato eliminato con successo dal database.",
     "tutorialSaved": "Il tutorial è stato salvato con successo nel database."
   },
+  "imageChooser": {
+    "drawYourself": "Disegna l'immagine tu stesso"
+  },
+  "imageDrawer": {
+    "save": "Salva",
+    "cancel": "Annulla",
+    "saveFailed": "Impossibile salvare l'immagine.",
+    "noCanvas": "L'area di disegno non è disponibile."
+  },
   "oauth": {
     "or": "o",
     "continueWithGoogle": "Continua con Google",
@@ -347,7 +356,8 @@
       "ellipse": "Ellisse",
       "line": "Linea",
       "pen": "Penna",
-      "image": "Immagine"
+      "image": "Immagine",
+      "eraser": "Gomma"
     }
   }
 }

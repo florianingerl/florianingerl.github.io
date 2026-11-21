@@ -1,45 +1,20 @@
 <script setup lang="ts">
-// Das Whiteboard: verbindet sich mit dem Server, haelt die Objekte, die
-// Werkzeugleiste, die Leiste mit dem Einladungslink und die Zeichenflaeche.
-
 import { computed, nextTick, onBeforeUnmount, onMounted, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import WhiteboardCanvas from "./WhiteboardCanvas.vue";
 import WhiteboardShareBar from "./WhiteboardShareBar.vue";
 import WhiteboardToolbar from "./WhiteboardToolbar.vue";
 import { useWhiteboardSession } from "./useWhiteboardSession";
+import { useWhiteboardEditor } from "./useWhiteboardEditor";
 import { copyToClipboard } from "@/utils/clipboard";
 import {
 	applyPatch,
 	boardLink,
-	createObject,
 	diffObjects,
-	duplicateObjects,
 	loadName,
-	moveObjects,
-	parseSelection,
 	saveName,
-	serializeSelection,
-	topZ,
 } from "@/utils/whiteboard";
-import {
-	bildAusDatei,
-	bildAusSystemZwischenablage,
-	bilddateiAusZwischenablage,
-	istTexteingabe,
-} from "@/utils/whiteboardBild";
-import {
-	downloadTextFile,
-	parseWhiteboardFile,
-	readTextFile,
-	serializeWhiteboardFile,
-	whiteboardFileName,
-} from "@/utils/whiteboardDatei";
-import type {
-	WhiteboardObject,
-	WhiteboardPenStroke,
-	WhiteboardTool,
-} from "@/types/whiteboard";
+import type { WhiteboardObject, WhiteboardPenStroke } from "@/types/whiteboard";
 import "./whiteboard.css";
 
 const props = defineProps<{ boardId: string }>();
@@ -47,23 +22,11 @@ const props = defineProps<{ boardId: string }>();
 const { t } = useI18n();
 const session = useWhiteboardSession();
 
-const objects = ref<WhiteboardObject[]>([]);
+const canvas = ref<InstanceType<typeof WhiteboardCanvas> | null>(null);
 const serverObjects = ref<WhiteboardObject[]>([]);
-const selectedIds = ref<string[]>([]);
-const tool = ref<WhiteboardTool>("select");
-const color = ref("#1f2933");
-const fill = ref("#ffd966");
-const strokeWidth = ref(2);
-const camera = ref({ x: 0, y: 0, scale: 1 });
-const undoStack = ref<WhiteboardObject[][]>([]);
-const redoStack = ref<WhiteboardObject[][]>([]);
 const name = ref(loadName());
 const copied = ref(false);
-const kopierPuffer = ref<WhiteboardObject[]>([]);
 const fehler = ref("");
-const dateiFehler = ref("");
-const canvas = ref<InstanceType<typeof WhiteboardCanvas> | null>(null);
-const letzteKlickPosition = ref<{ x: number; y: number } | null>(null);
 
 const link = computed(() => boardLink(window.location.origin, props.boardId));
 const kannBearbeiten = computed(() => !fehler.value);
@@ -71,17 +34,31 @@ const kannBearbeiten = computed(() => !fehler.value);
 const cursors = computed(() => Object.values(session.cursors.value));
 const penPreviews = computed(() => Object.values(session.penPreviews.value));
 
-function fehlerText(schluessel: string): string {
-	return t(schluessel);
-}
+const editor = useWhiteboardEditor({
+	canEdit: () => kannBearbeiten.value,
+	afterChange: synchronisiere,
+	getCanvasElement: () => canvas.value?.$el?.querySelector?.(".wb-canvas"),
+	translate: (key) => t(key),
+});
 
-// -------------------------------------------------------------- Boarddaten
+const {
+	objects,
+	selectedIds,
+	tool,
+	color,
+	fill,
+	strokeWidth,
+	camera,
+	fileError,
+	canUndo,
+	canRedo,
+	hasSelection,
+} = editor;
 
 function setzeFehler(schluessel: string): void {
-	fehler.value = fehlerText(schluessel);
+	fehler.value = t(schluessel);
 }
 
-/** Schickt die Unterschiede zum Serverstand an den Server. */
 function synchronisiere(): void {
 	const patch = diffObjects(serverObjects.value, objects.value);
 	if (!patch.upserts.length && !patch.deletes.length) return;
@@ -89,187 +66,40 @@ function synchronisiere(): void {
 	serverObjects.value = objects.value.map((obj) => ({ ...obj }));
 }
 
-/** Merkt sich den Stand vor der Aenderung fuer das Rueckgaengig. */
-function merkeStand(): void {
-	const stand = objects.value.map((obj) => ({ ...obj }));
-	// Wenn sich nichts geaendert hat, gibt es auch nichts rueckgaengig zu machen.
-	const vorher = undoStack.value[undoStack.value.length - 1];
-	if (vorher && gleicheListe(vorher, stand)) return;
-	undoStack.value = [...undoStack.value, stand];
-	if (undoStack.value.length > 50) undoStack.value = undoStack.value.slice(-50);
-	redoStack.value = [];
-}
-
-/** Sind zwei Objektlisten gleich? */
-function gleicheListe(a: WhiteboardObject[], b: WhiteboardObject[]): boolean {
-	if (a.length !== b.length) return false;
-	return a.every((obj, index) => {
-		const andere = b[index];
-		if (!andere) return false;
-		return JSON.stringify(obj) === JSON.stringify(andere);
-	});
-}
-
-function rueckgaengig(): void {
-	const vorher = undoStack.value.pop();
-	if (!vorher) return;
-	redoStack.value = [...redoStack.value, objects.value.map((obj) => ({ ...obj }))];
-	objects.value = vorher;
-	synchronisiere();
-}
-
-function wiederherstellen(): void {
-	const nachher = redoStack.value.pop();
-	if (!nachher) return;
-	undoStack.value = [...undoStack.value, objects.value.map((obj) => ({ ...obj }))];
-	objects.value = nachher;
-	synchronisiere();
-}
-
-// --------------------------------------------------------------- Aktionen
+const merkeStand = editor.rememberState;
 
 function objectHinzugefuegt(obj: WhiteboardObject): void {
-	objects.value = [...objects.value, obj];
-	synchronisiere();
+	editor.addObject(obj);
 }
 
 function canvasClick(punkt: { x: number; y: number }): void {
-	letzteKlickPosition.value = { x: punkt.x, y: punkt.y };
+	editor.canvasClick(punkt);
 }
 
 function auswahlGedaehnt(ids: string[], dx: number, dy: number): void {
-	objects.value = moveObjects(objects.value, ids, dx, dy);
-	synchronisiere();
+	editor.moveSelection(ids, dx, dy);
 }
 
 function objectGeaendert(id: string, box: { x: number; y: number; w: number; h: number }): void {
-	objects.value = objects.value.map((obj) => {
-		if (obj.id !== id) return obj;
-		const neu: WhiteboardObject = { ...obj, ...box };
-		if (obj.type === "line") {
-			neu.x2 = box.x + box.w;
-			neu.y2 = box.y + box.h;
-		}
-		return neu;
-	});
-	synchronisiere();
+	editor.resizeObject(id, box);
 }
 
 function objectAktualisiert(obj: WhiteboardObject): void {
-	objects.value = objects.value.map((alt) => (alt.id === obj.id ? obj : alt));
-	synchronisiere();
+	editor.updateObject(obj);
 }
 
-function auswahlLoeschen(): void {
-	if (!selectedIds.value.length) return;
-	merkeStand();
-	const zuLoeschen = new Set(selectedIds.value);
-	objects.value = objects.value.filter((obj) => !zuLoeschen.has(obj.id));
-	selectedIds.value = [];
-	synchronisiere();
-}
-
-function objekteLoeschen(ids: string[]): void {
-	if (!ids.length || !kannBearbeiten.value) return;
-	merkeStand();
-	const zuLoeschen = new Set(ids);
-	objects.value = objects.value.filter((obj) => !zuLoeschen.has(obj.id));
-	selectedIds.value = selectedIds.value.filter((id) => !zuLoeschen.has(id));
-	synchronisiere();
-}
-
-function auswahlKopieren(): void {
-	const gewaehlt = objects.value.filter((obj) => selectedIds.value.includes(obj.id));
-	if (!gewaehlt.length) return;
-	kopierPuffer.value = gewaehlt;
-	//The void before copyToClipboard intentionelly ignore the Promise/result, that copyToClipboard returns, it's not a syntax error
-	void copyToClipboard(serializeSelection(gewaehlt));
-}
-
-async function auswahlEinfuegen(): Promise<void> {
-	let inhalt = kopierPuffer.value;
-	try {
-		const text = await navigator.clipboard?.readText?.();
-		const ausZwischenablage = text ? parseSelection(text) : [];
-		if (ausZwischenablage.length) inhalt = ausZwischenablage;
-	} catch {
-		// Ohne Zugriff auf die Zwischenablage wird der eigene Puffer genutzt.
-	}
-	if (!inhalt.length) return;
-	merkeStand();
-	const kopien = inhalt.map((obj) => ({
-		...obj,
-		id: `${obj.id}_${Math.random().toString(36).slice(2, 8)}`,
-		x: obj.x + 30,
-		y: obj.y + 30,
-		z: topZ(objects.value) + 1,
-	}));
-	objects.value = [...objects.value, ...kopien];
-	selectedIds.value = kopien.map((obj) => obj.id);
-	synchronisiere();
-}
-
-function auswahlDuplizieren(): void {
-	if (!selectedIds.value.length) return;
-	merkeStand();
-	const vorher = objects.value.length;
-	objects.value = duplicateObjects(objects.value, selectedIds.value, 24);
-	selectedIds.value = objects.value
-		.slice(vorher)
-		.map((obj) => obj.id);
-	synchronisiere();
-}
-
-import { screenToWorld } from "@/utils/whiteboard";
-
-function viewportMitteInWelt(): { x: number; y: number } {
-	const flaeche = canvas.value?.$el?.querySelector?.(".wb-canvas")?.getBoundingClientRect?.();
-	const breite = flaeche?.width || 800;
-	const hoehe = flaeche?.height || 600;
-	const punkt = screenToWorld({ x: breite / 2, y: hoehe / 2 }, camera.value);
-	return { x: punkt.x, y: punkt.y };
-}
-
-async function bildEinfuegen(datei: File, pos?: { x: number; y: number }): Promise<void> {
-	try {
-		const bild = await bildAusDatei(datei);
-		const z = topZ(objects.value) + 1;
-		const ziel = pos ?? letzteKlickPosition.value ?? viewportMitteInWelt();
-		const x = ziel.x - bild.w / 2;
-		const y = ziel.y - bild.h / 2;
-		const obj = createObject("image", x, y, z, {
-			src: bild.src,
-			w: bild.w,
-			h: bild.h,
-		});
-		merkeStand();
-		objects.value = [...objects.value, obj];
-		selectedIds.value = [obj.id];
-		synchronisiere();
-	} catch {
+async function bildEinfuegen(datei: File): Promise<void> {
+	if (!(await editor.insertImage(datei))) {
 		setzeFehler("whiteboard.imageFailed");
 	}
 }
 
 async function auswahlOderBildEinfuegen(): Promise<void> {
-	const bild = await bildAusSystemZwischenablage();
-	if (bild) {
-		await bildEinfuegen(bild);
-		return;
-	}
-	await auswahlEinfuegen();
-}
-
-async function bildAusZwischenablageEinfuegen(event: ClipboardEvent): Promise<void> {
-	if (!kannBearbeiten.value || istTexteingabe(document.activeElement)) return;
-	const datei = bilddateiAusZwischenablage(event.clipboardData);
-	if (!datei) return;
-	event.preventDefault();
-	await bildEinfuegen(datei);
+	await editor.pasteImageOrSelection();
 }
 
 function onPaste(event: ClipboardEvent): void {
-	void bildAusZwischenablageEinfuegen(event);
+	void editor.pasteFromClipboardEvent(event);
 }
 
 async function linkKopieren(): Promise<void> {
@@ -286,46 +116,21 @@ function nameGeaendert(neuerName: string): void {
 }
 
 function dateiSpeichern(): void {
-	dateiFehler.value = "";
-	const titel = session.board.value?.title ?? "Whiteboard";
-	downloadTextFile(
-		serializeWhiteboardFile(titel, objects.value),
-		whiteboardFileName(titel),
-	);
+	editor.saveFile(session.board.value?.title ?? "Whiteboard");
 }
 
 async function dateiOeffnen(datei: File): Promise<void> {
-	dateiFehler.value = "";
-	try {
-		const daten = parseWhiteboardFile(await readTextFile(datei));
-		if (!daten) {
-			dateiFehler.value = t("whiteboard.fileInvalid");
-			return;
-		}
-		if (
-			objects.value.length > 0 &&
-			!window.confirm(t("whiteboard.openConfirm"))
-		) {
-			return;
-		}
-		merkeStand();
-		objects.value = daten.objects.map((obj) => ({ ...obj }));
-		selectedIds.value = [];
-		synchronisiere();
+	if (await editor.openFile(datei)) {
 		await nextTick();
 		canvas.value?.fitToContent();
-	} catch {
-		dateiFehler.value = t("whiteboard.fileReadFailed");
 	}
 }
-
-// ----------------------------------------------------------------- Server
 
 onMounted(async () => {
 	window.addEventListener("paste", onPaste);
 	try {
 		await session.joinBoard(props.boardId, name.value);
-		objects.value = session.board.value?.objects ?? [];
+		editor.setObjects(session.board.value?.objects ?? [], false);
 		serverObjects.value = objects.value.map((obj) => ({ ...obj }));
 	} catch {
 		setzeFehler("whiteboard.notFound");
@@ -384,20 +189,20 @@ function stiftAbgebrochen(id: string): void {
 				:color="color"
 				:fill="fill"
 				:stroke-width="strokeWidth"
-				:can-undo="undoStack.length > 0"
-				:can-redo="redoStack.length > 0"
+				:can-undo="canUndo"
+				:can-redo="canRedo"
 				:can-edit="kannBearbeiten"
-				:has-selection="selectedIds.length > 0"
+				:has-selection="hasSelection"
 				@tool-change="tool = $event"
 				@color-change="color = $event"
 				@fill-change="fill = $event"
 				@stroke-change="strokeWidth = $event"
-				@undo="rueckgaengig"
-				@redo="wiederherstellen"
-				@delete="auswahlLoeschen"
-				@copy="auswahlKopieren"
+				@undo="editor.undo"
+				@redo="editor.redo"
+				@delete="editor.deleteSelected"
+				@copy="editor.copySelection"
 				@paste="auswahlOderBildEinfuegen"
-				@duplicate="auswahlDuplizieren"
+				@duplicate="editor.duplicateSelected"
 				@zoom-in="canvas?.zoomBy(1.2)"
 				@zoom-out="canvas?.zoomBy(1 / 1.2)"
 				@zoom-fit="canvas?.fitToContent()"
@@ -406,7 +211,7 @@ function stiftAbgebrochen(id: string): void {
 
 			<div class="wb-app__flaeche">
 				<p v-if="fehler" class="wb-app__fehler">{{ fehler }}</p>
-				<p v-if="dateiFehler" class="wb-app__fehler">{{ dateiFehler }}</p>
+				<p v-if="fileError" class="wb-app__fehler">{{ fileError }}</p>
 				<WhiteboardCanvas
 					ref="canvas"
 					:objects="objects"
@@ -422,19 +227,19 @@ function stiftAbgebrochen(id: string): void {
 					@camera-change="camera = $event"
 					@select="selectedIds = $event"
 					@create="objectHinzugefuegt"
-				@move="auswahlGedaehnt"
-				@resize="objectGeaendert"
-				@update="objectAktualisiert"
-				@tool-change="tool = $event"
-				@interaction-start="merkeStand"
-				@interaction-end="synchronisiere"
-				@cursor="cursorBewegt"
-				@pen-start="stiftGestartet"
-				@pen-points="stiftPunkte"
-				@pen-cancel="stiftAbgebrochen"
-				@erase="objekteLoeschen"
-				@canvas-click="canvasClick"
-			/>
+					@move="auswahlGedaehnt"
+					@resize="objectGeaendert"
+					@update="objectAktualisiert"
+					@tool-change="tool = $event"
+					@interaction-start="merkeStand"
+					@interaction-end="synchronisiere"
+					@cursor="cursorBewegt"
+					@pen-start="stiftGestartet"
+					@pen-points="stiftPunkte"
+					@pen-cancel="stiftAbgebrochen"
+					@erase="editor.deleteObjects"
+					@canvas-click="canvasClick"
+				/>
 			</div>
 		</div>
 	</div>

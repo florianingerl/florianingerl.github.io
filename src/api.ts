@@ -219,6 +219,12 @@ export async function createSchool(name: string): Promise<School> {
   return r.data;
 }
 
+export function bildUrl(url: string): string {
+  const pfad = url.replace(/^https?:\/\/[^/]+/i, "");
+  if (pfad.startsWith("/api/image/")) return `${API_URL}${pfad}`;
+  return /^https?:\/\//i.test(url) ? url : `${API_URL}${url}`;
+}
+
 // Ein Bild aus der Zwischenablage wird als Data-URL ("data:image/png;base64,...")
 // an den Server geschickt. Er speichert es und antwortet mit der URL, unter der
 // es abrufbar ist. "remaining" ist die Anzahl der heute noch erlaubten Uploads
@@ -232,6 +238,21 @@ export interface ImageUploadAntwort {
 export async function uploadImage(dataUrl: string): Promise<ImageUploadAntwort> {
   const r = await client.post<ImageUploadAntwort>("/api/image", { dataUrl });
   return r.data;
+}
+
+export interface DrawingUploadAntwort extends ImageUploadAntwort {
+  jsonUrl: string;
+}
+
+export async function uploadDrawing(
+  pngDataUrl: string,
+  json: string,
+): Promise<DrawingUploadAntwort> {
+  const r = await client.post<DrawingUploadAntwort>("/api/image/drawing", {
+    pngDataUrl,
+    json,
+  });
+  return { ...r.data, url: bildUrl(r.data.url), jsonUrl: bildUrl(r.data.jsonUrl) };
 }
 
 // Buecher (VueBookWriter / VueBookStore) ---------------------------

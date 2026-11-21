@@ -1,4 +1,6 @@
-import { API_URL, uploadImage } from '@/api'
+import { bildUrl, uploadImage } from '@/api'
+
+export { bildUrl }
 
 // Sucht in den Daten einer Zwischenablage (Strg+V) ein Bild. Text wird
 // durchgelassen (null), damit die Eingabe normal weiter funktioniert.
@@ -27,16 +29,6 @@ function dateiAlsDatenUrl(datei: File): Promise<string> {
     leser.onerror = () => reject(new Error('The pasted image could not be read.'))
     leser.readAsDataURL(datei)
   })
-}
-
-// Macht aus der Antwort des Servers eine URL, die der Browser laden kann.
-// Bilder, die unser Server ausliefert, werden immer ueber API_URL geladen
-// (auch wenn der Server hinter dem Proxy nur http gemeldet hat); eine fremde,
-// absolute URL bleibt unveraendert.
-export function bildUrl(url: string): string {
-  const pfad = url.replace(/^https?:\/\/[^/]+/i, '')
-  if (pfad.startsWith('/api/image/')) return `${API_URL}${pfad}`
-  return /^https?:\/\//i.test(url) ? url : `${API_URL}${url}`
 }
 
 // Schickt ein eingefuegtes Bild an den Server (der das Tageslimit prueft) und

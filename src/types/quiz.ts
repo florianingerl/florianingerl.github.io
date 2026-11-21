@@ -154,6 +154,7 @@ export interface Exercise {
   subject?: string;
   type: ExerciseType;
   imageUrl: string;
+  imageJsonUrl?: string;
   topic?: Topic | string; //It's either the id of the topic or the topic itsself
   // Die Schule der Aufgabe. Der Server schickt das ganze School-Dokument mit
   // populate, beim Speichern wird nur die _id (oder der Name) geschickt.

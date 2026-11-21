@@ -2,7 +2,7 @@
 // Die Werkzeugleiste links auf dem Board: Werkzeuge waehlen, Farbe und
 // Strichstaerke festlegen, Aktionen wie Rueckgaengig oder Loeschen.
 
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import ColorPicker from "primevue/colorpicker";
 import type { WhiteboardTool } from "@/types/whiteboard";
@@ -20,6 +20,8 @@ const props = defineProps<{
 	canRedo: boolean;
 	canEdit: boolean;
 	hasSelection: boolean;
+	showHand?: boolean;
+	showZoom?: boolean;
 }>();
 
 const emit = defineEmits<{
@@ -41,7 +43,7 @@ const emit = defineEmits<{
 
 const { t } = useI18n();
 
-const werkzeuge: { tool: WhiteboardTool; icon: string; key: string }[] = [
+const alleWerkzeuge: { tool: WhiteboardTool; icon: string; key: string }[] = [
 	{ tool: "select", icon: "bi-cursor-fill", key: "select" },
 	{ tool: "hand", icon: "bi-hand-index-thumb", key: "hand" },
 	{ tool: "note", icon: "bi-sticky", key: "note" },
@@ -52,6 +54,12 @@ const werkzeuge: { tool: WhiteboardTool; icon: string; key: string }[] = [
 	{ tool: "pen", icon: "bi-pencil", key: "pen" },
 	{ tool: "eraser", icon: "bi-eraser", key: "eraser" },
 ];
+
+const werkzeuge = computed(() =>
+	alleWerkzeuge.filter(
+		(werkzeug) => werkzeug.tool !== "hand" || props.showHand !== false,
+	),
+);
 
 const eigeneFarbe = ref<string | null>(null);
 const eigeneFuellung = ref<string | null>(null);
@@ -256,7 +264,7 @@ function onDatei(event: Event): void {
 			</button>
 		</div>
 
-		<div class="wb-toolbar__gruppe">
+		<div v-if="showZoom !== false" class="wb-toolbar__gruppe">
 			<button
 				type="button"
 				class="wb-toolbar__knopf"
